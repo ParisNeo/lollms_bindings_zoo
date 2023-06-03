@@ -14,13 +14,13 @@
 from pathlib import Path
 from typing import Callable
 from llama_cpp import Llama
-from pyaipersonality.binding import LLMBinding, BindingConfig
-from pyaipersonality  import MSG_TYPE
+from lollms.binding import LLMBinding, BindingConfig
+from lollms  import MSG_TYPE
 import yaml
 import random
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/gpt4all-ui"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -37,12 +37,15 @@ class LLAMACPP(LLMBinding):
         """
         super().__init__(config, False)
         seed = config["seed"]
+        self.local_config = self.load_config_file(Path(__file__).parent.parent / 'config_local.yaml')
         # if seed <=0:
         #    seed = random.randint(1, 2**31)
             
-        if not "n_gpu_layers" in self.config:
-            self.config["n_gpu_layers"] = 20
-        self.model = Llama(model_path=f"./models/{binding_folder_name}/{self.config['model']}", n_ctx=self.config["ctx_size"], n_gpu_layers=self.config["n_gpu_layers"], seed=seed)
+        self.model = Llama(
+            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"), 
+            n_ctx=self.config["ctx_size"], 
+            n_gpu_layers=self.local_config["n_gpu_layers"], 
+            seed=seed)
 
 
     def tokenize(self, prompt):

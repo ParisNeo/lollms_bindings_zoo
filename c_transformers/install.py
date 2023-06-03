@@ -1,10 +1,12 @@
 import subprocess
 from pathlib import Path
-import requests
-from tqdm import tqdm
+from lollms.binding import BindingConfig, BindingInstaller
+import yaml
 
-class Install:
-    def __init__(self, api=None):
+class Install(BindingInstaller):
+    def __init__(self, config:BindingConfig=None):
+        # Build parent
+        super().__init__(config)
         # Get the current directory
         current_dir = Path(__file__).resolve().parent
         install_file = current_dir / ".installed"
@@ -34,12 +36,35 @@ class Install:
             # Create ther models folder
             models_folder = Path("./models/c_transformers")
             models_folder.mkdir(exist_ok=True, parents=True)
-            
+
+            # Create the configuration file
+            self.create_config_file()
+
             #Create the install file 
             with open(install_file,"w") as f:
                 f.write("ok")
             print("Installed successfully")
-            
+
+    def create_config_file(self):
+        """
+        Create a config_local.yaml file with predefined data.
+
+        The function creates a config_local.yaml file with the specified data. The file is saved in the parent directory
+        of the current file.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+        data = {
+            "use_avx2": True,     # use avx2
+        }
+        path = Path(__file__).parent / 'config_local.yaml'
+        with open(path, 'w') as file:
+            yaml.dump(data, file)
+
     def reinstall_pytorch_with_cuda(self):
         subprocess.run(["pip", "install", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
         

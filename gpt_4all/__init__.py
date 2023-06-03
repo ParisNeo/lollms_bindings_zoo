@@ -15,12 +15,12 @@
 from pathlib import Path
 from typing import Callable
 from gpt4all import GPT4All
-from pyaipersonality.binding import LLMBinding
-from pyaipersonality  import MSG_TYPE
+from lollms.binding import LLMBinding, BindingConfig
+from lollms  import MSG_TYPE
 import yaml
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/gpt4all-ui"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -31,7 +31,7 @@ binding_folder_name = "gpt_4all"
 class GPT4ALL(LLMBinding):
     file_extension='*.bin'
     
-    def __init__(self, config:dict) -> None:
+    def __init__(self, config:BindingConfig) -> None:
         """Builds a GPT4ALL binding
 
         Args:

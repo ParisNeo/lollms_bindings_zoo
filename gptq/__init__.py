@@ -11,8 +11,8 @@ from pathlib import Path
 from typing import Callable
 from transformers import AutoTokenizer, TextGenerationPipeline
 from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
-from pyaipersonality.binding import LLMBinding
-from pyaipersonality  import MSG_TYPE
+from lollms.binding import LLMBinding, BindingConfig
+from lollms  import MSG_TYPE
 import torch
 import yaml
 import requests
@@ -35,11 +35,11 @@ binding_folder_name = "gptq"
 
 class GPTQ(LLMBinding):
     file_extension='*'
-    def __init__(self, config:dict) -> None:
+    def __init__(self, config:BindingConfig) -> None:
         """Builds a GPTQ binding
 
         Args:
-            config (dict): The configuration file
+            config (BindingConfig): The configuration file
         """
         super().__init__(config, False)
         

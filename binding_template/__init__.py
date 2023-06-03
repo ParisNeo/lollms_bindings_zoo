@@ -13,14 +13,13 @@
 ######
 from pathlib import Path
 from typing import Callable
-from pyaipersonality.binding import LLMBinding
-from pyaipersonality  import MSG_TYPE
+from lollms.binding import LLMBinding, BindingConfig
+from lollms  import MSG_TYPE
 import yaml
-from api.config import load_config
 import re
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/gpt4all-ui"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -32,20 +31,20 @@ class CustomBinding(LLMBinding):
     # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
     # and reimplement your own list_models method
     file_extension='*.bin' 
-    def __init__(self, config:dict) -> None:
+    def __init__(self, config:BindingConfig) -> None:
         """Builds a LLAMACPP binding
 
         Args:
             config (dict): The configuration file
         """
-        super().__init__(config, False)
+        super().__init__(config)
         
         # The local config can be used to store personal information that shouldn't be shared like chatgpt Key 
         # or other personal information
         # This file is never commited to the repository as it is ignored by .gitignore
         # You can remove this if you don't need custom local configurations
         self._local_config_file_path = Path(__file__).parent/"config_local.yaml"
-        self.config = load_config(self._local_config_file_path)
+        self.config.load_config(self._local_config_file_path)
 
         # Do your initialization stuff
             

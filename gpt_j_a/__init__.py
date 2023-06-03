@@ -15,11 +15,11 @@
 from pathlib import Path
 from typing import Callable
 from pygptj.model import Model
-from pyaipersonality.binding import LLMBinding
-from pyaipersonality  import MSG_TYPE
+from lollms.binding import LLMBinding, BindingConfig
+from lollms  import MSG_TYPE
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/gpt4all-ui"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -28,7 +28,7 @@ binding_folder_name = "gpt_j_a"
 
 class GptJ(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:dict) -> None:
+    def __init__(self, config:BindingConfig) -> None:
         """Builds a LLAMACPP binding
 
         Args:

@@ -13,13 +13,13 @@
 ######
 from pathlib import Path
 from typing import Callable
-from pyaipersonality.binding import LLMBinding
-from pyaipersonality  import MSG_TYPE
+from lollms.binding import LLMBinding, BindingConfig
+from lollms  import MSG_TYPE
 import yaml
 from ctransformers import AutoModelForCausalLM
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/gpt4all-ui"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -27,7 +27,7 @@ binding_name = "CTRansformers"
 
 class CTRansformers(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:dict) -> None:
+    def __init__(self, config:BindingConfig) -> None:
         """Builds a LLAMACPP binding
 
         Args:
@@ -52,8 +52,10 @@ class CTRansformers(LLMBinding):
             print("The model you are using is not supported by this binding")
             return
         
+        self.local_config = self.load_config_file(Path(__file__).parent.parent / 'config_local.yaml')
         
-        if self.config["use_avx2"]:
+        
+        if self.local_config["use_avx2"]:
             self.model = AutoModelForCausalLM.from_pretrained(
                     f"./models/c_transformers/{self.config['model']}", model_type=model_type
                     )

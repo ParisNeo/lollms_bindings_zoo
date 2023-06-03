@@ -15,12 +15,12 @@
 from pathlib import Path
 from typing import Callable
 from gpt4allj import Model
-from pyaipersonality.binding import LLMBinding
-from pyaipersonality  import MSG_TYPE
+from lollms.binding import LLMBinding, BindingConfig
+from lollms  import MSG_TYPE
 import yaml
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/gpt4all-ui"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -29,16 +29,17 @@ binding_folder_name = "gpt_j_m"
 
 class GPTJ(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:dict) -> None:
+    def __init__(self, config:BindingConfig) -> None:
         """Builds a LLAMACPP binding
 
         Args:
-            config (dict): The configuration file
+            config (BindingConfig): The configuration file
         """
         super().__init__(config, False)
+        self.local_config = self.load_config_file(Path(__file__).parent.parent / 'config_local.yaml')
         
         self.model = Model(
-                model=f"./models/{binding_folder_name}/{self.config['model']}", avx2 = self.config["use_avx2"]
+                model=f"./models/{binding_folder_name}/{self.config['model']}", avx2 = self.local_config["use_avx2"]
                 )
     def tokenize(self, prompt):
         """

@@ -14,12 +14,12 @@
 from pathlib import Path
 from typing import Callable
 from pyllamacpp.model import Model
-from pyaipersonality.binding import LLMBinding
-from pyaipersonality  import MSG_TYPE
+from lollms.binding import LLMBinding, BindingConfig
+from lollms  import MSG_TYPE
 import yaml
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/gpt4all-ui"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -28,11 +28,11 @@ binding_folder_name = "py_llama_cpp"
 
 class PyLLAMACPP(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:dict) -> None:
+    def __init__(self, config:BindingConfig) -> None:
         """Builds a LLAMACPP binding
 
         Args:
-            config (dict): The configuration file
+            config (BindingConfig): The configuration file
         """
         super().__init__(config, False)
         

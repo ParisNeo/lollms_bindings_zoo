@@ -1,11 +1,12 @@
 import subprocess
 from pathlib import Path
-import requests
-from tqdm import tqdm
-from api.config import save_config
+from lollms.binding import BindingConfig, BindingInstaller
+import yaml
 
-class Install:
-    def __init__(self, api=None):
+class Install(BindingInstaller):
+    def __init__(self, config:BindingConfig=None):
+        # Build parent
+        super().__init__(config)
         # Get the current directory
         current_dir = Path(__file__).resolve().parent
         install_file = current_dir / ".installed"

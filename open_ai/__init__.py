@@ -13,14 +13,14 @@
 ######
 from pathlib import Path
 from typing import Callable
-from pyaipersonality.binding import LLMBinding
+from lollms.binding import LLMBinding, BindingConfig
 from api.config import load_config
 import openai
 import yaml
 import re
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/gpt4all-ui"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -32,11 +32,11 @@ class OpenAIGPT(LLMBinding):
     # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
     # and reimplement your own list_models method
     file_extension='*.bin' 
-    def __init__(self, config:dict) -> None:
+    def __init__(self, config:BindingConfig) -> None:
         """Builds a OpenAIGPT binding
 
         Args:
-            config (dict): The configuration file
+            config (BindingConfig): The configuration file
         """
         super().__init__(config, False)
         
