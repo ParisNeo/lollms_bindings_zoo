@@ -52,7 +52,7 @@ class CTRansformers(LLMBinding):
             print("The model you are using is not supported by this binding")
             return
         
-        self.local_config = self.load_config_file(Path(__file__).parent / 'config_local.yaml')
+        self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
         
         
         if self.local_config["use_avx2"]:

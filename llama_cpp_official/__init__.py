@@ -37,7 +37,7 @@ class LLAMACPP(LLMBinding):
         """
         super().__init__(config, False)
         seed = config["seed"]
-        self.local_config = self.load_config_file(Path(__file__).parent / 'config_local.yaml')
+        self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
         # if seed <=0:
         #    seed = random.randint(1, 2**31)
             

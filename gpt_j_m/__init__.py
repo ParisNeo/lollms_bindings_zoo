@@ -36,7 +36,7 @@ class GPTJ(LLMBinding):
             config (BindingConfig): The configuration file
         """
         super().__init__(config, False)
-        self.local_config = self.load_config_file(Path(__file__).parent / 'config_local.yaml')
+        self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
         
         self.model = Model(
                 model=f"./models/{binding_folder_name}/{self.config['model']}", avx2 = self.local_config["use_avx2"]

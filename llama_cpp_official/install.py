@@ -36,9 +36,9 @@ class Install(BindingInstaller):
 
     def create_config_file(self):
         """
-        Create a config_local.yaml file with predefined data.
+        Create a local_config.yaml file with predefined data.
 
-        The function creates a config_local.yaml file with the specified data. The file is saved in the parent directory
+        The function creates a local_config.yaml file with the specified data. The file is saved in the parent directory
         of the current file.
 
         Args:
@@ -50,7 +50,7 @@ class Install(BindingInstaller):
         data = {
             "n_gpu_layers": 20,     # number of layers to put in gpu
         }
-        path = Path(__file__).parent / 'config_local.yaml'
+        path = Path(__file__).parent / 'local_config.yaml'
         with open(path, 'w') as file:
             yaml.dump(data, file)
 

@@ -41,7 +41,7 @@ class Install(BindingInstaller):
             # This file is never commited to the repository as it is ignored by .gitignore
             # You can remove this if you don't need custom local configurations
             """
-            self._local_config_file_path = Path(__file__).parent/"config_local.yaml"
+            self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
             if  not self._local_config_file_path.exists():
                 config = {
                     #Put your default configurations here

@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 
 .installed
-config_local.yaml
+local_config.yaml
