@@ -1,4 +1,14 @@
 - bestLlama: 'true'
+  description: 'Jon Durbin's Airoboros 13B GPT4 GGML'
+  icon : https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: airoboros-13b-gpt4.ggmlv3.q4_0.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/airoboros-13b-gpt4-GGML/resolve/main/
+  sha256: 49857cddd723e7a06b8ac5f5221208bb40d303917412324c9098357794dcf82b
+
+- bestLlama: 'true'
   description: The official open assistant 30B model finally here
   icon : https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   filename: OpenAssistant-SFT-7-Llama-30B.ggml.q4_0.bin

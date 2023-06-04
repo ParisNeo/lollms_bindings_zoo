@@ -1,4 +1,4 @@
--   description: GGML format model files for the original LLaMa
+- description: GGML format model files for the original LLaMa
   icon : https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   filename: Samantha-7B-GPTQ
   license: Non commercial

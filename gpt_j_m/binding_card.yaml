@@ -1,0 +1,5 @@
+name: GPT-J
+author: marella
+version: 1.0
+link: https://github.com/marella/gpt4all-j
+description: 'Python bindings for the GPTQ type of files'
