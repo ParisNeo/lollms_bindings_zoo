@@ -1,5 +1,5 @@
 - bestLlama: 'true'
-  description: 'Jon Durbin's Airoboros 13B GPT4 GGML'
+  description: Jon Durbin's Airoboros 13B GPT4 GGML
   icon : https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   filename: airoboros-13b-gpt4.ggmlv3.q4_0.bin
   license: Non commercial
