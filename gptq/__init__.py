@@ -42,8 +42,14 @@ class GPTQ(LLMBinding):
             config (BindingConfig): The configuration file
         """
         super().__init__(config, False)
-        
-        self.model_dir = Path("models")/binding_folder_name/f'{config["model"]}'
+        if self.config.model_name.endswith(".reference"):
+            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+                model_path=f.read()
+        else:
+            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+                
+
+        self.model_dir = model_path
         pretrained_model_dir = "facebook/opt-125m"
         quantized_model_dir = "opt-125m-4bit"
 

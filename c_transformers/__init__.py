@@ -24,6 +24,7 @@ __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
 binding_name = "CTRansformers"
+binding_folder_name = "c_transformers"
 
 class CTRansformers(LLMBinding):
     file_extension='*.bin'
@@ -54,14 +55,19 @@ class CTRansformers(LLMBinding):
         
         self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
         
-        
+        if self.config.model_name.endswith(".reference"):
+            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+                model_path=f.read()
+        else:
+            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+
         if self.local_config["use_avx2"]:
             self.model = AutoModelForCausalLM.from_pretrained(
-                    f"./models/c_transformers/{self.config['model']}", model_type=model_type
+                    model_path, model_type=model_type
                     )
         else:
             self.model = AutoModelForCausalLM.from_pretrained(
-                    f"./models/c_transformers/{self.config['model']}", model_type=model_type, lib = "avx"
+                    model_path, model_type=model_type, lib = "avx"
                     )
             
     def tokenize(self, prompt:str):

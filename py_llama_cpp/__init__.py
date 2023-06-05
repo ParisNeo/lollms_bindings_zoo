@@ -35,9 +35,15 @@ class PyLLAMACPP(LLMBinding):
             config (BindingConfig): The configuration file
         """
         super().__init__(config, False)
-        
+        if self.config.model_name.endswith(".reference"):
+            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+                model_path=f.read()
+        else:
+            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+                
+
         self.model = Model(
-                model_path=f"./models/{binding_folder_name}/{self.config['model']}",
+                model_path=model_path,
                 prompt_context="", prompt_prefix="", prompt_suffix="",
                 n_ctx=self.config['ctx_size'], 
                 seed=self.config['seed'],

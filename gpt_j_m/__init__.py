@@ -37,9 +37,14 @@ class GPTJ(LLMBinding):
         """
         super().__init__(config, False)
         self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
+        if self.config.model_name.endswith(".reference"):
+            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+                model_path=f.read()
+        else:
+            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
         
         self.model = Model(
-                model=f"./models/{binding_folder_name}/{self.config['model']}", avx2 = self.local_config["use_avx2"]
+                model=model_path, avx2 = self.local_config["use_avx2"]
                 )
     def tokenize(self, prompt:str):
         """

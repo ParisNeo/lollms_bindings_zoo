@@ -38,9 +38,15 @@ class GPT4ALL(LLMBinding):
             config (dict): The configuration file
         """
         super().__init__(config, False)
+        if self.config.model_name.endswith(".reference"):
+            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+                model_path=f.read()
+        else:
+            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+
         self.model = GPT4All.get_model_from_name(self.config['model'])
         self.model.load_model(
-                model_path=f"./models/{binding_folder_name}/{self.config['model']}"
+                model_path=model_path
         )
 
 

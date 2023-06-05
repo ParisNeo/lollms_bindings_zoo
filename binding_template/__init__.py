@@ -46,7 +46,13 @@ class CustomBinding(LLMBinding):
         self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
         self.config.load_config(self._local_config_file_path)
 
-        # Do your initialization stuff
+        if self.config.model_name.endswith(".reference"):
+            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+                model_path=f.read()
+        else:
+            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+
+        # Do your initialization stuff to load the model
             
     def tokenize(self, prompt:str):
         """
