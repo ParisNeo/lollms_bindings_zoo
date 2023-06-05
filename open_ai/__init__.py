@@ -13,7 +13,8 @@
 ######
 from pathlib import Path
 from typing import Callable
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.personality import MSG_TYPE
 from api.config import load_config
 import openai
 import yaml
@@ -32,11 +33,11 @@ class OpenAIGPT(LLMBinding):
     # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
     # and reimplement your own list_models method
     file_extension='*.bin' 
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a OpenAIGPT binding
 
         Args:
-            config (BindingConfig): The configuration file
+            config (LOLLMSConfig): The configuration file
         """
         super().__init__(config, False)
         
@@ -89,18 +90,34 @@ class OpenAIGPT(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         try:
-            response = openai.Completion.create(
-                engine=self.config["model"],  # Choose the engine according to your OpenAI plan
-                prompt=prompt,
-                max_tokens=n_predict,  # Adjust the desired length of the generated response
-                n=1,  # Specify the number of responses you want
-                stop=None,  # Define a stop sequence if needed
-                temperature=gpt_params["temperature"]  # Adjust the temperature for more or less randomness in the output
-            )
+            default_params = {
+                'temperature': 0.7,
+                'top_k': 50,
+                'top_p': 0.96,
+                'repeat_penalty': 1.3
+            }
+            gpt_params = {**default_params, **gpt_params}
+            count = 0
+            output = ""
+            for resp in openai.Completion.create(model=self.config["model"],  # Choose the engine according to your OpenAI plan
+                                prompt=prompt,
+                                max_tokens=n_predict,  # Adjust the desired length of the generated response
+                                n=1,  # Specify the number of responses you want
+                                stop=None,  # Define a stop sequence if needed
+                                temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
+                                stream=True):
+                if count >= n_predict:
+                    break
+                try:
+                    word = resp.choices[0].text
+                except:
+                    word = ""
+                if callback is not None:
+                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break
+                output += word
+                count += 1
 
-            # Extract the generated reply from the API response
-            reply = response.choices[0].text.strip()
-            return reply
         except Exception as ex:
             print(ex)
         return ""            

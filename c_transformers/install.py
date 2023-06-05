@@ -1,18 +1,19 @@
 import subprocess
 from pathlib import Path
-from lollms.binding import BindingConfig, BindingInstaller
+from lollms.binding import LOLLMSConfig, BindingInstaller
+from lollms.helpers import ASCIIColors
 import yaml
 
 class Install(BindingInstaller):
-    def __init__(self, config:BindingConfig=None):
+    def __init__(self, config:LOLLMSConfig=None, force_reinstall=False):
         # Build parent
         super().__init__(config)
         # Get the current directory
         current_dir = Path(__file__).resolve().parent
         install_file = current_dir / ".installed"
 
-        if not install_file.exists():
-            print("-------------- cTransformers binding -------------------------------")
+        if not install_file.exists() or force_reinstall:
+            ASCIIColors.info("-------------- cTransformers binding -------------------------------")
             print("This is the first time you are using this binding.")
             print("Installing ...")
             """
@@ -34,18 +35,18 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Create ther models folder
-            models_folder = Path("./models/c_transformers")
+            models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
 
             # Create the configuration file
-            self.create_config_file()
+            self.create_config_file(config.lollms_paths.personal_configuration_path / "c_transformers_config.yaml")
 
             #Create the install file 
             with open(install_file,"w") as f:
                 f.write("ok")
             print("Installed successfully")
 
-    def create_config_file(self):
+    def create_config_file(self, path):
         """
         Create a local_config.yaml file with predefined data.
 
@@ -61,10 +62,9 @@ class Install(BindingInstaller):
         data = {
             "use_avx2": True,     # use avx2
         }
-        path = Path(__file__).parent / 'local_config.yaml'
         with open(path, 'w') as file:
             yaml.dump(data, file)
 
     def reinstall_pytorch_with_cuda(self):
-        subprocess.run(["pip", "install", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
+        subprocess.run(["pip", "install", "--upgrade", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
         

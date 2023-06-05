@@ -9,11 +9,9 @@
 ######
 from pathlib import Path
 from typing import Callable
-from transformers import AutoTokenizer, TextGenerationPipeline
-from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
+from transformers import AutoTokenizer, AutoModelForCausalLM
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
-from lollms.paths import LollmsPaths
 import torch
 import yaml
 import requests
@@ -31,56 +29,48 @@ __github__ = "https://github.com/ParisNeo/GPTQ_binding"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "GPTQ"
-binding_folder_name = "gptq"
+binding_name = "HuggingFace"
+binding_folder_name = "hugging_face"
 
-class GPTQ(LLMBinding):
+class HuggingFace(LLMBinding):
     file_extension='*'
     def __init__(self, config:LOLLMSConfig) -> None:
-        """Builds a GPTQ binding
+        """Builds a Hugging face binding
 
         Args:
             config (LOLLMSConfig): The configuration file
         """
         super().__init__(config, False)
-        
+
         self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
         self.models_folder.mkdir(parents=True, exist_ok=True)
-        
-        # Create configuration file
-        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'binding_gptq_config.yaml')
-        
+
         if self.config.model_name.endswith(".reference"):
             with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
             model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
-                
+
+        # Create configuration file
+        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'binding_hugging_face_config.yaml')
+
+
         self.model_dir = model_path
         model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.local_config["device"], use_fast=True, local_files_only=True)
         use_safetensors = model_name.suffix == '.safetensors'
         model_name = model_name.stem
 
-        if not (Path(self.model_dir) / "quantize_config.json").exists():
-            quantize_config = BaseQuantizeConfig(
-                bits= 4,
-                group_size= -1,
-                desc_act=""
-            )
-        else:
-            quantize_config = None
 
         # load quantized model to the first GPU
-        self.model = AutoGPTQForCausalLM.from_quantized(
+        self.model = AutoModelForCausalLM.from_pretrained(
             self.model_dir, 
             local_files_only=True,  
             model_basename=model_name, 
             device=self.local_config["device"],
-            use_triton=False,#True,
-            use_safetensors=use_safetensors,
-            quantize_config=quantize_config
-            )
+            use_triton=True,
+            use_safetensors=use_safetensors)
+
 
     def tokenize(self, prompt:str):
         """
@@ -137,7 +127,6 @@ class GPTQ(LLMBinding):
             output = toks
         except Exception as ex:
             print(ex)
-            output=""
         return output
 
     @staticmethod

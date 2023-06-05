@@ -15,8 +15,9 @@
 from pathlib import Path
 from typing import Callable
 from pygptj.model import Model
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
+import yaml
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -28,7 +29,7 @@ binding_folder_name = "gpt_j_a"
 
 class GptJ(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a LLAMACPP binding
 
         Args:
@@ -36,11 +37,14 @@ class GptJ(LLMBinding):
         """
         super().__init__(config, False)
         
+        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
+        self.models_folder.mkdir(parents=True, exist_ok=True)
+
         if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
-            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
 
         self.model = Model(
                 model_path=model_path,
@@ -56,7 +60,7 @@ class GptJ(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return None
+        return prompt.split(" ")
 
     def detokenize(self, tokens_list:list):
         """
@@ -68,7 +72,7 @@ class GptJ(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return None
+        return " ".join(tokens_list)
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
@@ -83,6 +87,15 @@ class GptJ(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3,
+            "seed":-1,
+            "n_threads":8
+        }
+        gpt_params = {**default_params, **gpt_params}        
         try:
             self.model.reset()
             output = ""
@@ -102,3 +115,14 @@ class GptJ(LLMBinding):
         except Exception as ex:
             print(ex)
         return output
+
+    @staticmethod
+    def get_available_models():
+        # Create the file path relative to the child class's directory
+        binding_path = Path(__file__).parent
+        file_path = binding_path/"models.yaml"
+
+        with open(file_path, 'r') as file:
+            yaml_data = yaml.safe_load(file)
+        
+        return yaml_data

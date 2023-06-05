@@ -13,7 +13,7 @@
 ######
 from pathlib import Path
 from typing import Callable
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
 import yaml
 from ctransformers import AutoModelForCausalLM
@@ -28,38 +28,41 @@ binding_folder_name = "c_transformers"
 
 class CTRansformers(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a LLAMACPP binding
 
         Args:
             config (dict): The configuration file
         """
         super().__init__(config, False)
-        if 'gpt2' in self.config['model']:
+        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
+        self.models_folder.mkdir(parents=True, exist_ok=True)
+
+        if 'gpt2' in self.config['model_name']:
             model_type='gpt2'
-        elif 'gptj' in self.config['model']:
+        elif 'gptj' in self.config['model_name']:
             model_type='gptj'
-        elif 'gpt_neox' in self.config['model']:
+        elif 'gpt_neox' in self.config['model_name']:
             model_type='gpt_neox'
-        elif 'dolly-v2' in self.config['model']:
+        elif 'dolly-v2' in self.config['model_name']:
             model_type='dolly-v2'
-        elif 'starcoder' in self.config['model']:
+        elif 'starcoder' in self.config['model_name'] or 'starchat-beta' in self.config['model_name']:
             model_type='starcoder'
-        elif 'llama' in self.config['model'].lower() or 'wizardlm' in self.config['model'].lower() or 'vigogne' in self.config['model'].lower():
-            model_type='llama'
-        elif 'mpt' in self.config['model']:
+        elif 'mpt' in self.config['model_name']:
             model_type='mpt'
+        elif 'llama' in self.config['model_name'].lower() or 'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower():
+            model_type='llama'
         else:
             print("The model you are using is not supported by this binding")
             return
         
-        self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
+        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'c_transformers_config.yaml')
         
         if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
-            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
 
         if self.local_config["use_avx2"]:
             self.model = AutoModelForCausalLM.from_pretrained(
@@ -80,7 +83,7 @@ class CTRansformers(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.model.tokenize(prompt.encode())
+        return self.model.tokenize(prompt)
 
     def detokenize(self, tokens_list:list):
         """

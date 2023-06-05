@@ -35,16 +35,29 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
 
             # Create the models folder
-            models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
+            models_folder = config.lollms_paths.personal_models_path/Path(__file__).parent.stem
             models_folder.mkdir(exist_ok=True, parents=True)
 
-            # Create configuration file
-            self.create_config_file()
-            # Create the install file (a file that is used to insure the installation was done correctly)
+            # The local config can be used to store personal information that shouldn't be shared like chatgpt Key 
+            # or other personal information
+            # This file is never commited to the repository as it is ignored by .gitignore
+            # You can remove this if you don't need custom local configurations
+            """
+            self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
+            if  not self._local_config_file_path.exists():
+                config = {
+                    #Put your default configurations here
+                }
+                save_config(config, self._local_config_file_path)
+            """
+            
+            
+            #Create the install file (a file that is used to insure the installation was done correctly)
             with open(install_file,"w") as f:
                 f.write("ok")
             print("Installed successfully")
         
+
     def create_config_file(self):
         """
         Create a local_config.yaml file with predefined data.
@@ -65,7 +78,7 @@ class Install(BindingInstaller):
         sel = None
         device = ""
         while sel is None:
-            ASCIIColors.error("Select the device to use (if you choose cuda please make sure you do have a cuda compatible GPU)")
+            ASCIIColors.info("Select the device to use (if you choose cuda please make sure you do have a cuda compatible GPU)")
             ASCIIColors.success("1) cpu")
             ASCIIColors.success("2) cuda:0")
             sel = input("?:")
@@ -82,7 +95,8 @@ class Install(BindingInstaller):
         path = self.config.lollms_paths.personal_configuration_path / 'binding_gptq_config.yaml'
         with open(path, 'w') as file:
             yaml.dump(data, file)
-        
+
+
     def reinstall_pytorch_with_cuda(self):
         """Installs pytorch with cuda (if you have a gpu) 
         """

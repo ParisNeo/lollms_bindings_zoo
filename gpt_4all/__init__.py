@@ -15,9 +15,10 @@
 from pathlib import Path
 from typing import Callable
 from gpt4all import GPT4All
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
 import yaml
+from pathlib import Path
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -31,24 +32,25 @@ binding_folder_name = "gpt_4all"
 class GPT4ALL(LLMBinding):
     file_extension='*.bin'
     
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a GPT4ALL binding
 
         Args:
             config (dict): The configuration file
         """
         super().__init__(config, False)
+        
+        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
+        self.models_folder.mkdir(parents=True, exist_ok=True)
+
         if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
-            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
 
-        self.model = GPT4All.get_model_from_name(self.config['model'])
-        self.model.load_model(
-                model_path=model_path
-        )
-
+        model_path = Path(model_path)
+        self.model = GPT4All(model_name=str(model_path.name), model_path=str(model_path.parent))
 
     def tokenize(self, prompt:str):
         """
@@ -60,7 +62,7 @@ class GPT4ALL(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.model.tokenize(prompt)
+        return prompt.split(" ")
 
     def detokenize(self, tokens_list:list):
         """
@@ -72,7 +74,7 @@ class GPT4ALL(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.model.detokenize(tokens_list)
+        return " ".join(tokens_list)
     
 
     def generate(self, 
@@ -117,7 +119,7 @@ class GPT4ALL(LLMBinding):
                 # Do whatever you want with decoded_token here.
 
                 return True
-            self.model._response_callback = local_callback
+            self.model.model._response_callback = local_callback
             self.model.generate(prompt, 
                                            n_predict=n_predict,                                           
                                             temp=gpt_params["temperature"],
@@ -126,7 +128,7 @@ class GPT4ALL(LLMBinding):
                                             repeat_penalty=gpt_params['repeat_penalty'],
                                             repeat_last_n = self.config['repeat_last_n'],
                                             # n_threads=self.config['n_threads'],
-                                            streaming=False,
+                                            streaming=False
                                            )
         except Exception as ex:
             print(ex)

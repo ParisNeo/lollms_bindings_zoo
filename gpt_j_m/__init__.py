@@ -15,7 +15,7 @@
 from pathlib import Path
 from typing import Callable
 from gpt4allj import Model
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
 import yaml
 
@@ -29,19 +29,23 @@ binding_folder_name = "gpt_j_m"
 
 class GPTJ(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a LLAMACPP binding
 
         Args:
-            config (BindingConfig): The configuration file
+            config (LOLLMSConfig): The configuration file
         """
         super().__init__(config, False)
-        self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
+
+        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
+        self.models_folder.mkdir(parents=True, exist_ok=True)
+
+        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'local_config.yaml')
         if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
-            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
         
         self.model = Model(
                 model=model_path, avx2 = self.local_config["use_avx2"]
@@ -56,7 +60,7 @@ class GPTJ(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return None
+        return prompt.split(" ")
 
     def detokenize(self, tokens_list:list):
         """
@@ -68,7 +72,7 @@ class GPTJ(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return None
+        return " ".join(tokens_list)
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
@@ -83,6 +87,15 @@ class GPTJ(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3,
+            "seed":-1,
+            "n_threads":8
+        }
+        gpt_params = {**default_params, **gpt_params}
         try:
             self.model.reset()
             output = ""
