@@ -41,7 +41,7 @@ class GPTJ(LLMBinding):
         self.model = Model(
                 model=f"./models/{binding_folder_name}/{self.config['model']}", avx2 = self.local_config["use_avx2"]
                 )
-    def tokenize(self, prompt):
+    def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
 
@@ -53,7 +53,7 @@ class GPTJ(LLMBinding):
         """
         return None
 
-    def detokenize(self, tokens_list):
+    def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
 

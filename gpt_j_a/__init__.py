@@ -40,7 +40,7 @@ class GptJ(LLMBinding):
                 model_path=f"./models/{binding_folder_name}/{self.config['model']}",
                 prompt_context="", prompt_prefix="", prompt_suffix=""
                 )
-    def tokenize(self, prompt):
+    def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
 
@@ -52,7 +52,7 @@ class GptJ(LLMBinding):
         """
         return None
 
-    def detokenize(self, tokens_list):
+    def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
 

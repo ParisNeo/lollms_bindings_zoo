@@ -52,7 +52,7 @@ class GPTQ(LLMBinding):
         # load quantized model to the first GPU
         self.model = AutoGPTQForCausalLM.from_quantized(self.model_dir)
 
-    def tokenize(self, prompt):
+    def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
 
@@ -64,7 +64,7 @@ class GPTQ(LLMBinding):
         """
         return self.tokenizer.tokenize(prompt)
 
-    def detokenize(self, tokens_list):
+    def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
 

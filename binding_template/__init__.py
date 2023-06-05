@@ -48,7 +48,7 @@ class CustomBinding(LLMBinding):
 
         # Do your initialization stuff
             
-    def tokenize(self, prompt):
+    def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
 
@@ -60,7 +60,7 @@ class CustomBinding(LLMBinding):
         """
         return None
 
-    def detokenize(self, tokens_list):
+    def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
 

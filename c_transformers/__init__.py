@@ -64,7 +64,7 @@ class CTRansformers(LLMBinding):
                     f"./models/c_transformers/{self.config['model']}", model_type=model_type, lib = "avx"
                     )
             
-    def tokenize(self, prompt):
+    def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
 
@@ -76,7 +76,7 @@ class CTRansformers(LLMBinding):
         """
         return self.model.tokenize(prompt.encode())
 
-    def detokenize(self, tokens_list):
+    def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
 

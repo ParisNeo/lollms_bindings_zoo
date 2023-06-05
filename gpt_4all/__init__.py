@@ -44,7 +44,7 @@ class GPT4ALL(LLMBinding):
         )
 
 
-    def tokenize(self, prompt):
+    def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
 
@@ -54,9 +54,9 @@ class GPT4ALL(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return None
+        return self.model.tokenize(prompt)
 
-    def detokenize(self, tokens_list):
+    def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
 
@@ -66,7 +66,7 @@ class GPT4ALL(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return None
+        return self.model.detokenize(tokens_list)
     
 
     def generate(self, 

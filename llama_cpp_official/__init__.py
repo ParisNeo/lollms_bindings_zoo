@@ -48,7 +48,7 @@ class LLAMACPP(LLMBinding):
             seed=seed)
 
 
-    def tokenize(self, prompt):
+    def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
 
@@ -60,7 +60,7 @@ class LLAMACPP(LLMBinding):
         """
         return self.model.tokenize(prompt.encode())
 
-    def detokenize(self, tokens_list):
+    def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
 

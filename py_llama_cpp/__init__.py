@@ -42,7 +42,7 @@ class PyLLAMACPP(LLMBinding):
                 n_ctx=self.config['ctx_size'], 
                 seed=self.config['seed'],
                 )
-    def tokenize(self, prompt):
+    def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
 
@@ -54,7 +54,7 @@ class PyLLAMACPP(LLMBinding):
         """
         return self.model.tokenize(prompt)
 
-    def detokenize(self, tokens_list):
+    def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
 
