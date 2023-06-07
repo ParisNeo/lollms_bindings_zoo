@@ -2,6 +2,7 @@ import subprocess
 from pathlib import Path
 from lollms.binding import BindingConfig, BindingInstaller
 import yaml
+import os
 
 class Install(BindingInstaller):
     def __init__(self, config:BindingConfig=None):
@@ -29,8 +30,10 @@ class Install(BindingInstaller):
                 self.reinstall_pytorch_with_cuda()
 
             # Step 2: Install dependencies using pip from requirements.txt
+            env = os.environ.copy()
+            env["BUILD_CUDA_EXT"] = "0"
             requirements_file = current_dir / "requirements.txt"
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
 
             # Create the models folder
             models_folder = Path(f"./models/{Path(__file__).parent.stem}")
