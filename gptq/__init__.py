@@ -49,14 +49,21 @@ class GPTQ(LLMBinding):
             model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
                 
 
+
         self.model_dir = model_path
-        pretrained_model_dir = "facebook/opt-125m"
-        quantized_model_dir = "opt-125m-4bit"
+        model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device="cuda:0", use_fast=True, local_files_only=True)
+        use_safetensors = model_name.suffix == '.safetensors'
+        model_name = model_name.stem
 
-
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, use_fast=True, local_files_only=True)
         # load quantized model to the first GPU
-        self.model = AutoGPTQForCausalLM.from_quantized(self.model_dir, local_files_only=True)
+        self.model = AutoGPTQForCausalLM.from_quantized(
+            self.model_dir, 
+            local_files_only=True,  
+            model_basename=model_name, 
+            device="cuda:0",
+            use_triton=True,
+            use_safetensors=use_safetensors)
 
     def tokenize(self, prompt:str):
         """
@@ -68,7 +75,7 @@ class GPTQ(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.tokenizer.tokenize(prompt)
+        return self.tokenizer.encode(prompt)
 
     def detokenize(self, tokens_list:list):
         """
@@ -80,7 +87,7 @@ class GPTQ(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.tokenizer.decode(tokens_list)
+        return  self.tokenizer.decode(tokens_list)
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
@@ -95,11 +102,22 @@ class GPTQ(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3,
+            "seed":-1,
+            "n_threads":8
+        }
+        gpt_params = {**default_params, **gpt_params}        
         try:
-            tok = self.tokenizer.decode(self.model.generate(**self.tokenizer(prompt, return_tensors="pt").to("cuda:0"))[0])
+            input_ids = self.tokenizer(prompt, return_tensors='pt').input_ids.cuda()
+            toks = self.model.generate(inputs=input_ids, temperature=gpt_params["temperature"], max_new_tokens=n_predict)
+
             if callback is not None:
-                callback(tok, MSG_TYPE.MSG_TYPE_CHUNK)
-            output = tok
+                callback(toks, MSG_TYPE.MSG_TYPE_CHUNK)
+            output = toks
         except Exception as ex:
             print(ex)
         return output
