@@ -31,7 +31,6 @@ class Install(BindingInstaller):
 
             # Step 2: Install dependencies using pip from requirements.txt
             env = os.environ.copy()
-            env["BUILD_CUDA_EXT"] = "0"
             requirements_file = current_dir / "requirements.txt"
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
 

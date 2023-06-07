@@ -54,9 +54,9 @@ class GPTQ(LLMBinding):
         quantized_model_dir = "opt-125m-4bit"
 
 
-        self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_dir, use_fast=True)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, use_fast=True, local_files_only=True)
         # load quantized model to the first GPU
-        self.model = AutoGPTQForCausalLM.from_quantized(self.model_dir)
+        self.model = AutoGPTQForCausalLM.from_quantized(self.model_dir, local_files_only=True)
 
     def tokenize(self, prompt:str):
         """
@@ -104,7 +104,8 @@ class GPTQ(LLMBinding):
             print(ex)
         return output
 
-    def download_model(self, repo, base_folder, callback=None):
+    @staticmethod
+    def download_model(repo, base_folder, callback=None):
         """
         Downloads a folder from a Hugging Face repository URL, reports the download progress using a callback function,
         and displays a progress bar.
@@ -137,7 +138,7 @@ class GPTQ(LLMBinding):
         for file in file_names:
             print(" ", file)
 
-        dest_dir = Path(base_folder) / repo.replace("/", "_")
+        dest_dir = Path(base_folder)
         dest_dir.mkdir(parents=True, exist_ok=True)
         os.chdir(dest_dir)
 
@@ -149,11 +150,6 @@ class GPTQ(LLMBinding):
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.map(download_file, file_names)
 
-        os.chdir(base_folder)
-
-        installation_path = Path(installation_path)
-        installation_path.parent.mkdir(parents=True, exist_ok=True)
-        dest_dir.rename(installation_path)
 
         print("Done")
     @staticmethod
