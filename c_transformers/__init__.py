@@ -35,20 +35,20 @@ class CTRansformers(LLMBinding):
             config (dict): The configuration file
         """
         super().__init__(config, False)
-        if 'gpt2' in self.config['model']:
+        if 'gpt2' in self.config['model_name']:
             model_type='gpt2'
-        elif 'gptj' in self.config['model']:
+        elif 'gptj' in self.config['model_name']:
             model_type='gptj'
-        elif 'gpt_neox' in self.config['model']:
+        elif 'gpt_neox' in self.config['model_name']:
             model_type='gpt_neox'
-        elif 'dolly-v2' in self.config['model']:
+        elif 'dolly-v2' in self.config['model_name']:
             model_type='dolly-v2'
-        elif 'starcoder' in self.config['model']:
+        elif 'starcoder' in self.config['model_name']:
             model_type='starcoder'
-        elif 'llama' in self.config['model'].lower() or 'wizardlm' in self.config['model'].lower() or 'vigogne' in self.config['model'].lower():
-            model_type='llama'
-        elif 'mpt' in self.config['model']:
+        elif 'mpt' in self.config['model_name']:
             model_type='mpt'
+        elif 'llama' in self.config['model_name'].lower() or 'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower():
+            model_type='llama'
         else:
             print("The model you are using is not supported by this binding")
             return
@@ -80,7 +80,7 @@ class CTRansformers(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.model.tokenize(prompt.encode())
+        return self.model.tokenize(prompt)
 
     def detokenize(self, tokens_list:list):
         """
