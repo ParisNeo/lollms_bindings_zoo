@@ -134,6 +134,7 @@ class GPTQ(LLMBinding):
             output = toks
         except Exception as ex:
             print(ex)
+            output=""
         return output
 
     @staticmethod
