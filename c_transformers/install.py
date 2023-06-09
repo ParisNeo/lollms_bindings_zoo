@@ -34,18 +34,18 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Create ther models folder
-            models_folder = Path("./models/c_transformers")
+            models_folder = config.models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
 
             # Create the configuration file
-            self.create_config_file()
+            self.create_config_file(config.configs_path / "c_transformers_config.yaml")
 
             #Create the install file 
             with open(install_file,"w") as f:
                 f.write("ok")
             print("Installed successfully")
 
-    def create_config_file(self):
+    def create_config_file(self, path):
         """
         Create a local_config.yaml file with predefined data.
 
@@ -61,7 +61,6 @@ class Install(BindingInstaller):
         data = {
             "use_avx2": True,     # use avx2
         }
-        path = Path(__file__).parent / 'local_config.yaml'
         with open(path, 'w') as file:
             yaml.dump(data, file)
 

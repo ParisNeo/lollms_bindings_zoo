@@ -15,7 +15,9 @@ from pathlib import Path
 from typing import Callable
 from llama_cpp import Llama
 from lollms.binding import LLMBinding, BindingConfig
+from lollms.paths import lollms_personal_configuration_path
 from lollms  import MSG_TYPE
+from .install import Install
 import yaml
 import random
 
@@ -37,7 +39,11 @@ class LLAMACPP(LLMBinding):
         """
         super().__init__(config, False)
         seed = config["seed"]
-        self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
+        try:
+            self.local_config = self.load_config_file(lollms_personal_configuration_path/ 'llamacpp_config.yaml')
+        except Exception as ex:
+            Install(config, force=True)
+            self.local_config = self.load_config_file(lollms_personal_configuration_path/ 'llamacpp_config.yaml')
         # if seed <=0:
         #    seed = random.randint(1, 2**31)
         if self.config.model_name.endswith(".reference"):

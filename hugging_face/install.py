@@ -34,7 +34,7 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
 
             # Create the models folder
-            models_folder = Path(f"./models/{Path(__file__).parent.stem}")
+            models_folder = config.configs_path/Path(__file__).parent.stem
             models_folder.mkdir(exist_ok=True, parents=True)
 
             # The local config can be used to store personal information that shouldn't be shared like chatgpt Key 

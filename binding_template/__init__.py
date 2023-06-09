@@ -14,6 +14,7 @@
 from pathlib import Path
 from typing import Callable
 from lollms.binding import LLMBinding, BindingConfig
+from lollms.paths import lollms_personal_configuration_path
 from lollms  import MSG_TYPE
 import yaml
 import re
@@ -43,7 +44,7 @@ class CustomBinding(LLMBinding):
         # or other personal information
         # This file is never commited to the repository as it is ignored by .gitignore
         # You can remove this if you don't need custom local configurations
-        self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
+        self._local_config_file_path = lollms_personal_configuration_path/"binding_template_config.yaml"
         self.config.load_config(self._local_config_file_path)
 
         if self.config.model_name.endswith(".reference"):
@@ -53,6 +54,7 @@ class CustomBinding(LLMBinding):
             model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
 
         # Do your initialization stuff to load the model
+
             
     def tokenize(self, prompt:str):
         """

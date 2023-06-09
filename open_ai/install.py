@@ -20,7 +20,7 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Create the models folder
-            models_folder = Path(f"./models/{Path(__file__).parent.stem}")
+            models_folder = config.models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
 
             #Create 

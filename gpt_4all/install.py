@@ -34,7 +34,7 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--no-cache-dir", "-r", str(requirements_file)])
             
             # Create ther models folder
-            models_folder = Path("./models/gpt_4all")
+            models_folder =  config.models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
             
             #Create the install file 

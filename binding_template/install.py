@@ -1,6 +1,7 @@
 import subprocess
 from pathlib import Path
 from lollms.binding import BindingConfig, BindingInstaller
+from lollms.paths import lollms_personal_configuration_path, lollms_personal_models_path
 import yaml
 
 class Install(BindingInstaller):
@@ -35,26 +36,38 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Create the models folder
-            models_folder = Path(f"./models/{Path(__file__).parent.stem}")
+            models_folder = config.models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
 
             # The local config can be used to store personal information that shouldn't be shared like chatgpt Key 
             # or other personal information
             # This file is never commited to the repository as it is ignored by .gitignore
             # You can remove this if you don't need custom local configurations
-            self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
-            if  not self._local_config_file_path.exists():
-                config = {
-                    #Put your default configurations here
-                }
-                save_config(config, self._local_config_file_path)
+            self.create_config_file(config.configs_path/'binding_template_config.yaml')
             
             #Create the install file (a file that is used to insure the installation was done correctly)
             with open(install_file,"w") as f:
                 f.write("ok")
             print("Installed successfully")
         
-        
+    def create_config_file(self, path):
+        """
+        Create a local_config.yaml file with predefined data.
+
+        The function creates a local_config.yaml file with the specified data. The file is saved in the parent directory
+        of the current file.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+        data = {
+            "parameter": "value",     # good
+        }
+        with open(path, 'w') as file:
+            yaml.dump(data, file)        
     def reinstall_pytorch_with_cuda(self):
         """Installs pytorch with cuda (if you have a gpu) 
         """
