@@ -9,11 +9,9 @@
 ######
 from pathlib import Path
 from typing import Callable
-from transformers import AutoTokenizer, TextGenerationPipeline
-from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
+from transformers import AutoTokenizer, TFGPTJForCausalLM, LlamaForCausalLM
 from lollms.binding import LLMBinding, BindingConfig
 from lollms  import MSG_TYPE
-from lollms.paths import lollms_personal_configuration_path
 import torch
 import yaml
 import requests
@@ -37,47 +35,34 @@ binding_folder_name = "gptq"
 class GPTQ(LLMBinding):
     file_extension='*'
     def __init__(self, config:BindingConfig) -> None:
-        """Builds a GPTQ binding
+        """Builds a Hugging face binding
 
         Args:
             config (BindingConfig): The configuration file
         """
         super().__init__(config, False)
-        
-        # Create configuration file
-        self.local_config = self.load_config_file(lollms_personal_configuration_path / 'binding_gptq_config.yaml')
-        
         if self.config.model_name.endswith(".reference"):
             with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
             model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
                 
+
+
         self.model_dir = model_path
         model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.local_config["device"], use_fast=True, local_files_only=True)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device="cuda:0", use_fast=True, local_files_only=True)
         use_safetensors = model_name.suffix == '.safetensors'
         model_name = model_name.stem
 
-        if not (Path(self.model_dir) / "quantize_config.json").exists():
-            quantize_config = BaseQuantizeConfig(
-                bits= 4,
-                group_size= -1,
-                desc_act=""
-            )
-        else:
-            quantize_config = None
-
         # load quantized model to the first GPU
-        self.model = AutoGPTQForCausalLM.from_quantized(
+        self.model = LlamaForCausalLM.from_pretrained(
             self.model_dir, 
             local_files_only=True,  
             model_basename=model_name, 
-            device=self.local_config["device"],
-            use_triton=False,#True,
-            use_safetensors=use_safetensors,
-            quantize_config=quantize_config
-            )
+            device="cuda:0",
+            use_triton=True,
+            use_safetensors=use_safetensors)
 
     def tokenize(self, prompt:str):
         """
