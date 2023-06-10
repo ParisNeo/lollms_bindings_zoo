@@ -17,6 +17,7 @@ from typing import Callable
 from pygptj.model import Model
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
+import yaml
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -59,7 +60,7 @@ class GptJ(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return None
+        return prompt.split(" ")
 
     def detokenize(self, tokens_list:list):
         """
@@ -71,7 +72,7 @@ class GptJ(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return None
+        return " ".join(tokens_list)
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
@@ -86,6 +87,15 @@ class GptJ(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3,
+            "seed":-1,
+            "n_threads":8
+        }
+        gpt_params = {**default_params, **gpt_params}        
         try:
             self.model.reset()
             output = ""

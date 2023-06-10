@@ -4,14 +4,14 @@ from lollms.binding import LOLLMSConfig, BindingInstaller
 import yaml
 
 class Install(BindingInstaller):
-    def __init__(self, config:LOLLMSConfig=None):
+    def __init__(self, config:LOLLMSConfig=None, force_reinstall=False):
         # Build parent
         super().__init__(config)
         # Get the current directory
         current_dir = Path(__file__).resolve().parent
         install_file = current_dir / ".installed"
 
-        if not install_file.exists():
+        if not install_file.exists() or force_reinstall:
             print("-------------- pyllamacpp binding by abdeladim -------------------------------")
             print("This is the first time you are using this binding.")
             print("Installing ...")
