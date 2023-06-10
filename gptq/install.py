@@ -1,12 +1,12 @@
 import subprocess
 from pathlib import Path
-from lollms.binding import BindingConfig, BindingInstaller
-from lollms.paths import lollms_personal_configuration_path, lollms_personal_models_path
+from lollms.binding import LOLLMSConfig, BindingInstaller
+from lollms.paths import  LollmsPaths
 import yaml
 import os
 
 class Install(BindingInstaller):
-    def __init__(self, config:BindingConfig=None):
+    def __init__(self, config:LOLLMSConfig=None):
         # Build parent
         super().__init__(config)
         # Get the current directory
@@ -35,7 +35,7 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
 
             # Create the models folder
-            models_folder = config.models_path/f"{Path(__file__).parent.stem}"
+            models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
 
             # Create configuration file
@@ -61,7 +61,7 @@ class Install(BindingInstaller):
         data = {
             "device": "cuda:0",     # good
         }
-        path = lollms_personal_configuration_path / 'binding_gptq_config.yaml'
+        path = self.config.lollms_paths.personal_configuration_path / 'binding_gptq_config.yaml'
         with open(path, 'w') as file:
             yaml.dump(data, file)
         

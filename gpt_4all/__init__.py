@@ -15,7 +15,7 @@
 from pathlib import Path
 from typing import Callable
 from gpt4all import GPT4All
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
 import yaml
 
@@ -31,7 +31,7 @@ binding_folder_name = "gpt_4all"
 class GPT4ALL(LLMBinding):
     file_extension='*.bin'
     
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a GPT4ALL binding
 
         Args:
@@ -39,10 +39,10 @@ class GPT4ALL(LLMBinding):
         """
         super().__init__(config, False)
         if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
-            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
 
         self.model = GPT4All(model_path)
 

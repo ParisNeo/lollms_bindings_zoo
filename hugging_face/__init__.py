@@ -10,7 +10,7 @@
 from pathlib import Path
 from typing import Callable
 from transformers import AutoTokenizer, TFGPTJForCausalLM, LlamaForCausalLM
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
 import torch
 import yaml
@@ -34,18 +34,18 @@ binding_folder_name = "gptq"
 
 class GPTQ(LLMBinding):
     file_extension='*'
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a Hugging face binding
 
         Args:
-            config (BindingConfig): The configuration file
+            config (LOLLMSConfig): The configuration file
         """
         super().__init__(config, False)
         if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
-            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
                 
 
 

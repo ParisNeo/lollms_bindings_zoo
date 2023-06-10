@@ -1,11 +1,10 @@
 import subprocess
 from pathlib import Path
-from lollms.binding import BindingConfig, BindingInstaller
-from lollms.paths import lollms_personal_configuration_path, lollms_personal_models_path
+from lollms.binding import LOLLMSConfig, BindingInstaller
 import yaml
 
 class Install(BindingInstaller):
-    def __init__(self, config:BindingConfig=None):
+    def __init__(self, config:LOLLMSConfig=None):
         # Build parent
         super().__init__(config, False)
         # Get the current directory
@@ -36,7 +35,7 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Create the models folder
-            models_folder = config.models_path/f"{Path(__file__).parent.stem}"
+            models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
 
             # The local config can be used to store personal information that shouldn't be shared like chatgpt Key 

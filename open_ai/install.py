@@ -1,10 +1,10 @@
 import subprocess
 from pathlib import Path
-from lollms.binding import BindingConfig, BindingInstaller
+from lollms.binding import LOLLMSConfig, BindingInstaller
 import yaml
 
 class Install(BindingInstaller):
-    def __init__(self, config:BindingConfig=None):
+    def __init__(self, config:LOLLMSConfig=None):
         # Build parent
         super().__init__(config)
         # Get the current directory
@@ -20,7 +20,7 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Create the models folder
-            models_folder = config.models_path/f"{Path(__file__).parent.stem}"
+            models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
 
             #Create 

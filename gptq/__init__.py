@@ -11,9 +11,9 @@ from pathlib import Path
 from typing import Callable
 from transformers import AutoTokenizer, TextGenerationPipeline
 from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
-from lollms.paths import lollms_personal_configuration_path
+from lollms.paths import LollmsPaths
 import torch
 import yaml
 import requests
@@ -36,22 +36,22 @@ binding_folder_name = "gptq"
 
 class GPTQ(LLMBinding):
     file_extension='*'
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a GPTQ binding
 
         Args:
-            config (BindingConfig): The configuration file
+            config (LOLLMSConfig): The configuration file
         """
         super().__init__(config, False)
         
         # Create configuration file
-        self.local_config = self.load_config_file(lollms_personal_configuration_path / 'binding_gptq_config.yaml')
+        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'binding_gptq_config.yaml')
         
         if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
-            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
                 
         self.model_dir = model_path
         model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]

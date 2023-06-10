@@ -13,7 +13,7 @@
 ######
 from pathlib import Path
 from typing import Callable
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
 import yaml
 from ctransformers import AutoModelForCausalLM
@@ -28,7 +28,7 @@ binding_folder_name = "c_transformers"
 
 class CTRansformers(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a LLAMACPP binding
 
         Args:
@@ -56,10 +56,10 @@ class CTRansformers(LLMBinding):
         self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
         
         if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
-            model_path=str(self.config.models_path/f"{binding_folder_name}/{self.config.model_name}")
+            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
 
         if self.local_config["use_avx2"]:
             self.model = AutoModelForCausalLM.from_pretrained(

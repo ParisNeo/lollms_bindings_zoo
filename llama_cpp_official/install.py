@@ -1,11 +1,10 @@
 import subprocess
 from pathlib import Path
-from lollms.binding import BindingConfig, BindingInstaller
-from lollms.paths import lollms_personal_configuration_path
+from lollms.binding import LOLLMSConfig, BindingInstaller
 import yaml
 
 class Install(BindingInstaller):
-    def __init__(self, config:BindingConfig=None, force:bool=False):
+    def __init__(self, config:LOLLMSConfig=None, force:bool=False):
         # Build parent
         super().__init__(config)
         # Get the current directory
@@ -24,11 +23,11 @@ class Install(BindingInstaller):
             #subprocess.run(["pip", "install", "--no-cache-dir", "-r", str(requirements_file)], env=env)
 
             # Create ther models folder
-            models_folder = config.models_path/f"{Path(__file__).parent.stem}"
+            models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
 
             # Create the configuration file
-            self.create_config_file(config.configs_path / 'llamacpp_config.yaml')
+            self.create_config_file(config.lollms_paths.personal_configuration_path / 'llamacpp_config.yaml')
             
             #Create the install file 
             with open(install_file,"w") as f:

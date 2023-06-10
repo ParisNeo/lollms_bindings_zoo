@@ -1,11 +1,11 @@
 import subprocess
 from pathlib import Path
-from lollms.binding import BindingConfig, BindingInstaller
+from lollms.binding import LOLLMSConfig, BindingInstaller
 import yaml
 import os
 
 class Install(BindingInstaller):
-    def __init__(self, config:BindingConfig=None):
+    def __init__(self, config:LOLLMSConfig=None):
         # Build parent
         super().__init__(config)
         # Get the current directory

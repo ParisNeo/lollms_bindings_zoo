@@ -13,7 +13,7 @@
 ######
 from pathlib import Path
 from typing import Callable
-from lollms.binding import LLMBinding, BindingConfig
+from lollms.binding import LLMBinding, LOLLMSConfig
 from api.config import load_config
 import openai
 import yaml
@@ -32,11 +32,11 @@ class OpenAIGPT(LLMBinding):
     # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
     # and reimplement your own list_models method
     file_extension='*.bin' 
-    def __init__(self, config:BindingConfig) -> None:
+    def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a OpenAIGPT binding
 
         Args:
-            config (BindingConfig): The configuration file
+            config (LOLLMSConfig): The configuration file
         """
         super().__init__(config, False)
         
