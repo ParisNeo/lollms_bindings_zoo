@@ -9,7 +9,7 @@
 ######
 from pathlib import Path
 from typing import Callable
-from transformers import AutoTokenizer, TFGPTJForCausalLM, LlamaForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
 import torch
@@ -62,29 +62,14 @@ class HuggingFace(LLMBinding):
         model_name = model_name.stem
 
 
-        if 'gpt2' in self.config['model_name']:
-            model_type='gpt2'
-        elif 'gptj' in self.config['model_name']:
-            # load quantized model to the first GPU
-            self.model = TFGPTJForCausalLM.from_pretrained(
-                self.model_dir, 
-                local_files_only=True,  
-                model_basename=model_name, 
-                device=self.local_config["device"],
-                use_triton=True,
-                use_safetensors=use_safetensors)
-        elif 'llama' in self.config['model_name'].lower() or 'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower():
-            # load quantized model to the first GPU
-            self.model = LlamaForCausalLM.from_pretrained(
-                self.model_dir, 
-                local_files_only=True,  
-                model_basename=model_name, 
-                device=self.local_config["device"],
-                use_triton=True,
-                use_safetensors=use_safetensors)
-        else:
-            print("The model you are using is not supported by this binding")
-            return
+        # load quantized model to the first GPU
+        self.model = AutoModelForCausalLM.from_pretrained(
+            self.model_dir, 
+            local_files_only=True,  
+            model_basename=model_name, 
+            device=self.local_config["device"],
+            use_triton=True,
+            use_safetensors=use_safetensors)
 
 
     def tokenize(self, prompt:str):

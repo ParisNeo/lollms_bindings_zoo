@@ -40,7 +40,7 @@ class GPTJ(LLMBinding):
         self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
         self.models_folder.mkdir(parents=True, exist_ok=True)
 
-        self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
+        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'local_config.yaml')
         if self.config.model_name.endswith(".reference"):
             with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()

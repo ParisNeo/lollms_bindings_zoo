@@ -56,7 +56,7 @@ class CTRansformers(LLMBinding):
             print("The model you are using is not supported by this binding")
             return
         
-        self.local_config = self.load_config_file(Path(__file__).parent / 'local_config.yaml')
+        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'c_transformers_config.yaml')
         
         if self.config.model_name.endswith(".reference"):
             with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
