@@ -38,7 +38,7 @@ class Install(BindingInstaller):
             models_folder.mkdir(exist_ok=True, parents=True)
 
             # Create the configuration file
-            self.create_config_file(config.configs_path / "c_transformers_config.yaml")
+            self.create_config_file(config.lollms_paths.personal_configuration_path / "c_transformers_config.yaml")
 
             #Create the install file 
             with open(install_file,"w") as f:

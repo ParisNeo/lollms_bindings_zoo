@@ -1,3 +1,12 @@
+- description: GGML format model files for the original starcoder
+  icon : https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: starcoder-ggml-q4_1.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/NeoDim/
+  owner: NeoDim
+  server: https://huggingface.co/NeoDim/starcoder-GGML/resolve/main/
+  sha256: c75c15b5a1faa24ea839cbfb20a6ac6be4d650382f067ea01c96fc9d07482320
+
 - LLAMA: 'true'
   description: GGML format model files for the original LLaMa
   icon : https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face

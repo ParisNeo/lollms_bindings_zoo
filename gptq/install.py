@@ -1,7 +1,7 @@
 import subprocess
 from pathlib import Path
 from lollms.binding import LOLLMSConfig, BindingInstaller
-from lollms.paths import  LollmsPaths
+from lollms.helpers import ASCIIColors
 import yaml
 import os
 
@@ -58,8 +58,26 @@ class Install(BindingInstaller):
         Returns:
             None
         """
+        ASCIIColors.print(ASCIIColors.color_red, "----------------------")
+        ASCIIColors.print(ASCIIColors.color_red, "Attention please")
+        ASCIIColors.print(ASCIIColors.color_red, "----------------------")
+        print()
+        sel = None
+        device = ""
+        while sel is None:
+            ASCIIColors.print(ASCIIColors.color_red, "Select the device to use (if you choose cuda please make sure you do have a cuda compatible GPU)")
+            ASCIIColors.print(ASCIIColors.color_green, "1) cpu")
+            ASCIIColors.print(ASCIIColors.color_green, "2) cuda:0")
+            sel = input("?:")
+            if sel=="1":
+                device = "cpu"
+            elif sel=="2":
+                device = "cuda:0"
+            else:
+                sel=None
+
         data = {
-            "device": "cuda:0",     # good
+            "device": device,     # cpu
         }
         path = self.config.lollms_paths.personal_configuration_path / 'binding_gptq_config.yaml'
         with open(path, 'w') as file:

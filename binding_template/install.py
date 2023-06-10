@@ -42,7 +42,7 @@ class Install(BindingInstaller):
             # or other personal information
             # This file is never commited to the repository as it is ignored by .gitignore
             # You can remove this if you don't need custom local configurations
-            self.create_config_file(config.configs_path/'binding_template_config.yaml')
+            self.create_config_file(config.lollms_paths.personal_configuration_path/'binding_template_config.yaml')
             
             #Create the install file (a file that is used to insure the installation was done correctly)
             with open(install_file,"w") as f:

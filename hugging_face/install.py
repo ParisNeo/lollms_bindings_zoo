@@ -1,6 +1,7 @@
 import subprocess
 from pathlib import Path
 from lollms.binding import LOLLMSConfig, BindingInstaller
+from lollms.helpers import ASCIIColors
 import yaml
 import os
 
@@ -34,7 +35,7 @@ class Install(BindingInstaller):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
 
             # Create the models folder
-            models_folder = config.configs_path/Path(__file__).parent.stem
+            models_folder = config.lollms_paths.personal_models_path/Path(__file__).parent.stem
             models_folder.mkdir(exist_ok=True, parents=True)
 
             # The local config can be used to store personal information that shouldn't be shared like chatgpt Key 
@@ -50,12 +51,52 @@ class Install(BindingInstaller):
                 save_config(config, self._local_config_file_path)
             """
             
+            
             #Create the install file (a file that is used to insure the installation was done correctly)
             with open(install_file,"w") as f:
                 f.write("ok")
             print("Installed successfully")
         
-        
+
+    def create_config_file(self):
+        """
+        Create a local_config.yaml file with predefined data.
+
+        The function creates a local_config.yaml file with the specified data. The file is saved in the parent directory
+        of the current file.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+        ASCIIColors.print(ASCIIColors.color_red, "----------------------")
+        ASCIIColors.print(ASCIIColors.color_red, "Attention please")
+        ASCIIColors.print(ASCIIColors.color_red, "----------------------")
+        print()
+        sel = None
+        device = ""
+        while sel is None:
+            ASCIIColors.print(ASCIIColors.color_red, "Select the device to use (if you choose cuda please make sure you do have a cuda compatible GPU)")
+            ASCIIColors.print(ASCIIColors.color_green, "1) cpu")
+            ASCIIColors.print(ASCIIColors.color_green, "2) cuda:0")
+            sel = input("?:")
+            if sel=="1":
+                device = "cpu"
+            elif sel=="2":
+                device = "cuda:0"
+            else:
+                sel=None
+
+        data = {
+            "device": device,     # cpu
+        }
+        path = self.config.lollms_paths.personal_configuration_path / 'binding_gptq_config.yaml'
+        with open(path, 'w') as file:
+            yaml.dump(data, file)
+
+
     def reinstall_pytorch_with_cuda(self):
         """Installs pytorch with cuda (if you have a gpu) 
         """

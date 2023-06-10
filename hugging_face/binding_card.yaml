@@ -1,5 +1,5 @@
-name: AutoGPTQ
-author: PanQiWei
+name: Hugging Face
+author: Hugging face Inc
 version: 1.0
-link: https://github.com/PanQiWei/AutoGPTQ
-description: 'Python bindings for the GPTQ type of files'
+link: https://https://huggingface.co/
+description: 'Python bindings for the hugging face llms'

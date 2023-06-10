@@ -29,10 +29,10 @@ __github__ = "https://github.com/ParisNeo/GPTQ_binding"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "GPTQ"
-binding_folder_name = "gptq"
+binding_name = "HuggingFace"
+binding_folder_name = "hugging_face"
 
-class GPTQ(LLMBinding):
+class HuggingFace(LLMBinding):
     file_extension='*'
     def __init__(self, config:LOLLMSConfig) -> None:
         """Builds a Hugging face binding
@@ -41,7 +41,7 @@ class GPTQ(LLMBinding):
             config (LOLLMSConfig): The configuration file
         """
         super().__init__(config, False)
-        
+
         self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
         self.models_folder.mkdir(parents=True, exist_ok=True)
 
@@ -50,23 +50,42 @@ class GPTQ(LLMBinding):
                 model_path=f.read()
         else:
             model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
-                
+
+        # Create configuration file
+        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'binding_hugging_face_config.yaml')
 
 
         self.model_dir = model_path
         model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device="cuda:0", use_fast=True, local_files_only=True)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.local_config["device"], use_fast=True, local_files_only=True)
         use_safetensors = model_name.suffix == '.safetensors'
         model_name = model_name.stem
 
-        # load quantized model to the first GPU
-        self.model = LlamaForCausalLM.from_pretrained(
-            self.model_dir, 
-            local_files_only=True,  
-            model_basename=model_name, 
-            device="cuda:0",
-            use_triton=True,
-            use_safetensors=use_safetensors)
+
+        if 'gpt2' in self.config['model_name']:
+            model_type='gpt2'
+        elif 'gptj' in self.config['model_name']:
+            # load quantized model to the first GPU
+            self.model = TFGPTJForCausalLM.from_pretrained(
+                self.model_dir, 
+                local_files_only=True,  
+                model_basename=model_name, 
+                device=self.local_config["device"],
+                use_triton=True,
+                use_safetensors=use_safetensors)
+        elif 'llama' in self.config['model_name'].lower() or 'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower():
+            # load quantized model to the first GPU
+            self.model = LlamaForCausalLM.from_pretrained(
+                self.model_dir, 
+                local_files_only=True,  
+                model_basename=model_name, 
+                device=self.local_config["device"],
+                use_triton=True,
+                use_safetensors=use_safetensors)
+        else:
+            print("The model you are using is not supported by this binding")
+            return
+
 
     def tokenize(self, prompt:str):
         """
