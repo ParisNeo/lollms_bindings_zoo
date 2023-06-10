@@ -38,6 +38,10 @@ class LLAMACPP(LLMBinding):
             config (dict): The configuration file
         """
         super().__init__(config, False)
+        
+        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
+        self.models_folder.mkdir(parents=True, exist_ok=True)
+
         seed = config["seed"]
         try:
             self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path/ 'llamacpp_config.yaml')

@@ -45,6 +45,8 @@ class CustomBinding(LLMBinding):
         # This file is never commited to the repository as it is ignored by .gitignore
         # You can remove this if you don't need custom local configurations
         self._local_config_file_path = config.lollms_paths.personal_configuration_path/"binding_template_config.yaml"
+        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
+        self.models_folder.mkdir(parents=True, exist_ok=True)
         self.config.load_config(self._local_config_file_path)
 
         self.lollms_paths = lollms_paths

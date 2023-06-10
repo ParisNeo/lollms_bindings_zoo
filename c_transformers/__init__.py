@@ -35,6 +35,9 @@ class CTRansformers(LLMBinding):
             config (dict): The configuration file
         """
         super().__init__(config, False)
+        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
+        self.models_folder.mkdir(parents=True, exist_ok=True)
+
         if 'gpt2' in self.config['model_name']:
             model_type='gpt2'
         elif 'gptj' in self.config['model_name']:

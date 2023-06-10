@@ -41,6 +41,10 @@ class GPTQ(LLMBinding):
             config (LOLLMSConfig): The configuration file
         """
         super().__init__(config, False)
+        
+        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
+        self.models_folder.mkdir(parents=True, exist_ok=True)
+
         if self.config.model_name.endswith(".reference"):
             with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
