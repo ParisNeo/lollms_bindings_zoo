@@ -51,7 +51,7 @@ class LLAMACPP(LLMBinding):
                 model_path=f.read()
         else:
             model_path=str(config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
-            
+        
         self.model = Llama(
             model_path=model_path, 
             n_ctx=self.config["ctx_size"], 
