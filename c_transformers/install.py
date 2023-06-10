@@ -65,5 +65,5 @@ class Install(BindingInstaller):
             yaml.dump(data, file)
 
     def reinstall_pytorch_with_cuda(self):
-        subprocess.run(["pip", "install", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
+        subprocess.run(["pip", "install", "--upgrade", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
         

@@ -28,7 +28,7 @@ class Install(BindingInstaller):
                 self.reinstall_pytorch_with_cuda()
             # Step 2: Install dependencies using pip from requirements.txt
             requirements_file = current_dir / "requirements.txt"
-            subprocess.run(["pip", "install", "--no-cache-dir", "-r", str(requirements_file)])
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
             
             # Create ther models folder
             models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
@@ -40,5 +40,5 @@ class Install(BindingInstaller):
             print("Installed successfully")
             
     def reinstall_pytorch_with_cuda(self):
-        subprocess.run(["pip", "install", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
+        subprocess.run(["pip", "install", "--upgrade", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
         

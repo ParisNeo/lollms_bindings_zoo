@@ -39,7 +39,7 @@ class Install(BindingInstaller):
     def reinstall_pytorch_with_cuda(self):
         """Installs pytorch with cuda (if you have a gpu) 
         """        
-        subprocess.run(["pip", "install", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
+        subprocess.run(["pip", "install", "--upgrade", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
 
 
     def create_config_file(self):

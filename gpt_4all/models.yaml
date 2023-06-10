@@ -24,8 +24,13 @@
   requires: 2.4.1
   server: https://gpt4all.io/models/
   description: "MPT 7B chat model trained by Mosaic ML.<br>- Cannot be used commercially.<br>- Fast responses."
-- filesize: 8136777088
+- filename: ggml-v3-13b-hermes-q5_1.bin
+  filesize: 8136777088
   requires: "2.4.5"
+  owner_link: https://gpt4all.io
+  owner: Nomic AI
+  requires: 2.4.1
+  server: https://gpt4all.io/models/
   description: "LLaMa 13B finetuned on over 300,000 curated and uncensored instructions instructions.<br>- Cannot be used commercially.<br>- Best finetuned LLaMA model.<br>- This model was fine-tuned by Nous Research, with Teknium and Karan4D leading the fine tuning process and dataset curation, Redmond AI sponsoring the compute, and several other contributors. The result is an enhanced Llama 13b model that rivals GPT-3.5-turbo in performance across a variety of tasks. This model stands out for its long responses, low hallucination rate, and absence of OpenAI censorship mechanisms."
   url: "https://huggingface.co/eachadea/ggml-nous-hermes-13b/resolve/main/ggml-v3-13b-hermes-q5_1.bin"
 - filename: "ggml-vicuna-7b-1.1-q4_2.bin"
@@ -49,6 +54,38 @@
   owner: Nomic AI
   requires: 2.4.1
   server: https://gpt4all.io/models/
+  
+- md5sum: "d5eafd5b0bd0d615cfd5fd763f642dfe"
+  filename: "ggml-nous-gpt4-vicuna-13b.bin"
+  filesize: 8136777088
+  description: "LLaMa 13B fine-tuned on ~180,000 instructions by Nous Research.<br>- Cannot be used commercially."
+  owner_link: https://gpt4all.io
+  owner: Nomic AI
+  requires: 2.4.1
+  server: https://gpt4all.io/models/
+- filename: "ggml-mpt-7b-instruct.bin"
+  filesize: 4854401028
+  requires: "2.4.1"
+  description: "MPT 7B instruction finetuned by Mosaic ML.<br>- Licensed for commercial use."
+  owner_link: https://gpt4all.io
+  owner: Nomic AI
+  requires: 2.4.1
+  server: https://gpt4all.io/models/
+
+- filename": "ggml-wizard-13b-uncensored.bin"
+  filesize": "8136777088"
+  description": "LLaMa 13B finetuned on the uncensored assistant and instruction data.<br>- Cannot be used commercially."
+
+- md5sum": "615890cb571fcaa0f70b2f8d15ef809e"
+  filename": "ggml-replit-code-v1-3b.bin"
+  filesize": 5202046853
+  requires": "2.4.7"
+  description": "Replit 3B code model trained on subset of the Stack. Licensed for commercial use."
+  owner_link: https://gpt4all.io
+  owner: Nomic AI
+  server: "https://huggingface.co/nomic-ai/ggml-replit-code-v1-3b/resolve/main/"
+
+
 - filename: "ggml-stable-vicuna-13B.q4_2.bin"
   filesize: 8136777088
   description: "LLaMa 13B finetuned with RLHF by Stability AI.<br>- Cannot be used commercially."

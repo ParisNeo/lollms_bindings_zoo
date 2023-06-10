@@ -20,7 +20,7 @@ class Install(BindingInstaller):
 
             # Define the environment variables
             #env = {"CMAKE_ARGS":"-DLLAMA_CUBLAS=on", "FORCE_CMAKE":"1"}
-            #subprocess.run(["pip", "install", "--no-cache-dir", "-r", str(requirements_file)], env=env)
+            #subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
 
             # Create ther models folder
             models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
@@ -54,5 +54,5 @@ class Install(BindingInstaller):
             yaml.dump(data, file)
 
     def reinstall_pytorch_with_cuda(self):
-        subprocess.run(["pip", "install", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
+        subprocess.run(["pip", "install", "--upgrade", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
         
