@@ -1,7 +1,7 @@
 - bestGPTJ: true
   filename: "ggml-gpt4all-j-v1.3-groovy.bin"
   filesize: "3785248281"
-  isDefault: true,
+  isDefault: true
   owner_link: https://gpt4all.io
   owner: Nomic AI
   requires: 2.4.1
@@ -26,7 +26,7 @@
   description: "MPT 7B chat model trained by Mosaic ML.<br>- Cannot be used commercially.<br>- Fast responses."
 - filesize: 8136777088
   requires: "2.4.5"
-  description: "LLaMa 13B finetuned on over 300,000 curated and uncensored instructions instructions.<br>- Cannot be used commercially.<br>- Best finetuned LLaMA model.<br>- This model was fine-tuned by Nous Research, with Teknium and Karan4D leading the fine tuning process and dataset curation, Redmond AI sponsoring the compute, and several other contributors. The result is an enhanced Llama 13b model that rivals GPT-3.5-turbo in performance across a variety of tasks. This model stands out for its long responses, low hallucination rate, and absence of OpenAI censorship mechanisms.",
+  description: "LLaMa 13B finetuned on over 300,000 curated and uncensored instructions instructions.<br>- Cannot be used commercially.<br>- Best finetuned LLaMA model.<br>- This model was fine-tuned by Nous Research, with Teknium and Karan4D leading the fine tuning process and dataset curation, Redmond AI sponsoring the compute, and several other contributors. The result is an enhanced Llama 13b model that rivals GPT-3.5-turbo in performance across a variety of tasks. This model stands out for its long responses, low hallucination rate, and absence of OpenAI censorship mechanisms."
   url: "https://huggingface.co/eachadea/ggml-nous-hermes-13b/resolve/main/ggml-v3-13b-hermes-q5_1.bin"
 - filename: "ggml-vicuna-7b-1.1-q4_2.bin"
   filesize: 4212859520
@@ -43,7 +43,7 @@
   requires: 2.4.1
   server: https://gpt4all.io/models/
 - filename: "ggml-wizardLM-7B.q4_2.bin"
-  filesize: "4212864640",
+  filesize: "4212864640"
   description: "LLaMA 7B finetuned by Microsoft and Peking University.<br>- Cannot be used commercially."
   owner_link: https://gpt4all.io
   owner: Nomic AI
@@ -65,7 +65,7 @@
   requires: 2.4.1
   server: https://gpt4all.io/models/
 - 
-  filename: "ggml-nous-gpt4-vicuna-13b.bin",
+  filename: "ggml-nous-gpt4-vicuna-13b.bin"
   filesize: 8136777088
   description: "LLaMa 13B fine-tuned on ~180,000 instructions by Nous Research.<br>- Cannot be used commercially."
   owner_link: https://gpt4all.io
