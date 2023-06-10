@@ -26,11 +26,11 @@ class Install(BindingInstaller):
             #Create 
             self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
             if not self._local_config_file_path.exists():
-                key = input("Please enter your Open AI Key")
+                key = input("Please enter your Open AI Key:")
                 config={
                     "openai_key":key
                 }
-                self.config = save_config(config, self._local_config_file_path)
+                self.config.save_config(self._local_config_file_path)
             #Create the install file (a file that is used to insure the installation was done correctly)
             with open(install_file,"w") as f:
                 f.write("ok")
