@@ -1,3 +1,11 @@
+- description: GGML format model files for HuggingFaceH4's Starchat Beta.
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: starchat-beta.ggmlv3.q4_1.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke/
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/starchat-beta-GGML/resolve/main/
+  sha256: 5217b53b101ed39dab950b2cda75add46a10dff69b2d1a2d7f9ccb8c6585d50f
 - description: GGML format model files for the original starcoder
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   filename: starcoder.ggmlv3.q4_1.bin
@@ -14,18 +22,22 @@
   owner: TheBloke
   server: https://huggingface.co/TheBloke/starcoderplus-GGML/resolve/main/
   sha256: 78c612e4ebd7a49de32b085dc7b05afca88c132f63a7231e037dbcc175bd9b3e
-
-- description: GGML format model files for HuggingFaceH4's Starchat Beta.
+- description: These files are GGML format model files for Allen AI's Tulu 7B (4Bits)
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: starchat-beta.ggmlv3.q4_1.bin
+  filename: tulu-7b.ggmlv3.q4_1.bin
   license: Non commercial
-  owner_link: https://huggingface.co/TheBloke/
+  owner_link: https://huggingface.co/TheBloke
   owner: TheBloke
-  server: https://huggingface.co/TheBloke/starchat-beta-GGML/resolve/main/
-  sha256: 5217b53b101ed39dab950b2cda75add46a10dff69b2d1a2d7f9ccb8c6585d50f
-
-  
-
+  server: https://huggingface.co/TheBloke/tulu-7B-GGML/resolve/main/
+  sha256: 1f08b147a5bce41cfcbb3fd5d51ba765dea1786e15b5655ab69ba3a337a893b7
+- description: These files are GGML format model files for Allen AI's Tulu 7B (2Bits)
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: tulu-7b.ggmlv3.q2_K.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/tulu-7B-GGML/resolve/main/
+  sha256: 5c74587f40e6ad0ee33ce78fba2a8b0abe73be10440f53557473877c01ab2975
 - LLAMA: 'true'
   description: GGML format model files for the original LLaMa
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
