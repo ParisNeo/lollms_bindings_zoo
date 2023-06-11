@@ -16,11 +16,14 @@ class Install(BindingInstaller):
             print("This is the first time you are using this binding.")
             # Step 2: Install dependencies using pip from requirements.txt
             requirements_file = current_dir / "requirements.txt"
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Define the environment variables
-            #env = {"CMAKE_ARGS":"-DLLAMA_CUBLAS=on", "FORCE_CMAKE":"1"}
-            #subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
+            env = {"CMAKE_ARGS": "-DLLAMA_CUBLAS=on", "FORCE_CMAKE": "1"}
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
+
+            if result.returncode != 0:
+                print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Create ther models folder
             models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
