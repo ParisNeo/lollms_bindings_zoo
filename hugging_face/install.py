@@ -71,16 +71,16 @@ class Install(BindingInstaller):
         Returns:
             None
         """
-        ASCIIColors.print(ASCIIColors.color_red, "----------------------")
-        ASCIIColors.print(ASCIIColors.color_red, "Attention please")
-        ASCIIColors.print(ASCIIColors.color_red, "----------------------")
+        ASCIIColors.error("----------------------")
+        ASCIIColors.error("Attention please")
+        ASCIIColors.error("----------------------")
         print()
         sel = None
         device = ""
         while sel is None:
-            ASCIIColors.print(ASCIIColors.color_red, "Select the device to use (if you choose cuda please make sure you do have a cuda compatible GPU)")
-            ASCIIColors.print(ASCIIColors.color_green, "1) cpu")
-            ASCIIColors.print(ASCIIColors.color_green, "2) cuda:0")
+            ASCIIColors.info("Select the device to use (if you choose cuda please make sure you do have a cuda compatible GPU)")
+            ASCIIColors.success("1) cpu")
+            ASCIIColors.success("2) cuda:0")
             sel = input("?:")
             if sel=="1":
                 device = "cpu"

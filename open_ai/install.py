@@ -27,10 +27,10 @@ class Install(BindingInstaller):
             #Create 
             self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
             if not self._local_config_file_path.exists():
-                ASCIIColors.print(ASCIIColors.color_red, "----------------------")
-                ASCIIColors.print(ASCIIColors.color_red, "Attention please")
-                ASCIIColors.print(ASCIIColors.color_red, "----------------------")
-                ASCIIColors.print(ASCIIColors.color_red, "The chatgpt binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it here.")
+                ASCIIColors.error("----------------------")
+                ASCIIColors.error("Attention please")
+                ASCIIColors.error("----------------------")
+                ASCIIColors.error("The chatgpt binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it here.")
                 key = input("Please enter your Open AI Key:")
                 config={
                     "openai_key":key
