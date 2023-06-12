@@ -14,7 +14,7 @@ class Install(BindingInstaller):
         install_file = current_dir / ".installed"
 
         if not install_file.exists() or force_reinstall:
-            ASCIIColors.info("-------------- GPTQ binding -------------------------------")
+            ASCIIColors.info("-------------- Hugging face binding -------------------------------")
             print("This is the first time you are using this binding.")
             print("Installing ...")
             # Example of installing py torche
