@@ -18,6 +18,7 @@ from gpt4all import GPT4All
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms  import MSG_TYPE
 import yaml
+import os
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -48,7 +49,7 @@ class GPT4ALL(LLMBinding):
         else:
             model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
 
-        self.model = GPT4All(model_path)
+        self.model = GPT4All(model_name=os.path.basename(model_path), model_path=os.path.dirname(model_path))
 
     def tokenize(self, prompt:str):
         """
