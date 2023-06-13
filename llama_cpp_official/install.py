@@ -1,4 +1,4 @@
-import subprocess
+import subprocess, os
 from pathlib import Path
 from lollms.binding import LOLLMSConfig, BindingInstaller
 from lollms.helpers import ASCIIColors
@@ -19,7 +19,9 @@ class Install(BindingInstaller):
             requirements_file = current_dir / "requirements.txt"
 
             # Define the environment variables
-            env = {"CMAKE_ARGS": "-DLLAMA_CUBLAS=on", "FORCE_CMAKE": "1"}
+            env = os.environ.copy()
+            env["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on"
+            env["FORCE_CMAKE"] = "1"
             result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
 
             if result.returncode != 0:
