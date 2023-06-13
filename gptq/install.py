@@ -29,8 +29,14 @@ class Install(BindingInstaller):
             except Exception as ex:
                 self.reinstall_pytorch_with_cuda()
 
-            # Step 2: Install dependencies using pip from requirements.txt
+            # Define the environment variables
             requirements_file = current_dir / "requirements.txt"
+            env = os.environ.copy()
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "pip install auto_gptq-0.2.0+cu118-cp310-cp310-linux_x86_64.whl"], env=env)
+
+            if result.returncode != 0:
+                print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Create the models folder

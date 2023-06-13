@@ -1,3 +1,2 @@
 beautifulsoup4
 wget
-auto-gptq
