@@ -1,3 +1,50 @@
+
+- description: These files are GGML format model files for Allen AI's Tulu 7B (4Bits)
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: tulu-7b.ggmlv3.q4_1.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/tulu-7B-GGML/resolve/main/
+  sha256: 1f08b147a5bce41cfcbb3fd5d51ba765dea1786e15b5655ab69ba3a337a893b7
+
+- description: These files are GGML format model files for Allen AI's Tulu 7B (2Bits)
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: tulu-7b.ggmlv3.q2_K.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/tulu-7B-GGML/resolve/main/
+  sha256: 5c74587f40e6ad0ee33ce78fba2a8b0abe73be10440f53557473877c01ab2975
+
+- description: These files are GGML format model files for Allen AI's Tulu 30B (2Bits)
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: tulu-30b.ggmlv3.q2_K.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke/tulu-30B-GGML
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/tulu-30B-GGML/resolve/main/
+  sha256: 321797388b8ea4323c72fb362cb453dbc121f29e4e2ef044f5340e5d6bd1a6ce
+
+- description: These files are GGML format model files for John Durbin's Airoboros 33B GPT4 1.2. (Q2_K)
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: airoboros-33b-gpt4-1.2.ggmlv3.q2_K.bin  
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.2-GGML
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.2-GGML/resolve/main/
+  sha256: 321797388b8ea4323c72fb362cb453dbc121f29e4e2ef044f5340e5d6bd1a6ce
+
+
+- description: These files are GGML format model files for Camel AI's CAMEL 13B Combined Data. (Q4_1)
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: camel-13b-combined.ggmlv3.q4_1.bin 
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-GGML
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-GGML/resolve/main/
+  sha256: 321797388b8ea4323c72fb362cb453dbc121f29e4e2ef044f5340e5d6bd1a6ce
+
 - description: GGML format model files for the original starcoder
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   filename: starcoder-ggml-q4_1.bin
@@ -18,14 +65,14 @@
   sha256: 49857cddd723e7a06b8ac5f5221208bb40d303917412324c9098357794dcf82b
 
 - bestLlama: 'true'
-  description: The official open assistant 30B model finally here
+  description: The official open assistant 30B model finally here (Q2_K)
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: OpenAssistant-SFT-7-Llama-30B.ggml.q4_0.bin
+  filename: OpenAssistant-SFT-7-Llama-30B.ggmlv3.q2_K.bin
   license: Non commercial
   owner_link: https://huggingface.co/TheBloke
   owner: TheBloke
   server: https://huggingface.co/TheBloke/OpenAssistant-SFT-7-Llama-30B-GGML/resolve/main/
-  sha256: 32fd44c685fbf429810db593e2db8aa42a7e1be2cd3571b6005d53b029acfcf5
+  sha256: 6076bfae3aaaf67282c19687bfc27c2091c217d4715fc5dfe5cd0e8eeb973460
 
 - bestLlama: 'true'
   description: 'Manticore-13B'
