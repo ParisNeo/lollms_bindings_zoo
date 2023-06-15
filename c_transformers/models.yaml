@@ -1,3 +1,11 @@
+- description: GGML format model files for Jon Durbin's Airoboros 13B GPT4 1.1. (Q2_K).
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: airoboros-13b-1.1.ggmlv3.q2_K.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke/airoboros-13B-1.1-GGML/
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/airoboros-13B-1.1-GGML/resolve/main/
+  sha256: 15d506158da913bbc9ce76b9866745d03534260b8346696fd70d2e02fd6f62f4
 
 
 - description: GGML format model files for WizardLM's WizardCoder 15B 1.0 (Q4.1).
