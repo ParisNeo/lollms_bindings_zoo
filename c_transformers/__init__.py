@@ -46,7 +46,7 @@ class CTRansformers(LLMBinding):
             model_type='gpt_neox'
         elif 'dolly-v2' in self.config['model_name']:
             model_type='dolly-v2'
-        elif 'starcoder' in self.config['model_name'] or 'starchat-beta' in self.config['model_name']:
+        elif 'starcoder' in self.config['model_name'] or 'starchat-beta' in self.config['model_name'] or 'starchat-beta' in self.config['model_name'] or 'WizardCoder' in self.config['model_name']:
             model_type='starcoder'
         elif 'mpt' in self.config['model_name']:
             model_type='mpt'
