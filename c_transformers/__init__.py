@@ -66,11 +66,13 @@ class CTRansformers(LLMBinding):
 
         if self.local_config["use_avx2"]:
             self.model = AutoModelForCausalLM.from_pretrained(
-                    model_path, model_type=model_type
+                    model_path, model_type=model_type,
+                    gpu_layers = self.local_config["gpu_layers"]
                     )
         else:
             self.model = AutoModelForCausalLM.from_pretrained(
-                    model_path, model_type=model_type, lib = "avx"
+                    model_path, model_type=model_type, lib = "avx",
+                    gpu_layers = self.local_config["gpu_layers"]
                     )
             
     def tokenize(self, prompt:str):

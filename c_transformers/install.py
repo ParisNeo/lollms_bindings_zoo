@@ -71,6 +71,7 @@ class Install(BindingInstaller):
         """
         data = {
             "use_avx2": True,     # use avx2
+            "gpu_layers": 20       #number of layers top offload to gpu
         }
         with open(path, 'w') as file:
             yaml.dump(data, file)
