@@ -7,7 +7,7 @@ from lollms.helpers import ASCIIColors
 class Install(BindingInstaller):
     def __init__(self, config:LOLLMSConfig=None, force_reinstall=False):
         # Build parent
-        super().__init__(config, False)
+        super().__init__(config)
         # Get the current directory
         current_dir = Path(__file__).resolve().parent
         install_file = current_dir / ".installed"
