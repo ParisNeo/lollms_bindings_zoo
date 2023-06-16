@@ -1,3 +1,2 @@
-ctransformers
 transformers
 accelerate

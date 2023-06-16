@@ -3,6 +3,7 @@ from pathlib import Path
 from lollms.binding import LOLLMSConfig, BindingInstaller
 from lollms.helpers import ASCIIColors
 import yaml
+import os
 
 class Install(BindingInstaller):
     def __init__(self, config:LOLLMSConfig=None, force_reinstall=False):
@@ -16,7 +17,7 @@ class Install(BindingInstaller):
             ASCIIColors.info("-------------- cTransformers binding -------------------------------")
             print("This is the first time you are using this binding.")
             print("Installing ...")
-            """
+            # Step 1 : install pytorch with cuda
             try:
                 print("Checking pytorch")
                 import torch
@@ -27,10 +28,19 @@ class Install(BindingInstaller):
                     print("CUDA is not supported. Reinstalling PyTorch with CUDA support.")
                     self.reinstall_pytorch_with_cuda()
             except Exception as ex:
-                self.reinstall_pytorch_with_cuda()
-            """
+                self.reinstall_pytorch_with_cuda()            
 
             # Step 2: Install dependencies using pip from requirements.txt
+            ASCIIColors.info("Trying to install a cuda enabled version of ctransformers")
+            env = os.environ.copy()
+            env["CT_CUBLAS"]="1"
+            # pip install --upgrade --no-cache-dir --no-binary ctransformers
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env)
+            
+            if result.returncode != 0:
+                print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+            
+            # INstall other requirements
             requirements_file = current_dir / "requirements.txt"
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
@@ -64,7 +74,3 @@ class Install(BindingInstaller):
         }
         with open(path, 'w') as file:
             yaml.dump(data, file)
-
-    def reinstall_pytorch_with_cuda(self):
-        subprocess.run(["pip", "install", "--upgrade", "torch", "torchvision", "torchaudio", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
-        

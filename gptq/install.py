@@ -31,12 +31,12 @@ class Install(BindingInstaller):
 
             # Define the environment variables
             requirements_file = current_dir / "requirements.txt"
-            # env = os.environ.copy()
-            # result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "pip install auto_gptq-0.2.0+cu118-cp310-cp310-linux_x86_64.whl"], env=env)
+            env = os.environ.copy()
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto_gptq-0.2.0+cu118-cp310-cp310-linux_x86_64.whl"], env=env)
 
-            # if result.returncode != 0:
-            #    print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+            if result.returncode != 0:
+                print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Create the models folder
@@ -87,9 +87,4 @@ class Install(BindingInstaller):
         path = self.config.lollms_paths.personal_configuration_path / 'binding_gptq_config.yaml'
         with open(path, 'w') as file:
             yaml.dump(data, file)
-        
-    def reinstall_pytorch_with_cuda(self):
-        """Installs pytorch with cuda (if you have a gpu) 
-        """
-        subprocess.run(["pip", "install", "--upgrade", "torch", "torchvision", "torchaudio", "--upgrade", "--no-cache-dir", "--index-url", "https://download.pytorch.org/whl/cu117"])
         
