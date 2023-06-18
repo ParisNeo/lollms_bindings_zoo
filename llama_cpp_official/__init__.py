@@ -60,6 +60,7 @@ class LLAMACPP(LLMBinding):
             model_path=model_path, 
             n_ctx=self.config["ctx_size"], 
             n_gpu_layers=self.local_config["n_gpu_layers"], 
+            n_threads=self.config["n_threads"],
             seed=seed)
 
 
