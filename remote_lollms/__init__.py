@@ -183,7 +183,13 @@ class LoLLMs(LLMBinding):
     def list_models(config:dict):
         """Lists the models for this binding
         """
-        return ["ChatGpt by Open AI"]
+        binding_path = Path(__file__).parent
+        file_path = binding_path/"models.yaml"
+
+        with open(file_path, 'r') as file:
+            yaml_data = yaml.safe_load(file)
+        
+        return yaml_data
                 
     @staticmethod
     def get_available_models():

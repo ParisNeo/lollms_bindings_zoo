@@ -1,4 +1,4 @@
-- description: Most advanced language model by OpenAI based on GPT-3 architecture, offering powerful language generation capabilities.
+- description: A distributed mulmti servers architecture that allows remote generation of text. On your own network or through internet.
   icon: /bindings/remote_lollms/logo.png
   filename: lollms service
   license: depends
