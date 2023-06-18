@@ -1,6 +1,10 @@
-name: The original GPT
-author: Open AI
+name: Lord of LLMs Remote nodes
+author: ParisNeo
 version: 1.0
 link: https://openai.com/
-supported_models: Depends on the configuration of the server.
-description: This binding uses the open ai api to make you use gpt4 and others
+supported_models: All of them!
+description: |
+  This binding allows you to use one or multiple Lord of LLMs services on your network or through internet.
+  For each node you want to create launch the server like this lollms-server --host (the host name: 0.0.0.0 if you want it to be accessible anywhere) --port (the specific port of the server instance).
+  Once the server(s) are running, add them to the list of servers in the configuraion file of this binding and they'll be used.
+  Set the list of remote servers and the generation will use the first available one or will queue it until there is an empty spot for you.
