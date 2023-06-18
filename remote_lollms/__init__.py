@@ -2,56 +2,76 @@
 # Project       : lollms
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
+# Underlying binding : ParisNeo's lollms remote service
 # Supported by Nomic-AI
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
 
-# This binding is a wrapper to abdeladim's binding
-# Follow him on his github project : https://github.com/abdeladim-s/pyllamacpp
+# This binding is a wrapper to open ai's api
 
 ######
 from pathlib import Path
 from typing import Callable
-from pyllamacpp.model import Model
 from lollms.binding import LLMBinding, LOLLMSConfig
-from lollms  import MSG_TYPE
+from lollms.personality import MSG_TYPE
 import yaml
+import re
+import requests
+import socketio
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "PyLLAMACPP"
-binding_folder_name = "py_llama_cpp"
+binding_name = "LoLLMs"
+binding_folder_name = ""
 
-class PyLLAMACPP(LLMBinding):
-    file_extension='*.bin'
+class LoLLMs(LLMBinding):
+    # Define what is the extension of the model files supported by your binding
+    # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
+    # and reimplement your own list_models method
+    file_extension='*.bin' 
     def __init__(self, config:LOLLMSConfig) -> None:
-        """Builds a LLAMACPP binding
+        """Builds a LoLLMs binding
 
         Args:
             config (LOLLMSConfig): The configuration file
         """
         super().__init__(config, False)
         
-        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
-        self.models_folder.mkdir(parents=True, exist_ok=True)
+        # The local config can be used to store personal information that shouldn't be shared like chatgpt Key 
+        # or other personal information
+        # This file is never commited to the repository as it is ignored by .gitignore
+        self.config = config
+        self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
+        self.local_config = self.load_config_file(self._local_config_file_path)
+        self.servers_addresses = self.local_config["servers_addresses"]
 
-        if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
-                model_path=f.read()
-        else:
-            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
-                
+        # Ping servers
+        for server_url in self.servers_addresses:
+            # Create a Socket.IO client instance
+            sio = socketio.Client()
 
-        self.model = Model(
-                model_path=model_path,
-                prompt_context="", prompt_prefix="", prompt_suffix="",
-                n_ctx=self.config['ctx_size'], 
-                seed=self.config['seed'],
-                )
+            # Define the event handler for the 'connect' event
+            @sio.event
+            def connect():
+                print('Connected to the server')
+
+            # Define the event handler for the 'disconnect' event
+            @sio.event
+            def disconnect():
+                print('Disconnected from the server')
+
+            # Connect to the server
+            sio.connect(server_url)
+
+            # Disconnect from the server
+            sio.disconnect()
+
+        # Do your initialization stuff
+            
     def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
@@ -62,7 +82,7 @@ class PyLLAMACPP(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.model.tokenize(prompt)
+        return None
 
     def detokenize(self, tokens_list:list):
         """
@@ -74,7 +94,7 @@ class PyLLAMACPP(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.model.detokenize(tokens_list)
+        return None
     
     def generate(self, 
                  prompt:str,                  
@@ -90,26 +110,14 @@ class PyLLAMACPP(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        try:
-            self.model.reset()
-            output = ""
-            for tok in self.model.generate(prompt, 
-                                           n_predict=n_predict,                                           
-                                            temp=gpt_params['temperature'],
-                                            top_k=gpt_params['top_k'],
-                                            top_p=gpt_params['top_p'],
-                                            repeat_penalty=gpt_params['repeat_penalty'],
-                                            repeat_last_n = self.config['repeat_last_n'],
-                                            n_threads=self.config['n_threads'],
-                                           ):
-                output += tok
-                if callback is not None:
-                    if not callback(tok, MSG_TYPE.MSG_TYPE_CHUNK):
-                        return output
-        except Exception as ex:
-            print(ex)
-        return output
-            
+        return ""
+    
+    @staticmethod
+    def list_models(config:dict):
+        """Lists the models for this binding
+        """
+        return ["ChatGpt by Open AI"]
+                
     @staticmethod
     def get_available_models():
         # Create the file path relative to the child class's directory

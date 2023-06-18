@@ -1,12 +1,12 @@
 ######
-# Project       : GPT4ALL-UI
+# Project       : lollms
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
-# Underlying binding : Abdeladim's pygptj binding
+# Underlying binding : Open ai api
 # Supported by Nomic-AI
 # license       : Apache 2.0
 # Description   : 
-# This is an interface class for GPT4All-ui bindings.
+# This is an interface class for lollms bindings.
 
 # This binding is a wrapper to open ai's api
 
@@ -15,7 +15,6 @@ from pathlib import Path
 from typing import Callable
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.personality import MSG_TYPE
-from api.config import load_config
 import openai
 import yaml
 import re
@@ -46,7 +45,7 @@ class OpenAIGPT(LLMBinding):
         # This file is never commited to the repository as it is ignored by .gitignore
         self.config = config
         self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
-        self.local_config = load_config(self._local_config_file_path)
+        self.local_config = self.load_config_file(self._local_config_file_path)
         openai.api_key = self.local_config["openai_key"]
 
         # Do your initialization stuff

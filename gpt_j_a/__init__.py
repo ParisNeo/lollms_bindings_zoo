@@ -1,12 +1,12 @@
 ######
-# Project       : GPT4ALL-UI
+# Project       : lollms
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Underlying binding : Abdeladim's pygptj binding
 # Supported by Nomic-AI
 # license       : Apache 2.0
 # Description   : 
-# This is an interface class for GPT4All-ui bindings.
+# This is an interface class for lollms bindings.
 
 # This binding is a wrapper to abdeladim's binding
 # Follow him on his github project : https://github.com/abdeladim-s/pygptj

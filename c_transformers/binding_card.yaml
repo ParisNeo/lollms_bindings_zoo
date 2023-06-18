@@ -2,7 +2,11 @@ name: C Transformer
 author: marella
 version: 1.0
 link: https://github.com/marella/ctransformers
+supported_models: |
+    GGML models for:
+    LLama, GPT-2, GPTJ, GPT-NEOX, MPT, Dolly V2, StarCoder
 description: 'Python bindings for the Transformer models implemented in C/C++ using GGML library.
+    This is one of the most complete bindings out there.
     Supported Models
     Models	Model Type
     GPT-2	gpt2

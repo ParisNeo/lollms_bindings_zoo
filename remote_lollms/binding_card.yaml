@@ -1,0 +1,6 @@
+name: The original GPT
+author: Open AI
+version: 1.0
+link: https://openai.com/
+supported_models: Depends on the configuration of the server.
+description: This binding uses the open ai api to make you use gpt4 and others

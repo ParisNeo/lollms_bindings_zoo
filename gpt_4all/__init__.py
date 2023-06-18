@@ -1,11 +1,11 @@
 ######
-# Project       : GPT4ALL-UI
+# Project       : lollms
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Supported by Nomic-AI
 # license       : Apache 2.0
 # Description   : 
-# This is an interface class for GPT4All-ui bindings.
+# This is an interface class for lollms bindings.
 
 
 # This binding is a wrapper to gpt4all's official binding
