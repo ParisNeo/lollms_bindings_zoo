@@ -24,25 +24,18 @@ class Install(BindingInstaller):
             models_folder = config.lollms_paths.personal_models_path/f"{Path(__file__).parent.stem}"
             models_folder.mkdir(exist_ok=True, parents=True)
 
-            #Create 
-            self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
-            if not self._local_config_file_path.exists():
-                ASCIIColors.error("----------------------")
-                ASCIIColors.error("Attention please")
-                ASCIIColors.error("----------------------")
-                ASCIIColors.error("The chatgpt binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it here.")
-                key = input("Please enter your Open AI Key:")
-                config={
-                    "openai_key":key
-                }
-                self.config.save_config(self._local_config_file_path)
+            # Create the configuration file
+            binding_config_path = config.lollms_paths.personal_configuration_path / "binding_remote_lollms_config.yaml"
+            self.create_config_file(binding_config_path)
+
             #Create the install file (a file that is used to insure the installation was done correctly)
             with open(install_file,"w") as f:
                 f.write("ok")
             print("Installed successfully")
+            print(f"Don't forget to add your servers list here: {binding_config_path}")
             
 
-    def create_config_file(self):
+    def create_config_file(self, binding_config_path):
         """
         Create a local_config.yaml file with predefined data.
 
@@ -56,8 +49,8 @@ class Install(BindingInstaller):
             None
         """
         data = {
-            "servers_addresses":  [] # List of paths to text generation lollms servers
+            "servers_addresses":  [], # List of paths to text generation lollms servers
+            "keep_only_active_servers": True # Keeps only active servers
         }
-        path = Path(__file__).parent.parent / 'local_config.yaml'
-        with open(path, 'w') as file:
+        with open(binding_config_path, 'w') as file:
             yaml.dump(data, file)

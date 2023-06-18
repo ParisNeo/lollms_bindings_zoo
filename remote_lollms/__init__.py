@@ -17,8 +17,10 @@ from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.personality import MSG_TYPE
 import yaml
 import re
+import time
 import requests
 import socketio
+from lollms.helpers import ASCIIColors
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -45,33 +47,44 @@ class LoLLMs(LLMBinding):
         # or other personal information
         # This file is never commited to the repository as it is ignored by .gitignore
         self.config = config
-        self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
-        self.local_config = self.load_config_file(self._local_config_file_path)
+        self.binding_config_path = config.lollms_paths.personal_configuration_path / "binding_remote_lollms_config.yaml"
+        self.local_config = self.load_config_file(self.binding_config_path)
         self.servers_addresses = self.local_config["servers_addresses"]
+
+        # Create two lists to hold active and inactive servers
+        active_servers = []
+        inactive_servers = []
 
         # Ping servers
         for server_url in self.servers_addresses:
-            # Create a Socket.IO client instance
-            sio = socketio.Client()
+            try:
+                # Create a Socket.IO client instance
+                sio = socketio.Client()
 
-            # Define the event handler for the 'connect' event
-            @sio.event
-            def connect():
-                print('Connected to the server')
+                # Define the event handler for the 'connect' event
+                @sio.event
+                def connect():
+                    pass
 
-            # Define the event handler for the 'disconnect' event
-            @sio.event
-            def disconnect():
-                print('Disconnected from the server')
+                # Define the event handler for the 'disconnect' event
+                @sio.event
+                def disconnect():
+                    pass
 
-            # Connect to the server
-            sio.connect(server_url)
+                # Connect to the server
+                sio.connect(server_url)
 
-            # Disconnect from the server
-            sio.disconnect()
-
+                # Disconnect from the server
+                sio.disconnect()
+                active_servers.append(server_url)  # Add active server to the list
+                ASCIIColors.green(f"Server : {server_url} is active")
+            except:
+                inactive_servers.append(server_url)  # Add inactive server to the list
+                ASCIIColors.error(f"Server : {server_url} is unreachable")
         # Do your initialization stuff
-            
+        if self.local_config["keep_only_active_servers"]:
+            self.servers_addresses = active_servers
+
     def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
@@ -82,7 +95,9 @@ class LoLLMs(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return None
+        # Split text into words while preserving spaces
+        words = re.findall(r'\w+|\s+', prompt)
+        return words
 
     def detokenize(self, tokens_list:list):
         """
@@ -94,7 +109,7 @@ class LoLLMs(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return None
+        return "".join(tokens_list)
     
     def generate(self, 
                  prompt:str,                  
@@ -110,7 +125,59 @@ class LoLLMs(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        return ""
+        infos = {
+            "generated":False,
+            "found": False,
+            "generated_text":""
+        }
+        index = 0
+        while True:
+            try:
+                server_url = self.servers_addresses[index]
+                # Create a Socket.IO client instance
+                sio = socketio.Client()
+                # Event handler for successful connection
+                @sio.event
+                def connect():
+                    infos["found"]= True
+                    if prompt:
+                        # Trigger the 'generate_text' event with the prompt
+                        sio.emit('generate_text', {'prompt': prompt, 'personality':-1, "n_predicts":n_predict})
+
+                @sio.event
+                def text_chunk(data):
+                    if callback is not None:
+                        if not callback(data["chunk"], MSG_TYPE(data["type"])):
+                            sio.emit()
+
+                @sio.event
+                def text_generated(data):
+                    infos["generated_text"]=data["text"]
+                    sio.disconnect()
+
+                @sio.event
+                def buzzy():
+                    #works but not ready We need to wait
+                    sio.disconnect()
+
+                # Connect to the Socket.IO server
+                sio.connect(server_url)
+
+                # Start the event loop
+                sio.wait()
+                infos["generated"] = True
+                break
+            except Exception as ex:
+                index +=1
+                if index>=len(self.servers_addresses) and not infos["found"]:
+                    break
+                if index>=len(self.servers_addresses):
+                    # Wait 1 second and retry again
+                    time.sleep(1)
+                    index = 0
+        if not infos["found"]:
+            ASCIIColors.error("No server was ready to receive this request")
+        return infos["generated_text"]
     
     @staticmethod
     def list_models(config:dict):

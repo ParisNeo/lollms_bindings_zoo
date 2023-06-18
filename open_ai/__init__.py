@@ -44,8 +44,8 @@ class OpenAIGPT(LLMBinding):
         # or other personal information
         # This file is never commited to the repository as it is ignored by .gitignore
         self.config = config
-        self._local_config_file_path = Path(__file__).parent/"local_config.yaml"
-        self.local_config = self.load_config_file(self._local_config_file_path)
+        self.binding_config_path = config.lollms_paths.personal_configuration_path / "binding_open_ai_config.yaml"
+        self.local_config = self.load_config_file(self.binding_config_path)
         openai.api_key = self.local_config["openai_key"]
 
         # Do your initialization stuff

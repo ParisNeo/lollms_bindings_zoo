@@ -35,14 +35,15 @@ class Install(BindingInstaller):
                 config={
                     "openai_key":key
                 }
-                self.config.save_config(self._local_config_file_path)
+                binding_config_path = config.lollms_paths.personal_configuration_path / "binding_open_ai_config.yaml"
+                self.create_config_file(config, binding_config_path)
             #Create the install file (a file that is used to insure the installation was done correctly)
             with open(install_file,"w") as f:
                 f.write("ok")
             print("Installed successfully")
             
 
-    def create_config_file(self):
+    def create_config_file(self, config, path):
         """
         Create a local_config.yaml file with predefined data.
 
@@ -55,9 +56,5 @@ class Install(BindingInstaller):
         Returns:
             None
         """
-        data = {
-            "pdf_file_path":  "" # Path to the PDF that will be discussed
-        }
-        path = Path(__file__).parent.parent / 'local_config.yaml'
         with open(path, 'w') as file:
-            yaml.dump(data, file)
+            yaml.dump(config, file)
