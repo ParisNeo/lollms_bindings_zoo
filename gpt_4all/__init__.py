@@ -51,6 +51,7 @@ class GPT4ALL(LLMBinding):
 
         model_path = Path(model_path)
         self.model = GPT4All(model_name=str(model_path.name), model_path=str(model_path.parent))
+        self.model.model.set_thread_count(self.config["n_threads"])
 
     def tokenize(self, prompt:str):
         """
