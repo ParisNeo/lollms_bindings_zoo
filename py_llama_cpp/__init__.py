@@ -65,6 +65,7 @@ class PyLLAMACPP(LLMBinding):
                             binding_config, 
                             force_reinstall
                         )
+    def build_model(self):        
         model_path = self.get_model_path()
 
         from pyllamacpp.model import Model
@@ -75,7 +76,7 @@ class PyLLAMACPP(LLMBinding):
                 n_ctx=self.config['ctx_size'], 
                 seed=self.config['seed'],
                 )
-        
+        return self.model
 
     def install(self):
         super().install()

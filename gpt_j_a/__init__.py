@@ -66,13 +66,16 @@ class GptJ(LLMBinding):
                             binding_config, 
                             force_reinstall
                         )
+
+    def build_model(self):        
         model_path = self.get_model_path()
 
         self.model = Model(
                 model_path=str(model_path),
                 prompt_context="", prompt_prefix="", prompt_suffix=""
                 )
-        
+        return self.model
+    
     def install(self):
         super().install()
         requirements_file = self.binding_dir / "requirements.txt"

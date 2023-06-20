@@ -67,9 +67,11 @@ class OpenAIGPT(LLMBinding):
                             force_reinstall
                         )
         
+    def build_model(self):
         openai.api_key = self.binding_config.config["openai_key"]
 
         # Do your initialization stuff
+        return self
 
     def install(self):
         super().install()

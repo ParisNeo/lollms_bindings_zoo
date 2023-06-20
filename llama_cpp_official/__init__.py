@@ -54,8 +54,8 @@ class LLAMACPP(LLMBinding):
                             force_reinstall
                         )
         
-
-        seed = config["seed"]
+    def build_model(self):
+        seed = self.config["seed"]
 
         # if seed <=0:
         #    seed = random.randint(1, 2**31)
@@ -64,12 +64,12 @@ class LLAMACPP(LLMBinding):
         from llama_cpp import Llama
 
         self.model = Llama(
-            model_path=model_path, 
+            model_path=str(model_path), 
             n_ctx=self.config["ctx_size"], 
             n_gpu_layers=self.binding_config.config.n_gpu_layers, 
             n_threads=self.config["n_threads"],
             seed=seed)
-
+        return self
 
     def install(self):
         super().install()

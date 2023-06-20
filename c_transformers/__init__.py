@@ -64,7 +64,8 @@ class CTRansformers(LLMBinding):
                             binding_config, 
                             force_reinstall
                         )
-        
+
+    def build_model(self):
         if 'gpt2' in self.config['model_name']:
             model_type='gpt2'
         elif 'gptj' in self.config['model_name']:
@@ -98,6 +99,8 @@ class CTRansformers(LLMBinding):
                     str(model_path), model_type=model_type, lib = "avx",
                     gpu_layers = self.binding_config.config["gpu_layers"]
                     )
+            
+        return self
             
     def install(self):
         super().install()

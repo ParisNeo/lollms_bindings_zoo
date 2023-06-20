@@ -66,11 +66,14 @@ class GPTJ(LLMBinding):
                             binding_config, 
                             force_reinstall
                         )
+        
+    def build_model(self):
         model_path = self.get_model_path()
         self.model = Model(
                 model=str(model_path), avx2 = self.binding_config.config["use_avx2"]
                 )
-        
+        return self
+    
     def install(self):
         super().install()
         requirements_file = self.binding_dir / "requirements.txt"

@@ -67,10 +67,14 @@ class GPT4ALL(LLMBinding):
                             binding_config, 
                             force_reinstall
                         )
+        
+    def build_model(self):        
         model_path = self.get_model_path()
 
         self.model = GPT4All(model_name=str(model_path.name), model_path=str(model_path.parent))
         self.model.model.set_thread_count(self.binding_config.config["n_threads"])
+
+        return self
 
     def install(self):
         super().install()

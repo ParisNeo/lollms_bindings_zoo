@@ -70,7 +70,8 @@ class LoLLMs(LLMBinding):
                             binding_config, 
                             force_reinstall
                         )
-
+        
+    def build_model(self):
         # Create two lists to hold active and inactive servers
         self.servers_addresses = self.binding_config.config.servers_addresses
         active_servers = []
@@ -105,6 +106,8 @@ class LoLLMs(LLMBinding):
         # Do your initialization stuff
         if self.binding_config.config["keep_only_active_servers"]:
             self.servers_addresses = active_servers
+        return self
+
     def install(self):
         super().install()
         requirements_file = self.binding_dir / "requirements.txt"
