@@ -14,11 +14,17 @@
 ######
 from pathlib import Path
 from typing import Callable
-from gpt4all import GPT4All
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
+from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.helpers import ASCIIColors
 from lollms  import MSG_TYPE
+import subprocess
 import yaml
-from pathlib import Path
+import re
+
+
+from gpt4all import GPT4All
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -32,26 +38,46 @@ binding_folder_name = "gpt_4all"
 class GPT4ALL(LLMBinding):
     file_extension='*.bin'
     
-    def __init__(self, config:LOLLMSConfig) -> None:
-        """Builds a GPT4ALL binding
+    def __init__(self, 
+                config: LOLLMSConfig, 
+                lollms_paths: LollmsPaths = LollmsPaths(), 
+                force_reinstall: bool = False) -> None:
+        """
+        Initialize the Binding.
 
         Args:
-            config (dict): The configuration file
+            config (LOLLMSConfig): The configuration object for LOLLMS.
+            lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
+            force_reinstall (bool, optional): Flag to indicate whether to force reinstallation. Defaults to False.
         """
-        super().__init__(config, False)
-        
-        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
-        self.models_folder.mkdir(parents=True, exist_ok=True)
+        # Initialization code goes here
 
-        if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
-                model_path=f.read()
-        else:
-            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
+        binding_config = TypedConfig(
+            ConfigTemplate([
+                {"name":"n_threads","type":"int","value":8, "min":1}
+            ]),
+            BaseConfig(config={
+                "n_threads": 8,     # number of core to use
+            })
+        )
+        super().__init__(
+                            Path(__file__).parent, 
+                            lollms_paths, 
+                            config, 
+                            binding_config, 
+                            force_reinstall
+                        )
+        model_path = self.get_model_path()
 
-        model_path = Path(model_path)
         self.model = GPT4All(model_name=str(model_path.name), model_path=str(model_path.parent))
-        self.model.model.set_thread_count(self.config["n_threads"])
+        self.model.model.set_thread_count(self.binding_config.config["n_threads"])
+
+    def install(self):
+        super().install()
+        requirements_file = self.binding_dir / "requirements.txt"
+        # install requirements
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        ASCIIColors.success("Installed successfully")
 
     def tokenize(self, prompt:str):
         """

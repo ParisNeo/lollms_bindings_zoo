@@ -13,10 +13,16 @@
 ######
 from pathlib import Path
 from typing import Callable
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
+from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.helpers import ASCIIColors
 from lollms  import MSG_TYPE
+import subprocess
 import yaml
-from ctransformers import AutoModelForCausalLM
+import os
+
+
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -24,20 +30,41 @@ __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
 binding_name = "CTRansformers"
-binding_folder_name = "c_transformers"
 
 class CTRansformers(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:LOLLMSConfig) -> None:
-        """Builds a LLAMACPP binding
+    def __init__(self, 
+                config: LOLLMSConfig, 
+                lollms_paths: LollmsPaths = LollmsPaths(), 
+                force_reinstall: bool = False) -> None:
+        """
+        Initialize the Binding.
 
         Args:
-            config (dict): The configuration file
+            config (LOLLMSConfig): The configuration object for LOLLMS.
+            lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
+            force_reinstall (bool, optional): Flag to indicate whether to force reinstallation. Defaults to False.
         """
-        super().__init__(config, False)
-        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
-        self.models_folder.mkdir(parents=True, exist_ok=True)
+        # Initialization code goes here
 
+        binding_config = TypedConfig(
+            ConfigTemplate([
+                {"name":"gpu_layers","type":"int","value":20, "min":0},
+                {"name":"use_avx2","type":"bool","value":True}
+            ]),
+            BaseConfig(config={
+                "use_avx2": True,     # use avx2
+                "gpu_layers": 20       #number of layers top offload to gpu                
+            })
+        )
+        super().__init__(
+                            Path(__file__).parent, 
+                            lollms_paths, 
+                            config, 
+                            binding_config, 
+                            force_reinstall
+                        )
+        
         if 'gpt2' in self.config['model_name']:
             model_type='gpt2'
         elif 'gptj' in self.config['model_name']:
@@ -56,24 +83,52 @@ class CTRansformers(LLMBinding):
             print("The model you are using is not supported by this binding")
             return
         
-        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'c_transformers_config.yaml')
         
-        if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
-                model_path=f.read()
-        else:
-            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
+        model_path = self.get_model_path()
 
-        if self.local_config["use_avx2"]:
+        from ctransformers import AutoModelForCausalLM
+
+        if self.binding_config.config["use_avx2"]:
             self.model = AutoModelForCausalLM.from_pretrained(
-                    model_path, model_type=model_type,
-                    gpu_layers = self.local_config["gpu_layers"]
+                    str(model_path), model_type=model_type,
+                    gpu_layers = self.binding_config.config["gpu_layers"]
                     )
         else:
             self.model = AutoModelForCausalLM.from_pretrained(
-                    model_path, model_type=model_type, lib = "avx",
-                    gpu_layers = self.local_config["gpu_layers"]
+                    str(model_path), model_type=model_type, lib = "avx",
+                    gpu_layers = self.binding_config.config["gpu_layers"]
                     )
+            
+    def install(self):
+        super().install()
+        requirements_file = self.binding_dir / "requirements.txt"
+        # Step 1 : install pytorch with cuda
+        try:
+            print("Checking pytorch")
+            import torch
+            import torchvision
+            if torch.cuda.is_available():
+                print("CUDA is supported.")
+            else:
+                print("CUDA is not supported. Reinstalling PyTorch with CUDA support.")
+                self.reinstall_pytorch_with_cuda()
+        except Exception as ex:
+            self.reinstall_pytorch_with_cuda()            
+
+        # Step 2: Install dependencies using pip from requirements.txt
+        ASCIIColors.info("Trying to install a cuda enabled version of ctransformers")
+        env = os.environ.copy()
+        env["CT_CUBLAS"]="1"
+        # pip install --upgrade --no-cache-dir --no-binary ctransformers
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env)
+        
+        if result.returncode != 0:
+            print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+        
+        # INstall other requirements
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        ASCIIColors.success("Installed successfully")
+  
             
     def tokenize(self, prompt:str):
         """

@@ -13,14 +13,18 @@
 ######
 from pathlib import Path
 from typing import Callable
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
+from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
-from lollms.personality import MSG_TYPE
+from lollms.helpers import ASCIIColors
+from lollms  import MSG_TYPE
+import subprocess
 import yaml
 import re
+
 import time
 import requests
 import socketio
-from lollms.helpers import ASCIIColors
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -35,23 +39,40 @@ class LoLLMs(LLMBinding):
     # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
     # and reimplement your own list_models method
     file_extension='*.bin' 
-    def __init__(self, config:LOLLMSConfig) -> None:
-        """Builds a LoLLMs binding
+    def __init__(self, 
+                config: LOLLMSConfig, 
+                lollms_paths: LollmsPaths = LollmsPaths(), 
+                force_reinstall: bool = False) -> None:
+        """
+        Initialize the Binding.
 
         Args:
-            config (LOLLMSConfig): The configuration file
+            config (LOLLMSConfig): The configuration object for LOLLMS.
+            lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
+            force_reinstall (bool, optional): Flag to indicate whether to force reinstallation. Defaults to False.
         """
-        super().__init__(config, False)
-        
-        # The local config can be used to store personal information that shouldn't be shared like chatgpt Key 
-        # or other personal information
-        # This file is never commited to the repository as it is ignored by .gitignore
-        self.config = config
-        self.binding_config_path = config.lollms_paths.personal_configuration_path / "binding_remote_lollms_config.yaml"
-        self.local_config = self.load_config_file(self.binding_config_path)
-        self.servers_addresses = self.local_config["servers_addresses"]
+        # Initialization code goes here
+
+        binding_config = TypedConfig(
+            ConfigTemplate([
+                {"name":"servers_addresses","type":"list","value":[], "help":"A list of server addresses for example ['http://localhost:9601', 'http://localhost:9602']"},
+                {"name":"keep_only_active_servers","type":"bool","value":True, "help":"If true, then only active servers will be kept in the loop"},
+            ]),
+            BaseConfig(config={
+                "servers_addresses"         : [],    # list of hosts to be used
+                "keep_only_active_servers"  : True   # if true only keep actiave servers in the list
+            })
+        )
+        super().__init__(
+                            Path(__file__).parent, 
+                            lollms_paths, 
+                            config, 
+                            binding_config, 
+                            force_reinstall
+                        )
 
         # Create two lists to hold active and inactive servers
+        self.servers_addresses = self.binding_config.config.servers_addresses
         active_servers = []
         inactive_servers = []
 
@@ -82,8 +103,14 @@ class LoLLMs(LLMBinding):
                 inactive_servers.append(server_url)  # Add inactive server to the list
                 ASCIIColors.error(f"Server : {server_url} is unreachable")
         # Do your initialization stuff
-        if self.local_config["keep_only_active_servers"]:
+        if self.binding_config.config["keep_only_active_servers"]:
             self.servers_addresses = active_servers
+    def install(self):
+        super().install()
+        requirements_file = self.binding_dir / "requirements.txt"
+        # install requirements
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        ASCIIColors.success("Installed successfully")
 
     def tokenize(self, prompt:str):
         """

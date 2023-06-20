@@ -14,10 +14,16 @@
 ######
 from pathlib import Path
 from typing import Callable
-from pygptj.model import Model
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
+from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.helpers import ASCIIColors
 from lollms  import MSG_TYPE
+import subprocess
 import yaml
+import re
+
+from pygptj.model import Model
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -29,27 +35,51 @@ binding_folder_name = "gpt_j_a"
 
 class GptJ(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:LOLLMSConfig) -> None:
-        """Builds a LLAMACPP binding
+    def __init__(self, 
+                config: LOLLMSConfig, 
+                lollms_paths: LollmsPaths = LollmsPaths(), 
+                force_reinstall: bool = False) -> None:
+        """
+        Initialize the Binding.
 
         Args:
-            config (dict): The configuration file
+            config (LOLLMSConfig): The configuration object for LOLLMS.
+            lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
+            force_reinstall (bool, optional): Flag to indicate whether to force reinstallation. Defaults to False.
         """
-        super().__init__(config, False)
-        
-        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
-        self.models_folder.mkdir(parents=True, exist_ok=True)
+        # Initialization code goes here
 
-        if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
-                model_path=f.read()
-        else:
-            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
+        binding_config = TypedConfig(
+            ConfigTemplate([
+                {"name":"gpu_layers","type":"int","value":20, "min":0},
+                {"name":"use_avx2","type":"bool","value":True}
+            ]),
+            BaseConfig(config={
+                "use_avx2": True,     # use avx2
+                "gpu_layers": 20       #number of layers top offload to gpu                
+            })
+        )
+        super().__init__(
+                            Path(__file__).parent, 
+                            lollms_paths, 
+                            config, 
+                            binding_config, 
+                            force_reinstall
+                        )
+        model_path = self.get_model_path()
 
         self.model = Model(
-                model_path=model_path,
+                model_path=str(model_path),
                 prompt_context="", prompt_prefix="", prompt_suffix=""
                 )
+        
+    def install(self):
+        super().install()
+        requirements_file = self.binding_dir / "requirements.txt"
+        # install requirements
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        ASCIIColors.success("Installed successfully")
+    
     def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.

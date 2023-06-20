@@ -13,9 +13,12 @@
 ######
 from pathlib import Path
 from typing import Callable
-from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
 from lollms.paths import LollmsPaths
+from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.helpers import ASCIIColors
 from lollms  import MSG_TYPE
+import subprocess
 import yaml
 import re
 
@@ -25,41 +28,55 @@ __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
 binding_name = "CustomBinding"
-binding_folder_name = "binding_template"
 
 class CustomBinding(LLMBinding):
     # Define what is the extension of the model files supported by your binding
     # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
     # and reimplement your own list_models method
     file_extension='*.bin' 
-    def __init__(self, config:LOLLMSConfig, lollms_paths:LollmsPaths = LollmsPaths()) -> None:
+    def __init__(
+                    self, 
+                    config:LOLLMSConfig, 
+                    lollms_paths:LollmsPaths = LollmsPaths(), 
+                    force_reinstall=False
+                ) -> None:
         """Builds a LLAMACPP binding
 
         Args:
             config (dict): The configuration file
         """
-        super().__init__(config)
+        binding_config = TypedConfig(
+            ConfigTemplate([
+                {"name":"n_gpu_layers","type":"int","value":20, "min":0}
+            ]),
+            BaseConfig(config={"n_gpu_layers": 20})
+        )
+        super().__init__(
+                            Path(__file__).parent, 
+                            lollms_paths, 
+                            config, 
+                            binding_config, 
+                            force_reinstall
+                        )
         
-        # The local config can be used to store personal information that shouldn't be shared like chatgpt Key 
-        # or other personal information
-        # This file is never commited to the repository as it is ignored by .gitignore
-        # You can remove this if you don't need custom local configurations
-        self._local_config_file_path = config.lollms_paths.personal_configuration_path/"binding_template_config.yaml"
-        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
-        self.models_folder.mkdir(parents=True, exist_ok=True)
-        self.config.load_config(self._local_config_file_path)
 
-        self.lollms_paths = lollms_paths
+        seed = config["seed"]
 
+        # if seed <=0:
+        #    seed = random.randint(1, 2**31)
         if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+            with open(str(config.lollms_paths.personal_models_path/f"{self.binding_folder_name}/{self.config.model_name}"),'r') as f:
                 model_path=f.read()
         else:
-            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
+            model_path=str(config.lollms_paths.personal_models_path/f"{self.binding_folder_name}/{self.config.model_name}")
+
 
         # Do your initialization stuff to load the model
 
-            
+    def install(self):
+        requirements_file = self.binding_dir / "requirements.txt"
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+
     def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.

@@ -13,13 +13,14 @@
 ######
 from pathlib import Path
 from typing import Callable
-from llama_cpp import Llama
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
+from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
-from lollms.paths import BaseConfig
+from lollms.helpers import ASCIIColors
 from lollms  import MSG_TYPE
-from .install import Install
+import subprocess
 import yaml
-import random
+import os
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -27,41 +28,66 @@ __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
 binding_name = "LLAMACPP"
-binding_folder_name = "llama_cpp_official"
 
 class LLAMACPP(LLMBinding):
     file_extension='*.bin'
-    def __init__(self, config:LOLLMSConfig) -> None:
+    def __init__(self, 
+                 config:LOLLMSConfig, 
+                 lollms_paths:LollmsPaths = LollmsPaths(), 
+                 force_reinstall=False) -> None:
         """Builds a LLAMACPP binding
 
         Args:
             config (dict): The configuration file
         """
-        super().__init__(config, False)
+        binding_config = TypedConfig(
+            ConfigTemplate([
+                {"name":"n_gpu_layers","type":"int","value":20, "min":0}
+            ]),
+            BaseConfig(config={"n_gpu_layers": 20})
+        )
+        super().__init__(
+                            Path(__file__).parent, 
+                            lollms_paths, 
+                            config, 
+                            binding_config, 
+                            force_reinstall
+                        )
         
-        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
-        self.models_folder.mkdir(parents=True, exist_ok=True)
 
         seed = config["seed"]
-        try:
-            self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path/ 'binding_llamacpp_config.yaml')
-        except Exception as ex:
-            Install(config, force_reinstall=True)
-            self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path/ 'binding_llamacpp_config.yaml')
+
         # if seed <=0:
         #    seed = random.randint(1, 2**31)
-        if self.config.model_name.endswith(".reference"):
-            with open(str(config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
-                model_path=f.read()
-        else:
-            model_path=str(config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
+        model_path = self.get_model_path()
         
+        from llama_cpp import Llama
+
         self.model = Llama(
             model_path=model_path, 
             n_ctx=self.config["ctx_size"], 
-            n_gpu_layers=self.local_config["n_gpu_layers"], 
+            n_gpu_layers=self.binding_config.config.n_gpu_layers, 
             n_threads=self.config["n_threads"],
             seed=seed)
+
+
+    def install(self):
+        super().install()
+        print("This is the first time you are using this binding.")
+        # Step 2: Install dependencies using pip from requirements.txt
+        requirements_file = self.binding_dir / "requirements.txt"
+
+        # Define the environment variables
+        env = os.environ.copy()
+        env["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on"
+        env["FORCE_CMAKE"] = "1"
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)], env=env)
+
+        if result.returncode != 0:
+            print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+
+        ASCIIColors.success("Installed successfully")
 
 
     def tokenize(self, prompt:str):
@@ -141,7 +167,8 @@ class LLAMACPP(LLMBinding):
                 count += 1
         except Exception as ex:
             print(ex)
-        return output           
+        return output         
+      
     @staticmethod
     def get_available_models():
         # Create the file path relative to the child class's directory

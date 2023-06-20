@@ -1,6 +1,7 @@
 import subprocess
 from pathlib import Path
-from lollms.binding import LOLLMSConfig, BindingInstaller
+from lollms.main_config import LOLLMSConfig
+from lollms.binding import BindingInstaller
 from lollms.helpers import ASCIIColors
 import yaml
 
