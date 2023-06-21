@@ -24,8 +24,6 @@ import yaml
 import re
 
 
-from gpt4all import GPT4All
-
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
@@ -70,6 +68,7 @@ class GPT4ALL(LLMBinding):
         
     def build_model(self):        
         model_path = self.get_model_path()
+        from gpt4all import GPT4All
 
         self.model = GPT4All(model_name=str(model_path.name), model_path=str(model_path.parent))
         self.model.model.set_thread_count(self.binding_config.config["n_threads"])
