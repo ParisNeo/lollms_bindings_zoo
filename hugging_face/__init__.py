@@ -18,7 +18,6 @@ import subprocess
 import yaml
 import re
 
-from transformers import AutoTokenizer, AutoModelForCausalLM
 import requests
 from tqdm import tqdm
 import os
@@ -37,28 +36,41 @@ binding_folder_name = "hugging_face"
 
 class HuggingFace(LLMBinding):
     file_extension='*'
-    def __init__(self, config:LOLLMSConfig) -> None:
-        """Builds a Hugging face binding
+    def __init__(self, 
+                config: LOLLMSConfig, 
+                lollms_paths: LollmsPaths = LollmsPaths(), 
+                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY) -> None:
+        """
+        Initialize the Binding.
 
         Args:
-            config (LOLLMSConfig): The configuration file
+            config (LOLLMSConfig): The configuration object for LOLLMS.
+            lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
+            installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        super().__init__(config, False)
+        # Initialization code goes here
 
-        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
-        self.models_folder.mkdir(parents=True, exist_ok=True)
-
-        if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
-                model_path=f.read()
-        else:
-            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
-
-        # Create configuration file
-        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'binding_hugging_face_config.yaml')
-
-
-        self.model_dir = model_path
+        binding_config = TypedConfig(
+            ConfigTemplate([
+                {"name":"gpu_layers","type":"int","value":20, "min":0},
+                {"name":"use_avx2","type":"bool","value":True}
+            ]),
+            BaseConfig(config={
+                "use_avx2": True,     # use avx2
+                "gpu_layers": 20       #number of layers top offload to gpu                
+            })
+        )
+        super().__init__(
+                            Path(__file__).parent, 
+                            lollms_paths, 
+                            config, 
+                            binding_config, 
+                            installation_option
+                        )
+        
+    def build_model(self):
+        model_path = self.get_model_path()
+        from transformers import AutoTokenizer, AutoModelForCausalLM
         model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.local_config["device"], use_fast=True, local_files_only=True)
         use_safetensors = model_name.suffix == '.safetensors'
@@ -73,8 +85,27 @@ class HuggingFace(LLMBinding):
             device=self.local_config["device"],
             use_triton=True,
             use_safetensors=use_safetensors)
+        return self    
+    
+    
+    def install(self):
+        super().install()
+        requirements_file = self.binding_dir / "requirements.txt"
+        # install requirements
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        ASCIIColors.success("Installed successfully")    
 
-
+        # Example of installing py torche
+        try:
+            print("Checking pytorch")
+            import torch
+            if torch.cuda.is_available():
+                print("CUDA is supported.")
+            else:
+                print("CUDA is not supported. Reinstalling PyTorch with CUDA support.")
+                self.reinstall_pytorch_with_cuda()
+        except Exception as ex:
+            self.reinstall_pytorch_with_cuda()
     def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.

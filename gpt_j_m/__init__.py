@@ -23,7 +23,6 @@ import subprocess
 import yaml
 import re
 
-from gpt4allj import Model
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -69,6 +68,7 @@ class GPTJ(LLMBinding):
         
     def build_model(self):
         model_path = self.get_model_path()
+        from gpt4allj import Model
         self.model = Model(
                 model=str(model_path), avx2 = self.binding_config.config["use_avx2"]
                 )

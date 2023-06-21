@@ -23,8 +23,6 @@ import subprocess
 import yaml
 import re
 
-from pygptj.model import Model
-
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
@@ -70,6 +68,8 @@ class GptJ(LLMBinding):
 
     def build_model(self):        
         model_path = self.get_model_path()
+
+        from pygptj.model import Model
 
         self.model = Model(
                 model_path=str(model_path),
