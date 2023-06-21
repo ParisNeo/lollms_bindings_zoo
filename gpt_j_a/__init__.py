@@ -14,11 +14,11 @@
 ######
 from pathlib import Path
 from typing import Callable
-from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
-from lollms  import MSG_TYPE
+from lollms.types import MSG_TYPE
 import subprocess
 import yaml
 import re
@@ -38,14 +38,15 @@ class GptJ(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = LollmsPaths(), 
-                force_reinstall: bool = False) -> None:
+                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
+                ) -> None:
         """
         Initialize the Binding.
 
         Args:
             config (LOLLMSConfig): The configuration object for LOLLMS.
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
-            force_reinstall (bool, optional): Flag to indicate whether to force reinstallation. Defaults to False.
+            installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         # Initialization code goes here
 
@@ -64,7 +65,7 @@ class GptJ(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            force_reinstall
+                            installation_option
                         )
 
     def build_model(self):        

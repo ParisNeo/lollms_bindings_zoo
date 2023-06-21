@@ -13,11 +13,11 @@
 ######
 from pathlib import Path
 from typing import Callable
-from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
-from lollms  import MSG_TYPE
+from lollms.types import MSG_TYPE
 import subprocess
 import yaml
 import re
@@ -29,6 +29,8 @@ __license__ = "Apache 2.0"
 
 binding_name = "CustomBinding"
 
+
+
 class CustomBinding(LLMBinding):
     # Define what is the extension of the model files supported by your binding
     # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
@@ -38,7 +40,7 @@ class CustomBinding(LLMBinding):
                     self, 
                     config:LOLLMSConfig, 
                     lollms_paths:LollmsPaths = LollmsPaths(), 
-                    force_reinstall=False
+                    installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
                 ) -> None:
         """Builds a LLAMACPP binding
 
@@ -56,7 +58,7 @@ class CustomBinding(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            force_reinstall
+                            installation_option
                         )
         
 

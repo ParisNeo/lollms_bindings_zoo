@@ -13,11 +13,11 @@
 ######
 from pathlib import Path
 from typing import Callable
-from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
-from lollms  import MSG_TYPE
+from lollms.types import MSG_TYPE
 import subprocess
 import yaml
 import os
@@ -34,16 +34,19 @@ class LLAMACPP(LLMBinding):
     def __init__(self, 
                  config:LOLLMSConfig, 
                  lollms_paths:LollmsPaths = LollmsPaths(), 
-                 force_reinstall=False) -> None:
+                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
+                ) -> None:
         """Builds a LLAMACPP binding
 
         Args:
             config (dict): The configuration file
         """
         binding_config = TypedConfig(
-            ConfigTemplate([
-                {"name":"n_gpu_layers","type":"int","value":20, "min":0}
-            ]),
+            ConfigTemplate(
+            [
+                {"name":"n_gpu_layers","type":"int","value":20, "min":0, "help":"Number of layers to offload to GPU"}
+            ]
+            ),
             BaseConfig(config={"n_gpu_layers": 20})
         )
         super().__init__(
@@ -51,7 +54,7 @@ class LLAMACPP(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            force_reinstall
+                            installation_option
                         )
         
     def build_model(self):

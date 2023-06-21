@@ -9,11 +9,11 @@
 ######
 from pathlib import Path
 from typing import Callable
-from lollms.config import BaseConfig, TypedConfig, ConfigTemplate
+from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
-from lollms  import MSG_TYPE
+from lollms.types import MSG_TYPE
 import subprocess
 import yaml
 import re
