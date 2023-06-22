@@ -77,7 +77,7 @@ class PyLLAMACPP(LLMBinding):
                 n_ctx=self.config['ctx_size'], 
                 seed=self.config['seed'],
                 )
-        return self.model
+        return self
 
     def install(self):
         super().install()

@@ -75,7 +75,7 @@ class GptJ(LLMBinding):
                 model_path=str(model_path),
                 prompt_context="", prompt_prefix="", prompt_suffix=""
                 )
-        return self.model
+        return self
     
     def install(self):
         super().install()
