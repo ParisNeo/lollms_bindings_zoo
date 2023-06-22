@@ -1,3 +1,40 @@
+- description: Eric Hartford's WizardLM Uncensored Falcon 7B GGML. (Q4_1).
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: wizard-falcon-7b.ggmlv3.q4_1.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/resolve/main/
+  sha256: 153ef5cc58e0a0bd4e2a3c88c087beb456986d9fbcaba76d4a696f116c213b18
+
+- description: Eric Hartford's WizardLM Uncensored Falcon 7B GGML. (Q4_1).
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: wizard-falcon-7b.ggmlv3.q4_1.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/resolve/main/
+  sha256: 153ef5cc58e0a0bd4e2a3c88c087beb456986d9fbcaba76d4a696f116c213b18
+
+
+- description: Eric Hartford's WizardLM Uncensored Falcon 40B GGML. (Q4_K_S).
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: wizard-falcon40b.ggmlv3.q4_K_S.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-40B-GGML/
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-40B-GGML/resolve/main/
+  sha256: 0b606070d5c66d73b5e925459ecfeee58c255170ed10e046407e1afcd07d52ed
+
+- description: Eric Hartford's WizardLM Uncensored Falcon 40B GGML. (Q2_K).
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  filename: wizard-falcon40b.ggmlv3.q2_K.bin
+  license: Non commercial
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-40B-GGML/
+  owner: TheBloke
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-40B-GGML/resolve/main/
+  sha256: 4dd279951cb4519e4e3af73b9dea03d9cb5efc1bd69561333b80b39c737c9d0c
+
 - description: GGML format model files for Jon Durbin's Airoboros 13B GPT4 1.4. (Q2_K).
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   filename: airoboros-13b-gpt4-1.4.ggmlv3.q2_K.bin
