@@ -100,12 +100,14 @@ class CTRansformers(LLMBinding):
         if self.binding_config.config["use_avx2"]:
             self.model = AutoModelForCausalLM.from_pretrained(
                     str(model_path), model_type=model_type,
-                    gpu_layers = self.binding_config.config["gpu_layers"]
+                    gpu_layers = self.binding_config.config["gpu_layers"],
+                    reset= False
                     )
         else:
             self.model = AutoModelForCausalLM.from_pretrained(
                     str(model_path), model_type=model_type, lib = "avx",
-                    gpu_layers = self.binding_config.config["gpu_layers"]
+                    gpu_layers = self.binding_config.config["gpu_layers"],
+                    reset= False
                     )
             
         return self
