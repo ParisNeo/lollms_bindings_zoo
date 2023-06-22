@@ -67,11 +67,12 @@ class CustomBinding(LLMBinding):
 
         # if seed <=0:
         #    seed = random.randint(1, 2**31)
-        if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.lollms_paths.personal_models_path/f"{self.binding_folder_name}/{self.config.model_name}"),'r') as f:
-                model_path=f.read()
-        else:
-            model_path=str(self.config.lollms_paths.personal_models_path/f"{self.binding_folder_name}/{self.config.model_name}")
+        if self.config.model_name is not None:
+            if self.config.model_name.endswith(".reference"):
+                with open(str(self.config.lollms_paths.personal_models_path/f"{self.binding_folder_name}/{self.config.model_name}"),'r') as f:
+                    model_path=f.read()
+            else:
+                model_path=str(self.config.lollms_paths.personal_models_path/f"{self.binding_folder_name}/{self.config.model_name}")
 
 
         # Do your initialization stuff to load the model

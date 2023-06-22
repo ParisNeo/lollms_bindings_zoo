@@ -53,37 +53,41 @@ class GPTQ(LLMBinding):
         # Create configuration file
         self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'binding_gptq_config.yaml')
         
-        if self.config.model_name.endswith(".reference"):
-            with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
-                model_path=f.read()
-        else:
-            model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
+        if self.config.model_name is not None:
+            
+            if self.config.model_name.endswith(".reference"):
+                with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
+                    model_path=f.read()
+            else:
+                model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
                 
-        self.model_dir = model_path
-        model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.local_config["device"], use_fast=True, local_files_only=True)
-        use_safetensors = model_name.suffix == '.safetensors'
-        model_name = model_name.stem
+            self.model_dir = model_path
+            model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
+            self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.local_config["device"], use_fast=True, local_files_only=True)
+            use_safetensors = model_name.suffix == '.safetensors'
+            model_name = model_name.stem
 
-        if not (Path(self.model_dir) / "quantize_config.json").exists():
-            quantize_config = BaseQuantizeConfig(
-                bits= 4,
-                group_size= -1,
-                desc_act=""
-            )
+            if not (Path(self.model_dir) / "quantize_config.json").exists():
+                quantize_config = BaseQuantizeConfig(
+                    bits= 4,
+                    group_size= -1,
+                    desc_act=""
+                )
+            else:
+                quantize_config = None
+
+            # load quantized model to the first GPU
+            self.model = AutoGPTQForCausalLM.from_quantized(
+                self.model_dir, 
+                local_files_only=True,  
+                model_basename=model_name, 
+                device=self.local_config["device"],
+                use_triton=False,#True,
+                use_safetensors=use_safetensors,
+                quantize_config=quantize_config
+                )
         else:
-            quantize_config = None
-
-        # load quantized model to the first GPU
-        self.model = AutoGPTQForCausalLM.from_quantized(
-            self.model_dir, 
-            local_files_only=True,  
-            model_basename=model_name, 
-            device=self.local_config["device"],
-            use_triton=False,#True,
-            use_safetensors=use_safetensors,
-            quantize_config=quantize_config
-            )
+            ASCIIColors.error('No model selected!!')
 
     def tokenize(self, prompt:str):
         """
