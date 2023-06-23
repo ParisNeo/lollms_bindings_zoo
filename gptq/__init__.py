@@ -185,10 +185,23 @@ class GPTQ(LLMBinding):
         dest_dir.mkdir(parents=True, exist_ok=True)
         os.chdir(dest_dir)
 
+        def chunk_callback(chunk, chunk_size, total_size):
+            # This function is called for each received chunk
+            # Perform actions or computations on the received chunk
+            # chunk: The chunk of data received
+            # chunk_size: The size of each chunk in bytes
+            # total_size: The total size of the file being downloaded
+
+            # Example: Print the current progress
+            downloaded = len(chunk) * chunk_size
+            progress = (downloaded / total_size) * 100
+            if callback:
+                callback(downloaded, total_size)
+
         def download_file(get_file):
             filename = f"https://huggingface.co/{repo}/resolve/main/{get_file}"
             print(f"\nDownloading {filename}")
-            wget.download(filename, out=str(dest_dir), bar=callback)
+            wget.download(filename, out=str(dest_dir), bar=chunk_callback)
 
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.map(download_file, file_names)
