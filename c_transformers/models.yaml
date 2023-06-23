@@ -1,12 +1,3 @@
-- description: GGML format model files for WizardLM's WizardLM 7B. (Q4_1).
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: wizardLM-7B.ggmlv3.q4_1.bin
-  license: Non commercial
-  owner_link: https://huggingface.co/TheBloke/wizardLM-7B-GGML/
-  owner: TheBloke
-  server: https://huggingface.co/TheBloke/wizardLM-7B-GGML/resolve/main/
-  sha256: 638cb8fda01746dd16ff343dadc1c7bec7f42e81bf2a5225356fa61540942eed
-  
 - description: Eric Hartford's WizardLM Uncensored Falcon 7B GGML. (Q4_1).
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   filename: wizard-falcon-7b.ggmlv3.q4_1.bin

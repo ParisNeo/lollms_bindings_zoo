@@ -54,16 +54,17 @@ class CTRansformers(LLMBinding):
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         # Initialization code goes here
+        binding_config_template = ConfigTemplate([
+            {"name":"n_threads","type":"int","value":1, "min":1},
+            {"name":"batch_size","type":"int","value":1, "min":1},
+            {"name":"gpu_layers","type":"int","value":20, "min":0},
+            {"name":"use_avx2","type":"bool","value":True}
+        ])
+        binding_config_vals = BaseConfig.from_template(binding_config_template)
 
         binding_config = TypedConfig(
-            ConfigTemplate([
-                {"name":"gpu_layers","type":"int","value":20, "min":0},
-                {"name":"use_avx2","type":"bool","value":True}
-            ]),
-            BaseConfig(config={
-                "use_avx2": True,     # use avx2
-                "gpu_layers": 20       #number of layers top offload to gpu                
-            })
+            binding_config_template,
+            binding_config_vals
         )
         super().__init__(
                             Path(__file__).parent, 
@@ -72,6 +73,8 @@ class CTRansformers(LLMBinding):
                             binding_config, 
                             installation_option
                         )
+
+
 
     def build_model(self):
         if 'gpt2' in self.config['model_name']:
@@ -103,12 +106,16 @@ class CTRansformers(LLMBinding):
             self.model = AutoModelForCausalLM.from_pretrained(
                     str(model_path), model_type=model_type,
                     gpu_layers = self.binding_config.config["gpu_layers"],
+                    batch_size=self.binding_config.config["batch_size"],
+                    threads = self.binding_config.config["n_threads"],
                     reset= False
                     )
         else:
             self.model = AutoModelForCausalLM.from_pretrained(
                     str(model_path), model_type=model_type, lib = "avx",
                     gpu_layers = self.binding_config.config["gpu_layers"],
+                    batch_size=self.binding_config.config["batch_size"],
+                    threads = self.binding_config.config["n_threads"],
                     reset= False
                     )
             
