@@ -86,6 +86,8 @@ class CTRansformers(LLMBinding):
             model_type='starcoder'
         elif 'mpt' in self.config['model_name']:
             model_type='mpt'
+        elif 'falcon' in self.config['model_name'].lower():
+            model_type='falcon'
         elif 'llama' in self.config['model_name'].lower() or 'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower():
             model_type='llama'
         else:
