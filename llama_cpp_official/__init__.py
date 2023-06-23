@@ -91,11 +91,11 @@ class LLAMACPP(LLMBinding):
         env = os.environ.copy()
         env["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on"
         env["FORCE_CMAKE"] = "1"
-        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", "llama-cpp-python"], env=env)
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python"], env=env)
 
         if result.returncode != 0:
             print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", "llama-cpp-python"])
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python"])
 
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         ASCIIColors.success("Installed successfully")
