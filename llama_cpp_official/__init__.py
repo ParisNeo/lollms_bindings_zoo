@@ -104,7 +104,7 @@ class LLAMACPP(LLMBinding):
     def uninstall(self):
         super().install()
         print("Uninstalling binding.")
-        subprocess.run(["pip", "uninstall", "llama-cpp-python"])
+        subprocess.run(["pip", "uninstall", "--yes", "llama-cpp-python"])
         ASCIIColors.success("Installed successfully")
 
 
