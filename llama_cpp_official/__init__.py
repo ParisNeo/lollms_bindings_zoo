@@ -43,7 +43,7 @@ class LLAMACPP(LLMBinding):
         """
         binding_config_templete =  ConfigTemplate(
             [
-                {"name":"n_thread","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
+                {"name":"n_threads","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
                 {"name":"n_gpu_layers","type":"int","value":20, "min":0, "help":"Number of layers to offload to GPU"}
             ]
             )
