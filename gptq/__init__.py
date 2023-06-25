@@ -19,14 +19,7 @@ import yaml
 import re
 
 
-from transformers import AutoTokenizer, TextGenerationPipeline
-from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
-from tqdm import tqdm
-import requests
-from bs4 import BeautifulSoup
-import concurrent.futures
-import wget
-import os
+
 
 
 __author__ = "parisneo"
@@ -36,34 +29,53 @@ __license__ = "Apache 2.0"
 
 binding_name = "GPTQ"
 binding_folder_name = "gptq"
+import os
+import platform
 
 class GPTQ(LLMBinding):
     file_extension='*'
-    def __init__(self, config:LOLLMSConfig) -> None:
+    def __init__(self, 
+                config: LOLLMSConfig, 
+                lollms_paths: LollmsPaths = LollmsPaths(), 
+                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
+                ) -> None:
         """Builds a GPTQ binding
 
         Args:
             config (LOLLMSConfig): The configuration file
         """
-        super().__init__(config, False)
-        
-        self.models_folder = config.lollms_paths.personal_models_path / Path(__file__).parent.stem
-        self.models_folder.mkdir(parents=True, exist_ok=True)
-        
-        # Create configuration file
-        self.local_config = self.load_config_file(config.lollms_paths.personal_configuration_path / 'binding_gptq_config.yaml')
-        
-        if self.config.model_name is not None:
-            
-            if self.config.model_name.endswith(".reference"):
-                with open(str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}"),'r') as f:
-                    model_path=f.read()
-            else:
-                model_path=str(self.config.lollms_paths.personal_models_path/f"{binding_folder_name}/{self.config.model_name}")
-                
+        # Initialization code goes here
+        binding_config_template = ConfigTemplate([
+            {"name":"device","type":"str","value":"gpu", "options":["cpu","gpu"],"help":"Device to be used (CPU or GPU)"},
+            {"name":"batch_size","type":"int","value":1, "min":1},
+            {"name":"gpu_layers","type":"int","value":20, "min":0},
+        ])
+        binding_config_vals = BaseConfig.from_template(binding_config_template)
+
+        binding_config = TypedConfig(
+            binding_config_template,
+            binding_config_vals
+        )
+        super().__init__(
+                            Path(__file__).parent, 
+                            lollms_paths, 
+                            config, 
+                            binding_config, 
+                            installation_option
+                        )
+
+
+
+    def build_model(self):
+
+        from transformers import AutoTokenizer, TextGenerationPipeline
+        from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
+
+        if self.config.model_name:
+            model_path = self.get_model_path()
             self.model_dir = model_path
             model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
-            self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.local_config["device"], use_fast=True, local_files_only=True)
+            self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.binding_config.device, use_fast=True, local_files_only=True)
             use_safetensors = model_name.suffix == '.safetensors'
             model_name = model_name.stem
 
@@ -81,13 +93,60 @@ class GPTQ(LLMBinding):
                 self.model_dir, 
                 local_files_only=True,  
                 model_basename=model_name, 
-                device=self.local_config["device"],
+                device=self.binding_config.device,
                 use_triton=False,#True,
                 use_safetensors=use_safetensors,
                 quantize_config=quantize_config
                 )
         else:
             ASCIIColors.error('No model selected!!')
+
+    def install(self):
+        super().install()
+        print("This is the first time you are using this binding.")
+        # Step 2: Install dependencies using pip from requirements.txt
+        requirements_file = self.binding_dir / "requirements.txt"
+        try:
+            import llama_cpp
+            ASCIIColors.info("Found old installation. Uninstalling.")
+            self.uninstall()
+        except ImportError:
+            # The library is not installed
+            print("The main library is not installed.")
+
+        # Define the environment variables
+        os_type = platform.system()
+        if os_type == "Linux":
+            print("Linux OS detected.")
+            env = os.environ.copy()
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto_gptq-0.2.2+cu117-cp310-cp310-linux_x86_64.whl"], env=env)
+
+            if result.returncode != 0:
+                print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+        if os_type == "Windows":
+            print("Windows OS detected.")
+            env = os.environ.copy()
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto_gptq-0.2.2+cu117-cp310-cp310-win_amd64.whl"], env=env)
+
+            if result.returncode != 0:
+                print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+        else:
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        ASCIIColors.success("Installed successfully")
+
+
+    def uninstall(self):
+        super().install()
+        print("Uninstalling binding.")
+        subprocess.run(["pip", "uninstall", "--yes", "llama-cpp-python"])
+        ASCIIColors.success("Installed successfully")
+
+
 
     def tokenize(self, prompt:str):
         """
@@ -160,6 +219,14 @@ class GPTQ(LLMBinding):
             callback (function, optional): A callback function to be called during the download
                 with the progress percentage as an argument. Defaults to None.
         """
+        
+        from tqdm import tqdm
+        import requests
+        from bs4 import BeautifulSoup
+        import concurrent.futures
+        import wget
+        import os
+
         dont_download = [".gitattributes"]
 
         url = f"https://huggingface.co/{repo}/tree/main"

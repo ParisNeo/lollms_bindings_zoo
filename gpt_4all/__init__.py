@@ -51,7 +51,7 @@ class GPT4ALL(LLMBinding):
         # Initialization code goes here
         binding_config_templete =  ConfigTemplate(
             [
-                {"name":"n_thread","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
+                {"name":"n_threads","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
             ]
             )
         binding_config = BaseConfig.from_template(binding_config_templete)
@@ -75,7 +75,7 @@ class GPT4ALL(LLMBinding):
                                 model_name=str(model_path.name),
                                 model_path=str(model_path.parent)
                             )
-        self.model.model.set_thread_count(self.binding_config.config["n_threads"])
+        self.model.model.set_thread_count(self.binding_config.n_threads)
 
         return self
 

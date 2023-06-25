@@ -5,6 +5,7 @@ from lollms.binding import BindingInstaller
 from lollms.helpers import ASCIIColors
 import yaml
 import os
+import platform
 
 class Install(BindingInstaller):
     def __init__(self, config:LOLLMSConfig=None, force_reinstall=False):
@@ -32,11 +33,24 @@ class Install(BindingInstaller):
 
             # Define the environment variables
             requirements_file = current_dir / "requirements.txt"
-            env = os.environ.copy()
-            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto_gptq-0.2.0+cu118-cp310-cp310-linux_x86_64.whl"], env=env)
+            os_type = platform.system()
+            if os_type == "Linux":
+                print("Linux OS detected.")
+                env = os.environ.copy()
+                result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto_gptq-0.2.2+cu117-cp310-cp310-linux_x86_64.whl"], env=env)
 
-            if result.returncode != 0:
-                print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+                if result.returncode != 0:
+                    print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+                    subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+            if os_type == "Windows":
+                print("Windows OS detected.")
+                env = os.environ.copy()
+                result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto_gptq-0.2.2+cu117-cp310-cp310-win_amd64.whl"], env=env)
+
+                if result.returncode != 0:
+                    print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+                    subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+            else:
                 subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
