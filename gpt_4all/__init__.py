@@ -49,14 +49,15 @@ class GPT4ALL(LLMBinding):
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         # Initialization code goes here
-
+        binding_config_templete =  ConfigTemplate(
+            [
+                {"name":"n_thread","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
+            ]
+            )
+        binding_config = BaseConfig.from_template(binding_config_templete)
         binding_config = TypedConfig(
-            ConfigTemplate([
-                {"name":"n_threads","type":"int","value":8, "min":1}
-            ]),
-            BaseConfig(config={
-                "n_threads": 8,     # number of core to use
-            })
+            binding_config_templete,
+            binding_config
         )
         super().__init__(
                             Path(__file__).parent, 
@@ -70,7 +71,10 @@ class GPT4ALL(LLMBinding):
         model_path = self.get_model_path()
         from gpt4all import GPT4All
 
-        self.model = GPT4All(model_name=str(model_path.name), model_path=str(model_path.parent))
+        self.model = GPT4All(
+                                model_name=str(model_path.name),
+                                model_path=str(model_path.parent)
+                            )
         self.model.model.set_thread_count(self.binding_config.config["n_threads"])
 
         return self

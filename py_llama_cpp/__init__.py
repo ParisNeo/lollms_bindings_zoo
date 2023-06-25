@@ -49,15 +49,16 @@ class PyLLAMACPP(LLMBinding):
         """
         # Initialization code goes here
 
+        binding_config_templete =  ConfigTemplate(
+            [
+                {"name":"n_thread","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
+                {"name":"n_gpu_layers","type":"int","value":20, "min":0, "help":"Number of layers to offload to GPU"}
+            ]
+            )
+        binding_config = BaseConfig.from_template(binding_config_templete)
         binding_config = TypedConfig(
-            ConfigTemplate([
-                {"name":"gpu_layers","type":"int","value":20, "min":0},
-                {"name":"use_avx2","type":"bool","value":True}
-            ]),
-            BaseConfig(config={
-                "use_avx2": True,     # use avx2
-                "gpu_layers": 20       #number of layers top offload to gpu                
-            })
+            binding_config_templete,
+            binding_config
         )
         super().__init__(
                             Path(__file__).parent, 
