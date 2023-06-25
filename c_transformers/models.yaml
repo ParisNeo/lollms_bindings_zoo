@@ -1,12 +1,262 @@
-- description: Eric Hartford's WizardLM Uncensored Falcon 7B GGML. (Q4_1).
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: wizard-falcon-7b.ggmlv3.q4_1.bin
-  license: Non commercial
-  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/
-  owner: TheBloke
-  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/resolve/main/
-  sha256: 153ef5cc58e0a0bd4e2a3c88c087beb456986d9fbcaba76d4a696f116c213b18
+# Baichuan
+- SHA256: 156f5c82cac3b737c55b000476322e890a05665de0e490605f8e3dcd1e964243
+  description: Fire Balloon's Baichuan Llama 7B GGML(q2_K)
+  filename: baichuan-llama-7b.ggmlv3.q2_K.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/
+  server: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/resolve/main
+- SHA256: f49bcf92e7307ea99411dad6898efa8aad1f18c077c28362ead9f6bc087e0fd9
+  description: Fire Balloon's Baichuan Llama 7B GGML(q4_0)
+  filename: baichuan-llama-7b.ggmlv3.q4_0.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/
+  server: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/resolve/main
+- SHA256: 5a88e35f6d0e305bdf8b4e6e278a8b3b5ae76473891d4fccdf9756cde6a2e7b7
+  description: Fire Balloon's Baichuan Llama 7B GGML(q4_1)
+  filename: baichuan-llama-7b.ggmlv3.q4_1.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/
+  server: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/resolve/main
+- SHA256: 3fd293a45cead913e7b2708e53f2356c4fceab02feca4e8a1e84dd3ca772e1aa
+  description: Fire Balloon's Baichuan Llama 7B GGML(q5_0)
+  filename: baichuan-llama-7b.ggmlv3.q5_0.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/
+  server: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/resolve/main
+- SHA256: 6d6ac9211f2ea4a4b0a2da69d3453afcc637e44b1f79ac0b28edae6b1476fc15
+  description: Fire Balloon's Baichuan Llama 7B GGML(q5_1)
+  filename: baichuan-llama-7b.ggmlv3.q5_1.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/
+  server: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/resolve/main
+- SHA256: 03e204e535d4397cdaf43b8efaba7d4167f5c90e8f26a16ebfd0021746e5607a
+  description: Fire Balloon's Baichuan Llama 7B GGML(q8_0)
+  filename: baichuan-llama-7b.ggmlv3.q8_0.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/
+  server: https://huggingface.co/TheBloke/baichuan-llama-7B-GGML/resolve/main
 
+# Orca mini3B
+- SHA256: e84705205f71dd55be7b24a778f248f0eda9999a125d313358c087e092d83148
+  description: Pankaj Mathur's Orca Mini 3B GGML(q4_0)
+  filename: orca-mini-3b.ggmlv3.q4_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_3B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_3B-GGML/resolve/main
+- SHA256: 63151c63f792939bb4a40b35f37ea06e047c02486399d1742113aaefd0d33e29
+  description: Pankaj Mathur's Orca Mini 3B GGML(q4_1)
+  filename: orca-mini-3b.ggmlv3.q4_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_3B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_3B-GGML/resolve/main
+- SHA256: 0176446ffa214484d86d1346a8571a61b1e32a113d6f8e72644364f89f484cbe
+  description: Pankaj Mathur's Orca Mini 3B GGML(q5_0)
+  filename: orca-mini-3b.ggmlv3.q5_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_3B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_3B-GGML/resolve/main
+- SHA256: 14404d07b406e883aba9903a6e784322edfd6f9ff402efb95dd6028a563f6b72
+  description: Pankaj Mathur's Orca Mini 3B GGML(q5_1)
+  filename: orca-mini-3b.ggmlv3.q5_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_3B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_3B-GGML/resolve/main
+- SHA256: 309623a1e1dc8c47e2ffff0b1a4974bc775f62cb1b2c1760b8c3d308d6a7b8ae
+  description: Pankaj Mathur's Orca Mini 3B GGML(q8_0)
+  filename: orca-mini-3b.ggmlv3.q8_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_3B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_3B-GGML/resolve/main
+
+# Orca mini7B
+- SHA256: cf9d0ec58131f9c36820d94daedae5e847b441bf353aeeb6710f602933eeba17
+  description: Pankaj Mathur's Orca Mini 7B GGML(q4_0)
+  filename: orca-mini-7b.ggmlv3.q4_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+- SHA256: 0f4d1af8b27a04049bd776133f066a129e79e91b5ac7d2145f7496da38ebd5da
+  description: Pankaj Mathur's Orca Mini 7B GGML(q4_1)
+  filename: orca-mini-7b.ggmlv3.q4_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+- SHA256: 0b120a6decd440bf155cd762bc7e08a343074d36d254957ac334b094f1b56fea
+  description: Pankaj Mathur's Orca Mini 7B GGML(q5_0)
+  filename: orca-mini-7b.ggmlv3.q5_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+- SHA256: 80c25ad01c70c32ee7f48d56fec2f084c8d635ec425d6bc8b9501994d04904c4
+  description: Pankaj Mathur's Orca Mini 7B GGML(q5_1)
+  filename: orca-mini-7b.ggmlv3.q5_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+- SHA256: 500de261dd8196fbb4fc6952a0f6bfc490349e7cd353ed47e30ad16a8763f92d
+  description: Pankaj Mathur's Orca Mini 7B GGML(q8_0)
+  filename: orca-mini-7b.ggmlv3.q8_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+
+# Orca mini13B
+- SHA256: a04ded4e9ad185fc4d7b98fdf4e15055b0768a26669acd1d41235ea47111b940
+  description: Pankaj Mathur's Orca Mini 13B GGML(q2_K)
+  filename: orca-mini-13b.ggmlv3.q2_K.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: 405dde7cffe2723ce0f60ec39cf084962525023d5a86def907233fecca2c06d6
+  description: Pankaj Mathur's Orca Mini 13B GGML(q4_0)
+  filename: orca-mini-13b.ggmlv3.q4_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: 973c2c21eeec67aa7408c207b1f954e2854a164fb5e2100af64aeb0c5712ac16
+  description: Pankaj Mathur's Orca Mini 13B GGML(q4_1)
+  filename: orca-mini-13b.ggmlv3.q4_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: db95cc0bd2fdec1f7d68c729c5cf7179368bbe453f1f3434d3a66cda7728e27a
+  description: Pankaj Mathur's Orca Mini 13B GGML(q5_0)
+  filename: orca-mini-13b.ggmlv3.q5_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: 73a8ce0652d474eee99709ef706e0e392c34265ae6388debdb62be0eabae4fc4
+  description: Pankaj Mathur's Orca Mini 13B GGML(q5_1)
+  filename: orca-mini-13b.ggmlv3.q5_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: 9d39cbdffd5d0e09a1d1201d28544733d693144eb7e2b8589c4fa33ca5286547
+  description: Pankaj Mathur's Orca Mini 13B GGML(q8_0)
+  filename: orca-mini-13b.ggmlv3.q8_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+
+
+# Falcon 13B
+- SHA256: aec0b0f0f0aea1a082d48623781240c69fed9a4a95d23ada54817e274cdc59a7
+  description: Eric Hartford's WizardLM Uncensored Falcon 7B GGMLbin
+  filename: wizard-falcon-7b.ggmlv3.q4_0.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/resolve/main
+- SHA256: 153ef5cc58e0a0bd4e2a3c88c087beb456986d9fbcaba76d4a696f116c213b18
+  description: Eric Hartford's WizardLM Uncensored Falcon 7B GGMLbin
+  filename: wizard-falcon-7b.ggmlv3.q4_1.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/resolve/main
+- SHA256: 5f78479e572a509c5a0703f4731f483035f6b47f54ebe8e46aef06d870235d1e
+  description: Eric Hartford's WizardLM Uncensored Falcon 7B GGMLbin
+  filename: wizard-falcon-7b.ggmlv3.q5_0.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/resolve/main
+- SHA256: 0ec1bfe76905ad592aefab73d803b8b9632fe15fc5843c1671ae2b8be3c245fd
+  description: Eric Hartford's WizardLM Uncensored Falcon 7B GGMLbin
+  filename: wizard-falcon-7b.ggmlv3.q5_1.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/resolve/main
+- SHA256: 0fa6fcefa92c16679257d3070ac469a3a4051dbb1c704f1ae121026c0e4e571d
+  description: Eric Hartford's WizardLM Uncensored Falcon 7B GGMLbin
+  filename: wizard-falcon-7b.ggmlv3.q8_0.bin
+  license: other
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GGML/resolve/main
+
+
+# Falcon 40B  oasst
+- SHA256: 8f16a69366afe2f69405b8a47e5ca6e8dd03657d2704b40eb060a152a4a0be3b
+  description: H2O's GPT-GM-OASST1-Falcon 40B v2 GGML(q2_k)
+  filename: h2ogpt-falcon-40b.ggmlv3.q2_k.bin
+  license: apache-2.0
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/resolve/main
+- SHA256: f9d418be8165386c88682902572a9f49072f8525b965bed96af69639e334f3d9
+  description: H2O's GPT-GM-OASST1-Falcon 40B v2 GGML(q4_0)
+  filename: h2ogpt-falcon-40b.ggmlv3.q4_0.bin
+  license: apache-2.0
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/resolve/main
+- SHA256: 44a2f420e09b2aea7b3535969e49ce18f9f7b03b94acb37949843293bdd3a84c
+  description: H2O's GPT-GM-OASST1-Falcon 40B v2 GGML(q4_1)
+  filename: h2ogpt-falcon-40b.ggmlv3.q4_1.bin
+  license: apache-2.0
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/resolve/main
+- SHA256: 2b61b74594e53fc282a9377096857f47fa5d66a24368a8d4061a97368ddb4f2e
+  description: H2O's GPT-GM-OASST1-Falcon 40B v2 GGML(q4_k)
+  filename: h2ogpt-falcon-40b.ggmlv3.q4_k.bin
+  license: apache-2.0
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/resolve/main
+- SHA256: 8a60d18f9586d2b29e31c5784b5a6306ae1e8a3e38ae5c7616622d3f12755e6f
+  description: H2O's GPT-GM-OASST1-Falcon 40B v2 GGML(q5_0)
+  filename: h2ogpt-falcon-40b.ggmlv3.q5_0.bin
+  license: apache-2.0
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/resolve/main
+- SHA256: 54007eea16f852d986131b5bc7d3b287b7c6488c5fb77b232d8a0a14df9462ca
+  description: H2O's GPT-GM-OASST1-Falcon 40B v2 GGML(q5_1)
+  filename: h2ogpt-falcon-40b.ggmlv3.q5_1.bin
+  license: apache-2.0
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/resolve/main
+- SHA256: f7353c0f681e6ab2ea3cd0e81f8c65e9ed16beed6068e8c848e791d0603ff66f
+  description: H2O's GPT-GM-OASST1-Falcon 40B v2 GGML(q5_k)
+  filename: h2ogpt-falcon-40b.ggmlv3.q5_k.bin
+  license: apache-2.0
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/resolve/main
+- SHA256: e0e3daf7b35e89e6e1de21b3b5a6d202fe7ccf6b799033ebe991867f037c4336
+  description: H2O's GPT-GM-OASST1-Falcon 40B v2 GGML(q8_0)
+  filename: h2ogpt-falcon-40b.ggmlv3.q8_0.bin
+  license: apache-2.0
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GGML/resolve/main
+
+
+# MPT 30B
+- SHA256: 0f44948b2bb2fa8734ecf1964717227e246897c8983c63f645114fe073660cf5
+  description: MosaicML's MPT-30B-Instruct GGML(q4_0)
+  filename: mpt-30b-instruct.ggmlv0.q4_0.bin
+  license: cc-by-sa-3.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/resolve/main
+- SHA256: c9975ba6ab35c534df94028e6c225fd8dedd3bea44c939f78c96867803e72a0e
+  description: MosaicML's MPT-30B-Instruct GGML(q4_1)
+  filename: mpt-30b-instruct.ggmlv0.q4_1.bin
+  license: cc-by-sa-3.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/resolve/main
+- SHA256: 2d89abff796aee1d8d8706ac981d01deea2b2f7f876e99732056b7554c4f46df
+  description: MosaicML's MPT-30B-Instruct GGML(q5_0)
+  filename: mpt-30b-instruct.ggmlv0.q5_0.bin
+  license: cc-by-sa-3.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/resolve/main
+- SHA256: c9975ba6ab35c534df94028e6c225fd8dedd3bea44c939f78c96867803e72a0e
+  description: MosaicML's MPT-30B-Instruct GGML(q4_1)
+  filename: mpt-30b-instruct.ggmlv0.q4_1.bin
+  license: cc-by-sa-3.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/resolve/main
+- SHA256: c190c3791ad094094a08bccfc071f338f5c6c14cd441e5c781e2ba479a7c9540
+  description: MosaicML's MPT-30B-Instruct GGML(q8_0)
+  filename: mpt-30b-instruct.ggmlv0.q8_0.bin
+  license: cc-by-sa-3.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/resolve/main
+
+
+# Falcon 7B
 - description: Eric Hartford's WizardLM Uncensored Falcon 7B GGML. (Q4_1).
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   filename: wizard-falcon-7b.ggmlv3.q4_1.bin

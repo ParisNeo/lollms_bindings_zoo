@@ -163,3 +163,4 @@ cython_debug/
 local_config.yaml
 
 .vscode
+output.yaml
