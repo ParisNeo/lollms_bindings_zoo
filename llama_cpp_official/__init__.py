@@ -41,13 +41,16 @@ class LLAMACPP(LLMBinding):
         Args:
             config (dict): The configuration file
         """
-        binding_config = TypedConfig(
-            ConfigTemplate(
+        binding_config_templete =  ConfigTemplate(
             [
+                {"name":"n_thread","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
                 {"name":"n_gpu_layers","type":"int","value":20, "min":0, "help":"Number of layers to offload to GPU"}
             ]
-            ),
-            BaseConfig(config={"n_gpu_layers": 20})
+            )
+        binding_config = BaseConfig.from_template(binding_config_templete)
+        binding_config = TypedConfig(
+            binding_config_templete,
+            binding_config
         )
         super().__init__(
                             Path(__file__).parent, 
@@ -69,8 +72,8 @@ class LLAMACPP(LLMBinding):
         self.model = Llama(
             model_path=str(model_path), 
             n_ctx=self.config["ctx_size"], 
-            n_gpu_layers=self.binding_config.config.n_gpu_layers, 
-            n_threads=self.config["n_threads"],
+            n_gpu_layers=self.binding_config.n_gpu_layers, 
+            n_threads=self.binding_config["n_threads"],
             seed=seed)
         return self
 
