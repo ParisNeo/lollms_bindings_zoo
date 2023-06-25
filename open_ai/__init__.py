@@ -82,7 +82,7 @@ class OpenAIGPT(LLMBinding):
         ASCIIColors.error("----------------------")
         ASCIIColors.error("Attention please")
         ASCIIColors.error("----------------------")
-        ASCIIColors.error("The chatgpt/gpt4 binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it here.")
+        ASCIIColors.error("The chatgpt/gpt4 binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration file.")
 
     def tokenize(self, prompt:str):
         """

@@ -1,3 +1,74 @@
+# Orca mini7B
+- SHA256: cf9d0ec58131f9c36820d94daedae5e847b441bf353aeeb6710f602933eeba17
+  description: Pankaj Mathur's Orca Mini 7B GGML(q4_0)
+  filename: orca-mini-7b.ggmlv3.q4_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+- SHA256: 0f4d1af8b27a04049bd776133f066a129e79e91b5ac7d2145f7496da38ebd5da
+  description: Pankaj Mathur's Orca Mini 7B GGML(q4_1)
+  filename: orca-mini-7b.ggmlv3.q4_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+- SHA256: 0b120a6decd440bf155cd762bc7e08a343074d36d254957ac334b094f1b56fea
+  description: Pankaj Mathur's Orca Mini 7B GGML(q5_0)
+  filename: orca-mini-7b.ggmlv3.q5_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+- SHA256: 80c25ad01c70c32ee7f48d56fec2f084c8d635ec425d6bc8b9501994d04904c4
+  description: Pankaj Mathur's Orca Mini 7B GGML(q5_1)
+  filename: orca-mini-7b.ggmlv3.q5_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+- SHA256: 500de261dd8196fbb4fc6952a0f6bfc490349e7cd353ed47e30ad16a8763f92d
+  description: Pankaj Mathur's Orca Mini 7B GGML(q8_0)
+  filename: orca-mini-7b.ggmlv3.q8_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+
+# Orca mini13B
+- SHA256: a04ded4e9ad185fc4d7b98fdf4e15055b0768a26669acd1d41235ea47111b940
+  description: Pankaj Mathur's Orca Mini 13B GGML(q2_K)
+  filename: orca-mini-13b.ggmlv3.q2_K.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: 405dde7cffe2723ce0f60ec39cf084962525023d5a86def907233fecca2c06d6
+  description: Pankaj Mathur's Orca Mini 13B GGML(q4_0)
+  filename: orca-mini-13b.ggmlv3.q4_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: 973c2c21eeec67aa7408c207b1f954e2854a164fb5e2100af64aeb0c5712ac16
+  description: Pankaj Mathur's Orca Mini 13B GGML(q4_1)
+  filename: orca-mini-13b.ggmlv3.q4_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: db95cc0bd2fdec1f7d68c729c5cf7179368bbe453f1f3434d3a66cda7728e27a
+  description: Pankaj Mathur's Orca Mini 13B GGML(q5_0)
+  filename: orca-mini-13b.ggmlv3.q5_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: 73a8ce0652d474eee99709ef706e0e392c34265ae6388debdb62be0eabae4fc4
+  description: Pankaj Mathur's Orca Mini 13B GGML(q5_1)
+  filename: orca-mini-13b.ggmlv3.q5_1.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: 9d39cbdffd5d0e09a1d1201d28544733d693144eb7e2b8589c4fa33ca5286547
+  description: Pankaj Mathur's Orca Mini 13B GGML(q8_0)
+  filename: orca-mini-13b.ggmlv3.q8_0.bin
+  license: mit
+  owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+
+
 - description: GGML format model files for WizardLM's WizardLM 7B. (Q4_1).
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   filename: wizardLM-7B.ggmlv3.q4_1.bin

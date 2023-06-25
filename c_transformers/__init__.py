@@ -55,7 +55,7 @@ class CTRansformers(LLMBinding):
         """
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-            {"name":"n_threads","type":"int","value":1, "min":1},
+            {"name":"n_threads","type":"int","value":8, "min":1},
             {"name":"batch_size","type":"int","value":1, "min":1},
             {"name":"gpu_layers","type":"int","value":20, "min":0},
             {"name":"use_avx2","type":"bool","value":True}
@@ -91,7 +91,7 @@ class CTRansformers(LLMBinding):
             model_type='mpt'
         elif 'falcon' in self.config['model_name'].lower():
             model_type='falcon'
-        elif 'llama' in self.config['model_name'].lower() or 'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower():
+        elif 'llama' in self.config['model_name'].lower() or 'orca' in self.config['model_name'].lower() or'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower():
             model_type='llama'
         else:
             print("The model you are using is not supported by this binding")
