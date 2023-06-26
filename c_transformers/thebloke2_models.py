@@ -76,13 +76,13 @@ def html_to_yaml(url_list, output_file):
 #     'https://huggingface.co/TheBloke/orca_mini_3B-GGML/blob/main/orca-mini-3b.ggmlv3.q8_0.bin',
 # ]
 # Orca 7B
-url_list = [
-    'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q4_0.bin',
-    'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q4_1.bin',
-    'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q5_0.bin',
-    'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q5_1.bin',
-    'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q8_0.bin',
-]
+# url_list = [
+#     'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q4_0.bin',
+#     'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q4_1.bin',
+#     'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q5_0.bin',
+#     'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q5_1.bin',
+#     'https://huggingface.co/TheBloke/orca_mini_7B-GGML/blob/main/orca-mini-7b.ggmlv3.q8_0.bin',
+# ]
 # Orca 13B
 # url_list = [
 #     'https://huggingface.co/TheBloke/orca_mini_13B-GGML/blob/main/orca-mini-13b.ggmlv3.q2_K.bin',
@@ -121,7 +121,14 @@ url_list = [
     'https://huggingface.co/TheBloke/mpt-30B-instruct-GGML/blob/main/mpt-30b-instruct.ggmlv0.q8_0.bin',
 ]
 
-
+# MPT 40B
+url_list = [
+    'https://huggingface.co/TheBloke/mpt-30B-chat-GGML/blob/main/mpt-30b-chat.ggmlv0.q4_0.bin',
+    'https://huggingface.co/TheBloke/mpt-30B-chat-GGML/blob/main/mpt-30b-chat.ggmlv0.q4_1.bin',
+    'https://huggingface.co/TheBloke/mpt-30B-chat-GGML/blob/main/mpt-30b-chat.ggmlv0.q5_0.bin',
+    'https://huggingface.co/TheBloke/mpt-30B-chat-GGML/blob/main/mpt-30b-chat.ggmlv0.q5_1.bin',
+    'https://huggingface.co/TheBloke/mpt-30B-chat-GGML/blob/main/mpt-30b-chat.ggmlv0.q8_0.bin',
+]
 
 
 html_to_yaml(url_list, 'output.yaml')

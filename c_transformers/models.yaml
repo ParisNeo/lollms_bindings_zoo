@@ -1,3 +1,35 @@
+# MPT 30b
+- SHA256: cdee39abba507b712fd9bf19eee38c7f0fb2d07cadc63fd442c7512a4e7d63e7
+  description: MosaicML's MPT-30B-Chat GGML(q4_0)
+  filename: mpt-30b-chat.ggmlv0.q4_0.bin
+  license: cc-by-nc-sa-4.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
+- SHA256: a2928f30171acfd20ce58db79597a4b0de75abf02dfe2a352716dfb3a13c7446
+  description: MosaicML's MPT-30B-Chat GGML(q4_1)
+  filename: mpt-30b-chat.ggmlv0.q4_1.bin
+  license: cc-by-nc-sa-4.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
+- SHA256: 34e9b7c9e84d7a9c4f3e8499579da5b977ec3287346037029c93e4aeb3522a86
+  description: MosaicML's MPT-30B-Chat GGML(q5_0)
+  filename: mpt-30b-chat.ggmlv0.q5_0.bin
+  license: cc-by-nc-sa-4.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
+- SHA256: fc023e6156405e42e6c49975e149a8429dbd7168857b80c117acd9f546207248
+  description: MosaicML's MPT-30B-Chat GGML(q5_1)
+  filename: mpt-30b-chat.ggmlv0.q5_1.bin
+  license: cc-by-nc-sa-4.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
+- SHA256: df75e5fa5be342a31a44d04e158f8b8c1d1fe490a43463247e25daeaf1b7af04
+  description: MosaicML's MPT-30B-Chat GGML(q8_0)
+  filename: mpt-30b-chat.ggmlv0.q8_0.bin
+  license: cc-by-nc-sa-4.0
+  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
+  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
+
 # Baichuan
 - SHA256: 156f5c82cac3b737c55b000476322e890a05665de0e490605f8e3dcd1e964243
   description: Fire Balloon's Baichuan Llama 7B GGML(q2_K)
