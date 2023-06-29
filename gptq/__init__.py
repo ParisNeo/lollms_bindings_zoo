@@ -31,6 +31,9 @@ binding_name = "GPTQ"
 binding_folder_name = "gptq"
 import os
 import platform
+import os
+import subprocess
+
 
 class GPTQ(LLMBinding):
     file_extension='*'
@@ -68,7 +71,7 @@ class GPTQ(LLMBinding):
 
     def build_model(self):
 
-        from transformers import AutoTokenizer, TextGenerationPipeline
+        from transformers import AutoTokenizer
         from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
 
         if self.config.model_name:
@@ -101,6 +104,9 @@ class GPTQ(LLMBinding):
         else:
             ASCIIColors.error('No model selected!!')
 
+
+    
+
     def install(self):
         super().install()
         print("This is the first time you are using this binding.")
@@ -119,6 +125,7 @@ class GPTQ(LLMBinding):
         if os_type == "Linux":
             print("Linux OS detected.")
             env = os.environ.copy()
+            
             result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto_gptq-0.2.2+cu117-cp310-cp310-linux_x86_64.whl"], env=env)
 
             if result.returncode != 0:

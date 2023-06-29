@@ -1,7 +1,7 @@
 name: Lord of LLMs Remote nodes
 author: ParisNeo
 version: 1.0
-link: https://openai.com/
+link: https://github.com/ParisNeo/lollms
 supported_models: All of them!
 description: |
   This binding allows you to use one or multiple Lord of LLMs services on your network or through internet.
