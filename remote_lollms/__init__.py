@@ -189,7 +189,8 @@ class LoLLMs(LLMBinding):
                 def text_chunk(data):
                     if callback is not None:
                         if not callback(data["chunk"], MSG_TYPE(data["type"])):
-                            sio.emit()
+                            ASCIIColors.yellow("Front end asked for cancelling generation")
+                            sio.emit('cancel_generation',{})
 
                 @sio.event
                 def text_generated(data):
@@ -224,14 +225,15 @@ class LoLLMs(LLMBinding):
     def list_models(config:dict):
         """Lists the models for this binding
         """
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
+        # binding_path = Path(__file__).parent
+        # file_path = binding_path/"models.yaml"
 
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
+        # with open(file_path, 'r') as file:
+        #    yaml_data = yaml.safe_load(file)
         
-        return yaml_data
-                
+        # return yaml_data
+        return []
+          
     @staticmethod
     def get_available_models():
         # Create the file path relative to the child class's directory
