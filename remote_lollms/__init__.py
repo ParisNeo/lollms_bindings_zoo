@@ -80,6 +80,10 @@ class LoLLMs(LLMBinding):
         active_servers = []
         inactive_servers = []
 
+        ASCIIColors.success(f" ╔══════════════════════════════════════════════════╗ ")
+        ASCIIColors.success(f" ║                 Checking servers                 ║ ")
+        ASCIIColors.success(f" ╚══════════════════════════════════════════════════╝ ")
+
         # Ping servers
         for server_url in self.servers_addresses:
             try:
@@ -109,6 +113,10 @@ class LoLLMs(LLMBinding):
         # Do your initialization stuff
         if self.binding_config.config["keep_only_active_servers"]:
             self.servers_addresses = active_servers
+        ASCIIColors.success(f" ╔══════════════════════════════════════════════════╗ ")
+        ASCIIColors.success(f" ║                       DONE                       ║ ")
+        ASCIIColors.success(f" ╚══════════════════════════════════════════════════╝ ")
+
         return self
 
     def install(self):
