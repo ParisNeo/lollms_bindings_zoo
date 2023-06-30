@@ -1,315 +1,162 @@
-# MPT 30b
-- SHA256: cdee39abba507b712fd9bf19eee38c7f0fb2d07cadc63fd442c7512a4e7d63e7
-  description: MosaicML's MPT-30B-Chat GGML(q4_0)
-  filename: mpt-30b-chat.ggmlv0.q4_0.bin
-  license: cc-by-nc-sa-4.0
-  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
-  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
-- SHA256: a2928f30171acfd20ce58db79597a4b0de75abf02dfe2a352716dfb3a13c7446
-  description: MosaicML's MPT-30B-Chat GGML(q4_1)
-  filename: mpt-30b-chat.ggmlv0.q4_1.bin
-  license: cc-by-nc-sa-4.0
-  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
-  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
-- SHA256: 34e9b7c9e84d7a9c4f3e8499579da5b977ec3287346037029c93e4aeb3522a86
-  description: MosaicML's MPT-30B-Chat GGML(q5_0)
-  filename: mpt-30b-chat.ggmlv0.q5_0.bin
-  license: cc-by-nc-sa-4.0
-  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
-  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
-- SHA256: fc023e6156405e42e6c49975e149a8429dbd7168857b80c117acd9f546207248
-  description: MosaicML's MPT-30B-Chat GGML(q5_1)
-  filename: mpt-30b-chat.ggmlv0.q5_1.bin
-  license: cc-by-nc-sa-4.0
-  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
-  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
-- SHA256: df75e5fa5be342a31a44d04e158f8b8c1d1fe490a43463247e25daeaf1b7af04
-  description: MosaicML's MPT-30B-Chat GGML(q8_0)
-  filename: mpt-30b-chat.ggmlv0.q8_0.bin
-  license: cc-by-nc-sa-4.0
-  owner_link: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/
-  server: https://huggingface.co/TheBloke/mpt-30B-chat-GGML/resolve/main
-  
-- description: GGML format model files for WizardLM's WizardLM 7B. (Q4_1).
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: wizardLM-7B.ggmlv3.q4_1.bin
-  license: Non commercial
-  owner_link: https://huggingface.co/TheBloke/wizardLM-7B-GGML/
-  owner: TheBloke
-  server: https://huggingface.co/TheBloke/wizardLM-7B-GGML/resolve/main/
-  sha256: 638cb8fda01746dd16ff343dadc1c7bec7f42e81bf2a5225356fa61540942eed
-  
-- description: GGML format model files for Jon Durbin's Airoboros 13B GPT4 1.4. (Q2_K).
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: airoboros-13b-gpt4-1.4.ggmlv3.q2_K.bin
-  license: Non commercial
-  owner_link: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.4-GGML/
-  owner: TheBloke
-  server: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.4-GGML/resolve/main/
-  sha256: ba3f345316d03af9556423dcf3d4149425f72bf5d14f18c54ac2e59aec224fed
-
-- description: GGML format model files for Jon Durbin's Airoboros 13B GPT4 1.4. (Q4_1).
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: airoboros-13b-gpt4-1.4.ggmlv3.q4_1.bin
-  license: Non commercial
-  owner_link: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.4-GGML/
-  owner: TheBloke
-  server: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.4-GGML/resolve/main/
-  sha256: d59982659f4bcf0e4619f5decd4373f18d466f4598feede8f0c9b02d2001debc
-
-- description: GGML format model files for Jon Durbin's Airoboros 7B GPT4 1.4. (Q4_1).
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: airoboros-7b-gpt4-1.4.ggmlv3.q4_1.bin
-  license: Non commercial
-  owner_link: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GGML/
-  owner: TheBloke
-  server: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GGML/resolve/main/
-  sha256: f389a30766e2442bfacd69e292d33aa0c7a20764024368dab74eb4de1192469b
-
-- description: GGML format model files for Jon Durbin's Airoboros 7B GPT4 1.4. (Q2_K).
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: airoboros-7b-gpt4-1.4.ggmlv3.q2_K.bin
-  license: Non commercial
-  owner_link: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GGML/
-  owner: TheBloke
-  server: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GGML/resolve/main/
-  sha256: ba3f345316d03af9556423dcf3d4149425f72bf5d14f18c54ac2e59aec224fed
-  
-- bestGPTJ: true
-  filename: "ggml-gpt4all-j-v1.3-groovy.bin"
-  filesize: "3785248281"
-  isDefault: true
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-  description: "GPT-J 6B finetuned by Nomic AI on the latest GPT4All dataset.<br>- Licensed for commercial use.<br>- Fast responses."
-- filename: "ggml-gpt4all-l13b-snoozy.bin"
-  filesize: 8136770688
-  bestLlama: true
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-  description: "LLaMA 13B finetuned by Nomic AI on the latest GPT4All dataset.<br>- Cannot be used commercially.<br>- Slower responses but higher quality."
-- filename: "ggml-mpt-7b-chat.bin"
-  filesize: 4854401050
-  isDefault: true
-  bestMPT: true
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-  description: "MPT 7B chat model trained by Mosaic ML.<br>- Cannot be used commercially.<br>- Fast responses."
-- filename: ggml-v3-13b-hermes-q5_1.bin
-  filesize: 8136777088
-  requires: "2.4.5"
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-  description: "LLaMa 13B finetuned on over 300,000 curated and uncensored instructions instructions.<br>- Cannot be used commercially.<br>- Best finetuned LLaMA model.<br>- This model was fine-tuned by Nous Research, with Teknium and Karan4D leading the fine tuning process and dataset curation, Redmond AI sponsoring the compute, and several other contributors. The result is an enhanced Llama 13b model that rivals GPT-3.5-turbo in performance across a variety of tasks. This model stands out for its long responses, low hallucination rate, and absence of OpenAI censorship mechanisms."
-  url: "https://huggingface.co/eachadea/ggml-nous-hermes-13b/resolve/main/ggml-v3-13b-hermes-q5_1.bin"
-- filename: "ggml-vicuna-7b-1.1-q4_2.bin"
-  filesize: 4212859520
-  description: "LLaMA 7B finetuned by teams from UC Berkeley, CMU, Stanford, MBZUAI, and UC San Diego.<br>- Cannot be used commercially."  
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-- filename: "ggml-vicuna-13b-1.1-q4_2.bin"
-  filesize: 8136770688
-  description: "LLaMA 13B and trained by teams from UC Berkeley, CMU, Stanford, MBZUAI, and UC San Diego.<br>- Cannot be used commercially."
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-- filename: "ggml-wizardLM-7B.q4_2.bin"
-  filesize: "4212864640"
-  description: "LLaMA 7B finetuned by Microsoft and Peking University.<br>- Cannot be used commercially."
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-  
-- md5sum: "d5eafd5b0bd0d615cfd5fd763f642dfe"
-  filename: "ggml-nous-gpt4-vicuna-13b.bin"
-  filesize: 8136777088
-  description: "LLaMa 13B fine-tuned on ~180,000 instructions by Nous Research.<br>- Cannot be used commercially."
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-- filename: "ggml-mpt-7b-instruct.bin"
-  filesize: 4854401028
-  requires: "2.4.1"
-  description: "MPT 7B instruction finetuned by Mosaic ML.<br>- Licensed for commercial use."
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-
-- filename": "ggml-wizard-13b-uncensored.bin"
-  filesize": "8136777088"
-  description": "LLaMa 13B finetuned on the uncensored assistant and instruction data.<br>- Cannot be used commercially."
-
-- md5sum": "615890cb571fcaa0f70b2f8d15ef809e"
-  filename": "ggml-replit-code-v1-3b.bin"
-  filesize": 5202046853
-  requires": "2.4.7"
-  description": "Replit 3B code model trained on subset of the Stack. Licensed for commercial use."
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  server: "https://huggingface.co/nomic-ai/ggml-replit-code-v1-3b/resolve/main/"
-
-
-- filename: "ggml-stable-vicuna-13B.q4_2.bin"
-  filesize: 8136777088
-  description: "LLaMa 13B finetuned with RLHF by Stability AI.<br>- Cannot be used commercially."
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-- filename: "ggml-mpt-7b-base.bin"
-  filesize: 4854401028
-  requires": "2.4.1"
-  description: "MPT 7B pre-trained by Mosaic ML. Trained for text completion with no assistant finetuning.<br>- Licensed for commercial use."
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-- 
-  filename: "ggml-nous-gpt4-vicuna-13b.bin"
-  filesize: 8136777088
-  description: "LLaMa 13B fine-tuned on ~180,000 instructions by Nous Research.<br>- Cannot be used commercially."
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-- bestMPT: true
-  icon: https://cdn-1.webcatalog.io/catalog/mosaicml/mosaicml-icon-filled-256.png?v=1675590559063
-  description: Current best non-commercially licensable chat model based on MPT and
-    trained by Mosaic ML.
-  filename: ggml-mpt-7b-chat.bin
-  filesize: '4854401050'
-  isDefault: 'true'
-  license: Non commercial
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-- description: A commericially licensable instruct model based on MPT and trained
-    by Mosaic ML.
-  icon: https://cdn-1.webcatalog.io/catalog/mosaicml/mosaicml-icon-filled-256.png?v=1675590559063
-  filename: ggml-mpt-7b-instruct.bin
-  filesize: '4854401028'
-  license: Apache 2.0
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  server: https://gpt4all.io/models/
-- description: A commercially licensable model base pre-trained by Mosaic ML.
-  icon: https://cdn-1.webcatalog.io/catalog/mosaicml/mosaicml-icon-filled-256.png?v=1675590559063
-  filename: ggml-mpt-7b-base.bin
-  filesize: '4854401028'
-  license: Non commercial
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  requires: 2.4.1
-  server: https://gpt4all.io/models/
-- description: A non-commercially licensable model based on Llama 7b and trained by
-    teams from UC Berkeley, CMU, Stanford, MBZUAI, and UC San Diego.
-  icon: https://cdn-1.webcatalog.io/catalog/mosaicml/mosaicml-icon-filled-256.png?v=1675590559063
-  filename: ggml-vicuna-7b-1.1-q4_2.bin
-  filesize: '4212859520'
-  license: Non commercial
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  server: https://gpt4all.io/models/
-- description: A non-commercially licensable model based on Llama 7b and trained by
-    Microsoft and Peking University.
-  filename: ggml-wizardLM-7B.q4_2.bin
-  filesize: '4212864640'
-  license: Non commercial
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  server: https://gpt4all.io/models/
-- filename: ggml-wizard-13b-uncensored.bin
-  server: https://gpt4all.io/models/
-  filesize: 8136777088
-  owner: Nomic AI
-  owner_link: https://gpt4all.io
-  description: A non-commercially licensable model based on Wizard Vicuna 13b.
-- filename: ggml-nous-gpt4-vicuna-13b.bin
-  server: https://gpt4all.io/models/
-  filesize: 8136777088
-  description: A non-commercially licensable model based on Vicuna 13b, fine-tuned on ~180,000 instructions, trained by Nous Research.
-  owner: Nomic AI
-  owner_link: https://gpt4all.io
-- bestGPTJ: 'true'
-  description: Current best commercially licensable model based on GPT-J and trained
-    by Nomic AI on the latest curated GPT4All dataset.
+- SHA256: 4acc146dd43eb02845c233c29289c7c5
+  description: <strong>Best overall model</strong><br><ul><li>Instruction based<li>Gives
+    long responses<li>Curated with 300,000 uncensored instructions<li>Trained by Nous
+    Research<li>Cannot be used commercially</ul>
+  filename: nous-hermes-13b.ggmlv3.q4_0.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/TheBloke/Nous-Hermes-13B-GGML/resolve/main
+- SHA256: 725f148218a65ce8ebcc724e52f31b49
+  description: <strong>Best overall smaller model</strong><br><ul><li>Fast responses</li><li>Instruction
+    based</li><li>Trained by TII<li>Finetuned by Nomic AI<li>Licensed for commercial
+    use</ul>
+  filename: ggml-model-gpt4all-falcon-q4_0.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/nomic-ai/gpt4all-falcon-ggml/resolve/main
+- SHA256: 81a09a0ddf89690372fc296ff7f625af
+  description: <strong>Creative model can be used for commercial purposes</strong><br><ul><li>Fast
+    responses<li>Creative responses</li><li>Instruction based</li><li>Trained by Nomic
+    AI<li>Licensed for commercial use</ul>
   filename: ggml-gpt4all-j-v1.3-groovy.bin
-  filesize: '3785248281'
-  isDefault: 'true'
-  license: Apache 2.0
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
-- bestLlama: 'true'
-  description: Current best non-commercially licensable model based on Llama 13b and
-    trained by Nomic AI on the latest curated GPT4All dataset.
-  filename: ggml-gpt4all-l13b-snoozy.bin
-  filesize: '8136770688'
-  license: Non commercial
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
+- SHA256: 11d9f060ca24575a2c303bdc39952486
+  description: <strong>Very good overall model</strong><br><ul><li>Instruction based<li>Based
+    on the same dataset as Groovy<li>Slower than Groovy, with higher quality responses<li>Trained
+    by Nomic AI<li>Cannot be used commercially</ul>
+  filename: GPT4All-13B-snoozy.ggmlv3.q4_0.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/TheBloke/GPT4All-13B-snoozy-GGML/resolve/main
+- SHA256: 756249d3d6abe23bde3b1ae272628640
+  description: <strong>Best overall smaller model</strong><br><ul><li>Fast responses<li>Chat
+    based<li>Trained by Mosaic ML<li>Cannot be used commercially</ul>
+  filename: ggml-mpt-7b-chat.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
-- description: A commercially licensable model based on GPT-J and trained by Nomic
-    AI on the v2 GPT4All dataset.
-  filename: ggml-gpt4all-j-v1.2-jazzy.bin
-  filesize: '3785248281'
-  license: Apache 2.0
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
+- SHA256: e64e74375ce9d36a3d0af3db1523fd0a
+  description: <strong>New model with novel dataset</strong><br><ul><li>Instruction
+    based<li>Explain tuned datasets<li>Orca Research Paper dataset construction approaches<li>Licensed
+    for commercial use</ul>
+  filename: orca-mini-7b.ggmlv3.q4_0.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+- SHA256: 6a087f7f4598fad0bb70e6cb4023645e
+  description: <strong>Small version of new model with novel dataset</strong><br><ul><li>Instruction
+    based<li>Explain tuned datasets<li>Orca Research Paper dataset construction approaches<li>Licensed
+    for commercial use</ul>
+  filename: orca-mini-3b.ggmlv3.q4_0.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/TheBloke/orca_mini_3B-GGML/resolve/main
+- SHA256: 959b7f65b2d12fd1e3ff99e7493c7a3a
+  description: <strong>Largest version of new model with novel dataset</strong><br><ul><li>Instruction
+    based<li>Explain tuned datasets<li>Orca Research Paper dataset construction approaches<li>Licensed
+    for commercial use</ul>
+  filename: orca-mini-13b.ggmlv3.q4_0.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+- SHA256: 29119f8fa11712704c6b22ac5ab792ea
+  description: <strong>Good small model - trained by teams from UC Berkeley, CMU,
+    Stanford, MBZUAI, and UC San Diego</strong><br><ul><li>Instruction based<li>Cannot
+    be used commercially</ul>
+  filename: ggml-vicuna-7b-1.1-q4_2.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
-- description: A commercially licensable model based on GPT-J and trained by Nomic
-    AI on the v1 GPT4All dataset.
-  filename: ggml-gpt4all-j-v1.1-breezy.bin
-  filesize: '3785248281'
-  license: Apache 2.0
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  server: https://gpt4all.io/models/
-- description: A commercially licensable model based on GPT-J and trained by Nomic
-    AI on the v0 GPT4All dataset.
-  filename: ggml-gpt4all-j.bin
-  filesize: '3785248281'
-  license: Apache 2.0
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
-  server: https://gpt4all.io/models/
-- description: A non-commercially licensable model based on Llama 13b and trained
-    by teams from UC Berkeley, CMU, Stanford, MBZUAI, and UC San Diego.
+- SHA256: 95999b7b0699e2070af63bf5d34101a8
+  description: <strong>Good larger model - trained by teams from UC Berkeley, CMU,
+    Stanford, MBZUAI, and UC San Diego</strong><br><ul><li>Instruction based<li>Cannot
+    be used commercially</ul>
   filename: ggml-vicuna-13b-1.1-q4_2.bin
-  filesize: '8136770688'
-  license: Non commercial
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
-- description: A non-commercially licensable model based on Llama 13b and RLHF trained
-    by Stable AI.
+- SHA256: 99e6d129745a3f1fb1121abed747b05a
+  description: <strong>Good small model - trained by by Microsoft and Peking University</strong><br><ul><li>Instruction
+    based<li>Cannot be used commercially</ul>
+  filename: ggml-wizardLM-7B.q4_2.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://gpt4all.io/models/
+- SHA256: 6cb4ee297537c9133bddab9692879de0
+  description: <strong>Trained with RHLF by Stability AI</strong><br><ul><li>Instruction
+    based<li>Cannot be used commercially</ul>
   filename: ggml-stable-vicuna-13B.q4_2.bin
-  filesize: '8136777088'
-  license: Non commercial
-  owner_link: https://gpt4all.io
-  owner: Nomic AI
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
-- description: A non-commercially licensable model based on Vicuna 13b, fine-tuned
-    on ~180,000 instructions, trained by Nous Research.
+- SHA256: 1cfa4958f489f0a0d1ffdf6b37322809
+  description: <strong>Mosaic's instruction model</strong><br><ul><li>Instruction
+    based<li>Trained by Mosaic ML<li>Licensed for commercial use</ul>
+  filename: ggml-mpt-7b-instruct.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://gpt4all.io/models/
+- SHA256: 120c32a51d020066288df045ef5d52b9
+  description: <strong>Trained for text completion with no assistant finetuning</strong><br><ul><li>Completion
+    based<li>Trained by Mosaic ML<li>Licensed for commercial use</ul>
+  filename: ggml-mpt-7b-base.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://gpt4all.io/models/
+- SHA256: d5eafd5b0bd0d615cfd5fd763f642dfe
+  description: <strong>Trained on ~180,000 instructions</strong><br><ul><li>Instruction
+    based<li>Trained by Nous Research<li>Cannot be used commercially</ul>
   filename: ggml-nous-gpt4-vicuna-13b.bin
-  filesize: '8136777088'
-  license: Non commercial
-  owner_link: https://gpt4all.io/models/
-  owner: gpt4all.io
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
-
+- SHA256: 489d21fd48840dcb31e5f92f453f3a20
+  description: <strong>Trained on uncensored assistant data and instruction data</strong><br><ul><li>Instruction
+    based<li>Cannot be used commercially</ul>
+  filename: wizardLM-13B-Uncensored.ggmlv3.q4_0.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/TheBloke/WizardLM-13B-Uncensored-GGML/resolve/main
+- SHA256: 615890cb571fcaa0f70b2f8d15ef809e
+  description: <strong>Trained on subset of the Stack</strong><br><ul><li>Code completion
+    based<li>Licensed for commercial use</ul>
+  filename: ggml-replit-code-v1-3b.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/nomic-ai/ggml-replit-code-v1-3b/resolve/main

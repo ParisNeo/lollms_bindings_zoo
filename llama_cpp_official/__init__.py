@@ -135,6 +135,17 @@ class LLAMACPP(LLMBinding):
         """
         return self.model.detokenize(tokens_list).decode()
 
+    def embed(self, text):
+        """
+        Computes text embedding
+        Args:
+            text (str): The text to be embedded.
+        Returns:
+            List[float]
+        """
+        return self.model.embed(text)
+    
+
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,

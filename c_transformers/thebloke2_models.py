@@ -46,7 +46,8 @@ def html_to_yaml(url_list, output_file):
             'license': license,
             'server': server_link,
             'SHA256': SHA256,
-            'owner_link': owner_link
+            'owner_link': owner_link,
+            'owner': "TheBloke"
         }
 
         entries.append(data)  # Add the entry to the list
