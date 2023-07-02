@@ -38,7 +38,7 @@ class HuggingFace(LLMBinding):
     file_extension='*'
     def __init__(self, 
                 config: LOLLMSConfig, 
-                lollms_paths: LollmsPaths = LollmsPaths(), 
+                lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY) -> None:
         """
         Initialize the Binding.
@@ -49,7 +49,8 @@ class HuggingFace(LLMBinding):
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         # Initialization code goes here
-
+        if lollms_paths is None:
+            lollms_paths = LollmsPaths()
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"gpu_layers","type":"int","value":20, "min":0},
