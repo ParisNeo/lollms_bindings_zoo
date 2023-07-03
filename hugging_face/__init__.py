@@ -53,6 +53,7 @@ class HuggingFace(LLMBinding):
 
         binding_config = TypedConfig(
             ConfigTemplate([
+                {"name":"Use_hugging_face_repos","type":"bool","value":True},
                 {"name":"gpu_layers","type":"int","value":20, "min":0},
                 {"name":"use_avx2","type":"bool","value":True}
             ]),
