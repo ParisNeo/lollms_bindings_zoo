@@ -39,7 +39,7 @@ class GPTQ(LLMBinding):
     file_extension='*'
     def __init__(self, 
                 config: LOLLMSConfig, 
-                lollms_paths: LollmsPaths = LollmsPaths(), 
+                lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
                 ) -> None:
         """Builds a GPTQ binding
@@ -47,6 +47,8 @@ class GPTQ(LLMBinding):
         Args:
             config (LOLLMSConfig): The configuration file
         """
+        if lollms_paths is None:
+            lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
             {"name":"device","type":"str","value":"gpu", "options":["cpu","gpu"],"help":"Device to be used (CPU or GPU)"},

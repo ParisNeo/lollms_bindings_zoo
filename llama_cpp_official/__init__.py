@@ -33,7 +33,7 @@ class LLAMACPP(LLMBinding):
     file_extension='*.bin'
     def __init__(self, 
                  config:LOLLMSConfig, 
-                 lollms_paths:LollmsPaths = LollmsPaths(), 
+                 lollms_paths:LollmsPaths = None, 
                  installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
                 ) -> None:
         """Builds a LLAMACPP binding
@@ -41,6 +41,8 @@ class LLAMACPP(LLMBinding):
         Args:
             config (dict): The configuration file
         """
+        if lollms_paths is None:
+            lollms_paths = LollmsPaths()
         binding_config_templete =  ConfigTemplate(
             [
                 {"name":"n_threads","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},

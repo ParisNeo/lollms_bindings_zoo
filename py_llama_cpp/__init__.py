@@ -36,7 +36,7 @@ class PyLLAMACPP(LLMBinding):
     file_extension='*.bin'
     def __init__(self, 
                 config: LOLLMSConfig, 
-                lollms_paths: LollmsPaths = LollmsPaths(), 
+                lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
                 ) -> None:
         """
@@ -47,6 +47,8 @@ class PyLLAMACPP(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
+        if lollms_paths is None:
+            lollms_paths = LollmsPaths()
         # Initialization code goes here
 
         binding_config_templete =  ConfigTemplate(
