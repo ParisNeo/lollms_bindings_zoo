@@ -38,7 +38,7 @@ class HuggingFace(LLMBinding):
     file_extension='*'
     def __init__(self, 
                 config: LOLLMSConfig, 
-                lollms_paths: LollmsPaths = LollmsPaths(), 
+                lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY) -> None:
         """
         Initialize the Binding.
@@ -48,7 +48,8 @@ class HuggingFace(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        # Initialization code goes here
+        if lollms_paths is None:
+            lollms_paths = LollmsPaths()
 
         binding_config = TypedConfig(
             ConfigTemplate([
@@ -70,6 +71,7 @@ class HuggingFace(LLMBinding):
         
     def build_model(self):
         model_path = self.get_model_path()
+        self.model_dir = model_path
         from transformers import AutoTokenizer, AutoModelForCausalLM
         model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.local_config["device"], use_fast=True, local_files_only=True)

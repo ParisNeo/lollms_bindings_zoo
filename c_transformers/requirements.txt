@@ -1,2 +1,3 @@
+setuptools
 transformers
 accelerate
