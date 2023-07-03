@@ -146,10 +146,13 @@ class CTRansformers(LLMBinding):
         env = os.environ.copy()
         env["CT_CUBLAS"]="1"
         # pip install --upgrade --no-cache-dir --no-binary ctransformers
-        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env)
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "ctransformers"], env=env) # , "--no-binary"
         
         if result.returncode != 0:
             print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+
+        # pip install --upgrade --no-cache-dir --no-binary ctransformers
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "ctransformers"])
         
         # INstall other requirements
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])

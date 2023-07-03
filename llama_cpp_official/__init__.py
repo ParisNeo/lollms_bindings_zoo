@@ -100,6 +100,8 @@ class LLAMACPP(LLMBinding):
             print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python"])
 
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python"])
+
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         ASCIIColors.success("Installed successfully")
 
