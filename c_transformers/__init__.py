@@ -125,7 +125,7 @@ class CTRansformers(LLMBinding):
         super().install()
 
         # install setuptools
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", "setuptools"])
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "setuptools"])
 
         requirements_file = self.binding_dir / "requirements.txt"
         # Step 1 : install pytorch with cuda
