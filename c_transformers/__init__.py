@@ -61,7 +61,9 @@ class CTRansformers(LLMBinding):
             {"name":"n_threads","type":"int","value":8, "min":1},
             {"name":"batch_size","type":"int","value":1, "min":1},
             {"name":"gpu_layers","type":"int","value":20, "min":0},
-            {"name":"use_avx2","type":"bool","value":True}
+            {"name":"use_avx2","type":"bool","value":True},
+            {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using)"}
+           
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
 
@@ -94,6 +96,8 @@ class CTRansformers(LLMBinding):
             model_type='mpt'
         elif 'falcon' in self.config['model_name'].lower():
             model_type='falcon'
+        elif 'replit' in self.config['model_name'].lower():
+            model_type = 'replit'
         elif 'llama' in self.config['model_name'].lower() or 'orca' in self.config['model_name'].lower() or'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower():
             model_type='llama'
         else:
@@ -111,6 +115,8 @@ class CTRansformers(LLMBinding):
                     gpu_layers = self.binding_config.config["gpu_layers"],
                     batch_size=self.binding_config.config["batch_size"],
                     threads = self.binding_config.config["n_threads"],
+                    context_length = self.binding_config.config["ctx_size"],
+                   
                     reset= False
                     )
         else:
@@ -119,6 +125,7 @@ class CTRansformers(LLMBinding):
                     gpu_layers = self.binding_config.config["gpu_layers"],
                     batch_size=self.binding_config.config["batch_size"],
                     threads = self.binding_config.config["n_threads"],
+                    context_length = self.binding_config.config["ctx_size"],
                     reset= False
                     )
             
@@ -149,13 +156,13 @@ class CTRansformers(LLMBinding):
         env = os.environ.copy()
         env["CT_CUBLAS"]="1"
         # pip install --upgrade --no-cache-dir --no-binary ctransformers
-        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers"], env=env) # , "--no-binary"
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
         
         if result.returncode != 0:
             print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
 
         # pip install --upgrade --no-cache-dir --no-binary ctransformers
-        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers"])
         
         # INstall other requirements
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
