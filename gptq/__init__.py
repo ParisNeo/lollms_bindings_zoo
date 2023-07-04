@@ -54,6 +54,9 @@ class GPTQ(LLMBinding):
             {"name":"device","type":"str","value":"gpu", "options":["cpu","gpu"],"help":"Device to be used (CPU or GPU)"},
             {"name":"batch_size","type":"int","value":1, "min":1},
             {"name":"gpu_layers","type":"int","value":20, "min":0},
+            {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
 
@@ -68,6 +71,7 @@ class GPTQ(LLMBinding):
                             binding_config, 
                             installation_option
                         )
+        self.config.ctx_size=self.binding_config.config.ctx_size
 
 
 

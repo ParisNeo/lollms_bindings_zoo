@@ -56,6 +56,9 @@ class OpenAIGPT(LLMBinding):
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"openai_key","type":"str","value":""},
+                {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+
             ]),
             BaseConfig(config={
                 "openai_key": "",     # use avx2
@@ -68,6 +71,7 @@ class OpenAIGPT(LLMBinding):
                             binding_config, 
                             installation_option
                         )
+        self.config.ctx_size=self.binding_config.config.ctx_size
         
     def build_model(self):
         openai.api_key = self.binding_config.config["openai_key"]

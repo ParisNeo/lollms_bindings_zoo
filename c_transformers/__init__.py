@@ -62,7 +62,8 @@ class CTRansformers(LLMBinding):
             {"name":"batch_size","type":"int","value":1, "min":1},
             {"name":"gpu_layers","type":"int","value":20, "min":0},
             {"name":"use_avx2","type":"bool","value":True},
-            {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using)"}
+            {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
            
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
@@ -78,7 +79,7 @@ class CTRansformers(LLMBinding):
                             binding_config, 
                             installation_option
                         )
-
+        self.config.ctx_size=self.binding_config.config.ctx_size
 
 
     def build_model(self):
@@ -116,7 +117,7 @@ class CTRansformers(LLMBinding):
                     batch_size=self.binding_config.config["batch_size"],
                     threads = self.binding_config.config["n_threads"],
                     context_length = self.binding_config.config["ctx_size"],
-                   
+                    seed = self.binding_config.config["seed"],
                     reset= False
                     )
         else:
@@ -134,21 +135,24 @@ class CTRansformers(LLMBinding):
     def install(self):
         super().install()
 
-        # install setuptools
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "setuptools"])
-
+        # INstall other requirements
+        ASCIIColors.info("Installing requirements")
         requirements_file = self.binding_dir / "requirements.txt"
+        subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+        ASCIIColors.success("Requirements install done")
+        
         # Step 1 : install pytorch with cuda
+        ASCIIColors.info("Checking pytorch")
         try:
-            print("Checking pytorch")
             import torch
             import torchvision
             if torch.cuda.is_available():
-                print("CUDA is supported.")
+                ASCIIColors.success("CUDA is supported.")
             else:
-                print("CUDA is not supported. Reinstalling PyTorch with CUDA support.")
+                ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
                 self.reinstall_pytorch_with_cuda()
         except Exception as ex:
+            ASCIIColors.info("Pytorch not installed")
             self.reinstall_pytorch_with_cuda()            
 
         # Step 2: Install dependencies using pip from requirements.txt
@@ -156,16 +160,14 @@ class CTRansformers(LLMBinding):
         env = os.environ.copy()
         env["CT_CUBLAS"]="1"
         # pip install --upgrade --no-cache-dir --no-binary ctransformers
-        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
         
         if result.returncode != 0:
-            print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+            ASCIIColors.warning("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
 
         # pip install --upgrade --no-cache-dir --no-binary ctransformers
-        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers"])
+        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
         
-        # INstall other requirements
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         ASCIIColors.success("Installed successfully")
   
             
@@ -226,14 +228,18 @@ class CTRansformers(LLMBinding):
             str: The generated text based on the prompt
         """
         default_params = {
-            'temperature': 0.7,
-            'top_k': 50,
-            'top_p': 0.96,
-            'repeat_penalty': 1.3,
-            "seed":-1,
-            "n_threads":8
+            'temperature': self.config.temperature,
+            'top_k': self.config.top_k,
+            'top_p': self.config.top_p,
+            'repeat_penalty': self.config.repeat_penalty,
+            'last_n_tokens' : self.config.repeat_last_n,
+            "seed":self.binding_config.seed,
+            "n_threads":self.binding_config.n_threads,
+            "batch_size":self.binding_config.batch_size
         }
         gpt_params = {**default_params, **gpt_params}
+        if gpt_params['seed']!=-1:
+            self.seed = self.binding_config.seed
         try:
             output = ""
             self.model.reset()
@@ -245,13 +251,13 @@ class CTRansformers(LLMBinding):
                                             top_p=gpt_params['top_p'],
                                             temperature=gpt_params['temperature'],
                                             repetition_penalty=gpt_params['repeat_penalty'],
-                                            seed=self.config['seed'],
-                                            batch_size=1,
-                                            threads = self.config['n_threads'],
+                                            last_n_tokens=gpt_params['repeat_last_n'],
+                                            seed=gpt_params['seed'],
+                                            threads = gpt_params['n_threads'],
+                                            batch_size= gpt_params['batch_size'],
                                             reset=True,
                                            ):
                 
-
                 if count >= n_predict or self.model.is_eos_token(tok):
                     break
                 word = self.model.detokenize(tok)

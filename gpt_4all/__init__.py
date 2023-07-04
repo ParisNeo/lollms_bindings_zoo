@@ -55,6 +55,8 @@ class GPT4ALL(LLMBinding):
         binding_config_templete =  ConfigTemplate(
             [
                 {"name":"n_threads","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
+                {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
             ]
             )
         binding_config = BaseConfig.from_template(binding_config_templete)
@@ -69,6 +71,7 @@ class GPT4ALL(LLMBinding):
                             binding_config, 
                             installation_option
                         )
+        self.config.ctx_size=self.binding_config.config.ctx_size
         
     def build_model(self):        
         model_path = self.get_model_path()

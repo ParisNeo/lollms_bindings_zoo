@@ -61,6 +61,8 @@ class LoLLMs(LLMBinding):
             [
                 {"name":"servers_addresses","type":"list","value":[], "help":"A list of server addresses for example ['http://localhost:9601', 'http://localhost:9602']"},
                 {"name":"keep_only_active_servers","type":"bool","value":True, "help":"If true, then only active servers will be kept in the loop"},
+                {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
             ]
             ),
             BaseConfig(config={
@@ -75,6 +77,7 @@ class LoLLMs(LLMBinding):
                             binding_config, 
                             installation_option
                         )
+        self.config.ctx_size=self.binding_config.config.ctx_size
         
     def build_model(self):
         # Create two lists to hold active and inactive servers
