@@ -156,6 +156,6 @@ def build_models(start_id, end_id, output_file):
 #url = 'https://huggingface.co/TheBloke'
 #html_to_yaml(url, 'output_scraped_models.yaml')
 
-start=50
-end=100
+start=100
+end=175
 build_models(start,end,f"output_{start}_{end}.yaml")
