@@ -48,7 +48,7 @@ def get_model_entries(url, entries):
     soup = BeautifulSoup(expanded_html_content, 'html.parser')
 
     # Find all <a> tags that contain 'GGML' in their href
-    model_links = soup.find_all('a', href=lambda href: href and 'GGML' in href)
+    model_links = soup.find_all('a', href=lambda href: href and 'GPTQ' in href)
 
     for model_link in tqdm(model_links):
         model_url = prefix + model_link['href'] + "/tree/main"
@@ -61,13 +61,11 @@ def get_model_entries(url, entries):
         bin_links = model_soup.find_all('a', href=lambda href: href and href.endswith('.bin'))
 
         for bin_link in tqdm(bin_links):
-            path = bin_link['href'].replace("resolve","blob")
             # Send a GET request to the URL and retrieve the HTML content
-            if not "blob/main" in path:
-                print(f"Couldn't load : {prefix+bin_link['href']}")
+            if not "blob/main" in bin_link['href']:
                 continue
             try:
-                url = prefix+path
+                url = prefix+bin_link['href']
                 response = requests.get(url)
                 html_content = response.text
 
@@ -105,8 +103,7 @@ def get_model_entries(url, entries):
                     'server': server_link,
                     'SHA256': SHA256,
                     'owner_link': owner_link,
-                    'owner': "TheBloke",
-                    'icon': 'https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face'
+                    'owner': "TheBloke"
                 }
 
                 entries.append(data)  # Add the entry to the list
