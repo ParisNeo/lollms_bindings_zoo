@@ -251,7 +251,7 @@ class CTRansformers(LLMBinding):
                                             top_p=gpt_params['top_p'],
                                             temperature=gpt_params['temperature'],
                                             repetition_penalty=gpt_params['repeat_penalty'],
-                                            last_n_tokens=gpt_params['repeat_last_n'],
+                                            last_n_tokens=gpt_params['last_n_tokens'],
                                             seed=gpt_params['seed'],
                                             threads = gpt_params['n_threads'],
                                             batch_size= gpt_params['batch_size'],

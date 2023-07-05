@@ -52,6 +52,12 @@ def get_model_entries(url, entries):
 
     for model_link in tqdm(model_links):
         model_url = prefix + model_link['href'] + "/tree/main"
+        print(model_url)
+
+
+    for model_link in tqdm(model_links):
+        model_url = prefix + model_link['href'] + "/tree/main"
+        print(f"\nScrapping {model_url}")
 
         response = requests.get(model_url)
         model_html_content = response.text
@@ -63,9 +69,10 @@ def get_model_entries(url, entries):
         for bin_link in tqdm(bin_links):
             path = bin_link['href'].replace("resolve","blob")
             # Send a GET request to the URL and retrieve the HTML content
-            if not "blob/main" in path:
-                print(f"Couldn't load : {prefix+bin_link['href']}")
+            if not "blob/main" in path or "tree/main" in path:
+                print(f"Couldn't load : {path}")
                 continue
+            
             try:
                 url = prefix+path
                 response = requests.get(url)
