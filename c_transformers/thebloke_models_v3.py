@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from tqdm import tqdm
+import traceback
 
 def get_website_path(url):
     parsed_url = urlparse(url)
@@ -39,7 +40,7 @@ def click_expand_button(url):
 
     return expanded_html_content
 
-def get_model_entries(url, entries):
+def get_model_entries(url, output_file):
     expanded_html_content = click_expand_button(url)
 
     prefix = get_website_path(url)
@@ -49,14 +50,22 @@ def get_model_entries(url, entries):
 
     # Find all <a> tags that contain 'GGML' in their href
     model_links = soup.find_all('a', href=lambda href: href and 'GGML' in href)
-
+    entries = []
     for model_link in tqdm(model_links):
         model_url = prefix + model_link['href'] + "/tree/main"
         print(model_url)
+        entries.append(model_url)
+    with open("output_scraped_models.yaml", 'w') as f:
+        yaml.dump({"entries":entries}, f)
 
 
+def extract_model_cards(model_links, entries):
     for model_link in tqdm(model_links):
-        model_url = prefix + model_link['href'] + "/tree/main"
+        prefix = '/'.join(model_link.split('/')[0:3])
+
+        model_url = model_link
+        if "superhot" in model_url.lower():
+            continue
         print(f"\nScrapping {model_url}")
 
         response = requests.get(model_url)
@@ -69,10 +78,10 @@ def get_model_entries(url, entries):
         for bin_link in tqdm(bin_links):
             path = bin_link['href'].replace("resolve","blob")
             # Send a GET request to the URL and retrieve the HTML content
-            if not "blob/main" in path or "tree/main" in path:
-                print(f"Couldn't load : {path}")
+            if not ("blob/main" in path or "tree/main" in path) or not ("q2" in path or "q4" in path or "q5" in path) :
+                print(f"\nSkipping : {path}")
                 continue
-            
+
             try:
                 url = prefix+path
                 response = requests.get(url)
@@ -117,15 +126,26 @@ def get_model_entries(url, entries):
                 }
 
                 entries.append(data)  # Add the entry to the list
-            except:
-                print(f"Couldn't load {prefix+bin_link['href']}")
+            except Exception as ex :
+                # Catch the exception and get the traceback as a list of strings
+                traceback_lines = traceback.format_exception(type(ex), ex, ex.__traceback__)
 
+                # Join the traceback lines into a single string
+                traceback_text = ''.join(traceback_lines)
+
+                print(f"\nCouldn't load {bin_link['href']}.\nException: {ex}")
+                print(traceback_text)
 
 def html_to_yaml(url, output_file):
+    get_model_entries(url, output_file)
+
+def build_models(start_id, end_id, output_file):
+    # Save the list of entries as YAML to the output file
+    with open("output_scraped_models.yaml", 'r', encoding="utf8") as f:
+        model_links = yaml.safe_load(f)
+
     entries = []  # List to store the entries
-
-    get_model_entries(url, entries)
-
+    extract_model_cards(model_links["entries"][start_id: end_id], entries)    
     # Save the list of entries as YAML to the output file
     with open(output_file, 'w') as f:
         yaml.dump(entries, f)
@@ -133,5 +153,9 @@ def html_to_yaml(url, output_file):
     print(f"YAML data saved to {output_file}")
 
 # Example usage
-url = 'https://huggingface.co/TheBloke'
-html_to_yaml(url, 'output.yaml')
+#url = 'https://huggingface.co/TheBloke'
+#html_to_yaml(url, 'output_scraped_models.yaml')
+
+start=50
+end=100
+build_models(start,end,f"output_{start}_{end}.yaml")
