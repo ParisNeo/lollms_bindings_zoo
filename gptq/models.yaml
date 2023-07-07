@@ -1,9 +1,974 @@
-- description: Most advanced language model by OpenAI based on GPT-3 architecture, offering powerful language generation capabilities.
-  icon: /bindings/open_ai/logo.png
-  filename: gpt-3.5-turbo
-  license: Commercial
-  owner_link: https://link_to_the_owner_web_page
-  owner: Open AI
-  server: https://openai.com
-  sha256: ~
+- SHA256: ''
+  description: Chaoyi Wu's PMC_LLAMA 7B 10 Epoch GPTQ (PMC_LLAMA-7B-10-Epoch-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/PMC_LLAMA-7B-10-Epoch-SuperHOT-8K-GPTQ/pmc_llama-7b-10-epoch-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
   model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Chaoyi Wu's PMC_LLAMA 7B 10 Epoch GPTQ (PMC_LLAMA-7B-10-Epoch-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/PMC_LLAMA-7B-10-Epoch-SuperHOT-8K-GPTQ/resolve/main/pmc_llama-7b-10-epoch-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's WizardLM-7B-V1.0-Uncensored GPTQ (WizardLM-7B-V1-0-Uncensored-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/WizardLM-7B-V1-0-Uncensored-SuperHOT-8K-GPTQ/wizardlm-7b-v1.0-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's WizardLM-7B-V1.0-Uncensored GPTQ (WizardLM-7B-V1-0-Uncensored-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/WizardLM-7B-V1-0-Uncensored-SuperHOT-8K-GPTQ/resolve/main/wizardlm-7b-v1.0-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Wizard Vicuna 7B Uncensored GPTQ (Wizard-Vicuna-7B-Uncensored-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Wizard-Vicuna-7B-Uncensored-SuperHOT-8K-GPTQ/wizard-vicuna-7b-uncensored-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Wizard Vicuna 7B Uncensored GPTQ (Wizard-Vicuna-7B-Uncensored-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Wizard-Vicuna-7B-Uncensored-SuperHOT-8K-GPTQ/resolve/main/wizard-vicuna-7b-uncensored-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Kevin Pro's Vicuna 7B CoT GPTQ (Vicuna-7B-CoT-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Vicuna-7B-CoT-SuperHOT-8K-GPTQ/vicuna-7b-cot-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Kevin Pro's Vicuna 7B CoT GPTQ (Vicuna-7B-CoT-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Vicuna-7B-CoT-SuperHOT-8K-GPTQ/resolve/main/vicuna-7b-cot-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 7B v1.3 GPTQ (Vicuna-7B-v1-3-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Vicuna-7B-v1-3-SuperHOT-8K-GPTQ/vicuna-7b-v1.3-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 7B v1.3 GPTQ (Vicuna-7B-v1-3-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Vicuna-7B-v1-3-SuperHOT-8K-GPTQ/resolve/main/vicuna-7b-v1.3-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Allen AI's Tulu 7B GPTQ (Tulu-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Tulu-7B-SuperHOT-8K-GPTQ/tulu-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Allen AI's Tulu 7B GPTQ (Tulu-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Tulu-7B-SuperHOT-8K-GPTQ/resolve/main/tulu-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Kaist AI's Selfee 7B GPTQ (Selfee-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Selfee-7B-SuperHOT-8K-GPTQ/selfee-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Kaist AI's Selfee 7B GPTQ (Selfee-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Selfee-7B-SuperHOT-8K-GPTQ/resolve/main/selfee-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Kaist AI's Selfee 13B GPTQ (Selfee-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Selfee-13B-SuperHOT-8K-GPTQ/selfee-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Kaist AI's Selfee 13B GPTQ (Selfee-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Selfee-13B-SuperHOT-8K-GPTQ/resolve/main/selfee-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Samantha 1.1 LLaMa 7B GPTQ (Samantha-1-1-Llama-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Samantha-1-1-Llama-7B-SuperHOT-8K-GPTQ/samantha-1.1-llama-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Samantha 1.1 LLaMa 7B GPTQ (Samantha-1-1-Llama-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Samantha-1-1-Llama-7B-SuperHOT-8K-GPTQ/resolve/main/samantha-1.1-llama-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Koala 13B GPTQ (Koala-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Koala-13B-SuperHOT-8K-GPTQ/koala-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Koala 13B GPTQ (Koala-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Koala-13B-SuperHOT-8K-GPTQ/resolve/main/koala-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Project Baize's Baize 13B v2 GPTQ (Baize-v2-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Baize-v2-13B-SuperHOT-8K-GPTQ/baize-13b-v2-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Project Baize's Baize 13B v2 GPTQ (Baize-v2-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Baize-v2-13B-SuperHOT-8K-GPTQ/resolve/main/baize-13b-v2-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Project Baize's Baize 7B v2 GPTQ (Baize-v2-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Baize-v2-7B-SuperHOT-8K-GPTQ/baize-7b-v2-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Project Baize's Baize 7B v2 GPTQ (Baize-v2-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Baize-v2-7B-SuperHOT-8K-GPTQ/resolve/main/baize-7b-v2-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Falcon-7B-Instruct GPTQ (falcon-7b-instruct-GPTQ)
+  filename: /TheBloke/falcon-7b-instruct-GPTQ/gptq_model-4bit-64g.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Falcon-7B-Instruct GPTQ (falcon-7b-instruct-GPTQ)
+  filename: /TheBloke/falcon-7b-instruct-GPTQ/resolve/main/gptq_model-4bit-64g.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OptimalScale's Robin 7B v2 GPTQ (Robin-7B-v2-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Robin-7B-v2-SuperHOT-8K-GPTQ/robin-7b-v2-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OptimalScale's Robin 7B v2 GPTQ (Robin-7B-v2-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Robin-7B-v2-SuperHOT-8K-GPTQ/resolve/main/robin-7b-v2-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Koala 7B GPTQ (Koala-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Koala-7B-SuperHOT-8K-GPTQ/koala-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Koala 7B GPTQ (Koala-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Koala-7B-SuperHOT-8K-GPTQ/resolve/main/koala-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: BigScience's BLOOMZ 176B GPTQ (bloomz-176B-GPTQ)
+  filename: /TheBloke/bloomz-176B-GPTQ/gptq_model-4bit--1g.JOINBEFOREUSE.split-a.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: BigScience's BLOOMZ 176B GPTQ (bloomz-176B-GPTQ)
+  filename: /TheBloke/bloomz-176B-GPTQ/resolve/main/gptq_model-4bit--1g.JOINBEFOREUSE.split-a.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: BigScience's BLOOMZ 176B GPTQ (bloomz-176B-GPTQ)
+  filename: /TheBloke/bloomz-176B-GPTQ/gptq_model-4bit--1g.JOINBEFOREUSE.split-b.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: BigScience's BLOOMZ 176B GPTQ (bloomz-176B-GPTQ)
+  filename: /TheBloke/bloomz-176B-GPTQ/resolve/main/gptq_model-4bit--1g.JOINBEFOREUSE.split-b.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: BigScience's BLOOMZ 176B GPTQ (bloomz-176B-GPTQ)
+  filename: /TheBloke/bloomz-176B-GPTQ/gptq_model-4bit--1g.JOINBEFOREUSE.split-c.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: BigScience's BLOOMZ 176B GPTQ (bloomz-176B-GPTQ)
+  filename: /TheBloke/bloomz-176B-GPTQ/resolve/main/gptq_model-4bit--1g.JOINBEFOREUSE.split-c.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Sambanova Systems' BLOOMChat 1.0 (BLOOMChat-176B-v1-GPTQ)
+  filename: /TheBloke/BLOOMChat-176B-v1-GPTQ/gptq_model-4bit--1g.JOINBEFOREUSE.split-a.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Sambanova Systems' BLOOMChat 1.0 (BLOOMChat-176B-v1-GPTQ)
+  filename: /TheBloke/BLOOMChat-176B-v1-GPTQ/resolve/main/gptq_model-4bit--1g.JOINBEFOREUSE.split-a.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Sambanova Systems' BLOOMChat 1.0 (BLOOMChat-176B-v1-GPTQ)
+  filename: /TheBloke/BLOOMChat-176B-v1-GPTQ/gptq_model-4bit--1g.JOINBEFOREUSE.split-b.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Sambanova Systems' BLOOMChat 1.0 (BLOOMChat-176B-v1-GPTQ)
+  filename: /TheBloke/BLOOMChat-176B-v1-GPTQ/resolve/main/gptq_model-4bit--1g.JOINBEFOREUSE.split-b.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Sambanova Systems' BLOOMChat 1.0 (BLOOMChat-176B-v1-GPTQ)
+  filename: /TheBloke/BLOOMChat-176B-v1-GPTQ/gptq_model-4bit--1g.JOINBEFOREUSE.split-c.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Sambanova Systems' BLOOMChat 1.0 (BLOOMChat-176B-v1-GPTQ)
+  filename: /TheBloke/BLOOMChat-176B-v1-GPTQ/resolve/main/gptq_model-4bit--1g.JOINBEFOREUSE.split-c.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Tim Dettmers' Guanaco 7B GPTQ (Guanaco-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Guanaco-7B-SuperHOT-8K-GPTQ/guanaco-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Tim Dettmers' Guanaco 7B GPTQ (Guanaco-7B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Guanaco-7B-SuperHOT-8K-GPTQ/resolve/main/guanaco-7b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Jon Durbin's Airoboros 7B GPT4 1.4 GPTQ (Airoboros-7B-GPT4-1-4-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Airoboros-7B-GPT4-1-4-SuperHOT-8K-GPTQ/airoboros-7b-gpt4-1.4-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Jon Durbin's Airoboros 7B GPT4 1.4 GPTQ (Airoboros-7B-GPT4-1-4-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Airoboros-7B-GPT4-1-4-SuperHOT-8K-GPTQ/resolve/main/airoboros-7b-gpt4-1.4-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: CAMEL AI's CAMEL 33B Combined Data GPTQ (CAMEL-33B-Combined-Data-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/CAMEL-33B-Combined-Data-SuperHOT-8K-GPTQ/CAMEL-33B-combined-data-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: CAMEL AI's CAMEL 33B Combined Data GPTQ (CAMEL-33B-Combined-Data-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/CAMEL-33B-Combined-Data-SuperHOT-8K-GPTQ/resolve/main/CAMEL-33B-combined-data-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: WizardLM's WizardCoder 15B 1.0 GPTQ (WizardCoder-15B-1.0-GPTQ)
+  filename: /TheBloke/WizardCoder-15B-1.0-GPTQ/gptq_model-4bit-128g.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: WizardLM's WizardCoder 15B 1.0 GPTQ (WizardCoder-15B-1.0-GPTQ)
+  filename: /TheBloke/WizardCoder-15B-1.0-GPTQ/resolve/main/gptq_model-4bit-128g.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's WizardLM-13b-V1.0-Uncensored GPTQ (WizardLM-13B-V1.0-Uncensored-GPTQ)
+  filename: /TheBloke/WizardLM-13B-V1.0-Uncensored-GPTQ/wizardlm-13b-v1.0-uncensored-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's WizardLM-13b-V1.0-Uncensored GPTQ (WizardLM-13B-V1.0-Uncensored-GPTQ)
+  filename: /TheBloke/WizardLM-13B-V1.0-Uncensored-GPTQ/resolve/main/wizardlm-13b-v1.0-uncensored-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Pankaj Mathur's Orca Mini v2 7B GPTQ (orca_mini_v2_7B-GPTQ)
+  filename: /TheBloke/orca_mini_v2_7B-GPTQ/orca-mini-v2_7b-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Pankaj Mathur's Orca Mini v2 7B GPTQ (orca_mini_v2_7B-GPTQ)
+  filename: /TheBloke/orca_mini_v2_7B-GPTQ/resolve/main/orca-mini-v2_7b-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Ariel Lee's GPlatty 30B GPTQ (SuperPlatty-30B-GPTQ)
+  filename: /TheBloke/SuperPlatty-30B-GPTQ/superplatty-30b-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Ariel Lee's GPlatty 30B GPTQ (SuperPlatty-30B-GPTQ)
+  filename: /TheBloke/SuperPlatty-30B-GPTQ/resolve/main/superplatty-30b-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: NousResearch's Redmond Hermes Coder GPTQ (Redmond-Hermes-Coder-GPTQ)
+  filename: /TheBloke/Redmond-Hermes-Coder-GPTQ/gptq_model-4bit-128g.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: NousResearch's Redmond Hermes Coder GPTQ (Redmond-Hermes-Coder-GPTQ)
+  filename: /TheBloke/Redmond-Hermes-Coder-GPTQ/resolve/main/gptq_model-4bit-128g.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Panchovix's merge of WizardLM 33B V1.0 Uncensored and SuperHOT 8K GPTQ
+    (WizardLM-33B-V1-0-Uncensored-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/WizardLM-33B-V1-0-Uncensored-SuperHOT-8K-GPTQ/wizardlm-33b-v1.0-uncensored-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Panchovix's merge of WizardLM 33B V1.0 Uncensored and SuperHOT 8K GPTQ
+    (WizardLM-33B-V1-0-Uncensored-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/WizardLM-33B-V1-0-Uncensored-SuperHOT-8K-GPTQ/resolve/main/wizardlm-33b-v1.0-uncensored-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 33B 1.3 (final) GPTQ (Vicuna-33B-1-3-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Vicuna-33B-1-3-SuperHOT-8K-GPTQ/vicuna-33b-1.3-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 33B 1.3 (final) GPTQ (Vicuna-33B-1-3-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Vicuna-33B-1-3-SuperHOT-8K-GPTQ/resolve/main/vicuna-33b-1.3-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 33B (final) GPTQ (vicuna-33B-GPTQ)
+  filename: /TheBloke/vicuna-33B-GPTQ/vicuna-33b-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 33B (final) GPTQ (vicuna-33B-GPTQ)
+  filename: /TheBloke/vicuna-33B-GPTQ/resolve/main/vicuna-33b-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 33B (preview) GPTQ (vicuna-33B-preview-GPTQ)
+  filename: /TheBloke/vicuna-33B-preview-GPTQ/vicuna-33b-preview-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 33B (preview) GPTQ (vicuna-33B-preview-GPTQ)
+  filename: /TheBloke/vicuna-33B-preview-GPTQ/resolve/main/vicuna-33b-preview-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Minlik's Chinese Alpaca 33B Merged GPTQ (Chinese-Alpaca-33B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Chinese-Alpaca-33B-SuperHOT-8K-GPTQ/chinese-alpaca-33b-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Minlik's Chinese Alpaca 33B Merged GPTQ (Chinese-Alpaca-33B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Chinese-Alpaca-33B-SuperHOT-8K-GPTQ/resolve/main/chinese-alpaca-33b-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Long Chat 13B GPTQ (LongChat-13B-GPTQ)
+  filename: /TheBloke/LongChat-13B-GPTQ/longchat-13b-16k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Long Chat 13B GPTQ (LongChat-13B-GPTQ)
+  filename: /TheBloke/LongChat-13B-GPTQ/resolve/main/longchat-13b-16k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Long Chat 7B GPTQ (LongChat-7B-GPTQ)
+  filename: /TheBloke/LongChat-7B-GPTQ/longchat-7b-16k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Long Chat 7B GPTQ (LongChat-7B-GPTQ)
+  filename: /TheBloke/LongChat-7B-GPTQ/resolve/main/longchat-7b-16k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: H2O's H2OGPT Research OASST1 LLaMa 65B GPTQ (h2ogpt-research-oasst1-llama-65B-GPTQ)
+  filename: /TheBloke/h2ogpt-research-oasst1-llama-65B-GPTQ/h2ogpt-research-oasst1-llama-65b-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: H2O's H2OGPT Research OASST1 LLaMa 65B GPTQ (h2ogpt-research-oasst1-llama-65B-GPTQ)
+  filename: /TheBloke/h2ogpt-research-oasst1-llama-65B-GPTQ/resolve/main/h2ogpt-research-oasst1-llama-65b-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Monero's WizardLM Uncensored SuperCOT Storytelling 30B GPTQ (WizardLM-Uncensored-SuperCOT-StoryTelling-30B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-SuperHOT-8K-GPTQ/WizardLM-Uncensored-SuperCOT-StoryTelling-30b-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Monero's WizardLM Uncensored SuperCOT Storytelling 30B GPTQ (WizardLM-Uncensored-SuperCOT-StoryTelling-30B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-SuperHOT-8K-GPTQ/resolve/main/WizardLM-Uncensored-SuperCOT-StoryTelling-30b-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: June Lee's Wizard Vicuna 13B GPTQ (wizard-vicuna-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/wizard-vicuna-13B-SuperHOT-8K-GPTQ/wizard-vicuna-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: June Lee's Wizard Vicuna 13B GPTQ (wizard-vicuna-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/wizard-vicuna-13B-SuperHOT-8K-GPTQ/resolve/main/wizard-vicuna-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Wizard Vicuna 13B Uncensored GPTQ (Wizard-Vicuna-13B-Uncensored-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Wizard-Vicuna-13B-Uncensored-SuperHOT-8K-GPTQ/wizard-vicuna-13b-uncensored-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Wizard Vicuna 13B Uncensored GPTQ (Wizard-Vicuna-13B-Uncensored-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Wizard-Vicuna-13B-Uncensored-SuperHOT-8K-GPTQ/resolve/main/wizard-vicuna-13b-uncensored-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 33B 1.3 (preview) GPTQ (Vicuna-33B-1-1-preview-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Vicuna-33B-1-1-preview-SuperHOT-8K-GPTQ/vicuna-33b-1.3-preview-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: LmSys' Vicuna 33B 1.3 (preview) GPTQ (Vicuna-33B-1-1-preview-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Vicuna-33B-1-1-preview-SuperHOT-8K-GPTQ/resolve/main/vicuna-33b-1.3-preview-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Allen AI's Tulu 13B GPTQ (Tulu-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Tulu-13B-SuperHOT-8K-GPTQ/tulu-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Allen AI's Tulu 13B GPTQ (Tulu-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Tulu-13B-SuperHOT-8K-GPTQ/resolve/main/tulu-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Samantha 33B GPTQ (Samantha-33B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Samantha-33B-SuperHOT-8K-GPTQ/samantha-33b-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Samantha 33B GPTQ (Samantha-33B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Samantha-33B-SuperHOT-8K-GPTQ/resolve/main/samantha-33b-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Samantha 13B GPTQ (Samantha-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Samantha-13B-SuperHOT-8K-GPTQ/samantha-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Eric Hartford's Samantha 13B GPTQ (Samantha-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Samantha-13B-SuperHOT-8K-GPTQ/resolve/main/samantha-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OptimalScale's Robin 13B v2 GPTQ (Robin-13B-v2-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Robin-13B-v2-SuperHOT-8K-GPTQ/robin-13b-v2-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OptimalScale's Robin 13B v2 GPTQ (Robin-13B-v2-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Robin-13B-v2-SuperHOT-8K-GPTQ/resolve/main/robin-13b-v2-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: TehVenom's merge of PygmalionAI's Pygmalion 13B GPTQ (Pygmalion-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ/pygmalion-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: TehVenom's merge of PygmalionAI's Pygmalion 13B GPTQ (Pygmalion-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ/resolve/main/pygmalion-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Lilloukas' Platypus 30B GPTQ (Platypus-30B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Platypus-30B-SuperHOT-8K-GPTQ/platypus-30b-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Lilloukas' Platypus 30B GPTQ (Platypus-30B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Platypus-30B-SuperHOT-8K-GPTQ/resolve/main/platypus-30b-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OpenAccess AI Collective's Minotaur 13B Fixed GPTQ (Minotaur-13B-fixed-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Minotaur-13B-fixed-SuperHOT-8K-GPTQ/minotaur-13b-fixed-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OpenAccess AI Collective's Minotaur 13B Fixed GPTQ (Minotaur-13B-fixed-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Minotaur-13B-fixed-SuperHOT-8K-GPTQ/resolve/main/minotaur-13b-fixed-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OpenAccess AI Collective's Manticore 13B GPTQ (Manticore-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Manticore-13B-SuperHOT-8K-GPTQ/manticore-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OpenAccess AI Collective's Manticore 13B GPTQ (Manticore-13B-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Manticore-13B-SuperHOT-8K-GPTQ/resolve/main/manticore-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OpenAccess AI Collective's Manticore 13B Chat GPTQ (Manticore-13B-Chat-Pyg-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Manticore-13B-Chat-Pyg-SuperHOT-8K-GPTQ/manticore-13b-chat-pyg-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: OpenAccess AI Collective's Manticore 13B Chat GPTQ (Manticore-13B-Chat-Pyg-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Manticore-13B-Chat-Pyg-SuperHOT-8K-GPTQ/resolve/main/manticore-13b-chat-pyg-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Manticore 13B Chat Pyg Guanaco GPTQ (Manticore-13B-Chat-Pyg-Guanaco-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Manticore-13B-Chat-Pyg-Guanaco-SuperHOT-8K-GPTQ/manticore-13b-chat-pyg-guanaco-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Manticore 13B Chat Pyg Guanaco GPTQ (Manticore-13B-Chat-Pyg-Guanaco-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/Manticore-13B-Chat-Pyg-Guanaco-SuperHOT-8K-GPTQ/resolve/main/manticore-13b-chat-pyg-guanaco-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Open BMB's UltraLM 13B GPTQ (UltraLM-13B-GPTQ)
+  filename: /TheBloke/UltraLM-13B-GPTQ/ultralm-13b-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Open BMB's UltraLM 13B GPTQ (UltraLM-13B-GPTQ)
+  filename: /TheBloke/UltraLM-13B-GPTQ/resolve/main/ultralm-13b-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Ausboss' Llama 30B SuperCOT GPTQ (llama-30b-supercot-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/llama-30b-supercot-SuperHOT-8K-GPTQ/llama-30b-supercot-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Ausboss' Llama 30B SuperCOT GPTQ (llama-30b-supercot-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/llama-30b-supercot-SuperHOT-8K-GPTQ/resolve/main/llama-30b-supercot-superhot-8k-GPTQ-4bit--1g.act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Nomic.ai's GPT4All Snoozy 13B GPTQ (GPT4All-13B-Snoozy-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/GPT4All-13B-Snoozy-SuperHOT-8K-GPTQ/gpt4all-snoozy-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''
+- SHA256: ''
+  description: Nomic.ai's GPT4All Snoozy 13B GPTQ (GPT4All-13B-Snoozy-SuperHOT-8K-GPTQ)
+  filename: /TheBloke/GPT4All-13B-Snoozy-SuperHOT-8K-GPTQ/resolve/main/gpt4all-snoozy-13b-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: ''
+  model_type: api
+  owner: TheBloke
+  owner_link: ''
+  server: ''

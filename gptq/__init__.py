@@ -51,10 +51,12 @@ class GPTQ(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
+            
+            {"name":"use_triton","type":"bool","value":False, "help":"Activate triton or not"},
             {"name":"device","type":"str","value":"gpu", "options":["cpu","gpu"],"help":"Device to be used (CPU or GPU)"},
             {"name":"batch_size","type":"int","value":1, "min":1},
             {"name":"gpu_layers","type":"int","value":20, "min":0},
-            {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"ctx_size","type":"int","value":8192, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
         ])
@@ -81,6 +83,8 @@ class GPTQ(LLMBinding):
         from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
 
         if self.config.model_name:
+            
+            """
             model_path = self.get_model_path()
             self.model_dir = model_path
             model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
@@ -96,7 +100,6 @@ class GPTQ(LLMBinding):
                 )
             else:
                 quantize_config = None
-
             # load quantized model to the first GPU
             self.model = AutoGPTQForCausalLM.from_quantized(
                 self.model_dir, 
@@ -107,6 +110,29 @@ class GPTQ(LLMBinding):
                 use_safetensors=use_safetensors,
                 quantize_config=quantize_config
                 )
+            
+            """
+            models_dir = self.lollms_paths.personal_models_path / "gptq"
+            models_dir.mkdir(parents=True, exist_ok=True)
+            model_dir = "/".join(self.config.model_name.split("/")[:-1])[1:]
+            model_name = ".".join(self.config.model_name.split("/")[-1].split(".")[:-1])
+
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                    model_dir, 
+                    use_fast=True,
+                    cache_dir=models_dir
+                    )
+            # load quantized model to the first GPU
+            self.model = AutoGPTQForCausalLM.from_quantized(
+                model_dir,
+                use_safetensors=True,
+                trust_remote_code=True,
+                device_map='auto',
+                model_basename=model_name, 
+                cache_dir=models_dir,
+                quantize_config=None
+                )
+            self.model.seqlen = self.binding_config.ctx_size
         else:
             ASCIIColors.error('No model selected!!')
 
@@ -292,13 +318,14 @@ class GPTQ(LLMBinding):
     def list_models(config:dict):
         """Lists the models for this binding
         """
-        
-        return [
-            "EleutherAI/gpt-j-6b",
-            "opt-125m-4bit"  
-            "TheBloke/medalpaca-13B-GPTQ-4bit",
-            "TheBloke/stable-vicuna-13B-GPTQ",
-        ]
+        # Create the file path relative to the child class's directory
+        binding_path = Path(__file__).parent
+        file_path = binding_path/"models.yaml"
+
+        with open(file_path, 'r') as file:
+            yaml_data = yaml.safe_load(file)
+
+        return [yd['filename'] for yd in yaml_data] 
     @staticmethod
     def get_available_models():
         # Create the file path relative to the child class's directory
