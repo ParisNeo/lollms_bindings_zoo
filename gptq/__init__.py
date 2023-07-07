@@ -56,7 +56,9 @@ class GPTQ(LLMBinding):
             {"name":"use_triton","type":"bool","value":False, "help":"Activate triton or not"},
             {"name":"device","type":"str","value":"gpu", "options":["cpu","gpu"],"help":"Device to be used (CPU or GPU)"},
             {"name":"batch_size","type":"int","value":1, "min":1},
-            {"name":"gpu_layers","type":"int","value":20, "min":0},
+            {"name":"split_between_cpu_and_gpu","type":"bool","value":False},
+            {"name":"max_gpu_mem_GB","type":"int","value":4, "min":0},
+            {"name":"max_cpu_mem_GB","type":"int","value":100, "min":0},
             {"name":"ctx_size","type":"int","value":8192, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
@@ -136,15 +138,29 @@ class GPTQ(LLMBinding):
                     use_fast=True
                     )
             # load quantized model to the first GPU
-            self.model = AutoGPTQForCausalLM.from_quantized(
-                model_name,
-                model_basename=model_base_name,
-                local_files_only=True,
-                use_safetensors=True,
-                trust_remote_code=True,
-                device_map='auto',
-                quantize_config=None
-                )
+            if self.binding_config.split_between_cpu_and_gpu:
+                self.model = AutoGPTQForCausalLM.from_quantized(
+                    model_name,
+                    model_basename=model_base_name,
+                    local_files_only=True,
+                    use_safetensors=True,
+                    trust_remote_code=True,
+                    device_map='auto',
+                    quantize_config=None,
+                    max_memory = { 0: f'{self.binding_config.max_gpu_mem_GB}GiB', 'cpu': f'{self.binding_config.max_cpu_mem_GB}GiB' }
+                    )
+            else:
+                self.model = AutoGPTQForCausalLM.from_quantized(
+                    model_name,
+                    model_basename=model_base_name,
+                    local_files_only=True,
+                    use_safetensors=True,
+                    trust_remote_code=True,
+                    device_map='auto',
+                    quantize_config=None,
+                    max_memory = { 0: f'{self.binding_config.max_gpu_mem_GB}GiB', 'cpu': f'{self.binding_config.max_cpu_mem_GB}GiB' }
+                    )
+
             self.model.seqlen = self.binding_config.ctx_size
             return self
         else:
