@@ -14,11 +14,12 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
+from lollms.helpers import trace_exception
 import subprocess
 import yaml
 import re
 
-
+from huggingface_hub import snapshot_download
 
 
 
@@ -33,7 +34,7 @@ import os
 import platform
 import os
 import subprocess
-
+import gc
 
 class GPTQ(LLMBinding):
     file_extension='*'
@@ -74,6 +75,9 @@ class GPTQ(LLMBinding):
                             installation_option
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.callback = None
+        self.n_generated = 0
+        self.n_prompt = 0
 
 
 
@@ -114,8 +118,12 @@ class GPTQ(LLMBinding):
             """
             models_dir = self.lollms_paths.personal_models_path / "gptq"
             models_dir.mkdir(parents=True, exist_ok=True)
-            model_name = "/".join(self.config.model_name.split("/")[:-1])[1:]
+            model_name = str(models_dir/ self.config.model_name).replace("\\","/")
             model_base_name = ".".join(self.config.model_name.split("/")[-1].split(".")[:-1])
+
+            self.model = None
+            self.tokenizer = None
+            gc.collect()
 
             self.tokenizer = AutoTokenizer.from_pretrained(
                     model_name, 
@@ -125,7 +133,8 @@ class GPTQ(LLMBinding):
             # load quantized model to the first GPU
             self.model = AutoGPTQForCausalLM.from_quantized(
                 model_name,
-                model_basename=model_base_name, 
+                model_basename=model_base_name,
+                local_files_only=True,
                 use_safetensors=True,
                 trust_remote_code=True,
                 device_map='auto',
@@ -133,6 +142,7 @@ class GPTQ(LLMBinding):
                 quantize_config=None
                 )
             self.model.seqlen = self.binding_config.ctx_size
+            return self
         else:
             ASCIIColors.error('No model selected!!')
 
@@ -210,6 +220,32 @@ class GPTQ(LLMBinding):
             str: The detokenized text as a string.
         """
         return  self.tokenizer.decode(tokens_list)
+    
+    def put(self, value):
+        """Function that is called by `.generate()` to push new tokens"""
+        if len(value.shape)==1:
+            self.n_generated += value.shape[0]
+            nv = value.numpy()[0]
+            if nv==self.tokenizer.eos_token_id:
+                print(f"oes detected: {nv}")
+                return False
+            if nv==self.tokenizer.bos_token_id:
+                print(f"bos detected: {nv}")
+                return False
+        else:
+            self.n_generated += value.shape[1]
+        if self.n_generated> self.n_prompt:
+            word =  self.detokenize(value[0])
+            self.output += word
+            if  self.callback:
+                if not self.callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    return True
+        return False
+    
+    def end(self):
+        """Function that is called by `.generate()` to signal the end of generation"""
+        ASCIIColors.success("\nDone")
+
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
@@ -232,16 +268,30 @@ class GPTQ(LLMBinding):
             "seed":-1,
             "n_threads":8
         }
-        gpt_params = {**default_params, **gpt_params}        
+        gpt_params = {**default_params, **gpt_params}
+        self.callback = callback    
         try:
+            self.n_generated = 0
+            self.output = ""
             input_ids = self.tokenizer(prompt, return_tensors='pt').input_ids.cuda()
-            toks = self.model.generate(inputs=input_ids, temperature=gpt_params["temperature"], max_new_tokens=n_predict)
+            self.n_prompt = len(input_ids[0])
 
+            output = self.model.generate(
+                                        inputs=input_ids, 
+                                        max_new_tokens=n_predict, 
+                                        temperature=gpt_params["temperature"], 
+                                        top_p=gpt_params["top_p"],
+                                        repetition_penalty=gpt_params["repeat_penalty"],
+                                        streamer = self,
+                                        )
+            #output = self.detokenize(output[0]).replace(prompt,"")
+            output = self.output
             if callback is not None:
-                callback(toks, MSG_TYPE.MSG_TYPE_CHUNK)
-            output = toks
+                callback(output, MSG_TYPE.MSG_TYPE_FULL)
+            output = output
         except Exception as ex:
-            print(ex)
+            ASCIIColors.error("Couldn't generate")
+            trace_exception(ex)
             output=""
         return output
 
@@ -268,8 +318,8 @@ class GPTQ(LLMBinding):
 
         dont_download = [".gitattributes"]
 
-        url = f"https://huggingface.co/{repo}/tree/main"
-        response = requests.get(url)
+        main_url = '/'.join(repo.split("/")[:-3])+"/tree/main" #f"https://huggingface.co/{}/tree/main"
+        response = requests.get(main_url)
         html_content = response.text
         soup = BeautifulSoup(html_content, 'html.parser')
 
@@ -291,7 +341,8 @@ class GPTQ(LLMBinding):
         dest_dir.mkdir(parents=True, exist_ok=True)
         os.chdir(dest_dir)
 
-        def chunk_callback(chunk, chunk_size, total_size):
+        loading = ["none"]
+        def chunk_callback(current, total, width=80):
             # This function is called for each received chunk
             # Perform actions or computations on the received chunk
             # chunk: The chunk of data received
@@ -299,19 +350,22 @@ class GPTQ(LLMBinding):
             # total_size: The total size of the file being downloaded
 
             # Example: Print the current progress
-            downloaded = len(chunk) * chunk_size
-            progress = (downloaded / total_size) * 100
-            if callback:
-                callback(downloaded, total_size)
+            downloaded = current 
+            progress = (current  / total) * 100
+            if callback and ".safetensors" in loading[0]:
+                callback(downloaded, total)
 
         def download_file(get_file):
-            filename = f"https://huggingface.co/{repo}/resolve/main/{get_file}"
+            src = "/".join(repo.split("/")[:-3])
+            filename = f"{src}/resolve/main/{get_file}"
             print(f"\nDownloading {filename}")
+            loading[0]=filename
             wget.download(filename, out=str(dest_dir), bar=chunk_callback)
 
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            executor.map(download_file, file_names)
-
+        # with concurrent.futures.ThreadPoolExecutor() as executor:
+        #     executor.map(download_file, file_names)
+        for file_name in file_names:
+            download_file(file_name)
 
         print("Done")
     @staticmethod
