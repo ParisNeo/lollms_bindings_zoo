@@ -157,8 +157,7 @@ class GPTQ(LLMBinding):
                     use_safetensors=True,
                     trust_remote_code=True,
                     device_map='auto',
-                    quantize_config=None,
-                    max_memory = { 0: f'{self.binding_config.max_gpu_mem_GB}GiB', 'cpu': f'{self.binding_config.max_cpu_mem_GB}GiB' }
+                    quantize_config=None
                     )
 
             self.model.seqlen = self.binding_config.ctx_size
