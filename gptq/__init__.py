@@ -114,21 +114,21 @@ class GPTQ(LLMBinding):
             """
             models_dir = self.lollms_paths.personal_models_path / "gptq"
             models_dir.mkdir(parents=True, exist_ok=True)
-            model_dir = "/".join(self.config.model_name.split("/")[:-1])[1:]
-            model_name = ".".join(self.config.model_name.split("/")[-1].split(".")[:-1])
+            model_name = "/".join(self.config.model_name.split("/")[:-1])[1:]
+            model_base_name = ".".join(self.config.model_name.split("/")[-1].split(".")[:-1])
 
             self.tokenizer = AutoTokenizer.from_pretrained(
-                    model_dir, 
+                    model_name, 
                     use_fast=True,
                     cache_dir=models_dir
                     )
             # load quantized model to the first GPU
             self.model = AutoGPTQForCausalLM.from_quantized(
-                model_dir,
+                model_name,
+                model_basename=model_base_name, 
                 use_safetensors=True,
                 trust_remote_code=True,
                 device_map='auto',
-                model_basename=model_name, 
                 cache_dir=models_dir,
                 quantize_config=None
                 )
