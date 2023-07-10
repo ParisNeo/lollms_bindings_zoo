@@ -117,6 +117,7 @@ def extract_model_cards(model_links, entries):
                 data = {
                     'filename': file_name,
                     'description': description,
+                    'variants': [bin_link["href"].split('/')[-1] for bin_link in bin_links],
                     'license': license,
                     'server': server_link,
                     'SHA256': SHA256,
@@ -126,6 +127,7 @@ def extract_model_cards(model_links, entries):
                 }
 
                 entries.append(data)  # Add the entry to the list
+                break
             except Exception as ex :
                 # Catch the exception and get the traceback as a list of strings
                 traceback_lines = traceback.format_exception(type(ex), ex, ex.__traceback__)
@@ -153,9 +155,7 @@ def build_models(start_id, end_id, output_file):
     print(f"YAML data saved to {output_file}")
 
 # Example usage
-#url = 'https://huggingface.co/TheBloke'
-#html_to_yaml(url, 'output_scraped_models.yaml')
+# url = 'https://huggingface.co/TheBloke'
+# html_to_yaml(url, 'output_scraped_models.yaml')
 
-start=100
-end=175
-build_models(start,end,f"output_{start}_{end}.yaml")
+build_models(0,-1,f"output_ggml.yaml")
