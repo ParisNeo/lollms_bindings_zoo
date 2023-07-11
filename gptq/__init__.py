@@ -446,8 +446,10 @@ class GPTQ(LLMBinding):
             downloaded = current 
             progress = (current  / total) * 100
             if callback and ".safetensors" in loading[0]:
-                callback(downloaded, total)
-
+                try:
+                    callback(downloaded, total)
+                except:
+                    callback(0, downloaded, total)
         def download_file(get_file):
             src = "/".join(repo.split("/")[:-3])
             filename = f"{src}/resolve/main/{get_file}"
