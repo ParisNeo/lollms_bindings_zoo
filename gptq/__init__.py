@@ -20,8 +20,6 @@ import yaml
 import re
 import urllib
 
-from huggingface_hub import snapshot_download
-
 
 
 __author__ = "parisneo"
