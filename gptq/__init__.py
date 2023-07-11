@@ -200,7 +200,7 @@ class GPTQ(LLMBinding):
             print("Linux OS detected.")
             env = os.environ.copy()
             
-            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto_gptq-0.2.2+cu117-cp310-cp310-linux_x86_64.whl"], env=env)
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "https://github.com/PanQiWei/AutoGPTQ/releases/download/v0.2.2/auto_gptq-0.2.2+cu117-cp310-cp310-linux_x86_64.whl"], env=env)
 
             if result.returncode != 0:
                 print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
@@ -208,7 +208,7 @@ class GPTQ(LLMBinding):
         if os_type == "Windows":
             print("Windows OS detected.")
             env = os.environ.copy()
-            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto_gptq-0.2.2+cu117-cp310-cp310-win_amd64.whl"], env=env)
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "https://github.com/PanQiWei/AutoGPTQ/releases/download/v0.2.2/auto_gptq-0.2.2+cu117-cp310-cp310-win_amd64.whl"], env=env)
 
             if result.returncode != 0:
                 print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
