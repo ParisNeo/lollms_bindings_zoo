@@ -179,9 +179,13 @@ class GPTQ(LLMBinding):
                 }
                 self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
 
-            if not self.binding_config.automatic_context_size:
+            try:
+                if not self.binding_config.automatic_context_size:
+                    self.model.seqlen = self.binding_config.ctx_size
+                self.config.ctx_size = self.model.seqlen
+            except:
                 self.model.seqlen = self.binding_config.ctx_size
-            self.config.ctx_size = self.model.seqlen
+                self.config.ctx_size = self.model.seqlen
             ASCIIColors.info(f"Context lenghth set to {self.model.seqlen}")
             return self
         else:
