@@ -481,17 +481,12 @@ class GPTQ(LLMBinding):
         return 4000000000
 
     @staticmethod
-    def list_models(config:dict):
+    def list_models(self, config:dict):
         """Lists the models for this binding
         """
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
+        models_dir:Path = self.lollms_paths.personal_models_path/config["binding_name"]  # replace with the actual path to the models folder
+        return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".")]
 
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-
-        return [yd['filename'] for yd in yaml_data] 
     @staticmethod
     def get_available_models():
         # Create the file path relative to the child class's directory
