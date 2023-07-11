@@ -480,8 +480,7 @@ class GPTQ(LLMBinding):
                 return file_size        
         return 4000000000
 
-    @staticmethod
-    def list_models(config:dict):
+    def list_models(self, config:dict):
         """Lists the models for this binding
         """
         models_dir:Path = self.lollms_paths.personal_models_path/config["binding_name"]  # replace with the actual path to the models folder
