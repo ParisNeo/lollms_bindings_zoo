@@ -18,6 +18,7 @@ from lollms.helpers import trace_exception
 import subprocess
 import yaml
 import re
+import urllib
 
 from huggingface_hub import snapshot_download
 
@@ -124,14 +125,27 @@ class GPTQ(LLMBinding):
                 )
             
             """
+            path = self.config.model_name
             models_dir = self.lollms_paths.personal_models_path / "gptq"
             models_dir.mkdir(parents=True, exist_ok=True)
-            model_name = str(models_dir/ self.config.model_name).replace("\\","/")
-            model_base_name = ".".join(self.config.model_name.split("/")[-1].split(".")[:-1])
+            model_path = models_dir/ path
 
-            self.model = None
+            model_name = str(model_path).replace("\\","/")
+            model_base_name = [f for f in model_path.iterdir() if f.suffix==".safetensors"][0].stem
+            
+            if not (model_path / "quantize_config.json").exists():
+                quantize_config = BaseQuantizeConfig(
+                    bits=4,
+                    group_size=-1,
+                    desc_act=""
+                )
+            else:
+                quantize_config = None  
+                          
             self.tokenizer = None
             gc.collect()
+            import os
+            os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
 
             self.tokenizer = AutoTokenizer.from_pretrained(
                     model_name, 
@@ -139,26 +153,33 @@ class GPTQ(LLMBinding):
                     )
             # load quantized model to the first GPU
             if self.binding_config.split_between_cpu_and_gpu:
-                self.model = AutoGPTQForCausalLM.from_quantized(
-                    model_name,
-                    model_basename=model_base_name,
-                    local_files_only=True,
-                    use_safetensors=True,
-                    trust_remote_code=True,
-                    device_map='auto',
-                    quantize_config=None,
-                    max_memory = { 0: f'{self.binding_config.max_gpu_mem_GB}GiB', 'cpu': f'{self.binding_config.max_cpu_mem_GB}GiB' }
-                    )
+                params = {
+                    'model_basename': model_base_name,
+                    'device': "cuda:0" if self.binding_config.max_gpu_mem_GB>0 else "cpu",
+                    'use_triton': self.binding_config.use_triton,
+                    'inject_fused_attention': True,
+                    'inject_fused_mlp': True,
+                    'use_safetensors': True,
+                    'trust_remote_code': True,
+                    'max_memory': { 0: f'{self.binding_config.max_gpu_mem_GB}GiB', 'cpu': f'{self.binding_config.max_cpu_mem_GB}GiB' },
+                    'quantize_config': quantize_config,
+                    'use_cuda_fp16': True,
+                }
+                self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
             else:
-                self.model = AutoGPTQForCausalLM.from_quantized(
-                    model_name,
-                    model_basename=model_base_name,
-                    local_files_only=True,
-                    use_safetensors=True,
-                    trust_remote_code=True,
-                    device_map='auto',
-                    quantize_config=None
-                    )
+                params = {
+                    'model_basename': model_base_name,
+                    'device': "cuda:0" if self.binding_config.max_gpu_mem_GB>0 else "cpu",
+                    'use_triton': self.binding_config.use_triton,
+                    'inject_fused_attention': True,
+                    'inject_fused_mlp': True,
+                    'use_safetensors': True,
+                    'trust_remote_code': True,
+                    'quantize_config': quantize_config,
+                    'use_cuda_fp16': True,
+                }
+                self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
+
 
             self.model.seqlen = self.binding_config.ctx_size
             return self
@@ -173,14 +194,6 @@ class GPTQ(LLMBinding):
         print("This is the first time you are using this binding.")
         # Step 2: Install dependencies using pip from requirements.txt
         requirements_file = self.binding_dir / "requirements.txt"
-        try:
-            import llama_cpp
-            ASCIIColors.info("Found old installation. Uninstalling.")
-            self.uninstall()
-        except ImportError:
-            # The library is not installed
-            print("The main library is not installed.")
-
         # Define the environment variables
         os_type = platform.system()
         if os_type == "Linux":
@@ -370,27 +383,11 @@ class GPTQ(LLMBinding):
             ASCIIColors.error("Couldn't generate")
             trace_exception(ex)
         return self.output
-
+    
     @staticmethod
-    def download_model(repo, base_folder, callback=None):
-        """
-        Downloads a folder from a Hugging Face repository URL, reports the download progress using a callback function,
-        and displays a progress bar.
-
-        Args:
-            repo (str): The name of the Hugging Face repository.
-            base_folder (str): The base folder where the repository should be saved.
-            installation_path (str): The path where the folder should be saved.
-            callback (function, optional): A callback function to be called during the download
-                with the progress percentage as an argument. Defaults to None.
-        """
-        
-        from tqdm import tqdm
+    def get_filenames(repo):
         import requests
         from bs4 import BeautifulSoup
-        import concurrent.futures
-        import wget
-        import os
 
         dont_download = [".gitattributes"]
 
@@ -412,6 +409,26 @@ class GPTQ(LLMBinding):
         print("Found files:")
         for file in file_names:
             print(" ", file)
+        return file_names
+                    
+    @staticmethod
+    def download_model(repo, base_folder, callback=None):
+        """
+        Downloads a folder from a Hugging Face repository URL, reports the download progress using a callback function,
+        and displays a progress bar.
+
+        Args:
+            repo (str): The name of the Hugging Face repository.
+            base_folder (str): The base folder where the repository should be saved.
+            installation_path (str): The path where the folder should be saved.
+            callback (function, optional): A callback function to be called during the download
+                with the progress percentage as an argument. Defaults to None.
+        """
+        
+        import wget
+        import os
+
+        file_names = GPTQ.get_filenames(repo)
 
         dest_dir = Path(base_folder)
         dest_dir.mkdir(parents=True, exist_ok=True)
@@ -444,6 +461,25 @@ class GPTQ(LLMBinding):
             download_file(file_name)
 
         print("Done")
+        
+    def get_file_size(self, url):
+        file_names = GPTQ.get_filenames(url)
+        for file_name in file_names:
+            if file_name.endswith(".safetensors"):
+                src = "/".join(url.split("/")[:-3])
+                filename = f"{src}/resolve/main/{file_name}"                
+                response = urllib.request.urlopen(filename)
+                
+                # Extract the Content-Length header value
+                file_size = response.headers.get('Content-Length')
+                
+                # Convert the file size to integer
+                if file_size:
+                    file_size = int(file_size)
+                
+                return file_size        
+        return 4000000000
+
     @staticmethod
     def list_models(config:dict):
         """Lists the models for this binding

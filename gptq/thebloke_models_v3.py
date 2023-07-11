@@ -62,7 +62,7 @@ def get_model_entries(url, output_file):
 def extract_model_cards(model_links, entries):
     for model_link in tqdm(model_links):
         prefix = '/'.join(model_link.split('/')[0:3])
-
+        model_name = model_link.split("/")[-3]
         model_url = model_link
         print(f"\nScrapping {model_url}")
 
@@ -72,7 +72,7 @@ def extract_model_cards(model_links, entries):
 
         # Find all <a> tags with '.bin' in their href within the model repository
         bin_links = model_soup.find_all('a', href=lambda href: href and href.endswith('.safetensors'))
-
+        v = []
         for bin_link in tqdm(bin_links):
             path = bin_link['href'].replace("resolve","blob")
             # Send a GET request to the URL and retrieve the HTML content
@@ -111,18 +111,8 @@ def extract_model_cards(model_links, entries):
                 except:
                     description = f"{file_name} model"
                 # Create a dictionary with the extracted information
-                data = {
-                    'filename': file_name,
-                    'description': description,
-                    'license': license,
-                    'server': server_link,
-                    'SHA256': SHA256,
-                    'owner_link': owner_link,
-                    'owner': "TheBloke",
-                    'icon': 'https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face'
-                }
-
-                entries.append(data)  # Add the entry to the list
+                v.append(file_name)
+                
             except Exception as ex :
                 # Catch the exception and get the traceback as a list of strings
                 traceback_lines = traceback.format_exception(type(ex), ex, ex.__traceback__)
@@ -132,13 +122,27 @@ def extract_model_cards(model_links, entries):
 
                 print(f"\nCouldn't load {bin_link['href']}.\nException: {ex}")
                 print(traceback_text)
+                
+        data = {
+            'filename': model_name,
+            'variants':v,
+            'description': description,
+            'license': license,
+            'server': server_link,
+            'SHA256': SHA256,
+            'owner_link': owner_link,
+            'owner': "TheBloke",
+            'icon': 'https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face'
+        }
+
+        entries.append(data)  # Add the entry to the list
 
 def html_to_yaml(url, output_file):
     get_model_entries(url, output_file)
 
 def build_models(start_id, end_id, output_file):
     # Save the list of entries as YAML to the output file
-    with open("output_scraped_models.yaml", 'r', encoding="utf8") as f:
+    with open("output_gptq_scraped_models.yaml", 'r', encoding="utf8") as f:
         model_links = yaml.safe_load(f)
 
     entries = []  # List to store the entries
