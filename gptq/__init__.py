@@ -130,7 +130,7 @@ class GPTQ(LLMBinding):
             models_dir.mkdir(parents=True, exist_ok=True)
             model_path = models_dir/ path
 
-            model_name = str(model_path).replace("/","\\")
+            model_name = str(model_path).replace("\\","/")
             model_base_name = [f for f in model_path.iterdir() if f.suffix==".safetensors"][0].stem
             
             if not (model_path / "quantize_config.json").exists():
