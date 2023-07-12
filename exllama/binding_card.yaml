@@ -1,0 +1,7 @@
+name: exLLAMA
+author: turboderp
+version: 1.0
+link: https://github.com/turboderp/exllama
+supported_models: |
+    exLLAMA binding (Work in progress)
+description: 'Python bindings for the exLLAMA type of files'
