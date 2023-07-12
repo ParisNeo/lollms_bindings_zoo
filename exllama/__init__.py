@@ -94,7 +94,7 @@ class EXLLAMA(LLMBinding):
         from exllama.lora import ExLlamaLora
         from exllama.tokenizer import ExLlamaTokenizer
         from exllama.generator import ExLlamaGenerator
-        import exllama.model_init
+        import exllama.model_init as model_init
         import argparse
         import torch
         import sys
@@ -130,11 +130,41 @@ class EXLLAMA(LLMBinding):
         torch.cuda._lazy_init()
         config = model_init.make_config(args)
 
-        model = ExLlama(config)
-        cache = ExLlamaCache(model)
-        tokenizer = ExLlamaTokenizer(args.tokenizer)
+        self.model = ExLlama(config)
+        cache = ExLlamaCache(self.model)
+        self.tokenizer = ExLlamaTokenizer(args.tokenizer)
 
-        model_init.print_stats(model)
+        model_init.print_stats(self.model)
+        
+        generator = ExLlamaGenerator(self.model, self.tokenizer, cache)
+        generator.settings = ExLlamaGenerator.Settings()
+        generator.settings.temperature = args.temperature
+        generator.settings.top_k = args.top_k
+        generator.settings.top_p = args.top_p
+        generator.settings.min_p = args.min_p
+        generator.settings.token_repetition_penalty_max = args.repetition_penalty
+        generator.settings.token_repetition_penalty_sustain = args.repetition_penalty_sustain
+        generator.settings.token_repetition_penalty_decay = generator.settings.token_repetition_penalty_sustain // 2
+        generator.settings.beams = args.beams
+        generator.settings.beam_length = args.beam_length
+
+        generator.lora = lora
+
+        break_on_newline = not args.no_newline
+
+        # Be nice to Chatbort
+
+        min_response_tokens = 4
+        max_response_tokens = 256
+        extra_prune = 256
+
+        print(past, end = "")
+        ids = tokenizer.encode(past)
+        generator.gen_begin(ids)
+
+        next_userprompt = username + ": "
+
+        first_round = True        
 
         if self.config.model_name:
             
