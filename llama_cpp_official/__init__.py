@@ -47,6 +47,11 @@ class LLAMACPP(LLMBinding):
             [
                 {"name":"n_threads","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
                 {"name":"n_gpu_layers","type":"int","value":20, "min":0, "help":"Number of layers to offload to GPU"},
+                {"name":"n_parts","type":"int","value":-1, "min":-1, "help":"Number of parts to split the model into. If -1, the number of parts is automatically determined."},
+                {"name":"f16_kv","type":"bool","value":True, "help":"Use half-precision for key/value cache."},
+                {"name":"use_mmap","type":"bool","value":True, "help":"Use mmap if possible."},
+                {"name":"use_mlock","type":"bool","value":False, "help":"Force the system to keep the model in RAM."},
+                
                 {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
             ]
@@ -67,6 +72,8 @@ class LLAMACPP(LLMBinding):
         
     def build_model(self):
         seed = self.config["seed"]
+        if seed<0:
+            seed = 0
 
         # if seed <=0:
         #    seed = random.randint(1, 2**31)
@@ -77,9 +84,15 @@ class LLAMACPP(LLMBinding):
         self.model = Llama(
             model_path=str(model_path), 
             n_ctx=self.config["ctx_size"], 
-            n_gpu_layers=self.binding_config.n_gpu_layers, 
-            n_threads=self.binding_config["n_threads"],
-            seed=seed)
+            n_parts=self.binding_config.n_parts,# Number of parts to split the model into. If -1, the number of parts is automatically determined.
+            f16_kv=self.binding_config.f16_kv,# Use half-precision for key/value cache.
+            use_mmap=self.binding_config.use_mmap,
+            n_gpu_layers=self.binding_config.n_gpu_layers,
+            use_mlock = self.binding_config.use_mlock,
+            n_threads=self.binding_config.n_threads,
+            seed=seed
+            
+            )
         return self
 
     def install(self):
