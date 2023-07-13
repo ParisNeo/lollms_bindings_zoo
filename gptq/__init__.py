@@ -214,6 +214,12 @@ class GPTQ(LLMBinding):
         requirements_file = self.binding_dir / "requirements.txt"
         # Define the environment variables
         os_type = platform.system()
+        
+        env = os.environ.copy()
+        
+        
+        """
+        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "https://github.com/PanQiWei/AutoGPTQ/releases/download/v0.2.2/auto_gptq-0.2.2+cu117-cp310-cp310-linux_x86_64.whl"], env=env)
         if os_type == "Linux":
             print("Linux OS detected.")
             env = os.environ.copy()
@@ -232,10 +238,10 @@ class GPTQ(LLMBinding):
                 print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
                 subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
         else:
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+        
+        """
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
-
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
         ASCIIColors.success("Installed successfully")
 
 
