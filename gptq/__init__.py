@@ -89,6 +89,17 @@ class GPTQ(LLMBinding):
         self.print_len = 0
         self.next_tokens_are_prompt = True
 
+    def embed(self, text):
+        """
+        Computes text embedding
+        Args:
+            text (str): The text to be embedded.
+        Returns:
+            List[float]
+        """
+        
+        pass
+
     def build_model(self):
 
         from transformers import AutoTokenizer
@@ -178,7 +189,6 @@ class GPTQ(LLMBinding):
                     'use_cuda_fp16': True,
                 }
                 self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
-
             try:
                 if not self.binding_config.automatic_context_size:
                     self.model.seqlen = self.binding_config.ctx_size
