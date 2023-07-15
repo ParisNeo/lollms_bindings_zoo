@@ -75,13 +75,14 @@ class GPT4ALL(LLMBinding):
         
     def build_model(self):        
         model_path = self.get_model_path()
-        from gpt4all import GPT4All
+        from gpt4all import GPT4All, Embed4All
 
         self.model = GPT4All(
                                 model_name=str(model_path.name),
                                 model_path=str(model_path.parent)
                             )
         self.model.model.set_thread_count(self.binding_config.n_threads)
+        self.embedder= Embed4All()
 
         return self
 
@@ -116,7 +117,16 @@ class GPT4ALL(LLMBinding):
         """
         return " ".join(tokens_list)
     
-
+    def embed(self, text):
+        """
+        Computes text embedding
+        Args:
+            text (str): The text to be embedded.
+        Returns:
+            List[float]: The embededing computed by the binding's model
+        """
+        return self.embedder.embed(text)
+    
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
