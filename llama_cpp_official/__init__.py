@@ -45,6 +45,7 @@ class LLAMACPP(LLMBinding):
             lollms_paths = LollmsPaths()
         binding_config_templete =  ConfigTemplate(
             [
+                {"name":"embedding","type":"bool","value":False, "help":"Activate using embeddings or not."},
                 {"name":"n_threads","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
                 {"name":"n_gpu_layers","type":"int","value":20, "min":0, "help":"Number of layers to offload to GPU"},
                 {"name":"n_parts","type":"int","value":-1, "min":-1, "help":"Number of parts to split the model into. If -1, the number of parts is automatically determined."},
@@ -90,7 +91,8 @@ class LLAMACPP(LLMBinding):
             n_gpu_layers=self.binding_config.n_gpu_layers,
             use_mlock = self.binding_config.use_mlock,
             n_threads=self.binding_config.n_threads,
-            seed=seed
+            seed=seed,
+            embedding=self.binding_config.embedding
             
             )
         return self

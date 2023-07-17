@@ -1,8 +1,11 @@
-- description: GGML format model files for the original LLaMa
-  icon : https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  filename: Samantha-7B-GPTQ
-  license: Non commercial
-  owner_link: https://huggingface.co/TheBloke/
+- SHA256: 451b3579e6735f2ec4eb0c80dab80b3a737c926564b11260e6d55a021ea37d7f
+  description: Vicuna Model Card(co/TheBloke/vicuna-7B-GPTQ-4bit-128g/blob/main/vicuna-7B-GPTQ-4bit-128g)
+  filename: vicuna-7B-GPTQ-4bit-128g
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
   owner: TheBloke
-  server: Samantha-7B-GPTQ
-  sha256: ec2f2d1f0dfb73b72a4cbac7fa121abbe04c37ab327125a38248f930c0f09ddf
+  owner_link: https://huggingface.co/TheBloke/vicuna-7B-GPTQ-4bit-128g/
+  server: https://huggingface.co/TheBloke/vicuna-7B-GPTQ-4bit-128g/resolve/main
+  variants:
+  - vicuna-7B-GPTQ-4bit-128g.safetensors
+  - vicuna-7B-GPTQ-4bit-128g.safetensors

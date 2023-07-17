@@ -202,6 +202,13 @@ class GPTQ(LLMBinding):
             ASCIIColors.error('No model selected!!')
 
 
+    def destroy_model(self):
+        """
+        destroys the current model
+        """
+        ASCIIColors.print("Deleting model", ASCIIColors.color_orange)
+        del self.model
+        self.model = None
     
 
     def install(self):
@@ -251,6 +258,7 @@ class GPTQ(LLMBinding):
         
         """
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
         ASCIIColors.success("Installed successfully")
 
