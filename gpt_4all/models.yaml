@@ -1,13 +1,13 @@
-- SHA256: 4acc146dd43eb02845c233c29289c7c5
+- SHA256: e8d47924f433bd561cb5244557147793
   description: <strong>Best overall model</strong><br><ul><li>Instruction based<li>Gives
-    long responses<li>Curated with 300,000 uncensored instructions<li>Trained by Nous
-    Research<li>Cannot be used commercially</ul>
-  filename: nous-hermes-13b.ggmlv3.q4_0.bin
+    very long responses<li>Finetuned with only 1k of high-quality data<li>Trained
+    by Microsoft and Peking University<li>Cannot be used commercially</ul
+  filename: wizardlm-13b-v1.1-superhot-8k.ggmlv3.q4_0.bin
   icon: https://gpt4all.io/gpt4all-128.png
   license: ''
   owner: nomic-ai
   owner_link: https://gpt4all.io/
-  server: https://huggingface.co/TheBloke/Nous-Hermes-13B-GGML/resolve/main
+  server: https://gpt4all.io/models/
 - SHA256: 725f148218a65ce8ebcc724e52f31b49
   description: <strong>Best overall smaller model</strong><br><ul><li>Fast responses</li><li>Instruction
     based</li><li>Trained by TII<li>Finetuned by Nomic AI<li>Licensed for commercial
@@ -18,6 +18,16 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://huggingface.co/nomic-ai/gpt4all-falcon-ggml/resolve/main
+- SHA256: 4acc146dd43eb02845c233c29289c7c5
+  description: <strong>Extremely good model</strong><br><ul><li>Instruction based<li>Gives
+    long responses<li>Curated with 300,000 uncensored instructions<li>Trained by Nous
+    Research<li>Cannot be used commercially</ul>
+  filename: nous-hermes-13b.ggmlv3.q4_0.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/TheBloke/Nous-Hermes-13B-GGML/resolve/main
 - SHA256: 81a09a0ddf89690372fc296ff7f625af
   description: <strong>Creative model can be used for commercial purposes</strong><br><ul><li>Fast
     responses<li>Creative responses</li><li>Instruction based</li><li>Trained by Nomic
@@ -107,7 +117,7 @@
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
 - SHA256: 6cb4ee297537c9133bddab9692879de0
-  description: <strong>Trained with RHLF by Stability AI</strong><br><ul><li>Instruction
+  description: <strong>Trained with RLHF by Stability AI</strong><br><ul><li>Instruction
     based<li>Cannot be used commercially</ul>
   filename: ggml-stable-vicuna-13B.q4_2.bin
   icon: https://gpt4all.io/gpt4all-128.png
@@ -160,3 +170,11 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://huggingface.co/nomic-ai/ggml-replit-code-v1-3b/resolve/main
+- SHA256: 031bb5d5722c08d13e3e8eaf55c37391
+  description: <strong>Sbert</strong><br><ul><li>For embeddings
+  filename: ggml-all-MiniLM-L6-v2-f16.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://gpt4all.io/models/

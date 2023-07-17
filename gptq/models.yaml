@@ -1,3 +1,190 @@
+- SHA256: 60f7cb5dfa5c160fe5f64c5db9a1440158b746bb3a0f6d5427719080c06d7373
+  description: Meta's LLaMA 7b GPTQ(co/TheBloke/LLaMA-7b-GPTQ/blob/main/gptq_model-4bit-128g)
+  filename: LLaMA-7b-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/LLaMA-7b-GPTQ/
+  server: https://huggingface.co/TheBloke/LLaMA-7b-GPTQ/resolve/main
+  variants:
+  - gptq_model-4bit-128g.safetensors
+  - gptq_model-4bit-128g.safetensors
+- SHA256: b262f40b7283c9b639005fe900ecfacd1522d0842457b851c67827d3bc4a8aa2
+  description: Meta's LLaMA 30b GPTQ(co/TheBloke/LLaMA-30b-GPTQ/blob/main/gptq_model-4bit--1g)
+  filename: LLaMA-30b-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/LLaMA-30b-GPTQ/
+  server: https://huggingface.co/TheBloke/LLaMA-30b-GPTQ/resolve/main
+  variants:
+  - gptq_model-4bit--1g.safetensors
+  - gptq_model-4bit--1g.safetensors
+- SHA256: cbbe6fb7e3ad3c15839060b0e4525bb02c5ac20d9854715a6236fdd6f74b4c40
+  description: Meta's LLaMA 13b GPTQ(co/TheBloke/LLaMA-13b-GPTQ/blob/main/gptq_model-4bit-128g)
+  filename: LLaMA-13b-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/LLaMA-13b-GPTQ/
+  server: https://huggingface.co/TheBloke/LLaMA-13b-GPTQ/resolve/main
+  variants:
+  - gptq_model-4bit-128g.safetensors
+  - gptq_model-4bit-128g.safetensors
+- SHA256: a5cfeb02d1f85f9b5c0ea5c483f7d68988b9431a1ed1b7b4d8361bd294ff7b33
+  description: Meta's LLaMA 65B GPTQ(co/TheBloke/LLaMA-65B-GPTQ/blob/main/gptq_model-4bit--1g)
+  filename: LLaMA-65B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/LLaMA-65B-GPTQ/
+  server: https://huggingface.co/TheBloke/LLaMA-65B-GPTQ/resolve/main
+  variants:
+  - gptq_model-4bit--1g.safetensors
+  - gptq_model-4bit--1g.safetensors
+- SHA256: 73d99779772e088647416e7373beef01fb5b1396a1d987a807e497ca17457070
+  description: LoupGarou's WizardCoder-Guanaco-15B-V1.1 GPTQ(1-GPTQ/blob/main/gptq_model-4bit-128g)
+  filename: WizardCoder-Guanaco-15B-V1.1-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: apache-2.0
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/WizardCoder-Guanaco-15B-V1.1-GPTQ/
+  server: https://huggingface.co/TheBloke/WizardCoder-Guanaco-15B-V1.1-GPTQ/resolve/main
+  variants:
+  - gptq_model-4bit-128g.safetensors
+  - gptq_model-4bit-128g.safetensors
+- SHA256: fd2ecaf84c211a1d6e3784abaad82c640f5b275c8c6c6e0125e3af738c83fbe7
+  description: H2O's GM OASST1 Falcon 7B v3 GPTQ(co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-7b-v3-GPTQ/blob/main/gptq_model-4bit-128g)
+  filename: h2ogpt-gm-oasst1-en-2048-falcon-7b-v3-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: apache-2.0
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-7b-v3-GPTQ/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-7b-v3-GPTQ/resolve/main
+  variants:
+  - gptq_model-4bit-128g.safetensors
+  - gptq_model-4bit-128g.safetensors
+- SHA256: df703858c425f68224d46d40583c21f3db470d789de282974b37c8d00e193874
+  description: Tim Dettmers' Guanaco 65B GPTQ(act-order)
+  filename: guanaco-65B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/guanaco-65B-GPTQ/
+  server: https://huggingface.co/TheBloke/guanaco-65B-GPTQ/resolve/main
+  variants:
+  - Guanaco-65B-GPTQ-4bit.act-order.safetensors
+  - Guanaco-65B-GPTQ-4bit.act-order.safetensors
+- SHA256: dadd6659ebda94e15d6808634aa4843d77b05c47798c305676f8a435e521f959
+  description: OptimalScale's Robin 65B v2 GPTQ(order)
+  filename: robin-65B-v2-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/robin-65B-v2-GPTQ/
+  server: https://huggingface.co/TheBloke/robin-65B-v2-GPTQ/resolve/main
+  variants:
+  - robin-65b-GPTQ-4bit--1g.no-act.order.safetensors
+  - robin-65b-GPTQ-4bit--1g.no-act.order.safetensors
+- SHA256: 362203f0c1960b589e598d3730bdc8e548784599b3f37e92ae3f5faa51f65172
+  description: Jon Durbin's Airoboros 65B GPT4 1.4 GPTQ(order)
+  filename: airoboros-65B-gpt4-1.4-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.4-GPTQ/
+  server: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.4-GPTQ/resolve/main
+  variants:
+  - airoboros-65b-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
+  - airoboros-65b-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
+- SHA256: 738a81c469fe067cec94b9afcc1eca6aa58b52ccc9bb3566c2a7389667a52f11
+  description: Open-Orca's OpenChat V2 x OpenOrca Preview 2 GPTQ(order)
+  filename: openchat_v2_openorca_preview-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/openchat_v2_openorca_preview-GPTQ/
+  server: https://huggingface.co/TheBloke/openchat_v2_openorca_preview-GPTQ/resolve/main
+  variants:
+  - openorca-openchat-v2-preview2-GPTQ-4bit-128g.no-act.order.safetensors
+  - openorca-openchat-v2-preview2-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 8162a0bccc472abcf0fda32031278b0a27b21db94c14023d5738d37a33c218f2
+  description: Young Geng's Koala 13B GPTQ(order)
+  filename: koala-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/koala-13B-GPTQ/
+  server: https://huggingface.co/TheBloke/koala-13B-GPTQ/resolve/main
+  variants:
+  - koala-13b-GPTQ-4bit-128g.no-act.order.safetensors
+  - koala-13b-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: aeaa4cd165e34067c4011e464c11d51ebf0919dd3bbbd96eaf746a96e2f87b6b
+  description: Original model card is below(no-act-order)
+  filename: gpt4-alpaca-lora-13B-GPTQ-4bit-128g
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/gpt4-alpaca-lora-13B-GPTQ-4bit-128g/
+  server: https://huggingface.co/TheBloke/gpt4-alpaca-lora-13B-GPTQ-4bit-128g/resolve/main
+  variants:
+  - gpt4-alpaca-lora-13B-GPTQ-4bit-128g.compat.no-act-order.safetensors
+  - gpt4-alpaca-lora-13B-GPTQ-4bit-128g.compat.no-act-order.safetensors
+- SHA256: 47dc87220d18238e481e7cca868e53c59ca9e834b24094cde5348485f8f19e98
+  description: medalpaca-13B GPTQ 4bit(no-act-order)
+  filename: medalpaca-13B-GPTQ-4bit
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: cc
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/medalpaca-13B-GPTQ-4bit/
+  server: https://huggingface.co/TheBloke/medalpaca-13B-GPTQ-4bit/resolve/main
+  variants:
+  - medalpaca-13B-GPTQ-4bit-128g.compat.no-act-order.safetensors
+  - medalpaca-13B-GPTQ-4bit-128g.compat.no-act-order.safetensors
+- SHA256: ea673c390193e4e199cba7acadfac4ab19eb4d5fc860b08af1d69cc20cb5d7d7
+  description: VicUnlocked-30B-LoRA GPTQ(order)
+  filename: VicUnlocked-30B-LoRA-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/VicUnlocked-30B-LoRA-GPTQ/
+  server: https://huggingface.co/TheBloke/VicUnlocked-30B-LoRA-GPTQ/resolve/main
+  variants:
+  - VicUnlocked-30B-GPTQ-4bit--1g.act.order.safetensors
+  - VicUnlocked-30B-GPTQ-4bit--1g.act.order.safetensors
+- SHA256: eca1563a14892cc11ba2c9089b77308a224da15a5d8c62f9affd674ee3269db8
+  description: Wizard-Vicuna-7B-Uncensored GPTQ(order)
+  filename: Wizard-Vicuna-7B-Uncensored-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-7B-Uncensored-GPTQ/
+  server: https://huggingface.co/TheBloke/Wizard-Vicuna-7B-Uncensored-GPTQ/resolve/main
+  variants:
+  - Wizard-Vicuna-7B-Uncensored-GPTQ-4bit-128g.no-act.order.safetensors
+  - Wizard-Vicuna-7B-Uncensored-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 568a2f3135aae5d1ccc43850e51f31a20ed81555279b6299b14eadd0235e0e3f
+  description: Eric Hartford's WizardLM 30B Uncensored GPTQ(order)
+  filename: WizardLM-30B-Uncensored-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/WizardLM-30B-Uncensored-GPTQ/
+  server: https://huggingface.co/TheBloke/WizardLM-30B-Uncensored-GPTQ/resolve/main
+  variants:
+  - WizardLM-30B-Uncensored-GPTQ-4bit--1g.act.order.safetensors
+  - WizardLM-30B-Uncensored-GPTQ-4bit--1g.act.order.safetensors
+- SHA256: 354900b9aa246365fbed690b8401543ee5f04346aff5adcc581e81008acb0d46
+  description: Project Baize V2 7B GPTQ(order)
+  filename: Project-Baize-v2-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Project-Baize-v2-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/Project-Baize-v2-7B-GPTQ/resolve/main
+  variants:
+  - Baize-v2-7B-GPTQ-4bit-128g.no-act.order.safetensors
+  - Baize-v2-7B-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: f525de690149785510cdf3f2a7f94c47fa448e7d8842b4d826c7a514cceea462
   description: Tim Dettmers' Guanaco 33B GPTQ(order)
   filename: guanaco-33B-GPTQ
@@ -7,10 +194,316 @@
   owner_link: https://huggingface.co/TheBloke/guanaco-33B-GPTQ/
   server: https://huggingface.co/TheBloke/guanaco-33B-GPTQ/resolve/main
   variants:
-  - Guanaco-33B-GPTQ-4bit.act-order.safetensors
-  - Guanaco-33B-GPTQ-4bit.act-order.safetensors
   - guanaco-33b-GPTQ-4bit--1g.act.order.safetensors
   - guanaco-33b-GPTQ-4bit--1g.act.order.safetensors
+- SHA256: 90dc5d27a5b70cae04f034838ec5dfe6ae842cd1b26223b9cc75dfed9385646a
+  description: Tim Dettmers' Guanaco 7B GPTQ(order)
+  filename: guanaco-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/guanaco-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/guanaco-7B-GPTQ/resolve/main
+  variants:
+  - Guanaco-7B-GPTQ-4bit-128g.no-act.order.safetensors
+  - Guanaco-7B-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 389c828d8a73f9d7023344e5c5c99cbe1bbff0fa3aae0d883ec10b2068a00482
+  description: Gorilla LLM's Gorilla 7B GPTQ(order)
+  filename: gorilla-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/gorilla-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/gorilla-7B-GPTQ/resolve/main
+  variants:
+  - Gorilla-7B-GPTQ-4bit-128g.no-act.order.safetensors
+  - Gorilla-7B-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 21f864bff068ffc5855cd738f1df6137c3539c5e7eadf22945bf20b8e18cc45b
+  description: Eric Hartford's Wizard-Vicuna-30B-Uncensored GPTQ(order)
+  filename: Wizard-Vicuna-30B-Uncensored-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-30B-Uncensored-GPTQ/
+  server: https://huggingface.co/TheBloke/Wizard-Vicuna-30B-Uncensored-GPTQ/resolve/main
+  variants:
+  - Wizard-Vicuna-30B-Uncensored-GPTQ-4bit--1g.act.order.safetensors
+  - Wizard-Vicuna-30B-Uncensored-GPTQ-4bit--1g.act.order.safetensors
+- SHA256: d45613c3b91f188a7612b7ab0f36332cb795f87b509924de5dbf4591eb21acae
+  description: OpenAccess AI Collective's Hippogriff 30B Chat GPTQ(order)
+  filename: hippogriff-30b-chat-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/hippogriff-30b-chat-GPTQ/
+  server: https://huggingface.co/TheBloke/hippogriff-30b-chat-GPTQ/resolve/main
+  variants:
+  - hippogriff-30b-GPTQ-4bit--1g.act.order.safetensors
+  - hippogriff-30b-GPTQ-4bit--1g.act.order.safetensors
+- SHA256: 8ddeb48f458a0aaf2b2c6d8c5d5ac21f452bce5f6f175491d065ca681ff0b6b7
+  description: Monero's WizardLM-Uncensored-SuperCOT-Storytelling-30B GPTQ(order)
+  filename: WizardLM-Uncensored-SuperCOT-StoryTelling-30B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-GPTQ/
+  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-GPTQ/resolve/main
+  variants:
+  - WizardLM-Uncensored-SuperCOT-Storytelling-GPTQ-4bit--1g.act.order.safetensors
+  - WizardLM-Uncensored-SuperCOT-Storytelling-GPTQ-4bit--1g.act.order.safetensors
+- SHA256: b2c93b2aacdc0afe2db3a494c1b25799069ff978699384724ebcb2649dfd496f
+  description: Camel AI's CAMEL 13B Combined Data GPTQ(order)
+  filename: CAMEL-13B-Combined-Data-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-GPTQ/
+  server: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-GPTQ/resolve/main
+  variants:
+  - camel-13b-combined-GPTQ-4bit-128g.no-act.order.safetensors
+  - camel-13b-combined-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 4b6eeeab8fc1f7464fe6793a0b2f7158f2c953d20c8368e9d9770f916bdb1123
+  description: Kevin Pro's Vicuna 7B CoT GPTQ(order)
+  filename: Vicuna-7B-CoT-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Vicuna-7B-CoT-GPTQ/
+  server: https://huggingface.co/TheBloke/Vicuna-7B-CoT-GPTQ/resolve/main
+  variants:
+  - vicuna-7b-cot-GPTQ-4bit-128g.no-act.order.safetensors
+  - vicuna-7b-cot-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 8b91a8bf744fbc448c24364722bfc748db3217d91b5c6222bb11e5574972fbab
+  description: Jon Durbin's Airoboros 7B GPT4 1.4 GPTQ(order)
+  filename: airoboros-7B-gpt4-1.4-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GPTQ/
+  server: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GPTQ/resolve/main
+  variants:
+  - airoboros-7B-gpt4-1.4-GPTQ-4bit-128g.no-act.order.safetensors
+  - airoboros-7B-gpt4-1.4-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 7535ab91e88d2cd6cc209e103c16ec49e3adc2de64ddbbeeae09bf8e13586db5
+  description: Jon Durbin's Airoboros 33B GPT4 1.4 GPTQ(order)
+  filename: airoboros-33B-gpt4-1.4-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.4-GPTQ/
+  server: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.4-GPTQ/resolve/main
+  variants:
+  - airoboros-33B-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
+  - airoboros-33B-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
+- SHA256: d68202123cdc45fcd8255bafaadf31410efa6868bcff7c92d3661856b2d22d1a
+  description: WizardLM's WizardLM-7B 4bit GPTQ(order)
+  filename: wizardLM-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/wizardLM-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/wizardLM-7B-GPTQ/resolve/main
+  variants:
+  - wizardLM-7B-GPTQ-4bit-128g.no-act.order.safetensors
+  - wizardLM-7B-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 859243b71b13ad760a5b643f359d6c3c09716dabf26ac43522321887f8a9d22e
+  description: OptimalScale's Robin 7B v2 GPTQ(order)
+  filename: robin-7B-v2-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/robin-7B-v2-GPTQ/
+  server: https://huggingface.co/TheBloke/robin-7B-v2-GPTQ/resolve/main
+  variants:
+  - robin-7b-GPTQ-4bit-128g.no-act.order.safetensors
+  - robin-7b-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: d042c4bedc750ee2980e2b0e7758ff1832c13bd8c1740ee0e57c9d4d0ac18299
+  description: Kaist AI's Selfee 7B GPTQ(order)
+  filename: selfee-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/selfee-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/selfee-7B-GPTQ/resolve/main
+  variants:
+  - selfee-7B-GPTQ-4bit-128g.no-act.order.safetensors
+  - selfee-7B-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 4d13bec58b4209613f859f0bc92edafa6b5b172a06a4b59c2fdfebe7812d3670
+  description: Eric Hartford's Samantha 1.1 Llama 7B GPTQ(order)
+  filename: samantha-1.1-llama-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/samantha-1.1-llama-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/samantha-1.1-llama-7B-GPTQ/resolve/main
+  variants:
+  - samantha-1.1-llama-7b-GPTQ-4bit-128g.no-act.order.safetensors
+  - samantha-1.1-llama-7b-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: fd42ac2c47b351c29abd5c5a0c14fd5512b984b443e7034dfd12a89bd46e61cc
+  description: Pankaj Mathur's Orca Mini v2 7B GPTQ(order)
+  filename: orca_mini_v2_7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/orca_mini_v2_7B-GPTQ/
+  server: https://huggingface.co/TheBloke/orca_mini_v2_7B-GPTQ/resolve/main
+  variants:
+  - orca-mini-v2_7b-GPTQ-4bit-128g.no-act.order.safetensors
+  - orca-mini-v2_7b-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 2537dfc175162a87f63f1a5ac62469565b2d3e7f3d7c35d002da00e6094a5b11
+  description: Teknium's LLaMa Deus 7B v3 GPTQ(order)
+  filename: llama-deus-7b-v3-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/llama-deus-7b-v3-GPTQ/
+  server: https://huggingface.co/TheBloke/llama-deus-7b-v3-GPTQ/resolve/main
+  variants:
+  - llama-deus-7b-v3-GPTQ-4bit-128g.no-act.order.safetensors
+  - llama-deus-7b-v3-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: c24a8f2d5bb1dff66e0ad02f411611c40c3ac18f880d3ebaf7fcbdb27c86d61a
+  description: Young Geng's Koala 7B GPTQ(order)
+  filename: koala-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/koala-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/koala-7B-GPTQ/resolve/main
+  variants:
+  - koala-7b-GPTQ-4bit-128g.no-act.order.safetensors
+  - koala-7b-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 0e32fa230d53382c7393ed10a529ecda83e7005141756cd729ccfd5cfbf50754
+  description: Chaoyi Wi's PMC_LLAMA 7B 10 epoch GPTQ(order)
+  filename: PMC_LLAMA-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/PMC_LLAMA-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/PMC_LLAMA-7B-GPTQ/resolve/main
+  variants:
+  - PMC_LLAMA-7B-GPTQ-4bit-128g.no-act.order.safetensors
+  - PMC_LLAMA-7B-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: e25c08ab494a9edcdf4d49bfcf4e38fb3da9482aa717d5895245b884ab3051e7
+  description: Eric Hartford's WizardLM-7B-V1.0-Uncensored GPTQ(order)
+  filename: WizardLM-7B-V1.0-Uncensored-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/WizardLM-7B-V1.0-Uncensored-GPTQ/
+  server: https://huggingface.co/TheBloke/WizardLM-7B-V1.0-Uncensored-GPTQ/resolve/main
+  variants:
+  - wizardlm-7b-v1.0-uncensored-GPTQ-4bit-128g.no-act.order.safetensors
+  - wizardlm-7b-v1.0-uncensored-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: ecf168cd5b99df812a946f6fed79b184f4021806fd7125d777994f28674193df
+  description: rewoo's Planner 7B GPTQ(order)
+  filename: Planner-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Planner-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/Planner-7B-GPTQ/resolve/main
+  variants:
+  - planner-7b-GPTQ-4bit-128g.no-act.order.safetensors
+  - planner-7b-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 86264ad0590635dab4950cb4c1bceb4505525b81ac56a1df89c164fea71e2dc9
+  description: Concept of Mind's Flan Open Llama 7B GPTQ(order)
+  filename: Flan-OpenLlama-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Flan-OpenLlama-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/Flan-OpenLlama-7B-GPTQ/resolve/main
+  variants:
+  - flan-openllama-7b-GPTQ-4bit-128g.no-act.order.safetensors
+  - flan-openllama-7b-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 4073c62abf59c0013a2ab2484cfb3142d3d1a0356cd987efd5feb238a053c8fa
+  description: LmSys' Vicuna 7B v1.3 GPTQ(order)
+  filename: vicuna-7B-v1.3-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/vicuna-7B-v1.3-GPTQ/
+  server: https://huggingface.co/TheBloke/vicuna-7B-v1.3-GPTQ/resolve/main
+  variants:
+  - vicuna-7b-v1.3-GPTQ-4bit-128g.no-act.order.safetensors
+  - vicuna-7b-v1.3-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: e6dcf532be6e3680b3e207b90594ebe83bdce4ee52b7ec79a4b8e20157f023eb
+  description: LmSys' Vicuna 13B v1.3 GPTQ(order)
+  filename: vicuna-13b-v1.3.0-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/vicuna-13b-v1.3.0-GPTQ/
+  server: https://huggingface.co/TheBloke/vicuna-13b-v1.3.0-GPTQ/resolve/main
+  variants:
+  - vicuna-13b-v1.3.0-GPTQ-4bit-128g.no-act.order.safetensors
+  - vicuna-13b-v1.3.0-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 682fd6c9711cd3c9fb99078d3087c342cbc6fbc00fbc72dfeaacb92482c7bbef
+  description: Allen AI's Tulu 7B GPTQ(co/TheBloke/tulu-7B-GPTQ/blob/main/gptq_model-4bit-128g)
+  filename: tulu-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/tulu-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/tulu-7B-GPTQ/resolve/main
+  variants:
+  - gptq_model-4bit-128g.safetensors
+  - gptq_model-4bit-128g.safetensors
+- SHA256: ab5a285a54227d1d9bff3e81076c58f7073298ff97330b7c7895704e48577082
+  description: Allen AI's Tulu 30B GPTQ(co/TheBloke/tulu-30B-GPTQ/blob/main/gptq_model-4bit--1g)
+  filename: tulu-30B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/tulu-30B-GPTQ/
+  server: https://huggingface.co/TheBloke/tulu-30B-GPTQ/resolve/main
+  variants:
+  - gptq_model-4bit--1g.safetensors
+  - gptq_model-4bit--1g.safetensors
+- SHA256: c608a1b27f8a8ce59d49f6d949b0843836661da9f324a1886576bde0491a729e
+  description: Eric Hartford's Samantha 1.1 Llama 33B GPTQ(1-llama-33B-GPTQ/blob/main/gptq_model-4bit--1g)
+  filename: samantha-1.1-llama-33B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/samantha-1.1-llama-33B-GPTQ/
+  server: https://huggingface.co/TheBloke/samantha-1.1-llama-33B-GPTQ/resolve/main
+  variants:
+  - gptq_model-4bit--1g.safetensors
+  - gptq_model-4bit--1g.safetensors
+- SHA256: 04df2e44efdce8923e04693c90603d2cc4b2ee5ff1788b27fe4fffced62eeb76
+  description: OptimalScale's Robin 33B v2 GPTQ(order)
+  filename: robin-33B-v2-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/robin-33B-v2-GPTQ/
+  server: https://huggingface.co/TheBloke/robin-33B-v2-GPTQ/resolve/main
+  variants:
+  - robin-33b-GPTQ-4bit--1g.act.order.safetensors
+  - robin-33b-GPTQ-4bit--1g.act.order.safetensors
+- SHA256: 9d2aa7b2dad267d3dd911716302daee1056bf46087d134490f255287c8bc3be3
+  description: Pankaj Mathur's Orca Mini v2 13B GPTQ(order)
+  filename: orca_mini_v2_13b-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/orca_mini_v2_13b-GPTQ/
+  server: https://huggingface.co/TheBloke/orca_mini_v2_13b-GPTQ/resolve/main
+  variants:
+  - orca_mini_v2_13b-GPTQ-4bit-128g.no-act.order.safetensors
+  - orca_mini_v2_13b-GPTQ-4bit-128g.no-act.order.safetensors
+- SHA256: 58bb81678d620e93c0219924aa809a9a6e664585577661af38ce1d4373bd24db
+  description: OpenAccess AI Collective's Minotaur 13B Fixed GPTQ(order)
+  filename: minotaur-13B-fixed-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/minotaur-13B-fixed-GPTQ/
+  server: https://huggingface.co/TheBloke/minotaur-13B-fixed-GPTQ/resolve/main
+  variants:
+  - minotaur-13b-GPTQ-4bit-128g.no-act.order.safetensors
+  - minotaur-13b-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: fbcf38515cb88c136ad53087225ee1fa165b1c3432c235fdd23d10681538fcff
   description: Bavest's Fin Llama 33B GPTQ(order)
   filename: fin-llama-33B-GPTQ
@@ -55,19 +548,6 @@
   variants:
   - airochronos-33b-GPTQ-4bit--1g.act.order.safetensors
   - airochronos-33b-GPTQ-4bit--1g.act.order.safetensors
-- SHA256: ae0824cfa9512f888b4da56a263808853cce9eb93261acf4c5b31941f8446292
-  description: Monero's WizardLM-Uncensored-SuperCOT-Storytelling-30B GPTQ(order)
-  filename: WizardLM-Uncensored-SuperCOT-StoryTelling-30B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-GPTQ/
-  server: https://huggingface.co/TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-GPTQ/resolve/main
-  variants:
-  - WizardLM-Uncensored-SuperCOT-Storytelling-GPTQ-4bit--1g.act.order.safetensors
-  - WizardLM-Uncensored-SuperCOT-Storytelling-GPTQ-4bit--1g.act.order.safetensors
-  - WizardLM-Uncensored-SuperCOT-Storytelling-GPTQ-4bit.act.order.safetensors
-  - WizardLM-Uncensored-SuperCOT-Storytelling-GPTQ-4bit.act.order.safetensors
 - SHA256: 4f28d1d6a6af9533d52fbdf020954d09cf22836c84be50bf55b2082f01bcbae3
   description: Eric Hartford's WizardLM 33B V1.0 Uncensored GPTQ(order)
   filename: WizardLM-33B-V1.0-Uncensored-GPTQ
@@ -79,19 +559,6 @@
   variants:
   - wizardlm-33b-v1.0-uncensored-GPTQ-4bit--1g.act.order.safetensors
   - wizardlm-33b-v1.0-uncensored-GPTQ-4bit--1g.act.order.safetensors
-- SHA256: 13587589373985103b48e5274292b928831e5ef92be9f880ff9d09ebdd58bd75
-  description: Eric Hartford's WizardLM 30B Uncensored GPTQ(act-order)
-  filename: WizardLM-30B-Uncensored-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/WizardLM-30B-Uncensored-GPTQ/
-  server: https://huggingface.co/TheBloke/WizardLM-30B-Uncensored-GPTQ/resolve/main
-  variants:
-  - WizardLM-30B-Uncensored-GPTQ-4bit--1g.act.order.safetensors
-  - WizardLM-30B-Uncensored-GPTQ-4bit--1g.act.order.safetensors
-  - WizardLM-30B-Uncensored-GPTQ-4bit.act-order.safetensors
-  - WizardLM-30B-Uncensored-GPTQ-4bit.act-order.safetensors
 - SHA256: 1a17b1ebc87f192f185765d5f7a815ca73136373e048d51d530c8321fa950e07
   description: Eric Hartford's WizardLM-13b-V1.0-Uncensored GPTQ(order)
   filename: WizardLM-13B-V1.0-Uncensored-GPTQ
@@ -103,32 +570,6 @@
   variants:
   - wizardlm-13b-v1.0-uncensored-GPTQ-4bit-128g.no-act.order.safetensors
   - wizardlm-13b-v1.0-uncensored-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: c488b6dfa8d874f9a4203fd3c2a0537da9b59d9b91b8f9424b58a9ed154bf951
-  description: Eric Hartford's Wizard-Vicuna-30B-Uncensored GPTQ(order)
-  filename: Wizard-Vicuna-30B-Uncensored-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-30B-Uncensored-GPTQ/
-  server: https://huggingface.co/TheBloke/Wizard-Vicuna-30B-Uncensored-GPTQ/resolve/main
-  variants:
-  - Wizard-Vicuna-30B-Uncensored-GPTQ-4bit--1g.act.order.safetensors
-  - Wizard-Vicuna-30B-Uncensored-GPTQ-4bit--1g.act.order.safetensors
-  - Wizard-Vicuna-30B-Uncensored-GPTQ-4bit.act.order.safetensors
-  - Wizard-Vicuna-30B-Uncensored-GPTQ-4bit.act.order.safetensors
-- SHA256: 1c55b158251901afd8671ff738e95913ea38094f84a0e9903d8851799b8ee9d2
-  description: VicUnlocked-30B-LoRA GPTQ(act-order)
-  filename: VicUnlocked-30B-LoRA-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/VicUnlocked-30B-LoRA-GPTQ/
-  server: https://huggingface.co/TheBloke/VicUnlocked-30B-LoRA-GPTQ/resolve/main
-  variants:
-  - VicUnlocked-30B-GPTQ-4bit--1g.act.order.safetensors
-  - VicUnlocked-30B-GPTQ-4bit--1g.act.order.safetensors
-  - VicUnlocked-30B-GPTQ-4bit.act-order.safetensors
-  - VicUnlocked-30B-GPTQ-4bit.act-order.safetensors
 - SHA256: 15ee1b559dc726c05a849281f07fdfd9ec0f2f520dae60a0b0e87f8ccfe8c894
   description: OpenAssistant LLaMA 30B SFT 7 GPTQ(order)
   filename: OpenAssistant-SFT-7-Llama-30B-GPTQ
@@ -250,39 +691,6 @@
   variants:
   - gptq_model-4bit-128g.safetensors
   - gptq_model-4bit-128g.safetensors
-- SHA256: 682fd6c9711cd3c9fb99078d3087c342cbc6fbc00fbc72dfeaacb92482c7bbef
-  description: Allen AI's Tulu 7B GPTQ(co/TheBloke/tulu-7B-GPTQ/blob/main/gptq_model-4bit-128g)
-  filename: tulu-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/tulu-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/tulu-7B-GPTQ/resolve/main
-  variants:
-  - gptq_model-4bit-128g.safetensors
-  - gptq_model-4bit-128g.safetensors
-- SHA256: 4073c62abf59c0013a2ab2484cfb3142d3d1a0356cd987efd5feb238a053c8fa
-  description: LmSys' Vicuna 7B v1.3 GPTQ(order)
-  filename: vicuna-7B-v1.3-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/vicuna-7B-v1.3-GPTQ/
-  server: https://huggingface.co/TheBloke/vicuna-7B-v1.3-GPTQ/resolve/main
-  variants:
-  - vicuna-7b-v1.3-GPTQ-4bit-128g.no-act.order.safetensors
-  - vicuna-7b-v1.3-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: c608a1b27f8a8ce59d49f6d949b0843836661da9f324a1886576bde0491a729e
-  description: Eric Hartford's Samantha 1.1 Llama 33B GPTQ(1-llama-33B-GPTQ/blob/main/gptq_model-4bit--1g)
-  filename: samantha-1.1-llama-33B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/samantha-1.1-llama-33B-GPTQ/
-  server: https://huggingface.co/TheBloke/samantha-1.1-llama-33B-GPTQ/resolve/main
-  variants:
-  - gptq_model-4bit--1g.safetensors
-  - gptq_model-4bit--1g.safetensors
 - SHA256: 235e6d73683c295cc732410144520f047c3c44e9078c4171a72032b4bf07b30d
   description: LmSys' Vicuna 33B 1.3 GPTQ(order)
   filename: vicuna-33B-GPTQ
@@ -294,39 +702,6 @@
   variants:
   - vicuna-33b-GPTQ-4bit--1g.act.order.safetensors
   - vicuna-33b-GPTQ-4bit--1g.act.order.safetensors
-- SHA256: e6dcf532be6e3680b3e207b90594ebe83bdce4ee52b7ec79a4b8e20157f023eb
-  description: LmSys' Vicuna 13B v1.3 GPTQ(order)
-  filename: vicuna-13b-v1.3.0-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/vicuna-13b-v1.3.0-GPTQ/
-  server: https://huggingface.co/TheBloke/vicuna-13b-v1.3.0-GPTQ/resolve/main
-  variants:
-  - vicuna-13b-v1.3.0-GPTQ-4bit-128g.no-act.order.safetensors
-  - vicuna-13b-v1.3.0-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 58bb81678d620e93c0219924aa809a9a6e664585577661af38ce1d4373bd24db
-  description: OpenAccess AI Collective's Minotaur 13B Fixed GPTQ(order)
-  filename: minotaur-13B-fixed-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/minotaur-13B-fixed-GPTQ/
-  server: https://huggingface.co/TheBloke/minotaur-13B-fixed-GPTQ/resolve/main
-  variants:
-  - minotaur-13b-GPTQ-4bit-128g.no-act.order.safetensors
-  - minotaur-13b-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 9d2aa7b2dad267d3dd911716302daee1056bf46087d134490f255287c8bc3be3
-  description: Pankaj Mathur's Orca Mini v2 13B GPTQ(order)
-  filename: orca_mini_v2_13b-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/orca_mini_v2_13b-GPTQ/
-  server: https://huggingface.co/TheBloke/orca_mini_v2_13b-GPTQ/resolve/main
-  variants:
-  - orca_mini_v2_13b-GPTQ-4bit-128g.no-act.order.safetensors
-  - orca_mini_v2_13b-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: f86fa58c20f8ebdcfb38eb8feaad69db2cdc28a4252a0eec1a69f5c5f4b0976f
   description: OptimalScale's Robin 13B v2 GPTQ(order)
   filename: robin-13B-v2-GPTQ
@@ -338,45 +713,6 @@
   variants:
   - robin-13b-GPTQ-4bit-128g.no-act.order.safetensors
   - robin-13b-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 1d4c1ac83038f7fb0445d52fd39667c85cb515aa537124ef650684e98d8825e2
-  description: Jon Durbin's Airoboros 65B GPT4 1.4 GPTQ(order)
-  filename: airoboros-65B-gpt4-1.4-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.4-GPTQ/
-  server: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.4-GPTQ/resolve/main
-  variants:
-  - airoboros-65b-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
-  - airoboros-65b-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
-  - airoboros-65b-gpt4-1.4-GPTQ-4bit-128g.no-act.order.safetensors
-  - airoboros-65b-gpt4-1.4-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 4309f00672620989fa4349b5f43c1daa19ab3323eb0c090e1a453943d4b6ea0c
-  description: Jon Durbin's Airoboros 7B GPT4 1.4 GPTQ(order)
-  filename: airoboros-7B-gpt4-1.4-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GPTQ/
-  server: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GPTQ/resolve/main
-  variants:
-  - airoboros-7B-gpt4-1.4-GPTQ-4bit-128g.no-act.order.safetensors
-  - airoboros-7B-gpt4-1.4-GPTQ-4bit-128g.no-act.order.safetensors
-  - airoboros-7b-gpt4-1.4-GPTQ-4bit-128g.no-act.order.safetensors
-  - airoboros-7b-gpt4-1.4-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 7535ab91e88d2cd6cc209e103c16ec49e3adc2de64ddbbeeae09bf8e13586db5
-  description: Jon Durbin's Airoboros 33B GPT4 1.4 GPTQ(order)
-  filename: airoboros-33B-gpt4-1.4-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.4-GPTQ/
-  server: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.4-GPTQ/resolve/main
-  variants:
-  - airoboros-33B-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
-  - airoboros-33B-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
-  - airoboros-33b-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
-  - airoboros-33b-gpt4-1.4-GPTQ-4bit--1g.act.order.safetensors
 - SHA256: c74662bec56220de17b0b891b01af8c76c1ca55f96489293c5efe4992995f853
   description: Jon Durbin's Airoboros 13B GPT4 1.4 GPTQ(order)
   filename: airoboros-13B-gpt4-1.4-GPTQ
@@ -759,17 +1095,6 @@
   variants:
   - CAMEL-33B-combined-data-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
   - CAMEL-33B-combined-data-superhot-8k-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 8b39803cf7c7252b097f320dff0fcd4f77ade6b036fb6ee4c7963e1bcb4aeaa1
-  description: Pankaj Mathur's Orca Mini v2 7B GPTQ(order)
-  filename: orca_mini_v2_7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: cc-by-nc-sa-4.0
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/orca_mini_v2_7B-GPTQ/
-  server: https://huggingface.co/TheBloke/orca_mini_v2_7B-GPTQ/resolve/main
-  variants:
-  - orca-mini-v2_7b-GPTQ-4bit-128g.no-act.order.safetensors
-  - orca-mini-v2_7b-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: 35b90ab3ed5904fd0a0e8b1ef9020e4a8c8591d1acfed1cca74fc356f5dc2014
   description: NousResearch's Redmond Hermes Coder GPTQ(co/TheBloke/Redmond-Hermes-Coder-GPTQ/blob/main/gptq_model-4bit-128g)
   filename: Redmond-Hermes-Coder-GPTQ
@@ -1211,15 +1536,6 @@
   variants:
   - open-llama-13b-open-instruct-GPTQ-4bit-128g.no-act.order.safetensors
   - open-llama-13b-open-instruct-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: ac0fec049bacd3c8fdc9ac66e5703e7a9b2cf10be516bd637f1c999621b46242
-  description: VMWare's OpenLlama 13B Open Instruct GPTQ(order)
-  filename: vicuna-13B-1.1-GPTQ-4bit-128g
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: cc
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/open-llama-13b-open-instruct-GPTQ/
-  server: https://huggingface.co/TheBloke/open-llama-13b-open-instruct-GPTQ/resolve/main
-  variants: []
 - SHA256: b56d38f5d72dd37795e16343374bb00eb2ddfd5161e4eb5e6e880060b7a03da4
   description: Falcon-40B-Instruct 3bit GPTQ(co/TheBloke/falcon-40b-instruct-3bit-GPTQ/blob/main/gptq_model-3bit--1g)
   filename: falcon-40b-instruct-3bit-GPTQ
@@ -1275,28 +1591,6 @@
   variants:
   - gptq_model-3bit--1g.safetensors
   - gptq_model-3bit--1g.safetensors
-- SHA256: 86264ad0590635dab4950cb4c1bceb4505525b81ac56a1df89c164fea71e2dc9
-  description: Concept of Mind's Flan Open Llama 7B GPTQ(order)
-  filename: Flan-OpenLlama-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/Flan-OpenLlama-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/Flan-OpenLlama-7B-GPTQ/resolve/main
-  variants:
-  - flan-openllama-7b-GPTQ-4bit-128g.no-act.order.safetensors
-  - flan-openllama-7b-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: d70dcf049fba5385a1f97691eb3e50b09d655c4e6e686b2aca568052f079f60a
-  description: Tim Dettmers' Guanaco 7B GPTQ(no-act-order)
-  filename: guanaco-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/guanaco-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/guanaco-7B-GPTQ/resolve/main
-  variants:
-  - Guanaco-7B-GPTQ-4bit-128g.no-act-order.safetensors
-  - Guanaco-7B-GPTQ-4bit-128g.no-act-order.safetensors
 - SHA256: 195f72d6bc787effa39870cfd782a1fa8ff59c68c63d328bf78c27e4fc0d77eb
   description: Tim Dettmers' Guanaco 13B GPTQ(no-act-order)
   filename: guanaco-13B-GPTQ
@@ -1308,17 +1602,6 @@
   variants:
   - Guanaco-13B-GPTQ-4bit-128g.no-act-order.safetensors
   - Guanaco-13B-GPTQ-4bit-128g.no-act-order.safetensors
-- SHA256: df703858c425f68224d46d40583c21f3db470d789de282974b37c8d00e193874
-  description: Tim Dettmers' Guanaco 65B GPTQ(act-order)
-  filename: guanaco-65B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/guanaco-65B-GPTQ/
-  server: https://huggingface.co/TheBloke/guanaco-65B-GPTQ/resolve/main
-  variants:
-  - Guanaco-65B-GPTQ-4bit.act-order.safetensors
-  - Guanaco-65B-GPTQ-4bit.act-order.safetensors
 - SHA256: 4ab302fd8a9685bc2d11236ad60de39223352dcc1352fe2784f4b4673f13bd03
   description: Jon Durbin's Airoboros 65B GPT4 1.3 GPTQ(order)
   filename: airoboros-65B-gpt4-1.3-GPTQ
@@ -1396,15 +1679,6 @@
   variants:
   - gptq_model-4bit-128g.safetensors
   - gptq_model-4bit-128g.safetensors
-- SHA256: 8fe63bc9feaa2b5df80f9f2642218fb6861873a7a3e63a1cf12dbd70f27f4bb0
-  description: WBrown's Cassandra 6.9B GPTQ(9B-GPTQ/blob/main/gptq_model-4bit-128g)
-  filename: vicuna-7B-1.1-GPTQ-4bit-128g
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/cassandra-6.9B-GPTQ/
-  server: https://huggingface.co/TheBloke/cassandra-6.9B-GPTQ/resolve/main
-  variants: []
 - SHA256: 2c21724d17f748e80802a30a24948ff6a2b376f6076b338fc3b68c0c54274f95
   description: NousResearch's Nous-Hermes-13B GPTQ(order)
   filename: Nous-Hermes-13B-GPTQ
@@ -1427,17 +1701,6 @@
   variants:
   - gptq_model-4bit-128g.safetensors
   - gptq_model-4bit-128g.safetensors
-- SHA256: e25c08ab494a9edcdf4d49bfcf4e38fb3da9482aa717d5895245b884ab3051e7
-  description: Eric Hartford's WizardLM-7B-V1.0-Uncensored GPTQ(order)
-  filename: WizardLM-7B-V1.0-Uncensored-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/WizardLM-7B-V1.0-Uncensored-GPTQ/
-  server: https://huggingface.co/TheBloke/WizardLM-7B-V1.0-Uncensored-GPTQ/resolve/main
-  variants:
-  - wizardlm-7b-v1.0-uncensored-GPTQ-4bit-128g.no-act.order.safetensors
-  - wizardlm-7b-v1.0-uncensored-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: 92168124525e9c8d908944fb6492437d10d22cd786fa5982ad8fce94d00c5852
   description: Georgia Tech Research Institute's Galactica 30B Evol Instruct 70K GPTQ(co/TheBloke/galactica-30B-evol-instruct-70K-GPTQ/blob/main/gptq_model-4bit--1g)
   filename: galactica-30B-evol-instruct-70K-GPTQ
@@ -1449,39 +1712,6 @@
   variants:
   - gptq_model-4bit--1g.safetensors
   - gptq_model-4bit--1g.safetensors
-- SHA256: dadd6659ebda94e15d6808634aa4843d77b05c47798c305676f8a435e521f959
-  description: OptimalScale's Robin 65B v2 GPTQ(order)
-  filename: robin-65B-v2-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/robin-65B-v2-GPTQ/
-  server: https://huggingface.co/TheBloke/robin-65B-v2-GPTQ/resolve/main
-  variants:
-  - robin-65b-GPTQ-4bit--1g.no-act.order.safetensors
-  - robin-65b-GPTQ-4bit--1g.no-act.order.safetensors
-- SHA256: 54ee8df4387eba0c8d16de189dde9ad28c304510a01bd8d84677d5a1688515f2
-  description: OptimalScale's Robin 7B v2 GPTQ(order)
-  filename: robin-7B-v2-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/robin-7B-v2-GPTQ/
-  server: https://huggingface.co/TheBloke/robin-7B-v2-GPTQ/resolve/main
-  variants:
-  - robin-7b-GPTQ-4bit-128g.no-act.order.safetensors
-  - robin-7b-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 04df2e44efdce8923e04693c90603d2cc4b2ee5ff1788b27fe4fffced62eeb76
-  description: OptimalScale's Robin 33B v2 GPTQ(order)
-  filename: robin-33B-v2-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/robin-33B-v2-GPTQ/
-  server: https://huggingface.co/TheBloke/robin-33B-v2-GPTQ/resolve/main
-  variants:
-  - robin-33b-GPTQ-4bit--1g.act.order.safetensors
-  - robin-33b-GPTQ-4bit--1g.act.order.safetensors
 - SHA256: 81112f81ca2eaf268b38c28769dfbe99211a7e428decb38cda8b0800eaa21d3d
   description: John Durbin's Airoboros 7B GPT4 1.2 GPTQ(order)
   filename: airoboros-7B-gpt4-1.2-GPTQ
@@ -1559,19 +1789,6 @@
   variants:
   - camel-13b-roleplay-GPTQ-4bit-128g.no-act.order.safetensors
   - camel-13b-roleplay-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 888146c74e120c293ecdc9d7e03a73317c5f226d1ca5ee8119cea8f5d3c84a04
-  description: Camel AI's CAMEL 13B Combined Data GPTQ(order)
-  filename: CAMEL-13B-Combined-Data-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-GPTQ/
-  server: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-GPTQ/resolve/main
-  variants:
-  - camel-13b-combined-GPTQ-4bit-128g.no-act.order.safetensors
-  - camel-13b-combined-GPTQ-4bit-128g.no-act.order.safetensors
-  - camel-13b-combined-GPTQ-4bit.act.order.safetensors
-  - camel-13b-combined-GPTQ-4bit.act.order.safetensors
 - SHA256: 8e800f01b56cb9183a8627489bbe7046bca404d9e6a707f854f287fb2df00b42
   description: Eugene Pentland's Minotaur 13B Landmark GPTQ(co/TheBloke/Minotaur-13B-Landmark-GPTQ/blob/main/gptq_model-4bit-128g)
   filename: Minotaur-13B-Landmark-GPTQ
@@ -1594,17 +1811,6 @@
   variants:
   - gptq_model-4bit-128g.safetensors
   - gptq_model-4bit-128g.safetensors
-- SHA256: ab5a285a54227d1d9bff3e81076c58f7073298ff97330b7c7895704e48577082
-  description: Allen AI's Tulu 30B GPTQ(co/TheBloke/tulu-30B-GPTQ/blob/main/gptq_model-4bit--1g)
-  filename: tulu-30B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/tulu-30B-GPTQ/
-  server: https://huggingface.co/TheBloke/tulu-30B-GPTQ/resolve/main
-  variants:
-  - gptq_model-4bit--1g.safetensors
-  - gptq_model-4bit--1g.safetensors
 - SHA256: d3376ab3dc59deb38d15e566f93093a0a8e46e3362ff937a394176ab6f2e7dd3
   description: VMWare's open-llama-7B-open-instruct GPTQ(co/TheBloke/open-llama-7b-open-instruct-GPTQ/blob/main/gptq_model-4bit-128g)
   filename: open-llama-7b-open-instruct-GPTQ
@@ -1649,17 +1855,6 @@
   variants:
   - airoboros-13b-1.1-GPTQ-4bit-128g.no-act.order.safetensors
   - airoboros-13b-1.1-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 24215ff6a3134fae3f714aaa1e11fc17876e2d04ae1b8a9205aad84ec768f7c7
-  description: Eric Hartford's Samantha 1.1 Llama 7B GPTQ(order)
-  filename: samantha-1.1-llama-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/samantha-1.1-llama-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/samantha-1.1-llama-7B-GPTQ/resolve/main
-  variants:
-  - samantha-1.1-llama-7b-GPTQ-4bit-128g.no-act.order.safetensors
-  - samantha-1.1-llama-7b-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: 440c49bd02346ad345788e30c1b2bed6d8d5671df2eb3de3b0cffde5395fa71e
   description: OpenAccess AI Collective's Minotaur 13B GPTQ(order)
   filename: minotaur-13B-GPTQ
@@ -1704,17 +1899,6 @@
   variants:
   - wizardlm-30b-GPTQ-4bit.act.order.safetensors
   - wizardlm-30b-GPTQ-4bit.act.order.safetensors
-- SHA256: fc9b35da9a3f302e7a73a7f2209f27122b1efc7fdd1b79bd594442a680879608
-  description: Kevin Pro's Vicuna 7B CoT GPTQ(order)
-  filename: Vicuna-7B-CoT-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/Vicuna-7B-CoT-GPTQ/
-  server: https://huggingface.co/TheBloke/Vicuna-7B-CoT-GPTQ/resolve/main
-  variants:
-  - vicuna-7B-cot-GPTQ-4bit-128g.no-act.order.safetensors
-  - vicuna-7B-cot-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: 8b86a0d17281af68f3e1f75087e798822ed99a61d40692f5320ba2dc867f9d46
   description: Kevin Pro's Vicuna 13B CoT GPTQ(order)
   filename: Vicuna-13B-CoT-GPTQ
@@ -1726,28 +1910,6 @@
   variants:
   - vicuna-13b-cot-GPTQ-4bit-128g.no-act.order.safetensors
   - vicuna-13b-cot-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 8f521bda361be1aa7225872511b91d97c13468cbb5aabf9b27214e6b362d612e
-  description: Kaist AI's Selfee 7B GPTQ(order)
-  filename: selfee-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/selfee-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/selfee-7B-GPTQ/resolve/main
-  variants:
-  - selfee-7B-GPTQ-4bit-128g.no-act.order.safetensors
-  - selfee-7B-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 935b0f8d7f86acdb1dbe1d7eda0b21d5de2a4b1f3c4a6b0e736c0e4eb0d8e69b
-  description: 'WizardLM: An Instruction-following LLM Using Evol-Instruct(no-act-order)'
-  filename: wizardLM-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/wizardLM-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/wizardLM-7B-GPTQ/resolve/main
-  variants:
-  - wizardLM-7B-GPTQ-4bit.compat.no-act-order.safetensors
-  - wizardLM-7B-GPTQ-4bit.compat.no-act-order.safetensors
 - SHA256: 97b6029d58cbd6f8ddcebe72c0e5401b973998dc5bda247ea430a3ef82c802bb
   description: Austism's Chronos WizardLM UC Scot ST 13B GPTQ(order)
   filename: chronos-wizardlm-uc-scot-st-13B-GPTQ
@@ -1770,17 +1932,6 @@
   variants:
   - selfee-13b-GPTQ-4bit-128g.no-act.order.safetensors
   - selfee-13b-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: ecf168cd5b99df812a946f6fed79b184f4021806fd7125d777994f28674193df
-  description: rewoo's Planner 7B GPTQ(order)
-  filename: Planner-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/Planner-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/Planner-7B-GPTQ/resolve/main
-  variants:
-  - planner-7b-GPTQ-4bit-128g.no-act.order.safetensors
-  - planner-7b-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: ab9bf27ffa18aa7672b5bbfa2824a677e527047996f84339f1402558faca89e4
   description: Eric Hartford's Based 7B GPTQ(order)
   filename: based-7B-GPTQ
@@ -1792,17 +1943,6 @@
   variants:
   - based-7B-GPTQ-4bit-128g.no-act.order.safetensors
   - based-7B-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: 2537dfc175162a87f63f1a5ac62469565b2d3e7f3d7c35d002da00e6094a5b11
-  description: Teknium's LLaMa Deus 7B v3 GPTQ(order)
-  filename: llama-deus-7b-v3-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/llama-deus-7b-v3-GPTQ/
-  server: https://huggingface.co/TheBloke/llama-deus-7b-v3-GPTQ/resolve/main
-  variants:
-  - llama-deus-7b-v3-GPTQ-4bit-128g.no-act.order.safetensors
-  - llama-deus-7b-v3-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: eb4744c1bc8ca60c093282503a70cfa491fdf92d0771159da2e2ff43fe8782c4
   description: Jon Durbin's Airoboros 7b GPT4 GPTQ(order)
   filename: airoboros-7b-gpt4-GPTQ
@@ -1847,17 +1987,6 @@
   variants:
   - based-30b-GPTQ-4bit--1g.act.order.safetensors
   - based-30b-GPTQ-4bit--1g.act.order.safetensors
-- SHA256: 4eb12a0296e5385f1e10c01e43014ee244bfc9cc318f360c19b33f21f8f00fc7
-  description: Chaoyi Wi's PMC_LLAMA 7B GPTQ(order)
-  filename: PMC_LLAMA-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/PMC_LLAMA-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/PMC_LLAMA-7B-GPTQ/resolve/main
-  variants:
-  - PMC_LLAMA-7B-GPTQ-4bit-128g.no-act.order.safetensors
-  - PMC_LLAMA-7B-GPTQ-4bit-128g.no-act.order.safetensors
 - SHA256: 4268c96414b21c159a97bce0759e3870a5fd128a5069ac539a04b163a0579b1a
   description: FPHam's Karen The Editor 13B GPTQ(order)
   filename: Karen_theEditor_13B-GPTQ
@@ -1869,17 +1998,6 @@
   variants:
   - Karen-The-Editor-GPTQ-4bit-128g.no-act.order.safetensors
   - Karen-The-Editor-GPTQ-4bit-128g.no-act.order.safetensors
-- SHA256: d45613c3b91f188a7612b7ab0f36332cb795f87b509924de5dbf4591eb21acae
-  description: OpenAccess AI Collective's Hippogriff 30B Chat GPTQ(order)
-  filename: hippogriff-30b-chat-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/hippogriff-30b-chat-GPTQ/
-  server: https://huggingface.co/TheBloke/hippogriff-30b-chat-GPTQ/resolve/main
-  variants:
-  - hippogriff-30b-GPTQ-4bit.act.order.safetensors
-  - hippogriff-30b-GPTQ-4bit.act.order.safetensors
 - SHA256: bf41e8a84120c6048dcfa2113f7076f486cc91755e621383ef25d945514b2ad0
   description: Eric Hartford's Samantha-Falcon-7B GPTQ(co/TheBloke/samantha-falcon-7B-GPTQ/blob/main/gptq_model-4bit-64g)
   filename: samantha-falcon-7B-GPTQ
@@ -1924,17 +2042,6 @@
   variants:
   - Samantha-7B-GPTQ-4bit-128g.no-act-order.safetensors
   - Samantha-7B-GPTQ-4bit-128g.no-act-order.safetensors
-- SHA256: 23a7316b5f676545d3939ee3df538c73a86014146191f58d5cd38428e705fd3b
-  description: Gorilla 7B GPTQ(no-act-order)
-  filename: gorilla-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: unknown
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/gorilla-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/gorilla-7B-GPTQ/resolve/main
-  variants:
-  - Gorilla-7B-GPTQ-4bit-128g.no-act-order.safetensors
-  - Gorilla-7B-GPTQ-4bit-128g.no-act-order.safetensors
 - SHA256: 3d55c18713f2aa707eba236794b4c3fa68487790498a72cab9716cd6478946e4
   description: WizardLM 13B 1.0 GPTQ(no-act-order)
   filename: wizardLM-13B-1.0-GPTQ
@@ -1968,17 +2075,6 @@
   variants:
   - Baize-v2-13B-4bit-128g.no-act-order.safetensors
   - Baize-v2-13B-4bit-128g.no-act-order.safetensors
-- SHA256: 4dbc66b1c8da6beeabcea22d2f1c3f2fd661854f0c75287e8fec7b041e39f809
-  description: Project Baize V2 7B GPTQ(no-act-order)
-  filename: Project-Baize-v2-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/Project-Baize-v2-7B-GPTQ/
-  server: https://huggingface.co/TheBloke/Project-Baize-v2-7B-GPTQ/resolve/main
-  variants:
-  - Baize-v2-7B-4bit-128g.no-act-order.safetensors
-  - Baize-v2-7B-4bit-128g.no-act-order.safetensors
 - SHA256: 9089a7cefddb04576b402f23ecb802c8a5bb6389edfa21aef1647614f765911f
   description: Airoboros 13B GPTQ 4bit(no-act-order)
   filename: airoboros-13B-GPTQ
@@ -2001,17 +2097,6 @@
   variants:
   - Manticore-13B-GPTQ-4bit-128g.no-act-order.safetensors
   - Manticore-13B-GPTQ-4bit-128g.no-act-order.safetensors
-- SHA256: 435d10744cc4a9f1dde85bc98b98279988e30bcbfaf5d5a56430c3b2c68257fc
-  description: Wizard-Vicuna-7B-Uncensored GPTQ(no-act-order)
-  filename: Wizard-Vicuna-7B-Uncensored-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-7B-Uncensored-GPTQ/
-  server: https://huggingface.co/TheBloke/Wizard-Vicuna-7B-Uncensored-GPTQ/resolve/main
-  variants:
-  - Wizard-Vicuna-7B-Uncensored-GPTQ-4bit-128g.no-act-order.safetensors
-  - Wizard-Vicuna-7B-Uncensored-GPTQ-4bit-128g.no-act-order.safetensors
 - SHA256: d3a8be8f970259af87cfb7df7df3998f249e16b3ae5ab11026fd6050cc6760cd
   description: LLaMa-65B-GPTQ-3bit.safetensors model
   filename: LLaMa-65B-GPTQ-3bit
@@ -2122,19 +2207,6 @@
   variants:
   - wizard-vicuna-13B-GPTQ-4bit.compat.no-act-order.safetensors
   - wizard-vicuna-13B-GPTQ-4bit.compat.no-act-order.safetensors
-- SHA256: bde7eba44d78943bd7d83b721e8c6760ab44f7604999037ea345e8c32efd4c49
-  description: medalpaca-13B GPTQ 4bit(act-order)
-  filename: medalpaca-13B-GPTQ-4bit
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: cc
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/medalpaca-13B-GPTQ-4bit/
-  server: https://huggingface.co/TheBloke/medalpaca-13B-GPTQ-4bit/resolve/main
-  variants:
-  - medalpaca-13B-GPTQ-4bit-128g.compat.no-act-order.safetensors
-  - medalpaca-13B-GPTQ-4bit-128g.compat.no-act-order.safetensors
-  - medalpaca-13B-GPTQ-4bit-128g.latest.act-order.safetensors
-  - medalpaca-13B-GPTQ-4bit-128g.latest.act-order.safetensors
 - SHA256: cb7408007cdc0177d4e3dc33dd106a0dfcc76026e67918fcfe8ea0bb6ac01ac7
   description: Alpaca LoRA 65B GPTQ 4bit(co/TheBloke/alpaca-lora-65B-GPTQ-4bit/blob/main/alpaca-lora-65B-GPTQ-4bit-128g)
   filename: alpaca-lora-65B-GPTQ-4bit
@@ -2150,19 +2222,6 @@
   - alpaca-lora-65B-GPTQ-4bit-128g.no-act-order.safetensors
   - alpaca-lora-65B-GPTQ-4bit-128g.safetensors
   - alpaca-lora-65B-GPTQ-4bit-128g.safetensors
-- SHA256: 7235e7cd46ba0d49c3b40c8f870f7f1adc78cf52830e64147ecbe91e5fb7975a
-  description: Original model card is below(act-order)
-  filename: gpt4-alpaca-lora-13B-GPTQ-4bit-128g
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/gpt4-alpaca-lora-13B-GPTQ-4bit-128g/
-  server: https://huggingface.co/TheBloke/gpt4-alpaca-lora-13B-GPTQ-4bit-128g/resolve/main
-  variants:
-  - gpt4-alpaca-lora-13B-GPTQ-4bit-128g.compat.no-act-order.safetensors
-  - gpt4-alpaca-lora-13B-GPTQ-4bit-128g.compat.no-act-order.safetensors
-  - gpt4-alpaca-lora-13B-GPTQ-4bit-128g.latest.act-order.safetensors
-  - gpt4-alpaca-lora-13B-GPTQ-4bit-128g.latest.act-order.safetensors
 - SHA256: 9df0f78841b752dc93b54b75471cda2fdbe96c7c661840375db6a031af8df109
   description: Original GPT4 Alpaca Lora model card(co/TheBloke/gpt4-alpaca-lora-30B-GPTQ-4bit-128g/blob/main/gpt4-alpaca-lora-30B-GPTQ-4bit-128g)
   filename: gpt4-alpaca-lora-30B-GPTQ-4bit-128g
@@ -2196,34 +2255,3 @@
   variants:
   - vicuna-7B-GPTQ-4bit-128g.safetensors
   - vicuna-7B-GPTQ-4bit-128g.safetensors
-- SHA256: 451b3579e6735f2ec4eb0c80dab80b3a737c926564b11260e6d55a021ea37d7f
-  description: Vicuna Model Card(co/TheBloke/vicuna-7B-GPTQ-4bit-128g/blob/main/vicuna-7B-GPTQ-4bit-128g)
-  filename: galpaca-30B-GPTQ-4bit-128g
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/vicuna-7B-GPTQ-4bit-128g/
-  server: https://huggingface.co/TheBloke/vicuna-7B-GPTQ-4bit-128g/resolve/main
-  variants: []
-- SHA256: 6f4b193b917c31ec7d5a6c44f75e6d6c35b58a0cd197fbd00b2cd1b4c5344eb8
-  description: koala-13B-4bit-128g.safetensors model
-  filename: koala-13B-GPTQ-4bit-128g
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/koala-13B-GPTQ-4bit-128g/
-  server: https://huggingface.co/TheBloke/koala-13B-GPTQ-4bit-128g/resolve/main
-  variants:
-  - koala-13B-4bit-128g.safetensors
-  - koala-13B-4bit-128g.safetensors
-- SHA256: 303bb9f5418a26c88c933a8a76c6dd0f2de33c40273bd84fc07b31e1b8a02da7
-  description: koala-7B-4bit-128g.safetensors model
-  filename: koala-7B-GPTQ-4bit-128g
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/koala-7B-GPTQ-4bit-128g/
-  server: https://huggingface.co/TheBloke/koala-7B-GPTQ-4bit-128g/resolve/main
-  variants:
-  - koala-7B-4bit-128g.safetensors
-  - koala-7B-4bit-128g.safetensors

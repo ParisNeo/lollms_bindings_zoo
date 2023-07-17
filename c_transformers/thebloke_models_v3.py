@@ -155,7 +155,7 @@ def build_models(start_id, end_id, output_file):
     print(f"YAML data saved to {output_file}")
 
 # Example usage
-# url = 'https://huggingface.co/TheBloke'
-# html_to_yaml(url, 'output_scraped_models.yaml')
+url = 'https://huggingface.co/TheBloke'
+html_to_yaml(url, 'output_scraped_models.yaml')
 
 build_models(0,-1,f"output_ggml.yaml")

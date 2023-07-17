@@ -73,6 +73,8 @@ def extract_model_cards(model_links, entries):
         # Find all <a> tags with '.bin' in their href within the model repository
         bin_links = model_soup.find_all('a', href=lambda href: href and href.endswith('.safetensors'))
         v = []
+        if len(bin_links)==0:
+            continue
         for bin_link in tqdm(bin_links):
             path = bin_link['href'].replace("resolve","blob")
             # Send a GET request to the URL and retrieve the HTML content

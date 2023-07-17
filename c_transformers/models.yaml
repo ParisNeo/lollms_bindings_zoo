@@ -1,3 +1,334 @@
+- SHA256: eeb81fcb3e6d07b0c1786f1064828a5b204e1b04909366fbf4c9188da60b9461
+  description: Meta's LLaMA 7b GGML(q2_K)
+  filename: llama-7b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/LLaMa-7B-GGML/
+  server: https://huggingface.co/TheBloke/LLaMa-7B-GGML/resolve/main
+  variants:
+  - llama-7b.ggmlv3.q2_K.bin
+  - llama-7b.ggmlv3.q2_K.bin
+  - llama-7b.ggmlv3.q3_K_L.bin
+  - llama-7b.ggmlv3.q3_K_L.bin
+  - llama-7b.ggmlv3.q3_K_M.bin
+  - llama-7b.ggmlv3.q3_K_M.bin
+  - llama-7b.ggmlv3.q3_K_S.bin
+  - llama-7b.ggmlv3.q3_K_S.bin
+  - llama-7b.ggmlv3.q4_0.bin
+  - llama-7b.ggmlv3.q4_0.bin
+  - llama-7b.ggmlv3.q4_1.bin
+  - llama-7b.ggmlv3.q4_1.bin
+  - llama-7b.ggmlv3.q4_K_M.bin
+  - llama-7b.ggmlv3.q4_K_M.bin
+  - llama-7b.ggmlv3.q4_K_S.bin
+  - llama-7b.ggmlv3.q4_K_S.bin
+  - llama-7b.ggmlv3.q5_0.bin
+  - llama-7b.ggmlv3.q5_0.bin
+  - llama-7b.ggmlv3.q5_1.bin
+  - llama-7b.ggmlv3.q5_1.bin
+  - llama-7b.ggmlv3.q5_K_M.bin
+  - llama-7b.ggmlv3.q5_K_M.bin
+  - llama-7b.ggmlv3.q5_K_S.bin
+  - llama-7b.ggmlv3.q5_K_S.bin
+  - llama-7b.ggmlv3.q6_K.bin
+  - llama-7b.ggmlv3.q6_K.bin
+  - llama-7b.ggmlv3.q8_0.bin
+  - llama-7b.ggmlv3.q8_0.bin
+- SHA256: f416b9174ae3d4f4c6f615069989a9757003cdbb67565aefe922ec46474a3445
+  description: Meta's LLaMA 30b GGML(q2_K)
+  filename: llama-30b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/LLaMa-30B-GGML/
+  server: https://huggingface.co/TheBloke/LLaMa-30B-GGML/resolve/main
+  variants:
+  - llama-30b.ggmlv3.q2_K.bin
+  - llama-30b.ggmlv3.q2_K.bin
+  - llama-30b.ggmlv3.q3_K_L.bin
+  - llama-30b.ggmlv3.q3_K_L.bin
+  - llama-30b.ggmlv3.q3_K_M.bin
+  - llama-30b.ggmlv3.q3_K_M.bin
+  - llama-30b.ggmlv3.q3_K_S.bin
+  - llama-30b.ggmlv3.q3_K_S.bin
+  - llama-30b.ggmlv3.q4_0.bin
+  - llama-30b.ggmlv3.q4_0.bin
+  - llama-30b.ggmlv3.q4_1.bin
+  - llama-30b.ggmlv3.q4_1.bin
+  - llama-30b.ggmlv3.q4_K_M.bin
+  - llama-30b.ggmlv3.q4_K_M.bin
+  - llama-30b.ggmlv3.q4_K_S.bin
+  - llama-30b.ggmlv3.q4_K_S.bin
+  - llama-30b.ggmlv3.q5_0.bin
+  - llama-30b.ggmlv3.q5_0.bin
+  - llama-30b.ggmlv3.q5_1.bin
+  - llama-30b.ggmlv3.q5_1.bin
+  - llama-30b.ggmlv3.q5_K_M.bin
+  - llama-30b.ggmlv3.q5_K_M.bin
+  - llama-30b.ggmlv3.q5_K_S.bin
+  - llama-30b.ggmlv3.q5_K_S.bin
+  - llama-30b.ggmlv3.q6_K.bin
+  - llama-30b.ggmlv3.q6_K.bin
+  - llama-30b.ggmlv3.q8_0.bin
+  - llama-30b.ggmlv3.q8_0.bin
+- SHA256: 197d1ae91304925d3751e0e14ab5ed2e2aaa3e9ff41a229e6c057e26f67df94a
+  description: Meta's LLaMA 13b GGML(q2_K)
+  filename: llama-13b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/LLaMa-13B-GGML/
+  server: https://huggingface.co/TheBloke/LLaMa-13B-GGML/resolve/main
+  variants:
+  - llama-13b.ggmlv3.q2_K.bin
+  - llama-13b.ggmlv3.q2_K.bin
+  - llama-13b.ggmlv3.q3_K_L.bin
+  - llama-13b.ggmlv3.q3_K_L.bin
+  - llama-13b.ggmlv3.q3_K_M.bin
+  - llama-13b.ggmlv3.q3_K_M.bin
+  - llama-13b.ggmlv3.q3_K_S.bin
+  - llama-13b.ggmlv3.q3_K_S.bin
+  - llama-13b.ggmlv3.q4_0.bin
+  - llama-13b.ggmlv3.q4_0.bin
+  - llama-13b.ggmlv3.q4_1.bin
+  - llama-13b.ggmlv3.q4_1.bin
+  - llama-13b.ggmlv3.q4_K_M.bin
+  - llama-13b.ggmlv3.q4_K_M.bin
+  - llama-13b.ggmlv3.q4_K_S.bin
+  - llama-13b.ggmlv3.q4_K_S.bin
+  - llama-13b.ggmlv3.q5_0.bin
+  - llama-13b.ggmlv3.q5_0.bin
+  - llama-13b.ggmlv3.q5_1.bin
+  - llama-13b.ggmlv3.q5_1.bin
+  - llama-13b.ggmlv3.q5_K_M.bin
+  - llama-13b.ggmlv3.q5_K_M.bin
+  - llama-13b.ggmlv3.q5_K_S.bin
+  - llama-13b.ggmlv3.q5_K_S.bin
+  - llama-13b.ggmlv3.q6_K.bin
+  - llama-13b.ggmlv3.q6_K.bin
+  - llama-13b.ggmlv3.q8_0.bin
+  - llama-13b.ggmlv3.q8_0.bin
+- SHA256: 43b58561af47f3a0c98a22f11cc7c6cad3c818cd72135afdea4da7cae090c4ea
+  description: Meta's LLaMA 65B GGML(q2_K)
+  filename: llama-65b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/llama-65B-GGML/
+  server: https://huggingface.co/TheBloke/llama-65B-GGML/resolve/main
+  variants:
+  - llama-65b.ggmlv3.q2_K.bin
+  - llama-65b.ggmlv3.q2_K.bin
+  - llama-65b.ggmlv3.q3_K_L.bin
+  - llama-65b.ggmlv3.q3_K_L.bin
+  - llama-65b.ggmlv3.q3_K_M.bin
+  - llama-65b.ggmlv3.q3_K_M.bin
+  - llama-65b.ggmlv3.q3_K_S.bin
+  - llama-65b.ggmlv3.q3_K_S.bin
+  - llama-65b.ggmlv3.q4_0.bin
+  - llama-65b.ggmlv3.q4_0.bin
+  - llama-65b.ggmlv3.q4_1.bin
+  - llama-65b.ggmlv3.q4_1.bin
+  - llama-65b.ggmlv3.q4_K_M.bin
+  - llama-65b.ggmlv3.q4_K_M.bin
+  - llama-65b.ggmlv3.q4_K_S.bin
+  - llama-65b.ggmlv3.q4_K_S.bin
+  - llama-65b.ggmlv3.q5_0.bin
+  - llama-65b.ggmlv3.q5_0.bin
+  - llama-65b.ggmlv3.q5_1.bin
+  - llama-65b.ggmlv3.q5_1.bin
+  - llama-65b.ggmlv3.q5_K_M.bin
+  - llama-65b.ggmlv3.q5_K_M.bin
+  - llama-65b.ggmlv3.q5_K_S.bin
+  - llama-65b.ggmlv3.q5_K_S.bin
+- SHA256: 508266b55c5ada4702761d194cd19b399e9b5c6bdff2a056d621e69feee7a48a
+  description: LoupGarou's WizardCoder-Guanaco-15B-V1.1 GGML(q4_0)
+  filename: wizardcoder-guanaco-15b-v1.1.ggmlv1.q4_0.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: apache-2.0
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/WizardCoder-Guanaco-15B-V1.1-GGML/
+  server: https://huggingface.co/TheBloke/WizardCoder-Guanaco-15B-V1.1-GGML/resolve/main
+  variants:
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q4_0.bin
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q4_0.bin
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q4_1.bin
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q4_1.bin
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q5_0.bin
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q5_0.bin
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q5_1.bin
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q5_1.bin
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q8_0.bin
+  - wizardcoder-guanaco-15b-v1.1.ggmlv1.q8_0.bin
+- SHA256: d59c54d3413384aa72c85b1c05077eb1f93b12b6b39980836af937c07c1f11a1
+  description: H2O's GM OASST1 Falcon 7B v3 GGML(q4_0)
+  filename: h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q4_0.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: apache-2.0
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-7b-v3-GGML/
+  server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-7b-v3-GGML/resolve/main
+  variants:
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q4_0.bin
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q4_0.bin
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q4_1.bin
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q4_1.bin
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q5_0.bin
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q5_0.bin
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q5_1.bin
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q5_1.bin
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q8_0.bin
+  - h2ogpt-gm-oasst1-en-2048-falcon-7b-v3.ggccv1.q8_0.bin
+- SHA256: 6d2383dc8d147a9d9793041cef80e9222e4e5e29297db04e5fb96653c6b63b04
+  description: Open-Orca's OpenOrca-Preview1-13B GGML(q2_K)
+  filename: openorca-preview1-200k-llama-13b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/OpenOrca-Preview1-13B-GGML/
+  server: https://huggingface.co/TheBloke/OpenOrca-Preview1-13B-GGML/resolve/main
+  variants:
+  - openorca-preview1-200k-llama-13b.ggmlv3.q2_K.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q2_K.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q3_K_L.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q3_K_L.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q3_K_M.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q3_K_M.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q3_K_S.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q3_K_S.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q4_0.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q4_0.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q4_1.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q4_1.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q4_K_M.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q4_K_M.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q4_K_S.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q4_K_S.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q5_0.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q5_0.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q5_1.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q5_1.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q5_K_M.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q5_K_M.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q5_K_S.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q5_K_S.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q6_K.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q6_K.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q8_0.bin
+  - openorca-preview1-200k-llama-13b.ggmlv3.q8_0.bin
+- SHA256: ab4786dbbc939a81350fecd41398ffe346fae55d86570614b6185739c4e63d7a
+  description: LoupGarou's Starcoderplus Guanaco GPT4 15B V1.0 GGML(q4_0)
+  filename: starcoderplus-guanaco-gpt4.ggmlv1.q4_0.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: apache-2.0
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Starcoderplus-Guanaco-GPT4-15B-V1.0-GGML/
+  server: https://huggingface.co/TheBloke/Starcoderplus-Guanaco-GPT4-15B-V1.0-GGML/resolve/main
+  variants:
+  - starcoderplus-guanaco-gpt4.ggmlv1.q4_0.bin
+  - starcoderplus-guanaco-gpt4.ggmlv1.q4_0.bin
+  - starcoderplus-guanaco-gpt4.ggmlv1.q4_1.bin
+  - starcoderplus-guanaco-gpt4.ggmlv1.q4_1.bin
+  - starcoderplus-guanaco-gpt4.ggmlv1.q5_0.bin
+  - starcoderplus-guanaco-gpt4.ggmlv1.q5_0.bin
+  - starcoderplus-guanaco-gpt4.ggmlv1.q5_1.bin
+  - starcoderplus-guanaco-gpt4.ggmlv1.q5_1.bin
+  - starcoderplus-guanaco-gpt4.ggmlv1.q8_0.bin
+  - starcoderplus-guanaco-gpt4.ggmlv1.q8_0.bin
+- SHA256: 3782acb184c8434265987e713e45b2c4a036c285fd1cfa99c40176c18aff84d4
+  description: VMware's Open Llama 7B v2 Open Instruct GGML(q2_K)
+  filename: open-llama-7b-v2-open-instruct.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/open-llama-7B-v2-open-instruct-GGML/
+  server: https://huggingface.co/TheBloke/open-llama-7B-v2-open-instruct-GGML/resolve/main
+  variants:
+  - open-llama-7b-v2-open-instruct.ggmlv3.q2_K.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q2_K.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q3_K_L.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q3_K_L.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q3_K_M.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q3_K_M.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q3_K_S.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q3_K_S.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q4_0.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q4_0.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q4_1.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q4_1.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q4_K_M.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q4_K_M.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q4_K_S.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q4_K_S.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q5_0.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q5_0.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q5_1.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q5_1.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q5_K_M.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q5_K_M.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q5_K_S.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q5_K_S.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q6_K.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q6_K.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q8_0.bin
+  - open-llama-7b-v2-open-instruct.ggmlv3.q8_0.bin
+- SHA256: d731985e7a4cd57d7fd57a378d27550a18394ee2d54c13a0e7f0f79abea5b2b9
+  description: Henk717's Airochronos 33B GGML(q2_K)
+  filename: airochronos-33b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/airochronos-33B-GGML/
+  server: https://huggingface.co/TheBloke/airochronos-33B-GGML/resolve/main
+  variants:
+  - airochronos-33b.ggmlv3.q2_K.bin
+  - airochronos-33b.ggmlv3.q2_K.bin
+  - airochronos-33b.ggmlv3.q3_K_L.bin
+  - airochronos-33b.ggmlv3.q3_K_L.bin
+  - airochronos-33b.ggmlv3.q3_K_M.bin
+  - airochronos-33b.ggmlv3.q3_K_M.bin
+  - airochronos-33b.ggmlv3.q3_K_S.bin
+  - airochronos-33b.ggmlv3.q3_K_S.bin
+  - airochronos-33b.ggmlv3.q4_0.bin
+  - airochronos-33b.ggmlv3.q4_0.bin
+  - airochronos-33b.ggmlv3.q4_1.bin
+  - airochronos-33b.ggmlv3.q4_1.bin
+  - airochronos-33b.ggmlv3.q4_K_M.bin
+  - airochronos-33b.ggmlv3.q4_K_M.bin
+  - airochronos-33b.ggmlv3.q4_K_S.bin
+  - airochronos-33b.ggmlv3.q4_K_S.bin
+  - airochronos-33b.ggmlv3.q5_0.bin
+  - airochronos-33b.ggmlv3.q5_0.bin
+  - airochronos-33b.ggmlv3.q5_1.bin
+  - airochronos-33b.ggmlv3.q5_1.bin
+  - airochronos-33b.ggmlv3.q5_K_M.bin
+  - airochronos-33b.ggmlv3.q5_K_M.bin
+  - airochronos-33b.ggmlv3.q5_K_S.bin
+  - airochronos-33b.ggmlv3.q5_K_S.bin
+  - airochronos-33b.ggmlv3.q6_K.bin
+  - airochronos-33b.ggmlv3.q6_K.bin
+  - airochronos-33b.ggmlv3.q8_0.bin
+  - airochronos-33b.ggmlv3.q8_0.bin
+- SHA256: 73562c4c04b0c8a71ade27eab85c22edc765f526e204ca5009f90b931f19e947
+  description: Manoj Preveen's MPT 30B Dolphin v2 GGML(q4_0)
+  filename: mpt-30b-dolphin-v2.ggmlv1.q4_0.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/MPT-30B-Dolphin-v2-GGML/
+  server: https://huggingface.co/TheBloke/MPT-30B-Dolphin-v2-GGML/resolve/main
+  variants:
+  - mpt-30b-dolphin-v2.ggmlv1.q4_0.bin
+  - mpt-30b-dolphin-v2.ggmlv1.q4_0.bin
+  - mpt-30b-dolphin-v2.ggmlv1.q4_1.bin
+  - mpt-30b-dolphin-v2.ggmlv1.q4_1.bin
+  - mpt-30b-dolphin-v2.ggmlv1.q5_0.bin
+  - mpt-30b-dolphin-v2.ggmlv1.q5_0.bin
+  - mpt-30b-dolphin-v2.ggmlv1.q5_1.bin
+  - mpt-30b-dolphin-v2.ggmlv1.q5_1.bin
+  - mpt-30b-dolphin-v2.ggmlv1.q8_0.bin
+  - mpt-30b-dolphin-v2.ggmlv1.q8_0.bin
 - SHA256: 60da84027adfa4b17de7f4be6207bca3f4422fcf17252b641060cf52b632b5fe
   description: Henk717's Chronoboros 33B GGML(q2_K)
   filename: chronoboros-33b.ggmlv3.q2_K.bin
@@ -35,6 +366,43 @@
   - chronoboros-33b.ggmlv3.q6_K.bin
   - chronoboros-33b.ggmlv3.q8_0.bin
   - chronoboros-33b.ggmlv3.q8_0.bin
+- SHA256: 6889037dfcbd87b04cba28813a8f541579f34dcfd2ae6d6f57c804d5c5c38cb3
+  description: Maya Philippine's GodziLLa 30B GGML(q2_K)
+  filename: godzilla-30b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/GodziLLa-30B-GGML/
+  server: https://huggingface.co/TheBloke/GodziLLa-30B-GGML/resolve/main
+  variants:
+  - godzilla-30b.ggmlv3.q2_K.bin
+  - godzilla-30b.ggmlv3.q2_K.bin
+  - godzilla-30b.ggmlv3.q3_K_L.bin
+  - godzilla-30b.ggmlv3.q3_K_L.bin
+  - godzilla-30b.ggmlv3.q3_K_M.bin
+  - godzilla-30b.ggmlv3.q3_K_M.bin
+  - godzilla-30b.ggmlv3.q3_K_S.bin
+  - godzilla-30b.ggmlv3.q3_K_S.bin
+  - godzilla-30b.ggmlv3.q4_0.bin
+  - godzilla-30b.ggmlv3.q4_0.bin
+  - godzilla-30b.ggmlv3.q4_1.bin
+  - godzilla-30b.ggmlv3.q4_1.bin
+  - godzilla-30b.ggmlv3.q4_K_M.bin
+  - godzilla-30b.ggmlv3.q4_K_M.bin
+  - godzilla-30b.ggmlv3.q4_K_S.bin
+  - godzilla-30b.ggmlv3.q4_K_S.bin
+  - godzilla-30b.ggmlv3.q5_0.bin
+  - godzilla-30b.ggmlv3.q5_0.bin
+  - godzilla-30b.ggmlv3.q5_1.bin
+  - godzilla-30b.ggmlv3.q5_1.bin
+  - godzilla-30b.ggmlv3.q5_K_M.bin
+  - godzilla-30b.ggmlv3.q5_K_M.bin
+  - godzilla-30b.ggmlv3.q5_K_S.bin
+  - godzilla-30b.ggmlv3.q5_K_S.bin
+  - godzilla-30b.ggmlv3.q6_K.bin
+  - godzilla-30b.ggmlv3.q6_K.bin
+  - godzilla-30b.ggmlv3.q8_0.bin
+  - godzilla-30b.ggmlv3.q8_0.bin
 - SHA256: 4708d9248b85b76a7bb85ac9bb586cacac4df8923dda9b09189babe326a61d94
   description: LoupGarou's WizardCoder Guanaco 15B V1.0 GGML(q4_0)
   filename: wizardcoder-guanaco-15b-v1.0.ggmlv1.q4_0.bin
@@ -91,43 +459,6 @@
   - wizardlm-13b-v1.1.ggmlv3.q6_K.bin
   - wizardlm-13b-v1.1.ggmlv3.q8_0.bin
   - wizardlm-13b-v1.1.ggmlv3.q8_0.bin
-- SHA256: 6889037dfcbd87b04cba28813a8f541579f34dcfd2ae6d6f57c804d5c5c38cb3
-  description: Maya Philippine's GodziLLa 30B GGML(q2_K)
-  filename: godzilla-30b.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/GodziLLa-30B-GGML/
-  server: https://huggingface.co/TheBloke/GodziLLa-30B-GGML/resolve/main
-  variants:
-  - godzilla-30b.ggmlv3.q2_K.bin
-  - godzilla-30b.ggmlv3.q2_K.bin
-  - godzilla-30b.ggmlv3.q3_K_L.bin
-  - godzilla-30b.ggmlv3.q3_K_L.bin
-  - godzilla-30b.ggmlv3.q3_K_M.bin
-  - godzilla-30b.ggmlv3.q3_K_M.bin
-  - godzilla-30b.ggmlv3.q3_K_S.bin
-  - godzilla-30b.ggmlv3.q3_K_S.bin
-  - godzilla-30b.ggmlv3.q4_0.bin
-  - godzilla-30b.ggmlv3.q4_0.bin
-  - godzilla-30b.ggmlv3.q4_1.bin
-  - godzilla-30b.ggmlv3.q4_1.bin
-  - godzilla-30b.ggmlv3.q4_K_M.bin
-  - godzilla-30b.ggmlv3.q4_K_M.bin
-  - godzilla-30b.ggmlv3.q4_K_S.bin
-  - godzilla-30b.ggmlv3.q4_K_S.bin
-  - godzilla-30b.ggmlv3.q5_0.bin
-  - godzilla-30b.ggmlv3.q5_0.bin
-  - godzilla-30b.ggmlv3.q5_1.bin
-  - godzilla-30b.ggmlv3.q5_1.bin
-  - godzilla-30b.ggmlv3.q5_K_M.bin
-  - godzilla-30b.ggmlv3.q5_K_M.bin
-  - godzilla-30b.ggmlv3.q5_K_S.bin
-  - godzilla-30b.ggmlv3.q5_K_S.bin
-  - godzilla-30b.ggmlv3.q6_K.bin
-  - godzilla-30b.ggmlv3.q6_K.bin
-  - godzilla-30b.ggmlv3.q8_0.bin
-  - godzilla-30b.ggmlv3.q8_0.bin
 - SHA256: 6af5d23c2344d3d2d77750534987ff0b63e05cd85c3aa743a7da3790857acd5e
   description: Pankaj Mathur's Orca Mini v2 13B GGML(q2_K)
   filename: orca_mini_v2_13b.ggmlv3.q2_K.bin
@@ -609,43 +940,6 @@
   - vicuna-33b.ggmlv3.q6_K.bin
   - vicuna-33b.ggmlv3.q8_0.bin
   - vicuna-33b.ggmlv3.q8_0.bin
-- SHA256: fb00a756852be60d2af9ae797f1a3e28094f245f9f5bbdaee4773fbb1b9193ef
-  description: LmSys' Vicuna 33B (preview) GGML(q2_K)
-  filename: vicuna-33b-preview.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/vicuna-33B-preview-GGML/
-  server: https://huggingface.co/TheBloke/vicuna-33B-preview-GGML/resolve/main
-  variants:
-  - vicuna-33b-preview.ggmlv3.q2_K.bin
-  - vicuna-33b-preview.ggmlv3.q2_K.bin
-  - vicuna-33b-preview.ggmlv3.q3_K_L.bin
-  - vicuna-33b-preview.ggmlv3.q3_K_L.bin
-  - vicuna-33b-preview.ggmlv3.q3_K_M.bin
-  - vicuna-33b-preview.ggmlv3.q3_K_M.bin
-  - vicuna-33b-preview.ggmlv3.q3_K_S.bin
-  - vicuna-33b-preview.ggmlv3.q3_K_S.bin
-  - vicuna-33b-preview.ggmlv3.q4_0.bin
-  - vicuna-33b-preview.ggmlv3.q4_0.bin
-  - vicuna-33b-preview.ggmlv3.q4_1.bin
-  - vicuna-33b-preview.ggmlv3.q4_1.bin
-  - vicuna-33b-preview.ggmlv3.q4_K_M.bin
-  - vicuna-33b-preview.ggmlv3.q4_K_M.bin
-  - vicuna-33b-preview.ggmlv3.q4_K_S.bin
-  - vicuna-33b-preview.ggmlv3.q4_K_S.bin
-  - vicuna-33b-preview.ggmlv3.q5_0.bin
-  - vicuna-33b-preview.ggmlv3.q5_0.bin
-  - vicuna-33b-preview.ggmlv3.q5_1.bin
-  - vicuna-33b-preview.ggmlv3.q5_1.bin
-  - vicuna-33b-preview.ggmlv3.q5_K_M.bin
-  - vicuna-33b-preview.ggmlv3.q5_K_M.bin
-  - vicuna-33b-preview.ggmlv3.q5_K_S.bin
-  - vicuna-33b-preview.ggmlv3.q5_K_S.bin
-  - vicuna-33b-preview.ggmlv3.q6_K.bin
-  - vicuna-33b-preview.ggmlv3.q6_K.bin
-  - vicuna-33b-preview.ggmlv3.q8_0.bin
-  - vicuna-33b-preview.ggmlv3.q8_0.bin
 - SHA256: a2d22c9b827f211aea95ce80e41dbfa2d37785dc6193736f1a8b38268a1cff7b
   description: MosaicML's MPT-7B-Chat GGML(q4_0)
   filename: mpt-7b-chat.ggmlv0.q4_0.bin
@@ -1010,43 +1304,6 @@
   - vicuna-13b-v1.3.0.ggmlv3.q6_K.bin
   - vicuna-13b-v1.3.0.ggmlv3.q8_0.bin
   - vicuna-13b-v1.3.0.ggmlv3.q8_0.bin
-- SHA256: f47ef000d721bd9a6ee9e2ca0c100317f7a2f971802cd4d12d461c04aeae5853
-  description: LmSys' Vicuna 13B v1.3 GGML(q2_K)
-  filename: vicuna-13b-v1.3.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/vicuna-13b-v1.3-preview-GGML/
-  server: https://huggingface.co/TheBloke/vicuna-13b-v1.3-preview-GGML/resolve/main
-  variants:
-  - vicuna-13b-v1.3.ggmlv3.q2_K.bin
-  - vicuna-13b-v1.3.ggmlv3.q2_K.bin
-  - vicuna-13b-v1.3.ggmlv3.q3_K_L.bin
-  - vicuna-13b-v1.3.ggmlv3.q3_K_L.bin
-  - vicuna-13b-v1.3.ggmlv3.q3_K_M.bin
-  - vicuna-13b-v1.3.ggmlv3.q3_K_M.bin
-  - vicuna-13b-v1.3.ggmlv3.q3_K_S.bin
-  - vicuna-13b-v1.3.ggmlv3.q3_K_S.bin
-  - vicuna-13b-v1.3.ggmlv3.q4_0.bin
-  - vicuna-13b-v1.3.ggmlv3.q4_0.bin
-  - vicuna-13b-v1.3.ggmlv3.q4_1.bin
-  - vicuna-13b-v1.3.ggmlv3.q4_1.bin
-  - vicuna-13b-v1.3.ggmlv3.q4_K_M.bin
-  - vicuna-13b-v1.3.ggmlv3.q4_K_M.bin
-  - vicuna-13b-v1.3.ggmlv3.q4_K_S.bin
-  - vicuna-13b-v1.3.ggmlv3.q4_K_S.bin
-  - vicuna-13b-v1.3.ggmlv3.q5_0.bin
-  - vicuna-13b-v1.3.ggmlv3.q5_0.bin
-  - vicuna-13b-v1.3.ggmlv3.q5_1.bin
-  - vicuna-13b-v1.3.ggmlv3.q5_1.bin
-  - vicuna-13b-v1.3.ggmlv3.q5_K_M.bin
-  - vicuna-13b-v1.3.ggmlv3.q5_K_M.bin
-  - vicuna-13b-v1.3.ggmlv3.q5_K_S.bin
-  - vicuna-13b-v1.3.ggmlv3.q5_K_S.bin
-  - vicuna-13b-v1.3.ggmlv3.q6_K.bin
-  - vicuna-13b-v1.3.ggmlv3.q6_K.bin
-  - vicuna-13b-v1.3.ggmlv3.q8_0.bin
-  - vicuna-13b-v1.3.ggmlv3.q8_0.bin
 - SHA256: e84705205f71dd55be7b24a778f248f0eda9999a125d313358c087e092d83148
   description: Pankaj Mathur's Orca Mini 3B GGML(q4_0)
   filename: orca-mini-3b.ggmlv3.q4_0.bin
@@ -2589,150 +2846,6 @@
   - tulu-30b.ggmlv3.q6_K.bin
   - tulu-30b.ggmlv3.q8_0.bin
   - tulu-30b.ggmlv3.q8_0.bin
-- SHA256: 43b58561af47f3a0c98a22f11cc7c6cad3c818cd72135afdea4da7cae090c4ea
-  description: Meta's LLaMA 65B GGML(q2_K)
-  filename: llama-65b.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/llama-65B-GGML/
-  server: https://huggingface.co/TheBloke/llama-65B-GGML/resolve/main
-  variants:
-  - llama-65b.ggmlv3.q2_K.bin
-  - llama-65b.ggmlv3.q2_K.bin
-  - llama-65b.ggmlv3.q3_K_L.bin
-  - llama-65b.ggmlv3.q3_K_L.bin
-  - llama-65b.ggmlv3.q3_K_M.bin
-  - llama-65b.ggmlv3.q3_K_M.bin
-  - llama-65b.ggmlv3.q3_K_S.bin
-  - llama-65b.ggmlv3.q3_K_S.bin
-  - llama-65b.ggmlv3.q4_0.bin
-  - llama-65b.ggmlv3.q4_0.bin
-  - llama-65b.ggmlv3.q4_1.bin
-  - llama-65b.ggmlv3.q4_1.bin
-  - llama-65b.ggmlv3.q4_K_M.bin
-  - llama-65b.ggmlv3.q4_K_M.bin
-  - llama-65b.ggmlv3.q4_K_S.bin
-  - llama-65b.ggmlv3.q4_K_S.bin
-  - llama-65b.ggmlv3.q5_0.bin
-  - llama-65b.ggmlv3.q5_0.bin
-  - llama-65b.ggmlv3.q5_1.bin
-  - llama-65b.ggmlv3.q5_1.bin
-  - llama-65b.ggmlv3.q5_K_M.bin
-  - llama-65b.ggmlv3.q5_K_M.bin
-  - llama-65b.ggmlv3.q5_K_S.bin
-  - llama-65b.ggmlv3.q5_K_S.bin
-- SHA256: f416b9174ae3d4f4c6f615069989a9757003cdbb67565aefe922ec46474a3445
-  description: Meta's LLaMA 30B GGML(q2_K)
-  filename: llama-30b.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/LLaMa-30B-GGML/
-  server: https://huggingface.co/TheBloke/LLaMa-30B-GGML/resolve/main
-  variants:
-  - llama-30b.ggmlv3.q2_K.bin
-  - llama-30b.ggmlv3.q2_K.bin
-  - llama-30b.ggmlv3.q3_K_L.bin
-  - llama-30b.ggmlv3.q3_K_L.bin
-  - llama-30b.ggmlv3.q3_K_M.bin
-  - llama-30b.ggmlv3.q3_K_M.bin
-  - llama-30b.ggmlv3.q3_K_S.bin
-  - llama-30b.ggmlv3.q3_K_S.bin
-  - llama-30b.ggmlv3.q4_0.bin
-  - llama-30b.ggmlv3.q4_0.bin
-  - llama-30b.ggmlv3.q4_1.bin
-  - llama-30b.ggmlv3.q4_1.bin
-  - llama-30b.ggmlv3.q4_K_M.bin
-  - llama-30b.ggmlv3.q4_K_M.bin
-  - llama-30b.ggmlv3.q4_K_S.bin
-  - llama-30b.ggmlv3.q4_K_S.bin
-  - llama-30b.ggmlv3.q5_0.bin
-  - llama-30b.ggmlv3.q5_0.bin
-  - llama-30b.ggmlv3.q5_1.bin
-  - llama-30b.ggmlv3.q5_1.bin
-  - llama-30b.ggmlv3.q5_K_M.bin
-  - llama-30b.ggmlv3.q5_K_M.bin
-  - llama-30b.ggmlv3.q5_K_S.bin
-  - llama-30b.ggmlv3.q5_K_S.bin
-  - llama-30b.ggmlv3.q6_K.bin
-  - llama-30b.ggmlv3.q6_K.bin
-  - llama-30b.ggmlv3.q8_0.bin
-  - llama-30b.ggmlv3.q8_0.bin
-- SHA256: 197d1ae91304925d3751e0e14ab5ed2e2aaa3e9ff41a229e6c057e26f67df94a
-  description: Meta's LLaMA 13B GGML(q2_K)
-  filename: llama-13b.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/LLaMa-13B-GGML/
-  server: https://huggingface.co/TheBloke/LLaMa-13B-GGML/resolve/main
-  variants:
-  - llama-13b.ggmlv3.q2_K.bin
-  - llama-13b.ggmlv3.q2_K.bin
-  - llama-13b.ggmlv3.q3_K_L.bin
-  - llama-13b.ggmlv3.q3_K_L.bin
-  - llama-13b.ggmlv3.q3_K_M.bin
-  - llama-13b.ggmlv3.q3_K_M.bin
-  - llama-13b.ggmlv3.q3_K_S.bin
-  - llama-13b.ggmlv3.q3_K_S.bin
-  - llama-13b.ggmlv3.q4_0.bin
-  - llama-13b.ggmlv3.q4_0.bin
-  - llama-13b.ggmlv3.q4_1.bin
-  - llama-13b.ggmlv3.q4_1.bin
-  - llama-13b.ggmlv3.q4_K_M.bin
-  - llama-13b.ggmlv3.q4_K_M.bin
-  - llama-13b.ggmlv3.q4_K_S.bin
-  - llama-13b.ggmlv3.q4_K_S.bin
-  - llama-13b.ggmlv3.q5_0.bin
-  - llama-13b.ggmlv3.q5_0.bin
-  - llama-13b.ggmlv3.q5_1.bin
-  - llama-13b.ggmlv3.q5_1.bin
-  - llama-13b.ggmlv3.q5_K_M.bin
-  - llama-13b.ggmlv3.q5_K_M.bin
-  - llama-13b.ggmlv3.q5_K_S.bin
-  - llama-13b.ggmlv3.q5_K_S.bin
-  - llama-13b.ggmlv3.q6_K.bin
-  - llama-13b.ggmlv3.q6_K.bin
-  - llama-13b.ggmlv3.q8_0.bin
-  - llama-13b.ggmlv3.q8_0.bin
-- SHA256: eeb81fcb3e6d07b0c1786f1064828a5b204e1b04909366fbf4c9188da60b9461
-  description: Meta's LLaMA 7B GGML(q2_K)
-  filename: llama-7b.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/LLaMa-7B-GGML/
-  server: https://huggingface.co/TheBloke/LLaMa-7B-GGML/resolve/main
-  variants:
-  - llama-7b.ggmlv3.q2_K.bin
-  - llama-7b.ggmlv3.q2_K.bin
-  - llama-7b.ggmlv3.q3_K_L.bin
-  - llama-7b.ggmlv3.q3_K_L.bin
-  - llama-7b.ggmlv3.q3_K_M.bin
-  - llama-7b.ggmlv3.q3_K_M.bin
-  - llama-7b.ggmlv3.q3_K_S.bin
-  - llama-7b.ggmlv3.q3_K_S.bin
-  - llama-7b.ggmlv3.q4_0.bin
-  - llama-7b.ggmlv3.q4_0.bin
-  - llama-7b.ggmlv3.q4_1.bin
-  - llama-7b.ggmlv3.q4_1.bin
-  - llama-7b.ggmlv3.q4_K_M.bin
-  - llama-7b.ggmlv3.q4_K_M.bin
-  - llama-7b.ggmlv3.q4_K_S.bin
-  - llama-7b.ggmlv3.q4_K_S.bin
-  - llama-7b.ggmlv3.q5_0.bin
-  - llama-7b.ggmlv3.q5_0.bin
-  - llama-7b.ggmlv3.q5_1.bin
-  - llama-7b.ggmlv3.q5_1.bin
-  - llama-7b.ggmlv3.q5_K_M.bin
-  - llama-7b.ggmlv3.q5_K_M.bin
-  - llama-7b.ggmlv3.q5_K_S.bin
-  - llama-7b.ggmlv3.q5_K_S.bin
-  - llama-7b.ggmlv3.q6_K.bin
-  - llama-7b.ggmlv3.q6_K.bin
-  - llama-7b.ggmlv3.q8_0.bin
-  - llama-7b.ggmlv3.q8_0.bin
 - SHA256: 2ed4d61bb0cc6b66258d90b2bb67a9784351c7676f3da8986413a83550d18e4a
   description: VMWare's open-llama-7B-open-instruct GGML(q2_K)
   filename: open-llama-7B-open-instruct.ggmlv3.q2_K.bin
