@@ -1,3 +1,16 @@
+- SHA256: 48c398d528e3a9efe281883e3e69241539c1e2e328106ec570f65f0b95dcfa3a
+  description: Meta's Llama 2 13B GPTQ(co/TheBloke/Llama-2-13B-GPTQ/blob/main/gptq_model-4bit-128g)
+  filename: Llama-2-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Llama-2-13B-GPTQ/
+  server: https://huggingface.co/TheBloke/Llama-2-13B-GPTQ/resolve/main
+  variants:
+  - name: gptq_model-4bit-128g.safetensors
+    size: 7259449424
+  - name: gptq_model-4bit-128g.safetensors
+    size: 7259449424
 - SHA256: 17b71a401924cb60a4c38852d2bac8802cbfa43095a654561bab18c25cde6b3c
   description: Meta's Llama 2 70B GPTQ(co/TheBloke/Llama-2-70B-GPTQ/blob/main/gptq_model-4bit--1g)
   filename: Llama-2-70B-GPTQ
@@ -24,6 +37,19 @@
     size: 35332232264
   - name: gptq_model-4bit--1g.safetensors
     size: 35332232264
+- SHA256: 48fac01c0769010992160303fc5b355b937802b8486500b6eced14c56ccb887e
+  description: NousResearch's Redmond Puffin 13B GPTQ(co/TheBloke/Redmond-Puffin-13B-GPTQ/blob/main/gptq_model-4bit-128g)
+  filename: Redmond-Puffin-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Redmond-Puffin-13B-GPTQ/
+  server: https://huggingface.co/TheBloke/Redmond-Puffin-13B-GPTQ/resolve/main
+  variants:
+  - name: gptq_model-4bit-128g.safetensors
+    size: 7260104784
+  - name: gptq_model-4bit-128g.safetensors
+    size: 7260104784
 - SHA256: 48c398d528e3a9efe281883e3e69241539c1e2e328106ec570f65f0b95dcfa3a
   description: Meta's Llama 2 13B-chat GPTQ(co/TheBloke/Llama-2-13B-chat-GPTQ/blob/main/gptq_model-4bit-128g)
   filename: Llama-2-13B-chat-GPTQ
@@ -50,19 +76,6 @@
     size: 3896726080
   - name: gptq_model-4bit-128g.safetensors
     size: 3896726080
-- SHA256: c4a683f083e92878ad81b1831b8272e372bcde3756ad675b996b31b599337861
-  description: Meta's Llama 2 13B GPTQ(co/TheBloke/Llama-2-13B-GPTQ/blob/main/gptq_model-4bit-128g)
-  filename: Llama-2-13B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/Llama-2-13B-GPTQ/
-  server: https://huggingface.co/TheBloke/Llama-2-13B-GPTQ/resolve/main
-  variants:
-  - name: gptq_model-4bit-128g.safetensors
-    size: 7259449424
-  - name: gptq_model-4bit-128g.safetensors
-    size: 7259449424
 - SHA256: 406cc20c36f42d559f15e429ec5a2f61fcb942789fc97bb8c1dca369d602509d
   description: Meta's Llama 2 7b Chat GPTQ(co/TheBloke/Llama-2-7b-Chat-GPTQ/blob/main/gptq_model-4bit-128g)
   filename: Llama-2-7b-Chat-GPTQ
