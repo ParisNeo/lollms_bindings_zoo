@@ -99,30 +99,33 @@ class LLAMACPP(LLMBinding):
 
     def install(self):
         super().install()
-        print("This is the first time you are using this binding.")
         # Step 2: Install dependencies using pip from requirements.txt
         requirements_file = self.binding_dir / "requirements.txt"
-        try:
-            import llama_cpp
-            ASCIIColors.info("Found old installation. Uninstalling.")
-            self.uninstall()
-        except ImportError:
-            # The library is not installed
-            print("The main library is not installed.")
-
-        # Define the environment variables
-        env = os.environ.copy()
-        env["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on"
-        env["FORCE_CMAKE"] = "1"
-        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python", "--no-binary", "llama-cpp-python"], env=env)
-
-        if result.returncode != 0:
-            print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python"])
-
-        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python"])
-
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        if self.config.enable_gpu:
+            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support"):
+            try:
+                import llama_cpp
+                ASCIIColors.info("Found old installation. Uninstalling.")
+                self.uninstall()
+            except ImportError:
+                # The library is not installed
+                print("The main library is not installed.")
+
+            # Define the environment variables
+            env = os.environ.copy()
+            env["CMAKE_ARGS"] = "-DLLAMA_CUBLAS=on"
+            env["FORCE_CMAKE"] = "1"
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python", "--no-binary", "llama-cpp-python"], env=env)
+
+            if result.returncode != 0:
+                print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python"])
+
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python"])
+        else:
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "llama-cpp-python"])
+
         ASCIIColors.success("Installed successfully")
 
 

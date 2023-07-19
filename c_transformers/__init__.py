@@ -141,33 +141,37 @@ class CTRansformers(LLMBinding):
         subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
         ASCIIColors.success("Requirements install done")
         
-        # Step 1 : install pytorch with cuda
-        ASCIIColors.info("Checking pytorch")
-        try:
-            import torch
-            import torchvision
-            if torch.cuda.is_available():
-                ASCIIColors.success("CUDA is supported.")
-            else:
-                ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
-                self.reinstall_pytorch_with_cuda()
-        except Exception as ex:
-            ASCIIColors.info("Pytorch not installed")
-            self.reinstall_pytorch_with_cuda()            
+        if self.config.enable_gpu:
+            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support"):
+            ASCIIColors.info("Checking pytorch")
+            try:
+                import torch
+                import torchvision
+                if torch.cuda.is_available():
+                    ASCIIColors.success("CUDA is supported.")
+                else:
+                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
+                    self.reinstall_pytorch_with_cuda()
+            except Exception as ex:
+                ASCIIColors.info("Pytorch not installed")
+                self.reinstall_pytorch_with_cuda()    
 
-        # Step 2: Install dependencies using pip from requirements.txt
-        ASCIIColors.info("Trying to install a cuda enabled version of ctransformers")
-        env = os.environ.copy()
-        env["CT_CUBLAS"]="1"
-        # pip install --upgrade --no-cache-dir --no-binary ctransformers
-        result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
-        
-        if result.returncode != 0:
-            ASCIIColors.warning("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+            # Step 2: Install dependencies using pip from requirements.txt
+            ASCIIColors.info("Trying to install a cuda enabled version of ctransformers")
+            env = os.environ.copy()
+            env["CT_CUBLAS"]="1"
+            # pip install --upgrade --no-cache-dir --no-binary ctransformers
+            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
+            
+            if result.returncode != 0:
+                ASCIIColors.warning("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
 
-        # pip install --upgrade --no-cache-dir --no-binary ctransformers
-        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-        
+            # pip install --upgrade --no-cache-dir --no-binary ctransformers
+            result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+        else:
+            # pip install --upgrade --no-cache-dir --no-binary ctransformers
+            result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+                    
         ASCIIColors.success("Installed successfully")
   
             

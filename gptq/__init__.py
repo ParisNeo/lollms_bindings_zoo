@@ -106,35 +106,6 @@ class GPTQ(LLMBinding):
         from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
 
         if self.config.model_name:
-            
-            """
-            model_path = self.get_model_path()
-            self.model_dir = model_path
-            model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
-            self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.binding_config.device, use_fast=True, local_files_only=True)
-            use_safetensors = model_name.suffix == '.safetensors'
-            model_name = model_name.stem
-
-            if not (Path(self.model_dir) / "quantize_config.json").exists():
-                quantize_config = BaseQuantizeConfig(
-                    bits= 4,
-                    group_size= -1,
-                    desc_act=""
-                )
-            else:
-                quantize_config = None
-            # load quantized model to the first GPU
-            self.model = AutoGPTQForCausalLM.from_quantized(
-                self.model_dir, 
-                local_files_only=True,  
-                model_basename=model_name, 
-                device=self.binding_config.device,
-                use_triton=False,#True,
-                use_safetensors=use_safetensors,
-                quantize_config=quantize_config
-                )
-            
-            """
             path = self.config.model_name
             models_dir = self.lollms_paths.personal_models_path / "gptq"
             models_dir.mkdir(parents=True, exist_ok=True)
@@ -213,7 +184,7 @@ class GPTQ(LLMBinding):
 
     def install(self):
         super().install()
-        # Step 1 : install pytorch with cuda
+        
         if self.config.enable_gpu:
             ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support"):
             ASCIIColors.info("Checking pytorch")
