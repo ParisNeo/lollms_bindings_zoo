@@ -419,7 +419,7 @@ class HuggingFace(LLMBinding):
         import wget
         import os
 
-        file_names = GPTQ.get_filenames(repo)
+        file_names = HuggingFace.get_filenames(repo)
 
         dest_dir = Path(base_folder)
         dest_dir.mkdir(parents=True, exist_ok=True)
