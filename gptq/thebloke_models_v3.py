@@ -9,6 +9,22 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from tqdm import tqdm
 import traceback
+import urllib.request
+
+def get_file_size(url):
+    try:
+        response = urllib.request.urlopen(url)
+        size_in_bytes = response.headers.get('content-length')
+        if size_in_bytes:
+            size_in_bytes = int(size_in_bytes)
+            size_in_kb = size_in_bytes / 1024
+            size_in_mb = size_in_kb / 1024
+            return size_in_bytes, size_in_kb, size_in_mb
+        else:
+            return None
+    except Exception as e:
+        print(f"An error occurred while retrieving file size: {e}")
+        return None
 
 def get_website_path(url):
     parsed_url = urlparse(url)
@@ -113,7 +129,9 @@ def extract_model_cards(model_links, entries):
                 except:
                     description = f"{file_name} model"
                 # Create a dictionary with the extracted information
-                v.append(file_name)
+                full_url = server_link+"/"+file_name
+                file_size = get_file_size(full_url)[0]
+                v.append({"name":file_name,"size":file_size})
                 
             except Exception as ex :
                 # Catch the exception and get the traceback as a list of strings
