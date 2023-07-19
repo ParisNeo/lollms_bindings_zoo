@@ -103,7 +103,7 @@ class LLAMACPP(LLMBinding):
         requirements_file = self.binding_dir / "requirements.txt"
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         if self.config.enable_gpu:
-            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support"):
+            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
             try:
                 import llama_cpp
                 ASCIIColors.info("Found old installation. Uninstalling.")

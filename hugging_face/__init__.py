@@ -164,7 +164,7 @@ class HuggingFace(LLMBinding):
     def install(self):
         super().install()
         if self.config.enable_gpu:
-            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support"):
+            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
             ASCIIColors.info("Checking pytorch")
             try:
                 import torch
@@ -177,7 +177,7 @@ class HuggingFace(LLMBinding):
             except Exception as ex:
                 ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()    
-                
+
         # Step 2: Install dependencies using pip from requirements.txt
         requirements_file = self.binding_dir / "requirements.txt"
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])

@@ -142,7 +142,7 @@ class CTRansformers(LLMBinding):
         ASCIIColors.success("Requirements install done")
         
         if self.config.enable_gpu:
-            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support"):
+            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
             ASCIIColors.info("Checking pytorch")
             try:
                 import torch
