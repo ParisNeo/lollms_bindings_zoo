@@ -8,6 +8,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: wizardlm-13b-v1.1-superhot-8k.ggmlv3.q4_0.bin
+  variants:
+  - name: wizardlm-13b-v1.1-superhot-8k.ggmlv3.q4_0.bin
+    size: 7323310848
 - SHA256: 725f148218a65ce8ebcc724e52f31b49
   description: <strong>Best overall smaller model</strong><br><ul><li>Fast responses</li><li>Instruction
     based</li><li>Trained by TII<li>Finetuned by Nomic AI<li>Licensed for commercial
@@ -17,7 +21,11 @@
   license: ''
   owner: nomic-ai
   owner_link: https://gpt4all.io/
-  server: https://huggingface.co/nomic-ai/gpt4all-falcon-ggml/resolve/main
+  server: https://huggingface.co/nomic-ai/gpt4all-falcon-ggml/resolve/main/
+  title: ggml-model-gpt4all-falcon-q4_0.bin
+  variants:
+  - name: ggml-model-gpt4all-falcon-q4_0.bin
+    size: 4061641216
 - SHA256: 4acc146dd43eb02845c233c29289c7c5
   description: <strong>Extremely good model</strong><br><ul><li>Instruction based<li>Gives
     long responses<li>Curated with 300,000 uncensored instructions<li>Trained by Nous
@@ -27,7 +35,11 @@
   license: ''
   owner: nomic-ai
   owner_link: https://gpt4all.io/
-  server: https://huggingface.co/TheBloke/Nous-Hermes-13B-GGML/resolve/main
+  server: https://huggingface.co/TheBloke/Nous-Hermes-13B-GGML/resolve/main/
+  title: nous-hermes-13b.ggmlv3.q4_0.bin
+  variants:
+  - name: nous-hermes-13b.ggmlv3.q4_0.bin
+    size: 7323310848
 - SHA256: 81a09a0ddf89690372fc296ff7f625af
   description: <strong>Creative model can be used for commercial purposes</strong><br><ul><li>Fast
     responses<li>Creative responses</li><li>Instruction based</li><li>Trained by Nomic
@@ -38,6 +50,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-gpt4all-j-v1.3-groovy.bin
+  variants:
+  - name: ggml-gpt4all-j-v1.3-groovy.bin
+    size: 3785248281
 - SHA256: 11d9f060ca24575a2c303bdc39952486
   description: <strong>Very good overall model</strong><br><ul><li>Instruction based<li>Based
     on the same dataset as Groovy<li>Slower than Groovy, with higher quality responses<li>Trained
@@ -47,7 +63,11 @@
   license: ''
   owner: nomic-ai
   owner_link: https://gpt4all.io/
-  server: https://huggingface.co/TheBloke/GPT4All-13B-snoozy-GGML/resolve/main
+  server: https://huggingface.co/TheBloke/GPT4All-13B-snoozy-GGML/resolve/main/
+  title: GPT4All-13B-snoozy.ggmlv3.q4_0.bin
+  variants:
+  - name: GPT4All-13B-snoozy.ggmlv3.q4_0.bin
+    size: 7323305088
 - SHA256: 756249d3d6abe23bde3b1ae272628640
   description: <strong>Best overall smaller model</strong><br><ul><li>Fast responses<li>Chat
     based<li>Trained by Mosaic ML<li>Cannot be used commercially</ul>
@@ -57,6 +77,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-mpt-7b-chat.bin
+  variants:
+  - name: ggml-mpt-7b-chat.bin
+    size: 4854401050
 - SHA256: e64e74375ce9d36a3d0af3db1523fd0a
   description: <strong>New model with novel dataset</strong><br><ul><li>Instruction
     based<li>Explain tuned datasets<li>Orca Research Paper dataset construction approaches<li>Licensed
@@ -66,7 +90,11 @@
   license: ''
   owner: nomic-ai
   owner_link: https://gpt4all.io/
-  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main
+  server: https://huggingface.co/TheBloke/orca_mini_7B-GGML/resolve/main/
+  title: orca-mini-7b.ggmlv3.q4_0.bin
+  variants:
+  - name: orca-mini-7b.ggmlv3.q4_0.bin
+    size: 3791749248
 - SHA256: 6a087f7f4598fad0bb70e6cb4023645e
   description: <strong>Small version of new model with novel dataset</strong><br><ul><li>Instruction
     based<li>Explain tuned datasets<li>Orca Research Paper dataset construction approaches<li>Licensed
@@ -76,7 +104,11 @@
   license: ''
   owner: nomic-ai
   owner_link: https://gpt4all.io/
-  server: https://huggingface.co/TheBloke/orca_mini_3B-GGML/resolve/main
+  server: https://huggingface.co/TheBloke/orca_mini_3B-GGML/resolve/main/
+  title: orca-mini-3b.ggmlv3.q4_0.bin
+  variants:
+  - name: orca-mini-3b.ggmlv3.q4_0.bin
+    size: 1928446208
 - SHA256: 959b7f65b2d12fd1e3ff99e7493c7a3a
   description: <strong>Largest version of new model with novel dataset</strong><br><ul><li>Instruction
     based<li>Explain tuned datasets<li>Orca Research Paper dataset construction approaches<li>Licensed
@@ -86,7 +118,11 @@
   license: ''
   owner: nomic-ai
   owner_link: https://gpt4all.io/
-  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main
+  server: https://huggingface.co/TheBloke/orca_mini_13B-GGML/resolve/main/
+  title: orca-mini-13b.ggmlv3.q4_0.bin
+  variants:
+  - name: orca-mini-13b.ggmlv3.q4_0.bin
+    size: 7323329152
 - SHA256: 29119f8fa11712704c6b22ac5ab792ea
   description: <strong>Good small model - trained by teams from UC Berkeley, CMU,
     Stanford, MBZUAI, and UC San Diego</strong><br><ul><li>Instruction based<li>Cannot
@@ -97,6 +133,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-vicuna-7b-1.1-q4_2.bin
+  variants:
+  - name: ggml-vicuna-7b-1.1-q4_2.bin
+    size: 4212859520
 - SHA256: 95999b7b0699e2070af63bf5d34101a8
   description: <strong>Good larger model - trained by teams from UC Berkeley, CMU,
     Stanford, MBZUAI, and UC San Diego</strong><br><ul><li>Instruction based<li>Cannot
@@ -107,6 +147,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-vicuna-13b-1.1-q4_2.bin
+  variants:
+  - name: ggml-vicuna-13b-1.1-q4_2.bin
+    size: 8136770688
 - SHA256: 99e6d129745a3f1fb1121abed747b05a
   description: <strong>Good small model - trained by by Microsoft and Peking University</strong><br><ul><li>Instruction
     based<li>Cannot be used commercially</ul>
@@ -116,6 +160,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-wizardLM-7B.q4_2.bin
+  variants:
+  - name: ggml-wizardLM-7B.q4_2.bin
+    size: 4212864640
 - SHA256: 6cb4ee297537c9133bddab9692879de0
   description: <strong>Trained with RLHF by Stability AI</strong><br><ul><li>Instruction
     based<li>Cannot be used commercially</ul>
@@ -125,6 +173,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-stable-vicuna-13B.q4_2.bin
+  variants:
+  - name: ggml-stable-vicuna-13B.q4_2.bin
+    size: 8136777088
 - SHA256: 1cfa4958f489f0a0d1ffdf6b37322809
   description: <strong>Mosaic's instruction model</strong><br><ul><li>Instruction
     based<li>Trained by Mosaic ML<li>Licensed for commercial use</ul>
@@ -134,6 +186,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-mpt-7b-instruct.bin
+  variants:
+  - name: ggml-mpt-7b-instruct.bin
+    size: 4854401028
 - SHA256: 120c32a51d020066288df045ef5d52b9
   description: <strong>Trained for text completion with no assistant finetuning</strong><br><ul><li>Completion
     based<li>Trained by Mosaic ML<li>Licensed for commercial use</ul>
@@ -143,6 +199,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-mpt-7b-base.bin
+  variants:
+  - name: ggml-mpt-7b-base.bin
+    size: 4854401028
 - SHA256: d5eafd5b0bd0d615cfd5fd763f642dfe
   description: <strong>Trained on ~180,000 instructions</strong><br><ul><li>Instruction
     based<li>Trained by Nous Research<li>Cannot be used commercially</ul>
@@ -152,6 +212,10 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-nous-gpt4-vicuna-13b.bin
+  variants:
+  - name: ggml-nous-gpt4-vicuna-13b.bin
+    size: 8136777088
 - SHA256: 489d21fd48840dcb31e5f92f453f3a20
   description: <strong>Trained on uncensored assistant data and instruction data</strong><br><ul><li>Instruction
     based<li>Cannot be used commercially</ul>
@@ -160,7 +224,11 @@
   license: ''
   owner: nomic-ai
   owner_link: https://gpt4all.io/
-  server: https://huggingface.co/TheBloke/WizardLM-13B-Uncensored-GGML/resolve/main
+  server: https://huggingface.co/TheBloke/WizardLM-13B-Uncensored-GGML/resolve/main/
+  title: wizardLM-13B-Uncensored.ggmlv3.q4_0.bin
+  variants:
+  - name: wizardLM-13B-Uncensored.ggmlv3.q4_0.bin
+    size: 7323310848
 - SHA256: 615890cb571fcaa0f70b2f8d15ef809e
   description: <strong>Trained on subset of the Stack</strong><br><ul><li>Code completion
     based<li>Licensed for commercial use</ul>
@@ -169,7 +237,11 @@
   license: ''
   owner: nomic-ai
   owner_link: https://gpt4all.io/
-  server: https://huggingface.co/nomic-ai/ggml-replit-code-v1-3b/resolve/main
+  server: https://huggingface.co/nomic-ai/ggml-replit-code-v1-3b/resolve/main/
+  title: ggml-replit-code-v1-3b.bin
+  variants:
+  - name: ggml-replit-code-v1-3b.bin
+    size: 5202046853
 - SHA256: 031bb5d5722c08d13e3e8eaf55c37391
   description: <strong>Sbert</strong><br><ul><li>For embeddings
   filename: ggml-all-MiniLM-L6-v2-f16.bin
@@ -178,3 +250,7 @@
   owner: nomic-ai
   owner_link: https://gpt4all.io/
   server: https://gpt4all.io/models/
+  title: ggml-all-MiniLM-L6-v2-f16.bin
+  variants:
+  - name: ggml-all-MiniLM-L6-v2-f16.bin
+    size: 45521167

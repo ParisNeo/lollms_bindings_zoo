@@ -5,13 +5,13 @@ import urllib.request
 
 def get_file_size(url):
     try:
-        response = urllib.request.urlopen(url)
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+        req = urllib.request.Request(url, headers=headers)
+        response = urllib.request.urlopen(req)
         size_in_bytes = response.headers.get('content-length')
         if size_in_bytes:
             size_in_bytes = int(size_in_bytes)
-            size_in_kb = size_in_bytes / 1024
-            size_in_mb = size_in_kb / 1024
-            return size_in_bytes, size_in_kb, size_in_mb
+            return size_in_bytes
         else:
             return None
     except Exception as e:
@@ -38,10 +38,12 @@ def json_to_yaml(json_url, output_file):
         description = entry['description']
         license = ""
         SHA256 = entry['md5sum']
-        v = [{"name":file_name,"size":get_file_size(server_link+"/"+file_name)}]
+        server_link = server_link if server_link.endswith("/") else server_link+"/"
+        v = [{"name":file_name,"size":get_file_size(server_link+file_name)}]
         
         # Create a dictionary with the extracted information
         data = {
+            'title':file_name,
             'filename': file_name,
             'variants': v,
             'description': description,
