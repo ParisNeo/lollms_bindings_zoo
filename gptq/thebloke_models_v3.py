@@ -144,6 +144,7 @@ def extract_model_cards(model_links, entries):
                 print(traceback_text)
                 
         data = {
+            'title': model_name,
             'filename': model_name,
             'variants':v,
             'description': description,

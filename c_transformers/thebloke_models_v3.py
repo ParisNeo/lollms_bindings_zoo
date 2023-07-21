@@ -142,6 +142,7 @@ def extract_model_cards(model_links, entries):
                 file_size = get_file_size(full_url)[0]
                 # Create a dictionary with the extracted information
                 data = {
+                    'title': file_name,
                     'filename': file_name,
                     'file_size': file_size,
                     'description': description,
