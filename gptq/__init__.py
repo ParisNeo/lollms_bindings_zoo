@@ -360,9 +360,19 @@ class GPTQ(LLMBinding):
             'top_k': 50,
             'top_p': 0.96,
             'repeat_penalty': 1.3,
-            "seed":-1,
+            "seed":self.binding_config.seed,
             "n_threads":8
         }
+        import torch
+        import random
+        # Set the random seed for generating random numbers in PyTorch
+        seed = self.binding_config.seed
+        if seed==-1:
+            seed = random.randint(1, 1000)
+        torch.manual_seed(seed)
+        # If you are using CUDA (GPU), you should also set the seed for CUDA to get deterministic behavior
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(seed)
         gpt_params = {**default_params, **gpt_params}
         self.callback = callback    
         try:

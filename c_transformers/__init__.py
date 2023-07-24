@@ -53,6 +53,7 @@ class CTRansformers(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
+        self.config = config
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
             
