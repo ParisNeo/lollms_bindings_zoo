@@ -61,7 +61,7 @@ class CTRansformers(LLMBinding):
         binding_config_template = ConfigTemplate([
             {"name":"n_threads","type":"int","value":8, "min":1},
             {"name":"batch_size","type":"int","value":1, "min":1},
-            {"name":"gpu_layers","type":"int","value":20, "min":0},
+            {"name":"gpu_layers","type":"int","value":20 if config.enable_gpu else 0, "min":0},
             {"name":"use_avx2","type":"bool","value":True},
             {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
@@ -114,7 +114,7 @@ class CTRansformers(LLMBinding):
         if self.binding_config.config["use_avx2"]:
             self.model = AutoModelForCausalLM.from_pretrained(
                     str(model_path), model_type=model_type,
-                    gpu_layers = self.binding_config.config["gpu_layers"],
+                    gpu_layers = self.binding_config.config["gpu_layers"] if self.config.enable_gpu else 0,
                     batch_size=self.binding_config.config["batch_size"],
                     threads = self.binding_config.config["n_threads"],
                     context_length = self.binding_config.config["ctx_size"],
@@ -124,7 +124,7 @@ class CTRansformers(LLMBinding):
         else:
             self.model = AutoModelForCausalLM.from_pretrained(
                     str(model_path), model_type=model_type, lib = "avx",
-                    gpu_layers = self.binding_config.config["gpu_layers"],
+                    gpu_layers = self.binding_config.config["gpu_layers"] if self.config.enable_gpu else 0,
                     batch_size=self.binding_config.config["batch_size"],
                     threads = self.binding_config.config["n_threads"],
                     context_length = self.binding_config.config["ctx_size"],

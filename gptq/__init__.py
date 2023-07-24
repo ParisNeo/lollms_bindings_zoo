@@ -206,8 +206,6 @@ class GPTQ(LLMBinding):
 
             # Define the environment variables
             os_type = platform.system()
-            env = os.environ.copy()
-            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "https://github.com/PanQiWei/AutoGPTQ/releases/download/v0.2.2/auto_gptq-0.2.2+cu117-cp310-cp310-linux_x86_64.whl"], env=env)
             if os_type == "Linux":
                 print("Linux OS detected.")
                 env = os.environ.copy()
