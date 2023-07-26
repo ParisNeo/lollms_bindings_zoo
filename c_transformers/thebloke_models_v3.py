@@ -77,6 +77,7 @@ def get_model_entries(url, output_file):
 
 
 def extract_model_cards(model_links, entries):
+    paths=[]
     for model_link in tqdm(model_links):
         prefix = '/'.join(model_link.split('/')[0:3])
 
@@ -94,6 +95,9 @@ def extract_model_cards(model_links, entries):
 
         for bin_link in tqdm(bin_links):
             path = bin_link['href'].replace("resolve","blob")
+            if path in paths:
+                continue
+            paths.append(path)
             # Send a GET request to the URL and retrieve the HTML content
             if not ("blob/main" in path or "tree/main" in path) or not ("q2" in path or "q4" in path or "q5" in path) :
                 print(f"\nSkipping : {path}")
