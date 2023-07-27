@@ -335,7 +335,7 @@ class GPTQ(LLMBinding):
         self.next_tokens_are_prompt = True
         if  self.callback:
             if self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
-                raise Exception("canceled")    
+                raise Exception("canceled")
 
 
 
