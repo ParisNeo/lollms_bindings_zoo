@@ -77,6 +77,9 @@ class PyLLAMACPP(LLMBinding):
         
     def build_model(self):        
         model_path = self.get_model_path()
+        if not model_path:
+            self.model = None
+            return None
 
         from pyllamacpp.model import Model
 

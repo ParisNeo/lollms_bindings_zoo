@@ -108,6 +108,10 @@ class CTRansformers(LLMBinding):
         
         
         model_path = self.get_model_path()
+        if not model_path:
+            self.model = None
+            return None
+
 
         from ctransformers import AutoModelForCausalLM
 

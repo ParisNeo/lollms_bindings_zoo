@@ -107,9 +107,15 @@ class HuggingFace(LLMBinding):
         if self.config.model_name:
 
             path = self.config.model_name
+            model_path = self.get_model_path()
+
+            if not model_path:
+                self.model = None
+                return None
+
             models_dir = self.lollms_paths.personal_models_path / binding_folder_name
             models_dir.mkdir(parents=True, exist_ok=True)
-            model_path = models_dir/ path
+            # model_path = models_dir/ path
 
             model_name = str(model_path).replace("\\","/")
             model_base_name = [f for f in model_path.iterdir() if f.suffix==".safetensors"][0].stem

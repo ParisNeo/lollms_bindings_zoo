@@ -79,6 +79,10 @@ class LLAMACPP(LLMBinding):
         # if seed <=0:
         #    seed = random.randint(1, 2**31)
         model_path = self.get_model_path()
+        if not model_path:
+            self.model = None
+            return None
+
         
         from llama_cpp import Llama
 

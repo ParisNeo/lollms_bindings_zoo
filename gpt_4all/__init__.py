@@ -75,6 +75,10 @@ class GPT4ALL(LLMBinding):
         
     def build_model(self):        
         model_path = self.get_model_path()
+        if not model_path:
+            self.model = None
+            return None
+
         from gpt4all import GPT4All, Embed4All
 
         self.model = GPT4All(
