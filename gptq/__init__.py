@@ -508,7 +508,7 @@ class GPTQ(LLMBinding):
         """Lists the models for this binding
         """
         models_dir:Path = self.lollms_paths.personal_models_path/config["binding_name"]  # replace with the actual path to the models folder
-        return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".")]
+        return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".") or f.suffix==".reference"]
 
     @staticmethod
     def get_available_models():
