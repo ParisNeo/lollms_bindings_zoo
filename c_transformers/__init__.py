@@ -100,6 +100,8 @@ class CTRansformers(LLMBinding):
             model_type='falcon'
         elif 'replit' in self.config['model_name'].lower():
             model_type = 'replit'
+        elif 'gptq' in self.config['model_name'].lower(): # experimental
+            model_type="gptq"
         elif 'llama' in self.config['model_name'].lower() or 'orca' in self.config['model_name'].lower() or'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower():
             model_type='llama'
         else:
