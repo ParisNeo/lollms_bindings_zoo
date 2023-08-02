@@ -20,3 +20,4 @@ description: |
     Replit	                replit
     StarCoder, StarChat	    starcoder
     Falcon (Experimental)	falcon
+    gptq (via exllama)      gptq
