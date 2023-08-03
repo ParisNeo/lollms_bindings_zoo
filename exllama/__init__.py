@@ -20,7 +20,12 @@ import yaml
 import re
 import urllib
 import shutil
+import sys
+import os
 
+sys.path.append(os.getcwd())
+pth = Path(__file__).parent/"exllama"
+sys.path.append(str(pth))
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/GPTQ_binding"
@@ -42,7 +47,7 @@ class EXLLAMA(LLMBinding):
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
                 ) -> None:
-        """Builds a GPTQ binding
+        """Builds an Exllama binding
 
         Args:
             config (LOLLMSConfig): The configuration file
@@ -52,16 +57,11 @@ class EXLLAMA(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
             
-            {"name":"use_triton","type":"bool","value":False, "help":"Activate triton or not"},
-            {"name":"device","type":"str","value":"gpu", "options":["cpu","gpu"],"help":"Device to be used (CPU or GPU)"},
-            {"name":"batch_size","type":"int","value":1, "min":1},
-            {"name":"split_between_cpu_and_gpu","type":"bool","value":False},
-            {"name":"max_gpu_mem_GB","type":"int","value":4, "min":0},
-            {"name":"max_cpu_mem_GB","type":"int","value":100, "min":0},
-            {"name":"automatic_context_size","type":"bool","value":True, "help":"If selected, the context size will be set automatically and the ctx_size parameter is useless."},
-            {"name":"ctx_size","type":"int","value":8192, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-
+            {"name": "max_seq_len", "type": "int", "value": 2048,
+                "help": "Max sequence length"},
+            {"name": "compress_pos_emb", "type": "int", "value": 1, "min": 1, "max": 8, "help": "Positional embeddings compression factor. Should typically be set to max_seq_len / 2048."},
+            {"name": "alpha_value", "type": "int", "value": 1, "min": 1, "max": 32,
+                "help": "Positional embeddings alpha factor for NTK RoPE scaling. Scaling is not identical to embedding compression. Use either this or compress_pos_emb, not both."},
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
 
@@ -76,7 +76,7 @@ class EXLLAMA(LLMBinding):
                             binding_config, 
                             installation_option
                         )
-        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.ctx_size = self.binding_config.config.max_seq_len
         self.callback = None
         self.n_generated = 0
         self.n_prompt = 0
@@ -90,181 +90,68 @@ class EXLLAMA(LLMBinding):
         self.next_tokens_are_prompt = True
 
     def build_model(self):
-        from exllama.model import ExLlama, ExLlamaCache, ExLlamaConfig
-        from exllama.lora import ExLlamaLora
-        from exllama.tokenizer import ExLlamaTokenizer
-        from exllama.generator import ExLlamaGenerator
-        import exllama.model_init as model_init
-        import argparse
-        import torch
-        import sys
-        import os
-        import glob
-        parser = argparse.ArgumentParser(description="Simple chatbot example for ExLlama")
+        from generator import ExLlamaGenerator
+        from model import ExLlama, ExLlamaCache, ExLlamaConfig
+        from tokenizer import ExLlamaTokenizer
+        from torch import version as torch_version
 
-        # Add arguments to the parser
-        parser.add_argument("-lora", "--lora", type=str, help="Path to LoRA binary to use during benchmark")
-        parser.add_argument("-loracfg", "--lora_config", type=str, help="Path to LoRA config to use during benchmark")
-        parser.add_argument("-ld", "--lora_dir", type=str, help="Path to LoRA config and binary to use during benchmark")
+        if self.config.model_name is None:
+            ASCIIColors.error('No model selected!!')
+            return
 
-        parser.add_argument("-p", "--prompt", type=str, help="Prompt file")
-        parser.add_argument("-un", "--username", type=str, help="Display name of user", default="User")
-        parser.add_argument("-bn", "--botname", type=str, help="Display name of chatbot", default="Chatbort")
-        parser.add_argument("-bf", "--botfirst", action="store_true", help="Start chat on bot's turn")
 
-        parser.add_argument("-nnl", "--no_newline", action="store_true", help="Do not break bot's response on newline (allow multi-paragraph responses)")
-        parser.add_argument("-temp", "--temperature", type=float, help="Temperature", default=0.95)
-        parser.add_argument("-topk", "--top_k", type=int, help="Top-K", default=20)
-        parser.add_argument("-topp", "--top_p", type=float, help="Top-P", default=0.65)
-        parser.add_argument("-minp", "--min_p", type=float, help="Min-P", default=0.00)
-        parser.add_argument("-repp", "--repetition_penalty", type=float, help="Repetition penalty", default=1.15)
-        parser.add_argument("-repps", "--repetition_penalty_sustain", type=int, help="Past length for repetition penalty", default=256)
-        parser.add_argument("-beams", "--beams", type=int, help="Number of beams for beam search", default=1)
-        parser.add_argument("-beamlen", "--beam_length", type=int, help="Number of future tokens to consider", default=1)
+        path = self.config.model_name
+        model_path = self.get_model_path()
+        if not model_path:
+            self.model = None
+            return None
+        
+        models_dir = self.lollms_paths.personal_models_path / "gptq"
+        models_dir.mkdir(parents=True, exist_ok=True)
+        # model_path = models_dir/ path
 
-        # Create the `args` object with default values
-        args = parser.parse_args([])
-        # Simple interactive chatbot script
 
-        torch.set_grad_enabled(False)
-        torch.cuda._lazy_init()
-        config = model_init.make_config(args)
+        tokenizer_model_path = model_path / "tokenizer.model"
+        model_config_path = model_path / "config.json"
+
+        for ext in ['.safetensors', '.pt', '.bin']:
+            found = list(model_path.glob(f"*{ext}"))
+            if len(found) > 0:
+                if len(found) > 1:
+                    print(
+                        f'More than one {ext} model has been found. The last one will be selected. It could be wrong.')
+
+                model_path = found[-1]
+                break
+
+        config = ExLlamaConfig(str(model_config_path))
+        config.model_path = str(model_path)
+
+        if torch_version.hip:
+            config.rmsnorm_no_half2 = True
+            config.rope_no_half2 = True
+            config.matmul_no_half2 = True
+            config.silu_no_half2 = True
 
         self.model = ExLlama(config)
-        cache = ExLlamaCache(self.model)
-        self.tokenizer = ExLlamaTokenizer(args.tokenizer)
+        self.tokenizer = ExLlamaTokenizer(str(tokenizer_model_path))
+        self.cache = ExLlamaCache(self.model)
+        self.generator = ExLlamaGenerator(self.model, self.tokenizer, self.cache)
 
-        model_init.print_stats(self.model)
-        
-        generator = ExLlamaGenerator(self.model, self.tokenizer, cache)
-        generator.settings = ExLlamaGenerator.Settings()
-        generator.settings.temperature = args.temperature
-        generator.settings.top_k = args.top_k
-        generator.settings.top_p = args.top_p
-        generator.settings.min_p = args.min_p
-        generator.settings.token_repetition_penalty_max = args.repetition_penalty
-        generator.settings.token_repetition_penalty_sustain = args.repetition_penalty_sustain
-        generator.settings.token_repetition_penalty_decay = generator.settings.token_repetition_penalty_sustain // 2
-        generator.settings.beams = args.beams
-        generator.settings.beam_length = args.beam_length
+        #model_name = str(model_path).replace("\\","/")
+        #model_base_name = [f for f in model_path.iterdir(
+        #) if f.suffix == ".safetensors"][0].stem
 
-        generator.lora = lora
-
-        break_on_newline = not args.no_newline
-
-        # Be nice to Chatbort
-
-        min_response_tokens = 4
-        max_response_tokens = 256
-        extra_prune = 256
-
-        print(past, end = "")
-        ids = tokenizer.encode(past)
-        generator.gen_begin(ids)
-
-        next_userprompt = username + ": "
-
-        first_round = True        
-
-        if self.config.model_name:
-            
-            """
-            model_path = self.get_model_path()
-            self.model_dir = model_path
-            model_name =[f for f in Path(self.model_dir).iterdir() if f.suffix==".safetensors" or f.suffix==".pth" or f.suffix==".bin"][0]
-            self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, device=self.binding_config.device, use_fast=True, local_files_only=True)
-            use_safetensors = model_name.suffix == '.safetensors'
-            model_name = model_name.stem
-
-            if not (Path(self.model_dir) / "quantize_config.json").exists():
-                quantize_config = BaseQuantizeConfig(
-                    bits= 4,
-                    group_size= -1,
-                    desc_act=""
-                )
-            else:
-                quantize_config = None
-            # load quantized model to the first GPU
-            self.model = AutoGPTQForCausalLM.from_quantized(
-                self.model_dir, 
-                local_files_only=True,  
-                model_basename=model_name, 
-                device=self.binding_config.device,
-                use_triton=False,#True,
-                use_safetensors=use_safetensors,
-                quantize_config=quantize_config
-                )
-            
-            """
-            path = self.config.model_name
-            models_dir = self.lollms_paths.personal_models_path / "gptq"
-            models_dir.mkdir(parents=True, exist_ok=True)
-            model_path = models_dir/ path
-
-            model_name = str(model_path).replace("\\","/")
-            model_base_name = [f for f in model_path.iterdir() if f.suffix==".safetensors"][0].stem
-            
-            if not (model_path / "quantize_config.json").exists():
-                quantize_config = BaseQuantizeConfig(
-                    bits=4,
-                    group_size=-1,
-                    desc_act=""
-                )
-            else:
-                quantize_config = None  
-                          
-            self.tokenizer = None
-            gc.collect()
-            import os
-            os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
-
-            self.tokenizer = AutoTokenizer.from_pretrained(
-                    model_name, 
-                    use_fast=True
-                    )
-            # load quantized model to the first GPU
-            if self.binding_config.split_between_cpu_and_gpu:
-                params = {
-                    'model_basename': model_base_name,
-                    'device': "cuda:0" if self.binding_config.max_gpu_mem_GB>0 else "cpu",
-                    'use_triton': self.binding_config.use_triton,
-                    'inject_fused_attention': True,
-                    'inject_fused_mlp': True,
-                    'use_safetensors': True,
-                    'trust_remote_code': True,
-                    'max_memory': { 0: f'{self.binding_config.max_gpu_mem_GB}GiB', 'cpu': f'{self.binding_config.max_cpu_mem_GB}GiB' },
-                    'quantize_config': quantize_config,
-                    'use_cuda_fp16': True,
-                }
-                self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
-            else:
-                params = {
-                    'model_basename': model_base_name,
-                    'device': "cuda:0" if self.binding_config.max_gpu_mem_GB>0 else "cpu",
-                    'use_triton': self.binding_config.use_triton,
-                    'inject_fused_attention': True,
-                    'inject_fused_mlp': True,
-                    'use_safetensors': True,
-                    'trust_remote_code': True,
-                    'quantize_config': quantize_config,
-                    'use_cuda_fp16': True,
-                }
-                self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
-
-            try:
-                if not self.binding_config.automatic_context_size:
-                    self.model.seqlen = self.binding_config.ctx_size
-                self.config.ctx_size = self.model.seqlen
-            except:
-                self.model.seqlen = self.binding_config.ctx_size
-                self.config.ctx_size = self.model.seqlen
-            ASCIIColors.info(f"Context lenghth set to {self.model.seqlen}")
-            return self
-        else:
-            ASCIIColors.error('No model selected!!')
-
-
-    
+        # try:
+        #     # if not self.binding_config.automatic_context_size:
+        #     #    self.model.max_seq_len = self.binding_config.ctx_size
+        #     # self.config.ctx_size = self.model.seqlen
+        # except:
+        #     pass
+        #     # self.model.max_seq_len = self.binding_config.ctx_size
+        #     # self.config.ctx_size = self.model.max_seq_len
+        # ASCIIColors.info(f"Context lenghth set to {self.model.seqlen}")
+        return self
 
     def install(self):
         super().install()
@@ -282,7 +169,10 @@ class EXLLAMA(LLMBinding):
         except Exception as ex:
             ASCIIColors.info("Pytorch not installed")
             self.reinstall_pytorch_with_cuda()
-            
+
+        requirements_file = self.binding_dir / "requirements.txt"
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+
         # Repository URL
         repo_url = "https://github.com/ParisNeo/exllama.git"
 
@@ -304,7 +194,8 @@ class EXLLAMA(LLMBinding):
 
         # Clone the repository to the subfolder
         subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
-
+        models_dir = self.lollms_paths.personal_models_path / "exllama"
+        models_dir.mkdir(parents=True, exist_ok=True)    
         ASCIIColors.success("Installed successfully")
 
 
@@ -401,6 +292,7 @@ class EXLLAMA(LLMBinding):
             return True
 
         return False
+    
     def end(self):
         """Flushes any remaining cache and prints a newline to stdout."""
         # Flush the cache, if it exists
@@ -419,7 +311,7 @@ class EXLLAMA(LLMBinding):
 
 
 
-    def generate(self, 
+    def generate_with_streaming(self, 
                  prompt:str,                  
                  n_predict: int = 128,
                  callback: Callable[[str], None] = bool,
@@ -439,38 +331,65 @@ class EXLLAMA(LLMBinding):
             'top_p': 0.96,
             'repeat_penalty': 1.3,
             "seed":-1,
-            "n_threads":8
+            "n_threads":8,
+            "typical_p":0.0
         }
-        gpt_params = {**default_params, **gpt_params}
-        self.callback = callback    
+        self.generator.settings.temperature = default_params['temperature']
+        self.generator.settings.top_p = default_params['top_p']
+        self.generator.settings.top_k = default_params['top_k']
+        self.generator.settings.typical = default_params['typical_p']
+        # self.generator.settings.token_repetition_penalty_max = default_params[
+        #     'repetition_penalty']
+        # self.generator.settings.token_repetition_penalty_sustain = - \
+        #     1 if default_params['repetition_penalty_range'] <= 0 else default_params['repetition_penalty_range']
+        # if state['ban_eos_token']:
+        #     self.generator.disallow_tokens([self.tokenizer.eos_token_id])
+        # else:
+        self.generator.disallow_tokens(None)
+
+        self.generator.end_beam_search()
+
+        ids = self.generator.tokenizer.encode(prompt)
+        
+        self.generator.gen_begin_reuse(ids)
+        initial_len = self.generator.sequence[0].shape[0]
+        has_leading_space = False
+        for i in range(n_predict):
+            token = self.generator.gen_single_token()
+            if i == 0 and self.generator.tokenizer.tokenizer.IdToPiece(int(token)).startswith('▁'):
+                has_leading_space = True
+
+            decoded_text = self.generator.tokenizer.decode(
+                self.generator.sequence[0][initial_len:])
+            if has_leading_space:
+                decoded_text = ' ' + decoded_text
+
+            yield decoded_text
+            if token.item() == self.generator.tokenizer.eos_token_id:
+                break
+
+    def generate(self,
+                 prompt: str,
+                 n_predict: int = 128,
+                 callback: Callable[[str], None] = bool,
+                 verbose: bool = False,
+                 **gpt_params):
+        output = ''
+        
         try:
-            self.token_cache = []
-            self.print_len = 0
-            self.next_tokens_are_prompt = True            
-            self.n_generated = 0
-            self.output = ""
-            input_ids = self.tokenizer(prompt, return_tensors='pt').input_ids.cuda()
-            self.n_prompt = len(input_ids[0])
-            try:
-                self.model.generate(
-                                            inputs=input_ids, 
-                                            max_new_tokens=n_predict, 
-                                            temperature=gpt_params["temperature"], 
-                                            top_p=gpt_params["top_p"],
-                                            repetition_penalty=gpt_params["repeat_penalty"],
-                                            streamer = self,
-                                            )
-                
-            except Exception as ex:
-                if str(ex)!="canceled":
-                    trace_exception(ex)
+            for output in self.generate_with_streaming(prompt, n_predict, callback, verbose):
+                pass
+
             if callback is not None:
-                callback(self.output, MSG_TYPE.MSG_TYPE_FULL)
+                callback(output, MSG_TYPE.MSG_TYPE_FULL)
+
         except Exception as ex:
-            ASCIIColors.error("Couldn't generate")
-            trace_exception(ex)
-        return self.output
-    
+            if str(ex) != "canceled":
+                ASCIIColors.error("Couldn't generate")
+                trace_exception(ex)
+
+        return output
+
     @staticmethod
     def get_filenames(repo):
         import requests
@@ -515,7 +434,7 @@ class EXLLAMA(LLMBinding):
         import wget
         import os
 
-        file_names = GPTQ.get_filenames(repo)
+        file_names = EXLLAMA.get_filenames(repo)
 
         dest_dir = Path(base_folder)
         dest_dir.mkdir(parents=True, exist_ok=True)
@@ -552,7 +471,7 @@ class EXLLAMA(LLMBinding):
         print("Done")
         
     def get_file_size(self, url):
-        file_names = GPTQ.get_filenames(url)
+        file_names = EXLLAMA.get_filenames(url)
         for file_name in file_names:
             if file_name.endswith(".safetensors"):
                 src = "/".join(url.split("/")[:-3])
@@ -572,7 +491,7 @@ class EXLLAMA(LLMBinding):
     def list_models(self, config:dict):
         """Lists the models for this binding
         """
-        models_dir:Path = self.lollms_paths.personal_models_path/config["binding_name"]  # replace with the actual path to the models folder
+        models_dir: Path = self.lollms_paths.personal_models_path / "gptq"  # replace with the actual path to the models folder
         return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".")]
 
     @staticmethod

@@ -231,6 +231,9 @@ class GPTQ(LLMBinding):
                     subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
         else:
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+            
+        models_dir = self.lollms_paths.personal_models_path / "gptq"
+        models_dir.mkdir(parents=True, exist_ok=True)            
         ASCIIColors.success("Installed successfully")
 
 
