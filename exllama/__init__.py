@@ -6,6 +6,8 @@
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
+# Big thank you to turboderp and oobabooga for their
+# paving the way with their work
 ######
 from pathlib import Path
 from typing import Callable
@@ -35,10 +37,8 @@ __license__ = "Apache 2.0"
 binding_name = "EXLLAMA"
 binding_folder_name = "exllama"
 import os
-import platform
 import os
 import subprocess
-import gc
 
 class EXLLAMA(LLMBinding):
     file_extension='*'
@@ -54,14 +54,15 @@ class EXLLAMA(LLMBinding):
         """
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
+
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-            
-            {"name": "max_seq_len", "type": "int", "value": 2048,
-                "help": "Max sequence length"},
-            {"name": "compress_pos_emb", "type": "int", "value": 1, "min": 1, "max": 8, "help": "Positional embeddings compression factor. Should typically be set to max_seq_len / 2048."},
-            {"name": "alpha_value", "type": "int", "value": 1, "min": 1, "max": 32,
-                "help": "Positional embeddings alpha factor for NTK RoPE scaling. Scaling is not identical to embedding compression. Use either this or compress_pos_emb, not both."},
+            {"name": "ctx_size", "type": "int", "value": 8192, "min": 512,
+                "help": "The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name": "compress_pos_emb", "type": "int", "value": 1, "min": 1, "max": 8,
+                "help": "Positional embeddings compression value, set it to your ctx_size divided by 2048 when over 2048. Only set this or alpha."},
+            {"name": "alpha", "type": "int", "value": 1, "min": 1, "max": 32,
+                "help": "Alpha value for context size extension. Only use this or compress_pos_emb."},
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
 
@@ -76,7 +77,7 @@ class EXLLAMA(LLMBinding):
                             binding_config, 
                             installation_option
                         )
-        self.config.ctx_size = self.binding_config.config.max_seq_len
+        self.config.ctx_size = self.binding_config.config.ctx_size
         self.callback = None
         self.n_generated = 0
         self.n_prompt = 0
@@ -99,32 +100,19 @@ class EXLLAMA(LLMBinding):
             ASCIIColors.error('No model selected!!')
             return
 
-
-        path = self.config.model_name
         model_path = self.get_model_path()
         if not model_path:
             self.model = None
             return None
-        
+
         models_dir = self.lollms_paths.personal_models_path / "gptq"
         models_dir.mkdir(parents=True, exist_ok=True)
-        # model_path = models_dir/ path
-
 
         tokenizer_model_path = model_path / "tokenizer.model"
         model_config_path = model_path / "config.json"
 
-        for ext in ['.safetensors', '.pt', '.bin']:
-            found = list(model_path.glob(f"*{ext}"))
-            if len(found) > 0:
-                if len(found) > 1:
-                    print(
-                        f'More than one {ext} model has been found. The last one will be selected. It could be wrong.')
-
-                model_path = found[-1]
-                break
-
         config = ExLlamaConfig(str(model_config_path))
+
         config.model_path = str(model_path)
 
         if torch_version.hip:
@@ -138,19 +126,6 @@ class EXLLAMA(LLMBinding):
         self.cache = ExLlamaCache(self.model)
         self.generator = ExLlamaGenerator(self.model, self.tokenizer, self.cache)
 
-        #model_name = str(model_path).replace("\\","/")
-        #model_base_name = [f for f in model_path.iterdir(
-        #) if f.suffix == ".safetensors"][0].stem
-
-        # try:
-        #     # if not self.binding_config.automatic_context_size:
-        #     #    self.model.max_seq_len = self.binding_config.ctx_size
-        #     # self.config.ctx_size = self.model.seqlen
-        # except:
-        #     pass
-        #     # self.model.max_seq_len = self.binding_config.ctx_size
-        #     # self.config.ctx_size = self.model.max_seq_len
-        # ASCIIColors.info(f"Context lenghth set to {self.model.seqlen}")
         return self
 
     def install(self):
@@ -311,7 +286,7 @@ class EXLLAMA(LLMBinding):
 
 
 
-    def generate_with_streaming(self, 
+    def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
                  callback: Callable[[str], None] = bool,
@@ -338,55 +313,16 @@ class EXLLAMA(LLMBinding):
         self.generator.settings.top_p = default_params['top_p']
         self.generator.settings.top_k = default_params['top_k']
         self.generator.settings.typical = default_params['typical_p']
-        # self.generator.settings.token_repetition_penalty_max = default_params[
-        #     'repetition_penalty']
-        # self.generator.settings.token_repetition_penalty_sustain = - \
-        #     1 if default_params['repetition_penalty_range'] <= 0 else default_params['repetition_penalty_range']
-        # if state['ban_eos_token']:
-        #     self.generator.disallow_tokens([self.tokenizer.eos_token_id])
-        # else:
-        self.generator.disallow_tokens(None)
 
-        self.generator.end_beam_search()
-
-        ids = self.generator.tokenizer.encode(prompt)
-        
-        self.generator.gen_begin_reuse(ids)
-        initial_len = self.generator.sequence[0].shape[0]
-        has_leading_space = False
-        for i in range(n_predict):
-            token = self.generator.gen_single_token()
-            if i == 0 and self.generator.tokenizer.tokenizer.IdToPiece(int(token)).startswith('▁'):
-                has_leading_space = True
-
-            decoded_text = self.generator.tokenizer.decode(
-                self.generator.sequence[0][initial_len:])
-            if has_leading_space:
-                decoded_text = ' ' + decoded_text
-
-            yield decoded_text
-            if token.item() == self.generator.tokenizer.eos_token_id:
-                break
-
-    def generate(self,
-                 prompt: str,
-                 n_predict: int = 128,
-                 callback: Callable[[str], None] = bool,
-                 verbose: bool = False,
-                 **gpt_params):
-        output = ''
-        
         try:
-            for output in self.generate_with_streaming(prompt, n_predict, callback, verbose):
-                pass
-
-            if callback is not None:
-                callback(output, MSG_TYPE.MSG_TYPE_FULL)
-
+            output = self.generator.generate_simple(prompt, max_new_tokens=n_predict)
         except Exception as ex:
             if str(ex) != "canceled":
                 ASCIIColors.error("Couldn't generate")
                 trace_exception(ex)
+
+        if callback is not None:
+            callback(output, MSG_TYPE.MSG_TYPE_FULL)
 
         return output
 
