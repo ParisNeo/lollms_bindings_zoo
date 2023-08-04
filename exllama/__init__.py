@@ -267,36 +267,41 @@ class EXLLAMA(LLMBinding):
         self.generator.settings.top_k = default_params['top_k']
         self.generator.settings.typical = default_params['typical_p']
         
-        self.generator.disallow_tokens(None)
-        self.generator.end_beam_search()
-        ids = self.generator.tokenizer.encode(prompt)
+        try:
+            self.generator.disallow_tokens(None)
+            self.generator.end_beam_search()
+            ids = self.generator.tokenizer.encode(prompt)
 
-        self.generator.gen_begin_reuse(ids)
-        initial_len = self.generator.sequence[0].shape[0]
-        has_leading_space = False
-        self.output = ""
-        for i in range(n_predict):
-            try:
-                token = self.generator.gen_single_token()
-            except:
-                token = self.tokenize("")
-            if i == 0 and self.generator.tokenizer.tokenizer.IdToPiece(int(token)).startswith('▁'):
-                has_leading_space = True
+            self.generator.gen_begin_reuse(ids)
+            initial_len = self.generator.sequence[0].shape[0]
+            has_leading_space = False
+            self.output = ""
+            for i in range(n_predict):
+                try:
+                    token = self.generator.gen_single_token()
+                except:
+                    token = self.tokenize("")
+                if i == 0 and self.generator.tokenizer.tokenizer.IdToPiece(int(token)).startswith('▁'):
+                    has_leading_space = True
 
-            decoded_text = self.generator.tokenizer.decode(
-                self.generator.sequence[0][initial_len:])
-            if has_leading_space:
-                decoded_text = ' ' + decoded_text
+                decoded_text = self.generator.tokenizer.decode(
+                    self.generator.sequence[0][initial_len:])
+                if has_leading_space:
+                    decoded_text = ' ' + decoded_text
 
-            txt_chunk = decoded_text[len(self.output):]
-            self.output = decoded_text
-            if  self.callback:
-                if not self.callback(txt_chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                    break          
-            
-            if token.item() == self.generator.tokenizer.eos_token_id:
-                break        
-        
+                txt_chunk = decoded_text[len(self.output):]
+                self.output = decoded_text
+                if  self.callback:
+                    if not self.callback(txt_chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break          
+                
+                if token.item() == self.generator.tokenizer.eos_token_id:
+                    break        
+        except Exception as ex:
+            ASCIIColors.error(ex)
+            trace_exception(ex)
+            if callback:
+                callback(ex,MSG_TYPE.MSG_TYPE_EXCEPTION)
         return self.output
 
     @staticmethod
