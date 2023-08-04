@@ -267,3 +267,17 @@
   variants:
   - name: starcoderbase-3b-ggml.bin
     size: 7503121552
+- SHA256: c7ebc61eec1779bddae1f2bcbf2007cc
+  description: <strong>New LLaMA2 model from Meta AI.</strong><br><ul><li>Fine-tuned
+    for dialogue.<li>static model trained on an offline dataset<li>RLHF dataset<li>Licensed
+    for commercial use</ul>
+  filename: llama-2-7b-chat.ggmlv3.q4_0.bin
+  icon: https://gpt4all.io/gpt4all-128.png
+  license: ''
+  owner: nomic-ai
+  owner_link: https://gpt4all.io/
+  server: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/resolve/main/
+  title: llama-2-7b-chat.ggmlv3.q4_0.bin
+  variants:
+  - name: llama-2-7b-chat.ggmlv3.q4_0.bin
+    size: 3791725184

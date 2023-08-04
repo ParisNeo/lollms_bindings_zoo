@@ -1,7 +1,7 @@
 ######
 # Project       : lollms
 # File          : binding.py
-# Author        : ParisNeo with the help of the community
+# Author        : ParisNeo with the help from bartowski
 # Supported by Nomic-AI
 # license       : Apache 2.0
 # Description   : 
@@ -63,7 +63,7 @@ class EXLLAMA(LLMBinding):
 
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-            {"name": "ctx_size", "type": "int", "value": 8192, "min": 512,
+            {"name": "ctx_size", "type": "int", "value": 2048, "min": 512,
                 "help": "The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name": "compress_pos_emb", "type": "int", "value": 1, "min": 1, "max": 8,
                 "help": "Positional embeddings compression value, set it to your ctx_size divided by 2048 when over 2048. Only set this or alpha."},
@@ -233,84 +233,6 @@ class EXLLAMA(LLMBinding):
         return  self.tokenizer.decode(tokens_list)
     
 
-    def put(self, value):
-        """
-        Recives tokens, decodes them, and prints them to stdout as soon as they form entire words.
-        """
-        if len(value.shape) > 1 and value.shape[0] > 1:
-            raise ValueError("TextStreamer only supports batch size 1")
-        elif len(value.shape) > 1:
-            value = value[0]
-
-        if self.skip_prompt and self.next_tokens_are_prompt:
-            self.next_tokens_are_prompt = False
-            return
-
-        # Add the new token to the cache and decodes the entire thing.
-        self.token_cache.extend(value.tolist())
-        text = self.tokenizer.decode(self.token_cache, **self.decode_kwargs)
-
-        # After the symbol for a new line, we flush the cache.
-        if text.endswith("\n"):
-            printable_text = text[self.print_len :]
-            self.token_cache = []
-            self.print_len = 0
-        # If the last token is a CJK character, we print the characters.
-        elif len(text) > 0 and self._is_chinese_char(ord(text[-1])):
-            printable_text = text[self.print_len :]
-            self.print_len += len(printable_text)
-        # Otherwise, prints until the last space char (simple heuristic to avoid printing incomplete words,
-        # which may change with the subsequent token -- there are probably smarter ways to do this!)
-        else:
-            printable_text = text[self.print_len : text.rfind(" ") + 1]
-            self.print_len += len(printable_text)
-
-        self.output += printable_text
-        if  self.callback:
-            if not self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
-                raise Exception("canceled")    
-            
-    def _is_chinese_char(self, cp):
-        """Checks whether CP is the codepoint of a CJK character."""
-        # This defines a "chinese character" as anything in the CJK Unicode block:
-        #   https://en.wikipedia.org/wiki/CJK_Unified_Ideographs_(Unicode_block)
-        #
-        # Note that the CJK Unicode block is NOT all Japanese and Korean characters,
-        # despite its name. The modern Korean Hangul alphabet is a different block,
-        # as is Japanese Hiragana and Katakana. Those alphabets are used to write
-        # space-separated words, so they are not treated specially and handled
-        # like the all of the other languages.
-        if (
-            (cp >= 0x4E00 and cp <= 0x9FFF)
-            or (cp >= 0x3400 and cp <= 0x4DBF)  #
-            or (cp >= 0x20000 and cp <= 0x2A6DF)  #
-            or (cp >= 0x2A700 and cp <= 0x2B73F)  #
-            or (cp >= 0x2B740 and cp <= 0x2B81F)  #
-            or (cp >= 0x2B820 and cp <= 0x2CEAF)  #
-            or (cp >= 0xF900 and cp <= 0xFAFF)
-            or (cp >= 0x2F800 and cp <= 0x2FA1F)  #
-        ):  #
-            return True
-
-        return False
-    
-    def end(self):
-        """Flushes any remaining cache and prints a newline to stdout."""
-        # Flush the cache, if it exists
-        if len(self.token_cache) > 0:
-            text = self.tokenizer.decode(self.token_cache, **self.decode_kwargs)
-            printable_text = text[self.print_len :]
-            self.token_cache = []
-            self.print_len = 0
-        else:
-            printable_text = ""
-
-        self.next_tokens_are_prompt = True
-        if  self.callback:
-            if self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
-                raise Exception("canceled")    
-
-
 
     def generate(self, 
                  prompt:str,                  
@@ -326,6 +248,7 @@ class EXLLAMA(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        self.callback = callback
         default_params = {
             'temperature': 0.7,
             'top_k': 50,
@@ -339,18 +262,33 @@ class EXLLAMA(LLMBinding):
         self.generator.settings.top_p = default_params['top_p']
         self.generator.settings.top_k = default_params['top_k']
         self.generator.settings.typical = default_params['typical_p']
+        
+        self.generator.disallow_tokens(None)
+        self.generator.end_beam_search()
+        ids = self.generator.tokenizer.encode(prompt)
 
-        try:
-            output = self.generator.generate_simple(prompt, max_new_tokens=n_predict)
-        except Exception as ex:
-            if str(ex) != "canceled":
-                ASCIIColors.error("Couldn't generate")
-                trace_exception(ex)
+        self.generator.gen_begin_reuse(ids)
+        initial_len = self.generator.sequence[0].shape[0]
+        self.output = ""
+        for i in range(n_predict):
+            token = self.generator.gen_single_token()
+            if i == 0 and self.generator.tokenizer.tokenizer.IdToPiece(int(token)).startswith('▁'):
+                self.output += ' '
 
-        if callback is not None:
-            callback(output, MSG_TYPE.MSG_TYPE_FULL)
+            txt_chunk = self.generator.tokenizer.decode(token)[0]
+            #initial_len = self.generator.sequence[0].shape[0]
+            self.output += txt_chunk
+            # if has_leading_space:
+            #    self.output = ' ' + self.output
 
-        return output
+            if  self.callback:
+                if not self.callback(txt_chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                    break          
+            if token.item() == self.generator.tokenizer.eos_token_id:
+                break        
+
+
+        return self.output
 
     @staticmethod
     def get_filenames(repo):

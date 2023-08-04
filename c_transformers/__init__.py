@@ -187,6 +187,7 @@ class CTRansformers(LLMBinding):
             # pip install --upgrade --no-cache-dir --no-binary ctransformers
             result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
         else:
+            ASCIIColors.info("Using CPU")
             # pip install --upgrade --no-cache-dir --no-binary ctransformers
             result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
                     
