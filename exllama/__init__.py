@@ -272,7 +272,6 @@ class EXLLAMA(LLMBinding):
         ids = self.generator.tokenizer.encode(prompt)
 
         self.generator.gen_begin_reuse(ids)
-        self.generator.gen_begin_reuse(ids)
         initial_len = self.generator.sequence[0].shape[0]
         has_leading_space = False
         self.output = ""
