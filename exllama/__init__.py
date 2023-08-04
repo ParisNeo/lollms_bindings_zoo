@@ -294,32 +294,6 @@ class EXLLAMA(LLMBinding):
             if token.item() == self.generator.tokenizer.eos_token_id:
                 break        
         
-        
-        """
-        
-        initial_len = self.generator.sequence[0].shape[0]
-        self.output = ""
-        for i in range(n_predict):
-            token = self.generator.gen_single_token()
-            if i == 0 and self.generator.tokenizer.tokenizer.IdToPiece(int(token)).startswith('▁'):
-                self.output += ' '
-
-            txt_chunk = self.generator.tokenizer.decode(token)[0]
-            #initial_len = self.generator.sequence[0].shape[0]
-            self.output += txt_chunk
-            # if has_leading_space:
-            #    self.output = ' ' + self.output
-
-            if  self.callback:
-                if not self.callback(txt_chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                    break          
-            if token.item() == self.generator.tokenizer.eos_token_id:
-                break        
-
-        
-        """
-
-
         return self.output
 
     @staticmethod
