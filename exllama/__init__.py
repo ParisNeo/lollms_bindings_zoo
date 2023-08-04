@@ -276,7 +276,10 @@ class EXLLAMA(LLMBinding):
         has_leading_space = False
         self.output = ""
         for i in range(n_predict):
-            token = self.generator.gen_single_token()
+            try:
+                token = self.generator.gen_single_token()
+            except:
+                token = self.tokenize("")
             if i == 0 and self.generator.tokenizer.tokenizer.IdToPiece(int(token)).startswith('▁'):
                 has_leading_space = True
 
