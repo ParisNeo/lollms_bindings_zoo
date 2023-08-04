@@ -1,1 +1,2 @@
+ninja==1.11.1
 llamacpp

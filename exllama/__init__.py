@@ -268,6 +268,27 @@ class EXLLAMA(LLMBinding):
         ids = self.generator.tokenizer.encode(prompt)
 
         self.generator.gen_begin_reuse(ids)
+        self.generator.gen_begin_reuse(ids)
+        initial_len = self.generator.sequence[0].shape[0]
+        has_leading_space = False
+        self.output = ""
+        for i in range(n_predict):
+            token = self.generator.gen_single_token()
+            if i == 0 and self.generator.tokenizer.tokenizer.IdToPiece(int(token)).startswith('▁'):
+                has_leading_space = True
+
+            decoded_text = self.generator.tokenizer.decode(
+                self.generator.sequence[0][initial_len:])
+            if has_leading_space:
+                decoded_text = ' ' + decoded_text
+
+            self.output = decoded_text
+            if token.item() == self.generator.tokenizer.eos_token_id:
+                break        
+        
+        
+        """
+        
         initial_len = self.generator.sequence[0].shape[0]
         self.output = ""
         for i in range(n_predict):
@@ -286,6 +307,9 @@ class EXLLAMA(LLMBinding):
                     break          
             if token.item() == self.generator.tokenizer.eos_token_id:
                 break        
+
+        
+        """
 
 
         return self.output
