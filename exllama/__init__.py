@@ -283,7 +283,12 @@ class EXLLAMA(LLMBinding):
             if has_leading_space:
                 decoded_text = ' ' + decoded_text
 
+            txt_chunk = decoded_text[len(self.output):]
             self.output = decoded_text
+            if  self.callback:
+                if not self.callback(txt_chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                    break          
+            
             if token.item() == self.generator.tokenizer.eos_token_id:
                 break        
         
