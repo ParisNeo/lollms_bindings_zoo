@@ -171,34 +171,37 @@ class EXLLAMA(LLMBinding):
                 ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()
 
-        requirements_file = self.binding_dir / "requirements.txt"
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+            requirements_file = self.binding_dir / "requirements.txt"
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
-        # Repository URL
-        repo_url = "https://github.com/ParisNeo/exllama.git"
+            # Repository URL
+            repo_url = "https://github.com/ParisNeo/exllama.git"
 
-        # Get the path of the current script file
-        script_path = Path(__file__).resolve()
+            # Get the path of the current script file
+            script_path = Path(__file__).resolve()
 
-        # Get the parent directory of the script file
-        parent_dir = script_path.parent
+            # Get the parent directory of the script file
+            parent_dir = script_path.parent
 
-        # Define the subfolder name
-        subfolder_name = "exllama"
+            # Define the subfolder name
+            subfolder_name = "exllama"
 
-        # Create the full path to the subfolder
-        subfolder_path = parent_dir / subfolder_name
+            # Create the full path to the subfolder
+            subfolder_path = parent_dir / subfolder_name
 
-        # Check if the subfolder exists and remove it if it does
-        if subfolder_path.exists():
-            subprocess.run(["git", "pull"], cwd = str(subfolder_path), check=True)
+            # Check if the subfolder exists and remove it if it does
+            if subfolder_path.exists():
+                subprocess.run(["git", "pull"], cwd = str(subfolder_path), check=True)
+            else:
+                # Clone the repository to the subfolder
+                subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
+            # Make models dir
+            models_dir = self.lollms_paths.personal_models_path / "exllama"
+            models_dir.mkdir(parents=True, exist_ok=True)    
+            ASCIIColors.success("Installed successfully")
         else:
-            # Clone the repository to the subfolder
-            subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
-        # Make models dir
-        models_dir = self.lollms_paths.personal_models_path / "exllama"
-        models_dir.mkdir(parents=True, exist_ok=True)    
-        ASCIIColors.success("Installed successfully")
+            ASCIIColors.error("Exllama is only installable on GPU. Please activate GPU support before proceeding")
+            
 
 
     def uninstall(self):
