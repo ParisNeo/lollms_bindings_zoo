@@ -301,7 +301,7 @@ class EXLLAMA(LLMBinding):
             ASCIIColors.error(ex)
             trace_exception(ex)
             if callback:
-                callback(ex,MSG_TYPE.MSG_TYPE_EXCEPTION)
+                callback(str(ex),MSG_TYPE.MSG_TYPE_EXCEPTION)
         return self.output
 
     @staticmethod
