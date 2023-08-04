@@ -266,7 +266,7 @@ class EXLLAMA(LLMBinding):
         self.generator.settings.top_p = default_params['top_p']
         self.generator.settings.top_k = default_params['top_k']
         self.generator.settings.typical = default_params['typical_p']
-        
+        self.output = ""
         try:
             self.generator.disallow_tokens(None)
             self.generator.end_beam_search()
@@ -275,7 +275,7 @@ class EXLLAMA(LLMBinding):
             self.generator.gen_begin_reuse(ids)
             initial_len = self.generator.sequence[0].shape[0]
             has_leading_space = False
-            self.output = ""
+            
             for i in range(n_predict):
                 try:
                     token = self.generator.gen_single_token()
