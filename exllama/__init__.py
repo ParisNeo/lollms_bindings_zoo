@@ -17,6 +17,7 @@ from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
+from lollms.utilities import AdvancedGarbageCollector
 import subprocess
 import yaml
 import re
@@ -30,7 +31,7 @@ pth = Path(__file__).parent/"exllama"
 sys.path.append(str(pth))
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/GPTQ_binding"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -52,6 +53,11 @@ class EXLLAMA(LLMBinding):
         Args:
             config (LOLLMSConfig): The configuration file
         """
+        self.model          = None
+        self.tokenizer      = None
+        self.cache          = None
+        self.generator      = None
+                
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
 
@@ -77,6 +83,8 @@ class EXLLAMA(LLMBinding):
                             binding_config, 
                             installation_option
                         )
+
+        
         self.config.ctx_size = self.binding_config.config.ctx_size
         self.callback = None
         self.n_generated = 0
@@ -105,7 +113,7 @@ class EXLLAMA(LLMBinding):
             self.model = None
             return None
 
-        models_dir = self.lollms_paths.personal_models_path / "gptq"
+        models_dir = self.lollms_paths.personal_models_path / "exllama"
         models_dir.mkdir(parents=True, exist_ok=True)
 
         tokenizer_model_path = model_path / "tokenizer.model"
@@ -129,6 +137,13 @@ class EXLLAMA(LLMBinding):
         return self
 
     def install(self):
+        # free up memory
+        ASCIIColors.success("freeing memory")
+        AdvancedGarbageCollector.safeHardCollectMultiple(['model','tokenizer','cache','generator'],self)
+        AdvancedGarbageCollector.safeHardCollectMultiple(['ExLlamaGenerator','ExLlama','ExLlamaCache','ExLlamaConfig','ExLlamaTokenizer','torch_version'])
+        AdvancedGarbageCollector.collect()
+        ASCIIColors.success("freed memory")
+        
         super().install()
         print("This is the first time you are using this binding.")
                 # Step 1 : install pytorch with cuda
@@ -165,10 +180,11 @@ class EXLLAMA(LLMBinding):
 
         # Check if the subfolder exists and remove it if it does
         if subfolder_path.exists():
-            shutil.rmtree(subfolder_path)
-
-        # Clone the repository to the subfolder
-        subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
+            subprocess.run(["git", "pull"], cwd = str(subfolder_path), check=True)
+        else:
+            # Clone the repository to the subfolder
+            subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
+        # Make models dir
         models_dir = self.lollms_paths.personal_models_path / "exllama"
         models_dir.mkdir(parents=True, exist_ok=True)    
         ASCIIColors.success("Installed successfully")
@@ -427,8 +443,8 @@ class EXLLAMA(LLMBinding):
     def list_models(self, config:dict):
         """Lists the models for this binding
         """
-        models_dir: Path = self.lollms_paths.personal_models_path / "gptq"  # replace with the actual path to the models folder
-        return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".")]
+        models_dir:Path = self.lollms_paths.personal_models_path/config["binding_name"]  # replace with the actual path to the models folder
+        return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".") or f.suffix==".reference"]
 
     @staticmethod
     def get_available_models():

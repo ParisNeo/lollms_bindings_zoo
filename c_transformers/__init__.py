@@ -18,6 +18,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
+from lollms.utilities import AdvancedGarbageCollector
 import subprocess
 import yaml
 import os
@@ -53,6 +54,8 @@ class CTRansformers(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
+        self.model = None
+        
         self.config = config
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
@@ -140,6 +143,14 @@ class CTRansformers(LLMBinding):
         return self
             
     def install(self):
+        # free up memory
+        ASCIIColors.success("freeing memory")
+        AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
+        AdvancedGarbageCollector.safeHardCollectMultiple(['AutoModelForCausalLM'])
+        AdvancedGarbageCollector.collect()
+        ASCIIColors.success("freed memory")
+        
+        
         super().install()
 
         # INstall other requirements
