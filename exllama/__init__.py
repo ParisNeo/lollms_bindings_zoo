@@ -118,6 +118,16 @@ class EXLLAMA(LLMBinding):
 
         tokenizer_model_path = model_path / "tokenizer.model"
         model_config_path = model_path / "config.json"
+        
+        for ext in ['.safetensors', '.pt', '.bin']:
+            found = list(model_path.glob(f"*{ext}"))
+            if len(found) > 0:
+                if len(found) > 1:
+                    print(
+                        f'More than one {ext} model has been found. The last one will be selected. It could be wrong.')
+
+                model_path = found[-1]
+                break        
 
         config = ExLlamaConfig(str(model_config_path))
 
