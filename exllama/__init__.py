@@ -38,7 +38,6 @@ __license__ = "Apache 2.0"
 binding_name = "EXLLAMA"
 binding_folder_name = "exllama"
 import os
-import os
 import subprocess
 
 class EXLLAMA(LLMBinding):
@@ -158,17 +157,19 @@ class EXLLAMA(LLMBinding):
         print("This is the first time you are using this binding.")
                 # Step 1 : install pytorch with cuda
         ASCIIColors.info("Checking pytorch")
-        try:
-            import torch
-            import torchvision
-            if torch.cuda.is_available():
-                ASCIIColors.success("CUDA is supported.")
-            else:
-                ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
+        
+        if self.config.enable_gpu:
+            try:
+                import torch
+                import torchvision
+                if torch.cuda.is_available():
+                    ASCIIColors.success("CUDA is supported.")
+                else:
+                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
+                    self.reinstall_pytorch_with_cuda()
+            except Exception as ex:
+                ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()
-        except Exception as ex:
-            ASCIIColors.info("Pytorch not installed")
-            self.reinstall_pytorch_with_cuda()
 
         requirements_file = self.binding_dir / "requirements.txt"
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
