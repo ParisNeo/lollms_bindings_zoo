@@ -1,0 +1,10 @@
+- description: Most advanced language model by Google.
+  icon: /bindings/google/logo.png
+  filename: Bard
+  license: Commercial
+  owner_link: https://bard.google.com/
+  owner: Google
+  server: https://bard.google.com/
+  sha256: ~
+  model_type: api
+
