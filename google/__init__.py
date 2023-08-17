@@ -141,7 +141,7 @@ class GoogleBard(LLMBinding):
             # Set the `Content-Type` and `Authorization` headers.
             headers = {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer YOUR_API_KEY"
+                "Authorization": f"Bearer {self.binding_config.google_bard_key}"
             }
 
             # Create a dictionary called `data`. This dictionary contains the prompt for the poem.
