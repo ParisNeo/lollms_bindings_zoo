@@ -25,6 +25,7 @@ import urllib
 import shutil
 import sys
 import os
+import torch
 
 sys.path.append(os.getcwd())
 pth = Path(__file__).parent/"exllama"
@@ -231,7 +232,8 @@ class EXLLAMA(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.tokenizer.encode(prompt)
+        t = self.tokenizer.encode(prompt)
+        return t[0].tolist()
 
     def detokenize(self, tokens_list:list):
         """
@@ -243,7 +245,8 @@ class EXLLAMA(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return  self.tokenizer.decode(tokens_list)
+        t = torch.IntTensor([tokens_list])
+        return  self.tokenizer.decode(t)[0]
     
 
 

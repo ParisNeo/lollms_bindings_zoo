@@ -19,7 +19,7 @@ import subprocess
 import yaml
 import re
 import urllib
-
+import torch
 
 
 __author__ = "parisneo"
@@ -243,7 +243,7 @@ class GPTQ(LLMBinding):
         subprocess.run(["pip", "uninstall", "--yes", "llama-cpp-python"])
         ASCIIColors.success("Installed successfully")
 
-
+  
 
     def tokenize(self, prompt:str):
         """
@@ -255,7 +255,8 @@ class GPTQ(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.tokenizer.encode(prompt)[1:]
+        t = self.tokenizer.encode(prompt)[1:]
+        return t[0].tolist()
 
     def detokenize(self, tokens_list:list):
         """
@@ -267,8 +268,9 @@ class GPTQ(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return  self.tokenizer.decode(tokens_list)
-    
+        t = torch.IntTensor([tokens_list])
+        return  self.tokenizer.decode(t)[0]
+
 
     def put(self, value):
         """
