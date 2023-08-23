@@ -1,11 +1,33 @@
-- SHA256: 451b3579e6735f2ec4eb0c80dab80b3a737c926564b11260e6d55a021ea37d7f
-  description: Vicuna Model Card(co/TheBloke/vicuna-7B-GPTQ-4bit-128g/blob/main/vicuna-7B-GPTQ-4bit-128g)
-  filename: vicuna-7B-GPTQ-4bit-128g
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+- SHA256: d789cb7190b17c2cc43fcf29af45adb3eec1ba248353761e29dacfd512a8e06d
+  description: John Durbin Airoboros 7b
+  filename: jondurbin/airoboros-7b
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
   license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/vicuna-7B-GPTQ-4bit-128g/
-  server: https://huggingface.co/TheBloke/vicuna-7B-GPTQ-4bit-128g/resolve/main
+  owner: Jon Durbin
+  owner_link: https://huggingface.co/jondurbin/
+  server: jondurbin/airoboros-7b
   variants:
-  - vicuna-7B-GPTQ-4bit-128g.safetensors
-  - vicuna-7B-GPTQ-4bit-128g.safetensors
+  - main
+- SHA256: d789cb7190b17c2cc43fcf29af45adb3eec1ba248353761e29dacfd512a8e06d
+  description: Tururl 2 7b by Voicelab
+  filename: Voicelab/trurl-2-7b
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1646918653480-6229fb48b8c5f583fa931cdd.png?w=200&h=200&f=face
+  license: other
+  owner: VoiceLab
+  owner_link: https://huggingface.co/Voicelab/
+  server: Voicelab/trurl-2-7b
+  variants:
+  - main
+
+- SHA256: 2dc1ef98eab4de8f17b6c048f1788487115659e71c4f537ad4abf6678d00cf60
+  description: medllama2 7b by llSourcell (Siraj)
+  filename: llSourcell/medllama2_7b
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1646918653480-6229fb48b8c5f583fa931cdd.png?w=200&h=200&f=face
+  license: other
+  owner: llSourcell
+  owner_link: https://huggingface.co/llSourcell/
+  server: llSourcell/medllama2_7b
+  variants:
+  - main
+
+  

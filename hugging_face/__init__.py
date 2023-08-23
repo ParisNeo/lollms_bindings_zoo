@@ -102,7 +102,7 @@ class HuggingFace(LLMBinding):
 
     def build_model(self):
 
-        from transformers import AutoTokenizer, AutoModel
+        from transformers import AutoTokenizer, AutoModel, LlamaForCausalLM
 
         if self.config.model_name:
 
@@ -118,43 +118,21 @@ class HuggingFace(LLMBinding):
             # model_path = models_dir/ path
 
             model_name = str(model_path).replace("\\","/")
-            model_base_name = [f for f in model_path.iterdir() if f.suffix==".safetensors"][0].stem
                          
             self.tokenizer = None
             gc.collect()
             import os
             os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
 
+            ASCIIColors.info(f"Creating model {model_path}")
+
             self.tokenizer = AutoTokenizer.from_pretrained(
                     model_name, 
                     use_fast=True
                     )
             # load quantized model to the first GPU
-            if self.binding_config.split_between_cpu_and_gpu:
-                params = {
-                    'model_basename': model_base_name,
-                    'device': "cuda:0" if self.binding_config.max_gpu_mem_GB>0 else "cpu",
-                    'use_triton': self.binding_config.use_triton,
-                    'inject_fused_attention': True,
-                    'inject_fused_mlp': True,
-                    'use_safetensors': True,
-                    'trust_remote_code': True,
-                    'max_memory': { 0: f'{self.binding_config.max_gpu_mem_GB}GiB', 'cpu': f'{self.binding_config.max_cpu_mem_GB}GiB' },
-                    'use_cuda_fp16': True,
-                }
-                self.model = AutoModel.from_quantized(model_path, **params)
-            else:
-                params = {
-                    'model_basename': model_base_name,
-                    'device': "cuda:0" if self.binding_config.max_gpu_mem_GB>0 else "cpu",
-                    'use_triton': self.binding_config.use_triton,
-                    'inject_fused_attention': True,
-                    'inject_fused_mlp': True,
-                    'use_safetensors': True,
-                    'trust_remote_code': True,
-                    'use_cuda_fp16': True,
-                }
-                self.model = AutoModel.from_quantized(model_path, **params)
+            self.model = LlamaForCausalLM.from_pretrained(model_path)
+            """
             try:
                 if not self.binding_config.automatic_context_size:
                     self.model.seqlen = self.binding_config.ctx_size
@@ -163,6 +141,8 @@ class HuggingFace(LLMBinding):
                 self.model.seqlen = self.binding_config.ctx_size
                 self.config.ctx_size = self.model.seqlen
             ASCIIColors.info(f"Context lenghth set to {self.model.seqlen}")
+            
+            """
             return self
         else:
             ASCIIColors.error('No model selected!!')
@@ -360,12 +340,18 @@ class HuggingFace(LLMBinding):
 
         dont_download = [".gitattributes"]
 
-        main_url = '/'.join(repo.split("/")[:-3])+"/tree/main" #f"https://huggingface.co/{}/tree/main"
+        blocs = repo.split("/")
+        if len(blocs)!=2:
+            raise ValueError("Bad repository path")
+
+        main_url = "https://huggingface.co/"+repo+"/tree/main" #f"https://huggingface.co/{}/tree/main"
         response = requests.get(main_url)
         html_content = response.text
         soup = BeautifulSoup(html_content, 'html.parser')
 
         file_names = []
+
+        
 
         for a_tag in soup.find_all('a', {'class': 'group'}):
             span_tag = a_tag.find('span', {'class': 'truncate'})
@@ -375,7 +361,7 @@ class HuggingFace(LLMBinding):
                     file_names.append(file_name)
 
         print(f"Repo: {repo}")
-        print("Found files:")
+        ASCIIColors.info("Found files:")
         for file in file_names:
             print(" ", file)
         return file_names
@@ -396,6 +382,10 @@ class HuggingFace(LLMBinding):
         
         import wget
         import os
+        blocs = repo.split("/")
+        if len(blocs)==4:
+            repo="/".join(blocs[-2:])
+            
 
         file_names = HuggingFace.get_filenames(repo)
 
@@ -414,14 +404,16 @@ class HuggingFace(LLMBinding):
             # Example: Print the current progress
             downloaded = current 
             progress = (current  / total) * 100
-            if callback and ".safetensors" in loading[0]:
+            if callback and (".safetensors" in loading[0] or ".bin" in loading[0] ):
                 try:
                     callback(downloaded, total)
                 except:
                     callback(0, downloaded, total)
+
         def download_file(get_file):
-            src = "/".join(repo.split("/")[:-3])
-            filename = f"{src}/resolve/main/{get_file}"
+            main_url = "https://huggingface.co/"+repo#f"https://huggingface.co/{}/tree/main"
+
+            filename = f"{main_url}/resolve/main/{get_file}"
             print(f"\nDownloading {filename}")
             loading[0]=filename
             wget.download(filename, out=str(dest_dir), bar=chunk_callback)
@@ -433,11 +425,18 @@ class HuggingFace(LLMBinding):
 
         print("Done")
         
-    def get_file_size(self, url):
-        file_names = HuggingFace.get_filenames(url)
+    def get_file_size(self, repo):
+        blocs = repo.split("/")
+        if len(blocs)!=2 and len(blocs)!=4:
+            raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")
+
+        if len(blocs)==4:
+            repo="/".join(blocs[-2:])
+
+        file_names = HuggingFace.get_filenames(repo)
         for file_name in file_names:
-            if file_name.endswith(".safetensors"):
-                src = "/".join(url.split("/")[:-3])
+            if file_name.endswith(".safetensors") or  file_name.endswith(".bin"):
+                src = "https://huggingface.co/"+repo
                 filename = f"{src}/resolve/main/{file_name}"                
                 response = urllib.request.urlopen(filename)
                 
