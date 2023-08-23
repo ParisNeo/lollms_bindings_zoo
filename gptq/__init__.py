@@ -217,29 +217,7 @@ class GPTQ(LLMBinding):
                 ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()    
 
-            # Step 2: Install dependencies using pip from requirements.txt
-            requirements_file = self.binding_dir / "requirements.txt"
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
-
-            # Define the environment variables
-            os_type = platform.system()
-            if os_type == "Linux":
-                print("Linux OS detected.")
-                env = os.environ.copy()
-                
-                result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "https://github.com/PanQiWei/AutoGPTQ/releases/download/v0.2.2/auto_gptq-0.2.2+cu117-cp310-cp310-linux_x86_64.whl"], env=env)
-
-                if result.returncode != 0:
-                    print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
-                    subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
-            if os_type == "Windows":
-                print("Windows OS detected.")
-                env = os.environ.copy()
-                result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "https://github.com/PanQiWei/AutoGPTQ/releases/download/v0.2.2/auto_gptq-0.2.2+cu117-cp310-cp310-win_amd64.whl"], env=env)
-
-                if result.returncode != 0:
-                    print("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
-                    subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq", "--extra-index-url", "https://huggingface.github.io/autogptq-index/whl/cu117/"])
         else:
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
             
