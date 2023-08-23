@@ -148,12 +148,27 @@ class EXLLAMA(LLMBinding):
             config.matmul_no_half2 = True
             config.silu_no_half2 = True
 
+        try:
+            torch.cuda.empty_cache()
+        except Exception as ex:
+            ASCIIColors.error("Couldn't clear cuda memory")
+
         self.model = ExLlama(config)
         self.tokenizer = ExLlamaTokenizer(str(tokenizer_model_path))
         self.cache = ExLlamaCache(self.model)
         self.generator = ExLlamaGenerator(self.model, self.tokenizer, self.cache)
 
         return self
+
+    def __del__(self):
+        del self.generator
+        del self.cache
+        del self.tokenizer
+        del self.model
+        try:
+            torch.cuda.empty_cache()
+        except Exception as ex:
+            ASCIIColors.error("Couldn't clear cuda memory")
 
     def install(self):
         # free up memory

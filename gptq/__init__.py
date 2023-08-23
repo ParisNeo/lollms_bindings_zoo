@@ -89,6 +89,17 @@ class GPTQ(LLMBinding):
         self.print_len = 0
         self.next_tokens_are_prompt = True
 
+
+    def __del__(self):
+        import torch
+        del self.tokenizer
+        del self.model
+        try:
+            torch.cuda.empty_cache()
+        except Exception as ex:
+            ASCIIColors.error("Couldn't clear cuda memory")
+
+
     def embed(self, text):
         """
         Computes text embedding
