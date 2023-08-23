@@ -47,6 +47,8 @@ class GPTQ(LLMBinding):
         Args:
             config (LOLLMSConfig): The configuration file
         """
+        self.model = None
+        self.tokenizer = None
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
@@ -92,8 +94,10 @@ class GPTQ(LLMBinding):
 
     def __del__(self):
         import torch
-        del self.tokenizer
-        del self.model
+        if self.tokenizer:
+            del self.tokenizer
+        if self.model:
+            del self.model
         try:
             torch.cuda.empty_cache()
         except Exception as ex:
@@ -144,11 +148,13 @@ class GPTQ(LLMBinding):
             gc.collect()
             import os
             os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
-
+            ASCIIColors.info("Building tokenizer")
             self.tokenizer = AutoTokenizer.from_pretrained(
                     model_name, 
                     use_fast=True
                     )
+            ASCIIColors.success("OK")
+            ASCIIColors.info("Building model")
             # load quantized model to the first GPU
             if self.binding_config.split_between_cpu_and_gpu:
                 params = {
@@ -177,6 +183,7 @@ class GPTQ(LLMBinding):
                     'use_cuda_fp16': True,
                 }
                 self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
+            ASCIIColors.success("OK")
             try:
                 if not self.binding_config.automatic_context_size:
                     self.model.seqlen = self.binding_config.ctx_size
@@ -195,7 +202,8 @@ class GPTQ(LLMBinding):
         destroys the current model
         """
         ASCIIColors.print("Deleting model", ASCIIColors.color_orange)
-        del self.model
+        if self.model:
+            del self.model
         self.model = None
     
 
@@ -217,7 +225,7 @@ class GPTQ(LLMBinding):
                 ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()    
 
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq", "--extra-index-url", "https://huggingface.github.io/autogptq-index/whl/cu117/"])
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])#, "--extra-index-url", "https://huggingface.github.io/autogptq-index/whl/cu117/"])
         else:
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
             
@@ -244,8 +252,7 @@ class GPTQ(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        t = self.tokenizer.encode(prompt)[1:]
-        return t[0].tolist()
+        return self.tokenizer.encode(prompt)[1:]
 
     def detokenize(self, tokens_list:list):
         """
@@ -321,6 +328,7 @@ class GPTQ(LLMBinding):
             return True
 
         return False
+    
     def end(self):
         """Flushes any remaining cache and prints a newline to stdout."""
         # Flush the cache, if it exists
