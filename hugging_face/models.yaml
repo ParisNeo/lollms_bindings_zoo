@@ -20,7 +20,7 @@
   - main
 
 - SHA256: 2dc1ef98eab4de8f17b6c048f1788487115659e71c4f537ad4abf6678d00cf60
-  description: medllama2 7b by llSourcell (Siraj)
+  description: medllama2 7b by llSourcell (Siraj)<br><a href=https://www.youtube.com/watch?v=J9nJh33GM-w>Video</a>
   filename: llSourcell/medllama2_7b
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1646918653480-6229fb48b8c5f583fa931cdd.png?w=200&h=200&f=face
   license: other
@@ -29,5 +29,3 @@
   server: llSourcell/medllama2_7b
   variants:
   - main
-
-  
