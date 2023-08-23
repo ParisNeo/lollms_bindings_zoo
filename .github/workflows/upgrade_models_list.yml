@@ -1,0 +1,36 @@
+name: Python Script Workflow
+
+on:
+  workflow_dispatch:  # Manually trigger the workflow
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10  # Specify Python 3.10
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Execute Script
+        run: python gpt4all/recover_models.py
+
+      - name: Commit Changes
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git add .
+          git commit -m "Update file via workflow"
+          
+      - name: Push Changes
+        uses: ad-m/github-push-action@v0.6.0  # Use a suitable GitHub push action
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}

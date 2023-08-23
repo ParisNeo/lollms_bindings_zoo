@@ -84,9 +84,14 @@ class CTRansformers(LLMBinding):
                             installation_option
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
-
+    def __del__(self):
+        if self.model:
+            del self.model
 
     def build_model(self):
+
+        ASCIIColors.info("Building model")
+
         if 'gpt2' in self.config['model_name']:
             model_type='gpt2'
         elif 'gptj' in self.config['model_name']:
@@ -110,6 +115,7 @@ class CTRansformers(LLMBinding):
         else:
             print("The model you are using is not supported by this binding")
             return
+        ASCIIColors.info(f"Model type : {model_type}")
         
         
         model_path = self.get_model_path()
@@ -139,7 +145,7 @@ class CTRansformers(LLMBinding):
                     context_length = self.binding_config.config["ctx_size"],
                     reset= False
                     )
-            
+        ASCIIColors.success("Model built")            
         return self
             
     def install(self):

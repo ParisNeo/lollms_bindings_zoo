@@ -163,27 +163,18 @@ class GPT4ALL(LLMBinding):
         gpt_params = {**default_params, **gpt_params}
         try:
             response_text = []
-            def local_callback(token_id, response):
-                decoded_word = response.decode('utf-8')
-                response_text.append( decoded_word )
-                if callback is not None:
-                    if not callback(decoded_word, MSG_TYPE.MSG_TYPE_CHUNK):
-                        return False
-
-                # Do whatever you want with decoded_token here.
-
-                return True
-            self.model.model._response_callback = local_callback
-            self.model.generate(prompt, 
-                                           n_predict=n_predict,                                           
+            for decoded_word in self.model.generate(prompt, 
+                                            max_tokens=n_predict, 
                                             temp=gpt_params["temperature"],
                                             top_k=gpt_params['top_k'],
                                             top_p=gpt_params['top_p'],
                                             repeat_penalty=gpt_params['repeat_penalty'],
-                                            repeat_last_n = self.config['repeat_last_n'],
-                                            # n_threads=self.config['n_threads'],
-                                            streaming=False
-                                           )
+                                            repeat_last_n = self.config['repeat_last_n'],                                            
+                                            streaming=True):
+                response_text.append( decoded_word )
+                if callback is not None:
+                    if not callback(decoded_word, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break
         except Exception as ex:
             print(ex)
         return ''.join(response_text)
