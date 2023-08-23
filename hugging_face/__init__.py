@@ -52,7 +52,7 @@ class HuggingFace(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
             
-            {"name":"use_8bits","type":"bool","value":True, "help":"Force using quantized version"},
+            {"name":"use_8bits","type":"bool","value":False, "help":"Force using quantized version"},
             {"name":"ctx_size","type":"int","value":8192, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
@@ -83,6 +83,9 @@ class HuggingFace(LLMBinding):
         self.print_len = 0
         self.next_tokens_are_prompt = True
 
+        self.model = None
+        self.tokenizer = None
+
     def embed(self, text):
         """
         Computes text embedding
@@ -95,8 +98,10 @@ class HuggingFace(LLMBinding):
         pass
     def __del__(self):
         import torch
-        del self.tokenizer
-        del self.model
+        if self.tokenizer:
+            del self.tokenizer
+        if self.model:
+            del self.model
         try:
             torch.cuda.empty_cache()
         except Exception as ex:
@@ -126,16 +131,19 @@ class HuggingFace(LLMBinding):
             import os
             os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
 
-            ASCIIColors.info(f"Creating model {model_path}")
+            ASCIIColors.info(f"Creating tokenizer {model_path}")
 
             self.tokenizer = AutoModelForCausalLM.from_pretrained(
                     model_name
                     )
-            # load quantized model to the first GPU
+            ASCIIColors.success(f"ok")
+            ASCIIColors.info(f"Creating model {model_path}")
+            # load model
             self.model = AutoModelForCausalLM.from_pretrained(model_path,
                                                           #load_in_8bit=self.binding_config.use_8bits,
                                                           device_map='auto', offload_folder="offload", 
                                                           offload_state_dict = True)
+            ASCIIColors.success(f"ok")
             """
             try:
                 if not self.binding_config.automatic_context_size:
