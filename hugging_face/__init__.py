@@ -52,13 +52,7 @@ class HuggingFace(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
             
-            {"name":"use_triton","type":"bool","value":False, "help":"Activate triton or not"},
-            {"name":"device","type":"str","value":"gpu", "options":["cpu","gpu"],"help":"Device to be used (CPU or GPU)"},
-            {"name":"batch_size","type":"int","value":1, "min":1},
-            {"name":"split_between_cpu_and_gpu","type":"bool","value":False},
-            {"name":"max_gpu_mem_GB","type":"int","value":4, "min":0},
-            {"name":"max_cpu_mem_GB","type":"int","value":100, "min":0},
-            {"name":"automatic_context_size","type":"bool","value":True, "help":"If selected, the context size will be set automatically and the ctx_size parameter is useless."},
+            {"name":"use_8bits","type":"bool","value":True, "help":"Force using quantized version"},
             {"name":"ctx_size","type":"int","value":8192, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
@@ -99,10 +93,18 @@ class HuggingFace(LLMBinding):
         """
         
         pass
+    def __del__(self):
+        import torch
+        del self.tokenizer
+        del self.model
+        try:
+            torch.cuda.empty_cache()
+        except Exception as ex:
+            ASCIIColors.error("Couldn't clear cuda memory")
 
     def build_model(self):
 
-        from transformers import AutoTokenizer, AutoModel, LlamaForCausalLM
+        from transformers import AutoModelForCausalLM, AutoModelForCausalLM
 
         if self.config.model_name:
 
@@ -126,12 +128,14 @@ class HuggingFace(LLMBinding):
 
             ASCIIColors.info(f"Creating model {model_path}")
 
-            self.tokenizer = AutoTokenizer.from_pretrained(
-                    model_name, 
-                    use_fast=True
+            self.tokenizer = AutoModelForCausalLM.from_pretrained(
+                    model_name
                     )
             # load quantized model to the first GPU
-            self.model = LlamaForCausalLM.from_pretrained(model_path)
+            self.model = AutoModelForCausalLM.from_pretrained(model_path,
+                                                          #load_in_8bit=self.binding_config.use_8bits,
+                                                          device_map='auto', offload_folder="offload", 
+                                                          offload_state_dict = True)
             """
             try:
                 if not self.binding_config.automatic_context_size:
@@ -321,6 +325,7 @@ class HuggingFace(LLMBinding):
                                             top_p=gpt_params["top_p"],
                                             repetition_penalty=gpt_params["repeat_penalty"],
                                             streamer = self,
+                                            do_sample=True
                                             )
                 
             except Exception as ex:
