@@ -61,3 +61,14 @@
     size: 26000000000
 
 
+- SHA256: 2df35ab91b401d712bfd31e0e3b155d7146fbd30fbf849b83eabeb428788a6a6
+  description: mlabonne's 'codellama-2-7b
+  filename: mlabonne/codellama-2-7b
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/61b8e2ba285851687028d395/bTGQIkd7_LWu_CpDEDRuW.jpeg?w=200&h=200&f=face
+  owner: mlabonne
+  owner_link: https://huggingface.co/mlabonne/
+  server: mlabonne/codellama-2-7b
+  title: codellama-2-7b
+  variants:
+  - name: codellama-2-7b
+    size: 3500000000
