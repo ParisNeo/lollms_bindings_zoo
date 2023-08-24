@@ -72,3 +72,16 @@
   variants:
   - name: codellama-2-7b
     size: 3500000000
+
+
+- SHA256: 2df35ab91b401d712bfd31e0e3b155d7146fbd30fbf849b83eabeb428788a6a6
+  description: Meta's CodeLlama-13B-fp16
+  filename: TheBloke/CodeLlama-13B-fp16
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/
+  server: TheBloke/CodeLlama-13B-fp16
+  title: CodeLlama-13B-fp16
+  variants:
+  - name: CodeLlama-13B-fp16
+    size: 26000000000
