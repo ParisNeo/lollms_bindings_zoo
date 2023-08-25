@@ -99,7 +99,7 @@ def extract_model_cards(model_links, entries):
                 continue
             paths.append(path)
             # Send a GET request to the URL and retrieve the HTML content
-            if not ("blob/main" in path or "tree/main" in path) or not ("q2" in path or "q4" in path or "q5" in path) :
+            if not ("blob/main" in path or "tree/main" in path) or not not ("q2" in path.lower() or "q4" in path.lower() or "q5" in path.lower()) :
                 print(f"\nSkipping : {path}")
                 continue
 

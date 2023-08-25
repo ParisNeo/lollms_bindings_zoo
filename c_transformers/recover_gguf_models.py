@@ -65,14 +65,14 @@ def get_model_entries(url, output_file):
     # Parse the expanded HTML content using BeautifulSoup
     soup = BeautifulSoup(expanded_html_content, 'html.parser')
 
-    # Find all <a> tags that contain 'GGML' in their href
-    model_links = soup.find_all('a', href=lambda href: href and 'GGML' in href)
+    # Find all <a> tags that contain 'GGUF' in their href
+    model_links = soup.find_all('a', href=lambda href: href and 'GGUF' in href)
     entries = []
     for model_link in tqdm(model_links):
         model_url = prefix + model_link['href'] + "/tree/main"
         print(model_url)
         entries.append(model_url)
-    with open("output_scraped_models.yaml", 'w') as f:
+    with open("output_scraped_models_gguf.yaml", 'w') as f:
         yaml.dump({"entries":entries}, f)
 
 
@@ -99,7 +99,7 @@ def extract_model_cards(model_links, entries):
                 continue
             paths.append(path)
             # Send a GET request to the URL and retrieve the HTML content
-            if not ("blob/main" in path or "tree/main" in path) or not ("q2" in path or "q4" in path or "q5" in path) :
+            if not ("blob/main" in path or "tree/main" in path) or not ("q2" in path.lower() or "q4" in path.lower() or "q5" in path.lower()) :
                 print(f"\nSkipping : {path}")
                 continue
 
@@ -176,7 +176,7 @@ def html_to_yaml(url, output_file):
 
 def build_models(start_id, end_id, output_file):
     # Save the list of entries as YAML to the output file
-    with open("output_scraped_models.yaml", 'r', encoding="utf8") as f:
+    with open("output_scraped_models_gguf.yaml", 'r', encoding="utf8") as f:
         model_links = yaml.safe_load(f)
 
     entries = []  # List to store the entries
@@ -189,6 +189,6 @@ def build_models(start_id, end_id, output_file):
 
 # Example usage
 url = 'https://huggingface.co/TheBloke'
-html_to_yaml(url, 'output_scraped_models.yaml')
+html_to_yaml(url, 'output_scraped_models_gguf.yaml')
 
 build_models(0,-1,f"output_gguf.yaml")

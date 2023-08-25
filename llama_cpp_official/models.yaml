@@ -17919,3 +17919,591 @@
     size: 13831029888
   - name: wizard-mega-13B.ggmlv3.q8_0.bin
     size: 13831029888
+- SHA256: 316ce908013d11a8a48c51d2cee6cf09bc7001b9cc776d4c383436977344bb2f
+  description: Samantha 1.11 70B - GGUF(Q2_K)
+  file_size: 29106134848
+  filename: samantha-1.11-70b.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Samantha-1.11-70B-GGUF/
+  server: https://huggingface.co/TheBloke/Samantha-1.11-70B-GGUF/resolve/main
+  title: samantha-1.11-70b.Q2_K.gguf
+  variants:
+  - name: samantha-1.11-70b.Q2_K.gguf
+    size: 29106134848
+  - name: samantha-1.11-70b.Q2_K.gguf
+    size: 29106134848
+  - name: samantha-1.11-70b.Q3_K_L.gguf
+    size: 36147732288
+  - name: samantha-1.11-70b.Q3_K_L.gguf
+    size: 36147732288
+  - name: samantha-1.11-70b.Q3_K_M.gguf
+    size: 33104764736
+  - name: samantha-1.11-70b.Q3_K_M.gguf
+    size: 33104764736
+  - name: samantha-1.11-70b.Q3_K_S.gguf
+    size: 29746175808
+  - name: samantha-1.11-70b.Q3_K_S.gguf
+    size: 29746175808
+  - name: samantha-1.11-70b.Q4_K_M.gguf
+    size: 41380863808
+  - name: samantha-1.11-70b.Q4_K_M.gguf
+    size: 41380863808
+  - name: samantha-1.11-70b.Q4_K_S.gguf
+    size: 38993780544
+  - name: samantha-1.11-70b.Q4_K_S.gguf
+    size: 38993780544
+  - name: samantha-1.11-70b.Q5_K_M.gguf
+    size: 48753663808
+  - name: samantha-1.11-70b.Q5_K_M.gguf
+    size: 48753663808
+  - name: samantha-1.11-70b.Q5_K_S.gguf
+    size: 47461293888
+  - name: samantha-1.11-70b.Q5_K_S.gguf
+    size: 47461293888
+- SHA256: 291437ceba0500d411b60328475a59234bdc1c9f8ed2653b06fc4da63db04330
+  description: CodeLlama 7B - GGUF(Q2_K)
+  file_size: 3011353888
+  filename: codellama-7b.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-7B-GGUF/
+  server: https://huggingface.co/TheBloke/CodeLlama-7B-GGUF/resolve/main
+  title: codellama-7b.Q2_K.gguf
+  variants:
+  - name: codellama-7b.Q2_K.gguf
+    size: 3011353888
+  - name: codellama-7b.Q2_K.gguf
+    size: 3011353888
+  - name: codellama-7b.Q3_K_L.gguf
+    size: 3769212192
+  - name: codellama-7b.Q3_K_L.gguf
+    size: 3769212192
+  - name: codellama-7b.Q3_K_M.gguf
+    size: 3470105888
+  - name: codellama-7b.Q3_K_M.gguf
+    size: 3470105888
+  - name: codellama-7b.Q3_K_S.gguf
+    size: 3120405792
+  - name: codellama-7b.Q3_K_S.gguf
+    size: 3120405792
+  - name: codellama-7b.Q4_K_M.gguf
+    size: 4235697440
+  - name: codellama-7b.Q4_K_M.gguf
+    size: 4235697440
+  - name: codellama-7b.Q4_K_S.gguf
+    size: 4011433248
+  - name: codellama-7b.Q4_K_S.gguf
+    size: 4011433248
+  - name: codellama-7b.Q5_K_M.gguf
+    size: 4921466144
+  - name: codellama-7b.Q5_K_M.gguf
+    size: 4921466144
+  - name: codellama-7b.Q5_K_S.gguf
+    size: 4790000928
+  - name: codellama-7b.Q5_K_S.gguf
+    size: 4790000928
+  - name: codellama-7b.Q6_K.gguf
+    size: 5650095392
+  - name: codellama-7b.Q6_K.gguf
+    size: 5650095392
+  - name: codellama-7b.Q8_0.gguf
+    size: 7161130272
+  - name: codellama-7b.Q8_0.gguf
+    size: 7161130272
+- SHA256: 41d1dfc9ef20935da2a49cbbf0fd409cf5b1f1c1d3003b7ce5343c10cd5e0265
+  description: CodeLlama 7B Python - GGUF(Q2_K)
+  file_size: 2825841536
+  filename: codellama-7b-python.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGUF/
+  server: https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGUF/resolve/main
+  title: codellama-7b-python.Q2_K.gguf
+  variants:
+  - name: codellama-7b-python.Q2_K.gguf
+    size: 2825841536
+  - name: codellama-7b-python.Q2_K.gguf
+    size: 2825841536
+  - name: codellama-7b-python.Q3_K_L.gguf
+    size: 3597011840
+  - name: codellama-7b-python.Q3_K_L.gguf
+    size: 3597011840
+  - name: codellama-7b-python.Q3_K_M.gguf
+    size: 3297905536
+  - name: codellama-7b-python.Q3_K_M.gguf
+    size: 3297905536
+  - name: codellama-7b-python.Q3_K_S.gguf
+    size: 2948205440
+  - name: codellama-7b-python.Q3_K_S.gguf
+    size: 2948205440
+  - name: codellama-7b-python.Q4_K_M.gguf
+    size: 4080905088
+  - name: codellama-7b-python.Q4_K_M.gguf
+    size: 4080905088
+  - name: codellama-7b-python.Q4_K_S.gguf
+    size: 3856640896
+  - name: codellama-7b-python.Q4_K_S.gguf
+    size: 3856640896
+  - name: codellama-7b-python.Q5_K_M.gguf
+    size: 4783057792
+  - name: codellama-7b-python.Q5_K_M.gguf
+    size: 4783057792
+  - name: codellama-7b-python.Q5_K_S.gguf
+    size: 4651592576
+  - name: codellama-7b-python.Q5_K_S.gguf
+    size: 4651592576
+  - name: codellama-7b-python.Q6_K.gguf
+    size: 5529095040
+  - name: codellama-7b-python.Q6_K.gguf
+    size: 5529095040
+  - name: codellama-7b-python.Q8_0.gguf
+    size: 7129246592
+  - name: codellama-7b-python.Q8_0.gguf
+    size: 7129246592
+- SHA256: 0daadcdf1ed4b21ed192b9a91d292f758b9e3b7d03cfb8977c9c4a0c115c4d31
+  description: CodeLlama 7B Instruct - GGUF(Q2_K)
+  file_size: 3011353888
+  filename: codellama-7b-instruct.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GGUF/
+  server: https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GGUF/resolve/main
+  title: codellama-7b-instruct.Q2_K.gguf
+  variants:
+  - name: codellama-7b-instruct.Q2_K.gguf
+    size: 3011353888
+  - name: codellama-7b-instruct.Q2_K.gguf
+    size: 3011353888
+  - name: codellama-7b-instruct.Q3_K_L.gguf
+    size: 3769212192
+  - name: codellama-7b-instruct.Q3_K_L.gguf
+    size: 3769212192
+  - name: codellama-7b-instruct.Q3_K_M.gguf
+    size: 3470105888
+  - name: codellama-7b-instruct.Q3_K_M.gguf
+    size: 3470105888
+  - name: codellama-7b-instruct.Q3_K_S.gguf
+    size: 3120405792
+  - name: codellama-7b-instruct.Q3_K_S.gguf
+    size: 3120405792
+  - name: codellama-7b-instruct.Q4_K_M.gguf
+    size: 4235697440
+  - name: codellama-7b-instruct.Q4_K_M.gguf
+    size: 4235697440
+  - name: codellama-7b-instruct.Q4_K_S.gguf
+    size: 4011433248
+  - name: codellama-7b-instruct.Q4_K_S.gguf
+    size: 4011433248
+  - name: codellama-7b-instruct.Q5_K_M.gguf
+    size: 4921466144
+  - name: codellama-7b-instruct.Q5_K_M.gguf
+    size: 4921466144
+  - name: codellama-7b-instruct.Q5_K_S.gguf
+    size: 4790000928
+  - name: codellama-7b-instruct.Q5_K_S.gguf
+    size: 4790000928
+  - name: codellama-7b-instruct.Q6_K.gguf
+    size: 5650095392
+  - name: codellama-7b-instruct.Q6_K.gguf
+    size: 5650095392
+  - name: codellama-7b-instruct.Q8_0.gguf
+    size: 7161130272
+  - name: codellama-7b-instruct.Q8_0.gguf
+    size: 7161130272
+- SHA256: b2cbc53a572470a050a12fe237e3ad902ffcf93229951dba40da1352f5c24249
+  description: CodeLlama 34B - GGUF(Q2_K)
+  file_size: 14210574208
+  filename: codellama-34b.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-34B-GGUF/
+  server: https://huggingface.co/TheBloke/CodeLlama-34B-GGUF/resolve/main
+  title: codellama-34b.Q2_K.gguf
+  variants:
+  - name: codellama-34b.Q2_K.gguf
+    size: 14210574208
+  - name: codellama-34b.Q2_K.gguf
+    size: 14210574208
+  - name: codellama-34b.Q3_K_L.gguf
+    size: 17771423616
+  - name: codellama-34b.Q3_K_L.gguf
+    size: 17771423616
+  - name: codellama-34b.Q3_K_M.gguf
+    size: 16283494272
+  - name: codellama-34b.Q3_K_M.gguf
+    size: 16283494272
+  - name: codellama-34b.Q3_K_S.gguf
+    size: 14605248384
+  - name: codellama-34b.Q3_K_S.gguf
+    size: 14605248384
+  - name: codellama-34b.Q4_K_M.gguf
+    size: 20219799424
+  - name: codellama-34b.Q4_K_M.gguf
+    size: 20219799424
+  - name: codellama-34b.Q4_K_S.gguf
+    size: 19146319744
+  - name: codellama-34b.Q4_K_S.gguf
+    size: 19146319744
+  - name: codellama-34b.Q5_K_M.gguf
+    size: 23838697344
+  - name: codellama-34b.Q5_K_M.gguf
+    size: 23838697344
+  - name: codellama-34b.Q5_K_S.gguf
+    size: 23237076864
+  - name: codellama-34b.Q5_K_S.gguf
+    size: 23237076864
+  - name: codellama-34b.Q6_K.gguf
+    size: 27683776384
+  - name: codellama-34b.Q6_K.gguf
+    size: 27683776384
+  - name: codellama-34b.Q8_0.gguf
+    size: 35792463744
+  - name: codellama-34b.Q8_0.gguf
+    size: 35792463744
+- SHA256: 3623dffa755cd9d6a2150ab76b640280e672ed0e2d27bb74270e3c30c12b7ffb
+  description: CodeLlama 34B Python - GGUF(Q2_K)
+  file_size: 14210574208
+  filename: codellama-34b-python.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-34B-Python-GGUF/
+  server: https://huggingface.co/TheBloke/CodeLlama-34B-Python-GGUF/resolve/main
+  title: codellama-34b-python.Q2_K.gguf
+  variants:
+  - name: codellama-34b-python.Q2_K.gguf
+    size: 14210574208
+  - name: codellama-34b-python.Q2_K.gguf
+    size: 14210574208
+  - name: codellama-34b-python.Q3_K_L.gguf
+    size: 17771423616
+  - name: codellama-34b-python.Q3_K_L.gguf
+    size: 17771423616
+  - name: codellama-34b-python.Q3_K_M.gguf
+    size: 16283494272
+  - name: codellama-34b-python.Q3_K_M.gguf
+    size: 16283494272
+  - name: codellama-34b-python.Q3_K_S.gguf
+    size: 14605248384
+  - name: codellama-34b-python.Q3_K_S.gguf
+    size: 14605248384
+  - name: codellama-34b-python.Q4_K_M.gguf
+    size: 20219799424
+  - name: codellama-34b-python.Q4_K_M.gguf
+    size: 20219799424
+  - name: codellama-34b-python.Q4_K_S.gguf
+    size: 19146319744
+  - name: codellama-34b-python.Q4_K_S.gguf
+    size: 19146319744
+  - name: codellama-34b-python.Q5_K_M.gguf
+    size: 23838697344
+  - name: codellama-34b-python.Q5_K_M.gguf
+    size: 23838697344
+  - name: codellama-34b-python.Q5_K_S.gguf
+    size: 23237076864
+  - name: codellama-34b-python.Q5_K_S.gguf
+    size: 23237076864
+  - name: codellama-34b-python.Q6_K.gguf
+    size: 27683776384
+  - name: codellama-34b-python.Q6_K.gguf
+    size: 27683776384
+  - name: codellama-34b-python.Q8_0.gguf
+    size: 35792463744
+  - name: codellama-34b-python.Q8_0.gguf
+    size: 35792463744
+- SHA256: 8e3dc596b6c4258a3647ab90dca6171e024d2c0d800868d626322efceb5668a4
+  description: CodeLlama 34B Instruct - GGUF(Q2_K)
+  file_size: 14210574208
+  filename: codellama-34b-instruct.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-34B-Instruct-GGUF/
+  server: https://huggingface.co/TheBloke/CodeLlama-34B-Instruct-GGUF/resolve/main
+  title: codellama-34b-instruct.Q2_K.gguf
+  variants:
+  - name: codellama-34b-instruct.Q2_K.gguf
+    size: 14210574208
+  - name: codellama-34b-instruct.Q2_K.gguf
+    size: 14210574208
+  - name: codellama-34b-instruct.Q3_K_L.gguf
+    size: 17771423616
+  - name: codellama-34b-instruct.Q3_K_L.gguf
+    size: 17771423616
+  - name: codellama-34b-instruct.Q3_K_M.gguf
+    size: 16283494272
+  - name: codellama-34b-instruct.Q3_K_M.gguf
+    size: 16283494272
+  - name: codellama-34b-instruct.Q3_K_S.gguf
+    size: 14605248384
+  - name: codellama-34b-instruct.Q3_K_S.gguf
+    size: 14605248384
+  - name: codellama-34b-instruct.Q4_K_M.gguf
+    size: 20219799424
+  - name: codellama-34b-instruct.Q4_K_M.gguf
+    size: 20219799424
+  - name: codellama-34b-instruct.Q4_K_S.gguf
+    size: 19146319744
+  - name: codellama-34b-instruct.Q4_K_S.gguf
+    size: 19146319744
+  - name: codellama-34b-instruct.Q5_K_M.gguf
+    size: 23838697344
+  - name: codellama-34b-instruct.Q5_K_M.gguf
+    size: 23838697344
+  - name: codellama-34b-instruct.Q5_K_S.gguf
+    size: 23237076864
+  - name: codellama-34b-instruct.Q5_K_S.gguf
+    size: 23237076864
+  - name: codellama-34b-instruct.Q6_K.gguf
+    size: 27683776384
+  - name: codellama-34b-instruct.Q6_K.gguf
+    size: 27683776384
+  - name: codellama-34b-instruct.Q8_0.gguf
+    size: 35792463744
+  - name: codellama-34b-instruct.Q8_0.gguf
+    size: 35792463744
+- SHA256: b2bbc72506bdb014c07f1d66e94d6b3a5b9ebd00fcfddc4c5a9dbfc4656803e7
+  description: CodeLlama 13B - GGUF(Q2_K)
+  file_size: 5661138720
+  filename: codellama-13b.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-GGUF/
+  server: https://huggingface.co/TheBloke/CodeLlama-13B-GGUF/resolve/main
+  title: codellama-13b.Q2_K.gguf
+  variants:
+  - name: codellama-13b.Q2_K.gguf
+    size: 5661138720
+  - name: codellama-13b.Q2_K.gguf
+    size: 5661138720
+  - name: codellama-13b.Q3_K_L.gguf
+    size: 7144709920
+  - name: codellama-13b.Q3_K_L.gguf
+    size: 7144709920
+  - name: codellama-13b.Q3_K_M.gguf
+    size: 6552919840
+  - name: codellama-13b.Q3_K_M.gguf
+    size: 6552919840
+  - name: codellama-13b.Q3_K_S.gguf
+    size: 5874130720
+  - name: codellama-13b.Q3_K_S.gguf
+    size: 5874130720
+  - name: codellama-13b.Q4_K_M.gguf
+    size: 8059346720
+  - name: codellama-13b.Q4_K_M.gguf
+    size: 8059346720
+  - name: codellama-13b.Q4_K_S.gguf
+    size: 7607721760
+  - name: codellama-13b.Q4_K_S.gguf
+    size: 7607721760
+  - name: codellama-13b.Q5_K_M.gguf
+    size: 9402834720
+  - name: codellama-13b.Q5_K_M.gguf
+    size: 9402834720
+  - name: codellama-13b.Q5_K_S.gguf
+    size: 9145196320
+  - name: codellama-13b.Q5_K_S.gguf
+    size: 9145196320
+  - name: codellama-13b.Q6_K.gguf
+    size: 10830290720
+  - name: codellama-13b.Q6_K.gguf
+    size: 10830290720
+  - name: codellama-13b.Q8_0.gguf
+    size: 13831394080
+  - name: codellama-13b.Q8_0.gguf
+    size: 13831394080
+- SHA256: 9c23d538b09513768770e078252e338881dab27b867eb1a6b6afde914124c71f
+  description: CodeLlama 13B Python - GGUF(Q2_K)
+  file_size: 5429248384
+  filename: codellama-13b-python.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-Python-GGUF/
+  server: https://huggingface.co/TheBloke/CodeLlama-13B-Python-GGUF/resolve/main
+  title: codellama-13b-python.Q2_K.gguf
+  variants:
+  - name: codellama-13b-python.Q2_K.gguf
+    size: 5429248384
+  - name: codellama-13b-python.Q2_K.gguf
+    size: 5429248384
+  - name: codellama-13b-python.Q3_K_L.gguf
+    size: 6929459584
+  - name: codellama-13b-python.Q3_K_L.gguf
+    size: 6929459584
+  - name: codellama-13b-python.Q3_K_M.gguf
+    size: 6337669504
+  - name: codellama-13b-python.Q3_K_M.gguf
+    size: 6337669504
+  - name: codellama-13b-python.Q3_K_S.gguf
+    size: 5658880384
+  - name: codellama-13b-python.Q3_K_S.gguf
+    size: 5658880384
+  - name: codellama-13b-python.Q4_K_M.gguf
+    size: 7865856384
+  - name: codellama-13b-python.Q4_K_M.gguf
+    size: 7865856384
+  - name: codellama-13b-python.Q4_K_S.gguf
+    size: 7414231424
+  - name: codellama-13b-python.Q4_K_S.gguf
+    size: 7414231424
+  - name: codellama-13b-python.Q5_K_M.gguf
+    size: 9229824384
+  - name: codellama-13b-python.Q5_K_M.gguf
+    size: 9229824384
+  - name: codellama-13b-python.Q5_K_S.gguf
+    size: 8972185984
+  - name: codellama-13b-python.Q5_K_S.gguf
+    size: 8972185984
+  - name: codellama-13b-python.Q6_K.gguf
+    size: 10679040384
+  - name: codellama-13b-python.Q6_K.gguf
+    size: 10679040384
+  - name: codellama-13b-python.Q8_0.gguf
+    size: 13791539584
+  - name: codellama-13b-python.Q8_0.gguf
+    size: 13791539584
+- SHA256: a972f090a225cb5240cd39f3a13afbd3a4ab9ae6ec8aa09c128fde6c1e12af89
+  description: CodeLlama 13B Instruct - GGUF(Q2_K)
+  file_size: 5661138720
+  filename: codellama-13b-instruct.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-Instruct-GGUF/
+  server: https://huggingface.co/TheBloke/CodeLlama-13B-Instruct-GGUF/resolve/main
+  title: codellama-13b-instruct.Q2_K.gguf
+  variants:
+  - name: codellama-13b-instruct.Q2_K.gguf
+    size: 5661138720
+  - name: codellama-13b-instruct.Q2_K.gguf
+    size: 5661138720
+  - name: codellama-13b-instruct.Q3_K_L.gguf
+    size: 7144709920
+  - name: codellama-13b-instruct.Q3_K_L.gguf
+    size: 7144709920
+  - name: codellama-13b-instruct.Q3_K_M.gguf
+    size: 6552919840
+  - name: codellama-13b-instruct.Q3_K_M.gguf
+    size: 6552919840
+  - name: codellama-13b-instruct.Q3_K_S.gguf
+    size: 5874130720
+  - name: codellama-13b-instruct.Q3_K_S.gguf
+    size: 5874130720
+  - name: codellama-13b-instruct.Q4_K_M.gguf
+    size: 8059346720
+  - name: codellama-13b-instruct.Q4_K_M.gguf
+    size: 8059346720
+  - name: codellama-13b-instruct.Q4_K_S.gguf
+    size: 7607721760
+  - name: codellama-13b-instruct.Q4_K_S.gguf
+    size: 7607721760
+  - name: codellama-13b-instruct.Q5_K_M.gguf
+    size: 9402834720
+  - name: codellama-13b-instruct.Q5_K_M.gguf
+    size: 9402834720
+  - name: codellama-13b-instruct.Q5_K_S.gguf
+    size: 9145196320
+  - name: codellama-13b-instruct.Q5_K_S.gguf
+    size: 9145196320
+  - name: codellama-13b-instruct.Q6_K.gguf
+    size: 10830290720
+  - name: codellama-13b-instruct.Q6_K.gguf
+    size: 10830290720
+  - name: codellama-13b-instruct.Q8_0.gguf
+    size: 13831394080
+  - name: codellama-13b-instruct.Q8_0.gguf
+    size: 13831394080
+- SHA256: c842f158f153100bf123b26ea09645a5c2f0309aff1f722534d2544565e8d297
+  description: Nous Puffin 70B - GGUF(Q2_K)
+  file_size: 29106135104
+  filename: nous-puffin-70b.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Nous-Puffin-70B-GGUF/
+  server: https://huggingface.co/TheBloke/Nous-Puffin-70B-GGUF/resolve/main
+  title: nous-puffin-70b.Q2_K.gguf
+  variants:
+  - name: nous-puffin-70b.Q2_K.gguf
+    size: 29106135104
+  - name: nous-puffin-70b.Q2_K.gguf
+    size: 29106135104
+  - name: nous-puffin-70b.Q3_K_L.gguf
+    size: 36147732544
+  - name: nous-puffin-70b.Q3_K_L.gguf
+    size: 36147732544
+  - name: nous-puffin-70b.Q3_K_M.gguf
+    size: 33104764992
+  - name: nous-puffin-70b.Q3_K_M.gguf
+    size: 33104764992
+  - name: nous-puffin-70b.Q3_K_S.gguf
+    size: 29746176064
+  - name: nous-puffin-70b.Q3_K_S.gguf
+    size: 29746176064
+  - name: nous-puffin-70b.Q4_K_M.gguf
+    size: 41380864064
+  - name: nous-puffin-70b.Q4_K_M.gguf
+    size: 41380864064
+  - name: nous-puffin-70b.Q4_K_S.gguf
+    size: 38993780800
+  - name: nous-puffin-70b.Q4_K_S.gguf
+    size: 38993780800
+  - name: nous-puffin-70b.Q5_K_M.gguf
+    size: 48753664064
+  - name: nous-puffin-70b.Q5_K_M.gguf
+    size: 48753664064
+  - name: nous-puffin-70b.Q5_K_S.gguf
+    size: 47461294144
+  - name: nous-puffin-70b.Q5_K_S.gguf
+    size: 47461294144
+- SHA256: 18f68f501ed65484a0625ea63fc1286a858c33acc0616ef3a1e86e317a35af1f
+  description: Nous Hermes Llama2 70B - GGUF(Q2_K)
+  file_size: 29476844128
+  filename: nous-hermes-llama2-70b.Q2_K.gguf
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Nous-Hermes-Llama2-70B-GGUF/
+  server: https://huggingface.co/TheBloke/Nous-Hermes-Llama2-70B-GGUF/resolve/main
+  title: nous-hermes-llama2-70b.Q2_K.gguf
+  variants:
+  - name: nous-hermes-llama2-70b.Q2_K.gguf
+    size: 29476844128
+  - name: nous-hermes-llama2-70b.Q2_K.gguf
+    size: 29476844128
+  - name: nous-hermes-llama2-70b.Q3_K_L.gguf
+    size: 36491817568
+  - name: nous-hermes-llama2-70b.Q3_K_L.gguf
+    size: 36491817568
+  - name: nous-hermes-llama2-70b.Q3_K_M.gguf
+    size: 33448850016
+  - name: nous-hermes-llama2-70b.Q3_K_M.gguf
+    size: 33448850016
+  - name: nous-hermes-llama2-70b.Q3_K_S.gguf
+    size: 30090261088
+  - name: nous-hermes-llama2-70b.Q3_K_S.gguf
+    size: 30090261088
+  - name: nous-hermes-llama2-70b.Q4_K_M.gguf
+    size: 41690133088
+  - name: nous-hermes-llama2-70b.Q4_K_M.gguf
+    size: 41690133088
+  - name: nous-hermes-llama2-70b.Q4_K_S.gguf
+    size: 39303049824
+  - name: nous-hermes-llama2-70b.Q4_K_S.gguf
+    size: 39303049824
+  - name: nous-hermes-llama2-70b.Q5_K_M.gguf
+    size: 49030165088
+  - name: nous-hermes-llama2-70b.Q5_K_M.gguf
+    size: 49030165088
+  - name: nous-hermes-llama2-70b.Q5_K_S.gguf
+    size: 47737795168
+  - name: nous-hermes-llama2-70b.Q5_K_S.gguf
+    size: 47737795168
