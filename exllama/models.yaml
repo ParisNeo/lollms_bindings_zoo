@@ -1,3 +1,135 @@
+- SHA256: 56c1bd67dfbf5f1eae9553b9766cbde6849fb2f40d2ed5b957a6a5bbecd98846
+  description: CodeLlama 34B Python - GPTQ(co/TheBloke/CodeLlama-34B-Python-GPTQ/blob/main/model)
+  filename: CodeLlama-34B-Python-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-34B-Python-GPTQ/
+  server: https://huggingface.co/TheBloke/CodeLlama-34B-Python-GPTQ/resolve/main
+  title: CodeLlama-34B-Python-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 18329065000
+- SHA256: e24bde00061935a8a108dc01f1c86be62aa3895834a2101ea969886a3404b7af
+  description: CodeLlama 34B Instruct - GPTQ(co/TheBloke/CodeLlama-34B-Instruct-GPTQ/blob/main/model)
+  filename: CodeLlama-34B-Instruct-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-34B-Instruct-GPTQ/
+  server: https://huggingface.co/TheBloke/CodeLlama-34B-Instruct-GPTQ/resolve/main
+  title: CodeLlama-34B-Instruct-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 18329065000
+- SHA256: 1c0fbb05bf2aaeae39d416e7f2281f4f9bda8acfd0a48ca074242db2faa52262
+  description: CodeLlama 13B Python - GPTQ(co/TheBloke/CodeLlama-13B-Python-GPTQ/blob/main/model)
+  filename: CodeLlama-13B-Python-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-Python-GPTQ/
+  server: https://huggingface.co/TheBloke/CodeLlama-13B-Python-GPTQ/resolve/main
+  title: CodeLlama-13B-Python-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 67b94c0b5e76405058d6a9eadf790d7437245f20b86f0e70a82160a852a4417c
+  description: CodeLlama 13B Instruct - GPTQ(co/TheBloke/CodeLlama-13B-Instruct-GPTQ/blob/main/model)
+  filename: CodeLlama-13B-Instruct-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-Instruct-GPTQ/
+  server: https://huggingface.co/TheBloke/CodeLlama-13B-Instruct-GPTQ/resolve/main
+  title: CodeLlama-13B-Instruct-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259762872
+- SHA256: 9a76c626f6ec0700dd7311eca3284b37a649e70f4142b1cbd81103a9363c51c9
+  description: CodeLlama 13B - GPTQ(co/TheBloke/CodeLlama-13B-GPTQ/blob/main/model)
+  filename: CodeLlama-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-GPTQ/
+  server: https://huggingface.co/TheBloke/CodeLlama-13B-GPTQ/resolve/main
+  title: CodeLlama-13B-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259762872
+- SHA256: 4d150be76566f8a19444e9b3b6aa7d2da67de3f543a7c2f4a515934dae29dc67
+  description: CodeLlama 7B Python - GPTQ(co/TheBloke/CodeLlama-7B-Python-GPTQ/blob/main/model)
+  filename: CodeLlama-7B-Python-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-7B-Python-GPTQ/
+  server: https://huggingface.co/TheBloke/CodeLlama-7B-Python-GPTQ/resolve/main
+  title: CodeLlama-7B-Python-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 3896714728
+- SHA256: c04b64b29df458441107078d8f5b6190b00d0cbfdc144ead6115c85b51425404
+  description: CodeLlama 7B Instruct - GPTQ(co/TheBloke/CodeLlama-7B-Instruct-GPTQ/blob/main/model)
+  filename: CodeLlama-7B-Instruct-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GPTQ/
+  server: https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GPTQ/resolve/main
+  title: CodeLlama-7B-Instruct-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 3896976872
+- SHA256: ac5f54cd8de3c3b19274cf5970e1ca25839ffae2d62192ece1362ab02a629b56
+  description: CodeLlama 7B - GPTQ(co/TheBloke/CodeLlama-7B-GPTQ/blob/main/model)
+  filename: CodeLlama-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-7B-GPTQ/
+  server: https://huggingface.co/TheBloke/CodeLlama-7B-GPTQ/resolve/main
+  title: CodeLlama-7B-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 3896976872
+- SHA256: 02df30796139e23e49024497f9658ef21c90c3d4663cc41bbd6be3586fc591ad
+  description: Nous Hermes Llama2 70B - GPTQ(co/TheBloke/Nous-Hermes-Llama2-70B-GPTQ/blob/main/model)
+  filename: Nous-Hermes-Llama2-70B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Nous-Hermes-Llama2-70B-GPTQ/
+  server: https://huggingface.co/TheBloke/Nous-Hermes-Llama2-70B-GPTQ/resolve/main
+  title: Nous-Hermes-Llama2-70B-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 35332236312
+- SHA256: abd8f169b3f0c9c43d7e99b7b205a5966c4155b41ff2d4e98eb3b2938bbddce5
+  description: PuddleJumper 13B - GPTQ(co/TheBloke/PuddleJumper-13B-GPTQ/blob/main/model)
+  filename: PuddleJumper-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/PuddleJumper-13B-GPTQ/
+  server: https://huggingface.co/TheBloke/PuddleJumper-13B-GPTQ/resolve/main
+  title: PuddleJumper-13B-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259476152
+- SHA256: 6a74030e936102614ddf71f4fd1b3498feb62baf42e7a2d4f07f63264683d9eb
+  description: Nous Puffin 70B - GPTQ(co/TheBloke/Nous-Puffin-70B-GPTQ/blob/main/model)
+  filename: Nous-Puffin-70B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Nous-Puffin-70B-GPTQ/
+  server: https://huggingface.co/TheBloke/Nous-Puffin-70B-GPTQ/resolve/main
+  title: Nous-Puffin-70B-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 35332203544
 - SHA256: 3e7115a8fa1e6cc11bbf868381c8864ec1a86dfbdecbb06aad28498ad44a49d4
   description: Trurl 2 7B - GPTQ(co/TheBloke/Trurl-2-7B-GPTQ/blob/main/model)
   filename: Trurl-2-7B-GPTQ

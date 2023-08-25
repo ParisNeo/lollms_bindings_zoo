@@ -156,7 +156,7 @@ class GPTQ(LLMBinding):
             ASCIIColors.success("OK")
             ASCIIColors.info("Building model")
             # load quantized model to the first GPU
-            if self.binding_config.split_between_cpu_and_gpu:
+            if self.binding_config.split_between_cpu_and_gpu and self.config.enable_gpu:
                 params = {
                     'model_basename': model_base_name,
                     'device': "cuda:0" if self.binding_config.max_gpu_mem_GB>0 else "cpu",
@@ -173,7 +173,7 @@ class GPTQ(LLMBinding):
             else:
                 params = {
                     'model_basename': model_base_name,
-                    'device': "cuda:0" if self.binding_config.max_gpu_mem_GB>0 else "cpu",
+                    'device': "cuda:0" if self.config.enable_gpu else "cpu",
                     'use_triton': self.binding_config.use_triton,
                     'inject_fused_attention': True,
                     'inject_fused_mlp': True,
