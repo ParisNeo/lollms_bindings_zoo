@@ -32,10 +32,6 @@ binding_name = "CustomBinding"
 
 
 class CustomBinding(LLMBinding):
-    # Define what is the extension of the model files supported by your binding
-    # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
-    # and reimplement your own list_models method
-    file_extension='*.bin' 
     def __init__(
                     self, 
                     config:LOLLMSConfig, 
@@ -58,7 +54,8 @@ class CustomBinding(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            installation_option
+                            installation_option,
+                            supported_file_extensions=['.bin']
                         )
         
 
@@ -168,7 +165,7 @@ This is a photo
     #    """Lists the models for this binding
     #    """
     #    models_dir = Path('./models')/config["binding"]  # replace with the actual path to the models folder
-    #    return [f.name for f in models_dir.glob(LLMBinding.file_extension)]
+    #    return [f.name for f in models_dir.glob(LLMBinding.supported_file_extensions)]
     #
         
     @staticmethod

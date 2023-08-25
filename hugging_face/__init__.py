@@ -36,7 +36,7 @@ import subprocess
 import gc
 
 class HuggingFace(LLMBinding):
-    file_extension='*'
+    
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -68,7 +68,8 @@ class HuggingFace(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            installation_option
+                            installation_option,
+                            supported_file_extensions=['.safetensors','.pth','.bin']
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.callback = None
@@ -141,7 +142,7 @@ class HuggingFace(LLMBinding):
             # load model
             self.model = AutoModelForCausalLM.from_pretrained(model_path,
                                                           #load_in_8bit=self.binding_config.use_8bits,
-                                                          device_map='auto', offload_folder="offload", 
+                                                          device_map='auto', offload_folder="offload",
                                                           offload_state_dict = True)
             ASCIIColors.success(f"ok")
             """

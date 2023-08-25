@@ -33,7 +33,6 @@ binding_name = "PyLLAMACPP"
 binding_folder_name = "py_llama_cpp"
 
 class PyLLAMACPP(LLMBinding):
-    file_extension='*.bin'
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -70,7 +69,8 @@ class PyLLAMACPP(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            installation_option
+                            installation_option,
+                            supported_file_extensions=['.bin','.gguf']
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         

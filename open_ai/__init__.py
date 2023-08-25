@@ -33,10 +33,6 @@ binding_name = "OpenAIGPT"
 binding_folder_name = ""
 
 class OpenAIGPT(LLMBinding):
-    # Define what is the extension of the model files supported by your binding
-    # Only applicable for local models for remote models like gpt4 and others, you can keep it empty 
-    # and reimplement your own list_models method
-    file_extension='*.bin' 
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -69,7 +65,8 @@ class OpenAIGPT(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            installation_option
+                            installation_option,
+                            supported_file_extensions=[''] 
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         

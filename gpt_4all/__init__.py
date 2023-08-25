@@ -34,7 +34,6 @@ binding_folder_name = "gpt_4all"
 
 
 class GPT4ALL(LLMBinding):
-    file_extension='*.bin'
     
     def __init__(self, 
                 config: LOLLMSConfig, 
@@ -69,7 +68,8 @@ class GPT4ALL(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            installation_option
+                            installation_option,
+                            supported_file_extensions=['.bin','.gguf']
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         

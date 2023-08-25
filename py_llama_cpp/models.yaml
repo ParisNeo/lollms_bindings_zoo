@@ -1,3 +1,1525 @@
+- SHA256: 9eb1257e4942aea92f2f1e4d0826a0c7f45eafc63b124415bc24a99c53dcb0fa
+  description: Trurl 2 7B - GGML(q2_K)
+  file_size: 3052161920
+  filename: trurl-2-7b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Trurl-2-7B-GGML/
+  server: https://huggingface.co/TheBloke/Trurl-2-7B-GGML/resolve/main
+  title: trurl-2-7b.ggmlv3.q2_K.bin
+  variants:
+  - name: trurl-2-7b.ggmlv3.q2_K.bin
+    size: 3052161920
+  - name: trurl-2-7b.ggmlv3.q2_K.bin
+    size: 3052161920
+  - name: trurl-2-7b.ggmlv3.q3_K_L.bin
+    size: 3768863616
+  - name: trurl-2-7b.ggmlv3.q3_K_L.bin
+    size: 3768863616
+  - name: trurl-2-7b.ggmlv3.q3_K_M.bin
+    size: 3454290816
+  - name: trurl-2-7b.ggmlv3.q3_K_M.bin
+    size: 3454290816
+  - name: trurl-2-7b.ggmlv3.q3_K_S.bin
+    size: 3120057216
+  - name: trurl-2-7b.ggmlv3.q3_K_S.bin
+    size: 3120057216
+  - name: trurl-2-7b.ggmlv3.q4_0.bin
+    size: 3791729792
+  - name: trurl-2-7b.ggmlv3.q4_0.bin
+    size: 3791729792
+  - name: trurl-2-7b.ggmlv3.q4_1.bin
+    size: 4212864640
+  - name: trurl-2-7b.ggmlv3.q4_1.bin
+    size: 4212864640
+  - name: trurl-2-7b.ggmlv3.q4_K_M.bin
+    size: 4235348864
+  - name: trurl-2-7b.ggmlv3.q4_K_M.bin
+    size: 4235348864
+  - name: trurl-2-7b.ggmlv3.q4_K_S.bin
+    size: 3980151680
+  - name: trurl-2-7b.ggmlv3.q4_K_S.bin
+    size: 3980151680
+  - name: trurl-2-7b.ggmlv3.q5_0.bin
+    size: 4633999488
+  - name: trurl-2-7b.ggmlv3.q5_0.bin
+    size: 4633999488
+  - name: trurl-2-7b.ggmlv3.q5_1.bin
+    size: 5055134336
+  - name: trurl-2-7b.ggmlv3.q5_1.bin
+    size: 5055134336
+  - name: trurl-2-7b.ggmlv3.q5_K_M.bin
+    size: 4921117568
+  - name: trurl-2-7b.ggmlv3.q5_K_M.bin
+    size: 4921117568
+  - name: trurl-2-7b.ggmlv3.q5_K_S.bin
+    size: 4789652352
+  - name: trurl-2-7b.ggmlv3.q5_K_S.bin
+    size: 4789652352
+  - name: trurl-2-7b.ggmlv3.q6_K.bin
+    size: 5649746816
+  - name: trurl-2-7b.ggmlv3.q6_K.bin
+    size: 5649746816
+  - name: trurl-2-7b.ggmlv3.q8_0.bin
+    size: 7160808576
+  - name: trurl-2-7b.ggmlv3.q8_0.bin
+    size: 7160808576
+- SHA256: 8bfcda3cac1c7a8fb6d003ed0a45a13b252360ccee17d7b1b4deac27cabbdb77
+  description: Trurl 2 13B - GGML(q2_K)
+  file_size: 5740214208
+  filename: trurl-2-13b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Trurl-2-13B-GGML/
+  server: https://huggingface.co/TheBloke/Trurl-2-13B-GGML/resolve/main
+  title: trurl-2-13b.ggmlv3.q2_K.bin
+  variants:
+  - name: trurl-2-13b.ggmlv3.q2_K.bin
+    size: 5740214208
+  - name: trurl-2-13b.ggmlv3.q2_K.bin
+    size: 5740214208
+  - name: trurl-2-13b.ggmlv3.q3_K_L.bin
+    size: 7144323008
+  - name: trurl-2-13b.ggmlv3.q3_K_L.bin
+    size: 7144323008
+  - name: trurl-2-13b.ggmlv3.q3_K_M.bin
+    size: 6528284608
+  - name: trurl-2-13b.ggmlv3.q3_K_M.bin
+    size: 6528284608
+  - name: trurl-2-13b.ggmlv3.q3_K_S.bin
+    size: 5873743808
+  - name: trurl-2-13b.ggmlv3.q3_K_S.bin
+    size: 5873743808
+  - name: trurl-2-13b.ggmlv3.q4_0.bin
+    size: 7323310848
+  - name: trurl-2-13b.ggmlv3.q4_0.bin
+    size: 7323310848
+  - name: trurl-2-13b.ggmlv3.q4_1.bin
+    size: 8136777088
+  - name: trurl-2-13b.ggmlv3.q4_1.bin
+    size: 8136777088
+  - name: trurl-2-13b.ggmlv3.q4_K_M.bin
+    size: 8058959808
+  - name: trurl-2-13b.ggmlv3.q4_K_M.bin
+    size: 8058959808
+  - name: trurl-2-13b.ggmlv3.q4_K_S.bin
+    size: 7558838208
+  - name: trurl-2-13b.ggmlv3.q4_K_S.bin
+    size: 7558838208
+  - name: trurl-2-13b.ggmlv3.q5_0.bin
+    size: 8950243328
+  - name: trurl-2-13b.ggmlv3.q5_0.bin
+    size: 8950243328
+  - name: trurl-2-13b.ggmlv3.q5_1.bin
+    size: 9763709568
+  - name: trurl-2-13b.ggmlv3.q5_1.bin
+    size: 9763709568
+  - name: trurl-2-13b.ggmlv3.q5_K_M.bin
+    size: 9402447808
+  - name: trurl-2-13b.ggmlv3.q5_K_M.bin
+    size: 9402447808
+  - name: trurl-2-13b.ggmlv3.q5_K_S.bin
+    size: 9144809408
+  - name: trurl-2-13b.ggmlv3.q5_K_S.bin
+    size: 9144809408
+  - name: trurl-2-13b.ggmlv3.q6_K.bin
+    size: 10829903808
+  - name: trurl-2-13b.ggmlv3.q6_K.bin
+    size: 10829903808
+  - name: trurl-2-13b.ggmlv3.q8_0.bin
+    size: 13831040768
+  - name: trurl-2-13b.ggmlv3.q8_0.bin
+    size: 13831040768
+- SHA256: 81de8bf8bdc320bd20e620a0e6168d9c0d765d34f3c91bb240976a7b724a3b1f
+  description: Zarablend MX L2 7B - GGML(q2_K)
+  file_size: 2866807424
+  filename: zarablend-mx-l2-7b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Zarablend-MX-L2-7B-GGML/
+  server: https://huggingface.co/TheBloke/Zarablend-MX-L2-7B-GGML/resolve/main
+  title: zarablend-mx-l2-7b.ggmlv3.q2_K.bin
+  variants:
+  - name: zarablend-mx-l2-7b.ggmlv3.q2_K.bin
+    size: 2866807424
+  - name: zarablend-mx-l2-7b.ggmlv3.q2_K.bin
+    size: 2866807424
+  - name: zarablend-mx-l2-7b.ggmlv3.q3_K_L.bin
+    size: 3596821120
+  - name: zarablend-mx-l2-7b.ggmlv3.q3_K_L.bin
+    size: 3596821120
+  - name: zarablend-mx-l2-7b.ggmlv3.q3_K_M.bin
+    size: 3282248320
+  - name: zarablend-mx-l2-7b.ggmlv3.q3_K_M.bin
+    size: 3282248320
+  - name: zarablend-mx-l2-7b.ggmlv3.q3_K_S.bin
+    size: 2948014720
+  - name: zarablend-mx-l2-7b.ggmlv3.q3_K_S.bin
+    size: 2948014720
+  - name: zarablend-mx-l2-7b.ggmlv3.q4_0.bin
+    size: 3825517184
+  - name: zarablend-mx-l2-7b.ggmlv3.q4_0.bin
+    size: 3825517184
+  - name: zarablend-mx-l2-7b.ggmlv3.q4_1.bin
+    size: 4238459520
+  - name: zarablend-mx-l2-7b.ggmlv3.q4_1.bin
+    size: 4238459520
+  - name: zarablend-mx-l2-7b.ggmlv3.q4_K_M.bin
+    size: 4080714368
+  - name: zarablend-mx-l2-7b.ggmlv3.q4_K_M.bin
+    size: 4080714368
+  - name: zarablend-mx-l2-7b.ggmlv3.q4_K_S.bin
+    size: 3825517184
+  - name: zarablend-mx-l2-7b.ggmlv3.q4_K_S.bin
+    size: 3825517184
+  - name: zarablend-mx-l2-7b.ggmlv3.q5_0.bin
+    size: 4651401856
+  - name: zarablend-mx-l2-7b.ggmlv3.q5_0.bin
+    size: 4651401856
+  - name: zarablend-mx-l2-7b.ggmlv3.q5_1.bin
+    size: 5064344192
+  - name: zarablend-mx-l2-7b.ggmlv3.q5_1.bin
+    size: 5064344192
+  - name: zarablend-mx-l2-7b.ggmlv3.q5_K_M.bin
+    size: 4782867072
+  - name: zarablend-mx-l2-7b.ggmlv3.q5_K_M.bin
+    size: 4782867072
+  - name: zarablend-mx-l2-7b.ggmlv3.q5_K_S.bin
+    size: 4651401856
+  - name: zarablend-mx-l2-7b.ggmlv3.q5_K_S.bin
+    size: 4651401856
+  - name: zarablend-mx-l2-7b.ggmlv3.q6_K.bin
+    size: 5528904320
+  - name: zarablend-mx-l2-7b.ggmlv3.q6_K.bin
+    size: 5528904320
+  - name: zarablend-mx-l2-7b.ggmlv3.q8_0.bin
+    size: 7129055872
+  - name: zarablend-mx-l2-7b.ggmlv3.q8_0.bin
+    size: 7129055872
+- SHA256: 8199ea741ce180b31d7225793507a4d1541c77a2a81b6c27104a41e3f6e412cd
+  description: Synthia 13B - GGML(q2_K)
+  file_size: 5508521088
+  filename: synthia-13b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Synthia-13B-GGML/
+  server: https://huggingface.co/TheBloke/Synthia-13B-GGML/resolve/main
+  title: synthia-13b.ggmlv3.q2_K.bin
+  variants:
+  - name: synthia-13b.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: synthia-13b.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: synthia-13b.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: synthia-13b.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: synthia-13b.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: synthia-13b.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: synthia-13b.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: synthia-13b.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: synthia-13b.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: synthia-13b.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: synthia-13b.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: synthia-13b.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: synthia-13b.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: synthia-13b.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: synthia-13b.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: synthia-13b.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: synthia-13b.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: synthia-13b.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: synthia-13b.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: synthia-13b.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: synthia-13b.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: synthia-13b.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: synthia-13b.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: synthia-13b.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: synthia-13b.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: synthia-13b.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: synthia-13b.ggmlv3.q8_0.bin
+    size: 13791349888
+  - name: synthia-13b.ggmlv3.q8_0.bin
+    size: 13791349888
+- SHA256: bc07c81de745696fdf5afca05e065818a8149fb0c77266fb584d9b2cba3711ab
+  description: Puma 3B - GGML(q4_0)
+  file_size: 1928429856
+  filename: puma-3b.ggmlv3.q4_0.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: apache-2.0
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Puma-3b-GGML/
+  server: https://huggingface.co/TheBloke/Puma-3b-GGML/resolve/main
+  title: puma-3b.ggmlv3.q4_0.bin
+  variants:
+  - name: puma-3b.ggmlv3.q4_0.bin
+    size: 1928429856
+  - name: puma-3b.ggmlv3.q4_0.bin
+    size: 1928429856
+  - name: puma-3b.ggmlv3.q4_1.bin
+    size: 2142573856
+  - name: puma-3b.ggmlv3.q4_1.bin
+    size: 2142573856
+  - name: puma-3b.ggmlv3.q5_0.bin
+    size: 2356717856
+  - name: puma-3b.ggmlv3.q5_0.bin
+    size: 2356717856
+  - name: puma-3b.ggmlv3.q5_1.bin
+    size: 2570861856
+  - name: puma-3b.ggmlv3.q5_1.bin
+    size: 2570861856
+  - name: puma-3b.ggmlv3.q8_0.bin
+    size: 3641581856
+  - name: puma-3b.ggmlv3.q8_0.bin
+    size: 3641581856
+- SHA256: 5551abb08028b84b1f5a7d14b1b607b545511d0f7922b5ae5efda1baea5d511e
+  description: Marx 3B - GGML(q4_0)
+  file_size: 1928429856
+  filename: marx-3b.ggmlv3.q4_0.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: apache-2.0
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Marx-3b-GGML/
+  server: https://huggingface.co/TheBloke/Marx-3b-GGML/resolve/main
+  title: marx-3b.ggmlv3.q4_0.bin
+  variants:
+  - name: marx-3b.ggmlv3.q4_0.bin
+    size: 1928429856
+  - name: marx-3b.ggmlv3.q4_0.bin
+    size: 1928429856
+  - name: marx-3b.ggmlv3.q4_1.bin
+    size: 2142573856
+  - name: marx-3b.ggmlv3.q4_1.bin
+    size: 2142573856
+  - name: marx-3b.ggmlv3.q5_0.bin
+    size: 2356717856
+  - name: marx-3b.ggmlv3.q5_0.bin
+    size: 2356717856
+  - name: marx-3b.ggmlv3.q5_1.bin
+    size: 2570861856
+  - name: marx-3b.ggmlv3.q5_1.bin
+    size: 2570861856
+  - name: marx-3b.ggmlv3.q8_0.bin
+    size: 3641581856
+  - name: marx-3b.ggmlv3.q8_0.bin
+    size: 3641581856
+- SHA256: 67d112c80594ba409c7bd061e775a251b73678ccf718c04334a67c1350dbfa30
+  description: Griffin 3B - GGML(q4_0)
+  file_size: 1928429856
+  filename: griffin-3b.ggmlv3.q4_0.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: apache-2.0
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Griffin-3B-GGML/
+  server: https://huggingface.co/TheBloke/Griffin-3B-GGML/resolve/main
+  title: griffin-3b.ggmlv3.q4_0.bin
+  variants:
+  - name: griffin-3b.ggmlv3.q4_0.bin
+    size: 1928429856
+  - name: griffin-3b.ggmlv3.q4_0.bin
+    size: 1928429856
+  - name: griffin-3b.ggmlv3.q4_1.bin
+    size: 2142573856
+  - name: griffin-3b.ggmlv3.q4_1.bin
+    size: 2142573856
+  - name: griffin-3b.ggmlv3.q5_0.bin
+    size: 2356717856
+  - name: griffin-3b.ggmlv3.q5_0.bin
+    size: 2356717856
+  - name: griffin-3b.ggmlv3.q5_1.bin
+    size: 2570861856
+  - name: griffin-3b.ggmlv3.q5_1.bin
+    size: 2570861856
+  - name: griffin-3b.ggmlv3.q8_0.bin
+    size: 3641581856
+  - name: griffin-3b.ggmlv3.q8_0.bin
+    size: 3641581856
+- SHA256: 46e481e7cb5981182bf42cdc61684bea495d042bf27eb5f48f19f11ef5743283
+  description: Chronorctypus-Limarobormes-13B - GGML(q2_K)
+  file_size: 5508521088
+  filename: chronorctypus-limarobormes-13b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Chronorctypus-Limarobormes-13b-GGML/
+  server: https://huggingface.co/TheBloke/Chronorctypus-Limarobormes-13b-GGML/resolve/main
+  title: chronorctypus-limarobormes-13b.ggmlv3.q2_K.bin
+  variants:
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q8_0.bin
+    size: 13791349888
+  - name: chronorctypus-limarobormes-13b.ggmlv3.q8_0.bin
+    size: 13791349888
+- SHA256: c5c316e28ee3d8ce66b58c82f37654b50ff95fa9f5a190f9da92aa0cafbca8e0
+  description: llama2-28B-air03.ggmlv3.q4_0.bin model
+  file_size: 15898760832
+  filename: llama2-28B-air03.ggmlv3.q4_0.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: unknown
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Llama2-28B-Air03-GGML/
+  server: https://huggingface.co/TheBloke/Llama2-28B-Air03-GGML/resolve/main
+  title: llama2-28B-air03.ggmlv3.q4_0.bin
+  variants:
+  - name: llama2-28B-air03.ggmlv3.q4_0.bin
+    size: 15898760832
+  - name: llama2-28B-air03.ggmlv3.q4_0.bin
+    size: 15898760832
+  - name: llama2-28B-air03.ggmlv3.q4_1.bin
+    size: 17664976512
+  - name: llama2-28B-air03.ggmlv3.q4_1.bin
+    size: 17664976512
+  - name: llama2-28B-air03.ggmlv3.q5_0.bin
+    size: 19431192192
+  - name: llama2-28B-air03.ggmlv3.q5_0.bin
+    size: 19431192192
+  - name: llama2-28B-air03.ggmlv3.q5_1.bin
+    size: 21197407872
+  - name: llama2-28B-air03.ggmlv3.q5_1.bin
+    size: 21197407872
+- SHA256: 8fe677096e01e8333416eddcce256114162feb56f1f33166526c509a0b9d9163
+  description: EverythingLM 13B V2 16K - GGML(q2_K)
+  file_size: 5508521088
+  filename: everythinglm-13b-v2-16k.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/EverythingLM-13b-V2-16K-GGML/
+  server: https://huggingface.co/TheBloke/EverythingLM-13b-V2-16K-GGML/resolve/main
+  title: everythinglm-13b-v2-16k.ggmlv3.q2_K.bin
+  variants:
+  - name: everythinglm-13b-v2-16k.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: everythinglm-13b-v2-16k.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: everythinglm-13b-v2-16k.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: everythinglm-13b-v2-16k.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: everythinglm-13b-v2-16k.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: everythinglm-13b-v2-16k.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: everythinglm-13b-v2-16k.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: everythinglm-13b-v2-16k.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: everythinglm-13b-v2-16k.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: everythinglm-13b-v2-16k.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: everythinglm-13b-v2-16k.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: everythinglm-13b-v2-16k.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: everythinglm-13b-v2-16k.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: everythinglm-13b-v2-16k.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: everythinglm-13b-v2-16k.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: everythinglm-13b-v2-16k.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: everythinglm-13b-v2-16k.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: everythinglm-13b-v2-16k.ggmlv3.q8_0.bin
+    size: 13791349888
+  - name: everythinglm-13b-v2-16k.ggmlv3.q8_0.bin
+    size: 13791349888
+- SHA256: 2cb376c3a82a232022313ae4d3b0920f1267eea33bf38cba32e03f4f51cda6dc
+  description: Llama2 22B GPLATTY - GGML(q2_K)
+  file_size: 9218443392
+  filename: llama2-22b-gplatty.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Llama2-22B-GPLATTY-GGML/
+  server: https://huggingface.co/TheBloke/Llama2-22B-GPLATTY-GGML/resolve/main
+  title: llama2-22b-gplatty.ggmlv3.q2_K.bin
+  variants:
+  - name: llama2-22b-gplatty.ggmlv3.q2_K.bin
+    size: 9218443392
+  - name: llama2-22b-gplatty.ggmlv3.q2_K.bin
+    size: 9218443392
+  - name: llama2-22b-gplatty.ggmlv3.q3_K_L.bin
+    size: 11608546432
+  - name: llama2-22b-gplatty.ggmlv3.q3_K_L.bin
+    size: 11608546432
+  - name: llama2-22b-gplatty.ggmlv3.q3_K_M.bin
+    size: 10569145472
+  - name: llama2-22b-gplatty.ggmlv3.q3_K_M.bin
+    size: 10569145472
+  - name: llama2-22b-gplatty.ggmlv3.q3_K_S.bin
+    size: 9464781952
+  - name: llama2-22b-gplatty.ggmlv3.q3_K_S.bin
+    size: 9464781952
+  - name: llama2-22b-gplatty.ggmlv3.q4_0.bin
+    size: 12335448192
+  - name: llama2-22b-gplatty.ggmlv3.q4_0.bin
+    size: 12335448192
+  - name: llama2-22b-gplatty.ggmlv3.q4_1.bin
+    size: 13686349952
+  - name: llama2-22b-gplatty.ggmlv3.q4_1.bin
+    size: 13686349952
+  - name: llama2-22b-gplatty.ggmlv3.q4_K_M.bin
+    size: 13178896512
+  - name: llama2-22b-gplatty.ggmlv3.q4_K_M.bin
+    size: 13178896512
+  - name: llama2-22b-gplatty.ggmlv3.q4_K_S.bin
+    size: 12335448192
+  - name: llama2-22b-gplatty.ggmlv3.q4_K_S.bin
+    size: 12335448192
+  - name: llama2-22b-gplatty.ggmlv3.q5_0.bin
+    size: 15037251712
+  - name: llama2-22b-gplatty.ggmlv3.q5_0.bin
+    size: 15037251712
+  - name: llama2-22b-gplatty.ggmlv3.q5_1.bin
+    size: 16388153472
+  - name: llama2-22b-gplatty.ggmlv3.q5_1.bin
+    size: 16388153472
+  - name: llama2-22b-gplatty.ggmlv3.q5_K_M.bin
+    size: 15471755392
+  - name: llama2-22b-gplatty.ggmlv3.q5_K_M.bin
+    size: 15471755392
+  - name: llama2-22b-gplatty.ggmlv3.q5_K_S.bin
+    size: 15037251712
+  - name: llama2-22b-gplatty.ggmlv3.q5_K_S.bin
+    size: 15037251712
+  - name: llama2-22b-gplatty.ggmlv3.q6_K.bin
+    size: 17907917952
+  - name: llama2-22b-gplatty.ggmlv3.q6_K.bin
+    size: 17907917952
+  - name: llama2-22b-gplatty.ggmlv3.q8_0.bin
+    size: 23142662272
+  - name: llama2-22b-gplatty.ggmlv3.q8_0.bin
+    size: 23142662272
+- SHA256: 82d00cc9365f6eb1f31e88258199ef200bfe25ffa413c12cc5bbdbb7283698d9
+  description: L2 MythoMax 22B Instruct Falseblock - GGML(q2_K)
+  file_size: 9218443392
+  filename: l2-mythomax22b-instruct-Falseblock.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/L2-MythoMax22b-Instruct-Falseblock-GGML/
+  server: https://huggingface.co/TheBloke/L2-MythoMax22b-Instruct-Falseblock-GGML/resolve/main
+  title: l2-mythomax22b-instruct-Falseblock.ggmlv3.q2_K.bin
+  variants:
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q2_K.bin
+    size: 9218443392
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q2_K.bin
+    size: 9218443392
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q3_K_L.bin
+    size: 11608546432
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q3_K_L.bin
+    size: 11608546432
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q3_K_M.bin
+    size: 10569145472
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q3_K_M.bin
+    size: 10569145472
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q3_K_S.bin
+    size: 9464781952
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q3_K_S.bin
+    size: 9464781952
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q4_0.bin
+    size: 12335448192
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q4_0.bin
+    size: 12335448192
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q4_1.bin
+    size: 13686349952
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q4_1.bin
+    size: 13686349952
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q4_K_M.bin
+    size: 13178896512
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q4_K_M.bin
+    size: 13178896512
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q4_K_S.bin
+    size: 12335448192
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q4_K_S.bin
+    size: 12335448192
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q5_0.bin
+    size: 15037251712
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q5_0.bin
+    size: 15037251712
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q5_1.bin
+    size: 16388153472
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q5_1.bin
+    size: 16388153472
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q5_K_M.bin
+    size: 15471755392
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q5_K_M.bin
+    size: 15471755392
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q5_K_S.bin
+    size: 15037251712
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q5_K_S.bin
+    size: 15037251712
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q6_K.bin
+    size: 17907917952
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q6_K.bin
+    size: 17907917952
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q8_0.bin
+    size: 23142662272
+  - name: l2-mythomax22b-instruct-Falseblock.ggmlv3.q8_0.bin
+    size: 23142662272
+- SHA256: a1582c1d1e3d4283eaf5532d6297dd9c50ec92edb725b3ffa7a7a12e00da00fd
+  description: Llama2 7B 32K Instruct - GGML(q2_K)
+  file_size: 2866807424
+  filename: llama-2-7b-32k-instruct.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Llama-2-7B-32K-Instruct-GGML/
+  server: https://huggingface.co/TheBloke/Llama-2-7B-32K-Instruct-GGML/resolve/main
+  title: llama-2-7b-32k-instruct.ggmlv3.q2_K.bin
+  variants:
+  - name: llama-2-7b-32k-instruct.ggmlv3.q2_K.bin
+    size: 2866807424
+  - name: llama-2-7b-32k-instruct.ggmlv3.q2_K.bin
+    size: 2866807424
+  - name: llama-2-7b-32k-instruct.ggmlv3.q3_K_L.bin
+    size: 3596821120
+  - name: llama-2-7b-32k-instruct.ggmlv3.q3_K_L.bin
+    size: 3596821120
+  - name: llama-2-7b-32k-instruct.ggmlv3.q3_K_M.bin
+    size: 3282248320
+  - name: llama-2-7b-32k-instruct.ggmlv3.q3_K_M.bin
+    size: 3282248320
+  - name: llama-2-7b-32k-instruct.ggmlv3.q3_K_S.bin
+    size: 2948014720
+  - name: llama-2-7b-32k-instruct.ggmlv3.q3_K_S.bin
+    size: 2948014720
+  - name: llama-2-7b-32k-instruct.ggmlv3.q4_0.bin
+    size: 3825517184
+  - name: llama-2-7b-32k-instruct.ggmlv3.q4_0.bin
+    size: 3825517184
+  - name: llama-2-7b-32k-instruct.ggmlv3.q4_1.bin
+    size: 4238459520
+  - name: llama-2-7b-32k-instruct.ggmlv3.q4_1.bin
+    size: 4238459520
+  - name: llama-2-7b-32k-instruct.ggmlv3.q4_K_M.bin
+    size: 4080714368
+  - name: llama-2-7b-32k-instruct.ggmlv3.q4_K_M.bin
+    size: 4080714368
+  - name: llama-2-7b-32k-instruct.ggmlv3.q4_K_S.bin
+    size: 3825517184
+  - name: llama-2-7b-32k-instruct.ggmlv3.q4_K_S.bin
+    size: 3825517184
+  - name: llama-2-7b-32k-instruct.ggmlv3.q5_0.bin
+    size: 4651401856
+  - name: llama-2-7b-32k-instruct.ggmlv3.q5_0.bin
+    size: 4651401856
+  - name: llama-2-7b-32k-instruct.ggmlv3.q5_1.bin
+    size: 5064344192
+  - name: llama-2-7b-32k-instruct.ggmlv3.q5_1.bin
+    size: 5064344192
+  - name: llama-2-7b-32k-instruct.ggmlv3.q5_K_M.bin
+    size: 4782867072
+  - name: llama-2-7b-32k-instruct.ggmlv3.q5_K_M.bin
+    size: 4782867072
+  - name: llama-2-7b-32k-instruct.ggmlv3.q5_K_S.bin
+    size: 4651401856
+  - name: llama-2-7b-32k-instruct.ggmlv3.q5_K_S.bin
+    size: 4651401856
+  - name: llama-2-7b-32k-instruct.ggmlv3.q6_K.bin
+    size: 5528904320
+  - name: llama-2-7b-32k-instruct.ggmlv3.q6_K.bin
+    size: 5528904320
+  - name: llama-2-7b-32k-instruct.ggmlv3.q8_0.bin
+    size: 7129055872
+  - name: llama-2-7b-32k-instruct.ggmlv3.q8_0.bin
+    size: 7129055872
+- SHA256: c745a77dc324a93493633a0ad321bc90f900cc03e804907edabbf19313f5df01
+  description: Samantha 1.1 70B - GGML(q2_K)
+  file_size: 28586905216
+  filename: samantha-1.1-70b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Samantha-1.1-70B-GGML/
+  server: https://huggingface.co/TheBloke/Samantha-1.1-70B-GGML/resolve/main
+  title: samantha-1.1-70b.ggmlv3.q2_K.bin
+  variants:
+  - name: samantha-1.1-70b.ggmlv3.q2_K.bin
+    size: 28586905216
+  - name: samantha-1.1-70b.ggmlv3.q2_K.bin
+    size: 28586905216
+  - name: samantha-1.1-70b.ggmlv3.q3_K_L.bin
+    size: 36147547776
+  - name: samantha-1.1-70b.ggmlv3.q3_K_L.bin
+    size: 36147547776
+  - name: samantha-1.1-70b.ggmlv3.q3_K_M.bin
+    size: 33043762816
+  - name: samantha-1.1-70b.ggmlv3.q3_K_M.bin
+    size: 33043762816
+  - name: samantha-1.1-70b.ggmlv3.q3_K_S.bin
+    size: 29745991296
+  - name: samantha-1.1-70b.ggmlv3.q3_K_S.bin
+    size: 29745991296
+  - name: samantha-1.1-70b.ggmlv3.q4_0.bin
+    size: 38871961216
+  - name: samantha-1.1-70b.ggmlv3.q4_0.bin
+    size: 38871961216
+  - name: samantha-1.1-70b.ggmlv3.q4_1.bin
+    size: 43166535296
+  - name: samantha-1.1-70b.ggmlv3.q4_1.bin
+    size: 43166535296
+  - name: samantha-1.1-70b.ggmlv3.q4_K_M.bin
+    size: 41380679296
+  - name: samantha-1.1-70b.ggmlv3.q4_K_M.bin
+    size: 41380679296
+  - name: samantha-1.1-70b.ggmlv3.q4_K_S.bin
+    size: 38871961216
+  - name: samantha-1.1-70b.ggmlv3.q4_K_S.bin
+    size: 38871961216
+  - name: samantha-1.1-70b.ggmlv3.q5_0.bin
+    size: 47461109376
+  - name: samantha-1.1-70b.ggmlv3.q5_0.bin
+    size: 47461109376
+  - name: samantha-1.1-70b.ggmlv3.q5_K_M.bin
+    size: 48753479296
+  - name: samantha-1.1-70b.ggmlv3.q5_K_M.bin
+    size: 48753479296
+  - name: samantha-1.1-70b.ggmlv3.q5_K_S.bin
+    size: 47461109376
+  - name: samantha-1.1-70b.ggmlv3.q5_K_S.bin
+    size: 47461109376
+- SHA256: 1c126a40761ef64cf73ba31c2fc6da378765a5fd6fbf557c0eca4ee94049c7ce
+  description: LlongOrca 13B 16K - GGML(q2_K)
+  file_size: 5740253632
+  filename: llongorca-13b-16k.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/LlongOrca-13B-16K-GGML/
+  server: https://huggingface.co/TheBloke/LlongOrca-13B-16K-GGML/resolve/main
+  title: llongorca-13b-16k.ggmlv3.q2_K.bin
+  variants:
+  - name: llongorca-13b-16k.ggmlv3.q2_K.bin
+    size: 5740253632
+  - name: llongorca-13b-16k.ggmlv3.q2_K.bin
+    size: 5740253632
+  - name: llongorca-13b-16k.ggmlv3.q3_K_L.bin
+    size: 7144362432
+  - name: llongorca-13b-16k.ggmlv3.q3_K_L.bin
+    size: 7144362432
+  - name: llongorca-13b-16k.ggmlv3.q3_K_M.bin
+    size: 6528324032
+  - name: llongorca-13b-16k.ggmlv3.q3_K_M.bin
+    size: 6528324032
+  - name: llongorca-13b-16k.ggmlv3.q3_K_S.bin
+    size: 5873783232
+  - name: llongorca-13b-16k.ggmlv3.q3_K_S.bin
+    size: 5873783232
+  - name: llongorca-13b-16k.ggmlv3.q4_0.bin
+    size: 7323328192
+  - name: llongorca-13b-16k.ggmlv3.q4_0.bin
+    size: 7323328192
+  - name: llongorca-13b-16k.ggmlv3.q4_1.bin
+    size: 8136796352
+  - name: llongorca-13b-16k.ggmlv3.q4_1.bin
+    size: 8136796352
+  - name: llongorca-13b-16k.ggmlv3.q4_K_M.bin
+    size: 8058999232
+  - name: llongorca-13b-16k.ggmlv3.q4_K_M.bin
+    size: 8058999232
+  - name: llongorca-13b-16k.ggmlv3.q4_K_S.bin
+    size: 7558877632
+  - name: llongorca-13b-16k.ggmlv3.q4_K_S.bin
+    size: 7558877632
+  - name: llongorca-13b-16k.ggmlv3.q5_0.bin
+    size: 8950264512
+  - name: llongorca-13b-16k.ggmlv3.q5_0.bin
+    size: 8950264512
+  - name: llongorca-13b-16k.ggmlv3.q5_1.bin
+    size: 9763732672
+  - name: llongorca-13b-16k.ggmlv3.q5_1.bin
+    size: 9763732672
+  - name: llongorca-13b-16k.ggmlv3.q5_K_M.bin
+    size: 9402487232
+  - name: llongorca-13b-16k.ggmlv3.q5_K_M.bin
+    size: 9402487232
+  - name: llongorca-13b-16k.ggmlv3.q5_K_S.bin
+    size: 9144848832
+  - name: llongorca-13b-16k.ggmlv3.q5_K_S.bin
+    size: 9144848832
+  - name: llongorca-13b-16k.ggmlv3.q6_K.bin
+    size: 10829943232
+  - name: llongorca-13b-16k.ggmlv3.q6_K.bin
+    size: 10829943232
+  - name: llongorca-13b-16k.ggmlv3.q8_0.bin
+    size: 13831073472
+  - name: llongorca-13b-16k.ggmlv3.q8_0.bin
+    size: 13831073472
+- SHA256: 1b95d38e8cc682c604c257b027a97c2be20482fe527ad8764a6971f1fa9cf144
+  description: Zarablend L2 7B - GGML(q2_K)
+  file_size: 2866807424
+  filename: zarablend-l2-7b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Zarablend-L2-7B-GGML/
+  server: https://huggingface.co/TheBloke/Zarablend-L2-7B-GGML/resolve/main
+  title: zarablend-l2-7b.ggmlv3.q2_K.bin
+  variants:
+  - name: zarablend-l2-7b.ggmlv3.q2_K.bin
+    size: 2866807424
+  - name: zarablend-l2-7b.ggmlv3.q2_K.bin
+    size: 2866807424
+  - name: zarablend-l2-7b.ggmlv3.q3_K_L.bin
+    size: 3596821120
+  - name: zarablend-l2-7b.ggmlv3.q3_K_L.bin
+    size: 3596821120
+  - name: zarablend-l2-7b.ggmlv3.q3_K_M.bin
+    size: 3282248320
+  - name: zarablend-l2-7b.ggmlv3.q3_K_M.bin
+    size: 3282248320
+  - name: zarablend-l2-7b.ggmlv3.q3_K_S.bin
+    size: 2948014720
+  - name: zarablend-l2-7b.ggmlv3.q3_K_S.bin
+    size: 2948014720
+  - name: zarablend-l2-7b.ggmlv3.q4_0.bin
+    size: 3825517184
+  - name: zarablend-l2-7b.ggmlv3.q4_0.bin
+    size: 3825517184
+  - name: zarablend-l2-7b.ggmlv3.q4_1.bin
+    size: 4238459520
+  - name: zarablend-l2-7b.ggmlv3.q4_1.bin
+    size: 4238459520
+  - name: zarablend-l2-7b.ggmlv3.q4_K_M.bin
+    size: 4080714368
+  - name: zarablend-l2-7b.ggmlv3.q4_K_M.bin
+    size: 4080714368
+  - name: zarablend-l2-7b.ggmlv3.q4_K_S.bin
+    size: 3825517184
+  - name: zarablend-l2-7b.ggmlv3.q4_K_S.bin
+    size: 3825517184
+  - name: zarablend-l2-7b.ggmlv3.q5_0.bin
+    size: 4651401856
+  - name: zarablend-l2-7b.ggmlv3.q5_0.bin
+    size: 4651401856
+  - name: zarablend-l2-7b.ggmlv3.q5_1.bin
+    size: 5064344192
+  - name: zarablend-l2-7b.ggmlv3.q5_1.bin
+    size: 5064344192
+  - name: zarablend-l2-7b.ggmlv3.q5_K_M.bin
+    size: 4782867072
+  - name: zarablend-l2-7b.ggmlv3.q5_K_M.bin
+    size: 4782867072
+  - name: zarablend-l2-7b.ggmlv3.q5_K_S.bin
+    size: 4651401856
+  - name: zarablend-l2-7b.ggmlv3.q5_K_S.bin
+    size: 4651401856
+  - name: zarablend-l2-7b.ggmlv3.q6_K.bin
+    size: 5528904320
+  - name: zarablend-l2-7b.ggmlv3.q6_K.bin
+    size: 5528904320
+  - name: zarablend-l2-7b.ggmlv3.q8_0.bin
+    size: 7129055872
+  - name: zarablend-l2-7b.ggmlv3.q8_0.bin
+    size: 7129055872
+- SHA256: c465b079341640915ee6db9678eeac3b9f1aec30608b9dbb7d319a8f4806c223
+  description: Octocoder - GGML(q4_0)
+  file_size: 10746563472
+  filename: octocoder.ggmlv1.q4_0.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: bigcode-openrail-m
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Octocoder-GGML/
+  server: https://huggingface.co/TheBloke/Octocoder-GGML/resolve/main
+  title: octocoder.ggmlv1.q4_0.bin
+  variants:
+  - name: octocoder.ggmlv1.q4_0.bin
+    size: 10746563472
+  - name: octocoder.ggmlv1.q4_0.bin
+    size: 10746563472
+  - name: octocoder.ggmlv1.q4_1.bin
+    size: 11916774288
+  - name: octocoder.ggmlv1.q4_1.bin
+    size: 11916774288
+  - name: octocoder.ggmlv1.q5_0.bin
+    size: 13086985104
+  - name: octocoder.ggmlv1.q5_0.bin
+    size: 13086985104
+  - name: octocoder.ggmlv1.q5_1.bin
+    size: 14257195920
+  - name: octocoder.ggmlv1.q5_1.bin
+    size: 14257195920
+  - name: octocoder.ggmlv1.q8_0.bin
+    size: 20108250000
+  - name: octocoder.ggmlv1.q8_0.bin
+    size: 20108250000
+- SHA256: d4397d5e52d6fa1d43108811e9e7030af71ea7c50834e83129e8b65da230ff22
+  description: Llama2 13B MegaCode2 OASST - GGML(q2_K)
+  file_size: 5740293024
+  filename: llama2-13b-megacode2-oasst.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Llama2-13B-MegaCode2-OASST-GGML/
+  server: https://huggingface.co/TheBloke/Llama2-13B-MegaCode2-OASST-GGML/resolve/main
+  title: llama2-13b-megacode2-oasst.ggmlv3.q2_K.bin
+  variants:
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q2_K.bin
+    size: 5740293024
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q2_K.bin
+    size: 5740293024
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q3_K_L.bin
+    size: 7144401824
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q3_K_L.bin
+    size: 7144401824
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q3_K_M.bin
+    size: 6528363424
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q3_K_M.bin
+    size: 6528363424
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q3_K_S.bin
+    size: 5873822624
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q3_K_S.bin
+    size: 5873822624
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q4_0.bin
+    size: 7323345504
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q4_0.bin
+    size: 7323345504
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q4_1.bin
+    size: 8136815584
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q4_1.bin
+    size: 8136815584
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q4_K_M.bin
+    size: 8059038624
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q4_K_M.bin
+    size: 8059038624
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q4_K_S.bin
+    size: 7558917024
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q4_K_S.bin
+    size: 7558917024
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q5_0.bin
+    size: 8950285664
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q5_0.bin
+    size: 8950285664
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q5_1.bin
+    size: 9763755744
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q5_1.bin
+    size: 9763755744
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q5_K_M.bin
+    size: 9402526624
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q5_K_M.bin
+    size: 9402526624
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q5_K_S.bin
+    size: 9144888224
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q5_K_S.bin
+    size: 9144888224
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q6_K.bin
+    size: 10829982624
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q6_K.bin
+    size: 10829982624
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q8_0.bin
+    size: 13831106144
+  - name: llama2-13b-megacode2-oasst.ggmlv3.q8_0.bin
+    size: 13831106144
+- SHA256: 764555c91e99ce28654c7fa7de0f33091a51d594a95278a56befaf4f78a33286
+  description: GodziLLa2 70B - GGML(q2_K)
+  file_size: 28586905216
+  filename: godzilla2-70b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/GodziLLa2-70B-GGML/
+  server: https://huggingface.co/TheBloke/GodziLLa2-70B-GGML/resolve/main
+  title: godzilla2-70b.ggmlv3.q2_K.bin
+  variants:
+  - name: godzilla2-70b.ggmlv3.q2_K.bin
+    size: 28586905216
+  - name: godzilla2-70b.ggmlv3.q2_K.bin
+    size: 28586905216
+  - name: godzilla2-70b.ggmlv3.q3_K_L.bin
+    size: 36147547776
+  - name: godzilla2-70b.ggmlv3.q3_K_L.bin
+    size: 36147547776
+  - name: godzilla2-70b.ggmlv3.q3_K_M.bin
+    size: 33043762816
+  - name: godzilla2-70b.ggmlv3.q3_K_M.bin
+    size: 33043762816
+  - name: godzilla2-70b.ggmlv3.q3_K_S.bin
+    size: 29745991296
+  - name: godzilla2-70b.ggmlv3.q3_K_S.bin
+    size: 29745991296
+  - name: godzilla2-70b.ggmlv3.q4_0.bin
+    size: 38871961216
+  - name: godzilla2-70b.ggmlv3.q4_0.bin
+    size: 38871961216
+  - name: godzilla2-70b.ggmlv3.q4_1.bin
+    size: 43166535296
+  - name: godzilla2-70b.ggmlv3.q4_1.bin
+    size: 43166535296
+  - name: godzilla2-70b.ggmlv3.q4_K_M.bin
+    size: 41380679296
+  - name: godzilla2-70b.ggmlv3.q4_K_M.bin
+    size: 41380679296
+  - name: godzilla2-70b.ggmlv3.q4_K_S.bin
+    size: 38871961216
+  - name: godzilla2-70b.ggmlv3.q4_K_S.bin
+    size: 38871961216
+  - name: godzilla2-70b.ggmlv3.q5_0.bin
+    size: 47461109376
+  - name: godzilla2-70b.ggmlv3.q5_0.bin
+    size: 47461109376
+  - name: godzilla2-70b.ggmlv3.q5_K_M.bin
+    size: 48753479296
+  - name: godzilla2-70b.ggmlv3.q5_K_M.bin
+    size: 48753479296
+  - name: godzilla2-70b.ggmlv3.q5_K_S.bin
+    size: 47461109376
+  - name: godzilla2-70b.ggmlv3.q5_K_S.bin
+    size: 47461109376
+- SHA256: 67e20888f511b30ddd13313abf1bfc86d9c87f66e764c5392b2c7c373580e18c
+  description: Orca Mini v3 70B - GGML(q2_K)
+  file_size: 28586905216
+  filename: orca_mini_v3_70b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/orca_mini_v3_70B-GGML/
+  server: https://huggingface.co/TheBloke/orca_mini_v3_70B-GGML/resolve/main
+  title: orca_mini_v3_70b.ggmlv3.q2_K.bin
+  variants:
+  - name: orca_mini_v3_70b.ggmlv3.q2_K.bin
+    size: 28586905216
+  - name: orca_mini_v3_70b.ggmlv3.q2_K.bin
+    size: 28586905216
+  - name: orca_mini_v3_70b.ggmlv3.q3_K_L.bin
+    size: 36147547776
+  - name: orca_mini_v3_70b.ggmlv3.q3_K_L.bin
+    size: 36147547776
+  - name: orca_mini_v3_70b.ggmlv3.q3_K_M.bin
+    size: 33043762816
+  - name: orca_mini_v3_70b.ggmlv3.q3_K_M.bin
+    size: 33043762816
+  - name: orca_mini_v3_70b.ggmlv3.q3_K_S.bin
+    size: 29745991296
+  - name: orca_mini_v3_70b.ggmlv3.q3_K_S.bin
+    size: 29745991296
+  - name: orca_mini_v3_70b.ggmlv3.q4_0.bin
+    size: 38871961216
+  - name: orca_mini_v3_70b.ggmlv3.q4_0.bin
+    size: 38871961216
+  - name: orca_mini_v3_70b.ggmlv3.q4_1.bin
+    size: 43166535296
+  - name: orca_mini_v3_70b.ggmlv3.q4_1.bin
+    size: 43166535296
+  - name: orca_mini_v3_70b.ggmlv3.q4_K_M.bin
+    size: 41380679296
+  - name: orca_mini_v3_70b.ggmlv3.q4_K_M.bin
+    size: 41380679296
+  - name: orca_mini_v3_70b.ggmlv3.q4_K_S.bin
+    size: 38871961216
+  - name: orca_mini_v3_70b.ggmlv3.q4_K_S.bin
+    size: 38871961216
+  - name: orca_mini_v3_70b.ggmlv3.q5_0.bin
+    size: 47461109376
+  - name: orca_mini_v3_70b.ggmlv3.q5_0.bin
+    size: 47461109376
+  - name: orca_mini_v3_70b.ggmlv3.q5_K_M.bin
+    size: 48753479296
+  - name: orca_mini_v3_70b.ggmlv3.q5_K_M.bin
+    size: 48753479296
+  - name: orca_mini_v3_70b.ggmlv3.q5_K_S.bin
+    size: 47461109376
+  - name: orca_mini_v3_70b.ggmlv3.q5_K_S.bin
+    size: 47461109376
+- SHA256: e31d6f545ba06e66702ffaa97f91d6589a9a9373cde887c5dfabff30e8daf5e8
+  description: Carl 13B - GGML(q2_K)
+  file_size: 5508521088
+  filename: carl-13b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Carl-13B-GGML/
+  server: https://huggingface.co/TheBloke/Carl-13B-GGML/resolve/main
+  title: carl-13b.ggmlv3.q2_K.bin
+  variants:
+  - name: carl-13b.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: carl-13b.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: carl-13b.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: carl-13b.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: carl-13b.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: carl-13b.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: carl-13b.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: carl-13b.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: carl-13b.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: carl-13b.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: carl-13b.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: carl-13b.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: carl-13b.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: carl-13b.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: carl-13b.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: carl-13b.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: carl-13b.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: carl-13b.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: carl-13b.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: carl-13b.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: carl-13b.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: carl-13b.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: carl-13b.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: carl-13b.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: carl-13b.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: carl-13b.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: carl-13b.ggmlv3.q8_0.bin
+    size: 13791349888
+  - name: carl-13b.ggmlv3.q8_0.bin
+    size: 13791349888
+- SHA256: d258367c313d6d020a5f6331c7195754a088182a9ea52c49598e5ec8ad190343
+  description: Carl 33B - GGML(q2_K)
+  file_size: 13705131392
+  filename: carl-33b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Carl-33B-GGML/
+  server: https://huggingface.co/TheBloke/Carl-33B-GGML/resolve/main
+  title: carl-33b.ggmlv3.q2_K.bin
+  variants:
+  - name: carl-33b.ggmlv3.q2_K.bin
+    size: 13705131392
+  - name: carl-33b.ggmlv3.q2_K.bin
+    size: 13705131392
+  - name: carl-33b.ggmlv3.q3_K_L.bin
+    size: 17279469952
+  - name: carl-33b.ggmlv3.q3_K_L.bin
+    size: 17279469952
+  - name: carl-33b.ggmlv3.q3_K_M.bin
+    size: 15720368512
+  - name: carl-33b.ggmlv3.q3_K_M.bin
+    size: 15720368512
+  - name: carl-33b.ggmlv3.q3_K_S.bin
+    size: 14063823232
+  - name: carl-33b.ggmlv3.q3_K_S.bin
+    size: 14063823232
+  - name: carl-33b.ggmlv3.q4_0.bin
+    size: 18355678592
+  - name: carl-33b.ggmlv3.q4_0.bin
+    size: 18355678592
+  - name: carl-33b.ggmlv3.q4_1.bin
+    size: 20375375232
+  - name: carl-33b.ggmlv3.q4_1.bin
+    size: 20375375232
+  - name: carl-33b.ggmlv3.q4_K_M.bin
+    size: 19620851072
+  - name: carl-33b.ggmlv3.q4_K_M.bin
+    size: 19620851072
+  - name: carl-33b.ggmlv3.q4_K_S.bin
+    size: 18355678592
+  - name: carl-33b.ggmlv3.q4_K_S.bin
+    size: 18355678592
+  - name: carl-33b.ggmlv3.q5_0.bin
+    size: 22395071872
+  - name: carl-33b.ggmlv3.q5_0.bin
+    size: 22395071872
+  - name: carl-33b.ggmlv3.q5_1.bin
+    size: 24414768512
+  - name: carl-33b.ggmlv3.q5_1.bin
+    size: 24414768512
+  - name: carl-33b.ggmlv3.q5_K_M.bin
+    size: 23046827392
+  - name: carl-33b.ggmlv3.q5_K_M.bin
+    size: 23046827392
+  - name: carl-33b.ggmlv3.q5_K_S.bin
+    size: 22395071872
+  - name: carl-33b.ggmlv3.q5_K_S.bin
+    size: 22395071872
+  - name: carl-33b.ggmlv3.q6_K.bin
+    size: 26686927232
+  - name: carl-33b.ggmlv3.q6_K.bin
+    size: 26686927232
+  - name: carl-33b.ggmlv3.q8_0.bin
+    size: 34513251712
+  - name: carl-33b.ggmlv3.q8_0.bin
+    size: 34513251712
+- SHA256: 9b4986fbe9e2a92de49634cf09ddd4a5755eb7575342330f9fbcac0d12d1a410
+  description: Scarlett 33B - GGML(q2_K)
+  file_size: 13705131392
+  filename: scarlett-33b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/scarlett-33B-GGML/
+  server: https://huggingface.co/TheBloke/scarlett-33B-GGML/resolve/main
+  title: scarlett-33b.ggmlv3.q2_K.bin
+  variants:
+  - name: scarlett-33b.ggmlv3.q2_K.bin
+    size: 13705131392
+  - name: scarlett-33b.ggmlv3.q2_K.bin
+    size: 13705131392
+  - name: scarlett-33b.ggmlv3.q3_K_L.bin
+    size: 17279469952
+  - name: scarlett-33b.ggmlv3.q3_K_L.bin
+    size: 17279469952
+  - name: scarlett-33b.ggmlv3.q3_K_M.bin
+    size: 15720368512
+  - name: scarlett-33b.ggmlv3.q3_K_M.bin
+    size: 15720368512
+  - name: scarlett-33b.ggmlv3.q3_K_S.bin
+    size: 14063823232
+  - name: scarlett-33b.ggmlv3.q3_K_S.bin
+    size: 14063823232
+  - name: scarlett-33b.ggmlv3.q4_0.bin
+    size: 18355678592
+  - name: scarlett-33b.ggmlv3.q4_0.bin
+    size: 18355678592
+  - name: scarlett-33b.ggmlv3.q4_1.bin
+    size: 20375375232
+  - name: scarlett-33b.ggmlv3.q4_1.bin
+    size: 20375375232
+  - name: scarlett-33b.ggmlv3.q4_K_M.bin
+    size: 19620851072
+  - name: scarlett-33b.ggmlv3.q4_K_M.bin
+    size: 19620851072
+  - name: scarlett-33b.ggmlv3.q4_K_S.bin
+    size: 18355678592
+  - name: scarlett-33b.ggmlv3.q4_K_S.bin
+    size: 18355678592
+  - name: scarlett-33b.ggmlv3.q5_0.bin
+    size: 22395071872
+  - name: scarlett-33b.ggmlv3.q5_0.bin
+    size: 22395071872
+  - name: scarlett-33b.ggmlv3.q5_1.bin
+    size: 24414768512
+  - name: scarlett-33b.ggmlv3.q5_1.bin
+    size: 24414768512
+  - name: scarlett-33b.ggmlv3.q5_K_M.bin
+    size: 23046827392
+  - name: scarlett-33b.ggmlv3.q5_K_M.bin
+    size: 23046827392
+  - name: scarlett-33b.ggmlv3.q5_K_S.bin
+    size: 22395071872
+  - name: scarlett-33b.ggmlv3.q5_K_S.bin
+    size: 22395071872
+  - name: scarlett-33b.ggmlv3.q6_K.bin
+    size: 26686927232
+  - name: scarlett-33b.ggmlv3.q6_K.bin
+    size: 26686927232
+  - name: scarlett-33b.ggmlv3.q8_0.bin
+    size: 34513251712
+  - name: scarlett-33b.ggmlv3.q8_0.bin
+    size: 34513251712
+- SHA256: 0cee32ab76cb3dd4f654be65e1eef91182432ae54bd297495769c67748c82a78
+  description: Scarlett 13B - GGML(q2_K)
+  file_size: 5508521088
+  filename: scarlett-13b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Scarlett-13B-GGML/
+  server: https://huggingface.co/TheBloke/Scarlett-13B-GGML/resolve/main
+  title: scarlett-13b.ggmlv3.q2_K.bin
+  variants:
+  - name: scarlett-13b.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: scarlett-13b.ggmlv3.q2_K.bin
+    size: 5508521088
+  - name: scarlett-13b.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: scarlett-13b.ggmlv3.q3_K_L.bin
+    size: 6929269888
+  - name: scarlett-13b.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: scarlett-13b.ggmlv3.q3_K_M.bin
+    size: 6313231488
+  - name: scarlett-13b.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: scarlett-13b.ggmlv3.q3_K_S.bin
+    size: 5658690688
+  - name: scarlett-13b.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: scarlett-13b.ggmlv3.q4_0.bin
+    size: 7365545088
+  - name: scarlett-13b.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: scarlett-13b.ggmlv3.q4_1.bin
+    size: 8168770688
+  - name: scarlett-13b.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: scarlett-13b.ggmlv3.q4_K_M.bin
+    size: 7865666688
+  - name: scarlett-13b.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: scarlett-13b.ggmlv3.q4_K_S.bin
+    size: 7365545088
+  - name: scarlett-13b.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: scarlett-13b.ggmlv3.q5_0.bin
+    size: 8971996288
+  - name: scarlett-13b.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: scarlett-13b.ggmlv3.q5_1.bin
+    size: 9775221888
+  - name: scarlett-13b.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: scarlett-13b.ggmlv3.q5_K_M.bin
+    size: 9229634688
+  - name: scarlett-13b.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: scarlett-13b.ggmlv3.q5_K_S.bin
+    size: 8971996288
+  - name: scarlett-13b.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: scarlett-13b.ggmlv3.q6_K.bin
+    size: 10678850688
+  - name: scarlett-13b.ggmlv3.q8_0.bin
+    size: 13791349888
+  - name: scarlett-13b.ggmlv3.q8_0.bin
+    size: 13791349888
+- SHA256: 4d170a763ca2071b1ed30730534d642e4bc3b0e99783dfd3b91526b48c6ca754
+  description: Scarlett 7B - GGML(q2_K)
+  file_size: 2866807424
+  filename: scarlett-7b.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Scarlett-7B-GGML/
+  server: https://huggingface.co/TheBloke/Scarlett-7B-GGML/resolve/main
+  title: scarlett-7b.ggmlv3.q2_K.bin
+  variants:
+  - name: scarlett-7b.ggmlv3.q2_K.bin
+    size: 2866807424
+  - name: scarlett-7b.ggmlv3.q2_K.bin
+    size: 2866807424
+  - name: scarlett-7b.ggmlv3.q3_K_L.bin
+    size: 3596821120
+  - name: scarlett-7b.ggmlv3.q3_K_L.bin
+    size: 3596821120
+  - name: scarlett-7b.ggmlv3.q3_K_M.bin
+    size: 3282248320
+  - name: scarlett-7b.ggmlv3.q3_K_M.bin
+    size: 3282248320
+  - name: scarlett-7b.ggmlv3.q3_K_S.bin
+    size: 2948014720
+  - name: scarlett-7b.ggmlv3.q3_K_S.bin
+    size: 2948014720
+  - name: scarlett-7b.ggmlv3.q4_0.bin
+    size: 3825517184
+  - name: scarlett-7b.ggmlv3.q4_0.bin
+    size: 3825517184
+  - name: scarlett-7b.ggmlv3.q4_1.bin
+    size: 4238459520
+  - name: scarlett-7b.ggmlv3.q4_1.bin
+    size: 4238459520
+  - name: scarlett-7b.ggmlv3.q4_K_M.bin
+    size: 4080714368
+  - name: scarlett-7b.ggmlv3.q4_K_M.bin
+    size: 4080714368
+  - name: scarlett-7b.ggmlv3.q4_K_S.bin
+    size: 3825517184
+  - name: scarlett-7b.ggmlv3.q4_K_S.bin
+    size: 3825517184
+  - name: scarlett-7b.ggmlv3.q5_0.bin
+    size: 4651401856
+  - name: scarlett-7b.ggmlv3.q5_0.bin
+    size: 4651401856
+  - name: scarlett-7b.ggmlv3.q5_1.bin
+    size: 5064344192
+  - name: scarlett-7b.ggmlv3.q5_1.bin
+    size: 5064344192
+  - name: scarlett-7b.ggmlv3.q5_K_M.bin
+    size: 4782867072
+  - name: scarlett-7b.ggmlv3.q5_K_M.bin
+    size: 4782867072
+  - name: scarlett-7b.ggmlv3.q5_K_S.bin
+    size: 4651401856
+  - name: scarlett-7b.ggmlv3.q5_K_S.bin
+    size: 4651401856
+  - name: scarlett-7b.ggmlv3.q6_K.bin
+    size: 5528904320
+  - name: scarlett-7b.ggmlv3.q6_K.bin
+    size: 5528904320
+  - name: scarlett-7b.ggmlv3.q8_0.bin
+    size: 7129055872
+  - name: scarlett-7b.ggmlv3.q8_0.bin
+    size: 7129055872
+- SHA256: 769de7d467441b29e3c3d81b083bbe76ed2299379a1b1c45c896fabf1bb56830
+  description: Llama2 22B Daydreamer2 v3 - GGML(q2_K)
+  file_size: 9218443392
+  filename: llama2-22b-daydreamer-v3.ggmlv3.q2_K.bin
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Llama2-22B-Daydreamer-v3-GGML/
+  server: https://huggingface.co/TheBloke/Llama2-22B-Daydreamer-v3-GGML/resolve/main
+  title: llama2-22b-daydreamer-v3.ggmlv3.q2_K.bin
+  variants:
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q2_K.bin
+    size: 9218443392
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q2_K.bin
+    size: 9218443392
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q3_K_L.bin
+    size: 11608546432
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q3_K_L.bin
+    size: 11608546432
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q3_K_M.bin
+    size: 10569145472
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q3_K_M.bin
+    size: 10569145472
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q3_K_S.bin
+    size: 9464781952
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q3_K_S.bin
+    size: 9464781952
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q4_0.bin
+    size: 12335448192
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q4_0.bin
+    size: 12335448192
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q4_1.bin
+    size: 13686349952
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q4_1.bin
+    size: 13686349952
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q4_K_M.bin
+    size: 13178896512
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q4_K_M.bin
+    size: 13178896512
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q4_K_S.bin
+    size: 12335448192
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q4_K_S.bin
+    size: 12335448192
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q5_0.bin
+    size: 15037251712
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q5_0.bin
+    size: 15037251712
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q5_1.bin
+    size: 16388153472
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q5_1.bin
+    size: 16388153472
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q5_K_M.bin
+    size: 15471755392
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q5_K_M.bin
+    size: 15471755392
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q5_K_S.bin
+    size: 15037251712
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q5_K_S.bin
+    size: 15037251712
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q6_K.bin
+    size: 17907917952
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q6_K.bin
+    size: 17907917952
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q8_0.bin
+    size: 23142662272
+  - name: llama2-22b-daydreamer-v3.ggmlv3.q8_0.bin
+    size: 23142662272
 - SHA256: 489dbf8eec673202f8d120f2edaacf3142db428fe3c607a03d1ce092a7699570
   description: LosslessMegaCoder Llama2 13B Mini - GGML(q2_K)
   file_size: 5740293024
@@ -65,61 +1587,6 @@
     size: 13831106144
   - name: losslessmegacoder-llama2-13b-min.ggmlv3.q8_0.bin
     size: 13831106144
-- SHA256: 764555c91e99ce28654c7fa7de0f33091a51d594a95278a56befaf4f78a33286
-  description: GodziLLa2 70B - GGML(q2_K)
-  file_size: 28586905216
-  filename: godzilla2-70b.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: llama2
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/GodziLLa2-70B-GGML/
-  server: https://huggingface.co/TheBloke/GodziLLa2-70B-GGML/resolve/main
-  title: godzilla2-70b.ggmlv3.q2_K.bin
-  variants:
-  - name: godzilla2-70b.ggmlv3.q2_K.bin
-    size: 28586905216
-  - name: godzilla2-70b.ggmlv3.q2_K.bin
-    size: 28586905216
-  - name: godzilla2-70b.ggmlv3.q3_K_L.bin
-    size: 36147547776
-  - name: godzilla2-70b.ggmlv3.q3_K_L.bin
-    size: 36147547776
-  - name: godzilla2-70b.ggmlv3.q3_K_M.bin
-    size: 33043762816
-  - name: godzilla2-70b.ggmlv3.q3_K_M.bin
-    size: 33043762816
-  - name: godzilla2-70b.ggmlv3.q3_K_S.bin
-    size: 29745991296
-  - name: godzilla2-70b.ggmlv3.q3_K_S.bin
-    size: 29745991296
-  - name: godzilla2-70b.ggmlv3.q4_0.bin
-    size: 38871961216
-  - name: godzilla2-70b.ggmlv3.q4_0.bin
-    size: 38871961216
-  - name: godzilla2-70b.ggmlv3.q4_1.bin
-    size: 43166535296
-  - name: godzilla2-70b.ggmlv3.q4_1.bin
-    size: 43166535296
-  - name: godzilla2-70b.ggmlv3.q4_K_M.bin
-    size: 41380679296
-  - name: godzilla2-70b.ggmlv3.q4_K_M.bin
-    size: 41380679296
-  - name: godzilla2-70b.ggmlv3.q4_K_S.bin
-    size: 38871961216
-  - name: godzilla2-70b.ggmlv3.q4_K_S.bin
-    size: 38871961216
-  - name: godzilla2-70b.ggmlv3.q5_0.bin
-    size: 47461109376
-  - name: godzilla2-70b.ggmlv3.q5_0.bin
-    size: 47461109376
-  - name: godzilla2-70b.ggmlv3.q5_K_M.bin
-    size: 48753479296
-  - name: godzilla2-70b.ggmlv3.q5_K_M.bin
-    size: 48753479296
-  - name: godzilla2-70b.ggmlv3.q5_K_S.bin
-    size: 47461109376
-  - name: godzilla2-70b.ggmlv3.q5_K_S.bin
-    size: 47461109376
 - SHA256: bd525da80a69ec00ce0dc18a3dda849e93ecca76008f7ee0872829b198796393
   description: Llama2 22B Daydreamer v2 - GGML(q2_K)
   file_size: 9218443392
@@ -352,61 +1819,6 @@
     size: 13791349888
   - name: codeup-alpha-13b-hf.ggmlv3.q8_0.bin
     size: 13791349888
-- SHA256: 5d872e0723c7ec3738b595281ae380db7b0ceec1f69c16810cf5699fa74d1125
-  description: H2OGPT 4096 Llama2 70B - GGML(q2_K)
-  file_size: 28586905216
-  filename: h2ogpt-4096-llama2-70b.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/h2ogpt-4096-llama2-70B-GGML/
-  server: https://huggingface.co/TheBloke/h2ogpt-4096-llama2-70B-GGML/resolve/main
-  title: h2ogpt-4096-llama2-70b.ggmlv3.q2_K.bin
-  variants:
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q2_K.bin
-    size: 28586905216
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q2_K.bin
-    size: 28586905216
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q3_K_L.bin
-    size: 36147547776
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q3_K_L.bin
-    size: 36147547776
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q3_K_M.bin
-    size: 33043762816
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q3_K_M.bin
-    size: 33043762816
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q3_K_S.bin
-    size: 29745991296
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q3_K_S.bin
-    size: 29745991296
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q4_0.bin
-    size: 38871961216
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q4_0.bin
-    size: 38871961216
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q4_1.bin
-    size: 43166535296
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q4_1.bin
-    size: 43166535296
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q4_K_M.bin
-    size: 41380679296
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q4_K_M.bin
-    size: 41380679296
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q4_K_S.bin
-    size: 38871961216
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q4_K_S.bin
-    size: 38871961216
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q5_0.bin
-    size: 47461109376
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q5_0.bin
-    size: 47461109376
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q5_K_M.bin
-    size: 48753479296
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q5_K_M.bin
-    size: 48753479296
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q5_K_S.bin
-    size: 47461109376
-  - name: h2ogpt-4096-llama2-70b.ggmlv3.q5_K_S.bin
-    size: 47461109376
 - SHA256: 57603a6fffebc5501240f9138ac3e84d0d07feaec7807440324c5eaf69f03013
   description: Huginn v3 13B - GGML(q2_K)
   file_size: 5508521088
@@ -675,140 +2087,6 @@
     size: 13831051680
   - name: openorca-platypus2-13b.ggmlv3.q8_0.bin
     size: 13831051680
-- SHA256: 39a98b356933919d8df7e38c3146509d3eea7dff2648a282df64cf88d832d366
-  description: h2ogpt-4096-llama2-13B - GGML(q2_K)
-  file_size: 5508521088
-  filename: h2ogpt-4096-llama2-13b.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/h2ogpt-4096-llama2-13B-GGML/
-  server: https://huggingface.co/TheBloke/h2ogpt-4096-llama2-13B-GGML/resolve/main
-  title: h2ogpt-4096-llama2-13b.ggmlv3.q2_K.bin
-  variants:
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q2_K.bin
-    size: 5508521088
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q2_K.bin
-    size: 5508521088
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q3_K_L.bin
-    size: 6929269888
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q3_K_L.bin
-    size: 6929269888
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q3_K_M.bin
-    size: 6313231488
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q3_K_M.bin
-    size: 6313231488
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q3_K_S.bin
-    size: 5658690688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q3_K_S.bin
-    size: 5658690688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q4_0.bin
-    size: 7365545088
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q4_0.bin
-    size: 7365545088
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q4_1.bin
-    size: 8168770688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q4_1.bin
-    size: 8168770688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q4_K_M.bin
-    size: 7865666688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q4_K_M.bin
-    size: 7865666688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q4_K_S.bin
-    size: 7365545088
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q4_K_S.bin
-    size: 7365545088
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q5_0.bin
-    size: 8971996288
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q5_0.bin
-    size: 8971996288
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q5_1.bin
-    size: 9775221888
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q5_1.bin
-    size: 9775221888
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q5_K_M.bin
-    size: 9229634688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q5_K_M.bin
-    size: 9229634688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q5_K_S.bin
-    size: 8971996288
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q5_K_S.bin
-    size: 8971996288
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q6_K.bin
-    size: 10678850688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q6_K.bin
-    size: 10678850688
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q8_0.bin
-    size: 13791349888
-  - name: h2ogpt-4096-llama2-13b.ggmlv3.q8_0.bin
-    size: 13791349888
-- SHA256: af9f9843854ca950e67961671a4fb2997b1e846613601dc696db0d5030be7efb
-  description: h2ogpt-4096-llama2-13B-Chat - GGML(q2_K)
-  file_size: 5508521088
-  filename: h2ogpt-4096-llama2-13b-chat.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/h2ogpt-4096-llama2-13B-chat-GGML/
-  server: https://huggingface.co/TheBloke/h2ogpt-4096-llama2-13B-chat-GGML/resolve/main
-  title: h2ogpt-4096-llama2-13b-chat.ggmlv3.q2_K.bin
-  variants:
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q2_K.bin
-    size: 5508521088
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q2_K.bin
-    size: 5508521088
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q3_K_L.bin
-    size: 6929269888
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q3_K_L.bin
-    size: 6929269888
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q3_K_M.bin
-    size: 6313231488
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q3_K_M.bin
-    size: 6313231488
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q3_K_S.bin
-    size: 5658690688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q3_K_S.bin
-    size: 5658690688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q4_0.bin
-    size: 7365545088
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q4_0.bin
-    size: 7365545088
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q4_1.bin
-    size: 8168770688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q4_1.bin
-    size: 8168770688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q4_K_M.bin
-    size: 7865666688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q4_K_M.bin
-    size: 7865666688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q4_K_S.bin
-    size: 7365545088
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q4_K_S.bin
-    size: 7365545088
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q5_0.bin
-    size: 8971996288
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q5_0.bin
-    size: 8971996288
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q5_1.bin
-    size: 9775221888
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q5_1.bin
-    size: 9775221888
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q5_K_M.bin
-    size: 9229634688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q5_K_M.bin
-    size: 9229634688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q5_K_S.bin
-    size: 8971996288
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q5_K_S.bin
-    size: 8971996288
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q6_K.bin
-    size: 10678850688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q6_K.bin
-    size: 10678850688
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q8_0.bin
-    size: 13791349888
-  - name: h2ogpt-4096-llama2-13b-chat.ggmlv3.q8_0.bin
-    size: 13791349888
 - SHA256: a4e884d50dfdd663859c111ff10d6a69fc072bafd78cd83c5d7405298a0b4bd8
   description: WizardMath 70B V1.0 - GGML(q2_K)
   file_size: 28957635232
@@ -1108,16 +2386,16 @@
     size: 47461109376
   - name: camel-platypus2-70b.ggmlv3.q5_K_S.bin
     size: 47461109376
-- SHA256: af7e2e09dd665fd3be8b2f9483f71e0f01ac5cc71556d90c068d311d62470d73
-  description: Platypus2 70B Instruct - GGML(q2_K)
-  file_size: 28586905216
-  filename: platypus2-70b-instruct.ggmlv3.q2_K.bin
+- SHA256: ffeb7dacfbd6c90182cb8f7cc09fdecc58ed4f44bb7ea2bbc4b01951a760736d
+  description: Platypus2 70B Instruct - GGML(q4_0)
+  file_size: 38871961216
+  filename: platypus2-70b-instruct.ggmlv3.q4_0.bin
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
   owner_link: https://huggingface.co/TheBloke/Platypus2-70B-Instruct-GGML/
   server: https://huggingface.co/TheBloke/Platypus2-70B-Instruct-GGML/resolve/main
-  title: platypus2-70b-instruct.ggmlv3.q2_K.bin
+  title: platypus2-70b-instruct.ggmlv3.q4_0.bin
   variants:
   - name: platypus2-70b-instruct.ggmlv3.q2_K.bin
     size: 28586905216
@@ -2206,61 +3484,6 @@
     size: 47737925568
   - name: llama-2-70b-oasst-1-200.ggmlv3.q5_K_S.bin
     size: 47737925568
-- SHA256: f666696234de0a9a6d24f19ef482ad7efc9872edbcaa410be0c0469301279d69
-  description: Llama 2 70B Inst - GGML(q2_K)
-  file_size: 28586905216
-  filename: deepnight-llama-2-70b-inst.ggmlv3.q2_K.bin
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: other
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke/Deepnight-Llama-2-70B-Inst-GGML/
-  server: https://huggingface.co/TheBloke/Deepnight-Llama-2-70B-Inst-GGML/resolve/main
-  title: deepnight-llama-2-70b-inst.ggmlv3.q2_K.bin
-  variants:
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q2_K.bin
-    size: 28586905216
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q2_K.bin
-    size: 28586905216
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q3_K_L.bin
-    size: 36147547776
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q3_K_L.bin
-    size: 36147547776
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q3_K_M.bin
-    size: 33043762816
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q3_K_M.bin
-    size: 33043762816
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q3_K_S.bin
-    size: 29745991296
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q3_K_S.bin
-    size: 29745991296
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q4_0.bin
-    size: 38871961216
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q4_0.bin
-    size: 38871961216
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q4_1.bin
-    size: 43166535296
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q4_1.bin
-    size: 43166535296
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q4_K_M.bin
-    size: 41380679296
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q4_K_M.bin
-    size: 41380679296
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q4_K_S.bin
-    size: 38871961216
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q4_K_S.bin
-    size: 38871961216
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q5_0.bin
-    size: 47461109376
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q5_0.bin
-    size: 47461109376
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q5_K_M.bin
-    size: 48753479296
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q5_K_M.bin
-    size: 48753479296
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q5_K_S.bin
-    size: 47461109376
-  - name: deepnight-llama-2-70b-inst.ggmlv3.q5_K_S.bin
-    size: 47461109376
 - SHA256: 1178aa17c190cc2530871b0dd6d5c1953928a84601ecf7f37f291d068493b7a0
   description: WizardLM 1.0 Uncensored Llama2 13B - GGML(q2_K)
   file_size: 5508521088
@@ -4865,16 +6088,16 @@
     size: 7129055872
   - name: vigogne-2-7b-instruct.ggmlv3.q8_0.bin
     size: 7129055872
-- SHA256: de7a8974179b4631c442d9337e86cbd41654b66c160ed4a85d1d868f20419e82
-  description: Vigogne 2 13B Instruct - GGML(q2_K)
-  file_size: 5508521088
-  filename: vigogne-2-13b-instruct.ggmlv3.q2_K.bin
+- SHA256: 67ed0a372ac783f9e9a5f36cf2fd94f0b51f9ce3f8ac9b36adfa10c988c5f5cf
+  description: Vigogne 2 13B Instruct - GGML(q4_0)
+  file_size: 7365545088
+  filename: vigogne-2-13b-instruct.ggmlv3.q4_0.bin
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
   owner_link: https://huggingface.co/TheBloke/Vigogne-2-13B-Instruct-GGML/
   server: https://huggingface.co/TheBloke/Vigogne-2-13B-Instruct-GGML/resolve/main
-  title: vigogne-2-13b-instruct.ggmlv3.q2_K.bin
+  title: vigogne-2-13b-instruct.ggmlv3.q4_0.bin
   variants:
   - name: vigogne-2-13b-instruct.ggmlv3.q2_K.bin
     size: 5508521088

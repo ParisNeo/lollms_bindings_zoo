@@ -36,7 +36,6 @@ import subprocess
 import gc
 
 class GPTQ(LLMBinding):
-    file_extension='*'
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -76,7 +75,8 @@ class GPTQ(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            installation_option
+                            installation_option,
+                            supported_file_extensions=['.safetensors','.pth','.bin']
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.callback = None

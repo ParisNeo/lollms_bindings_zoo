@@ -42,7 +42,7 @@ import os
 import subprocess
 
 class EXLLAMA(LLMBinding):
-    file_extension='*'
+    
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -85,7 +85,8 @@ class EXLLAMA(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            installation_option
+                            installation_option,
+                            supported_file_extensions=['.safetensors','.pth','.bin']
                         )
 
         

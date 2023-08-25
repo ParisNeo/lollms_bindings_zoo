@@ -33,7 +33,6 @@ __license__ = "Apache 2.0"
 binding_name = "CTRansformers"
 
 class CTRansformers(LLMBinding):
-    file_extension='*.bin'
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -81,7 +80,8 @@ class CTRansformers(LLMBinding):
                             lollms_paths, 
                             config, 
                             binding_config, 
-                            installation_option
+                            installation_option,
+                            supported_file_extensions=['.bin','.gguf']
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
     def __del__(self):
