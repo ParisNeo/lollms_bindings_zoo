@@ -109,8 +109,8 @@ class HuggingFace(LLMBinding):
             ASCIIColors.error("Couldn't clear cuda memory")
 
     def build_model(self):
-
-        from transformers import AutoModelForCausalLM, AutoModelForCausalLM
+        import torch
+        from transformers import AutoTokenizer, AutoModelForCausalLM
 
         if self.config.model_name:
 
@@ -134,14 +134,14 @@ class HuggingFace(LLMBinding):
 
             ASCIIColors.info(f"Creating tokenizer {model_path}")
 
-            self.tokenizer = AutoModelForCausalLM.from_pretrained(
+            self.tokenizer = AutoTokenizer.from_pretrained(
                     model_name
                     )
             ASCIIColors.success(f"ok")
             ASCIIColors.info(f"Creating model {model_path}")
             # load model
             self.model = AutoModelForCausalLM.from_pretrained(model_path,
-                                                          #load_in_8bit=self.binding_config.use_8bits,
+                                                          torch_dtype=torch.float16,
                                                           device_map='auto', offload_folder="offload",
                                                           offload_state_dict = True)
             ASCIIColors.success(f"ok")

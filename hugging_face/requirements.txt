@@ -6,4 +6,5 @@ evaluate
 datasets
 transformers
 accelerate
-bitsandbytes
+optimum
+autogptq
