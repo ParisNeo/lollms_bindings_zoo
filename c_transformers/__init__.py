@@ -127,7 +127,8 @@ class CTRansformers(LLMBinding):
         from ctransformers import AutoModelForCausalLM
 
         if self.binding_config.config["use_avx2"]:
-            self.model = AutoModelForCausalLM.from_pretrained(
+            if self.config.enable_gpu:
+                self.model = AutoModelForCausalLM.from_pretrained(
                     str(model_path), model_type=model_type,
                     gpu_layers = self.binding_config.config["gpu_layers"] if self.config.enable_gpu else 0,
                     batch_size=self.binding_config.config["batch_size"],
@@ -136,15 +137,35 @@ class CTRansformers(LLMBinding):
                     seed = self.binding_config.config["seed"],
                     reset= False
                     )
-        else:
-            self.model = AutoModelForCausalLM.from_pretrained(
-                    str(model_path), model_type=model_type, lib = "avx",
-                    gpu_layers = self.binding_config.config["gpu_layers"] if self.config.enable_gpu else 0,
+            else:
+                self.model = AutoModelForCausalLM.from_pretrained(
+                    str(model_path), model_type=model_type,
                     batch_size=self.binding_config.config["batch_size"],
                     threads = self.binding_config.config["n_threads"],
                     context_length = self.binding_config.config["ctx_size"],
+                    seed = self.binding_config.config["seed"],
                     reset= False
                     )
+        else:
+            if self.config.enable_gpu:
+                self.model = AutoModelForCausalLM.from_pretrained(
+                        str(model_path), model_type=model_type, lib = "avx",
+                        gpu_layers = self.binding_config.config["gpu_layers"],
+                        batch_size=self.binding_config.config["batch_size"],
+                        threads = self.binding_config.config["n_threads"],
+                        context_length = self.binding_config.config["ctx_size"],
+                        seed = self.binding_config.config["seed"],
+                        reset= False
+                        )
+            else:
+                self.model = AutoModelForCausalLM.from_pretrained(
+                        str(model_path), model_type=model_type, lib = "avx",
+                        batch_size=self.binding_config.config["batch_size"],
+                        threads = self.binding_config.config["n_threads"],
+                        context_length = self.binding_config.config["ctx_size"],
+                        seed = self.binding_config.config["seed"],
+                        reset= False
+                        )
         ASCIIColors.success("Model built")            
         return self
             
@@ -189,9 +210,8 @@ class CTRansformers(LLMBinding):
             
             if result.returncode != 0:
                 ASCIIColors.warning("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
-
-            # pip install --upgrade --no-cache-dir --no-binary ctransformers
-            result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+                # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
         else:
             ASCIIColors.info("Using CPU")
             # pip install --upgrade --no-cache-dir --no-binary ctransformers
