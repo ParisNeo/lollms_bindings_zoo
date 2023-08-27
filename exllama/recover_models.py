@@ -173,6 +173,7 @@ def build_models(start_id, end_id, output_file):
     # Save the list of entries as YAML to the output file
     with open("output_gptq_scraped_models.yaml", 'r', encoding="utf8") as f:
         model_links = yaml.safe_load(f)
+        
     models_list = load_current_models_list()
     print("Removing old models")
     for entry in models_list:

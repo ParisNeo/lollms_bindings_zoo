@@ -108,6 +108,7 @@ class EXLLAMA(LLMBinding):
         from model import ExLlama, ExLlamaCache, ExLlamaConfig
         from tokenizer import ExLlamaTokenizer
         from torch import version as torch_version
+        import torch
 
         if self.config.model_name is None:
             ASCIIColors.error('No model selected!!')
@@ -162,6 +163,7 @@ class EXLLAMA(LLMBinding):
         return self
 
     def __del__(self):
+        import torch
         del self.generator
         del self.cache
         del self.tokenizer

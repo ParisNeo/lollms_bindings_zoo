@@ -11,6 +11,15 @@ from tqdm import tqdm
 import traceback
 import urllib.request
 
+def load_current_models_list():
+    pth = Path(__file__).parent/"models.yaml"
+    with open(str(pth),'r') as f:
+        data = yaml.safe_load(f)
+    return data
+def remove_string(lst, s):
+    return [x for x in lst if s not in x]
+
+
 def get_file_size(url):
     try:
         response = urllib.request.urlopen(url)
@@ -178,6 +187,12 @@ def build_models(start_id, end_id, output_file):
     # Save the list of entries as YAML to the output file
     with open("output_scraped_models_gguf.yaml", 'r', encoding="utf8") as f:
         model_links = yaml.safe_load(f)
+
+    models_list = load_current_models_list()
+    print("Removing old models")
+    for entry in models_list:
+        model_links['entries']=remove_string(model_links['entries'], entry['filename'])
+    print("Done")
 
     entries = []  # List to store the entries
     extract_model_cards(model_links["entries"][start_id: end_id], entries)    
