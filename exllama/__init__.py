@@ -25,7 +25,7 @@ import urllib
 import shutil
 import sys
 import os
-import torch
+
 
 sys.path.append(os.getcwd())
 pth = Path(__file__).parent/"exllama"

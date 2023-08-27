@@ -166,11 +166,18 @@ def extract_model_cards(model_links, entries):
 def html_to_yaml(url, output_file):
     get_model_entries(url, output_file)
 
+def remove_string(lst, s):
+    return [x for x in lst if s not in x]
+
 def build_models(start_id, end_id, output_file):
     # Save the list of entries as YAML to the output file
     with open("output_gptq_scraped_models.yaml", 'r', encoding="utf8") as f:
         model_links = yaml.safe_load(f)
-
+    models_list = load_current_models_list()
+    print("Removing old models")
+    for entry in models_list:
+        model_links['entries']=remove_string(model_links['entries'], entry['filename'])
+    print("Done")
     entries = []  # List to store the entries
     if start_id!="":
         extract_model_cards(model_links["entries"][start_id: end_id], entries)    
@@ -182,6 +189,11 @@ def build_models(start_id, end_id, output_file):
 
     print(f"YAML data saved to {output_file}")
 
+def load_current_models_list():
+    pth = Path(__file__).parent/"models.yaml"
+    with open(str(pth),'r') as f:
+        data = yaml.safe_load(f)
+    return data
 # Example usage
 url = 'https://huggingface.co/TheBloke'
 html_to_yaml(url, 'output_gptq_scraped_models.yaml')
