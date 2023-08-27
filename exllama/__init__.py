@@ -26,6 +26,11 @@ import shutil
 import sys
 import os
 
+try:
+    import torch
+    from torch import version as torch_version
+except:
+    pass
 
 sys.path.append(os.getcwd())
 pth = Path(__file__).parent/"exllama"
@@ -107,8 +112,6 @@ class EXLLAMA(LLMBinding):
         from generator import ExLlamaGenerator
         from model import ExLlama, ExLlamaCache, ExLlamaConfig
         from tokenizer import ExLlamaTokenizer
-        from torch import version as torch_version
-        import torch
 
         if self.config.model_name is None:
             ASCIIColors.error('No model selected!!')
@@ -163,7 +166,6 @@ class EXLLAMA(LLMBinding):
         return self
 
     def __del__(self):
-        import torch
         del self.generator
         del self.cache
         del self.tokenizer
@@ -188,8 +190,6 @@ class EXLLAMA(LLMBinding):
         
         if self.config.enable_gpu:
             try:
-                import torch
-                import torchvision
                 if torch.cuda.is_available():
                     ASCIIColors.success("CUDA is supported.")
                 else:
@@ -227,6 +227,11 @@ class EXLLAMA(LLMBinding):
             models_dir = self.lollms_paths.personal_models_path / "exllama"
             models_dir.mkdir(parents=True, exist_ok=True)    
             ASCIIColors.success("Installed successfully")
+            try:
+                import torch
+                from torch import version as torch_version
+            except:
+                pass            
         else:
             ASCIIColors.error("Exllama is only installable on GPU. Please activate GPU support before proceeding")
             
