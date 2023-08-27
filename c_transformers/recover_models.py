@@ -192,7 +192,7 @@ def build_models(start_id, end_id, output_file):
     models_list = load_current_models_list()
     print("Removing old models")
     for entry in models_list:
-        model_links['entries']=remove_string(model_links['entries'], entry['filename'])
+        model_links['entries']=remove_string(model_links['entries'], entry['filename'][:entry['filename'].index('ggmlv3')-1])
     print("Done")
 
     entries = []  # List to store the entries

@@ -26,15 +26,19 @@ import shutil
 import sys
 import os
 
-try:
-    import torch
-    from torch import version as torch_version
-except:
-    pass
-
 sys.path.append(os.getcwd())
 pth = Path(__file__).parent/"exllama"
 sys.path.append(str(pth))
+
+try:
+    import torch
+    from torch import version as torch_version
+    from generator import ExLlamaGenerator
+    from model import ExLlama, ExLlamaCache, ExLlamaConfig
+    from tokenizer import ExLlamaTokenizer
+
+except:
+    ASCIIColors.warning("Couldn't import torch")
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -109,9 +113,6 @@ class EXLLAMA(LLMBinding):
         self.next_tokens_are_prompt = True
 
     def build_model(self):
-        from generator import ExLlamaGenerator
-        from model import ExLlama, ExLlamaCache, ExLlamaConfig
-        from tokenizer import ExLlamaTokenizer
 
         if self.config.model_name is None:
             ASCIIColors.error('No model selected!!')
@@ -189,6 +190,11 @@ class EXLLAMA(LLMBinding):
         ASCIIColors.info("Checking pytorch")
         
         if self.config.enable_gpu:
+            try:
+                import torch
+                from torch import version as torch_version
+            except:
+                pass       
             try:
                 if torch.cuda.is_available():
                     ASCIIColors.success("CUDA is supported.")
