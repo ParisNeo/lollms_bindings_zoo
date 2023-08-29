@@ -159,6 +159,10 @@ class EXLLAMA(LLMBinding):
         except Exception as ex:
             ASCIIColors.error("Couldn't clear cuda memory")
 
+        ASCIIColors.red ("----------- LOLLMS EXLLAMA Model Information -----------------")
+        ASCIIColors.magenta(f"Model name:{self.config.model_name}")
+        self.print_class_attributes(config)
+        ASCIIColors.red ("--------------------------------------------------------------")
         self.model = ExLlama(config)
         self.tokenizer = ExLlamaTokenizer(str(tokenizer_model_path))
         self.cache = ExLlamaCache(self.model)
