@@ -1,3 +1,99 @@
+- SHA256: 5f3902fbcee7a650d5344f621104e22921e921e0895b50e9ed77789ec69b3a4d
+  description: Lemur 70B Chat v1 - GPTQ(co/TheBloke/Lemur-70B-Chat-v1-GPTQ/blob/main/model)
+  filename: Lemur-70B-Chat-v1-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Lemur-70B-Chat-v1-GPTQ/
+  server: https://huggingface.co/TheBloke/Lemur-70B-Chat-v1-GPTQ/resolve/main
+  title: Lemur-70B-Chat-v1-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 35332367384
+- SHA256: 76cef9399965ce164e9de59a9c08fb961532736054457f4a56e4334945a7bcc5
+  description: Airoboros L2 13B 2.1 - GPTQ(1-GPTQ/blob/main/model)
+  filename: Airoboros-L2-13B-2.1-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Airoboros-L2-13B-2.1-GPTQ/
+  server: https://huggingface.co/TheBloke/Airoboros-L2-13B-2.1-GPTQ/resolve/main
+  title: Airoboros-L2-13B-2.1-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 8908d309f1a08429c4031b0646ee199e322ed8289741d5fe833ff9d999a96a07
+  description: CodeLlama 34B v2 - GPTQ(co/TheBloke/Phind-CodeLlama-34B-v2-GPTQ/blob/main/model)
+  filename: Phind-CodeLlama-34B-v2-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Phind-CodeLlama-34B-v2-GPTQ/
+  server: https://huggingface.co/TheBloke/Phind-CodeLlama-34B-v2-GPTQ/resolve/main
+  title: Phind-CodeLlama-34B-v2-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 17688736536
+- SHA256: 16fb9faca5e82c78bd26c698f631d7eff69817b38067a7eb32ee76d9d9bda7be
+  description: Mythical Destroyer L2 13B - GPTQ(co/TheBloke/Mythical-Destroyer-L2-13B-GPTQ/blob/main/model)
+  filename: Mythical-Destroyer-L2-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Mythical-Destroyer-L2-13B-GPTQ/
+  server: https://huggingface.co/TheBloke/Mythical-Destroyer-L2-13B-GPTQ/resolve/main
+  title: Mythical-Destroyer-L2-13B-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 6566342baee91564d2fc4f1a000cf9ac3e3b506ae05994989e10a0483bb8358d
+  description: MythoMax Kimiko Mix - GPTQ(co/TheBloke/MythoMax-Kimiko-Mix-GPTQ/blob/main/model)
+  filename: MythoMax-Kimiko-Mix-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/MythoMax-Kimiko-Mix-GPTQ/
+  server: https://huggingface.co/TheBloke/MythoMax-Kimiko-Mix-GPTQ/resolve/main
+  title: MythoMax-Kimiko-Mix-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259455672
+- SHA256: 76bfc5c7ce0579531d64ef18ec5e2d31199b471e812f2b7d427f0a29c205487d
+  description: Samantha 1.11 13B - GPTQ(11-13B-GPTQ/blob/main/model)
+  filename: Samantha-1.11-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Samantha-1.11-13B-GPTQ/
+  server: https://huggingface.co/TheBloke/Samantha-1.11-13B-GPTQ/resolve/main
+  title: Samantha-1.11-13B-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 6be5f7e90677ba869fe308c59c699960351dcf1284a18f36ca972c42e6244e8c
+  description: WizardCoder Python 13B V1.0 - GPTQ(0-GPTQ/blob/main/model)
+  filename: WizardCoder-Python-13B-V1.0-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/WizardCoder-Python-13B-V1.0-GPTQ/
+  server: https://huggingface.co/TheBloke/WizardCoder-Python-13B-V1.0-GPTQ/resolve/main
+  title: WizardCoder-Python-13B-V1.0-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259455672
+- SHA256: e44eea0bf3edcf4b5fe3117631c21016330b2ad3a7065b771834153d702d172f
+  description: CodeLlama 13B OASST SFT v10 - GPTQ(co/TheBloke/CodeLlama-13B-oasst-sft-v10-GPTQ/blob/main/model)
+  filename: CodeLlama-13B-oasst-sft-v10-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-oasst-sft-v10-GPTQ/
+  server: https://huggingface.co/TheBloke/CodeLlama-13B-oasst-sft-v10-GPTQ/resolve/main
+  title: CodeLlama-13B-oasst-sft-v10-GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7260090632
 - SHA256: 60d7ca5596b6dc31026167adcc41aaf9822c4243d307079b0fda5ea95a97e65a
   description: Huginn 22B Prototype - GPTQ(co/TheBloke/Huginn-22B-Prototype-GPTQ/blob/main/model)
   filename: Huginn-22B-Prototype-GPTQ
