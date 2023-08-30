@@ -236,6 +236,11 @@ class EXLLAMA(LLMBinding):
             # Make models dir
             models_dir = self.lollms_paths.personal_models_path / "exllama"
             models_dir.mkdir(parents=True, exist_ok=True)    
+
+            # Install transformers
+            subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/huggingface/transformers.git@5347d00092c4f2429389269dd912417e8daff848"])
+
+            # 
             ASCIIColors.success("Installed successfully")
             try:
                 import torch
@@ -392,6 +397,7 @@ class EXLLAMA(LLMBinding):
         
         import wget
         import os
+        from tqdm import tqdm
 
         file_names = EXLLAMA.get_filenames(repo)
 
@@ -400,6 +406,8 @@ class EXLLAMA(LLMBinding):
         os.chdir(dest_dir)
 
         loading = ["none"]
+        previous = 0
+        pbar = tqdm(total=100, desc="Processing", unit="step")
         def chunk_callback(current, total, width=80):
             # This function is called for each received chunk
             # Perform actions or computations on the received chunk
@@ -410,6 +418,8 @@ class EXLLAMA(LLMBinding):
             # Example: Print the current progress
             downloaded = current 
             progress = (current  / total) * 100
+            pbar.update(current-previous)  # Update the tqdm progress bar
+            previous = current
             if callback and ".safetensors" in loading[0]:
                 try:
                     callback(downloaded, total)

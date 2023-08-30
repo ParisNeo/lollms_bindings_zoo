@@ -1,0 +1,8 @@
+name: Petals (New)
+author: Bigscience
+version: 1.0
+link: https://github.com/bigscience-workshop/petals
+supported_models: |
+    GPTQ models for:
+    LLama, StableBeluga2, Bloom
+description: 'Python bindings for the petals distributed text generation platform'

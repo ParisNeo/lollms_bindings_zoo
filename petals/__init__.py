@@ -27,15 +27,15 @@ __github__ = "https://github.com/ParisNeo/GPTQ_binding"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "GPTQ"
-binding_folder_name = "gptq"
+binding_name = "Petals"
+binding_folder_name = "petals"
 import os
 import platform
 import os
 import subprocess
 import gc
 
-class GPTQ(LLMBinding):
+class Petals(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -118,86 +118,20 @@ class GPTQ(LLMBinding):
     def build_model(self):
 
         from transformers import AutoTokenizer
-        from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
+        from petals import AutoDistributedModelForCausalLM
+        gc.collect()
+        import os
+        models_dir = self.lollms_paths.personal_models_path / "petals"
+        models_dir.mkdir(parents=True, exist_ok=True)
+        os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
+        self.tokenizer = None
 
         if self.config.model_name:
-            path = self.config.model_name
-            model_path = self.get_model_path()
-            if not model_path:
-                self.model = None
-                return None
+            self.tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
+            self.model = AutoDistributedModelForCausalLM.from_pretrained(self.config.model_name)
+            process = subprocess.Popen("python -m petals.cli.run_server --port 31330 "+self.config.model_name, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            output, error = process.communicate()
             
-            models_dir = self.lollms_paths.personal_models_path / "gptq"
-            models_dir.mkdir(parents=True, exist_ok=True)
-            # model_path = models_dir/ path
-            
-
-            model_name = str(model_path).replace("\\","/")
-            model_base_name = [f for f in model_path.iterdir() if f.suffix==".safetensors"][0].stem
-            
-            if not (model_path / "quantize_config.json").exists():
-                quantize_config = BaseQuantizeConfig(
-                    bits=4,
-                    group_size=-1,
-                    desc_act=""
-                )
-            else:
-                quantize_config = None  
-                          
-            self.tokenizer = None
-            gc.collect()
-            import os
-            os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
-            ASCIIColors.info("Building tokenizer")
-            self.tokenizer = AutoTokenizer.from_pretrained(
-                    model_name, 
-                    use_fast=True
-                    )
-            ASCIIColors.success("OK")
-            ASCIIColors.info("Building model")
-            # load quantized model to the first GPU
-            if self.binding_config.split_between_cpu_and_gpu and self.config.enable_gpu:
-                params = {
-                    'model_basename': model_base_name,
-                    'device': "cuda:0" if self.binding_config.max_gpu_mem_GB>0 else "cpu",
-                    'use_triton': self.binding_config.use_triton,
-                    'inject_fused_attention': True,
-                    'inject_fused_mlp': True,
-                    'use_safetensors': True,
-                    'trust_remote_code': True,
-                    'max_memory': { 0: f'{self.binding_config.max_gpu_mem_GB}GiB', 'cpu': f'{self.binding_config.max_cpu_mem_GB}GiB' },
-                    'quantize_config': quantize_config,
-                    'use_cuda_fp16': True,
-                }
-                self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
-            else:
-                params = {
-                    'model_basename': model_base_name,
-                    'device': "cuda:0" if self.config.enable_gpu else "cpu",
-                    'use_triton': self.binding_config.use_triton,
-                    'inject_fused_attention': True,
-                    'inject_fused_mlp': True,
-                    'use_safetensors': True,
-                    'trust_remote_code': True,
-                    'quantize_config': quantize_config,
-                    'use_cuda_fp16': True,
-                }
-                self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
-            ASCIIColors.success("OK")
-            ASCIIColors.red ("----------- LOLLMS EXLLAMA Model Information -----------------")
-            ASCIIColors.magenta(f"Model name:{self.config.model_name}")
-            self.print_class_attributes(self.model)
-            ASCIIColors.red ("--------------------------------------------------------------")
-
-            try:
-                if not self.binding_config.automatic_context_size:
-                    self.model.seqlen = self.binding_config.ctx_size
-                self.config.ctx_size = self.model.seqlen
-            except:
-                self.model.seqlen = self.binding_config.ctx_size
-                self.config.ctx_size = self.model.seqlen
-            ASCIIColors.info(f"Context lenghth set to {self.model.seqlen}")
-            return self
         else:
             ASCIIColors.error('No model selected!!')
 
@@ -230,16 +164,13 @@ class GPTQ(LLMBinding):
                 ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()    
 
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])#, "--extra-index-url", "https://huggingface.github.io/autogptq-index/whl/cu117/"])
+        result = subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/bigscience-workshop/petals"])
+        if result:   
+            models_dir = self.lollms_paths.personal_models_path / "petals"
+            models_dir.mkdir(parents=True, exist_ok=True)            
+            ASCIIColors.success("Installed successfully")
         else:
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
-        
-        # Install transformers
-        subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/huggingface/transformers.git@5347d00092c4f2429389269dd912417e8daff848"])
-        models_dir = self.lollms_paths.personal_models_path / "gptq"
-        models_dir.mkdir(parents=True, exist_ok=True)            
-        ASCIIColors.success("Installed successfully")
-
+            raise Exception("Couldn't install petal from its repository")
 
     def uninstall(self):
         super().install()
