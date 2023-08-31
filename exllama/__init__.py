@@ -30,20 +30,6 @@ sys.path.append(os.getcwd())
 pth = Path(__file__).parent/"exllama"
 sys.path.append(str(pth))
 
-try:
-    import torch
-    from torch import version as torch_version
-    from generator import ExLlamaGenerator
-    from model import ExLlama, ExLlamaCache, ExLlamaConfig
-    from tokenizer import ExLlamaTokenizer
-
-except Exception as ex:
-    trace_exception(ex)
-    ASCIIColors.warning("Couldn't import dependencies")
-
-
-
-
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -54,7 +40,7 @@ binding_name = "EXLLAMA"
 binding_folder_name = "exllama"
 import os
 import subprocess
-
+import torch
 class EXLLAMA(LLMBinding):
     
     def __init__(self, 
@@ -120,7 +106,6 @@ class EXLLAMA(LLMBinding):
     def build_model(self):
 
         try:
-            import torch
             from torch import version as torch_version
             from generator import ExLlamaGenerator
             from model import ExLlama, ExLlamaCache, ExLlamaConfig
