@@ -271,7 +271,7 @@ class GPTQ(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        t = torch.IntTensor([tokens_list])
+        t = torch.IntTensor(tokens_list)
         return  self.tokenizer.decode(t)[0]
 
 
@@ -404,6 +404,7 @@ class GPTQ(LLMBinding):
                                             top_p=gpt_params["top_p"],
                                             repetition_penalty=gpt_params["repeat_penalty"],
                                             streamer = self,
+                                            do_sample=True
                                             )
                 
             except Exception as ex:
