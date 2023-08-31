@@ -37,8 +37,10 @@ try:
     from model import ExLlama, ExLlamaCache, ExLlamaConfig
     from tokenizer import ExLlamaTokenizer
 
-except:
-    ASCIIColors.warning("Couldn't import torch")
+except Exception as ex:
+    trace_exception(ex)
+    ASCIIColors.warning("Couldn't import dependencies")
+
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
