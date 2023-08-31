@@ -184,7 +184,7 @@ class GPTQ(LLMBinding):
                 }
                 self.model = AutoGPTQForCausalLM.from_quantized(model_path, **params)
             ASCIIColors.success("OK")
-            ASCIIColors.red ("----------- LOLLMS EXLLAMA Model Information -----------------")
+            ASCIIColors.red ("----------- LOLLMS GPTQ Model Information -----------------")
             ASCIIColors.magenta(f"Model name:{self.config.model_name}")
             self.print_class_attributes(self.model)
             ASCIIColors.red ("--------------------------------------------------------------")
