@@ -406,7 +406,7 @@ class EXLLAMA(LLMBinding):
         os.chdir(dest_dir)
 
         loading = ["none"]
-        previous = 0
+        previous = [0]
         pbar = tqdm(total=100, desc="Processing", unit="step")
         def chunk_callback(current, total, width=80):
             # This function is called for each received chunk
@@ -418,8 +418,8 @@ class EXLLAMA(LLMBinding):
             # Example: Print the current progress
             downloaded = current 
             progress = (current  / total) * 100
-            pbar.update(current-previous)  # Update the tqdm progress bar
-            previous = current
+            pbar.update(current-previous[0])  # Update the tqdm progress bar
+            previous[0] = current
             if callback and ".safetensors" in loading[0]:
                 try:
                     callback(downloaded, total)
