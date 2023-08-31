@@ -42,6 +42,9 @@ except Exception as ex:
     ASCIIColors.warning("Couldn't import dependencies")
 
 
+
+
+
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
@@ -115,6 +118,17 @@ class EXLLAMA(LLMBinding):
         self.next_tokens_are_prompt = True
 
     def build_model(self):
+
+        try:
+            import torch
+            from torch import version as torch_version
+            from generator import ExLlamaGenerator
+            from model import ExLlama, ExLlamaCache, ExLlamaConfig
+            from tokenizer import ExLlamaTokenizer
+
+        except Exception as ex:
+            trace_exception(ex)
+            ASCIIColors.warning("Couldn't import dependencies")
 
         if self.config.model_name is None:
             ASCIIColors.error('No model selected!!')
