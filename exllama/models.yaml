@@ -1,9 +1,206 @@
+- SHA256: b44f9c4589ae4717885fc4926628ab4f028905b81ba6576202065de8a40d8994
+  description: Synthia 70B v1.1 - GPTQ(1-GPTQ/blob/main/model)
+  filename: Synthia-70B-v1.1-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Synthia-70B-v1.1-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/Synthia-70B-v1.1-GPTQ/resolve/main
+  title: Synthia-70B-v1.1-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 35332203544
+- SHA256: 973816c87b05a5d5e668a4f1734b0d25288769dbcefc0280bd83eda52808b49d
+  description: LoKuS 13B - GPTQ(co/TheBloke/LoKuS-13B-GPTQ/blob/main/model)
+  filename: LoKuS-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/LoKuS-13B-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/LoKuS-13B-GPTQ/resolve/main
+  title: LoKuS-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259455672
+- SHA256: a5a9076f2aea5fe69d530e338f773c26bb539b48bcf90338a7eb341018d10954
+  description: Llama 2 13B Chat - LimaRP v2 Merged - GPTQ(co/TheBloke/llama-2-13B-chat-limarp-v2-merged-GPTQ/blob/main/model)
+  filename: llama-2-13B-chat-limarp-v2-merged-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/llama-2-13B-chat-limarp-v2-merged-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/llama-2-13B-chat-limarp-v2-merged-GPTQ/resolve/main
+  title: llama-2-13B-chat-limarp-v2-merged-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: bcffbf1d6af6a783d866143b2818117fd0a973430ecb32e83ce3550e8a9fc1f2
+  description: Airoboros L2 70B 2.1 Creative - GPTQ(1-Creative-GPTQ/blob/main/model)
+  filename: Airoboros-L2-70B-2.1-Creative-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Airoboros-L2-70B-2.1-Creative-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/Airoboros-L2-70B-2.1-Creative-GPTQ/resolve/main
+  title: Airoboros-L2-70B-2.1-Creative-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 35332203544
+- SHA256: cab767348659ee5bb4da0cad99b152c9398b4eaa99abcf50f169d7503f6a53b5
+  description: MythoMax L2 Kimiko v2 13B - GPTQ(co/TheBloke/MythoMax-L2-Kimiko-v2-13B-GPTQ/blob/main/model)
+  filename: MythoMax-L2-Kimiko-v2-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/MythoMax-L2-Kimiko-v2-13B-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/MythoMax-L2-Kimiko-v2-13B-GPTQ/resolve/main
+  title: MythoMax-L2-Kimiko-v2-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 650dd9892ad962fb3a6f14fd00c9fed9506e4f50ad265fbbe1bda154cafda645
+  description: Fiction Live Kimiko V2 70B - GPTQ(live-Kimiko-V2-70B-GPTQ/blob/main/model)
+  filename: fiction.live-Kimiko-V2-70B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/fiction.live-Kimiko-V2-70B-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/fiction.live-Kimiko-V2-70B-GPTQ/resolve/main
+  title: fiction.live-Kimiko-V2-70B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 35332203544
+- SHA256: 4b17b25f3d2925505294529c09f9ccfcd5f7777eb7d92c54fbca6bba080ea741
+  description: Kimiko v2 13B - GPTQ(co/TheBloke/Kimiko-v2-13B-GPTQ/blob/main/model)
+  filename: Kimiko-v2-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Kimiko-v2-13B-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/Kimiko-v2-13B-GPTQ/resolve/main
+  title: Kimiko-v2-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 2443ed32984a0eeb0274d2b2e851b883a2d46a3ab36afe44c442d6f1498a4078
+  description: Luban 13B - GPTQ(co/TheBloke/Luban-13B-GPTQ/blob/main/model)
+  filename: Luban-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Luban-13B-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/Luban-13B-GPTQ/resolve/main
+  title: Luban-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259476152
+- SHA256: 029eff5934ff1b779ab2523322db3beb54c4eac8be67180c22846cc4a21080cb
+  description: Athena v1 - GPTQ(co/TheBloke/Athena-v1-GPTQ/blob/main/model)
+  filename: Athena-v1-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Athena-v1-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/Athena-v1-GPTQ/resolve/main
+  title: Athena-v1-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 9a20323a1046c01d11fdaf89653fad1c1d38e70f69bd99f31857bf6ecf21543c
+  description: Huginn 13B v4 - GPTQ(co/TheBloke/Huginn-13B-v4-GPTQ/blob/main/model)
+  filename: Huginn-13B-v4-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Huginn-13B-v4-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/Huginn-13B-v4-GPTQ/resolve/main
+  title: Huginn-13B-v4-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 0954b50b089ff3efccba26247605e9ffc95a8be2a9f0780f21608fab7ba19730
+  description: Huginn 13B v4.5 - GPTQ(5-GPTQ/blob/main/model)
+  filename: Huginn-13B-v4.5-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Huginn-13B-v4.5-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/Huginn-13B-v4.5-GPTQ/resolve/main
+  title: Huginn-13B-v4.5-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 9067387686d2521c5831ff471cbe93e8406da23b982315b4c6f7054fa3fa041b
+  description: Mythical Destroyer V2 L2 13B - GPTQ(co/TheBloke/Mythical-Destroyer-V2-L2-13B-GPTQ/blob/main/model)
+  filename: Mythical-Destroyer-V2-L2-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Mythical-Destroyer-V2-L2-13B-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/Mythical-Destroyer-V2-L2-13B-GPTQ/resolve/main
+  title: Mythical-Destroyer-V2-L2-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 03e0388b8cbeb43eee7fed352643a94009b1e997a7de43114e39efe28f406172
+  description: Model 007 70B - GPTQ(co/TheBloke/model_007-70B-GPTQ/blob/main/model)
+  filename: model_007-70B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/model_007-70B-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/model_007-70B-GPTQ/resolve/main
+  title: model_007-70B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 35332203544
+- SHA256: 55ff45758f882dc6f41e87bf6902abb8d0c42b4b17c3e9beefa2a3a43da19b76
+  description: Airoboros L2 7B 2.1 - GPTQ(1-GPTQ/blob/main/model)
+  filename: Airoboros-L2-7B-2.1-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke/Airoboros-L2-7B-2.1-GPTQ/
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: https://huggingface.co/TheBloke/Airoboros-L2-7B-2.1-GPTQ/resolve/main
+  title: Airoboros-L2-7B-2.1-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 3896714728
 - SHA256: 5f3902fbcee7a650d5344f621104e22921e921e0895b50e9ed77789ec69b3a4d
   description: Lemur 70B Chat v1 - GPTQ(co/TheBloke/Lemur-70B-Chat-v1-GPTQ/blob/main/model)
   filename: Lemur-70B-Chat-v1-GPTQ
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Lemur-70B-Chat-v1-GPTQ/
   server: https://huggingface.co/TheBloke/Lemur-70B-Chat-v1-GPTQ/resolve/main
   title: Lemur-70B-Chat-v1-GPTQ
@@ -16,6 +213,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Airoboros-L2-13B-2.1-GPTQ/
   server: https://huggingface.co/TheBloke/Airoboros-L2-13B-2.1-GPTQ/resolve/main
   title: Airoboros-L2-13B-2.1-GPTQ
@@ -28,6 +226,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Phind-CodeLlama-34B-v2-GPTQ/
   server: https://huggingface.co/TheBloke/Phind-CodeLlama-34B-v2-GPTQ/resolve/main
   title: Phind-CodeLlama-34B-v2-GPTQ
@@ -40,6 +239,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Mythical-Destroyer-L2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Mythical-Destroyer-L2-13B-GPTQ/resolve/main
   title: Mythical-Destroyer-L2-13B-GPTQ
@@ -52,6 +252,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/MythoMax-Kimiko-Mix-GPTQ/
   server: https://huggingface.co/TheBloke/MythoMax-Kimiko-Mix-GPTQ/resolve/main
   title: MythoMax-Kimiko-Mix-GPTQ
@@ -64,6 +265,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Samantha-1.11-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Samantha-1.11-13B-GPTQ/resolve/main
   title: Samantha-1.11-13B-GPTQ
@@ -76,6 +278,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardCoder-Python-13B-V1.0-GPTQ/
   server: https://huggingface.co/TheBloke/WizardCoder-Python-13B-V1.0-GPTQ/resolve/main
   title: WizardCoder-Python-13B-V1.0-GPTQ
@@ -88,6 +291,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-oasst-sft-v10-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-13B-oasst-sft-v10-GPTQ/resolve/main
   title: CodeLlama-13B-oasst-sft-v10-GPTQ
@@ -100,6 +304,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Huginn-22B-Prototype-GPTQ/
   server: https://huggingface.co/TheBloke/Huginn-22B-Prototype-GPTQ/resolve/main
   title: Huginn-22B-Prototype-GPTQ
@@ -112,6 +317,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Airoboros-L2-70B-2.1-GPTQ/
   server: https://huggingface.co/TheBloke/Airoboros-L2-70B-2.1-GPTQ/resolve/main
   title: Airoboros-L2-70B-2.1-GPTQ
@@ -124,6 +330,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Airoboros-c34B-2.1-GPTQ/
   server: https://huggingface.co/TheBloke/Airoboros-c34B-2.1-GPTQ/resolve/main
   title: Airoboros-c34B-2.1-GPTQ
@@ -136,6 +343,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-70B-Orca-200k-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-70B-Orca-200k-GPTQ/resolve/main
   title: Llama-2-70B-Orca-200k-GPTQ
@@ -148,6 +356,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Genz-70b-GPTQ/
   server: https://huggingface.co/TheBloke/Genz-70b-GPTQ/resolve/main
   title: Genz-70b-GPTQ
@@ -160,6 +369,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Phind-CodeLlama-34B-Python-v1-GPTQ/
   server: https://huggingface.co/TheBloke/Phind-CodeLlama-34B-Python-v1-GPTQ/resolve/main
   title: Phind-CodeLlama-34B-Python-v1-GPTQ
@@ -172,6 +382,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Synthia-70B-GPTQ/
   server: https://huggingface.co/TheBloke/Synthia-70B-GPTQ/resolve/main
   title: Synthia-70B-GPTQ
@@ -184,6 +395,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardCoder-Python-34B-V1.0-GPTQ/
   server: https://huggingface.co/TheBloke/WizardCoder-Python-34B-V1.0-GPTQ/resolve/main
   title: WizardCoder-Python-34B-V1.0-GPTQ
@@ -196,6 +408,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-34B-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-34B-GPTQ/resolve/main
   title: CodeLlama-34B-GPTQ
@@ -208,6 +421,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Phind-CodeLlama-34B-v1-GPTQ/
   server: https://huggingface.co/TheBloke/Phind-CodeLlama-34B-v1-GPTQ/resolve/main
   title: Phind-CodeLlama-34B-v1-GPTQ
@@ -220,6 +434,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Zarafusionex-1.1-L2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Zarafusionex-1.1-L2-7B-GPTQ/resolve/main
   title: Zarafusionex-1.1-L2-7B-GPTQ
@@ -232,6 +447,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama2-70B-OASST-SFT-v10-GPTQ/
   server: https://huggingface.co/TheBloke/Llama2-70B-OASST-SFT-v10-GPTQ/resolve/main
   title: Llama2-70B-OASST-SFT-v10-GPTQ
@@ -244,6 +460,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Samantha-1.11-CodeLlama-34B-GPTQ/
   server: https://huggingface.co/TheBloke/Samantha-1.11-CodeLlama-34B-GPTQ/resolve/main
   title: Samantha-1.11-CodeLlama-34B-GPTQ
@@ -256,6 +473,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Samantha-1.11-70B-GPTQ/
   server: https://huggingface.co/TheBloke/Samantha-1.11-70B-GPTQ/resolve/main
   title: Samantha-1.11-70B-GPTQ
@@ -268,6 +486,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-34B-Python-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-34B-Python-GPTQ/resolve/main
   title: CodeLlama-34B-Python-GPTQ
@@ -280,6 +499,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-34B-Instruct-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-34B-Instruct-GPTQ/resolve/main
   title: CodeLlama-34B-Instruct-GPTQ
@@ -292,6 +512,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-Python-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-13B-Python-GPTQ/resolve/main
   title: CodeLlama-13B-Python-GPTQ
@@ -304,6 +525,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-Instruct-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-13B-Instruct-GPTQ/resolve/main
   title: CodeLlama-13B-Instruct-GPTQ
@@ -316,6 +538,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-13B-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-13B-GPTQ/resolve/main
   title: CodeLlama-13B-GPTQ
@@ -328,6 +551,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-7B-Python-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-7B-Python-GPTQ/resolve/main
   title: CodeLlama-7B-Python-GPTQ
@@ -340,6 +564,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GPTQ/resolve/main
   title: CodeLlama-7B-Instruct-GPTQ
@@ -352,6 +577,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeLlama-7B-GPTQ/
   server: https://huggingface.co/TheBloke/CodeLlama-7B-GPTQ/resolve/main
   title: CodeLlama-7B-GPTQ
@@ -364,6 +590,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Nous-Hermes-Llama2-70B-GPTQ/
   server: https://huggingface.co/TheBloke/Nous-Hermes-Llama2-70B-GPTQ/resolve/main
   title: Nous-Hermes-Llama2-70B-GPTQ
@@ -376,6 +603,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/PuddleJumper-13B-GPTQ/
   server: https://huggingface.co/TheBloke/PuddleJumper-13B-GPTQ/resolve/main
   title: PuddleJumper-13B-GPTQ
@@ -388,6 +616,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Nous-Puffin-70B-GPTQ/
   server: https://huggingface.co/TheBloke/Nous-Puffin-70B-GPTQ/resolve/main
   title: Nous-Puffin-70B-GPTQ
@@ -400,6 +629,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Trurl-2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Trurl-2-7B-GPTQ/resolve/main
   title: Trurl-2-7B-GPTQ
@@ -412,6 +642,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Trurl-2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Trurl-2-13B-GPTQ/resolve/main
   title: Trurl-2-13B-GPTQ
@@ -424,6 +655,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Zarablend-MX-L2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Zarablend-MX-L2-7B-GPTQ/resolve/main
   title: Zarablend-MX-L2-7B-GPTQ
@@ -436,6 +668,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Synthia-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Synthia-7B-GPTQ/resolve/main
   title: Synthia-7B-GPTQ
@@ -448,6 +681,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Synthia-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Synthia-13B-GPTQ/resolve/main
   title: Synthia-13B-GPTQ
@@ -460,6 +694,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Puma-3b-GPTQ/
   server: https://huggingface.co/TheBloke/Puma-3b-GPTQ/resolve/main
   title: Puma-3b-GPTQ
@@ -472,6 +707,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Marx-3b-GPTQ/
   server: https://huggingface.co/TheBloke/Marx-3b-GPTQ/resolve/main
   title: Marx-3b-GPTQ
@@ -484,6 +720,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Griffin-3B-GPTQ/
   server: https://huggingface.co/TheBloke/Griffin-3B-GPTQ/resolve/main
   title: Griffin-3B-GPTQ
@@ -496,6 +733,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Chronorctypus-Limarobormes-13b-GPTQ/
   server: https://huggingface.co/TheBloke/Chronorctypus-Limarobormes-13b-GPTQ/resolve/main
   title: Chronorctypus-Limarobormes-13b-GPTQ
@@ -508,6 +746,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama2-28B-Air03-GPTQ/
   server: https://huggingface.co/TheBloke/Llama2-28B-Air03-GPTQ/resolve/main
   title: Llama2-28B-Air03-GPTQ
@@ -520,6 +759,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/EverythingLM-13b-V2-16K-GPTQ/
   server: https://huggingface.co/TheBloke/EverythingLM-13b-V2-16K-GPTQ/resolve/main
   title: EverythingLM-13b-V2-16K-GPTQ
@@ -532,6 +772,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama2-22B-GPLATTY-GPTQ/
   server: https://huggingface.co/TheBloke/Llama2-22B-GPLATTY-GPTQ/resolve/main
   title: Llama2-22B-GPLATTY-GPTQ
@@ -544,6 +785,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/L2-MythoMax22b-Instruct-Falseblock-GPTQ/
   server: https://huggingface.co/TheBloke/L2-MythoMax22b-Instruct-Falseblock-GPTQ/resolve/main
   title: L2-MythoMax22b-Instruct-Falseblock-GPTQ
@@ -556,6 +798,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-7B-32K-Instruct-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-7B-32K-Instruct-GPTQ/resolve/main
   title: Llama-2-7B-32K-Instruct-GPTQ
@@ -568,6 +811,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/gpt4-alpaca-lora-30B-GPTQ-4bit-128g/
   server: https://huggingface.co/TheBloke/gpt4-alpaca-lora-30B-GPTQ-4bit-128g/resolve/main
   title: gpt4-alpaca-lora-30B-GPTQ-4bit-128g
@@ -580,6 +824,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/vicuna-7B-GPTQ-4bit-128g/
   server: https://huggingface.co/TheBloke/vicuna-7B-GPTQ-4bit-128g/resolve/main
   title: vicuna-7B-GPTQ-4bit-128g
@@ -592,6 +837,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/alpaca-lora-65B-GPTQ-4bit/
   server: https://huggingface.co/TheBloke/alpaca-lora-65B-GPTQ-4bit/resolve/main
   title: alpaca-lora-65B-GPTQ-4bit
@@ -604,6 +850,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: gpl
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/GPT4All-13B-snoozy-GPTQ/
   server: https://huggingface.co/TheBloke/GPT4All-13B-snoozy-GPTQ/resolve/main
   title: GPT4All-13B-snoozy-GPTQ
@@ -616,6 +863,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/gpt4-x-vicuna-13B-GPTQ/
   server: https://huggingface.co/TheBloke/gpt4-x-vicuna-13B-GPTQ/resolve/main
   title: gpt4-x-vicuna-13B-GPTQ
@@ -628,6 +876,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Minotaur-13B-Landmark-GPTQ/
   server: https://huggingface.co/TheBloke/Minotaur-13B-Landmark-GPTQ/resolve/main
   title: Minotaur-13B-Landmark-GPTQ
@@ -640,6 +889,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-7B-Landmark-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-7B-Landmark-GPTQ/resolve/main
   title: WizardLM-7B-Landmark-GPTQ
@@ -652,6 +902,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Guanaco-33B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Guanaco-33B-SuperHOT-8K-GPTQ/resolve/main
   title: Guanaco-33B-SuperHOT-8K-GPTQ
@@ -664,6 +915,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-33B-V1-0-Uncensored-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-33B-V1-0-Uncensored-SuperHOT-8K-GPTQ/resolve/main
   title: WizardLM-33B-V1-0-Uncensored-SuperHOT-8K-GPTQ
@@ -676,6 +928,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Tulu-30B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Tulu-30B-SuperHOT-8K-GPTQ/resolve/main
   title: Tulu-30B-SuperHOT-8K-GPTQ
@@ -688,6 +941,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/chronos-33b-superhot-8k-GPTQ/
   server: https://huggingface.co/TheBloke/chronos-33b-superhot-8k-GPTQ/resolve/main
   title: chronos-33b-superhot-8k-GPTQ
@@ -701,6 +955,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-30B-Superhot-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Wizard-Vicuna-30B-Superhot-8K-GPTQ/resolve/main
   title: Wizard-Vicuna-30B-Superhot-8K-GPTQ
@@ -713,6 +968,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vicuna-13B-1-3-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Vicuna-13B-1-3-SuperHOT-8K-GPTQ/resolve/main
   title: Vicuna-13B-1-3-SuperHOT-8K-GPTQ
@@ -725,6 +981,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ/resolve/main
   title: WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ
@@ -737,6 +994,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/guanaco-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/guanaco-13B-SuperHOT-8K-GPTQ/resolve/main
   title: guanaco-13B-SuperHOT-8K-GPTQ
@@ -749,6 +1007,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Nous-Hermes-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Nous-Hermes-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Nous-Hermes-13B-SuperHOT-8K-GPTQ
@@ -761,6 +1020,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Manticore-13B-Chat-Pyg-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Manticore-13B-Chat-Pyg-SuperHOT-8K-GPTQ/resolve/main
   title: Manticore-13B-Chat-Pyg-SuperHOT-8K-GPTQ
@@ -773,6 +1033,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Manticore-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Manticore-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Manticore-13B-SuperHOT-8K-GPTQ
@@ -785,6 +1046,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Minotaur-13B-fixed-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Minotaur-13B-fixed-SuperHOT-8K-GPTQ/resolve/main
   title: Minotaur-13B-fixed-SuperHOT-8K-GPTQ
@@ -797,6 +1059,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Robin-13B-v2-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Robin-13B-v2-SuperHOT-8K-GPTQ/resolve/main
   title: Robin-13B-v2-SuperHOT-8K-GPTQ
@@ -809,6 +1072,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Samantha-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Samantha-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Samantha-13B-SuperHOT-8K-GPTQ
@@ -821,6 +1085,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Tulu-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Tulu-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Tulu-13B-SuperHOT-8K-GPTQ
@@ -833,6 +1098,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-SuperHOT-8K-GPTQ/resolve/main
   title: Wizard-Vicuna-13B-Uncensored-SuperHOT-8K-GPTQ
@@ -845,6 +1111,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-13b-gpt4-1.4-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-13b-gpt4-1.4-SuperHOT-8K-GPTQ/resolve/main
   title: airoboros-13b-gpt4-1.4-SuperHOT-8K-GPTQ
@@ -857,6 +1124,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CAMEL-13B-Role-Playing-Data-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/CAMEL-13B-Role-Playing-Data-SuperHOT-8K-GPTQ/resolve/main
   title: CAMEL-13B-Role-Playing-Data-SuperHOT-8K-GPTQ
@@ -869,6 +1137,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Chronos-Hermes-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Chronos-Hermes-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Chronos-Hermes-13B-SuperHOT-8K-GPTQ
@@ -881,6 +1150,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-SuperHOT-8K-GPTQ/resolve/main
   title: CAMEL-13B-Combined-Data-SuperHOT-8K-GPTQ
@@ -893,6 +1163,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/GPT4All-13B-Snoozy-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/GPT4All-13B-Snoozy-SuperHOT-8K-GPTQ/resolve/main
   title: GPT4All-13B-Snoozy-SuperHOT-8K-GPTQ
@@ -905,6 +1176,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Samantha-33B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Samantha-33B-SuperHOT-8K-GPTQ/resolve/main
   title: Samantha-33B-SuperHOT-8K-GPTQ
@@ -917,6 +1189,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Chronos-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Chronos-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Chronos-13B-SuperHOT-8K-GPTQ
@@ -929,6 +1202,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Pygmalion-13B-SuperHOT-8K-GPTQ
@@ -941,6 +1215,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/wizard-vicuna-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/wizard-vicuna-13B-SuperHOT-8K-GPTQ/resolve/main
   title: wizard-vicuna-13B-SuperHOT-8K-GPTQ
@@ -953,6 +1228,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1-4-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1-4-SuperHOT-8K-GPTQ/resolve/main
   title: airoboros-33B-gpt4-1-4-SuperHOT-8K-GPTQ
@@ -965,6 +1241,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Manticore-13B-Chat-Pyg-Guanaco-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Manticore-13B-Chat-Pyg-Guanaco-SuperHOT-8K-GPTQ/resolve/main
   title: Manticore-13B-Chat-Pyg-Guanaco-SuperHOT-8K-GPTQ
@@ -977,6 +1254,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-SuperHOT-8K-GPTQ/resolve/main
   title: WizardLM-Uncensored-SuperCOT-StoryTelling-30B-SuperHOT-8K-GPTQ
@@ -989,6 +1267,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: cc-by-nc-sa-4.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/MPT-30B-Chat-GPTQ-experimental/
   server: https://huggingface.co/TheBloke/MPT-30B-Chat-GPTQ-experimental/resolve/main
   title: MPT-30B-Chat-GPTQ-experimental
@@ -1001,6 +1280,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama-30b-supercot-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/llama-30b-supercot-SuperHOT-8K-GPTQ/resolve/main
   title: llama-30b-supercot-SuperHOT-8K-GPTQ
@@ -1013,6 +1293,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Platypus-30B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Platypus-30B-SuperHOT-8K-GPTQ/resolve/main
   title: Platypus-30B-SuperHOT-8K-GPTQ
@@ -1025,6 +1306,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/GPlatty-30B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/GPlatty-30B-SuperHOT-8K-GPTQ/resolve/main
   title: GPlatty-30B-SuperHOT-8K-GPTQ
@@ -1037,6 +1319,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Chinese-Alpaca-33B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Chinese-Alpaca-33B-SuperHOT-8K-GPTQ/resolve/main
   title: Chinese-Alpaca-33B-SuperHOT-8K-GPTQ
@@ -1049,6 +1332,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vicuna-33B-1-3-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Vicuna-33B-1-3-SuperHOT-8K-GPTQ/resolve/main
   title: Vicuna-33B-1-3-SuperHOT-8K-GPTQ
@@ -1061,6 +1345,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CAMEL-33B-Combined-Data-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/CAMEL-33B-Combined-Data-SuperHOT-8K-GPTQ/resolve/main
   title: CAMEL-33B-Combined-Data-SuperHOT-8K-GPTQ
@@ -1073,6 +1358,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Airoboros-7B-GPT4-1-4-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Airoboros-7B-GPT4-1-4-SuperHOT-8K-GPTQ/resolve/main
   title: Airoboros-7B-GPT4-1-4-SuperHOT-8K-GPTQ
@@ -1085,6 +1371,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Baize-v2-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Baize-v2-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Baize-v2-13B-SuperHOT-8K-GPTQ
@@ -1097,6 +1384,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Guanaco-7B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Guanaco-7B-SuperHOT-8K-GPTQ/resolve/main
   title: Guanaco-7B-SuperHOT-8K-GPTQ
@@ -1109,6 +1397,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Koala-7B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Koala-7B-SuperHOT-8K-GPTQ/resolve/main
   title: Koala-7B-SuperHOT-8K-GPTQ
@@ -1121,6 +1410,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Robin-7B-v2-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Robin-7B-v2-SuperHOT-8K-GPTQ/resolve/main
   title: Robin-7B-v2-SuperHOT-8K-GPTQ
@@ -1133,6 +1423,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Baize-v2-7B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Baize-v2-7B-SuperHOT-8K-GPTQ/resolve/main
   title: Baize-v2-7B-SuperHOT-8K-GPTQ
@@ -1145,6 +1436,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Koala-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Koala-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Koala-13B-SuperHOT-8K-GPTQ
@@ -1157,6 +1449,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Samantha-1-1-Llama-7B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Samantha-1-1-Llama-7B-SuperHOT-8K-GPTQ/resolve/main
   title: Samantha-1-1-Llama-7B-SuperHOT-8K-GPTQ
@@ -1169,6 +1462,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Selfee-13B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Selfee-13B-SuperHOT-8K-GPTQ/resolve/main
   title: Selfee-13B-SuperHOT-8K-GPTQ
@@ -1181,6 +1475,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Selfee-7B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Selfee-7B-SuperHOT-8K-GPTQ/resolve/main
   title: Selfee-7B-SuperHOT-8K-GPTQ
@@ -1193,6 +1488,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Tulu-7B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Tulu-7B-SuperHOT-8K-GPTQ/resolve/main
   title: Tulu-7B-SuperHOT-8K-GPTQ
@@ -1205,6 +1501,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vicuna-7B-v1-3-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Vicuna-7B-v1-3-SuperHOT-8K-GPTQ/resolve/main
   title: Vicuna-7B-v1-3-SuperHOT-8K-GPTQ
@@ -1217,6 +1514,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vicuna-7B-CoT-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Vicuna-7B-CoT-SuperHOT-8K-GPTQ/resolve/main
   title: Vicuna-7B-CoT-SuperHOT-8K-GPTQ
@@ -1229,6 +1527,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-7B-Uncensored-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Wizard-Vicuna-7B-Uncensored-SuperHOT-8K-GPTQ/resolve/main
   title: Wizard-Vicuna-7B-Uncensored-SuperHOT-8K-GPTQ
@@ -1241,6 +1540,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-7B-V1-0-Uncensored-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-7B-V1-0-Uncensored-SuperHOT-8K-GPTQ/resolve/main
   title: WizardLM-7B-V1-0-Uncensored-SuperHOT-8K-GPTQ
@@ -1253,6 +1553,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/PMC_LLAMA-7B-10-Epoch-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/PMC_LLAMA-7B-10-Epoch-SuperHOT-8K-GPTQ/resolve/main
   title: PMC_LLAMA-7B-10-Epoch-SuperHOT-8K-GPTQ
@@ -1265,6 +1566,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Pygmalion-7B-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Pygmalion-7B-SuperHOT-8K-GPTQ/resolve/main
   title: Pygmalion-7B-SuperHOT-8K-GPTQ
@@ -1277,6 +1579,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-13B-V1-1-SuperHOT-8K-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-13B-V1-1-SuperHOT-8K-GPTQ/resolve/main
   title: WizardLM-13B-V1-1-SuperHOT-8K-GPTQ
@@ -1289,6 +1592,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vigogne-Instruct-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Vigogne-Instruct-13B-GPTQ/resolve/main
   title: Vigogne-Instruct-13B-GPTQ
@@ -1301,6 +1605,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/koala-7B-GPTQ/
   server: https://huggingface.co/TheBloke/koala-7B-GPTQ/resolve/main
   title: koala-7B-GPTQ
@@ -1313,6 +1618,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/koala-13B-GPTQ/
   server: https://huggingface.co/TheBloke/koala-13B-GPTQ/resolve/main
   title: koala-13B-GPTQ
@@ -1325,6 +1631,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/gpt4-alpaca-lora-13B-GPTQ-4bit-128g/
   server: https://huggingface.co/TheBloke/gpt4-alpaca-lora-13B-GPTQ-4bit-128g/resolve/main
   title: gpt4-alpaca-lora-13B-GPTQ-4bit-128g
@@ -1337,6 +1644,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: cc
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/medalpaca-13B-GPTQ-4bit/
   server: https://huggingface.co/TheBloke/medalpaca-13B-GPTQ-4bit/resolve/main
   title: medalpaca-13B-GPTQ-4bit
@@ -1349,6 +1657,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/wizardLM-7B-GPTQ/
   server: https://huggingface.co/TheBloke/wizardLM-7B-GPTQ/resolve/main
   title: wizardLM-7B-GPTQ
@@ -1361,6 +1670,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: cc-by-nc-sa-4.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/stable-vicuna-13B-GPTQ/
   server: https://huggingface.co/TheBloke/stable-vicuna-13B-GPTQ/resolve/main
   title: stable-vicuna-13B-GPTQ
@@ -1373,6 +1683,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/OpenAssistant-SFT-7-Llama-30B-GPTQ/
   server: https://huggingface.co/TheBloke/OpenAssistant-SFT-7-Llama-30B-GPTQ/resolve/main
   title: OpenAssistant-SFT-7-Llama-30B-GPTQ
@@ -1385,6 +1696,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: unknown
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/wizard-vicuna-13B-GPTQ/
   server: https://huggingface.co/TheBloke/wizard-vicuna-13B-GPTQ/resolve/main
   title: wizard-vicuna-13B-GPTQ
@@ -1397,6 +1709,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-7B-uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-7B-uncensored-GPTQ/resolve/main
   title: WizardLM-7B-uncensored-GPTQ
@@ -1409,6 +1722,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/h2ogpt-oasst1-512-30B-GPTQ/
   server: https://huggingface.co/TheBloke/h2ogpt-oasst1-512-30B-GPTQ/resolve/main
   title: h2ogpt-oasst1-512-30B-GPTQ
@@ -1421,6 +1735,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/dromedary-65B-lora-GPTQ/
   server: https://huggingface.co/TheBloke/dromedary-65B-lora-GPTQ/resolve/main
   title: dromedary-65B-lora-GPTQ
@@ -1433,6 +1748,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/gpt4-alpaca-lora_mlp-65B-GPTQ/
   server: https://huggingface.co/TheBloke/gpt4-alpaca-lora_mlp-65B-GPTQ/resolve/main
   title: gpt4-alpaca-lora_mlp-65B-GPTQ
@@ -1445,6 +1761,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-GPTQ/resolve/main
   title: Wizard-Vicuna-13B-Uncensored-GPTQ
@@ -1457,6 +1774,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/wizard-mega-13B-GPTQ/
   server: https://huggingface.co/TheBloke/wizard-mega-13B-GPTQ/resolve/main
   title: wizard-mega-13B-GPTQ
@@ -1469,6 +1787,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/VicUnlocked-30B-LoRA-GPTQ/
   server: https://huggingface.co/TheBloke/VicUnlocked-30B-LoRA-GPTQ/resolve/main
   title: VicUnlocked-30B-LoRA-GPTQ
@@ -1481,6 +1800,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-7B-Uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/Wizard-Vicuna-7B-Uncensored-GPTQ/resolve/main
   title: Wizard-Vicuna-7B-Uncensored-GPTQ
@@ -1493,6 +1813,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: unknown
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Manticore-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Manticore-13B-GPTQ/resolve/main
   title: Manticore-13B-GPTQ
@@ -1505,6 +1826,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-30B-Uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-30B-Uncensored-GPTQ/resolve/main
   title: WizardLM-30B-Uncensored-GPTQ
@@ -1517,6 +1839,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-13B-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-13B-GPTQ/resolve/main
   title: airoboros-13B-GPTQ
@@ -1529,6 +1852,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/manticore-13b-chat-pyg-GPTQ/
   server: https://huggingface.co/TheBloke/manticore-13b-chat-pyg-GPTQ/resolve/main
   title: manticore-13b-chat-pyg-GPTQ
@@ -1541,6 +1865,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Project-Baize-v2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Project-Baize-v2-7B-GPTQ/resolve/main
   title: Project-Baize-v2-7B-GPTQ
@@ -1553,6 +1878,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Project-Baize-v2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Project-Baize-v2-13B-GPTQ/resolve/main
   title: Project-Baize-v2-13B-GPTQ
@@ -1565,6 +1891,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/guanaco-13B-GPTQ/
   server: https://huggingface.co/TheBloke/guanaco-13B-GPTQ/resolve/main
   title: guanaco-13B-GPTQ
@@ -1577,6 +1904,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/guanaco-33B-GPTQ/
   server: https://huggingface.co/TheBloke/guanaco-33B-GPTQ/resolve/main
   title: guanaco-33B-GPTQ
@@ -1589,6 +1917,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/guanaco-65B-GPTQ/
   server: https://huggingface.co/TheBloke/guanaco-65B-GPTQ/resolve/main
   title: guanaco-65B-GPTQ
@@ -1601,6 +1930,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Samantha-1.1-70B-GPTQ/
   server: https://huggingface.co/TheBloke/Samantha-1.1-70B-GPTQ/resolve/main
   title: Samantha-1.1-70B-GPTQ
@@ -1613,6 +1943,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/guanaco-7B-GPTQ/
   server: https://huggingface.co/TheBloke/guanaco-7B-GPTQ/resolve/main
   title: guanaco-7B-GPTQ
@@ -1625,6 +1956,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/falcon-7b-instruct-GPTQ/
   server: https://huggingface.co/TheBloke/falcon-7b-instruct-GPTQ/resolve/main
   title: falcon-7b-instruct-GPTQ
@@ -1637,6 +1969,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/falcon-40b-instruct-GPTQ/
   server: https://huggingface.co/TheBloke/falcon-40b-instruct-GPTQ/resolve/main
   title: falcon-40b-instruct-GPTQ
@@ -1649,6 +1982,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/wizardLM-13B-1.0-GPTQ/
   server: https://huggingface.co/TheBloke/wizardLM-13B-1.0-GPTQ/resolve/main
   title: wizardLM-13B-1.0-GPTQ
@@ -1661,6 +1995,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/gorilla-7B-GPTQ/
   server: https://huggingface.co/TheBloke/gorilla-7B-GPTQ/resolve/main
   title: gorilla-7B-GPTQ
@@ -1673,6 +2008,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Samantha-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Samantha-7B-GPTQ/resolve/main
   title: Samantha-7B-GPTQ
@@ -1685,6 +2021,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/samantha-13B-GPTQ/
   server: https://huggingface.co/TheBloke/samantha-13B-GPTQ/resolve/main
   title: samantha-13B-GPTQ
@@ -1697,6 +2034,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/samantha-33B-GPTQ/
   server: https://huggingface.co/TheBloke/samantha-33B-GPTQ/resolve/main
   title: samantha-33B-GPTQ
@@ -1709,6 +2047,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Wizard-Vicuna-30B-Uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/Wizard-Vicuna-30B-Uncensored-GPTQ/resolve/main
   title: Wizard-Vicuna-30B-Uncensored-GPTQ
@@ -1721,6 +2060,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/samantha-falcon-7B-GPTQ/
   server: https://huggingface.co/TheBloke/samantha-falcon-7B-GPTQ/resolve/main
   title: samantha-falcon-7B-GPTQ
@@ -1733,6 +2073,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/hippogriff-30b-chat-GPTQ/
   server: https://huggingface.co/TheBloke/hippogriff-30b-chat-GPTQ/resolve/main
   title: hippogriff-30b-chat-GPTQ
@@ -1745,6 +2086,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-Uncensored-SuperCOT-StoryTelling-30B-GPTQ/resolve/main
   title: WizardLM-Uncensored-SuperCOT-StoryTelling-30B-GPTQ
@@ -1757,6 +2099,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-7B-GPTQ/resolve/main
   title: WizardLM-Uncensored-Falcon-7B-GPTQ
@@ -1769,6 +2112,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/falcon-40b-instruct-3bit-GPTQ/
   server: https://huggingface.co/TheBloke/falcon-40b-instruct-3bit-GPTQ/resolve/main
   title: falcon-40b-instruct-3bit-GPTQ
@@ -1781,6 +2125,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Karen_theEditor_13B-GPTQ/
   server: https://huggingface.co/TheBloke/Karen_theEditor_13B-GPTQ/resolve/main
   title: Karen_theEditor_13B-GPTQ
@@ -1793,6 +2138,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/PMC_LLAMA-7B-GPTQ/
   server: https://huggingface.co/TheBloke/PMC_LLAMA-7B-GPTQ/resolve/main
   title: PMC_LLAMA-7B-GPTQ
@@ -1805,6 +2151,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/based-30B-GPTQ/
   server: https://huggingface.co/TheBloke/based-30B-GPTQ/resolve/main
   title: based-30B-GPTQ
@@ -1817,6 +2164,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-40B-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-40B-GPTQ/resolve/main
   title: WizardLM-Uncensored-Falcon-40B-GPTQ
@@ -1829,6 +2177,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Nous-Hermes-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Nous-Hermes-13B-GPTQ/resolve/main
   title: Nous-Hermes-13B-GPTQ
@@ -1841,6 +2190,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-40B-3bit-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-Uncensored-Falcon-40B-3bit-GPTQ/resolve/main
   title: WizardLM-Uncensored-Falcon-40B-3bit-GPTQ
@@ -1853,6 +2203,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-13b-gpt4-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-13b-gpt4-GPTQ/resolve/main
   title: airoboros-13b-gpt4-GPTQ
@@ -1865,6 +2216,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/based-7B-GPTQ/
   server: https://huggingface.co/TheBloke/based-7B-GPTQ/resolve/main
   title: based-7B-GPTQ
@@ -1877,6 +2229,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/based-13b-GPTQ/
   server: https://huggingface.co/TheBloke/based-13b-GPTQ/resolve/main
   title: based-13b-GPTQ
@@ -1889,6 +2242,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-7b-gpt4-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-7b-gpt4-GPTQ/resolve/main
   title: airoboros-7b-gpt4-GPTQ
@@ -1901,6 +2255,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama-deus-7b-v3-GPTQ/
   server: https://huggingface.co/TheBloke/llama-deus-7b-v3-GPTQ/resolve/main
   title: llama-deus-7b-v3-GPTQ
@@ -1913,6 +2268,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Planner-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Planner-7B-GPTQ/resolve/main
   title: Planner-7B-GPTQ
@@ -1925,6 +2281,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Selfee-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Selfee-13B-GPTQ/resolve/main
   title: Selfee-13B-GPTQ
@@ -1937,6 +2294,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-30B-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-30B-GPTQ/resolve/main
   title: WizardLM-30B-GPTQ
@@ -1949,6 +2307,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/chronos-33b-GPTQ/
   server: https://huggingface.co/TheBloke/chronos-33b-GPTQ/resolve/main
   title: chronos-33b-GPTQ
@@ -1961,6 +2320,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/chronos-wizardlm-uc-scot-st-13B-GPTQ/
   server: https://huggingface.co/TheBloke/chronos-wizardlm-uc-scot-st-13B-GPTQ/resolve/main
   title: chronos-wizardlm-uc-scot-st-13B-GPTQ
@@ -1973,6 +2333,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-GPTQ/
   server: https://huggingface.co/TheBloke/CAMEL-13B-Combined-Data-GPTQ/resolve/main
   title: CAMEL-13B-Combined-Data-GPTQ
@@ -1985,6 +2346,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CAMEL-13B-Role-Playing-Data-GPTQ/
   server: https://huggingface.co/TheBloke/CAMEL-13B-Role-Playing-Data-GPTQ/resolve/main
   title: CAMEL-13B-Role-Playing-Data-GPTQ
@@ -1997,6 +2359,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/selfee-7B-GPTQ/
   server: https://huggingface.co/TheBloke/selfee-7B-GPTQ/resolve/main
   title: selfee-7B-GPTQ
@@ -2009,6 +2372,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vicuna-13B-CoT-GPTQ/
   server: https://huggingface.co/TheBloke/Vicuna-13B-CoT-GPTQ/resolve/main
   title: Vicuna-13B-CoT-GPTQ
@@ -2021,6 +2385,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vicuna-7B-CoT-GPTQ/
   server: https://huggingface.co/TheBloke/Vicuna-7B-CoT-GPTQ/resolve/main
   title: Vicuna-7B-CoT-GPTQ
@@ -2033,6 +2398,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: bigcode-openrail-m
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/starcoder-GPTQ/
   server: https://huggingface.co/TheBloke/starcoder-GPTQ/resolve/main
   title: starcoder-GPTQ
@@ -2045,6 +2411,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: bigcode-openrail-m
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/starcoderplus-GPTQ/
   server: https://huggingface.co/TheBloke/starcoderplus-GPTQ/resolve/main
   title: starcoderplus-GPTQ
@@ -2057,6 +2424,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/minotaur-13B-GPTQ/
   server: https://huggingface.co/TheBloke/minotaur-13B-GPTQ/resolve/main
   title: minotaur-13B-GPTQ
@@ -2069,6 +2437,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: bigcode-openrail-m
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/starchat-beta-GPTQ/
   server: https://huggingface.co/TheBloke/starchat-beta-GPTQ/resolve/main
   title: starchat-beta-GPTQ
@@ -2081,6 +2450,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/open-llama-7b-open-instruct-GPTQ/
   server: https://huggingface.co/TheBloke/open-llama-7b-open-instruct-GPTQ/resolve/main
   title: open-llama-7b-open-instruct-GPTQ
@@ -2093,6 +2463,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/samantha-1.1-llama-7B-GPTQ/
   server: https://huggingface.co/TheBloke/samantha-1.1-llama-7B-GPTQ/resolve/main
   title: samantha-1.1-llama-7B-GPTQ
@@ -2105,6 +2476,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-13B-1.1-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-13B-1.1-GPTQ/resolve/main
   title: airoboros-13B-1.1-GPTQ
@@ -2117,6 +2489,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/tulu-30B-GPTQ/
   server: https://huggingface.co/TheBloke/tulu-30B-GPTQ/resolve/main
   title: tulu-30B-GPTQ
@@ -2129,6 +2502,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/samantha-1.1-llama-13B-GPTQ/
   server: https://huggingface.co/TheBloke/samantha-1.1-llama-13B-GPTQ/resolve/main
   title: samantha-1.1-llama-13B-GPTQ
@@ -2141,6 +2515,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/tulu-13B-GPTQ/
   server: https://huggingface.co/TheBloke/tulu-13B-GPTQ/resolve/main
   title: tulu-13B-GPTQ
@@ -2153,6 +2528,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/tulu-7B-GPTQ/
   server: https://huggingface.co/TheBloke/tulu-7B-GPTQ/resolve/main
   title: tulu-7B-GPTQ
@@ -2165,6 +2541,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/samantha-1.1-llama-33B-GPTQ/
   server: https://huggingface.co/TheBloke/samantha-1.1-llama-33B-GPTQ/resolve/main
   title: samantha-1.1-llama-33B-GPTQ
@@ -2177,6 +2554,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-33b-gpt4-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-33b-gpt4-GPTQ/resolve/main
   title: airoboros-33b-gpt4-GPTQ
@@ -2189,6 +2567,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/fin-llama-33B-GPTQ/
   server: https://huggingface.co/TheBloke/fin-llama-33B-GPTQ/resolve/main
   title: fin-llama-33B-GPTQ
@@ -2201,6 +2580,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/chronos-hermes-13B-GPTQ/
   server: https://huggingface.co/TheBloke/chronos-hermes-13B-GPTQ/resolve/main
   title: chronos-hermes-13B-GPTQ
@@ -2213,6 +2593,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/minotaur-13B-fixed-GPTQ/
   server: https://huggingface.co/TheBloke/minotaur-13B-fixed-GPTQ/resolve/main
   title: minotaur-13B-fixed-GPTQ
@@ -2225,6 +2606,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.2-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.2-GPTQ/resolve/main
   title: airoboros-33B-gpt4-1.2-GPTQ
@@ -2237,6 +2619,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.2-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.2-GPTQ/resolve/main
   title: airoboros-65B-gpt4-1.2-GPTQ
@@ -2249,6 +2632,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: bigcode-openrail-m
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardCoder-15B-1.0-GPTQ/
   server: https://huggingface.co/TheBloke/WizardCoder-15B-1.0-GPTQ/resolve/main
   title: WizardCoder-15B-1.0-GPTQ
@@ -2261,6 +2645,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.2-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.2-GPTQ/resolve/main
   title: airoboros-7B-gpt4-1.2-GPTQ
@@ -2273,6 +2658,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.2-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.2-GPTQ/resolve/main
   title: airoboros-13B-gpt4-1.2-GPTQ
@@ -2285,6 +2671,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/robin-33B-v2-GPTQ/
   server: https://huggingface.co/TheBloke/robin-33B-v2-GPTQ/resolve/main
   title: robin-33B-v2-GPTQ
@@ -2297,6 +2684,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/robin-7B-v2-GPTQ/
   server: https://huggingface.co/TheBloke/robin-7B-v2-GPTQ/resolve/main
   title: robin-7B-v2-GPTQ
@@ -2309,6 +2697,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/robin-13B-v2-GPTQ/
   server: https://huggingface.co/TheBloke/robin-13B-v2-GPTQ/resolve/main
   title: robin-13B-v2-GPTQ
@@ -2321,6 +2710,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/robin-65B-v2-GPTQ/
   server: https://huggingface.co/TheBloke/robin-65B-v2-GPTQ/resolve/main
   title: robin-65B-v2-GPTQ
@@ -2333,6 +2723,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/galactica-30B-evol-instruct-70K-GPTQ/
   server: https://huggingface.co/TheBloke/galactica-30B-evol-instruct-70K-GPTQ/resolve/main
   title: galactica-30B-evol-instruct-70K-GPTQ
@@ -2345,6 +2736,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CAMEL-33B-Combined-Data-GPTQ/
   server: https://huggingface.co/TheBloke/CAMEL-33B-Combined-Data-GPTQ/resolve/main
   title: CAMEL-33B-Combined-Data-GPTQ
@@ -2357,6 +2749,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: unknown
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/minotaur-15B-GPTQ/
   server: https://huggingface.co/TheBloke/minotaur-15B-GPTQ/resolve/main
   title: minotaur-15B-GPTQ
@@ -2369,6 +2762,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-7B-V1.0-Uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-7B-V1.0-Uncensored-GPTQ/resolve/main
   title: WizardLM-7B-V1.0-Uncensored-GPTQ
@@ -2381,6 +2775,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/BigTranslate-13B-GPTQ/
   server: https://huggingface.co/TheBloke/BigTranslate-13B-GPTQ/resolve/main
   title: BigTranslate-13B-GPTQ
@@ -2393,6 +2788,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/vicuna-7B-v1.3-GPTQ/
   server: https://huggingface.co/TheBloke/vicuna-7B-v1.3-GPTQ/resolve/main
   title: vicuna-7B-v1.3-GPTQ
@@ -2405,6 +2801,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/baichuan-7B-GPTQ/
   server: https://huggingface.co/TheBloke/baichuan-7B-GPTQ/resolve/main
   title: baichuan-7B-GPTQ
@@ -2417,6 +2814,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/cassandra-6.9B-GPTQ/
   server: https://huggingface.co/TheBloke/cassandra-6.9B-GPTQ/resolve/main
   title: cassandra-6.9B-GPTQ
@@ -2429,6 +2827,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-13B-V1.0-Uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-13B-V1.0-Uncensored-GPTQ/resolve/main
   title: WizardLM-13B-V1.0-Uncensored-GPTQ
@@ -2441,6 +2840,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.3-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.3-GPTQ/resolve/main
   title: airoboros-7B-gpt4-1.3-GPTQ
@@ -2453,6 +2853,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/baichuan-vicuna-7B-GPTQ/
   server: https://huggingface.co/TheBloke/baichuan-vicuna-7B-GPTQ/resolve/main
   title: baichuan-vicuna-7B-GPTQ
@@ -2465,6 +2866,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: cc
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/open-llama-13b-open-instruct-GPTQ/
   server: https://huggingface.co/TheBloke/open-llama-13b-open-instruct-GPTQ/resolve/main
   title: open-llama-13b-open-instruct-GPTQ
@@ -2477,6 +2879,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.3-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.3-GPTQ/resolve/main
   title: airoboros-13B-gpt4-1.3-GPTQ
@@ -2489,6 +2892,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.3-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.3-GPTQ/resolve/main
   title: airoboros-33B-gpt4-1.3-GPTQ
@@ -2501,6 +2905,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.3-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.3-GPTQ/resolve/main
   title: airoboros-65B-gpt4-1.3-GPTQ
@@ -2513,6 +2918,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/baichuan-llama-7B-GPTQ/
   server: https://huggingface.co/TheBloke/baichuan-llama-7B-GPTQ/resolve/main
   title: baichuan-llama-7B-GPTQ
@@ -2525,6 +2931,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-7B-gpt4-1.4-GPTQ/resolve/main
   title: airoboros-7B-gpt4-1.4-GPTQ
@@ -2537,6 +2944,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.4-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-13B-gpt4-1.4-GPTQ/resolve/main
   title: airoboros-13B-gpt4-1.4-GPTQ
@@ -2549,6 +2957,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Flan-OpenLlama-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Flan-OpenLlama-7B-GPTQ/resolve/main
   title: Flan-OpenLlama-7B-GPTQ
@@ -2561,6 +2970,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GPTQ/
   server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GPTQ/resolve/main
   title: h2ogpt-gm-oasst1-en-2048-falcon-40b-v2-GPTQ
@@ -2573,6 +2983,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-33B-V1.0-Uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-33B-V1.0-Uncensored-GPTQ/resolve/main
   title: WizardLM-33B-V1.0-Uncensored-GPTQ
@@ -2585,6 +2996,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: mit
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/orca_mini_13B-GPTQ/
   server: https://huggingface.co/TheBloke/orca_mini_13B-GPTQ/resolve/main
   title: orca_mini_13B-GPTQ
@@ -2597,6 +3009,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: mit
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/orca_mini_7B-GPTQ/
   server: https://huggingface.co/TheBloke/orca_mini_7B-GPTQ/resolve/main
   title: orca_mini_7B-GPTQ
@@ -2609,6 +3022,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/vicuna-13b-v1.3.0-GPTQ/
   server: https://huggingface.co/TheBloke/vicuna-13b-v1.3.0-GPTQ/resolve/main
   title: vicuna-13b-v1.3.0-GPTQ
@@ -2621,6 +3035,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.4-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-33B-gpt4-1.4-GPTQ/resolve/main
   title: airoboros-33B-gpt4-1.4-GPTQ
@@ -2633,6 +3048,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/GPlatty-30B-GPTQ/
   server: https://huggingface.co/TheBloke/GPlatty-30B-GPTQ/resolve/main
   title: GPlatty-30B-GPTQ
@@ -2645,6 +3061,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Platypus-30B-GPTQ/
   server: https://huggingface.co/TheBloke/Platypus-30B-GPTQ/resolve/main
   title: Platypus-30B-GPTQ
@@ -2657,6 +3074,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.4-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-65B-gpt4-1.4-GPTQ/resolve/main
   title: airoboros-65B-gpt4-1.4-GPTQ
@@ -2669,6 +3087,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/UltraLM-13B-GPTQ/
   server: https://huggingface.co/TheBloke/UltraLM-13B-GPTQ/resolve/main
   title: UltraLM-13B-GPTQ
@@ -2681,6 +3100,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/h2ogpt-research-oasst1-llama-65B-GPTQ/
   server: https://huggingface.co/TheBloke/h2ogpt-research-oasst1-llama-65B-GPTQ/resolve/main
   title: h2ogpt-research-oasst1-llama-65B-GPTQ
@@ -2693,6 +3113,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LongChat-13B-GPTQ/
   server: https://huggingface.co/TheBloke/LongChat-13B-GPTQ/resolve/main
   title: LongChat-13B-GPTQ
@@ -2705,6 +3126,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LongChat-7B-GPTQ/
   server: https://huggingface.co/TheBloke/LongChat-7B-GPTQ/resolve/main
   title: LongChat-7B-GPTQ
@@ -2717,6 +3139,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/vicuna-33B-GPTQ/
   server: https://huggingface.co/TheBloke/vicuna-33B-GPTQ/resolve/main
   title: vicuna-33B-GPTQ
@@ -2729,6 +3152,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: gpl
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Redmond-Hermes-Coder-GPTQ/
   server: https://huggingface.co/TheBloke/Redmond-Hermes-Coder-GPTQ/resolve/main
   title: Redmond-Hermes-Coder-GPTQ
@@ -2741,6 +3165,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/SuperPlatty-30B-GPTQ/
   server: https://huggingface.co/TheBloke/SuperPlatty-30B-GPTQ/resolve/main
   title: SuperPlatty-30B-GPTQ
@@ -2753,6 +3178,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/orca_mini_v2_7B-GPTQ/
   server: https://huggingface.co/TheBloke/orca_mini_v2_7B-GPTQ/resolve/main
   title: orca_mini_v2_7B-GPTQ
@@ -2765,6 +3191,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-13B-V1.1-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-13B-V1.1-GPTQ/resolve/main
   title: WizardLM-13B-V1.1-GPTQ
@@ -2777,6 +3204,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/orca_mini_v2_13b-GPTQ/
   server: https://huggingface.co/TheBloke/orca_mini_v2_13b-GPTQ/resolve/main
   title: orca_mini_v2_13b-GPTQ
@@ -2789,6 +3217,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/GodziLLa-30B-GPTQ/
   server: https://huggingface.co/TheBloke/GodziLLa-30B-GPTQ/resolve/main
   title: GodziLLa-30B-GPTQ
@@ -2801,6 +3230,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/openchat_v2-GPTQ/
   server: https://huggingface.co/TheBloke/openchat_v2-GPTQ/resolve/main
   title: openchat_v2-GPTQ
@@ -2813,6 +3243,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/openchat_v2_w-GPTQ/
   server: https://huggingface.co/TheBloke/openchat_v2_w-GPTQ/resolve/main
   title: openchat_v2_w-GPTQ
@@ -2825,6 +3256,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardCoder-Guanaco-15B-V1.0-GPTQ/
   server: https://huggingface.co/TheBloke/WizardCoder-Guanaco-15B-V1.0-GPTQ/resolve/main
   title: WizardCoder-Guanaco-15B-V1.0-GPTQ
@@ -2837,6 +3269,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Chronoboros-33B-GPTQ/
   server: https://huggingface.co/TheBloke/Chronoboros-33B-GPTQ/resolve/main
   title: Chronoboros-33B-GPTQ
@@ -2849,6 +3282,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airochronos-33B-GPTQ/
   server: https://huggingface.co/TheBloke/airochronos-33B-GPTQ/resolve/main
   title: airochronos-33B-GPTQ
@@ -2861,6 +3295,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/open-llama-7B-v2-open-instruct-GPTQ/
   server: https://huggingface.co/TheBloke/open-llama-7B-v2-open-instruct-GPTQ/resolve/main
   title: open-llama-7B-v2-open-instruct-GPTQ
@@ -2873,6 +3308,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Starcoderplus-Guanaco-GPT4-15B-V1.0-GPTQ/
   server: https://huggingface.co/TheBloke/Starcoderplus-Guanaco-GPT4-15B-V1.0-GPTQ/resolve/main
   title: Starcoderplus-Guanaco-GPT4-15B-V1.0-GPTQ
@@ -2885,6 +3321,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/OpenOrca-Preview1-13B-GPTQ/
   server: https://huggingface.co/TheBloke/OpenOrca-Preview1-13B-GPTQ/resolve/main
   title: OpenOrca-Preview1-13B-GPTQ
@@ -2897,6 +3334,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/openchat_v2_openorca_preview-GPTQ/
   server: https://huggingface.co/TheBloke/openchat_v2_openorca_preview-GPTQ/resolve/main
   title: openchat_v2_openorca_preview-GPTQ
@@ -2909,6 +3347,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-7b-v3-GPTQ/
   server: https://huggingface.co/TheBloke/h2ogpt-gm-oasst1-en-2048-falcon-7b-v3-GPTQ/resolve/main
   title: h2ogpt-gm-oasst1-en-2048-falcon-7b-v3-GPTQ
@@ -2921,6 +3360,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardCoder-Guanaco-15B-V1.1-GPTQ/
   server: https://huggingface.co/TheBloke/WizardCoder-Guanaco-15B-V1.1-GPTQ/resolve/main
   title: WizardCoder-Guanaco-15B-V1.1-GPTQ
@@ -2933,6 +3373,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/MythoLogic-13B-GPTQ/
   server: https://huggingface.co/TheBloke/MythoLogic-13B-GPTQ/resolve/main
   title: MythoLogic-13B-GPTQ
@@ -2945,6 +3386,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Codegen25-7B-mono-GPTQ/
   server: https://huggingface.co/TheBloke/Codegen25-7B-mono-GPTQ/resolve/main
   title: Codegen25-7B-mono-GPTQ
@@ -2957,6 +3399,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Redmond-Puffin-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Redmond-Puffin-13B-GPTQ/resolve/main
   title: Redmond-Puffin-13B-GPTQ
@@ -2969,6 +3412,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Luna-AI-Llama2-Uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/Luna-AI-Llama2-Uncensored-GPTQ/resolve/main
   title: Luna-AI-Llama2-Uncensored-GPTQ
@@ -2981,6 +3425,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama-2-7B-Guanaco-QLoRA-GPTQ/
   server: https://huggingface.co/TheBloke/llama-2-7B-Guanaco-QLoRA-GPTQ/resolve/main
   title: llama-2-7B-Guanaco-QLoRA-GPTQ
@@ -2993,6 +3438,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/upstage-llama-30b-instruct-2048-GPTQ/
   server: https://huggingface.co/TheBloke/upstage-llama-30b-instruct-2048-GPTQ/resolve/main
   title: upstage-llama-30b-instruct-2048-GPTQ
@@ -3005,6 +3451,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama-2-13B-Guanaco-QLoRA-GPTQ/
   server: https://huggingface.co/TheBloke/llama-2-13B-Guanaco-QLoRA-GPTQ/resolve/main
   title: llama-2-13B-Guanaco-QLoRA-GPTQ
@@ -3017,6 +3464,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama-2-13B-German-Assistant-v2-GPTQ/
   server: https://huggingface.co/TheBloke/llama-2-13B-German-Assistant-v2-GPTQ/resolve/main
   title: llama-2-13B-German-Assistant-v2-GPTQ
@@ -3029,6 +3477,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LLongMA-2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/LLongMA-2-7B-GPTQ/resolve/main
   title: LLongMA-2-7B-GPTQ
@@ -3041,6 +3490,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama-2-70b-Guanaco-QLoRA-GPTQ/
   server: https://huggingface.co/TheBloke/llama-2-70b-Guanaco-QLoRA-GPTQ/resolve/main
   title: llama-2-70b-Guanaco-QLoRA-GPTQ
@@ -3053,6 +3503,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/30B-Epsilon-GPTQ/
   server: https://huggingface.co/TheBloke/30B-Epsilon-GPTQ/resolve/main
   title: 30B-Epsilon-GPTQ
@@ -3065,6 +3516,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/13B-Ouroboros-GPTQ/
   server: https://huggingface.co/TheBloke/13B-Ouroboros-GPTQ/resolve/main
   title: 13B-Ouroboros-GPTQ
@@ -3077,6 +3529,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/13B-BlueMethod-GPTQ/
   server: https://huggingface.co/TheBloke/13B-BlueMethod-GPTQ/resolve/main
   title: 13B-BlueMethod-GPTQ
@@ -3089,6 +3542,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Upstage-Llama1-65B-Instruct-GPTQ/
   server: https://huggingface.co/TheBloke/Upstage-Llama1-65B-Instruct-GPTQ/resolve/main
   title: Upstage-Llama1-65B-Instruct-GPTQ
@@ -3101,6 +3555,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LlongOrca-13B-16K-GPTQ/
   server: https://huggingface.co/TheBloke/LlongOrca-13B-16K-GPTQ/resolve/main
   title: LlongOrca-13B-16K-GPTQ
@@ -3113,6 +3568,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Nous-Hermes-Llama2-GPTQ/
   server: https://huggingface.co/TheBloke/Nous-Hermes-Llama2-GPTQ/resolve/main
   title: Nous-Hermes-Llama2-GPTQ
@@ -3125,6 +3581,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/StableBeluga2-70B-GPTQ/
   server: https://huggingface.co/TheBloke/StableBeluga2-70B-GPTQ/resolve/main
   title: StableBeluga2-70B-GPTQ
@@ -3137,6 +3594,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama2_7b_chat_uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/llama2_7b_chat_uncensored-GPTQ/resolve/main
   title: llama2_7b_chat_uncensored-GPTQ
@@ -3149,6 +3607,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vicuna-13B-v1.3-German-GPTQ/
   server: https://huggingface.co/TheBloke/Vicuna-13B-v1.3-German-GPTQ/resolve/main
   title: Vicuna-13B-v1.3-German-GPTQ
@@ -3161,6 +3620,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/MythoBoros-13B-GPTQ/
   server: https://huggingface.co/TheBloke/MythoBoros-13B-GPTQ/resolve/main
   title: MythoBoros-13B-GPTQ
@@ -3173,6 +3633,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama2-7b-chat-codeCherryPop-qLoRA-GPTQ/
   server: https://huggingface.co/TheBloke/llama2-7b-chat-codeCherryPop-qLoRA-GPTQ/resolve/main
   title: llama2-7b-chat-codeCherryPop-qLoRA-GPTQ
@@ -3185,6 +3646,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Dolphin-Llama-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Dolphin-Llama-13B-GPTQ/resolve/main
   title: Dolphin-Llama-13B-GPTQ
@@ -3197,6 +3659,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-l2-7b-gpt4-1.4.1-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-l2-7b-gpt4-1.4.1-GPTQ/resolve/main
   title: airoboros-l2-7b-gpt4-1.4.1-GPTQ
@@ -3209,6 +3672,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ/resolve/main
   title: airoboros-l2-13B-gpt4-1.4.1-GPTQ
@@ -3221,6 +3685,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-l2-70B-gpt4-1.4.1-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-l2-70B-gpt4-1.4.1-GPTQ/resolve/main
   title: airoboros-l2-70B-gpt4-1.4.1-GPTQ
@@ -3233,6 +3698,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/AlpacaCielo-13B-GPTQ/
   server: https://huggingface.co/TheBloke/AlpacaCielo-13B-GPTQ/resolve/main
   title: AlpacaCielo-13B-GPTQ
@@ -3245,6 +3711,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/OpenAssistant-Llama2-13B-Orca-8K-3319-GPTQ/
   server: https://huggingface.co/TheBloke/OpenAssistant-Llama2-13B-Orca-8K-3319-GPTQ/resolve/main
   title: OpenAssistant-Llama2-13B-Orca-8K-3319-GPTQ
@@ -3257,6 +3724,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-13B-V1.2-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-13B-V1.2-GPTQ/resolve/main
   title: WizardLM-13B-V1.2-GPTQ
@@ -3269,6 +3737,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Kimiko-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Kimiko-13B-GPTQ/resolve/main
   title: Kimiko-13B-GPTQ
@@ -3281,6 +3750,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GPTQ/resolve/main
   title: Nous-Hermes-Llama-2-7B-GPTQ
@@ -3293,6 +3763,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/StableBeluga-13B-GPTQ/
   server: https://huggingface.co/TheBloke/StableBeluga-13B-GPTQ/resolve/main
   title: StableBeluga-13B-GPTQ
@@ -3305,6 +3776,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/MythoLogic-Mini-7B-GPTQ/
   server: https://huggingface.co/TheBloke/MythoLogic-Mini-7B-GPTQ/resolve/main
   title: MythoLogic-Mini-7B-GPTQ
@@ -3317,6 +3789,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/StableBeluga-7B-GPTQ/
   server: https://huggingface.co/TheBloke/StableBeluga-7B-GPTQ/resolve/main
   title: StableBeluga-7B-GPTQ
@@ -3329,6 +3802,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vigogne-2-13B-Instruct-GPTQ/
   server: https://huggingface.co/TheBloke/Vigogne-2-13B-Instruct-GPTQ/resolve/main
   title: Vigogne-2-13B-Instruct-GPTQ
@@ -3341,6 +3815,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vigogne-2-7B-Instruct-GPTQ/
   server: https://huggingface.co/TheBloke/Vigogne-2-7B-Instruct-GPTQ/resolve/main
   title: Vigogne-2-7B-Instruct-GPTQ
@@ -3353,6 +3828,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Upstage-Llama-2-70B-instruct-v2-GPTQ/
   server: https://huggingface.co/TheBloke/Upstage-Llama-2-70B-instruct-v2-GPTQ/resolve/main
   title: Upstage-Llama-2-70B-instruct-v2-GPTQ
@@ -3365,6 +3841,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/OpenChat_v3.2-GPTQ/
   server: https://huggingface.co/TheBloke/OpenChat_v3.2-GPTQ/resolve/main
   title: OpenChat_v3.2-GPTQ
@@ -3377,6 +3854,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-33B-GPT4-m2.0-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-33B-GPT4-m2.0-GPTQ/resolve/main
   title: airoboros-33B-GPT4-m2.0-GPTQ
@@ -3389,6 +3867,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-l2-13b-gpt4-2.0-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-l2-13b-gpt4-2.0-GPTQ/resolve/main
   title: airoboros-l2-13b-gpt4-2.0-GPTQ
@@ -3401,6 +3880,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-l2-13b-gpt4-m2.0-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-l2-13b-gpt4-m2.0-GPTQ/resolve/main
   title: airoboros-l2-13b-gpt4-m2.0-GPTQ
@@ -3413,6 +3893,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-l2-7B-gpt4-2.0-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-l2-7B-gpt4-2.0-GPTQ/resolve/main
   title: airoboros-l2-7B-gpt4-2.0-GPTQ
@@ -3425,6 +3906,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-l2-7B-gpt4-m2.0-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-l2-7B-gpt4-m2.0-GPTQ/resolve/main
   title: airoboros-l2-7B-gpt4-m2.0-GPTQ
@@ -3437,6 +3919,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-33B-GPT4-2.0-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-33B-GPT4-2.0-GPTQ/resolve/main
   title: airoboros-33B-GPT4-2.0-GPTQ
@@ -3449,6 +3932,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/NewHope-GPTQ/
   server: https://huggingface.co/TheBloke/NewHope-GPTQ/resolve/main
   title: NewHope-GPTQ
@@ -3461,6 +3945,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeUp-Llama-2-13B-Chat-HF-GPTQ/
   server: https://huggingface.co/TheBloke/CodeUp-Llama-2-13B-Chat-HF-GPTQ/resolve/main
   title: CodeUp-Llama-2-13B-Chat-HF-GPTQ
@@ -3473,6 +3958,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/OpenAssistant-Llama2-13B-Orca-v2-8K-3166-GPTQ/
   server: https://huggingface.co/TheBloke/OpenAssistant-Llama2-13B-Orca-v2-8K-3166-GPTQ/resolve/main
   title: OpenAssistant-Llama2-13B-Orca-v2-8K-3166-GPTQ
@@ -3485,6 +3971,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/airoboros-l2-70B-GPT4-2.0-GPTQ/
   server: https://huggingface.co/TheBloke/airoboros-l2-70B-GPT4-2.0-GPTQ/resolve/main
   title: airoboros-l2-70B-GPT4-2.0-GPTQ
@@ -3497,6 +3984,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Hermes-LLongMA-2-13B-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Hermes-LLongMA-2-13B-8K-GPTQ/resolve/main
   title: Hermes-LLongMA-2-13B-8K-GPTQ
@@ -3509,6 +3997,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Hermes-LLongMA-2-7B-8K-GPTQ/
   server: https://huggingface.co/TheBloke/Hermes-LLongMA-2-7B-8K-GPTQ/resolve/main
   title: Hermes-LLongMA-2-7B-8K-GPTQ
@@ -3521,6 +4010,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/vicuna-13B-v1.5-16K-GPTQ/
   server: https://huggingface.co/TheBloke/vicuna-13B-v1.5-16K-GPTQ/resolve/main
   title: vicuna-13B-v1.5-16K-GPTQ
@@ -3533,6 +4023,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/vicuna-7B-v1.5-16K-GPTQ/
   server: https://huggingface.co/TheBloke/vicuna-7B-v1.5-16K-GPTQ/resolve/main
   title: vicuna-7B-v1.5-16K-GPTQ
@@ -3545,6 +4036,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/OpenOrcaxOpenChat-Preview2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/OpenOrcaxOpenChat-Preview2-13B-GPTQ/resolve/main
   title: OpenOrcaxOpenChat-Preview2-13B-GPTQ
@@ -3557,6 +4049,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/vicuna-7B-v1.5-GPTQ/
   server: https://huggingface.co/TheBloke/vicuna-7B-v1.5-GPTQ/resolve/main
   title: vicuna-7B-v1.5-GPTQ
@@ -3569,6 +4062,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/vicuna-13B-v1.5-GPTQ/
   server: https://huggingface.co/TheBloke/vicuna-13B-v1.5-GPTQ/resolve/main
   title: vicuna-13B-v1.5-GPTQ
@@ -3581,6 +4075,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/qCammel-70-x-GPTQ/
   server: https://huggingface.co/TheBloke/qCammel-70-x-GPTQ/resolve/main
   title: qCammel-70-x-GPTQ
@@ -3593,6 +4088,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama2_70b_chat_uncensored-GPTQ/
   server: https://huggingface.co/TheBloke/llama2_70b_chat_uncensored-GPTQ/resolve/main
   title: llama2_70b_chat_uncensored-GPTQ
@@ -3605,6 +4101,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Airochronos-L2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Airochronos-L2-13B-GPTQ/resolve/main
   title: Airochronos-L2-13B-GPTQ
@@ -3617,6 +4114,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Vigogne-2-7B-Chat-GPTQ/
   server: https://huggingface.co/TheBloke/Vigogne-2-7B-Chat-GPTQ/resolve/main
   title: Vigogne-2-7B-Chat-GPTQ
@@ -3629,6 +4127,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/MythoLogic-L2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/MythoLogic-L2-13B-GPTQ/resolve/main
   title: MythoLogic-L2-13B-GPTQ
@@ -3641,6 +4140,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Chronohermes-Grad-L2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Chronohermes-Grad-L2-13B-GPTQ/resolve/main
   title: Chronohermes-Grad-L2-13B-GPTQ
@@ -3653,6 +4153,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Airoboros-L2-70B-GPT4-m2.0-GPTQ/
   server: https://huggingface.co/TheBloke/Airoboros-L2-70B-GPT4-m2.0-GPTQ/resolve/main
   title: Airoboros-L2-70B-GPT4-m2.0-GPTQ
@@ -3665,6 +4166,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Chronoboros-Grad-L2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Chronoboros-Grad-L2-13B-GPTQ/resolve/main
   title: Chronoboros-Grad-L2-13B-GPTQ
@@ -3677,6 +4179,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/qCammel-13-GPTQ/
   server: https://huggingface.co/TheBloke/qCammel-13-GPTQ/resolve/main
   title: qCammel-13-GPTQ
@@ -3689,6 +4192,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/13B-Legerdemain-L2-GPTQ/
   server: https://huggingface.co/TheBloke/13B-Legerdemain-L2-GPTQ/resolve/main
   title: 13B-Legerdemain-L2-GPTQ
@@ -3701,6 +4205,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Airoboros-65B-GPT4-m2.0-GPTQ/
   server: https://huggingface.co/TheBloke/Airoboros-65B-GPT4-m2.0-GPTQ/resolve/main
   title: Airoboros-65B-GPT4-m2.0-GPTQ
@@ -3713,6 +4218,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Chronolima-Airo-Grad-L2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Chronolima-Airo-Grad-L2-13B-GPTQ/resolve/main
   title: Chronolima-Airo-Grad-L2-13B-GPTQ
@@ -3725,6 +4231,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Airolima-Chronos-Grad-L2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Airolima-Chronos-Grad-L2-13B-GPTQ/resolve/main
   title: Airolima-Chronos-Grad-L2-13B-GPTQ
@@ -3737,6 +4244,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Airoboros-65B-GPT4-2.0-GPTQ/
   server: https://huggingface.co/TheBloke/Airoboros-65B-GPT4-2.0-GPTQ/resolve/main
   title: Airoboros-65B-GPT4-2.0-GPTQ
@@ -3749,6 +4257,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/HermesLimaRP-L2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/HermesLimaRP-L2-7B-GPTQ/resolve/main
   title: HermesLimaRP-L2-7B-GPTQ
@@ -3761,6 +4270,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Chronos-Beluga-v2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Chronos-Beluga-v2-13B-GPTQ/resolve/main
   title: Chronos-Beluga-v2-13B-GPTQ
@@ -3773,6 +4283,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-70B-OASST-1-200-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-70B-OASST-1-200-GPTQ/resolve/main
   title: Llama-2-70B-OASST-1-200-GPTQ
@@ -3785,6 +4296,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Huginn-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Huginn-13B-GPTQ/resolve/main
   title: Huginn-13B-GPTQ
@@ -3797,6 +4309,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-1.0-Uncensored-Llama2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-1.0-Uncensored-Llama2-13B-GPTQ/resolve/main
   title: WizardLM-1.0-Uncensored-Llama2-13B-GPTQ
@@ -3809,6 +4322,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Dolphin-Llama2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Dolphin-Llama2-7B-GPTQ/resolve/main
   title: Dolphin-Llama2-7B-GPTQ
@@ -3821,6 +4335,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Spring-Dragon-GPTQ/
   server: https://huggingface.co/TheBloke/Spring-Dragon-GPTQ/resolve/main
   title: Spring-Dragon-GPTQ
@@ -3833,6 +4348,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/MythoMix-L2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/MythoMix-L2-13B-GPTQ/resolve/main
   title: MythoMix-L2-13B-GPTQ
@@ -3845,6 +4361,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: apache-2.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/stablecode-completion-alpha-3b-4k-GPTQ/
   server: https://huggingface.co/TheBloke/stablecode-completion-alpha-3b-4k-GPTQ/resolve/main
   title: stablecode-completion-alpha-3b-4k-GPTQ
@@ -3857,6 +4374,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: unknown
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/stablecode-instruct-alpha-3b-GPTQ/
   server: https://huggingface.co/TheBloke/stablecode-instruct-alpha-3b-GPTQ/resolve/main
   title: stablecode-instruct-alpha-3b-GPTQ
@@ -3869,6 +4387,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Firefly-Llama2-13B-v1.2-GPTQ/
   server: https://huggingface.co/TheBloke/Firefly-Llama2-13B-v1.2-GPTQ/resolve/main
   title: Firefly-Llama2-13B-v1.2-GPTQ
@@ -3881,6 +4400,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardLM-70B-V1.0-GPTQ/
   server: https://huggingface.co/TheBloke/WizardLM-70B-V1.0-GPTQ/resolve/main
   title: WizardLM-70B-V1.0-GPTQ
@@ -3893,6 +4413,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/huginnv1.2-GPTQ/
   server: https://huggingface.co/TheBloke/huginnv1.2-GPTQ/resolve/main
   title: huginnv1.2-GPTQ
@@ -3905,6 +4426,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/AlpacaCielo2-7B-8K-GPTQ/
   server: https://huggingface.co/TheBloke/AlpacaCielo2-7B-8K-GPTQ/resolve/main
   title: AlpacaCielo2-7B-8K-GPTQ
@@ -3917,6 +4439,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/orca_mini_v3_7B-GPTQ/
   server: https://huggingface.co/TheBloke/orca_mini_v3_7B-GPTQ/resolve/main
   title: orca_mini_v3_7B-GPTQ
@@ -3929,6 +4452,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Stable-Platypus2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Stable-Platypus2-13B-GPTQ/resolve/main
   title: Stable-Platypus2-13B-GPTQ
@@ -3941,6 +4465,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/orca_mini_v3_13B-GPTQ/
   server: https://huggingface.co/TheBloke/orca_mini_v3_13B-GPTQ/resolve/main
   title: orca_mini_v3_13B-GPTQ
@@ -3953,6 +4478,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Platypus2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Platypus2-13B-GPTQ/resolve/main
   title: Platypus2-13B-GPTQ
@@ -3965,6 +4491,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Camel-Platypus2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Camel-Platypus2-13B-GPTQ/resolve/main
   title: Camel-Platypus2-13B-GPTQ
@@ -3977,6 +4504,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Platypus2-70B-Instruct-GPTQ/
   server: https://huggingface.co/TheBloke/Platypus2-70B-Instruct-GPTQ/resolve/main
   title: Platypus2-70B-Instruct-GPTQ
@@ -3989,6 +4517,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Platypus2-70B-GPTQ/
   server: https://huggingface.co/TheBloke/Platypus2-70B-GPTQ/resolve/main
   title: Platypus2-70B-GPTQ
@@ -4001,6 +4530,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/MythoMax-L2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/MythoMax-L2-13B-GPTQ/resolve/main
   title: MythoMax-L2-13B-GPTQ
@@ -4013,6 +4543,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Camel-Platypus2-70B-GPTQ/
   server: https://huggingface.co/TheBloke/Camel-Platypus2-70B-GPTQ/resolve/main
   title: Camel-Platypus2-70B-GPTQ
@@ -4025,6 +4556,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardMath-7B-V1.0-GPTQ/
   server: https://huggingface.co/TheBloke/WizardMath-7B-V1.0-GPTQ/resolve/main
   title: WizardMath-7B-V1.0-GPTQ
@@ -4037,6 +4569,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardMath-13B-V1.0-GPTQ/
   server: https://huggingface.co/TheBloke/WizardMath-13B-V1.0-GPTQ/resolve/main
   title: WizardMath-13B-V1.0-GPTQ
@@ -4049,6 +4582,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/WizardMath-70B-V1.0-GPTQ/
   server: https://huggingface.co/TheBloke/WizardMath-70B-V1.0-GPTQ/resolve/main
   title: WizardMath-70B-V1.0-GPTQ
@@ -4061,6 +4595,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-13B-German-Assistant-v4-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-13B-German-Assistant-v4-GPTQ/resolve/main
   title: Llama-2-13B-German-Assistant-v4-GPTQ
@@ -4073,6 +4608,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/OpenOrca-Platypus2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/OpenOrca-Platypus2-13B-GPTQ/resolve/main
   title: OpenOrca-Platypus2-13B-GPTQ
@@ -4085,6 +4621,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/EverythingLM-13B-16K-GPTQ/
   server: https://huggingface.co/TheBloke/EverythingLM-13B-16K-GPTQ/resolve/main
   title: EverythingLM-13B-16K-GPTQ
@@ -4097,6 +4634,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LlongOrca-7B-16K-GPTQ/
   server: https://huggingface.co/TheBloke/LlongOrca-7B-16K-GPTQ/resolve/main
   title: LlongOrca-7B-16K-GPTQ
@@ -4109,6 +4647,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Huginn-v3-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Huginn-v3-13B-GPTQ/resolve/main
   title: Huginn-v3-13B-GPTQ
@@ -4121,6 +4660,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LosslessMegaCoder-Llama2-7B-Mini-GPTQ/
   server: https://huggingface.co/TheBloke/LosslessMegaCoder-Llama2-7B-Mini-GPTQ/resolve/main
   title: LosslessMegaCoder-Llama2-7B-Mini-GPTQ
@@ -4133,6 +4673,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/CodeUp-Alpha-13B-HF-GPTQ/
   server: https://huggingface.co/TheBloke/CodeUp-Alpha-13B-HF-GPTQ/resolve/main
   title: CodeUp-Alpha-13B-HF-GPTQ
@@ -4145,6 +4686,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/llama2-22B-daydreamer-v2-GPTQ/
   server: https://huggingface.co/TheBloke/llama2-22B-daydreamer-v2-GPTQ/resolve/main
   title: llama2-22B-daydreamer-v2-GPTQ
@@ -4157,6 +4699,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: cc-by-nc-4.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/PULI-GPT-3SX-GPTQ/
   server: https://huggingface.co/TheBloke/PULI-GPT-3SX-GPTQ/resolve/main
   title: PULI-GPT-3SX-GPTQ
@@ -4169,6 +4712,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LosslessMegaCoder-Llama2-13B-Mini-GPTQ/
   server: https://huggingface.co/TheBloke/LosslessMegaCoder-Llama2-13B-Mini-GPTQ/resolve/main
   title: LosslessMegaCoder-Llama2-13B-Mini-GPTQ
@@ -4181,6 +4725,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/GodziLLa2-70B-GPTQ/
   server: https://huggingface.co/TheBloke/GodziLLa2-70B-GPTQ/resolve/main
   title: GodziLLa2-70B-GPTQ
@@ -4193,6 +4738,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama2-22B-Daydreamer-v3-GPTQ/
   server: https://huggingface.co/TheBloke/Llama2-22B-Daydreamer-v3-GPTQ/resolve/main
   title: Llama2-22B-Daydreamer-v3-GPTQ
@@ -4205,6 +4751,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Scarlett-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Scarlett-7B-GPTQ/resolve/main
   title: Scarlett-7B-GPTQ
@@ -4217,6 +4764,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Scarlett-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Scarlett-13B-GPTQ/resolve/main
   title: Scarlett-13B-GPTQ
@@ -4229,6 +4777,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/scarlett-33B-GPTQ/
   server: https://huggingface.co/TheBloke/scarlett-33B-GPTQ/resolve/main
   title: scarlett-33B-GPTQ
@@ -4241,6 +4790,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Carl-Llama-2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Carl-Llama-2-13B-GPTQ/resolve/main
   title: Carl-Llama-2-13B-GPTQ
@@ -4253,6 +4803,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Carl-33B-GPTQ/
   server: https://huggingface.co/TheBloke/Carl-33B-GPTQ/resolve/main
   title: Carl-33B-GPTQ
@@ -4265,6 +4816,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Carl-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Carl-13B-GPTQ/resolve/main
   title: Carl-13B-GPTQ
@@ -4277,6 +4829,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/orca_mini_v3_70B-GPTQ/
   server: https://huggingface.co/TheBloke/orca_mini_v3_70B-GPTQ/resolve/main
   title: orca_mini_v3_70B-GPTQ
@@ -4289,6 +4842,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama2-13B-MegaCode2-OASST-GPTQ/
   server: https://huggingface.co/TheBloke/Llama2-13B-MegaCode2-OASST-GPTQ/resolve/main
   title: Llama2-13B-MegaCode2-OASST-GPTQ
@@ -4301,6 +4855,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: bigcode-openrail-m
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Octocoder-GPTQ/
   server: https://huggingface.co/TheBloke/Octocoder-GPTQ/resolve/main
   title: Octocoder-GPTQ
@@ -4313,6 +4868,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LLaMA-65B-GPTQ/
   server: https://huggingface.co/TheBloke/LLaMA-65B-GPTQ/resolve/main
   title: LLaMA-65B-GPTQ
@@ -4325,6 +4881,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LLaMA-13b-GPTQ/
   server: https://huggingface.co/TheBloke/LLaMA-13b-GPTQ/resolve/main
   title: LLaMA-13b-GPTQ
@@ -4337,6 +4894,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LLaMA-30b-GPTQ/
   server: https://huggingface.co/TheBloke/LLaMA-30b-GPTQ/resolve/main
   title: LLaMA-30b-GPTQ
@@ -4349,6 +4907,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/LLaMA-7b-GPTQ/
   server: https://huggingface.co/TheBloke/LLaMA-7b-GPTQ/resolve/main
   title: LLaMA-7b-GPTQ
@@ -4361,6 +4920,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-7B-GPTQ/resolve/main
   title: Llama-2-7B-GPTQ
@@ -4373,6 +4933,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-13B-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-13B-GPTQ/resolve/main
   title: Llama-2-13B-GPTQ
@@ -4385,6 +4946,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-7b-Chat-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-7b-Chat-GPTQ/resolve/main
   title: Llama-2-7b-Chat-GPTQ
@@ -4397,6 +4959,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-13B-chat-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-13B-chat-GPTQ/resolve/main
   title: Llama-2-13B-chat-GPTQ
@@ -4409,6 +4972,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-70B-chat-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-70B-chat-GPTQ/resolve/main
   title: Llama-2-70B-chat-GPTQ
@@ -4421,6 +4985,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Llama-2-70B-GPTQ/
   server: https://huggingface.co/TheBloke/Llama-2-70B-GPTQ/resolve/main
   title: Llama-2-70B-GPTQ
@@ -4433,6 +4998,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Kimiko-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Kimiko-7B-GPTQ/resolve/main
   title: Kimiko-7B-GPTQ
@@ -4445,6 +5011,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: llama2
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/Zarablend-L2-7B-GPTQ/
   server: https://huggingface.co/TheBloke/Zarablend-L2-7B-GPTQ/resolve/main
   title: Zarablend-L2-7B-GPTQ
@@ -4457,6 +5024,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: bigscience-bloom-rail-1.0
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/bloomz-176B-GPTQ/
   server: https://huggingface.co/TheBloke/bloomz-176B-GPTQ/resolve/main
   title: bloomz-176B-GPTQ
@@ -4473,6 +5041,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/BLOOMChat-176B-v1-GPTQ/
   server: https://huggingface.co/TheBloke/BLOOMChat-176B-v1-GPTQ/resolve/main
   title: BLOOMChat-176B-v1-GPTQ
@@ -4489,6 +5058,7 @@
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   license: other
   owner: TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
   owner_link: https://huggingface.co/TheBloke/vicuna-AlekseyKorshuk-7B-GPTQ-4bit-128g/
   server: https://huggingface.co/TheBloke/vicuna-AlekseyKorshuk-7B-GPTQ-4bit-128g/resolve/main
   title: vicuna-AlekseyKorshuk-7B-GPTQ-4bit-128g

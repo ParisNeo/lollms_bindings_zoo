@@ -163,7 +163,9 @@ def extract_model_cards(model_links, entries):
                     'server': server_link,
                     'SHA256': SHA256,
                     'owner_link': owner_link,
+                    'type': "GGML",
                     'owner': "TheBloke",
+                    'patreon': "https://www.patreon.com/TheBlokeAI",
                     'icon': 'https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face'
                 }
 

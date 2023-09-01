@@ -238,8 +238,8 @@ class EXLLAMA(LLMBinding):
             models_dir = self.lollms_paths.personal_models_path / "exllama"
             models_dir.mkdir(parents=True, exist_ok=True)    
 
-            # Install transformers
-            subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/huggingface/transformers.git@5347d00092c4f2429389269dd912417e8daff848"])
+            # Install custom version of transformers
+            # subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/huggingface/transformers.git@5347d00092c4f2429389269dd912417e8daff848"])
 
             # 
             ASCIIColors.success("Installed successfully")

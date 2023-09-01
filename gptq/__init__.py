@@ -230,12 +230,10 @@ class GPTQ(LLMBinding):
                 ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()    
 
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])#, "--extra-index-url", "https://huggingface.github.io/autogptq-index/whl/cu117/"])
-        else:
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+        # Install transformers aand autogptq
+        subprocess.run(["pip", "install", "--upgrade", "transformers"])
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
         
-        # Install transformers
-        subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/huggingface/transformers.git@5347d00092c4f2429389269dd912417e8daff848"])
         models_dir = self.lollms_paths.personal_models_path / "gptq"
         models_dir.mkdir(parents=True, exist_ok=True)            
         ASCIIColors.success("Installed successfully")
