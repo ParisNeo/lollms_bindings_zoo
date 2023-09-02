@@ -203,15 +203,16 @@ class CTRansformers(LLMBinding):
 
             # Step 2: Install dependencies using pip from requirements.txt
             ASCIIColors.info("Trying to install a cuda enabled version of ctransformers")
-            env = os.environ.copy()
-            env["CT_CUBLAS"]="1"
+            # env = os.environ.copy()
+            # env["CT_CUBLAS"]="1"
             # pip install --upgrade --no-cache-dir --no-binary ctransformers
-            result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
-            
+            # result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
+            result = subprocess.run(["pip","install","ctransformers","ctransformers[cuda]"])
             if result.returncode != 0:
                 ASCIIColors.warning("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
                 # pip install --upgrade --no-cache-dir --no-binary ctransformers
                 result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+
         else:
             ASCIIColors.info("Using CPU")
             # pip install --upgrade --no-cache-dir --no-binary ctransformers
@@ -292,10 +293,10 @@ class CTRansformers(LLMBinding):
         try:
             output = ""
             self.model.reset()
-            tokens = self.model.tokenize(prompt)
             count = 0
-            for tok in self.model.generate(
-                                            tokens,
+            for chunk in self.model(
+                                            prompt,
+                                            stream=True,
                                             top_k=gpt_params['top_k'],
                                             top_p=gpt_params['top_p'],
                                             temperature=gpt_params['temperature'],
@@ -306,14 +307,11 @@ class CTRansformers(LLMBinding):
                                             batch_size= gpt_params['batch_size'],
                                             reset=True,
                                            ):
-                
-                if count >= n_predict or self.model.is_eos_token(tok):
-                    break
-                word = self.model.detokenize(tok)
+
                 if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
                         break
-                output += word
+                output += chunk
                 count += 1
                 
                 
