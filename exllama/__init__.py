@@ -230,7 +230,10 @@ class EXLLAMA(LLMBinding):
 
             # Check if the subfolder exists and remove it if it does
             if subfolder_path.exists():
+                ASCIIColors.yellow("---------- Pulling exllama ---------")
                 subprocess.run(["git", "pull"], cwd = str(subfolder_path), check=True)
+                ASCIIColors.yellow("------------------------------------")
+
             else:
                 # Clone the repository to the subfolder
                 subprocess.run(["git", "clone", repo_url, str(subfolder_path)])

@@ -142,8 +142,10 @@ class HuggingFace(LLMBinding):
             # load model
             self.model = AutoModelForCausalLM.from_pretrained(model_path,
                                                           torch_dtype=torch.float16,
-                                                          device_map='auto', offload_folder="offload",
-                                                          offload_state_dict = True)
+                                                          device_map='auto',
+                                                          offload_folder="offload",
+                                                          offload_state_dict = True,
+                                                          do_sample=True)
             ASCIIColors.success(f"ok")
             """
             try:
