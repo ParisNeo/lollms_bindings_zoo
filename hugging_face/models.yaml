@@ -1,3 +1,74 @@
+- SHA256: cc1ad0a09de220bb1ae6144fbf0756fd813fb0e1fb859ad46a5dac703fcd00dd
+  description: model.safetensors model
+  filename: OpenBuddy-Llama2-70b-v10.1-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: OpenBuddy-Llama2-70b-v10.1-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 35516753080
+- SHA256: 08c0f4b12d4f8fa45eb93bb089c7ba07190d49813a5ea194b1fa35665dd26f12
+  description: model.safetensors model
+  filename: ReMM-SLERP-L2-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: ReMM-SLERP-L2-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 9ea69594ae438ee623a09f64e2011f5141daf40fa5c3b5c4770cca31372e4c40
+  description: model.safetensors model
+  filename: openchat_v3.2_super-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: openchat_v3.2_super-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259476152
+- SHA256: 30283ba05e7750ed787a91df9572cbcdcf1b57c14241923b1764a470528eb762
+  description: model.safetensors model
+  filename: Asclepius-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: other
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: Asclepius-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 9cd492b1824361099751c4a1649ab34dcfa9c94c30eb5949064befdd32d91a22
+  description: model.safetensors model
+  filename: OpenBuddy-Llama2-13B-v11.1-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: OpenBuddy-Llama2-13B-v11.1-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7374778632
+
 - SHA256: d789cb7190b17c2cc43fcf29af45adb3eec1ba248353761e29dacfd512a8e06d
   description: John Durbin Airoboros 7b
   filename: jondurbin/airoboros-7b
