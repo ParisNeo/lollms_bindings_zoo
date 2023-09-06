@@ -332,9 +332,9 @@ class HuggingFace(LLMBinding):
                 self.model.generate(
                                             inputs=input_ids, 
                                             max_new_tokens=n_predict, 
-                                            temperature=gpt_params["temperature"], 
-                                            top_p=gpt_params["top_p"],
-                                            repetition_penalty=gpt_params["repeat_penalty"],
+                                            temperature=float(gpt_params["temperature"]), 
+                                            top_p=float(gpt_params["top_p"]),
+                                            repetition_penalty=float(gpt_params["repeat_penalty"]),
                                             streamer = self,
                                             do_sample=True
                                             )
