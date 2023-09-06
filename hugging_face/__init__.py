@@ -336,7 +336,7 @@ class HuggingFace(LLMBinding):
                                             top_p=float(gpt_params["top_p"]),
                                             repetition_penalty=float(gpt_params["repeat_penalty"]),
                                             streamer = self,
-                                            do_sample=True
+                                            do_sample=True if float(gpt_params["temperature"])>0 else False
                                             )
                 
             except Exception as ex:
