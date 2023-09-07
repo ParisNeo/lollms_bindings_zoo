@@ -342,8 +342,7 @@ class HuggingFace(LLMBinding):
             except Exception as ex:
                 if str(ex)!="canceled":
                     trace_exception(ex)
-            if callback is not None:
-                callback(self.output, MSG_TYPE.MSG_TYPE_FULL)
+
         except Exception as ex:
             ASCIIColors.error("Couldn't generate")
             trace_exception(ex)
