@@ -1,3 +1,59 @@
+- SHA256: 4176f2902e5cc9f9b8ae0a47d3eb864b31f7a0fda40d4260dfef644bacfe1782
+  description: model.safetensors model
+  filename: Chronos-70B-v2-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: cc-by-nc-4.0
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: Chronos-70B-v2-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 35332203544
+- SHA256: aec2536d4c124ef39725574782cc05612082b53e24edaef1526f5429ace933ed
+  description: model.safetensors model
+  filename: Mythalion-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: Mythalion-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- SHA256: 40c6426fd7751d3183fa4f3f77edfcef7478d783dc6115dcdae26b29b345c089
+  description: model.safetensors model
+  filename: Pygmalion-2-7B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: Pygmalion-2-7B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 3896714728
+- SHA256: 06352d05b68c6464ad0997abfd3f96c6c63073ba1dc632ddc1f5c1a98b2dbfff
+  description: model.safetensors model
+  filename: Pygmalion-2-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: Pygmalion-2-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7259435192
 - SHA256: cc1ad0a09de220bb1ae6144fbf0756fd813fb0e1fb859ad46a5dac703fcd00dd
   description: model.safetensors model
   filename: OpenBuddy-Llama2-70b-v10.1-GPTQ

@@ -482,3 +482,24 @@ class HuggingFace(LLMBinding):
             yaml_data = yaml.safe_load(file)
         
         return yaml_data
+
+    def train(self, model_name_or_path, model_basename):
+        from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
+        from auto_gptq.utils.peft_utils import get_gptq_peft_model, GPTQLoraConfig
+
+        model = AutoGPTQForCausalLM.from_quantized(
+            model_name_or_path,
+            model_basename=model_basename,
+            use_safetensors=True,
+            trust_remote_code=False,
+            use_triton=True,
+            device="cuda:0",
+            warmup_triton=False,
+            trainable=True,
+            inject_fused_attention=True,
+            inject_fused_mlp=False,
+        )
+        device = model.device
+        model = get_gptq_peft_model(
+            model, model_id=model_name_or_path, train_mode=False
+        )
