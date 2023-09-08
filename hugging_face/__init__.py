@@ -15,6 +15,7 @@ from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
+from transformers import GenerationConfig
 import subprocess
 import yaml
 import re
@@ -138,14 +139,17 @@ class HuggingFace(LLMBinding):
                     model_name
                     )
             ASCIIColors.success(f"ok")
+            ASCIIColors.info(f"Recovering generation config {model_path}")
+            self.generation_config = GenerationConfig.from_pretrained(model_path)
+            ASCIIColors.success(f"ok")
             ASCIIColors.info(f"Creating model {model_path}")
             # load model
             self.model = AutoModelForCausalLM.from_pretrained(model_path,
                                                           torch_dtype=torch.float16,
                                                           device_map='auto',
                                                           offload_folder="offload",
-                                                          offload_state_dict = True,
-                                                          do_sample=True)
+                                                          offload_state_dict = True
+                                                          )
             ASCIIColors.success(f"ok")
             """
             try:
@@ -314,14 +318,22 @@ class HuggingFace(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         default_params = {
-            'temperature': 0.7,
-            'top_k': 50,
-            'top_p': 0.96,
-            'repeat_penalty': 1.3,
+            'temperature': self.generation_config.temperature,
+            'top_k': self.generation_config.top_k,
+            'top_p': self.generation_config.top_p,
+            'repeat_penalty': self.generation_config.repetition_penalty,
+            'repeat_last_n':self.generation_config.no_repeat_ngram_size,
             "seed":-1,
-            "n_threads":8
+            "n_threads":8,
+            #"begin_suppress_tokens ":self.tokenize("@!>").tolist()
         }
         gpt_params = {**default_params, **gpt_params}
+        self.generation_config.max_new_tokens = n_predict
+        self.generation_config.temperature = gpt_params["temperature"]
+        self.generation_config.top_k = gpt_params["top_k"]
+        self.generation_config.top_p = gpt_params["top_p"]
+        self.generation_config.repetition_penalty = gpt_params["repeat_penalty"]
+        self.generation_config.do_sample = True if gpt_params["temperature"]>0 else False
         self.callback = callback    
         try:
             self.token_cache = []
@@ -333,14 +345,10 @@ class HuggingFace(LLMBinding):
             self.n_prompt = len(input_ids[0])
             try:
                 self.model.generate(
-                                            inputs=input_ids, 
-                                            max_new_tokens=n_predict, 
-                                            temperature=float(gpt_params["temperature"]), 
-                                            top_p=float(gpt_params["top_p"]),
-                                            repetition_penalty=float(gpt_params["repeat_penalty"]),
-                                            streamer = self,
-                                            do_sample=True if float(gpt_params["temperature"])>0 else False
-                                            )
+                                    inputs=input_ids, 
+                                    generation_config=self.generation_config,
+                                    streamer = self,
+                                    )
                 
             except Exception as ex:
                 if str(ex)!="canceled":

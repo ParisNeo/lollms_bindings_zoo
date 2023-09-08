@@ -1,56 +1,100 @@
-- SHA256: 4176f2902e5cc9f9b8ae0a47d3eb864b31f7a0fda40d4260dfef644bacfe1782
-  description: model.safetensors model
-  filename: Chronos-70B-v2-GPTQ
+- SHA256: 10573cdffc16b8c5bcbcec75d45959b6e3d68af756aa76d7c70d1fb06619ef55
+  description: model-00010-of-00010.safetensors model
+  filename: Falcon-180B-Chat-GPTQ
   icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: cc-by-nc-4.0
+  license: unknown
   owner: TheBloke
   owner_link: https://huggingface.co/TheBloke
   patreon: https://www.patreon.com/TheBlokeAI
   server: TheBloke
-  title: Chronos-70B-v2-GPTQ
+  title: Falcon-180B-Chat-GPTQ
+  type: GPTQ
+  variants:
+  - name: model-00001-of-00010.safetensors
+    size: 9935767728
+  - name: model-00002-of-00010.safetensors
+    size: 9998346208
+  - name: model-00003-of-00010.safetensors
+    size: 9998346272
+  - name: model-00004-of-00010.safetensors
+    size: 9998346272
+  - name: model-00005-of-00010.safetensors
+    size: 9998346272
+  - name: model-00006-of-00010.safetensors
+    size: 9998346272
+  - name: model-00007-of-00010.safetensors
+    size: 9998346272
+  - name: model-00008-of-00010.safetensors
+    size: 9998346272
+  - name: model-00009-of-00010.safetensors
+    size: 9998346272
+  - name: model-00010-of-00010.safetensors
+    size: 882663400
+- SHA256: a92fb0b4bf2ee09298c3e4f8f2bba1f4684ed9d803c4a022fef26cb6d97825b9
+  description: model.safetensors model
+  filename: Baichuan2-13B-Chat-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: Baichuan2-13B-Chat-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 9135747368
+- SHA256: a92fb0b4bf2ee09298c3e4f8f2bba1f4684ed9d803c4a022fef26cb6d97825b9
+  description: model.safetensors model
+  filename: Falcon-180B-Chat-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: Falcon-180B-Chat-GPTQ
+  type: GPTQ
+  variants: []
+- SHA256: c2bdc804a1f79c5b201afe024f315c095f2696feff7f927246b95eba2515ebd7
+  description: model.safetensors model
+  filename: 13B-Thorns-L2-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: 13B-Thorns-L2-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7260090552
+- SHA256: bf6ce714dc202c4471cc97ffc66b2f4b22f6dbe9766e2365be4fa336a38c06a9
+  description: model.safetensors model
+  filename: YuLan-Chat-2-13B-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: YuLan-Chat-2-13B-GPTQ
+  type: GPTQ
+  variants:
+  - name: model.safetensors
+    size: 7652651192
+- SHA256: 8afc867d4a15db3e80930d99d905c2fc19df01c88e7f54c4f4c528e48eaad07a
+  description: model.safetensors model
+  filename: Synthia-70B-v1.2-GPTQ
+  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+  license: llama2
+  owner: TheBloke
+  owner_link: https://huggingface.co/TheBloke
+  patreon: https://www.patreon.com/TheBlokeAI
+  server: TheBloke
+  title: Synthia-70B-v1.2-GPTQ
   type: GPTQ
   variants:
   - name: model.safetensors
     size: 35332203544
-- SHA256: aec2536d4c124ef39725574782cc05612082b53e24edaef1526f5429ace933ed
-  description: model.safetensors model
-  filename: Mythalion-13B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: llama2
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke
-  patreon: https://www.patreon.com/TheBlokeAI
-  server: TheBloke
-  title: Mythalion-13B-GPTQ
-  type: GPTQ
-  variants:
-  - name: model.safetensors
-    size: 7259435192
-- SHA256: 40c6426fd7751d3183fa4f3f77edfcef7478d783dc6115dcdae26b29b345c089
-  description: model.safetensors model
-  filename: Pygmalion-2-7B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: llama2
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke
-  patreon: https://www.patreon.com/TheBlokeAI
-  server: TheBloke
-  title: Pygmalion-2-7B-GPTQ
-  type: GPTQ
-  variants:
-  - name: model.safetensors
-    size: 3896714728
-- SHA256: 06352d05b68c6464ad0997abfd3f96c6c63073ba1dc632ddc1f5c1a98b2dbfff
-  description: model.safetensors model
-  filename: Pygmalion-2-13B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: llama2
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke
-  patreon: https://www.patreon.com/TheBlokeAI
-  server: TheBloke
-  title: Pygmalion-2-13B-GPTQ
-  type: GPTQ
-  variants:
-  - name: model.safetensors
-    size: 7259435192
