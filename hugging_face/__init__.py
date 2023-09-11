@@ -325,7 +325,7 @@ class HuggingFace(LLMBinding):
             'repeat_last_n':self.generation_config.no_repeat_ngram_size,
             "seed":-1,
             "n_threads":8,
-            #"begin_suppress_tokens ":self.tokenize("@!>").tolist()
+            "begin_suppress_tokens ": self.tokenize("!")
         }
         gpt_params = {**default_params, **gpt_params}
         self.generation_config.max_new_tokens = n_predict
@@ -369,7 +369,9 @@ class HuggingFace(LLMBinding):
         blocs = repo.split("/")
         if len(blocs)!=2:
             raise ValueError("Bad repository path")
-
+        
+        # https://huggingface.co/TheBloke/Spicyboros-13B-2.2-GPTQ/tree/main?not-for-all-audiences=true
+        
         main_url = "https://huggingface.co/"+repo+"/tree/main" #f"https://huggingface.co/{}/tree/main"
         response = requests.get(main_url)
         html_content = response.text
@@ -386,10 +388,20 @@ class HuggingFace(LLMBinding):
                 if file_name not in dont_download:
                     file_names.append(file_name)
 
-        print(f"Repo: {repo}")
-        ASCIIColors.info("Found files:")
-        for file in file_names:
-            print(" ", file)
+        if len(file_names)==0:
+            ASCIIColors.warning(f"No files found. This is probably a model with disclaimer. Please make sure you read the disclaimer before using the model.")
+            main_url = "https://huggingface.co/"+repo+"/tree/main?not-for-all-audiences=true" #f"https://huggingface.co/{}/tree/main"
+            response = requests.get(main_url)
+            html_content = response.text
+            soup = BeautifulSoup(html_content, 'html.parser')
+
+            file_names = []
+            for a_tag in soup.find_all('a', {'class': 'group'}):
+                span_tag = a_tag.find('span', {'class': 'truncate'})
+                if span_tag:
+                    file_name = span_tag.text
+                    if file_name not in dont_download:
+                        file_names.append(file_name)
         return file_names
                     
     @staticmethod
