@@ -10,6 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from tqdm import tqdm
 import traceback
 import urllib.request
+import re
 
 def load_current_models_list():
     pth = Path(__file__).parent/"models.yaml"
@@ -21,6 +22,22 @@ def remove_string(lst, s):
 
 
 def get_file_size(url):
+    """
+    Function to get the size of a file from a given URL.
+    The function will try to retrieve the content-length header from the URL and convert it to bytes, kilobytes, and megabytes.
+
+    Parameters:
+        url: string
+            The URL of the file whose size is required.
+
+    Returns:
+        tuple
+            (size_in_bytes, size_in_kb, size_in_mb)
+
+    Raises:
+        Exception
+            If there is an error while retrieving the file size.
+    """
     try:
         response = urllib.request.urlopen(url)
         size_in_bytes = response.headers.get('content-length')
@@ -84,11 +101,40 @@ def get_model_entries(url, output_file):
     with open("output_scraped_models_gguf.yaml", 'w') as f:
         yaml.dump({"entries":entries}, f)
 
+def extract_model_creators(html_content, text_to_find="Model creator:"):
+    # Parse the HTML content with BeautifulSoup
+    soup = BeautifulSoup(html_content, 'html.parser')
+    
+    # Find all <li> elements
+    model_creator_elements = soup.find_all('li')
 
+    # Initialize empty lists to store the extracted data
+    model_creator_names = []
+    model_creator_links = []
+
+    # Iterate through the <li> elements to extract the data
+    for element in model_creator_elements:
+        if text_to_find in element.text:
+            # Extract the model creator name (text within the <a> tag)
+            name = element.find('a').text.strip()
+            model_creator_names.append(name)
+            
+            # Extract the model creator link (href attribute of the <a> tag)
+            link = element.find('a')['href']
+            model_creator_links.append(link)
+
+    # Return the extracted data as a dictionary
+    model_creators_data = {
+        "model_creator_names": model_creator_names,
+        "model_creator_links": model_creator_links
+    }
+    
+    return model_creators_data
 def extract_model_cards(model_links, entries):
     paths=[]
     for model_link in tqdm(model_links):
         prefix = '/'.join(model_link.split('/')[0:3])
+
 
         model_url = model_link
         if "superhot" in model_url.lower():
@@ -141,8 +187,16 @@ def extract_model_cards(model_links, entries):
                     html_content = response.text
                     soup = BeautifulSoup(html_content, 'html.parser')
                     description = soup.find('div', class_='prose').find('h1').text.strip() + "("+url.split('.')[-2]+")"
+                    results = extract_model_creators(html_content)
+                    if len(results['model_creator_names'])>0:
+                        model_creator = results["model_creator_names"][0]
+                    else:
+                        model_creator=""
+
                 except:
                     description = f"{file_name} model"
+                    model_creator =  ""
+
 
                 v  = []
                 for gguf_link in gguf_links:
@@ -167,6 +221,7 @@ def extract_model_cards(model_links, entries):
                     'type': "GGUF",
                     'owner': "TheBloke",
                     'patreon': "https://www.patreon.com/TheBlokeAI",
+                    'model_creator': model_creator,
                     'icon': 'https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face'
                 }
 
