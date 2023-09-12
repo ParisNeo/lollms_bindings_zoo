@@ -226,7 +226,7 @@ class HuggingFace(LLMBinding):
         """
         Recives tokens, decodes them, and prints them to stdout as soon as they form entire words.
         """
-        if len(value.shape)==1 and value[0] == self.tokenizer.eos_token_id:
+        if len(value.shape)==1 and (value[0] == self.tokenizer.eos_token_id or value[0] == self.tokenizer.bos_token_id):
             print("eos detected")
             return
         if len(value.shape) > 1 and value.shape[0] > 1:
