@@ -431,6 +431,7 @@ class EXLLAMA(LLMBinding):
                     callback(downloaded, total)
                 except:
                     callback(0, downloaded, total)
+                    
         def download_file(get_file):
             src = "/".join(repo.split("/")[:-3])
             filename = f"{src}/resolve/main/{get_file}"
