@@ -431,8 +431,8 @@ class HuggingFace(LLMBinding):
             raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")        
         if len(blocs)==4:
         """
-
-        repo="/".join(blocs[-5:-3])
+        if len(blocs)!=2:
+            repo="/".join(blocs[-5:-3])
 
         file_names = HuggingFace.get_filenames(repo)
 
