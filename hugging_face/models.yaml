@@ -1,5 +1,76 @@
 - category: generic
   datasets:
+  - HuggingFaceH4/CodeAlpaca_20K
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/5e4318d616b09a31220980d6/24rMJ_vPh3gW9ZEmj64xr.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-13 18:02:32+00:00
+  license: apache-2.0
+  model_creator: mrm8488
+  model_creator_link: https://huggingface.co/mrm8488
+  name: Llama-2-Coder-7B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896714728
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/635b27bb4b17a81906ad7b73/nc0DL8ibyFNwjT3VW0sgH.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-13 14:33:44+00:00
+  license: llama2
+  model_creator: posicube
+  model_creator_link: https://huggingface.co/posicube
+  name: Llama2-Chat-AYT-13B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-09-13 13:31:20+00:00
+  license: other
+  model_creator: Zaraki Quem Parte
+  model_creator_link: https://huggingface.co/zarakiquemparte
+  name: Kuchiki-L2-7B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896714728
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64be6a5376a6e2efccc638c1/WeV-NfIS6SMPzTI--lNvd.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-13 01:53:23+00:00
+  license: cc-by-nc-4.0
+  model_creator: Sao10K
+  model_creator_link: https://huggingface.co/Sao10K
+  name: Euryale-Inverted-L2-70B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 35332203544
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64be6a5376a6e2efccc638c1/WeV-NfIS6SMPzTI--lNvd.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 21:44:54+00:00
+  license: cc-by-nc-4.0
+  model_creator: Sao10K
+  model_creator_link: https://huggingface.co/Sao10K
+  name: Euryale-L2-70B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 35332203544
+- category: generic
+  datasets:
   - jondurbin/airoboros-2.2
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
   last_commit_time: 2023-09-12 15:24:01+00:00

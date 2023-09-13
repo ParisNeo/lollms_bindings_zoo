@@ -1,5 +1,186 @@
 - category: generic
   datasets:
+  - HuggingFaceH4/CodeAlpaca_20K
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/5e4318d616b09a31220980d6/24rMJ_vPh3gW9ZEmj64xr.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-13 16:28:12+00:00
+  license: apache-2.0
+  model_creator: mrm8488
+  model_creator_link: https://huggingface.co/mrm8488
+  name: Llama-2-Coder-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: llama-2-coder-7b.Q2_K.gguf
+    size: 2825940672
+  - name: llama-2-coder-7b.Q2_K.gguf
+    size: 2825940672
+  - name: llama-2-coder-7b.Q3_K_L.gguf
+    size: 3597110976
+  - name: llama-2-coder-7b.Q3_K_L.gguf
+    size: 3597110976
+  - name: llama-2-coder-7b.Q3_K_M.gguf
+    size: 3298004672
+  - name: llama-2-coder-7b.Q3_K_M.gguf
+    size: 3298004672
+  - name: llama-2-coder-7b.Q3_K_S.gguf
+    size: 2948304576
+  - name: llama-2-coder-7b.Q3_K_S.gguf
+    size: 2948304576
+  - name: llama-2-coder-7b.Q4_0.gguf
+    size: 3825807040
+  - name: llama-2-coder-7b.Q4_0.gguf
+    size: 3825807040
+  - name: llama-2-coder-7b.Q4_K_M.gguf
+    size: 4081004224
+  - name: llama-2-coder-7b.Q4_K_M.gguf
+    size: 4081004224
+  - name: llama-2-coder-7b.Q4_K_S.gguf
+    size: 3856740032
+  - name: llama-2-coder-7b.Q4_K_S.gguf
+    size: 3856740032
+  - name: llama-2-coder-7b.Q5_0.gguf
+    size: 4651691712
+  - name: llama-2-coder-7b.Q5_0.gguf
+    size: 4651691712
+  - name: llama-2-coder-7b.Q5_K_M.gguf
+    size: 4783156928
+  - name: llama-2-coder-7b.Q5_K_M.gguf
+    size: 4783156928
+  - name: llama-2-coder-7b.Q5_K_S.gguf
+    size: 4651691712
+  - name: llama-2-coder-7b.Q5_K_S.gguf
+    size: 4651691712
+  - name: llama-2-coder-7b.Q6_K.gguf
+    size: 5529194176
+  - name: llama-2-coder-7b.Q6_K.gguf
+    size: 5529194176
+  - name: llama-2-coder-7b.Q8_0.gguf
+    size: 7161089728
+  - name: llama-2-coder-7b.Q8_0.gguf
+    size: 7161089728
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/635b27bb4b17a81906ad7b73/nc0DL8ibyFNwjT3VW0sgH.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-13 13:50:00+00:00
+  license: llama2
+  model_creator: posicube
+  model_creator_link: https://huggingface.co/posicube
+  name: Llama2-Chat-AYT-13B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: llama2-chat-ayt-13b.Q2_K.gguf
+    size: 5429348224
+  - name: llama2-chat-ayt-13b.Q2_K.gguf
+    size: 5429348224
+  - name: llama2-chat-ayt-13b.Q3_K_L.gguf
+    size: 6929559424
+  - name: llama2-chat-ayt-13b.Q3_K_L.gguf
+    size: 6929559424
+  - name: llama2-chat-ayt-13b.Q3_K_M.gguf
+    size: 6337769344
+  - name: llama2-chat-ayt-13b.Q3_K_M.gguf
+    size: 6337769344
+  - name: llama2-chat-ayt-13b.Q3_K_S.gguf
+    size: 5658980224
+  - name: llama2-chat-ayt-13b.Q3_K_S.gguf
+    size: 5658980224
+  - name: llama2-chat-ayt-13b.Q4_0.gguf
+    size: 7365834624
+  - name: llama2-chat-ayt-13b.Q4_0.gguf
+    size: 7365834624
+  - name: llama2-chat-ayt-13b.Q4_K_M.gguf
+    size: 7865956224
+  - name: llama2-chat-ayt-13b.Q4_K_M.gguf
+    size: 7865956224
+  - name: llama2-chat-ayt-13b.Q4_K_S.gguf
+    size: 7414331264
+  - name: llama2-chat-ayt-13b.Q4_K_S.gguf
+    size: 7414331264
+  - name: llama2-chat-ayt-13b.Q5_0.gguf
+    size: 8972285824
+  - name: llama2-chat-ayt-13b.Q5_0.gguf
+    size: 8972285824
+  - name: llama2-chat-ayt-13b.Q5_K_M.gguf
+    size: 9229924224
+  - name: llama2-chat-ayt-13b.Q5_K_M.gguf
+    size: 9229924224
+  - name: llama2-chat-ayt-13b.Q5_K_S.gguf
+    size: 8972285824
+  - name: llama2-chat-ayt-13b.Q5_K_S.gguf
+    size: 8972285824
+  - name: llama2-chat-ayt-13b.Q6_K.gguf
+    size: 10679140224
+  - name: llama2-chat-ayt-13b.Q6_K.gguf
+    size: 10679140224
+  - name: llama2-chat-ayt-13b.Q8_0.gguf
+    size: 13831319424
+  - name: llama2-chat-ayt-13b.Q8_0.gguf
+    size: 13831319424
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-09-13 13:31:18+00:00
+  license: other
+  model_creator: Zaraki Quem Parte
+  model_creator_link: https://huggingface.co/zarakiquemparte
+  name: Kuchiki-L2-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: kuchiki-l2-7b.Q2_K.gguf
+    size: 2825940672
+  - name: kuchiki-l2-7b.Q2_K.gguf
+    size: 2825940672
+  - name: kuchiki-l2-7b.Q3_K_L.gguf
+    size: 3597110976
+  - name: kuchiki-l2-7b.Q3_K_L.gguf
+    size: 3597110976
+  - name: kuchiki-l2-7b.Q3_K_M.gguf
+    size: 3298004672
+  - name: kuchiki-l2-7b.Q3_K_M.gguf
+    size: 3298004672
+  - name: kuchiki-l2-7b.Q3_K_S.gguf
+    size: 2948304576
+  - name: kuchiki-l2-7b.Q3_K_S.gguf
+    size: 2948304576
+  - name: kuchiki-l2-7b.Q4_0.gguf
+    size: 3825807040
+  - name: kuchiki-l2-7b.Q4_0.gguf
+    size: 3825807040
+  - name: kuchiki-l2-7b.Q4_K_M.gguf
+    size: 4081004224
+  - name: kuchiki-l2-7b.Q4_K_M.gguf
+    size: 4081004224
+  - name: kuchiki-l2-7b.Q4_K_S.gguf
+    size: 3856740032
+  - name: kuchiki-l2-7b.Q4_K_S.gguf
+    size: 3856740032
+  - name: kuchiki-l2-7b.Q5_0.gguf
+    size: 4651691712
+  - name: kuchiki-l2-7b.Q5_0.gguf
+    size: 4651691712
+  - name: kuchiki-l2-7b.Q5_K_M.gguf
+    size: 4783156928
+  - name: kuchiki-l2-7b.Q5_K_M.gguf
+    size: 4783156928
+  - name: kuchiki-l2-7b.Q5_K_S.gguf
+    size: 4651691712
+  - name: kuchiki-l2-7b.Q5_K_S.gguf
+    size: 4651691712
+  - name: kuchiki-l2-7b.Q6_K.gguf
+    size: 5529194176
+  - name: kuchiki-l2-7b.Q6_K.gguf
+    size: 5529194176
+  - name: kuchiki-l2-7b.Q8_0.gguf
+    size: 7161089728
+  - name: kuchiki-l2-7b.Q8_0.gguf
+    size: 7161089728
+- category: generic
+  datasets:
   - jondurbin/airoboros-2.2
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
   last_commit_time: 2023-09-12 15:28:32+00:00
