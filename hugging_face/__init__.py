@@ -18,7 +18,7 @@ from lollms.helpers import trace_exception
 from transformers import GenerationConfig
 import subprocess
 import yaml
-import tqdm
+from tqdm import tqdm
 import re
 import urllib
 
