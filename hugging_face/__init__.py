@@ -453,7 +453,7 @@ class HuggingFace(LLMBinding):
             # Example: Print the current progress
             downloaded = current 
             progress = (current  / total) * 100
-            pbar.update(current-previous[0])  # Update the tqdm progress bar
+            pbar.update(progress)  # Update the tqdm progress bar
             previous[0] = current
             if callback and (".safetensors" in loading[0] or ".bin" in loading[0] ):
                 try:
