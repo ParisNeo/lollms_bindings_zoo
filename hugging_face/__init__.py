@@ -423,10 +423,15 @@ class HuggingFace(LLMBinding):
         
         import wget
         import os
+
         blocs = repo.split("/")
+        """
+        if len(blocs)!=2 and len(blocs)!=4:
+            raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")        
         if len(blocs)==4:
-            repo="/".join(blocs[-2:])
-            
+        """
+
+        repo="/".join(blocs[-5:-3])
 
         file_names = HuggingFace.get_filenames(repo)
 
@@ -435,6 +440,8 @@ class HuggingFace(LLMBinding):
         os.chdir(dest_dir)
 
         loading = ["none"]
+        pbar = tqdm(total=100, desc="Processing", unit="step")
+        previous = [0]
         def chunk_callback(current, total, width=80):
             # This function is called for each received chunk
             # Perform actions or computations on the received chunk
@@ -445,6 +452,8 @@ class HuggingFace(LLMBinding):
             # Example: Print the current progress
             downloaded = current 
             progress = (current  / total) * 100
+            pbar.update(current-previous[0])  # Update the tqdm progress bar
+            previous[0] = current
             if callback and (".safetensors" in loading[0] or ".bin" in loading[0] ):
                 try:
                     callback(downloaded, total)
@@ -468,11 +477,13 @@ class HuggingFace(LLMBinding):
         
     def get_file_size(self, repo):
         blocs = repo.split("/")
+        """
         if len(blocs)!=2 and len(blocs)!=4:
-            raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")
-
+            raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")        
         if len(blocs)==4:
-            repo="/".join(blocs[-2:])
+        """
+
+        repo="/".join(blocs[-5:-3])
 
         file_names = HuggingFace.get_filenames(repo)
         for file_name in file_names:

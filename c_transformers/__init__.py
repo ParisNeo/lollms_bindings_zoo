@@ -110,7 +110,7 @@ class CTRansformers(LLMBinding):
             model_type = 'replit'
         elif 'gptq' in self.config['model_name'].lower(): # experimental
             model_type="gptq"
-        elif 'llama' in self.config['model_name'].lower() or 'orca' in self.config['model_name'].lower() or'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower() or'wizard' in self.config['model_name'].lower():
+        elif 'llama' in self.config['model_name'].lower() or 'l2' in self.config['model_name'].lower() or 'orca' in self.config['model_name'].lower() or'wizardlm' in self.config['model_name'].lower() or 'vigogne' in self.config['model_name'].lower() or 'ggml' in self.config['model_name'].lower() or'wizard' in self.config['model_name'].lower():
             model_type='llama'
         else:
             print("The model you are using is not supported by this binding")
