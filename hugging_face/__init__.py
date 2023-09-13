@@ -334,6 +334,9 @@ class HuggingFace(LLMBinding):
         self.generation_config.top_p = gpt_params["top_p"]
         self.generation_config.repetition_penalty = gpt_params["repeat_penalty"]
         self.generation_config.do_sample = True if gpt_params["temperature"]>0 else False
+        # self.generation_config.pad_token_id = self.tokenizer.pad_token_id
+        # self.generation_config.eos_token_id = self.tokenizer.eos_token_id
+        #self.generation_config. = self.tokenizer.pad_token_id
         self.callback = callback    
         try:
             self.token_cache = []
@@ -341,7 +344,7 @@ class HuggingFace(LLMBinding):
             self.next_tokens_are_prompt = True            
             self.n_generated = 0
             self.output = ""
-            input_ids = self.tokenizer(prompt, return_tensors='pt').input_ids.cuda()
+            input_ids = self.tokenizer(prompt, add_special_tokens=False, return_tensors='pt').input_ids.cuda()
             self.n_prompt = len(input_ids[0])
             try:
                 self.model.generate(
