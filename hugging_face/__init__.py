@@ -208,7 +208,7 @@ class HuggingFace(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.tokenizer.encode(prompt)
+        return self.tokenizer.encode(prompt,add_special_tokens=False)
 
     def detokenize(self, tokens_list:list):
         """
