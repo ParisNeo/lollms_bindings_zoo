@@ -282,6 +282,18 @@ def build_model_cards(entries, model_type='gguf', output_file="output_TheBloke_g
             yaml.dump(cards, f)        
     return cards
 
+def filter_entries(entries):
+    with open(Path(__file__).parent/"models.yaml","r") as f:
+        models = yaml.safe_load(f)
+   
+    filteredEntries=[] # Initialize an empty array to store new entries after filtering out duplicates based on name field
+        
+    for e in entries:   # Iterate through each element (entry) in input data set
+        if not any([e == f"{m['quantizer']}/{m['name']}" for m in models]):      # If none of the elements match, add it to output collection
+            filteredEntries.append(e)                            # Add this item into our cleaned up dictionary
+            
+    return filteredEntries              # Return a copy of all items that were added during processing
+
 # Main program that takes a user name and scrapes his hugging face page using argparse, with default name as TheBloke and default model type gguf
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description='Scrape the Hugging Face profile of a specific user.')
@@ -292,6 +304,8 @@ if __name__=="__main__":
     user_profile_url = hugging_face_user(args.name)
     # Now parse through the html content looking for any mention of the term defined earlier using get_model_entries method
     entries = get_model_entries(user_profile_url, model_type=args.type, output_file=f"outputs_list_{args.name}.yaml")
+    # Filter entries
+    entries = filter_entries(entries)
     # Now we open each of them and build a model card
     build_model_cards(entries, args.type, f"output_{args.name}_{args.type}.yaml")
     

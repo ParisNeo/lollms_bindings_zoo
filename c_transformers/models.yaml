@@ -2,6 +2,767 @@
   datasets:
   - jondurbin/airoboros-2.2
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 15:28:32+00:00
+  license: llama2
+  model_creator: Jon Durbin
+  model_creator_link: https://huggingface.co/jondurbin
+  name: Airoboros-L2-70b-2.2-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: airoboros-l2-70b-2.2.Q2_K.gguf
+    size: 29279253440
+  - name: airoboros-l2-70b-2.2.Q2_K.gguf
+    size: 29279253440
+  - name: airoboros-l2-70b-2.2.Q3_K_L.gguf
+    size: 36147835840
+  - name: airoboros-l2-70b-2.2.Q3_K_L.gguf
+    size: 36147835840
+  - name: airoboros-l2-70b-2.2.Q3_K_M.gguf
+    size: 33186657216
+  - name: airoboros-l2-70b-2.2.Q3_K_M.gguf
+    size: 33186657216
+  - name: airoboros-l2-70b-2.2.Q3_K_S.gguf
+    size: 29919294400
+  - name: airoboros-l2-70b-2.2.Q3_K_S.gguf
+    size: 29919294400
+  - name: airoboros-l2-70b-2.2.Q4_0.gguf
+    size: 38872249280
+  - name: airoboros-l2-70b-2.2.Q4_0.gguf
+    size: 38872249280
+  - name: airoboros-l2-70b-2.2.Q4_K_M.gguf
+    size: 41422910400
+  - name: airoboros-l2-70b-2.2.Q4_K_M.gguf
+    size: 41422910400
+  - name: airoboros-l2-70b-2.2.Q4_K_S.gguf
+    size: 39073575872
+  - name: airoboros-l2-70b-2.2.Q4_K_S.gguf
+    size: 39073575872
+  - name: airoboros-l2-70b-2.2.Q5_0.gguf
+    size: 47461397440
+  - name: airoboros-l2-70b-2.2.Q5_0.gguf
+    size: 47461397440
+  - name: airoboros-l2-70b-2.2.Q5_K_M.gguf
+    size: 48753767360
+  - name: airoboros-l2-70b-2.2.Q5_K_M.gguf
+    size: 48753767360
+  - name: airoboros-l2-70b-2.2.Q5_K_S.gguf
+    size: 47461397440
+  - name: airoboros-l2-70b-2.2.Q5_K_S.gguf
+    size: 47461397440
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 15:35:26+00:00
+  license: llama2
+  model_creator: Jon Durbin
+  model_creator_link: https://huggingface.co/jondurbin
+  name: Airoboros-L2-13B-2.2-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: airoboros-l2-13b-2.2.Q2_K.gguf
+    size: 5429348288
+  - name: airoboros-l2-13b-2.2.Q2_K.gguf
+    size: 5429348288
+  - name: airoboros-l2-13b-2.2.Q3_K_L.gguf
+    size: 6929559488
+  - name: airoboros-l2-13b-2.2.Q3_K_L.gguf
+    size: 6929559488
+  - name: airoboros-l2-13b-2.2.Q3_K_M.gguf
+    size: 6337769408
+  - name: airoboros-l2-13b-2.2.Q3_K_M.gguf
+    size: 6337769408
+  - name: airoboros-l2-13b-2.2.Q3_K_S.gguf
+    size: 5658980288
+  - name: airoboros-l2-13b-2.2.Q3_K_S.gguf
+    size: 5658980288
+  - name: airoboros-l2-13b-2.2.Q4_0.gguf
+    size: 7365834688
+  - name: airoboros-l2-13b-2.2.Q4_0.gguf
+    size: 7365834688
+  - name: airoboros-l2-13b-2.2.Q4_K_M.gguf
+    size: 7865956288
+  - name: airoboros-l2-13b-2.2.Q4_K_M.gguf
+    size: 7865956288
+  - name: airoboros-l2-13b-2.2.Q4_K_S.gguf
+    size: 7414331328
+  - name: airoboros-l2-13b-2.2.Q4_K_S.gguf
+    size: 7414331328
+  - name: airoboros-l2-13b-2.2.Q5_0.gguf
+    size: 8972285888
+  - name: airoboros-l2-13b-2.2.Q5_0.gguf
+    size: 8972285888
+  - name: airoboros-l2-13b-2.2.Q5_K_M.gguf
+    size: 9229924288
+  - name: airoboros-l2-13b-2.2.Q5_K_M.gguf
+    size: 9229924288
+  - name: airoboros-l2-13b-2.2.Q5_K_S.gguf
+    size: 8972285888
+  - name: airoboros-l2-13b-2.2.Q5_K_S.gguf
+    size: 8972285888
+  - name: airoboros-l2-13b-2.2.Q6_K.gguf
+    size: 10679140288
+  - name: airoboros-l2-13b-2.2.Q6_K.gguf
+    size: 10679140288
+  - name: airoboros-l2-13b-2.2.Q8_0.gguf
+    size: 13831319488
+  - name: airoboros-l2-13b-2.2.Q8_0.gguf
+    size: 13831319488
+- category: generic
+  datasets:
+  - Open-Orca/OpenOrca
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64d1c057c0c627dfa71b3e27/83gG4ooZAo7iiN1OhKRG3.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-11 20:35:59+00:00
+  license: cc-by-nc-4.0
+  model_creator: AIDC-ai-business
+  model_creator_link: https://huggingface.co/AIDC-ai-business
+  name: Marcoroni-7b-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: marcoroni-7b.Q2_K.gguf
+    size: 2825940672
+  - name: marcoroni-7b.Q2_K.gguf
+    size: 2825940672
+  - name: marcoroni-7b.Q3_K_L.gguf
+    size: 3597110976
+  - name: marcoroni-7b.Q3_K_L.gguf
+    size: 3597110976
+  - name: marcoroni-7b.Q3_K_M.gguf
+    size: 3298004672
+  - name: marcoroni-7b.Q3_K_M.gguf
+    size: 3298004672
+  - name: marcoroni-7b.Q3_K_S.gguf
+    size: 2948304576
+  - name: marcoroni-7b.Q3_K_S.gguf
+    size: 2948304576
+  - name: marcoroni-7b.Q4_0.gguf
+    size: 3825807040
+  - name: marcoroni-7b.Q4_0.gguf
+    size: 3825807040
+  - name: marcoroni-7b.Q4_K_M.gguf
+    size: 4081004224
+  - name: marcoroni-7b.Q4_K_M.gguf
+    size: 4081004224
+  - name: marcoroni-7b.Q4_K_S.gguf
+    size: 3856740032
+  - name: marcoroni-7b.Q4_K_S.gguf
+    size: 3856740032
+  - name: marcoroni-7b.Q5_0.gguf
+    size: 4651691712
+  - name: marcoroni-7b.Q5_0.gguf
+    size: 4651691712
+  - name: marcoroni-7b.Q5_K_M.gguf
+    size: 4783156928
+  - name: marcoroni-7b.Q5_K_M.gguf
+    size: 4783156928
+  - name: marcoroni-7b.Q5_K_S.gguf
+    size: 4651691712
+  - name: marcoroni-7b.Q5_K_S.gguf
+    size: 4651691712
+  - name: marcoroni-7b.Q6_K.gguf
+    size: 5529194176
+  - name: marcoroni-7b.Q6_K.gguf
+    size: 5529194176
+  - name: marcoroni-7b.Q8_0.gguf
+    size: 7161089728
+  - name: marcoroni-7b.Q8_0.gguf
+    size: 7161089728
+- category: generic
+  datasets:
+  - Open-Orca/OpenOrca
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64d1c057c0c627dfa71b3e27/83gG4ooZAo7iiN1OhKRG3.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-11 20:39:04+00:00
+  license: cc-by-nc-4.0
+  model_creator: AIDC-ai-business
+  model_creator_link: https://huggingface.co/AIDC-ai-business
+  name: Marcoroni-13B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: marcoroni-13b.Q2_K.gguf
+    size: 5429360064
+  - name: marcoroni-13b.Q2_K.gguf
+    size: 5429360064
+  - name: marcoroni-13b.Q3_K_L.gguf
+    size: 6929572320
+  - name: marcoroni-13b.Q3_K_L.gguf
+    size: 6929572320
+  - name: marcoroni-13b.Q3_K_M.gguf
+    size: 6337782240
+  - name: marcoroni-13b.Q3_K_M.gguf
+    size: 6337782240
+  - name: marcoroni-13b.Q3_K_S.gguf
+    size: 5658993120
+  - name: marcoroni-13b.Q3_K_S.gguf
+    size: 5658993120
+  - name: marcoroni-13b.Q4_0.gguf
+    size: 7365848864
+  - name: marcoroni-13b.Q4_0.gguf
+    size: 7365848864
+  - name: marcoroni-13b.Q4_K_M.gguf
+    size: 7865970464
+  - name: marcoroni-13b.Q4_K_M.gguf
+    size: 7865970464
+  - name: marcoroni-13b.Q4_K_S.gguf
+    size: 7414345504
+  - name: marcoroni-13b.Q4_K_S.gguf
+    size: 7414345504
+  - name: marcoroni-13b.Q5_0.gguf
+    size: 8972301344
+  - name: marcoroni-13b.Q5_0.gguf
+    size: 8972301344
+  - name: marcoroni-13b.Q5_K_M.gguf
+    size: 9229939744
+  - name: marcoroni-13b.Q5_K_M.gguf
+    size: 9229939744
+  - name: marcoroni-13b.Q5_K_S.gguf
+    size: 8972301344
+  - name: marcoroni-13b.Q5_K_S.gguf
+    size: 8972301344
+  - name: marcoroni-13b.Q6_K.gguf
+    size: 10679157120
+  - name: marcoroni-13b.Q6_K.gguf
+    size: 10679157120
+  - name: marcoroni-13b.Q8_0.gguf
+    size: 13831341248
+  - name: marcoroni-13b.Q8_0.gguf
+    size: 13831341248
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 15:28:32+00:00
+  license: llama2
+  model_creator: Jon Durbin
+  model_creator_link: https://huggingface.co/jondurbin
+  name: Airoboros-L2-70b-2.2-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: airoboros-l2-70b-2.2.Q2_K.gguf
+    size: 29279253440
+  - name: airoboros-l2-70b-2.2.Q2_K.gguf
+    size: 29279253440
+  - name: airoboros-l2-70b-2.2.Q3_K_L.gguf
+    size: 36147835840
+  - name: airoboros-l2-70b-2.2.Q3_K_L.gguf
+    size: 36147835840
+  - name: airoboros-l2-70b-2.2.Q3_K_M.gguf
+    size: 33186657216
+  - name: airoboros-l2-70b-2.2.Q3_K_M.gguf
+    size: 33186657216
+  - name: airoboros-l2-70b-2.2.Q3_K_S.gguf
+    size: 29919294400
+  - name: airoboros-l2-70b-2.2.Q3_K_S.gguf
+    size: 29919294400
+  - name: airoboros-l2-70b-2.2.Q4_0.gguf
+    size: 38872249280
+  - name: airoboros-l2-70b-2.2.Q4_0.gguf
+    size: 38872249280
+  - name: airoboros-l2-70b-2.2.Q4_K_M.gguf
+    size: 41422910400
+  - name: airoboros-l2-70b-2.2.Q4_K_M.gguf
+    size: 41422910400
+  - name: airoboros-l2-70b-2.2.Q4_K_S.gguf
+    size: 39073575872
+  - name: airoboros-l2-70b-2.2.Q4_K_S.gguf
+    size: 39073575872
+  - name: airoboros-l2-70b-2.2.Q5_0.gguf
+    size: 47461397440
+  - name: airoboros-l2-70b-2.2.Q5_0.gguf
+    size: 47461397440
+  - name: airoboros-l2-70b-2.2.Q5_K_M.gguf
+    size: 48753767360
+  - name: airoboros-l2-70b-2.2.Q5_K_M.gguf
+    size: 48753767360
+  - name: airoboros-l2-70b-2.2.Q5_K_S.gguf
+    size: 47461397440
+  - name: airoboros-l2-70b-2.2.Q5_K_S.gguf
+    size: 47461397440
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 15:35:26+00:00
+  license: llama2
+  model_creator: Jon Durbin
+  model_creator_link: https://huggingface.co/jondurbin
+  name: Airoboros-L2-13B-2.2-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: airoboros-l2-13b-2.2.Q2_K.gguf
+    size: 5429348288
+  - name: airoboros-l2-13b-2.2.Q2_K.gguf
+    size: 5429348288
+  - name: airoboros-l2-13b-2.2.Q3_K_L.gguf
+    size: 6929559488
+  - name: airoboros-l2-13b-2.2.Q3_K_L.gguf
+    size: 6929559488
+  - name: airoboros-l2-13b-2.2.Q3_K_M.gguf
+    size: 6337769408
+  - name: airoboros-l2-13b-2.2.Q3_K_M.gguf
+    size: 6337769408
+  - name: airoboros-l2-13b-2.2.Q3_K_S.gguf
+    size: 5658980288
+  - name: airoboros-l2-13b-2.2.Q3_K_S.gguf
+    size: 5658980288
+  - name: airoboros-l2-13b-2.2.Q4_0.gguf
+    size: 7365834688
+  - name: airoboros-l2-13b-2.2.Q4_0.gguf
+    size: 7365834688
+  - name: airoboros-l2-13b-2.2.Q4_K_M.gguf
+    size: 7865956288
+  - name: airoboros-l2-13b-2.2.Q4_K_M.gguf
+    size: 7865956288
+  - name: airoboros-l2-13b-2.2.Q4_K_S.gguf
+    size: 7414331328
+  - name: airoboros-l2-13b-2.2.Q4_K_S.gguf
+    size: 7414331328
+  - name: airoboros-l2-13b-2.2.Q5_0.gguf
+    size: 8972285888
+  - name: airoboros-l2-13b-2.2.Q5_0.gguf
+    size: 8972285888
+  - name: airoboros-l2-13b-2.2.Q5_K_M.gguf
+    size: 9229924288
+  - name: airoboros-l2-13b-2.2.Q5_K_M.gguf
+    size: 9229924288
+  - name: airoboros-l2-13b-2.2.Q5_K_S.gguf
+    size: 8972285888
+  - name: airoboros-l2-13b-2.2.Q5_K_S.gguf
+    size: 8972285888
+  - name: airoboros-l2-13b-2.2.Q6_K.gguf
+    size: 10679140288
+  - name: airoboros-l2-13b-2.2.Q6_K.gguf
+    size: 10679140288
+  - name: airoboros-l2-13b-2.2.Q8_0.gguf
+    size: 13831319488
+  - name: airoboros-l2-13b-2.2.Q8_0.gguf
+    size: 13831319488
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 15:27:28+00:00
+  license: llama2
+  model_creator: Jon Durbin
+  model_creator_link: https://huggingface.co/jondurbin
+  name: Airoboros-L2-7B-2.2-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: airoboros-l2-7b-2.2.Q2_K.gguf
+    size: 2825940704
+  - name: airoboros-l2-7b-2.2.Q2_K.gguf
+    size: 2825940704
+  - name: airoboros-l2-7b-2.2.Q3_K_L.gguf
+    size: 3597111008
+  - name: airoboros-l2-7b-2.2.Q3_K_L.gguf
+    size: 3597111008
+  - name: airoboros-l2-7b-2.2.Q3_K_M.gguf
+    size: 3298004704
+  - name: airoboros-l2-7b-2.2.Q3_K_M.gguf
+    size: 3298004704
+  - name: airoboros-l2-7b-2.2.Q3_K_S.gguf
+    size: 2948304608
+  - name: airoboros-l2-7b-2.2.Q3_K_S.gguf
+    size: 2948304608
+  - name: airoboros-l2-7b-2.2.Q4_0.gguf
+    size: 3825807072
+  - name: airoboros-l2-7b-2.2.Q4_0.gguf
+    size: 3825807072
+  - name: airoboros-l2-7b-2.2.Q4_K_M.gguf
+    size: 4081004256
+  - name: airoboros-l2-7b-2.2.Q4_K_M.gguf
+    size: 4081004256
+  - name: airoboros-l2-7b-2.2.Q4_K_S.gguf
+    size: 3856740064
+  - name: airoboros-l2-7b-2.2.Q4_K_S.gguf
+    size: 3856740064
+  - name: airoboros-l2-7b-2.2.Q5_0.gguf
+    size: 4651691744
+  - name: airoboros-l2-7b-2.2.Q5_0.gguf
+    size: 4651691744
+  - name: airoboros-l2-7b-2.2.Q5_K_M.gguf
+    size: 4783156960
+  - name: airoboros-l2-7b-2.2.Q5_K_M.gguf
+    size: 4783156960
+  - name: airoboros-l2-7b-2.2.Q5_K_S.gguf
+    size: 4651691744
+  - name: airoboros-l2-7b-2.2.Q5_K_S.gguf
+    size: 4651691744
+  - name: airoboros-l2-7b-2.2.Q6_K.gguf
+    size: 5529194208
+  - name: airoboros-l2-7b-2.2.Q6_K.gguf
+    size: 5529194208
+  - name: airoboros-l2-7b-2.2.Q8_0.gguf
+    size: 7161089760
+  - name: airoboros-l2-7b-2.2.Q8_0.gguf
+    size: 7161089760
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64be6a5376a6e2efccc638c1/WeV-NfIS6SMPzTI--lNvd.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 17:31:03+00:00
+  license: cc-by-nc-4.0
+  model_creator: Sao10K
+  model_creator_link: https://huggingface.co/Sao10K
+  name: Euryale-L2-70B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: euryale-l2-70b.Q2_K.gguf
+    size: 29279253440
+  - name: euryale-l2-70b.Q2_K.gguf
+    size: 29279253440
+  - name: euryale-l2-70b.Q3_K_L.gguf
+    size: 36147835840
+  - name: euryale-l2-70b.Q3_K_L.gguf
+    size: 36147835840
+  - name: euryale-l2-70b.Q3_K_M.gguf
+    size: 33186657216
+  - name: euryale-l2-70b.Q3_K_M.gguf
+    size: 33186657216
+  - name: euryale-l2-70b.Q3_K_S.gguf
+    size: 29919294400
+  - name: euryale-l2-70b.Q3_K_S.gguf
+    size: 29919294400
+  - name: euryale-l2-70b.Q4_0.gguf
+    size: 38872249280
+  - name: euryale-l2-70b.Q4_0.gguf
+    size: 38872249280
+  - name: euryale-l2-70b.Q4_K_M.gguf
+    size: 41422910400
+  - name: euryale-l2-70b.Q4_K_M.gguf
+    size: 41422910400
+  - name: euryale-l2-70b.Q4_K_S.gguf
+    size: 39073575872
+  - name: euryale-l2-70b.Q4_K_S.gguf
+    size: 39073575872
+  - name: euryale-l2-70b.Q5_0.gguf
+    size: 47461397440
+  - name: euryale-l2-70b.Q5_0.gguf
+    size: 47461397440
+  - name: euryale-l2-70b.Q5_K_M.gguf
+    size: 48753767360
+  - name: euryale-l2-70b.Q5_K_M.gguf
+    size: 48753767360
+  - name: euryale-l2-70b.Q5_K_S.gguf
+    size: 47461397440
+  - name: euryale-l2-70b.Q5_K_S.gguf
+    size: 47461397440
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64be6a5376a6e2efccc638c1/WeV-NfIS6SMPzTI--lNvd.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 17:18:30+00:00
+  license: cc-by-nc-4.0
+  model_creator: Sao10K
+  model_creator_link: https://huggingface.co/Sao10K
+  name: Euryale-Inverted-L2-70B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: euryale-inverted-l2-70b.Q2_K.gguf
+    size: 29279253440
+  - name: euryale-inverted-l2-70b.Q2_K.gguf
+    size: 29279253440
+  - name: euryale-inverted-l2-70b.Q3_K_L.gguf
+    size: 36147835840
+  - name: euryale-inverted-l2-70b.Q3_K_L.gguf
+    size: 36147835840
+  - name: euryale-inverted-l2-70b.Q3_K_M.gguf
+    size: 33186657216
+  - name: euryale-inverted-l2-70b.Q3_K_M.gguf
+    size: 33186657216
+  - name: euryale-inverted-l2-70b.Q3_K_S.gguf
+    size: 29919294400
+  - name: euryale-inverted-l2-70b.Q3_K_S.gguf
+    size: 29919294400
+  - name: euryale-inverted-l2-70b.Q4_0.gguf
+    size: 38872249280
+  - name: euryale-inverted-l2-70b.Q4_0.gguf
+    size: 38872249280
+  - name: euryale-inverted-l2-70b.Q4_K_M.gguf
+    size: 41422910400
+  - name: euryale-inverted-l2-70b.Q4_K_M.gguf
+    size: 41422910400
+  - name: euryale-inverted-l2-70b.Q4_K_S.gguf
+    size: 39073575872
+  - name: euryale-inverted-l2-70b.Q4_K_S.gguf
+    size: 39073575872
+  - name: euryale-inverted-l2-70b.Q5_0.gguf
+    size: 47461397440
+  - name: euryale-inverted-l2-70b.Q5_0.gguf
+    size: 47461397440
+  - name: euryale-inverted-l2-70b.Q5_K_M.gguf
+    size: 48753767360
+  - name: euryale-inverted-l2-70b.Q5_K_M.gguf
+    size: 48753767360
+  - name: euryale-inverted-l2-70b.Q5_K_S.gguf
+    size: 47461397440
+  - name: euryale-inverted-l2-70b.Q5_K_S.gguf
+    size: 47461397440
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 16:51:30+00:00
+  license: llama2
+  model_creator: Jon Durbin
+  model_creator_link: https://huggingface.co/jondurbin
+  name: Spicyboros-c34b-2.2-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants: []
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-09-12 17:03:42+00:00
+  license: llama2
+  model_creator: yeontaek
+  model_creator_link: https://huggingface.co/yeontaek
+  name: Llama-2-13B-Ensemble-v6-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: llama-2-13b-ensemble-v6.Q2_K.gguf
+    size: 5429360064
+  - name: llama-2-13b-ensemble-v6.Q2_K.gguf
+    size: 5429360064
+  - name: llama-2-13b-ensemble-v6.Q3_K_L.gguf
+    size: 6929572320
+  - name: llama-2-13b-ensemble-v6.Q3_K_L.gguf
+    size: 6929572320
+  - name: llama-2-13b-ensemble-v6.Q3_K_M.gguf
+    size: 6337782240
+  - name: llama-2-13b-ensemble-v6.Q3_K_M.gguf
+    size: 6337782240
+  - name: llama-2-13b-ensemble-v6.Q3_K_S.gguf
+    size: 5658993120
+  - name: llama-2-13b-ensemble-v6.Q3_K_S.gguf
+    size: 5658993120
+  - name: llama-2-13b-ensemble-v6.Q4_0.gguf
+    size: 7365848864
+  - name: llama-2-13b-ensemble-v6.Q4_0.gguf
+    size: 7365848864
+  - name: llama-2-13b-ensemble-v6.Q4_K_M.gguf
+    size: 7865970464
+  - name: llama-2-13b-ensemble-v6.Q4_K_M.gguf
+    size: 7865970464
+  - name: llama-2-13b-ensemble-v6.Q4_K_S.gguf
+    size: 7414345504
+  - name: llama-2-13b-ensemble-v6.Q4_K_S.gguf
+    size: 7414345504
+  - name: llama-2-13b-ensemble-v6.Q5_0.gguf
+    size: 8972301344
+  - name: llama-2-13b-ensemble-v6.Q5_0.gguf
+    size: 8972301344
+  - name: llama-2-13b-ensemble-v6.Q5_K_M.gguf
+    size: 9229939744
+  - name: llama-2-13b-ensemble-v6.Q5_K_M.gguf
+    size: 9229939744
+  - name: llama-2-13b-ensemble-v6.Q5_K_S.gguf
+    size: 8972301344
+  - name: llama-2-13b-ensemble-v6.Q5_K_S.gguf
+    size: 8972301344
+  - name: llama-2-13b-ensemble-v6.Q6_K.gguf
+    size: 10679157120
+  - name: llama-2-13b-ensemble-v6.Q6_K.gguf
+    size: 10679157120
+  - name: llama-2-13b-ensemble-v6.Q8_0.gguf
+    size: 13831341248
+  - name: llama-2-13b-ensemble-v6.Q8_0.gguf
+    size: 13831341248
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1660626152673-62fb1ef7e8c9c532aa7d19e4.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 13:06:24+00:00
+  license: llama2
+  model_creator: Riiid
+  model_creator_link: https://huggingface.co/Riiid
+  name: Sheep-Duck-Llama-2-70B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: sheep-duck-llama-2.Q2_K.gguf
+    size: 29279253408
+  - name: sheep-duck-llama-2.Q2_K.gguf
+    size: 29279253408
+  - name: sheep-duck-llama-2.Q3_K_L.gguf
+    size: 36147835808
+  - name: sheep-duck-llama-2.Q3_K_L.gguf
+    size: 36147835808
+  - name: sheep-duck-llama-2.Q3_K_M.gguf
+    size: 33186657184
+  - name: sheep-duck-llama-2.Q3_K_M.gguf
+    size: 33186657184
+  - name: sheep-duck-llama-2.Q3_K_S.gguf
+    size: 29919294368
+  - name: sheep-duck-llama-2.Q3_K_S.gguf
+    size: 29919294368
+  - name: sheep-duck-llama-2.Q4_0.gguf
+    size: 38872249248
+  - name: sheep-duck-llama-2.Q4_0.gguf
+    size: 38872249248
+  - name: sheep-duck-llama-2.Q4_K_M.gguf
+    size: 41422910368
+  - name: sheep-duck-llama-2.Q4_K_M.gguf
+    size: 41422910368
+  - name: sheep-duck-llama-2.Q4_K_S.gguf
+    size: 39073575840
+  - name: sheep-duck-llama-2.Q4_K_S.gguf
+    size: 39073575840
+  - name: sheep-duck-llama-2.Q5_0.gguf
+    size: 47461397408
+  - name: sheep-duck-llama-2.Q5_0.gguf
+    size: 47461397408
+  - name: sheep-duck-llama-2.Q5_K_M.gguf
+    size: 48753767328
+  - name: sheep-duck-llama-2.Q5_K_M.gguf
+    size: 48753767328
+  - name: sheep-duck-llama-2.Q5_K_S.gguf
+    size: 47461397408
+  - name: sheep-duck-llama-2.Q5_K_S.gguf
+    size: 47461397408
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64be6a5376a6e2efccc638c1/WeV-NfIS6SMPzTI--lNvd.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 12:24:30+00:00
+  license: llama2
+  model_creator: Sao10k
+  model_creator_link: https://huggingface.co/Sao10K
+  name: JanniesBasedLigma-L2-13B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: janniesbasedligma-l2-13b.Q2_K.gguf
+    size: 5429348288
+  - name: janniesbasedligma-l2-13b.Q2_K.gguf
+    size: 5429348288
+  - name: janniesbasedligma-l2-13b.Q3_K_L.gguf
+    size: 6929559488
+  - name: janniesbasedligma-l2-13b.Q3_K_L.gguf
+    size: 6929559488
+  - name: janniesbasedligma-l2-13b.Q3_K_M.gguf
+    size: 6337769408
+  - name: janniesbasedligma-l2-13b.Q3_K_M.gguf
+    size: 6337769408
+  - name: janniesbasedligma-l2-13b.Q3_K_S.gguf
+    size: 5658980288
+  - name: janniesbasedligma-l2-13b.Q3_K_S.gguf
+    size: 5658980288
+  - name: janniesbasedligma-l2-13b.Q4_0.gguf
+    size: 7365834688
+  - name: janniesbasedligma-l2-13b.Q4_0.gguf
+    size: 7365834688
+  - name: janniesbasedligma-l2-13b.Q4_K_M.gguf
+    size: 7865956288
+  - name: janniesbasedligma-l2-13b.Q4_K_M.gguf
+    size: 7865956288
+  - name: janniesbasedligma-l2-13b.Q4_K_S.gguf
+    size: 7414331328
+  - name: janniesbasedligma-l2-13b.Q4_K_S.gguf
+    size: 7414331328
+  - name: janniesbasedligma-l2-13b.Q5_0.gguf
+    size: 8972285888
+  - name: janniesbasedligma-l2-13b.Q5_0.gguf
+    size: 8972285888
+  - name: janniesbasedligma-l2-13b.Q5_K_M.gguf
+    size: 9229924288
+  - name: janniesbasedligma-l2-13b.Q5_K_M.gguf
+    size: 9229924288
+  - name: janniesbasedligma-l2-13b.Q5_K_S.gguf
+    size: 8972285888
+  - name: janniesbasedligma-l2-13b.Q5_K_S.gguf
+    size: 8972285888
+  - name: janniesbasedligma-l2-13b.Q6_K.gguf
+    size: 10679140288
+  - name: janniesbasedligma-l2-13b.Q6_K.gguf
+    size: 10679140288
+  - name: janniesbasedligma-l2-13b.Q8_0.gguf
+    size: 13831319488
+  - name: janniesbasedligma-l2-13b.Q8_0.gguf
+    size: 13831319488
+- category: generic
+  datasets:
+  - BramVanroy/dutch_chat_datasets
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1594192845975-5e1e17b6fcf41d740b6996a8.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-12 12:02:35+00:00
+  license: cc-by-nc-sa-4.0
+  model_creator: Bram Vanroy
+  model_creator_link: https://huggingface.co/BramVanroy
+  name: Llama-2-13B-Chat-Dutch-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: llama-2-13b-chat-dutch.Q2_K.gguf
+    size: 5429348224
+  - name: llama-2-13b-chat-dutch.Q2_K.gguf
+    size: 5429348224
+  - name: llama-2-13b-chat-dutch.Q3_K_L.gguf
+    size: 6929559424
+  - name: llama-2-13b-chat-dutch.Q3_K_L.gguf
+    size: 6929559424
+  - name: llama-2-13b-chat-dutch.Q3_K_M.gguf
+    size: 6337769344
+  - name: llama-2-13b-chat-dutch.Q3_K_M.gguf
+    size: 6337769344
+  - name: llama-2-13b-chat-dutch.Q3_K_S.gguf
+    size: 5658980224
+  - name: llama-2-13b-chat-dutch.Q3_K_S.gguf
+    size: 5658980224
+  - name: llama-2-13b-chat-dutch.Q4_0.gguf
+    size: 7365834624
+  - name: llama-2-13b-chat-dutch.Q4_0.gguf
+    size: 7365834624
+  - name: llama-2-13b-chat-dutch.Q4_K_M.gguf
+    size: 7865956224
+  - name: llama-2-13b-chat-dutch.Q4_K_M.gguf
+    size: 7865956224
+  - name: llama-2-13b-chat-dutch.Q4_K_S.gguf
+    size: 7414331264
+  - name: llama-2-13b-chat-dutch.Q4_K_S.gguf
+    size: 7414331264
+  - name: llama-2-13b-chat-dutch.Q5_0.gguf
+    size: 8972285824
+  - name: llama-2-13b-chat-dutch.Q5_0.gguf
+    size: 8972285824
+  - name: llama-2-13b-chat-dutch.Q5_K_M.gguf
+    size: 9229924224
+  - name: llama-2-13b-chat-dutch.Q5_K_M.gguf
+    size: 9229924224
+  - name: llama-2-13b-chat-dutch.Q5_K_S.gguf
+    size: 8972285824
+  - name: llama-2-13b-chat-dutch.Q5_K_S.gguf
+    size: 8972285824
+  - name: llama-2-13b-chat-dutch.Q6_K.gguf
+    size: 10679140224
+  - name: llama-2-13b-chat-dutch.Q6_K.gguf
+    size: 10679140224
+  - name: llama-2-13b-chat-dutch.Q8_0.gguf
+    size: 13831319424
+  - name: llama-2-13b-chat-dutch.Q8_0.gguf
+    size: 13831319424
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
   last_commit_time: 2023-09-10 12:48:06+00:00
   license: llama2
   model_creator: Jon Durbin
