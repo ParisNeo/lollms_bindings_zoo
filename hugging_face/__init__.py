@@ -49,6 +49,7 @@ class HuggingFace(LLMBinding):
         Args:
             config (LOLLMSConfig): The configuration file
         """
+        os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:512'
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
