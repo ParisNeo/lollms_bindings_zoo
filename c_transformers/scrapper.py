@@ -189,7 +189,7 @@ def get_variants(model_id, model_type="gguf"):
     model_soup = BeautifulSoup(model_html_content, 'html.parser')
 
     # Find all <a> tags with '.gguf' in their href within the model repository
-    links = model_soup.find_all('a', href=lambda href: href and href.endswith(f'.{model_type}'))
+    links = model_soup.find_all('a', href=lambda href: href and (href.endswith(f'.{model_type}') or href.endswith(f'.bin')))
     v  = []
     for link in tqdm(links):
         file_name_ = link["href"].split('/')[-1]
