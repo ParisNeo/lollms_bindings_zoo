@@ -78,6 +78,15 @@ class GPT4ALL(LLMBinding):
         if not model_path:
             self.model = None
             return None
+        
+        if model_path.suffix!=".bin" and model_path.suffix!=".gguf":
+            model_path = model_path.name.lower().replace("-ggml","").replace("-gguf","")
+            candidates = [m for m in (self.lollms_paths.personal_models_path/"gpt_4all").iterdir() if model_path in m.name]
+            if len(candidates)>0:
+                model_path = candidates[0]
+            else:
+                ASCIIColors.warning(f"Model:{model_path} not found!!")
+                return None
 
         from gpt4all import GPT4All, Embed4All
 

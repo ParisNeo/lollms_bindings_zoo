@@ -123,7 +123,7 @@ class CTRansformers(LLMBinding):
             self.model = None
             return None
 
-        if model_path.suffix!=".bin":
+        if model_path.suffix!=".bin" and model_path.suffix!=".gguf":
             model_path = model_path.name.lower().replace("-ggml","").replace("-gguf","")
             candidates = [m for m in (self.lollms_paths.personal_models_path/"c_transformers").iterdir() if model_path in m.name]
             if len(candidates)>0:
