@@ -15,7 +15,6 @@ from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
-from transformers import GenerationConfig
 import subprocess
 import yaml
 from tqdm import tqdm
@@ -114,6 +113,7 @@ class HuggingFace(LLMBinding):
     def build_model(self):
         import torch
         from transformers import AutoTokenizer, AutoModelForCausalLM
+        from transformers import GenerationConfig
 
         if self.config.model_name:
 
