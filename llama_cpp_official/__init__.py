@@ -73,8 +73,6 @@ class LLAMACPP(LLMBinding):
         
     def build_model(self):
         seed = self.config["seed"]
-        if seed<0:
-            seed = 0
 
         # if seed <=0:
         #    seed = random.randint(1, 2**31)
