@@ -8,14 +8,15 @@ def remove_bad_quantizations(list_of_dict):
     for entry in list_of_dict:
         ok=False
         selected=""
-        for v in entry["variants"]:
-            if "q4_0" in v["name"].lower():
-                ok = True
-                selected = v
-                break
-        if ok:
-            entry["variants"] = [selected]
-            accepted.append(v)
+        if "ggml" in entry["name"].lower():
+            for v in entry["variants"]:
+                if "q4_0" in v["name"].lower():
+                    ok = True
+                    selected = v
+                    break
+            if ok:
+                entry["variants"] = [selected]
+                accepted.append(entry)
     # Return a new list containing only the unique items
     return accepted
 
