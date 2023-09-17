@@ -54,7 +54,7 @@ class HuggingFace(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
             
-            {"name":"use_8bits","type":"bool","value":False, "help":"Force using quantized version"},
+            {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','gpu'], "help":"Force using quantized version"},
             {"name":"ctx_size","type":"int","value":4096, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
@@ -148,7 +148,7 @@ class HuggingFace(LLMBinding):
             # load model
             self.model = AutoModelForCausalLM.from_pretrained(model_path,
                                                           torch_dtype=torch.float16,
-                                                          device_map='auto',
+                                                          device_map=self.binding_config.device_map,
                                                           offload_folder="offload",
                                                           offload_state_dict = True
                                                           )
