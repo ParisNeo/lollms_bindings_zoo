@@ -284,12 +284,12 @@ class CTRansformers(LLMBinding):
             str: The generated text based on the prompt
         """
         default_params = {
-            'temperature': self.config.temperature,
-            'top_k': self.config.top_k,
-            'top_p': self.config.top_p,
-            'repeat_penalty': self.config.repeat_penalty,
-            'last_n_tokens' : self.config.repeat_last_n,
-            "seed":self.binding_config.seed,
+            'temperature': float(self.config.temperature),
+            'top_k': int(self.config.top_k),
+            'top_p': float(self.config.top_p),
+            'repeat_penalty': float(self.config.repeat_penalty),
+            'last_n_tokens' : int(self.config.repeat_last_n),
+            "seed":int(self.binding_config.seed),
             "n_threads":self.binding_config.n_threads,
             "batch_size":self.binding_config.batch_size
         }
