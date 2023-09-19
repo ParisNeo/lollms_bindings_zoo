@@ -329,12 +329,12 @@ class HuggingFace(LLMBinding):
             "begin_suppress_tokens ": self.tokenize("!")
         }
         gpt_params = {**default_params, **gpt_params}
-        self.generation_config.max_new_tokens = n_predict
-        self.generation_config.temperature = gpt_params["temperature"]
-        self.generation_config.top_k = gpt_params["top_k"]
-        self.generation_config.top_p = gpt_params["top_p"]
-        self.generation_config.repetition_penalty = gpt_params["repeat_penalty"]
-        self.generation_config.do_sample = True if gpt_params["temperature"]>0 else False
+        self.generation_config.max_new_tokens = int(n_predict)
+        self.generation_config.temperature = float(gpt_params["temperature"])
+        self.generation_config.top_k = int(gpt_params["top_k"])
+        self.generation_config.top_p = float(gpt_params["top_p"])
+        self.generation_config.repetition_penalty = float(gpt_params["repeat_penalty"])
+        self.generation_config.do_sample = True if float(gpt_params["temperature"])>0 else False
         # self.generation_config.pad_token_id = self.tokenizer.pad_token_id
         # self.generation_config.eos_token_id = self.tokenizer.eos_token_id
         #self.generation_config. = self.tokenizer.pad_token_id
