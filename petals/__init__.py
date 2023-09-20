@@ -19,7 +19,6 @@ import subprocess
 import yaml
 import re
 import urllib
-import torch
 
 
 __author__ = "parisneo"
@@ -163,6 +162,13 @@ class Petals(LLMBinding):
             except Exception as ex:
                 ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()    
+                import torch
+                import torchvision
+                if torch.cuda.is_available():
+                    ASCIIColors.success("CUDA is supported.")
+                else:
+                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
+                    self.reinstall_pytorch_with_cuda()
 
         result = subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/bigscience-workshop/petals"])
         if result:   
