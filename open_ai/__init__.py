@@ -170,7 +170,8 @@ class OpenAIGPT(LLMBinding):
         with open(file_path, 'r') as file:
             yaml_data = yaml.safe_load(file)
         
-        return yaml_data
+
+        return [f["name"] for f in yaml_data]
                 
     @staticmethod
     def get_available_models():
