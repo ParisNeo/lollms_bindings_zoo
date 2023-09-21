@@ -131,7 +131,7 @@ class Petals(LLMBinding):
             ASCIIColors.yellow("Please run petals server")
             # process = subprocess.Popen("python -m petals.cli.run_server --port 31330 "+self.config.model_name, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             # output, error = process.communicate()
-            
+            return self
         else:
             ASCIIColors.error('No model selected!!')
 
