@@ -127,7 +127,7 @@ class Petals(LLMBinding):
 
         if self.config.model_name:
             self.tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
-            self.model = AutoDistributedModelForCausalLM.from_pretrained(self.config.model_name)
+            self.model = AutoDistributedModelForCausalLM.from_pretrained(self.config.model_name).cuda()
             ASCIIColors.yellow("Please run petals server")
             # process = subprocess.Popen("python -m petals.cli.run_server --port 31330 "+self.config.model_name, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             # output, error = process.communicate()
@@ -320,7 +320,7 @@ class Petals(LLMBinding):
                                             top_p=gpt_params["top_p"],
                                             repetition_penalty=gpt_params["repeat_penalty"],
                                             streamer = self,
-                                            ).to("cuda:0")
+                                            )
                 
             except Exception as ex:
                 if str(ex)!="canceled":
