@@ -129,8 +129,8 @@ class Petals(LLMBinding):
             self.tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
             self.model = AutoDistributedModelForCausalLM.from_pretrained(self.config.model_name)
             ASCIIColors.yellow("Running petals server")
-            process = subprocess.Popen("python -m petals.cli.run_server --port 31330 "+self.config.model_name, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            output, error = process.communicate()
+            # process = subprocess.Popen("python -m petals.cli.run_server --port 31330 "+self.config.model_name, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            # output, error = process.communicate()
             
         else:
             ASCIIColors.error('No model selected!!')
@@ -149,29 +149,7 @@ class Petals(LLMBinding):
     def install(self):
         super().install()
         
-        if self.config.enable_gpu:
-            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
-            ASCIIColors.info("Checking pytorch")
-            try:
-                import torch
-                import torchvision
-                if torch.cuda.is_available():
-                    ASCIIColors.success("CUDA is supported.")
-                else:
-                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
-                    self.reinstall_pytorch_with_cuda()
-            except Exception as ex:
-                ASCIIColors.info("Pytorch not installed")
-                self.reinstall_pytorch_with_cuda()    
-                import torch
-                import torchvision
-                if torch.cuda.is_available():
-                    ASCIIColors.success("CUDA is supported.")
-                else:
-                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
-                    self.reinstall_pytorch_with_cuda()
-
-        result = subprocess.run(["pip", "install", "--upgrade", "petals"])
+        result = subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/bigscience-workshop/petals"])
         if result:   
             models_dir = self.lollms_paths.personal_models_path / "petals"
             models_dir.mkdir(parents=True, exist_ok=True)            
