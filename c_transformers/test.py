@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import re
 html_content = """
 <ul>
-<li>licence: gpl</li>
+<li>license: gpl</li>
 </ul>
 <ul>
 <li>Model creator: <a rel="noopener nofollow" href="https://huggingface.co/tiiuae">Technology Innovation Institute</a></li>

@@ -5,7 +5,7 @@
   license: llama2
   model_creator: bigscience
   model_creator_link: https://huggingface.co/bigscience
-  name: StableBeluga2
+  name: petals-team/StableBeluga2
   quantizer: None
   rank: 10000000000.0
   type: gptq

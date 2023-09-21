@@ -1,7 +1,7 @@
 # project: lollms
 # author: ParisNeo (built on lollms playground coding helper)
 # script: scrapper.py
-# descrkiption : scrapes the hugging face page of a model provider, recovers all models, then returns their model card, licence, description, variants etc
+# descrkiption : scrapes the hugging face page of a model provider, recovers all models, then returns their model card, license, description, variants etc
 
 import requests
 from bs4 import BeautifulSoup

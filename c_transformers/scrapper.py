@@ -1,7 +1,7 @@
 # project: lollms
 # author: ParisNeo (built on lollms playground coding helper)
 # script: scrapper.py
-# descrkiption : scrapes the hugging face page of a model provider, recovers all models, then returns their model card, licence, description, variants etc
+# descrkiption : scrapes the hugging face page of a model provider, recovers all models, then returns their model card, license, description, variants etc
 
 import requests
 from bs4 import BeautifulSoup
@@ -204,7 +204,7 @@ def build_model_cards(entries, model_type='gguf', output_file="output_TheBloke_g
     2- Model creation date: uses the hugging face to track the date of the first commit
     3- Model description: Extracted from the model card. it is a section that follows a h2 tag that contains the code Description
     4- Model creator: Can be extracted from a README.md file in the repo from the metadata section. The entry is named model_creator
-    5- Licence : The licence of the model, it is also extracted from the README.ms file in the repo. The entry is named license 
+    5- license : The license of the model, it is also extracted from the README.ms file in the repo. The entry is named license 
     """
     cards = []
     for i,entry in enumerate(tqdm(entries)):

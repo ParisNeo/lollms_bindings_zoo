@@ -27,7 +27,7 @@ __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
 binding_name = "Petals"
-binding_folder_name = "petals"
+binding_folder_name = "bs_petals"
 import os
 import platform
 import os
@@ -117,7 +117,7 @@ class Petals(LLMBinding):
     def build_model(self):
 
         from transformers import AutoTokenizer
-        from petals import AutoDistributedModelForCausalLM
+        from bs_petals import AutoDistributedModelForCausalLM
         gc.collect()
         import os
         models_dir = self.lollms_paths.personal_models_path / "petals"
@@ -170,7 +170,7 @@ class Petals(LLMBinding):
                     ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
                     self.reinstall_pytorch_with_cuda()
 
-        result = subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/bigscience-workshop/petals"])
+        result = subprocess.run(["pip", "install", "--upgrade", "petals"])
         if result:   
             models_dir = self.lollms_paths.personal_models_path / "petals"
             models_dir.mkdir(parents=True, exist_ok=True)            
