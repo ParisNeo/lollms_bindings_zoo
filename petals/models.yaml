@@ -1,26 +1,15 @@
-- SHA256: 5f3902fbcee7a650d5344f621104e22921e921e0895b50e9ed77789ec69b3a4d
-  description: Stable Bulga 2
-  filename: petals-team/StableBeluga2
-  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1634806038075-5df7e9e5da6d0311fd3d53f9.png?w=200&h=200&f=face
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-09-17 17:21:17+00:00
   license: llama2
-  owner: Bigscience
-  owner_link: https://huggingface.co/petals-team/StableBeluga2
-  server: https://huggingface.co/petals-team/StableBeluga2
-  title: StableBeluga2
+  model_creator: bigscience
+  model_creator_link: https://huggingface.co/bigscience
+  name: StableBeluga2
+  quantizer: None
+  rank: 10000000000.0
+  type: gptq
   model_type: api
   variants:
-  - name: Distributed
-    size: 0
-- SHA256: 5f3902fbcee7a650d5344f621104e22921e921e0895b50e9ed77789ec69b3a4d
-  description: bigscience/bloom
-  filename: bigscience/bloom
-  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1634806038075-5df7e9e5da6d0311fd3d53f9.png?w=200&h=200&f=face
-  license: bigscience-boom-rail-1.0
-  owner: Bigscience
-  owner_link: https://huggingface.co/petals-team/StableBeluga2
-  server: https://huggingface.co/petals-team/StableBeluga2
-  title: bloom 172B
-  model_type: api
-  variants:
-  - name: Distributed
-    size: 0
+  - name: StableBeluga2
+    size: 35332203544

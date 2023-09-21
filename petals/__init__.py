@@ -396,7 +396,7 @@ class Petals(LLMBinding):
         import wget
         import os
 
-        file_names = GPTQ.get_filenames(repo)
+        file_names = Petals.get_filenames(repo)
 
         dest_dir = Path(base_folder)
         dest_dir.mkdir(parents=True, exist_ok=True)
@@ -433,7 +433,7 @@ class Petals(LLMBinding):
         print("Done")
         
     def get_file_size(self, url):
-        file_names = GPTQ.get_filenames(url)
+        file_names = Petals.get_filenames(url)
         for file_name in file_names:
             if file_name.endswith(".safetensors"):
                 src = "/".join(url.split("/")[:-3])
@@ -453,8 +453,8 @@ class Petals(LLMBinding):
     def list_models(self, config:dict):
         """Lists the models for this binding
         """
-        models_dir:Path = self.lollms_paths.personal_models_path/config["binding_name"]  # replace with the actual path to the models folder
-        return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".") or f.suffix==".reference"]
+
+        return ["StableBeluga2","Bloom", "LLama2"]
 
     @staticmethod
     def get_available_models():
@@ -464,5 +464,7 @@ class Petals(LLMBinding):
 
         with open(file_path, 'r') as file:
             yaml_data = yaml.safe_load(file)
+
+        ASCIIColors.yellow(f"Models:\n{yaml_data}")
         
         return yaml_data
