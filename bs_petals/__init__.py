@@ -117,7 +117,7 @@ class Petals(LLMBinding):
     def build_model(self):
 
         from transformers import AutoTokenizer
-        from bs_petals import AutoDistributedModelForCausalLM
+        from petals import AutoDistributedModelForCausalLM
         gc.collect()
         import os
         models_dir = self.lollms_paths.personal_models_path / "petals"
@@ -128,6 +128,7 @@ class Petals(LLMBinding):
         if self.config.model_name:
             self.tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
             self.model = AutoDistributedModelForCausalLM.from_pretrained(self.config.model_name)
+            ASCIIColors.yellow("Running petals server")
             process = subprocess.Popen("python -m petals.cli.run_server --port 31330 "+self.config.model_name, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             output, error = process.communicate()
             
