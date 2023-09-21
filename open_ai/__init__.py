@@ -22,7 +22,6 @@ import subprocess
 import yaml
 import re
 
-import openai
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -71,7 +70,9 @@ class OpenAIGPT(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size
         
     def build_model(self):
+        import openai
         openai.api_key = self.binding_config.config["openai_key"]
+        self.openai = openai
 
         # Do your initialization stuff
         return self
@@ -135,7 +136,7 @@ class OpenAIGPT(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
             count = 0
             output = ""
-            for resp in openai.Completion.create(model=self.config["model"],  # Choose the engine according to your OpenAI plan
+            for resp in self.openai.Completion.create(model=self.config["model"],  # Choose the engine according to your OpenAI plan
                                 prompt=prompt,
                                 max_tokens=n_predict,  # Adjust the desired length of the generated response
                                 n=1,  # Specify the number of responses you want

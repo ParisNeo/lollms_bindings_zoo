@@ -454,7 +454,7 @@ class Petals(LLMBinding):
         """Lists the models for this binding
         """
 
-        return ["StableBeluga2","Bloom", "LLama2"]
+        return ["petals-team/StableBeluga2","tiiuae/falcon-180B-chat", "codellama/CodeLlama-34b-Instruct-hf", "codellama/CodeLlama-34b-Instruct-hf", "meta-llama/Llama-2-70b-chat-hf", "huggyllama/llama-65b", "bigscience/bloomz", "bigscience/bloom-560m"]
 
     @staticmethod
     def get_available_models():
