@@ -320,7 +320,7 @@ class Petals(LLMBinding):
                                             top_p=gpt_params["top_p"],
                                             repetition_penalty=gpt_params["repeat_penalty"],
                                             streamer = self,
-                                            )
+                                            ).to("cuda:0")
                 
             except Exception as ex:
                 if str(ex)!="canceled":
