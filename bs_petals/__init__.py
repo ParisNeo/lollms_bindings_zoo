@@ -52,16 +52,7 @@ class Petals(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
             
-            {"name":"use_triton","type":"bool","value":False, "help":"Activate triton or not"},
-            {"name":"device","type":"str","value":"gpu", "options":["cpu","gpu"],"help":"Device to be used (CPU or GPU)"},
-            {"name":"batch_size","type":"int","value":1, "min":1},
-            {"name":"split_between_cpu_and_gpu","type":"bool","value":False},
-            {"name":"max_gpu_mem_GB","type":"int","value":4, "min":0},
-            {"name":"max_cpu_mem_GB","type":"int","value":100, "min":0},
-            {"name":"automatic_context_size","type":"bool","value":True, "help":"If selected, the context size will be set automatically and the ctx_size parameter is useless."},
-            {"name":"ctx_size","type":"int","value":8192, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-
+            {"name":"Node Name","type":"str","value":"Unnamed", "help":"The current node name"},
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
 
