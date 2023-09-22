@@ -312,6 +312,7 @@ class Petals(LLMBinding):
                                             temperature=gpt_params["temperature"], 
                                             top_p=gpt_params["top_p"],
                                             repetition_penalty=gpt_params["repeat_penalty"],
+                                            do_sample=True if gpt_params["temperature"]>0 else False,
                                             streamer = self,
                                             )
                 
