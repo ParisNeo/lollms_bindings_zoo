@@ -52,8 +52,8 @@ class Petals(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
             {"name":"Automatic_server_launch","type":"bool","value":"Unnamed", "help":"If true, your PC will be used as a node in this system. If false, you will only be a user. Make sure you participate to the hive mind as this would help others have more resources."},
-            {"name":"GPU to share","type":"str","value":"cuda:0", "help":"If you have moire than 1 GPU you can select a different GPU to be used"},
             {"name":"Node Name","type":"str","value":"Unnamed", "help":"The current node name"},
+            {"name":"GPU to share","type":"str","value":"cuda:0", "help":"If you have moire than 1 GPU you can select a different GPU to be used"},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
@@ -81,6 +81,39 @@ class Petals(LLMBinding):
         self.token_cache = []
         self.print_len = 0
         self.next_tokens_are_prompt = True
+        try:
+            import petals
+            if self.binding_config.Automatic_server_launch:
+                self.start_server(self.config.model_name, self.binding_config["Node Name"], self.binding_config["Device"])
+        except:
+            pass
+
+    def start_server(self, model_name, node_name, device):
+
+        if not node_name:
+            self.resource_info.setText("Node Name is required.")
+            return
+
+        command = [
+            "python3",
+            "-m",
+            "petals.cli.run_server",
+            model_name,
+            "--public_name",
+            node_name,
+            "--device",
+            device,
+        ]
+
+        try:
+            subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            self.resource_info.setText("Server started successfully!")
+
+            # Update resource usage information
+            self.update_resource_info()
+        except subprocess.CalledProcessError as e:
+            self.resource_info.setText(f"Error starting the server: {e.stderr.decode('utf-8')}")
+
 
 
     def __del__(self):
@@ -148,13 +181,15 @@ class Petals(LLMBinding):
             models_dir = self.lollms_paths.personal_models_path / "petals"
             models_dir.mkdir(parents=True, exist_ok=True)            
             ASCIIColors.success("Installed successfully")
+            return True
         else:
             raise Exception("Couldn't install petal from its repository")
 
     def uninstall(self):
-        super().install()
+        super().uninstall()
         print("Uninstalling binding.")
-        subprocess.run(["pip", "uninstall", "--yes", "llama-cpp-python"])
+        self.binding_config.config.file_path.unlink()
+        subprocess.run(["pip", "uninstall", "--yes", "petals"])
         ASCIIColors.success("Installed successfully")
 
   
