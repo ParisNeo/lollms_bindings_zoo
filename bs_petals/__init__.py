@@ -51,6 +51,8 @@ class Petals(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
+            {"name":"Automatic_server_launch","type":"bool","value":"Unnamed", "help":"If true, your PC will be used as a node in this system. If false, you will only be a user. Make sure you participate to the hive mind as this would help others have more resources."},
+            {"name":"GPU to share","type":"str","value":"cuda:0", "help":"If you have moire than 1 GPU you can select a different GPU to be used"},
             {"name":"Node Name","type":"str","value":"Unnamed", "help":"The current node name"},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
         ])
