@@ -51,7 +51,6 @@ class Petals(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-            
             {"name":"Node Name","type":"str","value":"Unnamed", "help":"The current node name"},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
         ])
