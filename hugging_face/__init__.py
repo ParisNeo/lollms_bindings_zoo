@@ -147,7 +147,7 @@ class HuggingFace(LLMBinding):
             # load model
             self.model = AutoModelForCausalLM.from_pretrained(model_path,
                                                           torch_dtype=torch.float16,
-                                                          device_map="co",
+                                                          device_map=self.binding_config.device_map,
                                                           offload_folder="offload",
                                                           offload_state_dict = True
                                                           )
