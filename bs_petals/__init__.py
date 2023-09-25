@@ -51,17 +51,10 @@ class Petals(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-            
-            {"name":"use_triton","type":"bool","value":False, "help":"Activate triton or not"},
-            {"name":"device","type":"str","value":"gpu", "options":["cpu","gpu"],"help":"Device to be used (CPU or GPU)"},
-            {"name":"batch_size","type":"int","value":1, "min":1},
-            {"name":"split_between_cpu_and_gpu","type":"bool","value":False},
-            {"name":"max_gpu_mem_GB","type":"int","value":4, "min":0},
-            {"name":"max_cpu_mem_GB","type":"int","value":100, "min":0},
-            {"name":"automatic_context_size","type":"bool","value":True, "help":"If selected, the context size will be set automatically and the ctx_size parameter is useless."},
-            {"name":"ctx_size","type":"int","value":8192, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"Automatic_server_launch","type":"bool","value":"Unnamed", "help":"If true, your PC will be used as a node in this system. If false, you will only be a user. Make sure you participate to the hive mind as this would help others have more resources."},
+            {"name":"Node Name","type":"str","value":"Unnamed", "help":"The current node name"},
+            {"name":"GPU to share","type":"str","value":"cuda:0", "help":"If you have moire than 1 GPU you can select a different GPU to be used"},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
 
@@ -77,7 +70,6 @@ class Petals(LLMBinding):
                             installation_option,
                             supported_file_extensions=['.safetensors','.pth','.bin']
                         )
-        self.config.ctx_size=self.binding_config.config.ctx_size
         self.callback = None
         self.n_generated = 0
         self.n_prompt = 0
@@ -89,6 +81,39 @@ class Petals(LLMBinding):
         self.token_cache = []
         self.print_len = 0
         self.next_tokens_are_prompt = True
+        try:
+            import petals
+            if self.binding_config.Automatic_server_launch:
+                self.start_server(self.config.model_name, self.binding_config["Node Name"], self.binding_config["Device"])
+        except:
+            pass
+
+    def start_server(self, model_name, node_name, device):
+
+        if not node_name:
+            self.resource_info.setText("Node Name is required.")
+            return
+
+        command = [
+            "python3",
+            "-m",
+            "petals.cli.run_server",
+            model_name,
+            "--public_name",
+            node_name,
+            "--device",
+            device,
+        ]
+
+        try:
+            subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            self.resource_info.setText("Server started successfully!")
+
+            # Update resource usage information
+            self.update_resource_info()
+        except subprocess.CalledProcessError as e:
+            self.resource_info.setText(f"Error starting the server: {e.stderr.decode('utf-8')}")
+
 
 
     def __del__(self):
@@ -118,6 +143,7 @@ class Petals(LLMBinding):
 
         from transformers import AutoTokenizer
         from petals import AutoDistributedModelForCausalLM
+        
         gc.collect()
         import os
         models_dir = self.lollms_paths.personal_models_path / "petals"
@@ -128,6 +154,7 @@ class Petals(LLMBinding):
         if self.config.model_name:
             self.tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
             self.model = AutoDistributedModelForCausalLM.from_pretrained(self.config.model_name).cuda()
+
             ASCIIColors.yellow("Please run petals server")
             # process = subprocess.Popen("python -m petals.cli.run_server --port 31330 "+self.config.model_name, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             # output, error = process.communicate()
@@ -154,13 +181,15 @@ class Petals(LLMBinding):
             models_dir = self.lollms_paths.personal_models_path / "petals"
             models_dir.mkdir(parents=True, exist_ok=True)            
             ASCIIColors.success("Installed successfully")
+            return True
         else:
             raise Exception("Couldn't install petal from its repository")
 
     def uninstall(self):
-        super().install()
+        super().uninstall()
         print("Uninstalling binding.")
-        subprocess.run(["pip", "uninstall", "--yes", "llama-cpp-python"])
+        self.binding_config.config.file_path.unlink()
+        subprocess.run(["pip", "uninstall", "--yes", "petals"])
         ASCIIColors.success("Installed successfully")
 
   
@@ -319,6 +348,7 @@ class Petals(LLMBinding):
                                             temperature=gpt_params["temperature"], 
                                             top_p=gpt_params["top_p"],
                                             repetition_penalty=gpt_params["repeat_penalty"],
+                                            do_sample=True if gpt_params["temperature"]>0 else False,
                                             streamer = self,
                                             )
                 
