@@ -147,10 +147,11 @@ class HuggingFace(LLMBinding):
             # load model
             self.model = AutoModelForCausalLM.from_pretrained(model_path,
                                                           torch_dtype=torch.float16,
-                                                          device_map=self.binding_config.device_map,
+                                                          device_map="co",
                                                           offload_folder="offload",
                                                           offload_state_dict = True
                                                           )
+            self.model_device = self.model.parameters().__next__().device
             ASCIIColors.success(f"ok")
             """
             try:
@@ -345,7 +346,7 @@ class HuggingFace(LLMBinding):
             self.next_tokens_are_prompt = True            
             self.n_generated = 0
             self.output = ""
-            input_ids = self.tokenizer(prompt, add_special_tokens=False, return_tensors='pt').input_ids.cuda()
+            input_ids = self.tokenizer(prompt, add_special_tokens=False, return_tensors='pt').input_ids.to(self.model_device)
             self.n_prompt = len(input_ids[0])
             try:
                 self.model.generate(
