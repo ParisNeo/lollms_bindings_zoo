@@ -1,4 +1,327 @@
 - category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1631080954171-61384b860317b0a5c10877d3.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-22 23:48:14+00:00
+  license: mit
+  model_creator: haoranxu
+  model_creator_link: https://huggingface.co/haoranxu
+  name: ALMA-7B-Pretrain-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896714728
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1631080954171-61384b860317b0a5c10877d3.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-23 00:07:20+00:00
+  license: mit
+  model_creator: haoranxu
+  model_creator_link: https://huggingface.co/haoranxu
+  name: ALMA-13B-Pretrain-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/63010c7359ab5d9dc09d2378/bXSw2s7QxlaNVcUD19sae.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-24 09:41:15+00:00
+  license: llama2
+  model_creator: OpenBuddy
+  model_creator_link: https://huggingface.co/OpenBuddy
+  name: openbuddy-llama2-34b-v11.1-bf16-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 17873285912
+- category: generic
+  datasets:
+  - TIGER-Lab/MathInstruct
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6313a86154e6e5d9f0f94e04/Noi3Qq3RYz8Jdq6BaFteq.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-24 00:26:03+00:00
+  license: mit
+  model_creator: TIGER-Lab
+  model_creator_link: https://huggingface.co/TIGER-Lab
+  name: MAmmoTH-Coder-13B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259783352
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/63010c7359ab5d9dc09d2378/bXSw2s7QxlaNVcUD19sae.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-24 04:12:21+00:00
+  license: llama2
+  model_creator: OpenBuddy
+  model_creator_link: https://huggingface.co/OpenBuddy
+  name: openbuddy-coder-34b-v11-bf16-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 17873285912
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-09-24 03:53:17+00:00
+  license: llama2
+  model_creator: Migel Tissera
+  model_creator_link: https://huggingface.co/migtissera
+  name: Synthia-7B-v1.2-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896714728
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-09-24 03:23:52+00:00
+  license: llama2
+  model_creator: Migel Tissera
+  model_creator_link: https://huggingface.co/migtissera
+  name: Synthia-13B-v1.2-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-09-24 03:03:07+00:00
+  license: llama2
+  model_creator: MetaMath
+  model_creator_link: https://huggingface.co/meta-math
+  name: MetaMath-7B-V1.0-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896731112
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-09-24 00:36:08+00:00
+  license: llama2
+  model_creator: MetaMath
+  model_creator_link: https://huggingface.co/meta-math
+  name: MetaMath-70B-V1.0-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 35332203544
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-09-23 23:58:00+00:00
+  license: llama2
+  model_creator: MetaMath
+  model_creator_link: https://huggingface.co/meta-math
+  name: MetaMath-13B-V1.0-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259455672
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-09-23 23:28:13+00:00
+  license: cc-by-nc-4.0
+  model_creator: Undi
+  model_creator_link: https://huggingface.co/Undi95
+  name: MXLewdMini-L2-13B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-09-23 23:27:40+00:00
+  license: llama2
+  model_creator: Charles Goddard
+  model_creator_link: https://huggingface.co/chargoddard
+  name: storytime-13B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-09-23 22:42:51+00:00
+  license: cc-by-nc-4.0
+  model_creator: Undi
+  model_creator_link: https://huggingface.co/Undi95
+  name: MXLewd-L2-20B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 10515823064
+- category: generic
+  datasets:
+  - totally-not-an-llm/EverythingLM-data-V3
+  - Open-Orca/OpenOrca
+  - garage-bAInd/Open-Platypus
+  last_commit_time: 2023-09-23 22:34:01+00:00
+  license: other
+  model_creator: Kai Howard
+  model_creator_link: https://huggingface.co/totally-not-an-llm
+  name: PuddleJumper-13B-V2-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259476152
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1667690511692-630dfb008df86f1e5becadc3.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-23 22:09:47+00:00
+  license: cc-by-nc-4.0
+  model_creator: IkariDev
+  model_creator_link: https://huggingface.co/IkariDev
+  name: Athena-v2-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets:
+  - totally-not-an-llm/EverythingLM-data-V3
+  last_commit_time: 2023-09-23 20:32:44+00:00
+  license: llama2
+  model_creator: Kai Howard
+  model_creator_link: https://huggingface.co/totally-not-an-llm
+  name: EverythingLM-13B-V3-16K-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets:
+  - TIGER-Lab/MathInstruct
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6313a86154e6e5d9f0f94e04/Noi3Qq3RYz8Jdq6BaFteq.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-23 21:52:04+00:00
+  license: mit
+  model_creator: TIGER-Lab
+  model_creator_link: https://huggingface.co/TIGER-Lab
+  name: MAmmoTH-7B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896731112
+- category: generic
+  datasets:
+  - TIGER-Lab/MathInstruct
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6313a86154e6e5d9f0f94e04/Noi3Qq3RYz8Jdq6BaFteq.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-23 21:22:18+00:00
+  license: mit
+  model_creator: TIGER-Lab
+  model_creator_link: https://huggingface.co/TIGER-Lab
+  name: MAmmoTH-13B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259455672
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2.1
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-23 21:04:22+00:00
+  license: llama2
+  model_creator: Jon Durbin
+  model_creator_link: https://huggingface.co/jondurbin
+  name: airoboros-l2-7B-2.2.1-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896714728
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2.1
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-23 20:28:33+00:00
+  license: llama2
+  model_creator: Jon Durbin
+  model_creator_link: https://huggingface.co/jondurbin
+  name: airoboros-l2-13B-2.2.1-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2.1
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-23 17:47:45+00:00
+  license: llama2
+  model_creator: Jon Durbin
+  model_creator_link: https://huggingface.co/jondurbin
+  name: airoboros-c34b-2.2.1-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 17688736536
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/63ab1241ad514ca8d1430003/dmFCoraTKShrqR8FBCjRW.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-22 23:45:08+00:00
+  license: cc-by-nc-4.0
+  model_creator: Undi95
+  model_creator_link: https://huggingface.co/Undi95
+  name: MLewd-ReMM-L2-Chat-20B-Inverted-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants: []
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/63ab1241ad514ca8d1430003/dmFCoraTKShrqR8FBCjRW.png?w=200&h=200&f=face
+  last_commit_time: 2023-09-22 23:37:39+00:00
+  license: cc-by-nc-4.0
+  model_creator: Undi95
+  model_creator_link: https://huggingface.co/Undi95
+  name: MLewd-ReMM-L2-Chat-20B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants: []
+- category: generic
   datasets:
   - jondurbin/airoboros-2.2.1
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6453dafca647b92069ac541a/QkUleoJtHHdTkqtW54QIG.jpeg?w=200&h=200&f=face
