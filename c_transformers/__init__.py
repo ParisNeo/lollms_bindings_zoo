@@ -112,7 +112,7 @@ class CTRansformers(LLMBinding):
             model_type="gptq"
         else:
             model_type='llama'
-            return
+
         ASCIIColors.info(f"Model type : {model_type}")
         
         
