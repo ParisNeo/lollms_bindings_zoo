@@ -94,13 +94,15 @@ class GPT4ALL(LLMBinding):
         if self.binding_config.processing_unit=="auto":
             self.model = GPT4All(
                                     model_name=str(model_path.name),
-                                    model_path=str(model_path.parent)
+                                    model_path=str(model_path.parent),
+                                    allow_download=False
                                 )
         else:
             self.model = GPT4All(
                                     model_name=str(model_path.name),
                                     model_path=str(model_path.parent),
-                                    device=self.binding_config.processing_unit
+                                    device=self.binding_config.processing_unit,
+                                    allow_download=False
                                 )
         self.model.model.set_thread_count(self.binding_config.n_threads)
         self.embedder= Embed4All()
