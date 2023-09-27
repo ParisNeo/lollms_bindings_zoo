@@ -96,7 +96,7 @@ class CTRansformers(LLMBinding):
             model_type='gpt2'
         elif 'gptj' in self.config['model_name']:
             model_type='gptj'
-        elif 'gpt_neox' in self.config['model_name']:
+        elif 'gpt_neox' in self.config['model_name'] or 'guanaco' in self.config['model_name']:
             model_type='gpt_neox'
         elif 'dolly-v2' in self.config['model_name']:
             model_type='dolly-v2'
