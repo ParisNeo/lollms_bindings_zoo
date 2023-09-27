@@ -54,6 +54,7 @@ class Petals(LLMBinding):
             {"name":"Automatic_server_launch","type":"bool","value":"Unnamed", "help":"If true, your PC will be used as a node in this system. If false, you will only be a user. Make sure you participate to the hive mind as this would help others have more resources."},
             {"name":"Node Name","type":"str","value":"Unnamed", "help":"The current node name"},
             {"name":"GPU to share","type":"str","value":"cuda:0", "help":"If you have moire than 1 GPU you can select a different GPU to be used"},
+            {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
@@ -153,7 +154,11 @@ class Petals(LLMBinding):
 
         if self.config.model_name:
             self.tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
-            self.model = AutoDistributedModelForCausalLM.from_pretrained(self.config.model_name).cuda()
+            self.model = AutoDistributedModelForCausalLM.from_pretrained(self.config.model_name,
+                                                          device_map=self.binding_config.device_map)
+            
+            self.model_device = self.model.parameters().__next__().device
+
 
             ASCIIColors.yellow("Please run petals server")
             # process = subprocess.Popen("python -m petals.cli.run_server --port 31330 "+self.config.model_name, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -339,7 +344,7 @@ class Petals(LLMBinding):
             self.next_tokens_are_prompt = True            
             self.n_generated = 0
             self.output = ""
-            input_ids = self.tokenizer(prompt, return_tensors='pt').input_ids.cuda()
+            input_ids = self.tokenizer(prompt, return_tensors='pt').input_ids.to(self.model_device)
             self.n_prompt = len(input_ids[0])
             try:
                 self.model.generate(

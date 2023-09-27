@@ -151,6 +151,10 @@ class HuggingFace(LLMBinding):
                                                           offload_folder="offload",
                                                           offload_state_dict = True
                                                           )
+            
+            from auto_gptq import exllama_set_max_input_length
+            self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
+            
             self.model_device = self.model.parameters().__next__().device
             ASCIIColors.success(f"ok")
             """
