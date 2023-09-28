@@ -153,8 +153,10 @@ class HuggingFace(LLMBinding):
                                                           )
             
             from auto_gptq import exllama_set_max_input_length
-            self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
-            
+            try:
+                self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
+            except:
+                ASCIIColors.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
             self.model_device = self.model.parameters().__next__().device
             ASCIIColors.success(f"ok")
             """
