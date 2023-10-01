@@ -174,6 +174,17 @@ class LoLLMs(LLMBinding):
             "generated_text":""
         }
         index = 0
+        default_params = {
+            'temperature': 0.1,
+            'top_k': 50,
+            'top_p': 0.9,
+            'repeat_penalty': 1.3,
+            'repeat_last_n':60,
+            "seed":-1,
+            "n_threads":8,
+            "begin_suppress_tokens ": self.tokenize("!")
+        }
+        gpt_params = {**default_params, **gpt_params}
         while True:
             try:
                 server_url = self.servers_addresses[index]
@@ -185,7 +196,7 @@ class LoLLMs(LLMBinding):
                     infos["found"]= True
                     if prompt:
                         # Trigger the 'generate_text' event with the prompt
-                        sio.emit('generate_text', {'prompt': prompt, 'personality':-1, "n_predicts":n_predict})
+                        sio.emit('generate_text', {'prompt': prompt, 'personality':-1, "n_predicts":n_predict, 'parameters':gpt_params})
 
                 @sio.event
                 def text_chunk(data):
@@ -234,7 +245,7 @@ class LoLLMs(LLMBinding):
         #    yaml_data = yaml.safe_load(file)
         
         # return yaml_data
-        return []
+        return ["Default lollms remotes"]
           
     @staticmethod
     def get_available_models():
