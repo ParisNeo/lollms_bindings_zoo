@@ -19,6 +19,7 @@ import subprocess
 import yaml
 from tqdm import tqdm
 import urllib
+from lollms.utilities import AdvancedGarbageCollector
 
 import sys
 import os
@@ -183,6 +184,11 @@ class mPLUG_Owl(LLMBinding):
             ASCIIColors.error('No model selected!!')
 
     def install(self):
+        ASCIIColors.success("freeing memory")
+        AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
+        AdvancedGarbageCollector.safeHardCollectMultiple(['AutoModelForCausalLM'])
+        AdvancedGarbageCollector.collect()
+        ASCIIColors.success("freed memory")        
         super().install()
         if self.config.enable_gpu:
             ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")

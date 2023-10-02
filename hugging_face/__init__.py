@@ -15,6 +15,7 @@ from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
+from lollms.utilities import AdvancedGarbageCollector
 import subprocess
 import yaml
 from tqdm import tqdm
@@ -175,7 +176,14 @@ class HuggingFace(LLMBinding):
             ASCIIColors.error('No model selected!!')
 
     def install(self):
+        ASCIIColors.success("freeing memory")
+        AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
+        AdvancedGarbageCollector.safeHardCollectMultiple(['AutoModelForCausalLM'])
+        AdvancedGarbageCollector.collect()
+        ASCIIColors.success("freed memory")
+
         super().install()
+
         if self.config.enable_gpu:
             ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
             ASCIIColors.info("Checking pytorch")
