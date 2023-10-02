@@ -230,6 +230,8 @@ class mPLUG_Owl(LLMBinding):
 
             # Install requirements from requirements.txt
             subprocess.run(["pip", "install", "-r", f"{subfolder_path}/requirements.txt"])
+            # force latest transformers
+            subprocess.run(["pip", "install", "--upgrade", "transformers"])
 
             print(f"Successfully cloned and installed {repo_name}.")
         except Exception as e:
