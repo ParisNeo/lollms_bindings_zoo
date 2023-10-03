@@ -300,6 +300,7 @@ class CTRansformers(LLMBinding):
             count = 0
             for chunk in self.model(
                                             prompt,
+                                            max_new_tokens = n_predict,
                                             stream=True,
                                             top_k=gpt_params['top_k'],
                                             top_p=gpt_params['top_p'],
