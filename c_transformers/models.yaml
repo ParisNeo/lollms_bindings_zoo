@@ -1,4 +1,722 @@
 - category: generic
+  datasets:
+  - jondurbin/airoboros-2.2.1
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6317aade83d8d2fd903192d9/erOwgMXc_CZih3uMoyTAp.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-10-03 21:52:21+00:00
+  license: mit
+  model_creator: Teknium
+  model_creator_link: teknium
+  name: airoboros-mistral2.2-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: airoboros-mistral2.2-7b.Q2_K.gguf
+    size: 3083097760
+  - name: airoboros-mistral2.2-7b.Q2_K.gguf
+    size: 3083097760
+  - name: airoboros-mistral2.2-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: airoboros-mistral2.2-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: airoboros-mistral2.2-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: airoboros-mistral2.2-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: airoboros-mistral2.2-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: airoboros-mistral2.2-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: airoboros-mistral2.2-7b.Q4_0.gguf
+    size: 4108916384
+  - name: airoboros-mistral2.2-7b.Q4_0.gguf
+    size: 4108916384
+  - name: airoboros-mistral2.2-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: airoboros-mistral2.2-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: airoboros-mistral2.2-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: airoboros-mistral2.2-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: airoboros-mistral2.2-7b.Q5_0.gguf
+    size: 4997715616
+  - name: airoboros-mistral2.2-7b.Q5_0.gguf
+    size: 4997715616
+  - name: airoboros-mistral2.2-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: airoboros-mistral2.2-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: airoboros-mistral2.2-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: airoboros-mistral2.2-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: airoboros-mistral2.2-7b.Q6_K.gguf
+    size: 5942064800
+  - name: airoboros-mistral2.2-7b.Q6_K.gguf
+    size: 5942064800
+  - name: airoboros-mistral2.2-7b.Q8_0.gguf
+    size: 7695857312
+  - name: airoboros-mistral2.2-7b.Q8_0.gguf
+    size: 7695857312
+- category: generic
+  datasets:
+  - cerebras/SlimPajama-627B
+  - bigcode/starcoderdata
+  last_commit_time: 2023-10-03 17:06:13+00:00
+  license: apache-2.0
+  model_creator: Zhang Peiyuan
+  model_creator_link: PY007
+  name: TinyLlama-1.1B-intermediate-step-480k-1T-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q2_K.gguf
+    size: 482142688
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q2_K.gguf
+    size: 482142688
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q3_K_L.gguf
+    size: 591526368
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q3_K_L.gguf
+    size: 591526368
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q3_K_M.gguf
+    size: 549845472
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q3_K_M.gguf
+    size: 549845472
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q3_K_S.gguf
+    size: 499341792
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q3_K_S.gguf
+    size: 499341792
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q4_0.gguf
+    size: 636725728
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q4_0.gguf
+    size: 636725728
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q4_K_M.gguf
+    size: 667814368
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q4_K_M.gguf
+    size: 667814368
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q4_K_S.gguf
+    size: 642755040
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q4_K_S.gguf
+    size: 642755040
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q5_0.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q5_0.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q5_K_M.gguf
+    size: 782043616
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q5_K_M.gguf
+    size: 782043616
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q5_K_S.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q5_K_S.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q6_K.gguf
+    size: 903412192
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q6_K.gguf
+    size: 903412192
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q8_0.gguf
+    size: 1169807840
+  - name: tinyllama-1.1b-intermediate-step-480k-1t.Q8_0.gguf
+    size: 1169807840
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-03 16:24:56+00:00
+  license: apache-2.0
+  model_creator: Jan Philipp Harries
+  model_creator_link: jphme
+  name: em_german_mistral_v01-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: em_german_mistral_v01.Q2_K.gguf
+    size: 3083097728
+  - name: em_german_mistral_v01.Q2_K.gguf
+    size: 3083097728
+  - name: em_german_mistral_v01.Q3_K_L.gguf
+    size: 3822024320
+  - name: em_german_mistral_v01.Q3_K_L.gguf
+    size: 3822024320
+  - name: em_german_mistral_v01.Q3_K_M.gguf
+    size: 3518985856
+  - name: em_german_mistral_v01.Q3_K_M.gguf
+    size: 3518985856
+  - name: em_german_mistral_v01.Q3_K_S.gguf
+    size: 3164567168
+  - name: em_german_mistral_v01.Q3_K_S.gguf
+    size: 3164567168
+  - name: em_german_mistral_v01.Q4_0.gguf
+    size: 4108916352
+  - name: em_german_mistral_v01.Q4_0.gguf
+    size: 4108916352
+  - name: em_german_mistral_v01.Q4_K_M.gguf
+    size: 4368438912
+  - name: em_german_mistral_v01.Q4_K_M.gguf
+    size: 4368438912
+  - name: em_german_mistral_v01.Q4_K_S.gguf
+    size: 4140373632
+  - name: em_german_mistral_v01.Q4_K_S.gguf
+    size: 4140373632
+  - name: em_german_mistral_v01.Q5_0.gguf
+    size: 4997715584
+  - name: em_german_mistral_v01.Q5_0.gguf
+    size: 4997715584
+  - name: em_german_mistral_v01.Q5_K_M.gguf
+    size: 5131409024
+  - name: em_german_mistral_v01.Q5_K_M.gguf
+    size: 5131409024
+  - name: em_german_mistral_v01.Q5_K_S.gguf
+    size: 4997715584
+  - name: em_german_mistral_v01.Q5_K_S.gguf
+    size: 4997715584
+  - name: em_german_mistral_v01.Q6_K.gguf
+    size: 5942064768
+  - name: em_german_mistral_v01.Q6_K.gguf
+    size: 5942064768
+  - name: em_german_mistral_v01.Q8_0.gguf
+    size: 7695857280
+  - name: em_german_mistral_v01.Q8_0.gguf
+    size: 7695857280
+- category: generic
+  datasets:
+  - cerebras/SlimPajama-627B
+  - bigcode/starcoderdata
+  last_commit_time: 2023-10-03 11:10:28+00:00
+  license: apache-2.0
+  model_creator: Zhang Peiyuan
+  model_creator_link: PY007
+  name: TinyLlama-1.1B-python-v0.1-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: tinyllama-1.1b-python-v0.1.Q2_K.gguf
+    size: 482142688
+  - name: tinyllama-1.1b-python-v0.1.Q2_K.gguf
+    size: 482142688
+  - name: tinyllama-1.1b-python-v0.1.Q3_K_L.gguf
+    size: 591526368
+  - name: tinyllama-1.1b-python-v0.1.Q3_K_L.gguf
+    size: 591526368
+  - name: tinyllama-1.1b-python-v0.1.Q3_K_M.gguf
+    size: 549845472
+  - name: tinyllama-1.1b-python-v0.1.Q3_K_M.gguf
+    size: 549845472
+  - name: tinyllama-1.1b-python-v0.1.Q3_K_S.gguf
+    size: 499341792
+  - name: tinyllama-1.1b-python-v0.1.Q3_K_S.gguf
+    size: 499341792
+  - name: tinyllama-1.1b-python-v0.1.Q4_0.gguf
+    size: 636725728
+  - name: tinyllama-1.1b-python-v0.1.Q4_0.gguf
+    size: 636725728
+  - name: tinyllama-1.1b-python-v0.1.Q4_K_M.gguf
+    size: 667814368
+  - name: tinyllama-1.1b-python-v0.1.Q4_K_M.gguf
+    size: 667814368
+  - name: tinyllama-1.1b-python-v0.1.Q4_K_S.gguf
+    size: 642755040
+  - name: tinyllama-1.1b-python-v0.1.Q4_K_S.gguf
+    size: 642755040
+  - name: tinyllama-1.1b-python-v0.1.Q5_0.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-python-v0.1.Q5_0.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-python-v0.1.Q5_K_M.gguf
+    size: 782043616
+  - name: tinyllama-1.1b-python-v0.1.Q5_K_M.gguf
+    size: 782043616
+  - name: tinyllama-1.1b-python-v0.1.Q5_K_S.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-python-v0.1.Q5_K_S.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-python-v0.1.Q6_K.gguf
+    size: 903412192
+  - name: tinyllama-1.1b-python-v0.1.Q6_K.gguf
+    size: 903412192
+  - name: tinyllama-1.1b-python-v0.1.Q8_0.gguf
+    size: 1169807840
+  - name: tinyllama-1.1b-python-v0.1.Q8_0.gguf
+    size: 1169807840
+- category: generic
+  datasets:
+  - cerebras/SlimPajama-627B
+  - bigcode/starcoderdata
+  - OpenAssistant/oasst_top1_2023-08-25
+  last_commit_time: 2023-10-03 11:01:20+00:00
+  license: apache-2.0
+  model_creator: Zhang Peiyuan
+  model_creator_link: PY007
+  name: TinyLlama-1.1B-Chat-v0.3-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: tinyllama-1.1b-chat-v0.3.Q2_K.gguf
+    size: 482149856
+  - name: tinyllama-1.1b-chat-v0.3.Q2_K.gguf
+    size: 482149856
+  - name: tinyllama-1.1b-chat-v0.3.Q3_K_L.gguf
+    size: 591534176
+  - name: tinyllama-1.1b-chat-v0.3.Q3_K_L.gguf
+    size: 591534176
+  - name: tinyllama-1.1b-chat-v0.3.Q3_K_M.gguf
+    size: 549853280
+  - name: tinyllama-1.1b-chat-v0.3.Q3_K_M.gguf
+    size: 549853280
+  - name: tinyllama-1.1b-chat-v0.3.Q3_K_S.gguf
+    size: 499349600
+  - name: tinyllama-1.1b-chat-v0.3.Q3_K_S.gguf
+    size: 499349600
+  - name: tinyllama-1.1b-chat-v0.3.Q4_0.gguf
+    size: 636734336
+  - name: tinyllama-1.1b-chat-v0.3.Q4_0.gguf
+    size: 636734336
+  - name: tinyllama-1.1b-chat-v0.3.Q4_K_M.gguf
+    size: 667822976
+  - name: tinyllama-1.1b-chat-v0.3.Q4_K_M.gguf
+    size: 667822976
+  - name: tinyllama-1.1b-chat-v0.3.Q4_K_S.gguf
+    size: 642763648
+  - name: tinyllama-1.1b-chat-v0.3.Q4_K_S.gguf
+    size: 642763648
+  - name: tinyllama-1.1b-chat-v0.3.Q5_0.gguf
+    size: 766037632
+  - name: tinyllama-1.1b-chat-v0.3.Q5_0.gguf
+    size: 766037632
+  - name: tinyllama-1.1b-chat-v0.3.Q5_K_M.gguf
+    size: 782052992
+  - name: tinyllama-1.1b-chat-v0.3.Q5_K_M.gguf
+    size: 782052992
+  - name: tinyllama-1.1b-chat-v0.3.Q5_K_S.gguf
+    size: 766037632
+  - name: tinyllama-1.1b-chat-v0.3.Q5_K_S.gguf
+    size: 766037632
+  - name: tinyllama-1.1b-chat-v0.3.Q6_K.gguf
+    size: 903422400
+  - name: tinyllama-1.1b-chat-v0.3.Q6_K.gguf
+    size: 903422400
+  - name: tinyllama-1.1b-chat-v0.3.Q8_0.gguf
+    size: 1169820992
+  - name: tinyllama-1.1b-chat-v0.3.Q8_0.gguf
+    size: 1169820992
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/62fc06a221c444a56f7cc595/ngyQKdhaykfC8lN6Jfqlz.png?w=200&h=200&f=face
+  last_commit_time: 2023-10-02 23:22:17+00:00
+  license: other
+  model_creator: NousResearch
+  model_creator_link: NousResearch
+  name: Nous-Hermes-13B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: Nous-Hermes-13B.Q2_K.gguf
+    size: 5429354240
+  - name: Nous-Hermes-13B.Q2_K.gguf
+    size: 5429354240
+  - name: Nous-Hermes-13B.Q3_K_L.gguf
+    size: 6929565952
+  - name: Nous-Hermes-13B.Q3_K_L.gguf
+    size: 6929565952
+  - name: Nous-Hermes-13B.Q3_K_M.gguf
+    size: 6337775872
+  - name: Nous-Hermes-13B.Q3_K_M.gguf
+    size: 6337775872
+  - name: Nous-Hermes-13B.Q3_K_S.gguf
+    size: 5658986752
+  - name: Nous-Hermes-13B.Q3_K_S.gguf
+    size: 5658986752
+  - name: Nous-Hermes-13B.Q4_0.gguf
+    size: 7365841824
+  - name: Nous-Hermes-13B.Q4_0.gguf
+    size: 7365841824
+  - name: Nous-Hermes-13B.Q4_K_M.gguf
+    size: 7865963424
+  - name: Nous-Hermes-13B.Q4_K_M.gguf
+    size: 7865963424
+  - name: Nous-Hermes-13B.Q4_K_S.gguf
+    size: 7414338464
+  - name: Nous-Hermes-13B.Q4_K_S.gguf
+    size: 7414338464
+  - name: Nous-Hermes-13B.Q5_0.gguf
+    size: 8972293664
+  - name: Nous-Hermes-13B.Q5_0.gguf
+    size: 8972293664
+  - name: Nous-Hermes-13B.Q5_K_M.gguf
+    size: 9229932064
+  - name: Nous-Hermes-13B.Q5_K_M.gguf
+    size: 9229932064
+  - name: Nous-Hermes-13B.Q5_K_S.gguf
+    size: 8972293664
+  - name: Nous-Hermes-13B.Q5_K_S.gguf
+    size: 8972293664
+  - name: Nous-Hermes-13B.Q6_K.gguf
+    size: 10679148768
+  - name: Nous-Hermes-13B.Q6_K.gguf
+    size: 10679148768
+  - name: Nous-Hermes-13B.Q8_0.gguf
+    size: 13831330400
+  - name: Nous-Hermes-13B.Q8_0.gguf
+    size: 13831330400
+- category: generic
+  datasets:
+  - Open-Orca/OpenOrca
+  last_commit_time: 2023-10-02 14:27:59+00:00
+  license: apache-2.0
+  model_creator: OpenOrca
+  model_creator_link: Open-Orca
+  name: Mistral-7B-OpenOrca-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: mistral-7b-openorca.Q2_K.gguf
+    size: 3083107200
+  - name: mistral-7b-openorca.Q2_K.gguf
+    size: 3083107200
+  - name: mistral-7b-openorca.Q3_K_L.gguf
+    size: 3822034624
+  - name: mistral-7b-openorca.Q3_K_L.gguf
+    size: 3822034624
+  - name: mistral-7b-openorca.Q3_K_M.gguf
+    size: 3518996160
+  - name: mistral-7b-openorca.Q3_K_M.gguf
+    size: 3518996160
+  - name: mistral-7b-openorca.Q3_K_S.gguf
+    size: 3164577472
+  - name: mistral-7b-openorca.Q3_K_S.gguf
+    size: 3164577472
+  - name: mistral-7b-openorca.Q4_0.gguf
+    size: 4108927744
+  - name: mistral-7b-openorca.Q4_0.gguf
+    size: 4108927744
+  - name: mistral-7b-openorca.Q4_K_M.gguf
+    size: 4368450304
+  - name: mistral-7b-openorca.Q4_K_M.gguf
+    size: 4368450304
+  - name: mistral-7b-openorca.Q4_K_S.gguf
+    size: 4140385024
+  - name: mistral-7b-openorca.Q4_K_S.gguf
+    size: 4140385024
+  - name: mistral-7b-openorca.Q5_0.gguf
+    size: 4997728000
+  - name: mistral-7b-openorca.Q5_0.gguf
+    size: 4997728000
+  - name: mistral-7b-openorca.Q5_K_M.gguf
+    size: 5131421440
+  - name: mistral-7b-openorca.Q5_K_M.gguf
+    size: 5131421440
+  - name: mistral-7b-openorca.Q5_K_S.gguf
+    size: 4997728000
+  - name: mistral-7b-openorca.Q5_K_S.gguf
+    size: 4997728000
+  - name: mistral-7b-openorca.Q6_K.gguf
+    size: 5942078272
+  - name: mistral-7b-openorca.Q6_K.gguf
+    size: 5942078272
+  - name: mistral-7b-openorca.Q8_0.gguf
+    size: 7695874752
+  - name: mistral-7b-openorca.Q8_0.gguf
+    size: 7695874752
+- category: generic
+  datasets:
+  - ehartford/dolphin
+  - jondurbin/airoboros-2.2.1
+  last_commit_time: 2023-10-02 22:27:21+00:00
+  license: apache-2.0
+  model_creator: Eric Hartford
+  model_creator_link: ehartford
+  name: dolphin-2.0-mistral-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: dolphin-2.0-mistral-7b.Q2_K.gguf
+    size: 3083097760
+  - name: dolphin-2.0-mistral-7b.Q2_K.gguf
+    size: 3083097760
+  - name: dolphin-2.0-mistral-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: dolphin-2.0-mistral-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: dolphin-2.0-mistral-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: dolphin-2.0-mistral-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: dolphin-2.0-mistral-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: dolphin-2.0-mistral-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: dolphin-2.0-mistral-7b.Q4_0.gguf
+    size: 4108916384
+  - name: dolphin-2.0-mistral-7b.Q4_0.gguf
+    size: 4108916384
+  - name: dolphin-2.0-mistral-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: dolphin-2.0-mistral-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: dolphin-2.0-mistral-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: dolphin-2.0-mistral-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: dolphin-2.0-mistral-7b.Q5_0.gguf
+    size: 4997715616
+  - name: dolphin-2.0-mistral-7b.Q5_0.gguf
+    size: 4997715616
+  - name: dolphin-2.0-mistral-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: dolphin-2.0-mistral-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: dolphin-2.0-mistral-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: dolphin-2.0-mistral-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: dolphin-2.0-mistral-7b.Q6_K.gguf
+    size: 5942064800
+  - name: dolphin-2.0-mistral-7b.Q6_K.gguf
+    size: 5942064800
+  - name: dolphin-2.0-mistral-7b.Q8_0.gguf
+    size: 7695857312
+  - name: dolphin-2.0-mistral-7b.Q8_0.gguf
+    size: 7695857312
+- category: generic
+  datasets:
+  - LDJnr/LessWrong-Amplify-Instruct
+  - LDJnr/Pure-Dove
+  - LDJnr/Verified-Camel
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/62fc06a221c444a56f7cc595/ngyQKdhaykfC8lN6Jfqlz.png?w=200&h=200&f=face
+  last_commit_time: 2023-10-02 22:04:54+00:00
+  license:
+  - mit
+  model_creator: NousResearch
+  model_creator_link: NousResearch
+  name: Nous-Capybara-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: nous-capybara-7b.Q2_K.gguf
+    size: 2825940704
+  - name: nous-capybara-7b.Q2_K.gguf
+    size: 2825940704
+  - name: nous-capybara-7b.Q3_K_L.gguf
+    size: 3597111008
+  - name: nous-capybara-7b.Q3_K_L.gguf
+    size: 3597111008
+  - name: nous-capybara-7b.Q3_K_M.gguf
+    size: 3298004704
+  - name: nous-capybara-7b.Q3_K_M.gguf
+    size: 3298004704
+  - name: nous-capybara-7b.Q3_K_S.gguf
+    size: 2948304608
+  - name: nous-capybara-7b.Q3_K_S.gguf
+    size: 2948304608
+  - name: nous-capybara-7b.Q4_0.gguf
+    size: 3825807072
+  - name: nous-capybara-7b.Q4_0.gguf
+    size: 3825807072
+  - name: nous-capybara-7b.Q4_K_M.gguf
+    size: 4081004256
+  - name: nous-capybara-7b.Q4_K_M.gguf
+    size: 4081004256
+  - name: nous-capybara-7b.Q4_K_S.gguf
+    size: 3856740064
+  - name: nous-capybara-7b.Q4_K_S.gguf
+    size: 3856740064
+  - name: nous-capybara-7b.Q5_0.gguf
+    size: 4651691744
+  - name: nous-capybara-7b.Q5_0.gguf
+    size: 4651691744
+  - name: nous-capybara-7b.Q5_K_M.gguf
+    size: 4783156960
+  - name: nous-capybara-7b.Q5_K_M.gguf
+    size: 4783156960
+  - name: nous-capybara-7b.Q5_K_S.gguf
+    size: 4651691744
+  - name: nous-capybara-7b.Q5_K_S.gguf
+    size: 4651691744
+  - name: nous-capybara-7b.Q6_K.gguf
+    size: 5529194208
+  - name: nous-capybara-7b.Q6_K.gguf
+    size: 5529194208
+  - name: nous-capybara-7b.Q8_0.gguf
+    size: 7161089760
+  - name: nous-capybara-7b.Q8_0.gguf
+    size: 7161089760
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-02 14:37:18+00:00
+  license: llama2
+  model_creator: Adam Brusselback
+  model_creator_link: Tostino
+  name: Inkbot-13B-8k-0.2-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: inkbot-13b-8k-0.2.Q2_K.gguf
+    size: 5429354304
+  - name: inkbot-13b-8k-0.2.Q2_K.gguf
+    size: 5429354304
+  - name: inkbot-13b-8k-0.2.Q3_K_L.gguf
+    size: 6929566016
+  - name: inkbot-13b-8k-0.2.Q3_K_L.gguf
+    size: 6929566016
+  - name: inkbot-13b-8k-0.2.Q3_K_M.gguf
+    size: 6337775936
+  - name: inkbot-13b-8k-0.2.Q3_K_M.gguf
+    size: 6337775936
+  - name: inkbot-13b-8k-0.2.Q3_K_S.gguf
+    size: 5658986816
+  - name: inkbot-13b-8k-0.2.Q3_K_S.gguf
+    size: 5658986816
+  - name: inkbot-13b-8k-0.2.Q4_0.gguf
+    size: 7365841888
+  - name: inkbot-13b-8k-0.2.Q4_0.gguf
+    size: 7365841888
+  - name: inkbot-13b-8k-0.2.Q4_K_M.gguf
+    size: 7865963488
+  - name: inkbot-13b-8k-0.2.Q4_K_M.gguf
+    size: 7865963488
+  - name: inkbot-13b-8k-0.2.Q4_K_S.gguf
+    size: 7414338528
+  - name: inkbot-13b-8k-0.2.Q4_K_S.gguf
+    size: 7414338528
+  - name: inkbot-13b-8k-0.2.Q5_0.gguf
+    size: 8972293728
+  - name: inkbot-13b-8k-0.2.Q5_0.gguf
+    size: 8972293728
+  - name: inkbot-13b-8k-0.2.Q5_K_M.gguf
+    size: 9229932128
+  - name: inkbot-13b-8k-0.2.Q5_K_M.gguf
+    size: 9229932128
+  - name: inkbot-13b-8k-0.2.Q5_K_S.gguf
+    size: 8972293728
+  - name: inkbot-13b-8k-0.2.Q5_K_S.gguf
+    size: 8972293728
+  - name: inkbot-13b-8k-0.2.Q6_K.gguf
+    size: 10679148832
+  - name: inkbot-13b-8k-0.2.Q6_K.gguf
+    size: 10679148832
+  - name: inkbot-13b-8k-0.2.Q8_0.gguf
+    size: 13831330464
+  - name: inkbot-13b-8k-0.2.Q8_0.gguf
+    size: 13831330464
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-02 00:07:50+00:00
+  license: llama2
+  model_creator: Jan Philipp Harries
+  model_creator_link: jphme
+  name: em_german_7b_v01-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: em_german_7b_v01.Q2_K.gguf
+    size: 2825940704
+  - name: em_german_7b_v01.Q2_K.gguf
+    size: 2825940704
+  - name: em_german_7b_v01.Q3_K_L.gguf
+    size: 3597111008
+  - name: em_german_7b_v01.Q3_K_L.gguf
+    size: 3597111008
+  - name: em_german_7b_v01.Q3_K_M.gguf
+    size: 3298004704
+  - name: em_german_7b_v01.Q3_K_M.gguf
+    size: 3298004704
+  - name: em_german_7b_v01.Q3_K_S.gguf
+    size: 2948304608
+  - name: em_german_7b_v01.Q3_K_S.gguf
+    size: 2948304608
+  - name: em_german_7b_v01.Q4_0.gguf
+    size: 3825807072
+  - name: em_german_7b_v01.Q4_0.gguf
+    size: 3825807072
+  - name: em_german_7b_v01.Q4_K_M.gguf
+    size: 4081004256
+  - name: em_german_7b_v01.Q4_K_M.gguf
+    size: 4081004256
+  - name: em_german_7b_v01.Q4_K_S.gguf
+    size: 3856740064
+  - name: em_german_7b_v01.Q4_K_S.gguf
+    size: 3856740064
+  - name: em_german_7b_v01.Q5_0.gguf
+    size: 4651691744
+  - name: em_german_7b_v01.Q5_0.gguf
+    size: 4651691744
+  - name: em_german_7b_v01.Q5_K_M.gguf
+    size: 4783156960
+  - name: em_german_7b_v01.Q5_K_M.gguf
+    size: 4783156960
+  - name: em_german_7b_v01.Q5_K_S.gguf
+    size: 4651691744
+  - name: em_german_7b_v01.Q5_K_S.gguf
+    size: 4651691744
+  - name: em_german_7b_v01.Q6_K.gguf
+    size: 5529194208
+  - name: em_german_7b_v01.Q6_K.gguf
+    size: 5529194208
+  - name: em_german_7b_v01.Q8_0.gguf
+    size: 7161089760
+  - name: em_german_7b_v01.Q8_0.gguf
+    size: 7161089760
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-01 22:15:38+00:00
+  license: llama2
+  model_creator: Jan Philipp Harries
+  model_creator_link: jphme
+  name: em_german_70b_v01-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: em_german_70b_v01.Q2_K.gguf
+    size: 29279253440
+  - name: em_german_70b_v01.Q2_K.gguf
+    size: 29279253440
+  - name: em_german_70b_v01.Q3_K_L.gguf
+    size: 36147835840
+  - name: em_german_70b_v01.Q3_K_L.gguf
+    size: 36147835840
+  - name: em_german_70b_v01.Q3_K_M.gguf
+    size: 33186657216
+  - name: em_german_70b_v01.Q3_K_M.gguf
+    size: 33186657216
+  - name: em_german_70b_v01.Q3_K_S.gguf
+    size: 29919294400
+  - name: em_german_70b_v01.Q3_K_S.gguf
+    size: 29919294400
+  - name: em_german_70b_v01.Q4_0.gguf
+    size: 38872249280
+  - name: em_german_70b_v01.Q4_0.gguf
+    size: 38872249280
+  - name: em_german_70b_v01.Q4_K_M.gguf
+    size: 41422910400
+  - name: em_german_70b_v01.Q4_K_M.gguf
+    size: 41422910400
+  - name: em_german_70b_v01.Q4_K_S.gguf
+    size: 39073575872
+  - name: em_german_70b_v01.Q4_K_S.gguf
+    size: 39073575872
+  - name: em_german_70b_v01.Q5_0.gguf
+    size: 47461397440
+  - name: em_german_70b_v01.Q5_0.gguf
+    size: 47461397440
+  - name: em_german_70b_v01.Q5_K_M.gguf
+    size: 48753767360
+  - name: em_german_70b_v01.Q5_K_M.gguf
+    size: 48753767360
+  - name: em_german_70b_v01.Q5_K_S.gguf
+    size: 47461397440
+  - name: em_german_70b_v01.Q5_K_S.gguf
+    size: 47461397440
+- category: generic
   datasets: unknown
   last_commit_time: 2023-09-27 09:14:11+00:00
   license: other
@@ -1991,7 +2709,7 @@
     size: 35954202176
   - name: openbuddy-llama2-34b-v11.1-bf16.Q8_0.gguf
     size: 35954202176
-- category: generic
+- category: math
   datasets:
   - TIGER-Lab/MathInstruct
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6313a86154e6e5d9f0f94e04/Noi3Qq3RYz8Jdq6BaFteq.png?w=200&h=200&f=face
@@ -2230,7 +2948,7 @@
     size: 13831319424
   - name: synthia-13b-v1.2.Q8_0.gguf
     size: 13831319424
-- category: generic
+- category: Math
   datasets: unknown
   icon: ''
   last_commit_time: 2023-09-24 03:03:17+00:00
@@ -2290,7 +3008,7 @@
     size: 7161098464
   - name: metamath-7b-v1.0.Q8_0.gguf
     size: 7161098464
-- category: generic
+- category: Math
   datasets: unknown
   icon: ''
   last_commit_time: 2023-09-24 00:35:58+00:00
