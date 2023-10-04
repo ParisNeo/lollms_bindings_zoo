@@ -28,7 +28,7 @@
   variants:
   - name: model.safetensors
     size: 4158662096
-- category: generic
+- category: coding
   datasets:
   - cerebras/SlimPajama-627B
   - bigcode/starcoderdata
@@ -56,7 +56,7 @@
   variants:
   - name: model.safetensors
     size: 4158662096
-- category: generic
+- category: coding-python
   datasets:
   - cerebras/SlimPajama-627B
   - bigcode/starcoderdata
@@ -71,7 +71,7 @@
   variants:
   - name: model.safetensors
     size: 768148656
-- category: generic
+- category: coding
   datasets:
   - cerebras/SlimPajama-627B
   - bigcode/starcoderdata
@@ -158,7 +158,7 @@
   variants:
   - name: model.safetensors
     size: 3896714728
-- category: generic
+- category: coding-sql
   datasets: unknown
   last_commit_time: 2023-09-27 09:14:01+00:00
   license: other
@@ -605,7 +605,7 @@
   rank: 10000000000.0
   type: gptq
   variants: []
-- category: generic
+- category: coding-sql
   datasets: unknown
   last_commit_time: 2023-09-27 09:14:01+00:00
   license: other
@@ -683,7 +683,7 @@
   variants:
   - name: model.safetensors
     size: 17873285912
-- category: generic
+- category: coding
   datasets:
   - TIGER-Lab/MathInstruct
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6313a86154e6e5d9f0f94e04/Noi3Qq3RYz8Jdq6BaFteq.png?w=200&h=200&f=face
@@ -698,7 +698,7 @@
   variants:
   - name: model.safetensors
     size: 7259783352
-- category: math
+- category: coding
   datasets: unknown
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/63010c7359ab5d9dc09d2378/bXSw2s7QxlaNVcUD19sae.png?w=200&h=200&f=face
   last_commit_time: 2023-09-24 04:12:21+00:00
@@ -1206,7 +1206,7 @@
   variants:
   - name: model.safetensors
     size: 36266583064
-- category: generic
+- category: coding-python
   datasets: unknown
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/627b9f3f4d0858f0034efbb9/2Qnattrzv6qvqiZVVfV5x.png?w=200&h=200&f=face
   last_commit_time: 2023-09-16 14:45:16+00:00
@@ -3022,7 +3022,7 @@
   variants:
   - name: model.safetensors
     size: 17688736536
-- category: generic
+- category: coding-python
   datasets: unknown
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/60cfaebb4061635e43b28f63/5v9v-lvgi9u_ivsTf1cgb.png?w=200&h=200&f=face
   last_commit_time: 2023-08-26 13:39:11+00:00
@@ -3786,7 +3786,7 @@
   variants:
   - name: model.safetensors
     size: 3896714728
-- category: generic
+- category: coding-python
   datasets: unknown
   icon: ''
   last_commit_time: 2023-08-25 09:46:18+00:00
@@ -3955,7 +3955,7 @@
   variants:
   - name: model.safetensors
     size: 7259435192
-- category: generic
+- category: coding-python
   datasets: unknown
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/627b9f3f4d0858f0034efbb9/2Qnattrzv6qvqiZVVfV5x.png?w=200&h=200&f=face
   last_commit_time: 2023-08-27 17:40:26+00:00
@@ -4384,7 +4384,7 @@
   variants:
   - name: model.safetensors
     size: 11986715312
-- category: generic
+- category: coding-python
   datasets: unknown
   icon: ''
   last_commit_time: 2023-08-24 22:19:25+00:00
@@ -4426,7 +4426,7 @@
   variants:
   - name: model.safetensors
     size: 3896976872
-- category: generic
+- category: coding-python
   datasets: unknown
   icon: ''
   last_commit_time: 2023-08-25 02:49:28+00:00
@@ -4539,7 +4539,7 @@
   rank: 10000000000.0
   type: gptq
   variants: []
-- category: generic
+- category: coding
   datasets:
   - guanaco
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
@@ -4639,7 +4639,7 @@
   variants:
   - name: model.safetensors
     size: 35332203544
-- category: generic
+- category: coding-python
   datasets: unknown
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/627b9f3f4d0858f0034efbb9/2Qnattrzv6qvqiZVVfV5x.png?w=200&h=200&f=face
   last_commit_time: 2023-08-26 11:41:52+00:00
@@ -6379,7 +6379,7 @@
   variants:
   - name: model.safetensors
     size: 4520875552
-- category: generic
+- category: coding
   datasets:
   - bigcode/the-stack-dedup
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
@@ -6394,7 +6394,7 @@
   variants:
   - name: model.safetensors
     size: 8906589576
-- category: generic
+- category: coding
   datasets:
   - bigcode/the-stack-dedup
   - tiiuae/falcon-refinedweb
@@ -6675,7 +6675,7 @@
   variants:
   - name: model.safetensors
     size: 33489332408
-- category: generic
+- category: coding
   datasets: unknown
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   last_commit_time: 2023-06-14 15:37:39+00:00
@@ -7261,7 +7261,7 @@
   variants:
   - name: model.safetensors
     size: 16940128464
-- category: generic
+- category: coding
   datasets: unknown
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
   last_commit_time: 2023-07-01 18:12:53+00:00
@@ -7403,7 +7403,7 @@
   variants:
   - name: model.safetensors
     size: 16940128464
-- category: generic
+- category: coding
   datasets:
   - guanaco
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
@@ -7464,7 +7464,7 @@
   variants:
   - name: model.safetensors
     size: 4632159792
-- category: generic
+- category: coding
   datasets:
   - guanaco
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
@@ -7494,7 +7494,7 @@
   variants:
   - name: model.safetensors
     size: 7454797216
-- category: generic
+- category: coding
   datasets:
   - bigcode/starcoderdata
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
@@ -7764,7 +7764,7 @@
   variants:
   - name: model.safetensors
     size: 33484977464
-- category: generic
+- category: coding
   datasets:
   - bigcode/starcoderdata
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/643feeb67bc3fbde1385cc25/7vmYr2XwVcPtkLzac_jxQ.png?w=200&h=200&f=face
@@ -7874,7 +7874,7 @@
   variants:
   - name: model.safetensors
     size: 7259435272
-- category: generic
+- category: coding
   datasets:
   - bigcode/commitpackft
   - bigcode/oasst-octopack
