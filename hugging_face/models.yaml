@@ -1,85 +1,163 @@
-- SHA256: 10573cdffc16b8c5bcbcec75d45959b6e3d68af756aa76d7c70d1fb06619ef55
-  description: model-00010-of-00010.safetensors model
-  filename: Falcon-180B-Chat-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: unknown
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke
-  patreon: https://www.patreon.com/TheBlokeAI
-  server: TheBloke
-  title: Falcon-180B-Chat-GPTQ
-  type: GPTQ
-  variants:
-  - name: model-00001-of-00010.safetensors
-    size: 9935767728
-- SHA256: a92fb0b4bf2ee09298c3e4f8f2bba1f4684ed9d803c4a022fef26cb6d97825b9
-  description: model.safetensors model
-  filename: Baichuan2-13B-Chat-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: llama2
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke
-  patreon: https://www.patreon.com/TheBlokeAI
-  server: TheBloke
-  title: Baichuan2-13B-Chat-GPTQ
-  type: GPTQ
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2.1
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6317aade83d8d2fd903192d9/erOwgMXc_CZih3uMoyTAp.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-10-03 21:52:41+00:00
+  license: mit
+  model_creator: Teknium
+  model_creator_link: teknium
+  name: airoboros-mistral2.2-7B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
   variants:
   - name: model.safetensors
-    size: 9135747368
-- SHA256: a92fb0b4bf2ee09298c3e4f8f2bba1f4684ed9d803c4a022fef26cb6d97825b9
-  description: model.safetensors model
-  filename: Falcon-180B-Chat-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: llama2
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke
-  patreon: https://www.patreon.com/TheBlokeAI
-  server: TheBloke
-  title: Falcon-180B-Chat-GPTQ
-  type: GPTQ
-  variants: []
-- SHA256: c2bdc804a1f79c5b201afe024f315c095f2696feff7f927246b95eba2515ebd7
-  description: model.safetensors model
-  filename: 13B-Thorns-L2-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: llama2
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke
-  patreon: https://www.patreon.com/TheBlokeAI
-  server: TheBloke
-  title: 13B-Thorns-L2-GPTQ
-  type: GPTQ
+    size: 4158662096
+- category: generic
+  datasets:
+  - ehartford/dolphin
+  - jondurbin/airoboros-2.2.1
+  last_commit_time: 2023-10-02 22:27:42+00:00
+  license: apache-2.0
+  model_creator: Eric Hartford
+  model_creator_link: ehartford
+  name: dolphin-2.0-mistral-7B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
   variants:
   - name: model.safetensors
-    size: 7260090552
-- SHA256: bf6ce714dc202c4471cc97ffc66b2f4b22f6dbe9766e2365be4fa336a38c06a9
-  description: model.safetensors model
-  filename: YuLan-Chat-2-13B-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
-  license: llama2
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke
-  patreon: https://www.patreon.com/TheBlokeAI
-  server: TheBloke
-  title: YuLan-Chat-2-13B-GPTQ
-  type: GPTQ
+    size: 4158662096
+- category: generic
+  datasets:
+  - cerebras/SlimPajama-627B
+  - bigcode/starcoderdata
+  last_commit_time: 2023-10-03 17:06:23+00:00
+  license: apache-2.0
+  model_creator: Zhang Peiyuan
+  model_creator_link: PY007
+  name: TinyLlama-1.1B-intermediate-step-480k-1T-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
   variants:
   - name: model.safetensors
-    size: 7652651192
-- SHA256: 8afc867d4a15db3e80930d99d905c2fc19df01c88e7f54c4f4c528e48eaad07a
-  description: model.safetensors model
-  filename: Synthia-70B-v1.2-GPTQ
-  icon: https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/6426d3f3a7723d62b53c259b/tvPikpAzKTKGN5wrpadOJ.jpeg?w=200&h=200&f=face
+    size: 768148656
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-03 16:25:06+00:00
+  license: apache-2.0
+  model_creator: Jan Philipp Harries
+  model_creator_link: jphme
+  name: em_german_mistral_v01-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 4158662096
+- category: generic
+  datasets:
+  - cerebras/SlimPajama-627B
+  - bigcode/starcoderdata
+  last_commit_time: 2023-10-03 11:10:18+00:00
+  license: apache-2.0
+  model_creator: Zhang Peiyuan
+  model_creator_link: PY007
+  name: TinyLlama-1.1B-python-v0.1-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 768148656
+- category: generic
+  datasets:
+  - cerebras/SlimPajama-627B
+  - bigcode/starcoderdata
+  - OpenAssistant/oasst_top1_2023-08-25
+  last_commit_time: 2023-10-03 11:01:00+00:00
+  license: apache-2.0
+  model_creator: Zhang Peiyuan
+  model_creator_link: PY007
+  name: TinyLlama-1.1B-Chat-v0.3-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 768173232
+- category: generic
+  datasets:
+  - Open-Orca/OpenOrca
+  last_commit_time: 2023-10-02 14:28:09+00:00
+  license: apache-2.0
+  model_creator: OpenOrca
+  model_creator_link: Open-Orca
+  name: Mistral-7B-OpenOrca-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 4158694864
+- category: generic
+  datasets:
+  - LDJnr/LessWrong-Amplify-Instruct
+  - LDJnr/Pure-Dove
+  - LDJnr/Verified-Camel
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/62fc06a221c444a56f7cc595/ngyQKdhaykfC8lN6Jfqlz.png?w=200&h=200&f=face
+  last_commit_time: 2023-10-02 22:05:04+00:00
+  license:
+  - mit
+  model_creator: NousResearch
+  model_creator_link: NousResearch
+  name: Nous-Capybara-7B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896714728
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-01 22:17:25+00:00
   license: llama2
-  owner: TheBloke
-  owner_link: https://huggingface.co/TheBloke
-  patreon: https://www.patreon.com/TheBlokeAI
-  server: TheBloke
-  title: Synthia-70B-v1.2-GPTQ
-  type: GPTQ
+  model_creator: Jan Philipp Harries
+  model_creator_link: jphme
+  name: em_german_70b_v01-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
   variants:
   - name: model.safetensors
     size: 35332203544
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-02 15:36:28+00:00
+  license: llama2
+  model_creator: Adam Brusselback
+  model_creator_link: Tostino
+  name: Inkbot-13B-8k-0.2-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259455672
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-02 00:08:10+00:00
+  license: llama2
+  model_creator: Jan Philipp Harries
+  model_creator_link: jphme
+  name: em_german_7b_v01-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896714728
 - category: generic
   datasets: unknown
   last_commit_time: 2023-09-27 09:14:01+00:00
