@@ -1,5 +1,315 @@
 - category: generic
   datasets:
+  - CollectiveCognition/chats-data-2023-09-27
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6317aade83d8d2fd903192d9/erOwgMXc_CZih3uMoyTAp.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-10-05 16:15:04+00:00
+  license: apache-2.0
+  model_creator: Teknium
+  model_creator_link: teknium
+  name: CollectiveCognition-v1.1-Mistral-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: collectivecognition-v1.1-mistral-7b.Q2_K.gguf
+    size: 3083097760
+  - name: collectivecognition-v1.1-mistral-7b.Q2_K.gguf
+    size: 3083097760
+  - name: collectivecognition-v1.1-mistral-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: collectivecognition-v1.1-mistral-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: collectivecognition-v1.1-mistral-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: collectivecognition-v1.1-mistral-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: collectivecognition-v1.1-mistral-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: collectivecognition-v1.1-mistral-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: collectivecognition-v1.1-mistral-7b.Q4_0.gguf
+    size: 4108916384
+  - name: collectivecognition-v1.1-mistral-7b.Q4_0.gguf
+    size: 4108916384
+  - name: collectivecognition-v1.1-mistral-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: collectivecognition-v1.1-mistral-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: collectivecognition-v1.1-mistral-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: collectivecognition-v1.1-mistral-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: collectivecognition-v1.1-mistral-7b.Q5_0.gguf
+    size: 4997715616
+  - name: collectivecognition-v1.1-mistral-7b.Q5_0.gguf
+    size: 4997715616
+  - name: collectivecognition-v1.1-mistral-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: collectivecognition-v1.1-mistral-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: collectivecognition-v1.1-mistral-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: collectivecognition-v1.1-mistral-7b.Q6_K.gguf
+    size: 5942064800
+  - name: collectivecognition-v1.1-mistral-7b.Q6_K.gguf
+    size: 5942064800
+  - name: collectivecognition-v1.1-mistral-7b.Q8_0.gguf
+    size: 7695857312
+  - name: collectivecognition-v1.1-mistral-7b.Q8_0.gguf
+    size: 7695857312
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-10-04 17:29:36+00:00
+  license: cc-by-nc-4.0
+  model_creator: Undi
+  model_creator_link: Undi95
+  name: Amethyst-13B-Mistral-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants: []
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64b7e345f92b20f7a38bf47a/Kl5Jfwr_-uyeZwe4OZ9j8.png?w=200&h=200&f=face
+  last_commit_time: 2023-10-04 13:33:20+00:00
+  license: unknown
+  model_creator: SkunkworksAI
+  model_creator_link: SkunkworksAI
+  name: Mistralic-7B-1-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: mistralic-7b-1.Q2_K.gguf
+    size: 3083107168
+  - name: mistralic-7b-1.Q2_K.gguf
+    size: 3083107168
+  - name: mistralic-7b-1.Q3_K_L.gguf
+    size: 3822034592
+  - name: mistralic-7b-1.Q3_K_L.gguf
+    size: 3822034592
+  - name: mistralic-7b-1.Q3_K_M.gguf
+    size: 3518996128
+  - name: mistralic-7b-1.Q3_K_M.gguf
+    size: 3518996128
+  - name: mistralic-7b-1.Q3_K_S.gguf
+    size: 3164577440
+  - name: mistralic-7b-1.Q3_K_S.gguf
+    size: 3164577440
+  - name: mistralic-7b-1.Q4_0.gguf
+    size: 4108927712
+  - name: mistralic-7b-1.Q4_0.gguf
+    size: 4108927712
+  - name: mistralic-7b-1.Q4_K_M.gguf
+    size: 4368450272
+  - name: mistralic-7b-1.Q4_K_M.gguf
+    size: 4368450272
+  - name: mistralic-7b-1.Q4_K_S.gguf
+    size: 4140384992
+  - name: mistralic-7b-1.Q4_K_S.gguf
+    size: 4140384992
+  - name: mistralic-7b-1.Q5_0.gguf
+    size: 4997727968
+  - name: mistralic-7b-1.Q5_0.gguf
+    size: 4997727968
+  - name: mistralic-7b-1.Q5_K_M.gguf
+    size: 5131421408
+  - name: mistralic-7b-1.Q5_K_M.gguf
+    size: 5131421408
+  - name: mistralic-7b-1.Q5_K_S.gguf
+    size: 4997727968
+  - name: mistralic-7b-1.Q5_K_S.gguf
+    size: 4997727968
+  - name: mistralic-7b-1.Q6_K.gguf
+    size: 5942078240
+  - name: mistralic-7b-1.Q6_K.gguf
+    size: 5942078240
+  - name: mistralic-7b-1.Q8_0.gguf
+    size: 7695874720
+  - name: mistralic-7b-1.Q8_0.gguf
+    size: 7695874720
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-04 14:57:29+00:00
+  license: llama2
+  model_creator: Pham Van Ngoan
+  model_creator_link: ngoantech
+  name: Llama-2-7B-vietnamese-20k-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: llama-2-7b-vietnamese-20k.Q2_K.gguf
+    size: 2825940672
+  - name: llama-2-7b-vietnamese-20k.Q2_K.gguf
+    size: 2825940672
+  - name: llama-2-7b-vietnamese-20k.Q3_K_L.gguf
+    size: 3597110976
+  - name: llama-2-7b-vietnamese-20k.Q3_K_L.gguf
+    size: 3597110976
+  - name: llama-2-7b-vietnamese-20k.Q3_K_M.gguf
+    size: 3298004672
+  - name: llama-2-7b-vietnamese-20k.Q3_K_M.gguf
+    size: 3298004672
+  - name: llama-2-7b-vietnamese-20k.Q3_K_S.gguf
+    size: 2948304576
+  - name: llama-2-7b-vietnamese-20k.Q3_K_S.gguf
+    size: 2948304576
+  - name: llama-2-7b-vietnamese-20k.Q4_0.gguf
+    size: 3825807040
+  - name: llama-2-7b-vietnamese-20k.Q4_0.gguf
+    size: 3825807040
+  - name: llama-2-7b-vietnamese-20k.Q4_K_M.gguf
+    size: 4081004224
+  - name: llama-2-7b-vietnamese-20k.Q4_K_M.gguf
+    size: 4081004224
+  - name: llama-2-7b-vietnamese-20k.Q4_K_S.gguf
+    size: 3856740032
+  - name: llama-2-7b-vietnamese-20k.Q4_K_S.gguf
+    size: 3856740032
+  - name: llama-2-7b-vietnamese-20k.Q5_0.gguf
+    size: 4651691712
+  - name: llama-2-7b-vietnamese-20k.Q5_0.gguf
+    size: 4651691712
+  - name: llama-2-7b-vietnamese-20k.Q5_K_M.gguf
+    size: 4783156928
+  - name: llama-2-7b-vietnamese-20k.Q5_K_M.gguf
+    size: 4783156928
+  - name: llama-2-7b-vietnamese-20k.Q5_K_S.gguf
+    size: 4651691712
+  - name: llama-2-7b-vietnamese-20k.Q5_K_S.gguf
+    size: 4651691712
+  - name: llama-2-7b-vietnamese-20k.Q6_K.gguf
+    size: 5529194176
+  - name: llama-2-7b-vietnamese-20k.Q6_K.gguf
+    size: 5529194176
+  - name: llama-2-7b-vietnamese-20k.Q8_0.gguf
+    size: 7161089728
+  - name: llama-2-7b-vietnamese-20k.Q8_0.gguf
+    size: 7161089728
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-04 12:42:06+00:00
+  license: unknown
+  model_creator: PocketDoc Labs
+  model_creator_link: PocketDoc
+  name: Dans-TotSirocco-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: dans-totsirocco-7b.Q2_K.gguf
+    size: 3083097728
+  - name: dans-totsirocco-7b.Q2_K.gguf
+    size: 3083097728
+  - name: dans-totsirocco-7b.Q3_K_L.gguf
+    size: 3822024320
+  - name: dans-totsirocco-7b.Q3_K_L.gguf
+    size: 3822024320
+  - name: dans-totsirocco-7b.Q3_K_M.gguf
+    size: 3518985856
+  - name: dans-totsirocco-7b.Q3_K_M.gguf
+    size: 3518985856
+  - name: dans-totsirocco-7b.Q3_K_S.gguf
+    size: 3164567168
+  - name: dans-totsirocco-7b.Q3_K_S.gguf
+    size: 3164567168
+  - name: dans-totsirocco-7b.Q4_0.gguf
+    size: 4108916352
+  - name: dans-totsirocco-7b.Q4_0.gguf
+    size: 4108916352
+  - name: dans-totsirocco-7b.Q4_K_M.gguf
+    size: 4368438912
+  - name: dans-totsirocco-7b.Q4_K_M.gguf
+    size: 4368438912
+  - name: dans-totsirocco-7b.Q4_K_S.gguf
+    size: 4140373632
+  - name: dans-totsirocco-7b.Q4_K_S.gguf
+    size: 4140373632
+  - name: dans-totsirocco-7b.Q5_0.gguf
+    size: 4997715584
+  - name: dans-totsirocco-7b.Q5_0.gguf
+    size: 4997715584
+  - name: dans-totsirocco-7b.Q5_K_M.gguf
+    size: 5131409024
+  - name: dans-totsirocco-7b.Q5_K_M.gguf
+    size: 5131409024
+  - name: dans-totsirocco-7b.Q5_K_S.gguf
+    size: 4997715584
+  - name: dans-totsirocco-7b.Q5_K_S.gguf
+    size: 4997715584
+  - name: dans-totsirocco-7b.Q6_K.gguf
+    size: 5942064768
+  - name: dans-totsirocco-7b.Q6_K.gguf
+    size: 5942064768
+  - name: dans-totsirocco-7b.Q8_0.gguf
+    size: 7695857280
+  - name: dans-totsirocco-7b.Q8_0.gguf
+    size: 7695857280
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-04 11:31:40+00:00
+  license: unknown
+  model_creator: PocketDoc Labs
+  model_creator_link: PocketDoc
+  name: Dans-AdventurousWinds-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: dans-adventurouswinds-7b.Q2_K.gguf
+    size: 3083097760
+  - name: dans-adventurouswinds-7b.Q2_K.gguf
+    size: 3083097760
+  - name: dans-adventurouswinds-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: dans-adventurouswinds-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: dans-adventurouswinds-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: dans-adventurouswinds-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: dans-adventurouswinds-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: dans-adventurouswinds-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: dans-adventurouswinds-7b.Q4_0.gguf
+    size: 4108916384
+  - name: dans-adventurouswinds-7b.Q4_0.gguf
+    size: 4108916384
+  - name: dans-adventurouswinds-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: dans-adventurouswinds-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: dans-adventurouswinds-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: dans-adventurouswinds-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: dans-adventurouswinds-7b.Q5_0.gguf
+    size: 4997715616
+  - name: dans-adventurouswinds-7b.Q5_0.gguf
+    size: 4997715616
+  - name: dans-adventurouswinds-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: dans-adventurouswinds-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: dans-adventurouswinds-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: dans-adventurouswinds-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: dans-adventurouswinds-7b.Q6_K.gguf
+    size: 5942064800
+  - name: dans-adventurouswinds-7b.Q6_K.gguf
+    size: 5942064800
+  - name: dans-adventurouswinds-7b.Q8_0.gguf
+    size: 7695857312
+  - name: dans-adventurouswinds-7b.Q8_0.gguf
+    size: 7695857312  
+- category: generic
+  datasets:
   - jondurbin/airoboros-2.2.1
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6317aade83d8d2fd903192d9/erOwgMXc_CZih3uMoyTAp.jpeg?w=200&h=200&f=face
   last_commit_time: 2023-10-03 21:52:21+00:00
