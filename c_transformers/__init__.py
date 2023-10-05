@@ -302,16 +302,16 @@ class CTRansformers(LLMBinding):
                                             prompt,
                                             max_new_tokens = n_predict,
                                             stream=True,
-                                            top_k=gpt_params['top_k'],
-                                            top_p=gpt_params['top_p'],
-                                            temperature=gpt_params['temperature'],
-                                            repetition_penalty=gpt_params['repeat_penalty'],
-                                            last_n_tokens=gpt_params['last_n_tokens'],
-                                            seed=gpt_params['seed'],
-                                            threads = gpt_params['n_threads'],
-                                            batch_size= gpt_params['batch_size'],
+                                            top_k=int(gpt_params['top_k']),
+                                            top_p=float(gpt_params['top_p']),
+                                            temperature=float(gpt_params['temperature']),
+                                            repetition_penalty=float(gpt_params['repeat_penalty']),
+                                            last_n_tokens=int(gpt_params['last_n_tokens']),
+                                            seed=int(gpt_params['seed']),
+                                            threads = int(gpt_params['n_threads']),
+                                            batch_size= int(gpt_params['batch_size']),
                                             reset=True,
-                                           ):
+                                ):
 
                 if callback is not None:
                     if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
