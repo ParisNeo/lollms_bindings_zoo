@@ -1,5 +1,98 @@
 - category: generic
   datasets:
+  - CollectiveCognition/chats-data-2023-09-27
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6317aade83d8d2fd903192d9/erOwgMXc_CZih3uMoyTAp.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-10-05 16:14:54+00:00
+  license: apache-2.0
+  model_creator: Teknium
+  model_creator_link: teknium
+  name: CollectiveCognition-v1.1-Mistral-7B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 4158662096
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-10-04 17:29:46+00:00
+  license: cc-by-nc-4.0
+  model_creator: Undi
+  model_creator_link: Undi95
+  name: Amethyst-13B-Mistral-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants: []
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64b7e345f92b20f7a38bf47a/Kl5Jfwr_-uyeZwe4OZ9j8.png?w=200&h=200&f=face
+  last_commit_time: 2023-10-04 13:33:30+00:00
+  license: unknown
+  model_creator: SkunkworksAI
+  model_creator_link: SkunkworksAI
+  name: Mistralic-7B-1-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 4158694864
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-04 14:57:39+00:00
+  license: llama2
+  model_creator: Pham Van Ngoan
+  model_creator_link: ngoantech
+  name: Llama-2-7B-vietnamese-20k-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 3896714728
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-04 12:42:16+00:00
+  license: unknown
+  model_creator: PocketDoc Labs
+  model_creator_link: PocketDoc
+  name: Dans-TotSirocco-7B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 4158662096
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-04 11:29:13+00:00
+  license: unknown
+  model_creator: PocketDoc Labs
+  model_creator_link: PocketDoc
+  name: Dans-AdventurousWinds-7B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 4158662096
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-04 08:37:06+00:00
+  license: other
+  model_creator: CodeFuse AI
+  model_creator_link: codefuse-ai
+  name: CodeFuse-13B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 8613443616
+- category: generic
+  datasets:
   - jondurbin/airoboros-2.2.1
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6317aade83d8d2fd903192d9/erOwgMXc_CZih3uMoyTAp.jpeg?w=200&h=200&f=face
   last_commit_time: 2023-10-03 21:52:41+00:00
