@@ -202,7 +202,7 @@ class HuggingFace(LLMBinding):
         # Step 2: Install dependencies using pip from requirements.txt
         requirements_file = self.binding_dir / "requirements.txt"
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "git+https://github.com/huggingface/transformers"])
+        # subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
         ASCIIColors.success("Installed successfully")
 
 

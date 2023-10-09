@@ -1,5 +1,135 @@
 - category: generic
   datasets: unknown
+  last_commit_time: 2023-10-09 10:31:43+00:00
+  license: gpl-3.0
+  model_creator: Fengshenbang-LM
+  model_creator_link: IDEA-CCNL
+  name: Ziya-Coding-34B-v1.0-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: ziya-coding-34b-v1.0.Q2_K.gguf
+    size: 14210674848
+  - name: ziya-coding-34b-v1.0.Q2_K.gguf
+    size: 14210674848
+  - name: ziya-coding-34b-v1.0.Q3_K_L.gguf
+    size: 17771524256
+  - name: ziya-coding-34b-v1.0.Q3_K_L.gguf
+    size: 17771524256
+  - name: ziya-coding-34b-v1.0.Q3_K_M.gguf
+    size: 16283594912
+  - name: ziya-coding-34b-v1.0.Q3_K_M.gguf
+    size: 16283594912
+  - name: ziya-coding-34b-v1.0.Q3_K_S.gguf
+    size: 14605349024
+  - name: ziya-coding-34b-v1.0.Q3_K_S.gguf
+    size: 14605349024
+  - name: ziya-coding-34b-v1.0.Q4_0.gguf
+    size: 19052048544
+  - name: ziya-coding-34b-v1.0.Q4_0.gguf
+    size: 19052048544
+  - name: ziya-coding-34b-v1.0.Q4_K_M.gguf
+    size: 20219900064
+  - name: ziya-coding-34b-v1.0.Q4_K_M.gguf
+    size: 20219900064
+  - name: ziya-coding-34b-v1.0.Q4_K_S.gguf
+    size: 19146420384
+  - name: ziya-coding-34b-v1.0.Q4_K_S.gguf
+    size: 19146420384
+  - name: ziya-coding-34b-v1.0.Q5_0.gguf
+    size: 23237177504
+  - name: ziya-coding-34b-v1.0.Q5_0.gguf
+    size: 23237177504
+  - name: ziya-coding-34b-v1.0.Q5_K_M.gguf
+    size: 23838797984
+  - name: ziya-coding-34b-v1.0.Q5_K_M.gguf
+    size: 23838797984
+  - name: ziya-coding-34b-v1.0.Q5_K_S.gguf
+    size: 23237177504
+  - name: ziya-coding-34b-v1.0.Q5_K_S.gguf
+    size: 23237177504
+  - name: ziya-coding-34b-v1.0.Q6_K.gguf
+    size: 27683877024
+  - name: ziya-coding-34b-v1.0.Q6_K.gguf
+    size: 27683877024
+  - name: ziya-coding-34b-v1.0.Q8_0.gguf
+    size: 35856052384
+  - name: ziya-coding-34b-v1.0.Q8_0.gguf
+    size: 35856052384
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-10-08 23:17:07+00:00
+  license: cc-by-nc-4.0
+  model_creator: Undi
+  model_creator_link: Undi95
+  name: PsyMedRP-v1-20B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants: []
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-08 22:10:06+00:00
+  license: cc-by-nc-4.0
+  model_creator: IkariDev + Undi95
+  model_creator_link: IkariDev
+  name: Athena-v4-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: athena-v4.Q2_K.gguf
+    size: 5429348288
+  - name: athena-v4.Q2_K.gguf
+    size: 5429348288
+  - name: athena-v4.Q3_K_L.gguf
+    size: 6929559488
+  - name: athena-v4.Q3_K_L.gguf
+    size: 6929559488
+  - name: athena-v4.Q3_K_M.gguf
+    size: 6337769408
+  - name: athena-v4.Q3_K_M.gguf
+    size: 6337769408
+  - name: athena-v4.Q3_K_S.gguf
+    size: 5658980288
+  - name: athena-v4.Q3_K_S.gguf
+    size: 5658980288
+  - name: athena-v4.Q4_0.gguf
+    size: 7365834688
+  - name: athena-v4.Q4_0.gguf
+    size: 7365834688
+  - name: athena-v4.Q4_K_M.gguf
+    size: 7865956288
+  - name: athena-v4.Q4_K_M.gguf
+    size: 7865956288
+  - name: athena-v4.Q4_K_S.gguf
+    size: 7414331328
+  - name: athena-v4.Q4_K_S.gguf
+    size: 7414331328
+  - name: athena-v4.Q5_0.gguf
+    size: 8972285888
+  - name: athena-v4.Q5_0.gguf
+    size: 8972285888
+  - name: athena-v4.Q5_K_M.gguf
+    size: 9229924288
+  - name: athena-v4.Q5_K_M.gguf
+    size: 9229924288
+  - name: athena-v4.Q5_K_S.gguf
+    size: 8972285888
+  - name: athena-v4.Q5_K_S.gguf
+    size: 8972285888
+  - name: athena-v4.Q6_K.gguf
+    size: 10679140288
+  - name: athena-v4.Q6_K.gguf
+    size: 10679140288
+  - name: athena-v4.Q8_0.gguf
+    size: 13831319488
+  - name: athena-v4.Q8_0.gguf
+    size: 13831319488
+- category: generic
+  datasets: unknown
   last_commit_time: 2023-10-08 17:22:07+00:00
   license: llama2
   model_creator: Posicube Inc.

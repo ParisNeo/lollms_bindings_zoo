@@ -1,5 +1,70 @@
 - category: generic
   datasets: unknown
+  last_commit_time: 2023-10-09 10:31:53+00:00
+  license: gpl-3.0
+  model_creator: Fengshenbang-LM
+  model_creator_link: IDEA-CCNL
+  name: Ziya-Coding-34B-v1.0-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 17688736536
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-10-08 23:17:18+00:00
+  license: cc-by-nc-4.0
+  model_creator: Undi
+  model_creator_link: Undi95
+  name: PsyMedRP-v1-20B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants: []
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-08 22:10:05+00:00
+  license: cc-by-nc-4.0
+  model_creator: IkariDev + Undi95
+  model_creator_link: IkariDev
+  name: Athena-v4-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-08 17:22:17+00:00
+  license: llama2
+  model_creator: Posicube Inc.
+  model_creator_link: posicube
+  name: Llama2-chat-AYB-13B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/1660626152673-62fb1ef7e8c9c532aa7d19e4.png?w=200&h=200&f=face
+  last_commit_time: 2023-10-08 16:14:41+00:00
+  license: llama2
+  model_creator: Riiid
+  model_creator_link: Riiid
+  name: sheep-duck-llama-2-13B-GPTQ
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 7259435192
+- category: generic
+  datasets: unknown
   icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6317aade83d8d2fd903192d9/erOwgMXc_CZih3uMoyTAp.jpeg?w=200&h=200&f=face
   last_commit_time: 2023-10-07 17:02:28+00:00
   license: apache-2.0
