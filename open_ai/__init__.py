@@ -44,13 +44,29 @@ class OpenAIGPT(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
+        self.input_costs_by_model={
+            "gpt-4":0.03,
+            "gpt-4-32k":0.06,
+            "gpt-3.5-turbo":0.0015,
+            "gpt-3.5-turbo-16k":0.003,
+        }       
+        self.output_costs_by_model={
+            "gpt-4":0.06,
+            "gpt-4-32k":0.12,
+            "gpt-3.5-turbo":0.002,
+            "gpt-3.5-turbo-16k":0.004,
+        }
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
-
         binding_config = TypedConfig(
             ConfigTemplate([
-                {"name":"openai_key","type":"str","value":""},
+                {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
+                {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
+                {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
+                {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
+                {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
+                {"name":"openai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
                 {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
@@ -142,6 +158,8 @@ class OpenAIGPT(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]]    
         try:
             default_params = {
                 'temperature': 0.7,
@@ -152,8 +170,9 @@ class OpenAIGPT(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
             count = 0
             output = ""
-            for resp in self.openai.Completion.create(model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                                prompt=prompt,
+            messages = [{"role": "user", "content": prompt}]
+            for resp in self.openai.ChatCompletion.create(model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
+                                messages=messages,
                                 max_tokens=n_predict,  # Adjust the desired length of the generated response
                                 n=1,  # Specify the number of responses you want
                                 stop=None,  # Define a stop sequence if needed
@@ -162,7 +181,7 @@ class OpenAIGPT(LLMBinding):
                 if count >= n_predict:
                     break
                 try:
-                    word = resp.choices[0].text
+                    word = resp["choices"][0]["delta"]["content"]
                 except:
                     word = ""
                 if callback is not None:
@@ -171,9 +190,14 @@ class OpenAIGPT(LLMBinding):
                 output += word
                 count += 1
 
+
         except Exception as ex:
             #self.app.
             print(ex)
+        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
+        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]    
+        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
+        self.binding_config.save()
         return ""            
 
     

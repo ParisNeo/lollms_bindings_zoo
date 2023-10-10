@@ -1,5 +1,33 @@
 - category: generic
   datasets: unknown
+  icon: '/bindings/open_ai/logo2.png'
+  last_commit_time: 2023-09-17 17:21:17+00:00
+  license: commercial
+  model_creator: openai
+  model_creator_link: https://openai.com
+  name: gpt-4
+  quantizer: None
+  rank: 1.0
+  type: api
+  variants:
+  - name: The big boss
+    size: 999999999999
+- category: generic
+  datasets: unknown
+  icon: '/bindings/open_ai/logo2.png'
+  last_commit_time: 2023-09-17 17:21:17+00:00
+  license: commercial
+  model_creator: openai
+  model_creator_link: https://openai.com
+  name: gpt-4-32k
+  quantizer: None
+  rank: 1.0
+  type: api
+  variants:
+  - name: The big boss 32k
+    size: 999999999999  
+- category: generic
+  datasets: unknown
   icon: '/bindings/open_ai/logo.png'
   last_commit_time: 2023-09-17 17:21:17+00:00
   license: commercial
@@ -7,45 +35,23 @@
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo
   quantizer: None
-  rank: 10000000000.0
+  rank: 2.0
   type: api
   variants:
-  - name: StableBeluga2
+  - name: ChatGPT
     size: 35332203544
-- description: Highly capable language model for generating high-quality text and performing various natural language processing tasks.
-  icon: /bindings/open_ai/logo.png
-  name: text-davinci-003
-  license: Commercial
-  owner_link: https://link_to_the_owner_web_page
-  owner: Open AI
-  server: https://openai.com
+- category: generic
+  datasets: unknown
+  icon: '/bindings/open_ai/logo.png'
+  last_commit_time: 2023-09-17 17:21:17+00:00
+  license: commercial
+  model_creator: openai
+  model_creator_link: https://openai.com
+  name: gpt-3.5-turbo-16k
+  quantizer: None
+  rank: 2.0
   type: api
   variants:
-  - name: text-davinci-003
-    size: 35332203544
-
-- description: Earlier version of the text-davinci model, offering similar functionality with potentially slightly different performance characteristics.
-  icon: /bindings/open_ai/logo.png
-  name: text-davinci-002
-  license: Commercial
-  owner_link: https://link_to_the_owner_web_page
-  owner: Open AI
-  server: https://openai.com
-  type: api
-  variants:
-  - name: text-davinci-002
-    size: 35332203544
-
-
-- description: Original version of the text-davinci model, providing strong language generation capabilities.
-  icon: /bindings/open_ai/logo.png
-  name: text-davinci-001
-  license: Commercial
-  owner_link: https://link_to_the_owner_web_page
-  owner: Open AI
-  server: https://openai.com
-  type: api
-  variants:
-  - name: text-davinci-001
+  - name: ChatGPT 16k
     size: 35332203544
 
