@@ -12,9 +12,6 @@
   variants:
   - name: StableBeluga2
     size: 35332203544
-
-
-
 - description: Highly capable language model for generating high-quality text and performing various natural language processing tasks.
   icon: /bindings/open_ai/logo.png
   name: text-davinci-003

@@ -98,7 +98,10 @@ class OpenAIGPT(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return None
+        import tiktoken
+        tokens_list = tiktoken.model.encoding_for_model(self.config["model_name"]).encode(prompt)
+
+        return tokens_list
 
     def detokenize(self, tokens_list:list):
         """
@@ -110,8 +113,21 @@ class OpenAIGPT(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return None
-    
+        import tiktoken
+        text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+
+        return text
+
+    def embed(self, text):
+        """
+        Computes text embedding
+        Args:
+            text (str): The text to be embedded.
+        Returns:
+            List[float]
+        """
+        
+        pass
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
@@ -136,7 +152,7 @@ class OpenAIGPT(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
             count = 0
             output = ""
-            for resp in self.openai.Completion.create(model=self.config["model"],  # Choose the engine according to your OpenAI plan
+            for resp in self.openai.Completion.create(model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                                 prompt=prompt,
                                 max_tokens=n_predict,  # Adjust the desired length of the generated response
                                 n=1,  # Specify the number of responses you want
@@ -156,6 +172,7 @@ class OpenAIGPT(LLMBinding):
                 count += 1
 
         except Exception as ex:
+            #self.app.
             print(ex)
         return ""            
 
