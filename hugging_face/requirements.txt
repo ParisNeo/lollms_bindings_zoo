@@ -4,8 +4,6 @@ einops
 sentencepiece
 evaluate
 datasets
-transformers
 accelerate
 optimum
-auto-gptq
 peft
