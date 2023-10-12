@@ -114,6 +114,8 @@ class HuggingFace(LLMBinding):
         import torch
         from transformers import AutoTokenizer, AutoModelForCausalLM
         from transformers import GenerationConfig
+        import torch
+        self.torch = torch
 
         if self.config.model_name:
 
@@ -351,9 +353,9 @@ class HuggingFace(LLMBinding):
         self.generation_config.top_p = float(gpt_params["top_p"])
         self.generation_config.repetition_penalty = float(gpt_params["repeat_penalty"])
         self.generation_config.do_sample = True if float(gpt_params["temperature"])>0 else False
-        # self.generation_config.pad_token_id = self.tokenizer.pad_token_id
-        # self.generation_config.eos_token_id = self.tokenizer.eos_token_id
-        #self.generation_config. = self.tokenizer.pad_token_id
+        self.generation_config.pad_token_id = self.tokenizer.pad_token_id
+        self.generation_config.eos_token_id = self.tokenizer.eos_token_id
+        self.generation_config.output_attentions = False
         self.callback = callback    
         try:
             self.token_cache = []
@@ -364,12 +366,12 @@ class HuggingFace(LLMBinding):
             input_ids = self.tokenizer(prompt, add_special_tokens=False, return_tensors='pt').input_ids.to(self.model_device)
             self.n_prompt = len(input_ids[0])
             try:
-                self.model.generate(
-                                    inputs=input_ids, 
-                                    generation_config=self.generation_config,
-                                    streamer = self,
-                                    )
-                
+                with self.torch.no_grad():
+                    self.model.generate(
+                                        inputs=input_ids, 
+                                        generation_config=self.generation_config,
+                                        streamer = self,
+                                        )
             except Exception as ex:
                 if str(ex)!="canceled":
                     trace_exception(ex)
