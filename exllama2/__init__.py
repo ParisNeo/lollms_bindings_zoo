@@ -63,6 +63,9 @@ class EXLLAMA2(LLMBinding):
 
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
+            
+            {"name": "gpu_split", "type": "list", "value": [24],
+                "help": "A list depicting how many layers to offload to each GPU. If you have just one, the list should contain one value"},
             {"name": "ctx_size", "type": "int", "value": 2048, "min": 512,
                 "help": "The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs. Reduce to save memory. Can also be increased, ideally while also using compress_pos_emn and a compatible model/LoRA"},
             {"name": "max_input_len", "type": "int", "value": 2048, "min": 512,
@@ -189,7 +192,7 @@ class EXLLAMA2(LLMBinding):
             ASCIIColors.red ("--------------------------------------------------------------")
             self.model = ExLlamaV2(config)
             print("Loading model: " + str(model_name))
-            self.model.load([16]) # [16, 24]
+            self.model.load(self.binding_config.gpu_split) # [16, 24]
             self.tokenizer = ExLlamaV2Tokenizer(config)
             self.cache = ExLlamaV2Cache(self.model)
             self.generator = ExLlamaV2StreamingGenerator(self.model, self.cache, self.tokenizer)
@@ -353,7 +356,7 @@ class EXLLAMA2(LLMBinding):
         self.settings.top_k = default_params['top_k']
         self.settings.top_p = default_params['top_p']
         self.settings.token_repetition_penalty = default_params['repeat_penalty']
-        self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
+        # self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
         try:
             input_ids = self.tokenizer.encode(prompt)
             prompt_tokens = input_ids.shape[-1]
