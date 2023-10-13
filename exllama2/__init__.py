@@ -190,6 +190,7 @@ class EXLLAMA2(LLMBinding):
             ASCIIColors.magenta(f"Model name:{self.config.model_name}")
             self.print_class_attributes(config)
             ASCIIColors.red ("--------------------------------------------------------------")
+
             self.model = ExLlamaV2(config)
             print("Loading model: " + str(model_name))
             self.model.load(self.binding_config.gpu_split) # [16, 24]
@@ -356,7 +357,7 @@ class EXLLAMA2(LLMBinding):
         self.settings.top_k = default_params['top_k']
         self.settings.top_p = default_params['top_p']
         self.settings.token_repetition_penalty = default_params['repeat_penalty']
-        # self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
+        self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
         try:
             input_ids = self.tokenizer.encode(prompt)
             prompt_tokens = input_ids.shape[-1]
