@@ -143,10 +143,6 @@ class EXLLAMA2(LLMBinding):
 
             model_name = str(model_path).replace("\\","/")
 
-
-            tokenizer_model_path = model_path / "tokenizer.model"
-            model_config_path = model_path / "config.json"
-            
             for ext in ['.safetensors', '.pt', '.bin']:
                 found = list(model_path.glob(f"*{ext}"))
                 if len(found) > 0:
@@ -173,18 +169,27 @@ class EXLLAMA2(LLMBinding):
                 config.matmul_no_half2 = True
                 config.silu_no_half2 = True
 
+            # Run nvidia-smi to get GPU metrics
+            result = subprocess.run(['nvidia-smi'], stdout=subprocess.PIPE, text=True)
+
+            # Print the output
+            print(result.stdout)
             try:
                 torch.cuda.empty_cache()
             except Exception as ex:
                 ASCIIColors.error("Couldn't clear cuda memory")
+            # Run nvidia-smi to get GPU metrics
+            result = subprocess.run(['nvidia-smi'], stdout=subprocess.PIPE, text=True)
 
+            # Print the output
+            print(result.stdout)
             ASCIIColors.red ("----------- LOLLMS EXLLAMA2 Model Information -----------------")
             ASCIIColors.magenta(f"Model name:{self.config.model_name}")
             self.print_class_attributes(config)
             ASCIIColors.red ("--------------------------------------------------------------")
             self.model = ExLlamaV2(config)
             print("Loading model: " + str(model_name))
-            self.model.load() # [16, 24]
+            self.model.load([16]) # [16, 24]
             self.tokenizer = ExLlamaV2Tokenizer(config)
             self.cache = ExLlamaV2Cache(self.model)
             self.generator = ExLlamaV2StreamingGenerator(self.model, self.cache, self.tokenizer)
@@ -219,6 +224,10 @@ class EXLLAMA2(LLMBinding):
             try:
                 import torch
                 from torch import version as torch_version
+                try:
+                    torch.cuda.empty_cache()
+                except Exception as ex:
+                    ASCIIColors.error("Couldn't clear cuda memory")
             except:
                 pass       
             try:

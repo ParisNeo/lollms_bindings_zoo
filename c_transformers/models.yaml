@@ -1,4 +1,991 @@
 - category: generic
+  datasets:
+  - jondurbin/airoboros-2.2
+  - Open-Orca/OpenOrca
+  - garage-bAInd/Open-Platypus
+  - WizardLM/WizardLM_evol_instruct_V2_196k
+  last_commit_time: 2023-10-13 10:21:24+00:00
+  license: llama2
+  model_creator: Jiangwen Su
+  model_creator_link: uukuguy
+  name: speechless-codellama-34b-v2.0-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: speechless-codellama-34b-v2.0.Q2_K.gguf
+    size: 14210674848
+  - name: speechless-codellama-34b-v2.0.Q2_K.gguf
+    size: 14210674848
+  - name: speechless-codellama-34b-v2.0.Q3_K_L.gguf
+    size: 17771524256
+  - name: speechless-codellama-34b-v2.0.Q3_K_L.gguf
+    size: 17771524256
+  - name: speechless-codellama-34b-v2.0.Q3_K_M.gguf
+    size: 16283594912
+  - name: speechless-codellama-34b-v2.0.Q3_K_M.gguf
+    size: 16283594912
+  - name: speechless-codellama-34b-v2.0.Q3_K_S.gguf
+    size: 14605349024
+  - name: speechless-codellama-34b-v2.0.Q3_K_S.gguf
+    size: 14605349024
+  - name: speechless-codellama-34b-v2.0.Q4_0.gguf
+    size: 19052048544
+  - name: speechless-codellama-34b-v2.0.Q4_0.gguf
+    size: 19052048544
+  - name: speechless-codellama-34b-v2.0.Q4_K_M.gguf
+    size: 20219900064
+  - name: speechless-codellama-34b-v2.0.Q4_K_M.gguf
+    size: 20219900064
+  - name: speechless-codellama-34b-v2.0.Q4_K_S.gguf
+    size: 19146420384
+  - name: speechless-codellama-34b-v2.0.Q4_K_S.gguf
+    size: 19146420384
+  - name: speechless-codellama-34b-v2.0.Q5_0.gguf
+    size: 23237177504
+  - name: speechless-codellama-34b-v2.0.Q5_0.gguf
+    size: 23237177504
+  - name: speechless-codellama-34b-v2.0.Q5_K_M.gguf
+    size: 23838797984
+  - name: speechless-codellama-34b-v2.0.Q5_K_M.gguf
+    size: 23838797984
+  - name: speechless-codellama-34b-v2.0.Q5_K_S.gguf
+    size: 23237177504
+  - name: speechless-codellama-34b-v2.0.Q5_K_S.gguf
+    size: 23237177504
+  - name: speechless-codellama-34b-v2.0.Q6_K.gguf
+    size: 27683877024
+  - name: speechless-codellama-34b-v2.0.Q6_K.gguf
+    size: 27683877024
+  - name: speechless-codellama-34b-v2.0.Q8_0.gguf
+    size: 35856052384
+  - name: speechless-codellama-34b-v2.0.Q8_0.gguf
+    size: 35856052384
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2
+  - Open-Orca/OpenOrca
+  - garage-bAInd/Open-Platypus
+  - WizardLM/WizardLM_evol_instruct_V2_196k
+  - TokenBender/python_eval_instruct_51k
+  last_commit_time: 2023-10-13 07:37:19+00:00
+  license: llama2
+  model_creator: Jiangwen Su
+  model_creator_link: uukuguy
+  name: speechless-tora-code-7B-v1.0-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: speechless-tora-code-7b-v1.0.Q2_K.gguf
+    size: 2825945504
+  - name: speechless-tora-code-7b-v1.0.Q2_K.gguf
+    size: 2825945504
+  - name: speechless-tora-code-7b-v1.0.Q3_K_L.gguf
+    size: 3597116224
+  - name: speechless-tora-code-7b-v1.0.Q3_K_L.gguf
+    size: 3597116224
+  - name: speechless-tora-code-7b-v1.0.Q3_K_M.gguf
+    size: 3298009920
+  - name: speechless-tora-code-7b-v1.0.Q3_K_M.gguf
+    size: 3298009920
+  - name: speechless-tora-code-7b-v1.0.Q3_K_S.gguf
+    size: 2948309824
+  - name: speechless-tora-code-7b-v1.0.Q3_K_S.gguf
+    size: 2948309824
+  - name: speechless-tora-code-7b-v1.0.Q4_0.gguf
+    size: 3825812832
+  - name: speechless-tora-code-7b-v1.0.Q4_0.gguf
+    size: 3825812832
+  - name: speechless-tora-code-7b-v1.0.Q4_K_M.gguf
+    size: 4081010016
+  - name: speechless-tora-code-7b-v1.0.Q4_K_M.gguf
+    size: 4081010016
+  - name: speechless-tora-code-7b-v1.0.Q4_K_S.gguf
+    size: 3856745824
+  - name: speechless-tora-code-7b-v1.0.Q4_K_S.gguf
+    size: 3856745824
+  - name: speechless-tora-code-7b-v1.0.Q5_0.gguf
+    size: 4651698016
+  - name: speechless-tora-code-7b-v1.0.Q5_0.gguf
+    size: 4651698016
+  - name: speechless-tora-code-7b-v1.0.Q5_K_M.gguf
+    size: 4783163232
+  - name: speechless-tora-code-7b-v1.0.Q5_K_M.gguf
+    size: 4783163232
+  - name: speechless-tora-code-7b-v1.0.Q5_K_S.gguf
+    size: 4651698016
+  - name: speechless-tora-code-7b-v1.0.Q5_K_S.gguf
+    size: 4651698016
+  - name: speechless-tora-code-7b-v1.0.Q6_K.gguf
+    size: 5529201024
+  - name: speechless-tora-code-7b-v1.0.Q6_K.gguf
+    size: 5529201024
+  - name: speechless-tora-code-7b-v1.0.Q8_0.gguf
+    size: 7161098560
+  - name: speechless-tora-code-7b-v1.0.Q8_0.gguf
+    size: 7161098560
+- category: generic
+  datasets:
+  - CollectiveCognition/chats-data-2023-09-27
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/6317aade83d8d2fd903192d9/erOwgMXc_CZih3uMoyTAp.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-10-13 06:50:10+00:00
+  license: apache-2.0
+  model_creator: Teknium
+  model_creator_link: teknium
+  name: CollectiveCognition-v1-Mistral-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: collectivecognition-v1-mistral-7b.Q2_K.gguf
+    size: 3083097760
+  - name: collectivecognition-v1-mistral-7b.Q2_K.gguf
+    size: 3083097760
+  - name: collectivecognition-v1-mistral-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: collectivecognition-v1-mistral-7b.Q3_K_L.gguf
+    size: 3822024352
+  - name: collectivecognition-v1-mistral-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: collectivecognition-v1-mistral-7b.Q3_K_M.gguf
+    size: 3518985888
+  - name: collectivecognition-v1-mistral-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: collectivecognition-v1-mistral-7b.Q3_K_S.gguf
+    size: 3164567200
+  - name: collectivecognition-v1-mistral-7b.Q4_0.gguf
+    size: 4108916384
+  - name: collectivecognition-v1-mistral-7b.Q4_0.gguf
+    size: 4108916384
+  - name: collectivecognition-v1-mistral-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: collectivecognition-v1-mistral-7b.Q4_K_M.gguf
+    size: 4368438944
+  - name: collectivecognition-v1-mistral-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: collectivecognition-v1-mistral-7b.Q4_K_S.gguf
+    size: 4140373664
+  - name: collectivecognition-v1-mistral-7b.Q5_0.gguf
+    size: 4997715616
+  - name: collectivecognition-v1-mistral-7b.Q5_0.gguf
+    size: 4997715616
+  - name: collectivecognition-v1-mistral-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: collectivecognition-v1-mistral-7b.Q5_K_M.gguf
+    size: 5131409056
+  - name: collectivecognition-v1-mistral-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: collectivecognition-v1-mistral-7b.Q5_K_S.gguf
+    size: 4997715616
+  - name: collectivecognition-v1-mistral-7b.Q6_K.gguf
+    size: 5942064800
+  - name: collectivecognition-v1-mistral-7b.Q6_K.gguf
+    size: 5942064800
+  - name: collectivecognition-v1-mistral-7b.Q8_0.gguf
+    size: 7695857312
+  - name: collectivecognition-v1-mistral-7b.Q8_0.gguf
+    size: 7695857312
+- category: generic
+  datasets:
+  - jondurbin/airoboros-2.2
+  - Open-Orca/OpenOrca
+  - garage-bAInd/Open-Platypus
+  - WizardLM/WizardLM_evol_instruct_V2_196k
+  - TokenBender/python_eval_instruct_51k
+  last_commit_time: 2023-10-13 06:07:41+00:00
+  license: llama2
+  model_creator: Jiangwen Su
+  model_creator_link: uukuguy
+  name: speechless-code-mistral-7B-v1.0-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: speechless-code-mistral-7b-v1.0.Q2_K.gguf
+    size: 3083097760
+  - name: speechless-code-mistral-7b-v1.0.Q2_K.gguf
+    size: 3083097760
+  - name: speechless-code-mistral-7b-v1.0.Q3_K_L.gguf
+    size: 3822024352
+  - name: speechless-code-mistral-7b-v1.0.Q3_K_L.gguf
+    size: 3822024352
+  - name: speechless-code-mistral-7b-v1.0.Q3_K_M.gguf
+    size: 3518985888
+  - name: speechless-code-mistral-7b-v1.0.Q3_K_M.gguf
+    size: 3518985888
+  - name: speechless-code-mistral-7b-v1.0.Q3_K_S.gguf
+    size: 3164567200
+  - name: speechless-code-mistral-7b-v1.0.Q3_K_S.gguf
+    size: 3164567200
+  - name: speechless-code-mistral-7b-v1.0.Q4_0.gguf
+    size: 4108916384
+  - name: speechless-code-mistral-7b-v1.0.Q4_0.gguf
+    size: 4108916384
+  - name: speechless-code-mistral-7b-v1.0.Q4_K_M.gguf
+    size: 4368438944
+  - name: speechless-code-mistral-7b-v1.0.Q4_K_M.gguf
+    size: 4368438944
+  - name: speechless-code-mistral-7b-v1.0.Q4_K_S.gguf
+    size: 4140373664
+  - name: speechless-code-mistral-7b-v1.0.Q4_K_S.gguf
+    size: 4140373664
+  - name: speechless-code-mistral-7b-v1.0.Q5_0.gguf
+    size: 4997715616
+  - name: speechless-code-mistral-7b-v1.0.Q5_0.gguf
+    size: 4997715616
+  - name: speechless-code-mistral-7b-v1.0.Q5_K_M.gguf
+    size: 5131409056
+  - name: speechless-code-mistral-7b-v1.0.Q5_K_M.gguf
+    size: 5131409056
+  - name: speechless-code-mistral-7b-v1.0.Q5_K_S.gguf
+    size: 4997715616
+  - name: speechless-code-mistral-7b-v1.0.Q5_K_S.gguf
+    size: 4997715616
+  - name: speechless-code-mistral-7b-v1.0.Q6_K.gguf
+    size: 5942064800
+  - name: speechless-code-mistral-7b-v1.0.Q6_K.gguf
+    size: 5942064800
+  - name: speechless-code-mistral-7b-v1.0.Q8_0.gguf
+    size: 7695857312
+  - name: speechless-code-mistral-7b-v1.0.Q8_0.gguf
+    size: 7695857312
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-10-12 15:31:35+00:00
+  license: llama2
+  model_creator: ICBU-NPU
+  model_creator_link: ICBU-NPU
+  name: FashionGPT-70B-v1.2-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: fashiongpt-70b-v1.2.Q2_K.gguf
+    size: 29279253408
+  - name: fashiongpt-70b-v1.2.Q2_K.gguf
+    size: 29279253408
+  - name: fashiongpt-70b-v1.2.Q3_K_L.gguf
+    size: 36147835808
+  - name: fashiongpt-70b-v1.2.Q3_K_L.gguf
+    size: 36147835808
+  - name: fashiongpt-70b-v1.2.Q3_K_M.gguf
+    size: 33186657184
+  - name: fashiongpt-70b-v1.2.Q3_K_M.gguf
+    size: 33186657184
+  - name: fashiongpt-70b-v1.2.Q3_K_S.gguf
+    size: 29919294368
+  - name: fashiongpt-70b-v1.2.Q3_K_S.gguf
+    size: 29919294368
+  - name: fashiongpt-70b-v1.2.Q4_0.gguf
+    size: 38872249248
+  - name: fashiongpt-70b-v1.2.Q4_0.gguf
+    size: 38872249248
+  - name: fashiongpt-70b-v1.2.Q4_K_M.gguf
+    size: 41422910368
+  - name: fashiongpt-70b-v1.2.Q4_K_M.gguf
+    size: 41422910368
+  - name: fashiongpt-70b-v1.2.Q4_K_S.gguf
+    size: 39073575840
+  - name: fashiongpt-70b-v1.2.Q4_K_S.gguf
+    size: 39073575840
+  - name: fashiongpt-70b-v1.2.Q5_0.gguf
+    size: 47461397408
+  - name: fashiongpt-70b-v1.2.Q5_0.gguf
+    size: 47461397408
+  - name: fashiongpt-70b-v1.2.Q5_K_M.gguf
+    size: 48753767328
+  - name: fashiongpt-70b-v1.2.Q5_K_M.gguf
+    size: 48753767328
+  - name: fashiongpt-70b-v1.2.Q5_K_S.gguf
+    size: 47461397408
+  - name: fashiongpt-70b-v1.2.Q5_K_S.gguf
+    size: 47461397408
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/630417380907b9a115c6aa9f/hsmz_dU2AyXe1DWHW7Pvd.png?w=200&h=200&f=face
+  last_commit_time: 2023-10-12 09:42:41+00:00
+  license: cc-by-nc-4.0
+  model_creator: elinas
+  model_creator_link: elinas
+  name: chronos007-70B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: chronos007-70b.Q2_K.gguf
+    size: 29279253440
+  - name: chronos007-70b.Q2_K.gguf
+    size: 29279253440
+  - name: chronos007-70b.Q3_K_L.gguf
+    size: 36147835840
+  - name: chronos007-70b.Q3_K_L.gguf
+    size: 36147835840
+  - name: chronos007-70b.Q3_K_M.gguf
+    size: 33186657216
+  - name: chronos007-70b.Q3_K_M.gguf
+    size: 33186657216
+  - name: chronos007-70b.Q3_K_S.gguf
+    size: 29919294400
+  - name: chronos007-70b.Q3_K_S.gguf
+    size: 29919294400
+  - name: chronos007-70b.Q4_0.gguf
+    size: 38872249280
+  - name: chronos007-70b.Q4_0.gguf
+    size: 38872249280
+  - name: chronos007-70b.Q4_K_M.gguf
+    size: 41422910400
+  - name: chronos007-70b.Q4_K_M.gguf
+    size: 41422910400
+  - name: chronos007-70b.Q4_K_S.gguf
+    size: 39073575872
+  - name: chronos007-70b.Q4_K_S.gguf
+    size: 39073575872
+  - name: chronos007-70b.Q5_0.gguf
+    size: 47461397440
+  - name: chronos007-70b.Q5_0.gguf
+    size: 47461397440
+  - name: chronos007-70b.Q5_K_M.gguf
+    size: 48753767360
+  - name: chronos007-70b.Q5_K_M.gguf
+    size: 48753767360
+  - name: chronos007-70b.Q5_K_S.gguf
+    size: 47461397440
+  - name: chronos007-70b.Q5_K_S.gguf
+    size: 47461397440
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-12 07:20:44+00:00
+  license: apache-2.0
+  model_creator: Eric Hartford
+  model_creator_link: ehartford
+  name: samantha-1.2-mistral-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: samantha-1.2-mistral-7b.Q2_K.gguf
+    size: 3083107200
+  - name: samantha-1.2-mistral-7b.Q2_K.gguf
+    size: 3083107200
+  - name: samantha-1.2-mistral-7b.Q3_K_L.gguf
+    size: 3822034624
+  - name: samantha-1.2-mistral-7b.Q3_K_L.gguf
+    size: 3822034624
+  - name: samantha-1.2-mistral-7b.Q3_K_M.gguf
+    size: 3518996160
+  - name: samantha-1.2-mistral-7b.Q3_K_M.gguf
+    size: 3518996160
+  - name: samantha-1.2-mistral-7b.Q3_K_S.gguf
+    size: 3164577472
+  - name: samantha-1.2-mistral-7b.Q3_K_S.gguf
+    size: 3164577472
+  - name: samantha-1.2-mistral-7b.Q4_0.gguf
+    size: 4108927744
+  - name: samantha-1.2-mistral-7b.Q4_0.gguf
+    size: 4108927744
+  - name: samantha-1.2-mistral-7b.Q4_K_M.gguf
+    size: 4368450304
+  - name: samantha-1.2-mistral-7b.Q4_K_M.gguf
+    size: 4368450304
+  - name: samantha-1.2-mistral-7b.Q4_K_S.gguf
+    size: 4140385024
+  - name: samantha-1.2-mistral-7b.Q4_K_S.gguf
+    size: 4140385024
+  - name: samantha-1.2-mistral-7b.Q5_0.gguf
+    size: 4997728000
+  - name: samantha-1.2-mistral-7b.Q5_0.gguf
+    size: 4997728000
+  - name: samantha-1.2-mistral-7b.Q5_K_M.gguf
+    size: 5131421440
+  - name: samantha-1.2-mistral-7b.Q5_K_M.gguf
+    size: 5131421440
+  - name: samantha-1.2-mistral-7b.Q5_K_S.gguf
+    size: 4997728000
+  - name: samantha-1.2-mistral-7b.Q5_K_S.gguf
+    size: 4997728000
+  - name: samantha-1.2-mistral-7b.Q6_K.gguf
+    size: 5942078272
+  - name: samantha-1.2-mistral-7b.Q6_K.gguf
+    size: 5942078272
+  - name: samantha-1.2-mistral-7b.Q8_0.gguf
+    size: 7695874752
+  - name: samantha-1.2-mistral-7b.Q8_0.gguf
+    size: 7695874752
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-10 13:11:17+00:00
+  license: other
+  model_creator: Defog.ai
+  model_creator_link: defog
+  name: sqlcoder2-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: sqlcoder2.Q2_K.gguf
+    size: 6731531744
+  - name: sqlcoder2.Q2_K.gguf
+    size: 6731531744
+  - name: sqlcoder2.Q3_K_L.gguf
+    size: 9082373600
+  - name: sqlcoder2.Q3_K_L.gguf
+    size: 9082373600
+  - name: sqlcoder2.Q3_K_M.gguf
+    size: 8176403936
+  - name: sqlcoder2.Q3_K_M.gguf
+    size: 8176403936
+  - name: sqlcoder2.Q3_K_S.gguf
+    size: 6927058400
+  - name: sqlcoder2.Q3_K_S.gguf
+    size: 6927058400
+  - name: sqlcoder2.Q4_0.gguf
+    size: 8987608544
+  - name: sqlcoder2.Q4_0.gguf
+    size: 8987608544
+  - name: sqlcoder2.Q4_K_M.gguf
+    size: 9962784224
+  - name: sqlcoder2.Q4_K_M.gguf
+    size: 9962784224
+  - name: sqlcoder2.Q4_K_S.gguf
+    size: 9063106016
+  - name: sqlcoder2.Q4_K_S.gguf
+    size: 9063106016
+  - name: sqlcoder2.Q5_0.gguf
+    size: 10926949856
+  - name: sqlcoder2.Q5_0.gguf
+    size: 10926949856
+  - name: sqlcoder2.Q5_K_M.gguf
+    size: 11536926176
+  - name: sqlcoder2.Q5_K_M.gguf
+    size: 11536926176
+  - name: sqlcoder2.Q5_K_S.gguf
+    size: 10926949856
+  - name: sqlcoder2.Q5_K_S.gguf
+    size: 10926949856
+  - name: sqlcoder2.Q6_K.gguf
+    size: 12987500000
+  - name: sqlcoder2.Q6_K.gguf
+    size: 12987500000
+  - name: sqlcoder2.Q8_0.gguf
+    size: 16818111968
+  - name: sqlcoder2.Q8_0.gguf
+    size: 16818111968
+- category: generic
+  datasets:
+  - Severian/Biomimicry
+  - emrgnt-cmplxty/sciphi-textbooks-are-all-you-need
+  - fmars/wiki_stem
+  - fblgit/tree-of-knowledge
+  - Severian/Bio-Design-Process
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/64740cf7485a7c8e1bd51ac9/8F-lhYV5yX1M3s2Sbrgi1.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-10-12 04:29:57+00:00
+  license: mit
+  model_creator: Severian
+  model_creator_link: Severian
+  name: ANIMA-Phi-Neptune-Mistral-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: anima-phi-neptune-mistral-7b.Q2_K.gguf
+    size: 3083097792
+  - name: anima-phi-neptune-mistral-7b.Q2_K.gguf
+    size: 3083097792
+  - name: anima-phi-neptune-mistral-7b.Q3_K_L.gguf
+    size: 3822024384
+  - name: anima-phi-neptune-mistral-7b.Q3_K_L.gguf
+    size: 3822024384
+  - name: anima-phi-neptune-mistral-7b.Q3_K_M.gguf
+    size: 3518985920
+  - name: anima-phi-neptune-mistral-7b.Q3_K_M.gguf
+    size: 3518985920
+  - name: anima-phi-neptune-mistral-7b.Q3_K_S.gguf
+    size: 3164567232
+  - name: anima-phi-neptune-mistral-7b.Q3_K_S.gguf
+    size: 3164567232
+  - name: anima-phi-neptune-mistral-7b.Q4_0.gguf
+    size: 4108916416
+  - name: anima-phi-neptune-mistral-7b.Q4_0.gguf
+    size: 4108916416
+  - name: anima-phi-neptune-mistral-7b.Q4_K_M.gguf
+    size: 4368438976
+  - name: anima-phi-neptune-mistral-7b.Q4_K_M.gguf
+    size: 4368438976
+  - name: anima-phi-neptune-mistral-7b.Q4_K_S.gguf
+    size: 4140373696
+  - name: anima-phi-neptune-mistral-7b.Q4_K_S.gguf
+    size: 4140373696
+  - name: anima-phi-neptune-mistral-7b.Q5_0.gguf
+    size: 4997715648
+  - name: anima-phi-neptune-mistral-7b.Q5_0.gguf
+    size: 4997715648
+  - name: anima-phi-neptune-mistral-7b.Q5_K_M.gguf
+    size: 5131409088
+  - name: anima-phi-neptune-mistral-7b.Q5_K_M.gguf
+    size: 5131409088
+  - name: anima-phi-neptune-mistral-7b.Q5_K_S.gguf
+    size: 4997715648
+  - name: anima-phi-neptune-mistral-7b.Q5_K_S.gguf
+    size: 4997715648
+  - name: anima-phi-neptune-mistral-7b.Q6_K.gguf
+    size: 5942064832
+  - name: anima-phi-neptune-mistral-7b.Q6_K.gguf
+    size: 5942064832
+  - name: anima-phi-neptune-mistral-7b.Q8_0.gguf
+    size: 7695857344
+  - name: anima-phi-neptune-mistral-7b.Q8_0.gguf
+    size: 7695857344
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-12 03:42:45+00:00
+  license: cc-by-nc-4.0
+  model_creator: The Royal Lab
+  model_creator_link: royallab
+  name: ZephRP-m7b-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: zephrp-m7b.Q2_K.gguf
+    size: 3083097792
+  - name: zephrp-m7b.Q2_K.gguf
+    size: 3083097792
+  - name: zephrp-m7b.Q3_K_L.gguf
+    size: 3822024384
+  - name: zephrp-m7b.Q3_K_L.gguf
+    size: 3822024384
+  - name: zephrp-m7b.Q3_K_M.gguf
+    size: 3518985920
+  - name: zephrp-m7b.Q3_K_M.gguf
+    size: 3518985920
+  - name: zephrp-m7b.Q3_K_S.gguf
+    size: 3164567232
+  - name: zephrp-m7b.Q3_K_S.gguf
+    size: 3164567232
+  - name: zephrp-m7b.Q4_0.gguf
+    size: 4108916416
+  - name: zephrp-m7b.Q4_0.gguf
+    size: 4108916416
+  - name: zephrp-m7b.Q4_K_M.gguf
+    size: 4368438976
+  - name: zephrp-m7b.Q4_K_M.gguf
+    size: 4368438976
+  - name: zephrp-m7b.Q4_K_S.gguf
+    size: 4140373696
+  - name: zephrp-m7b.Q4_K_S.gguf
+    size: 4140373696
+  - name: zephrp-m7b.Q5_0.gguf
+    size: 4997715648
+  - name: zephrp-m7b.Q5_0.gguf
+    size: 4997715648
+  - name: zephrp-m7b.Q5_K_M.gguf
+    size: 5131409088
+  - name: zephrp-m7b.Q5_K_M.gguf
+    size: 5131409088
+  - name: zephrp-m7b.Q5_K_S.gguf
+    size: 4997715648
+  - name: zephrp-m7b.Q5_K_S.gguf
+    size: 4997715648
+  - name: zephrp-m7b.Q6_K.gguf
+    size: 5942064832
+  - name: zephrp-m7b.Q6_K.gguf
+    size: 5942064832
+  - name: zephrp-m7b.Q8_0.gguf
+    size: 7695857344
+  - name: zephrp-m7b.Q8_0.gguf
+    size: 7695857344
+- category: generic
+  datasets:
+  - Open-Orca/OpenOrca
+  - LDJnr/LessWrong-Amplify-Instruct
+  - LDJnr/Pure-Dove
+  - LDJnr/Verified-Camel
+  - PygmalionAI/PIPPA
+  - meta-math/MetaMathQA
+  - riddle_sense
+  last_commit_time: 2023-10-11 08:56:02+00:00
+  license: apache-2.0
+  model_creator: Open Access AI Collective
+  model_creator_link: openaccess-ai-collective
+  name: jackalope-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: jackalope-7b.Q2_K.gguf
+    size: 3083107168
+  - name: jackalope-7b.Q2_K.gguf
+    size: 3083107168
+  - name: jackalope-7b.Q3_K_L.gguf
+    size: 3822034592
+  - name: jackalope-7b.Q3_K_L.gguf
+    size: 3822034592
+  - name: jackalope-7b.Q3_K_M.gguf
+    size: 3518996128
+  - name: jackalope-7b.Q3_K_M.gguf
+    size: 3518996128
+  - name: jackalope-7b.Q3_K_S.gguf
+    size: 3164577440
+  - name: jackalope-7b.Q3_K_S.gguf
+    size: 3164577440
+  - name: jackalope-7b.Q4_0.gguf
+    size: 4108927712
+  - name: jackalope-7b.Q4_0.gguf
+    size: 4108927712
+  - name: jackalope-7b.Q4_K_M.gguf
+    size: 4368450272
+  - name: jackalope-7b.Q4_K_M.gguf
+    size: 4368450272
+  - name: jackalope-7b.Q4_K_S.gguf
+    size: 4140384992
+  - name: jackalope-7b.Q4_K_S.gguf
+    size: 4140384992
+  - name: jackalope-7b.Q5_0.gguf
+    size: 4997727968
+  - name: jackalope-7b.Q5_0.gguf
+    size: 4997727968
+  - name: jackalope-7b.Q5_K_M.gguf
+    size: 5131421408
+  - name: jackalope-7b.Q5_K_M.gguf
+    size: 5131421408
+  - name: jackalope-7b.Q5_K_S.gguf
+    size: 4997727968
+  - name: jackalope-7b.Q5_K_S.gguf
+    size: 4997727968
+  - name: jackalope-7b.Q6_K.gguf
+    size: 5942078240
+  - name: jackalope-7b.Q6_K.gguf
+    size: 5942078240
+  - name: jackalope-7b.Q8_0.gguf
+    size: 7695874720
+  - name: jackalope-7b.Q8_0.gguf
+    size: 7695874720
+- category: generic
+  datasets:
+  - ehartford/dolphin
+  - jondurbin/airoboros-2.2.1
+  last_commit_time: 2023-10-11 07:48:41+00:00
+  license: apache-2.0
+  model_creator: Eric Hartford
+  model_creator_link: ehartford
+  name: dolphin-2.1-mistral-7B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: dolphin-2.1-mistral-7b.Q2_K.gguf
+    size: 3083107168
+  - name: dolphin-2.1-mistral-7b.Q2_K.gguf
+    size: 3083107168
+  - name: dolphin-2.1-mistral-7b.Q3_K_L.gguf
+    size: 3822034592
+  - name: dolphin-2.1-mistral-7b.Q3_K_L.gguf
+    size: 3822034592
+  - name: dolphin-2.1-mistral-7b.Q3_K_M.gguf
+    size: 3518996128
+  - name: dolphin-2.1-mistral-7b.Q3_K_M.gguf
+    size: 3518996128
+  - name: dolphin-2.1-mistral-7b.Q3_K_S.gguf
+    size: 3164577440
+  - name: dolphin-2.1-mistral-7b.Q3_K_S.gguf
+    size: 3164577440
+  - name: dolphin-2.1-mistral-7b.Q4_0.gguf
+    size: 4108927712
+  - name: dolphin-2.1-mistral-7b.Q4_0.gguf
+    size: 4108927712
+  - name: dolphin-2.1-mistral-7b.Q4_K_M.gguf
+    size: 4368450272
+  - name: dolphin-2.1-mistral-7b.Q4_K_M.gguf
+    size: 4368450272
+  - name: dolphin-2.1-mistral-7b.Q4_K_S.gguf
+    size: 4140384992
+  - name: dolphin-2.1-mistral-7b.Q4_K_S.gguf
+    size: 4140384992
+  - name: dolphin-2.1-mistral-7b.Q5_0.gguf
+    size: 4997727968
+  - name: dolphin-2.1-mistral-7b.Q5_0.gguf
+    size: 4997727968
+  - name: dolphin-2.1-mistral-7b.Q5_K_M.gguf
+    size: 5131421408
+  - name: dolphin-2.1-mistral-7b.Q5_K_M.gguf
+    size: 5131421408
+  - name: dolphin-2.1-mistral-7b.Q5_K_S.gguf
+    size: 4997727968
+  - name: dolphin-2.1-mistral-7b.Q5_K_S.gguf
+    size: 4997727968
+  - name: dolphin-2.1-mistral-7b.Q6_K.gguf
+    size: 5942078240
+  - name: dolphin-2.1-mistral-7b.Q6_K.gguf
+    size: 5942078240
+  - name: dolphin-2.1-mistral-7b.Q8_0.gguf
+    size: 7695874720
+  - name: dolphin-2.1-mistral-7b.Q8_0.gguf
+    size: 7695874720
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: 2023-10-11 04:42:18+00:00
+  license: cc-by-nc-4.0
+  model_creator: Undi
+  model_creator_link: Undi95
+  name: UndiMix-v3-13B-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: undimix-v3-13b.Q2_K.gguf
+    size: 5429348288
+  - name: undimix-v3-13b.Q2_K.gguf
+    size: 5429348288
+  - name: undimix-v3-13b.Q3_K_L.gguf
+    size: 6929559488
+  - name: undimix-v3-13b.Q3_K_L.gguf
+    size: 6929559488
+  - name: undimix-v3-13b.Q3_K_M.gguf
+    size: 6337769408
+  - name: undimix-v3-13b.Q3_K_M.gguf
+    size: 6337769408
+  - name: undimix-v3-13b.Q3_K_S.gguf
+    size: 5658980288
+  - name: undimix-v3-13b.Q3_K_S.gguf
+    size: 5658980288
+  - name: undimix-v3-13b.Q4_0.gguf
+    size: 7365834688
+  - name: undimix-v3-13b.Q4_0.gguf
+    size: 7365834688
+  - name: undimix-v3-13b.Q4_K_M.gguf
+    size: 7865956288
+  - name: undimix-v3-13b.Q4_K_M.gguf
+    size: 7865956288
+  - name: undimix-v3-13b.Q4_K_S.gguf
+    size: 7414331328
+  - name: undimix-v3-13b.Q4_K_S.gguf
+    size: 7414331328
+  - name: undimix-v3-13b.Q5_0.gguf
+    size: 8972285888
+  - name: undimix-v3-13b.Q5_0.gguf
+    size: 8972285888
+  - name: undimix-v3-13b.Q5_K_M.gguf
+    size: 9229924288
+  - name: undimix-v3-13b.Q5_K_M.gguf
+    size: 9229924288
+  - name: undimix-v3-13b.Q5_K_S.gguf
+    size: 8972285888
+  - name: undimix-v3-13b.Q5_K_S.gguf
+    size: 8972285888
+  - name: undimix-v3-13b.Q6_K.gguf
+    size: 10679140288
+  - name: undimix-v3-13b.Q6_K.gguf
+    size: 10679140288
+  - name: undimix-v3-13b.Q8_0.gguf
+    size: 13831319488
+  - name: undimix-v3-13b.Q8_0.gguf
+    size: 13831319488
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-11 04:31:41+00:00
+  license: unknown
+  name: tinyllama-1.1b-chat-v0.3_platypus-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants: []
+- category: generic
+  datasets:
+  - Open-Orca/OpenOrca
+  - bigcode/starcoderdata
+  - cerebras/SlimPajama-627B
+  icon: ''
+  last_commit_time: 2023-10-11 04:23:27+00:00
+  license: other
+  model_creator: jeff zhao
+  model_creator_link: jeff31415
+  name: TinyLlama-1.1B-1T-OpenOrca-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: tinyllama-1.1b-1t-openorca.Q2_K.gguf
+    size: 482142688
+  - name: tinyllama-1.1b-1t-openorca.Q2_K.gguf
+    size: 482142688
+  - name: tinyllama-1.1b-1t-openorca.Q3_K_L.gguf
+    size: 591526368
+  - name: tinyllama-1.1b-1t-openorca.Q3_K_L.gguf
+    size: 591526368
+  - name: tinyllama-1.1b-1t-openorca.Q3_K_M.gguf
+    size: 549845472
+  - name: tinyllama-1.1b-1t-openorca.Q3_K_M.gguf
+    size: 549845472
+  - name: tinyllama-1.1b-1t-openorca.Q3_K_S.gguf
+    size: 499341792
+  - name: tinyllama-1.1b-1t-openorca.Q3_K_S.gguf
+    size: 499341792
+  - name: tinyllama-1.1b-1t-openorca.Q4_0.gguf
+    size: 636725728
+  - name: tinyllama-1.1b-1t-openorca.Q4_0.gguf
+    size: 636725728
+  - name: tinyllama-1.1b-1t-openorca.Q4_K_M.gguf
+    size: 667814368
+  - name: tinyllama-1.1b-1t-openorca.Q4_K_M.gguf
+    size: 667814368
+  - name: tinyllama-1.1b-1t-openorca.Q4_K_S.gguf
+    size: 642755040
+  - name: tinyllama-1.1b-1t-openorca.Q4_K_S.gguf
+    size: 642755040
+  - name: tinyllama-1.1b-1t-openorca.Q5_0.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-1t-openorca.Q5_0.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-1t-openorca.Q5_K_M.gguf
+    size: 782043616
+  - name: tinyllama-1.1b-1t-openorca.Q5_K_M.gguf
+    size: 782043616
+  - name: tinyllama-1.1b-1t-openorca.Q5_K_S.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-1t-openorca.Q5_K_S.gguf
+    size: 766028256
+  - name: tinyllama-1.1b-1t-openorca.Q6_K.gguf
+    size: 903412192
+  - name: tinyllama-1.1b-1t-openorca.Q6_K.gguf
+    size: 903412192
+  - name: tinyllama-1.1b-1t-openorca.Q8_0.gguf
+    size: 1169807840
+  - name: tinyllama-1.1b-1t-openorca.Q8_0.gguf
+    size: 1169807840
+- category: generic
+  datasets:
+  - stingning/ultrachat
+  - openbmb/UltraFeedback
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/5f0c746619cb630495b814fd/j26aNEdiOgptZxJ6akGCC.png?w=200&h=200&f=face
+  last_commit_time: 2023-10-11 03:26:12+00:00
+  license: cc-by-nc-4.0
+  model_creator: Hugging Face H4
+  model_creator_link: HuggingFaceH4
+  name: zephyr-7B-alpha-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: zephyr-7b-alpha.Q2_K.gguf
+    size: 3083097792
+  - name: zephyr-7b-alpha.Q2_K.gguf
+    size: 3083097792
+  - name: zephyr-7b-alpha.Q3_K_L.gguf
+    size: 3822024384
+  - name: zephyr-7b-alpha.Q3_K_L.gguf
+    size: 3822024384
+  - name: zephyr-7b-alpha.Q3_K_M.gguf
+    size: 3518985920
+  - name: zephyr-7b-alpha.Q3_K_M.gguf
+    size: 3518985920
+  - name: zephyr-7b-alpha.Q3_K_S.gguf
+    size: 3164567232
+  - name: zephyr-7b-alpha.Q3_K_S.gguf
+    size: 3164567232
+  - name: zephyr-7b-alpha.Q4_0.gguf
+    size: 4108916416
+  - name: zephyr-7b-alpha.Q4_0.gguf
+    size: 4108916416
+  - name: zephyr-7b-alpha.Q4_K_M.gguf
+    size: 4368438976
+  - name: zephyr-7b-alpha.Q4_K_M.gguf
+    size: 4368438976
+  - name: zephyr-7b-alpha.Q4_K_S.gguf
+    size: 4140373696
+  - name: zephyr-7b-alpha.Q4_K_S.gguf
+    size: 4140373696
+  - name: zephyr-7b-alpha.Q5_0.gguf
+    size: 4997715648
+  - name: zephyr-7b-alpha.Q5_0.gguf
+    size: 4997715648
+  - name: zephyr-7b-alpha.Q5_K_M.gguf
+    size: 5131409088
+  - name: zephyr-7b-alpha.Q5_K_M.gguf
+    size: 5131409088
+  - name: zephyr-7b-alpha.Q5_K_S.gguf
+    size: 4997715648
+  - name: zephyr-7b-alpha.Q5_K_S.gguf
+    size: 4997715648
+  - name: zephyr-7b-alpha.Q6_K.gguf
+    size: 5942064832
+  - name: zephyr-7b-alpha.Q6_K.gguf
+    size: 5942064832
+  - name: zephyr-7b-alpha.Q8_0.gguf
+    size: 7695857344
+  - name: zephyr-7b-alpha.Q8_0.gguf
+    size: 7695857344
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-11 03:20:35+00:00
+  license: unknown
+  name: Tinyllama-2-1b-miniguanaco-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants: []
+- category: generic
+  datasets: unknown
+  last_commit_time: 2023-10-10 10:41:47+00:00
+  license: apache-2.0
+  model_creator: Jan Philipp Harries
+  model_creator_link: jphme
+  name: em_german_leo_mistral-GGUF
+  quantizer: TheBloke
+  rank: 10000000000.0
+  type: gguf
+  variants:
+  - name: em_german_leo_mistral.Q2_K.gguf
+    size: 3083097728
+  - name: em_german_leo_mistral.Q2_K.gguf
+    size: 3083097728
+  - name: em_german_leo_mistral.Q3_K_L.gguf
+    size: 3822024320
+  - name: em_german_leo_mistral.Q3_K_L.gguf
+    size: 3822024320
+  - name: em_german_leo_mistral.Q3_K_M.gguf
+    size: 3518985856
+  - name: em_german_leo_mistral.Q3_K_M.gguf
+    size: 3518985856
+  - name: em_german_leo_mistral.Q3_K_S.gguf
+    size: 3164567168
+  - name: em_german_leo_mistral.Q3_K_S.gguf
+    size: 3164567168
+  - name: em_german_leo_mistral.Q4_0.gguf
+    size: 4108916352
+  - name: em_german_leo_mistral.Q4_0.gguf
+    size: 4108916352
+  - name: em_german_leo_mistral.Q4_K_M.gguf
+    size: 4368438912
+  - name: em_german_leo_mistral.Q4_K_M.gguf
+    size: 4368438912
+  - name: em_german_leo_mistral.Q4_K_S.gguf
+    size: 4140373632
+  - name: em_german_leo_mistral.Q4_K_S.gguf
+    size: 4140373632
+  - name: em_german_leo_mistral.Q5_0.gguf
+    size: 4997715584
+  - name: em_german_leo_mistral.Q5_0.gguf
+    size: 4997715584
+  - name: em_german_leo_mistral.Q5_K_M.gguf
+    size: 5131409024
+  - name: em_german_leo_mistral.Q5_K_M.gguf
+    size: 5131409024
+  - name: em_german_leo_mistral.Q5_K_S.gguf
+    size: 4997715584
+  - name: em_german_leo_mistral.Q5_K_S.gguf
+    size: 4997715584
+  - name: em_german_leo_mistral.Q6_K.gguf
+    size: 5942064768
+  - name: em_german_leo_mistral.Q6_K.gguf
+    size: 5942064768
+  - name: em_german_leo_mistral.Q8_0.gguf
+    size: 7695857280
+  - name: em_german_leo_mistral.Q8_0.gguf
+    size: 7695857280
+- category: generic
   datasets: unknown
   last_commit_time: 2023-10-09 10:31:43+00:00
   license: gpl-3.0
