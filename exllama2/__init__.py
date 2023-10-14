@@ -192,7 +192,7 @@ class EXLLAMA2(LLMBinding):
                 gpu_split = None
             self.model.load(gpu_split) # [16, 24]
             self.tokenizer = ExLlamaV2Tokenizer(config)
-            self.cache = ExLlamaV2Cache(self.model)
+            self.cache = ExLlamaV2Cache(self.model, max_seq_len=self.binding_config.config.ctx_size)
             self.generator = ExLlamaV2StreamingGenerator(self.model, self.cache, self.tokenizer)
             self.settings = ExLlamaV2Sampler.Settings()
 
