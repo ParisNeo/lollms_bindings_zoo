@@ -172,20 +172,7 @@ class EXLLAMA2(LLMBinding):
                 config.matmul_no_half2 = True
                 config.silu_no_half2 = True
 
-            # Run nvidia-smi to get GPU metrics
-            result = subprocess.run(['nvidia-smi'], stdout=subprocess.PIPE, text=True)
-
-            # Print the output
-            print(result.stdout)
-            try:
-                torch.cuda.empty_cache()
-            except Exception as ex:
-                ASCIIColors.error("Couldn't clear cuda memory")
-            # Run nvidia-smi to get GPU metrics
-            result = subprocess.run(['nvidia-smi'], stdout=subprocess.PIPE, text=True)
-
-            # Print the output
-            print(result.stdout)
+            self.clear_cuda()
             ASCIIColors.red ("----------- LOLLMS EXLLAMA2 Model Information -----------------")
             ASCIIColors.magenta(f"Model name:{self.config.model_name}")
             self.print_class_attributes(config)
