@@ -205,6 +205,7 @@ class EXLLAMA2(LLMBinding):
         AdvancedGarbageCollector.safeHardCollectMultiple(['model','tokenizer','cache','generator'],self)
         AdvancedGarbageCollector.safeHardCollectMultiple(['ExLlamaGenerator','ExLlama','ExLlamaCache','ExLlamaConfig','ExLlamaTokenizer','torch_version'])
         AdvancedGarbageCollector.collect()
+        self.clear_cuda()
         ASCIIColors.success("freed memory")
         
         super().install()

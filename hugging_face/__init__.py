@@ -135,10 +135,7 @@ class HuggingFace(LLMBinding):
             self.tokenizer = None
             gc.collect()
             if self.config.enable_gpu:
-                try:
-                    torch.cuda.empty_cache()
-                except Exception as ex:
-                    ASCIIColors.error("Couldn't clear cuda memory")
+                self.clear_cuda()
 
             import os
             os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
