@@ -3,7 +3,6 @@
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Underlying binding : Abdeladim's pygptj binding
-# Supported by Nomic-AI
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.

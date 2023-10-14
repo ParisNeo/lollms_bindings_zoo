@@ -2,7 +2,6 @@
 # Project       : lollms
 # File          : binding.py
 # Author        : ParisNeo with the help from bartowski
-# Supported by Nomic-AI
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
