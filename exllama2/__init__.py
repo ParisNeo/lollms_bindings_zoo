@@ -125,6 +125,7 @@ class EXLLAMA2(LLMBinding):
         except Exception as ex:
             trace_exception(ex)
             ASCIIColors.warning("Couldn't import dependencies")
+            return
 
         if self.config.model_name is None:
             ASCIIColors.error('No model selected!!')
