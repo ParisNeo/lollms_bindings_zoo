@@ -91,6 +91,9 @@ class CTRansformers(LLMBinding):
     def build_model(self):
 
         ASCIIColors.info("Building model")
+        if self.config['model_name']:
+           ASCIIColors.error("No model is selected")
+           return
 
         if 'gpt2' in self.config['model_name']:
             model_type='gpt2'
