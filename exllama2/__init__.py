@@ -280,9 +280,9 @@ class EXLLAMA2(LLMBinding):
             # subprocess.run(["pip", "install", "--upgrade", "peft"])
             current_platform = platform.system()
             if current_platform == 'Windows':
-                subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu117-cp310-cp310-win_amd64.whl"])
+                subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu118-cp38-cp38-linux_x86_64.whl"])
             else:
-                subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu117-cp310-cp310-linux_x86_64.whl"])
+                subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu118-cp310-cp310-linux_x86_64.whl"])
             # 
             ASCIIColors.success("Installed successfully")
             try:
