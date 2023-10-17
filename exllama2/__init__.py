@@ -26,6 +26,7 @@ import urllib
 import shutil
 import sys
 import os
+import platform
 
 sys.path.append(os.getcwd())
 pth = Path(__file__).parent/"exllamav2"
@@ -242,8 +243,8 @@ class EXLLAMA2(LLMBinding):
                 ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()
 
-            requirements_file = self.binding_dir / "requirements.txt"
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+            # requirements_file = self.binding_dir / "requirements.txt"
+            # subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
 
             # Repository URL
             repo_url = "https://github.com/ParisNeo/exllamav2.git"
@@ -277,7 +278,11 @@ class EXLLAMA2(LLMBinding):
             # subprocess.run(["pip", "install", "--upgrade", "transformers"])
             # subprocess.run(["pip", "install", "--upgrade", "accelerate"])
             # subprocess.run(["pip", "install", "--upgrade", "peft"])
-            subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu118-cp310-cp310-linux_x86_64.whl"])
+            current_platform = platform.system()
+            if current_platform == 'Windows':
+                subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu117-cp310-cp310-win_amd64.whl"])
+            else:
+                subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu117-cp310-cp310-linux_x86_64.whl"])
             # 
             ASCIIColors.success("Installed successfully")
             try:
