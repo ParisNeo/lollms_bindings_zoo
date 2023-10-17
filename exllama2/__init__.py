@@ -261,23 +261,23 @@ class EXLLAMA2(LLMBinding):
             subfolder_path = parent_dir / subfolder_name
 
             # Check if the subfolder exists and remove it if it does
-            if subfolder_path.exists():
-                ASCIIColors.yellow("---------- Pulling exllama ---------")
-                subprocess.run(["git", "pull"], cwd = str(subfolder_path), check=True)
-                ASCIIColors.yellow("------------------------------------")
+            # if subfolder_path.exists():
+            #     ASCIIColors.yellow("---------- Pulling exllama ---------")
+            #     subprocess.run(["git", "pull"], cwd = str(subfolder_path), check=True)
+            #     ASCIIColors.yellow("------------------------------------")
 
-            else:
+            # else:
                 # Clone the repository to the subfolder
-                subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
+            #     subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
             # Make models dir
             models_dir = self.lollms_paths.personal_models_path / "exllama2"
             models_dir.mkdir(parents=True, exist_ok=True)    
 
             # Install custom version of transformers
-            subprocess.run(["pip", "install", "--upgrade", "transformers"])
-            subprocess.run(["pip", "install", "--upgrade", "accelerate"])
-            subprocess.run(["pip", "install", "--upgrade", "peft"])
-
+            # subprocess.run(["pip", "install", "--upgrade", "transformers"])
+            # subprocess.run(["pip", "install", "--upgrade", "accelerate"])
+            # subprocess.run(["pip", "install", "--upgrade", "peft"])
+            subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu118-cp310-cp310-linux_x86_64.whl"])
             # 
             ASCIIColors.success("Installed successfully")
             try:
