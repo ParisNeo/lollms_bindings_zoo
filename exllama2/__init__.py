@@ -28,9 +28,9 @@ import sys
 import os
 import platform
 
-sys.path.append(os.getcwd())
-pth = Path(__file__).parent/"exllamav2"
-sys.path.append(str(pth))
+# sys.path.append(os.getcwd())
+# pth = Path(__file__).parent/"exllamav2"
+# sys.path.append(str(pth))
 
 
 __author__ = "parisneo"
