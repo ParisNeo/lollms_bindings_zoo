@@ -91,7 +91,8 @@ class GPT4ALL(LLMBinding):
                 return None
 
         from gpt4all import GPT4All, Embed4All
-
+        ASCIIColors.yellow(f"Loading model:{str(model_path.name)}")
+        ASCIIColors.yellow(f"Folder:{str(model_path.parent)}")
         if self.binding_config.processing_unit=="auto":
             self.model = GPT4All(
                                     model_name=str(model_path.name),
