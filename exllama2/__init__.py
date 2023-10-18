@@ -362,7 +362,7 @@ class EXLLAMA2(LLMBinding):
         self.settings.top_k = default_params['top_k']
         self.settings.top_p = default_params['top_p']
         self.settings.token_repetition_penalty = default_params['repeat_penalty']
-        self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
+        # self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
         try:
             input_ids = self.tokenizer.encode(prompt)
             prompt_tokens = input_ids.shape[-1]
