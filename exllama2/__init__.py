@@ -369,7 +369,7 @@ class EXLLAMA2(LLMBinding):
             self.generator.warmup()
 
             self.generator.set_stop_conditions([])
-            self.generator.begin_stream(input_ids, self.settings)
+            self.generator.begin_stream(input_ids, self.settings, token_healing = True)
             for i in range(n_predict):
                 chunk, eos, _ = self.generator.stream()
                 self.output += chunk
