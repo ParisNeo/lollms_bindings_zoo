@@ -272,6 +272,8 @@ class EXLLAMA2(LLMBinding):
             #     subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
             # Make models dir
             models_dir = self.lollms_paths.personal_models_path / "exllama2"
+            models_dir.mkdir(parents=True, exist_ok=True)
+            models_dir = self.lollms_paths.personal_models_path / "gptq"
             models_dir.mkdir(parents=True, exist_ok=True)    
 
             # Install custom version of transformers

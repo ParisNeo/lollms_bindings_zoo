@@ -2,4 +2,4 @@ name: Elf
 author: ParisNeo
 version: 1.0
 link: https://lollms.com/
-description: This binding uses the open ai api to make you use gpt4 and others
+description: This binding uses ParisNeo's lollms server called elf as backend

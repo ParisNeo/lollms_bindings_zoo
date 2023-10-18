@@ -45,7 +45,7 @@ class HuggingFace(LLMBinding):
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
                 ) -> None:
-        """Builds a GPTQ binding
+        """Builds a GPTQ/AWQ binding
 
         Args:
             config (LOLLMSConfig): The configuration file
@@ -189,6 +189,13 @@ class HuggingFace(LLMBinding):
         ASCIIColors.success("freed memory")
 
         super().install()
+
+        models_dir = self.lollms_paths.personal_models_path / "gptq"
+        models_dir.mkdir(parents=True, exist_ok=True)    
+        models_dir = self.lollms_paths.personal_models_path / "awq"
+        models_dir.mkdir(parents=True, exist_ok=True)    
+        models_dir = self.lollms_paths.personal_models_path / "transformers"
+        models_dir.mkdir(parents=True, exist_ok=True)    
 
         if self.config.enable_gpu:
             ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
