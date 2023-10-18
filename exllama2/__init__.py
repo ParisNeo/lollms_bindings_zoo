@@ -225,7 +225,6 @@ class EXLLAMA2(LLMBinding):
         
         if self.config.enable_gpu:
             try:
-                import torch
                 from torch import version as torch_version
                 try:
                     torch.cuda.empty_cache()
@@ -288,7 +287,6 @@ class EXLLAMA2(LLMBinding):
             # 
             ASCIIColors.success("Installed successfully")
             try:
-                import torch
                 from torch import version as torch_version
             except:
                 pass            
@@ -362,13 +360,17 @@ class EXLLAMA2(LLMBinding):
         self.settings.top_k = default_params['top_k']
         self.settings.top_p = default_params['top_p']
         self.settings.token_repetition_penalty = default_params['repeat_penalty']
+        # Value to prepend
+        value_to_prepend = torch.tensor([[self.tokenizer.bos_token_id]])
+
         # self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
         try:
             input_ids = self.tokenizer.encode(prompt)
-            prompt_tokens = input_ids.shape[-1]
+            # Concatenate the value to the front of the existing tensor array
+            input_ids = torch.cat((value_to_prepend, input_ids), dim=1)
             self.generator.warmup()
 
-            self.generator.set_stop_conditions([])
+            self.generator.set_stop_conditions([self.tokenizer.eos_token_id])
             self.generator.begin_stream(input_ids, self.settings, token_healing = True)
             for i in range(n_predict):
                 chunk, eos, _ = self.generator.stream()
