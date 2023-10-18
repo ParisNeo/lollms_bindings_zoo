@@ -56,7 +56,7 @@ class HuggingFace(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
             {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
-            {"name":"ctx_size","type":"int","value":4096, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
         ])
@@ -72,7 +72,8 @@ class HuggingFace(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.safetensors','.pth','.bin']
+                            supported_file_extensions=['.safetensors','.pth','.bin'],
+                            models_dir_names=["transformers","gptq"]
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.callback = None
@@ -189,13 +190,6 @@ class HuggingFace(LLMBinding):
         ASCIIColors.success("freed memory")
 
         super().install()
-
-        models_dir = self.lollms_paths.personal_models_path / "gptq"
-        models_dir.mkdir(parents=True, exist_ok=True)    
-        models_dir = self.lollms_paths.personal_models_path / "awq"
-        models_dir.mkdir(parents=True, exist_ok=True)    
-        models_dir = self.lollms_paths.personal_models_path / "transformers"
-        models_dir.mkdir(parents=True, exist_ok=True)    
 
         if self.config.enable_gpu:
             ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
@@ -532,22 +526,6 @@ class HuggingFace(LLMBinding):
                 return file_size        
         return 4000000000
 
-    def list_models(self, config:dict):
-        """Lists the models for this binding
-        """
-        models_dir:Path = self.lollms_paths.personal_models_path/config["binding_name"]  # replace with the actual path to the models folder
-        return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".")]
-
-    @staticmethod
-    def get_available_models():
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-        return yaml_data
 
     def train(self, model_name_or_path, model_basename):
         from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig

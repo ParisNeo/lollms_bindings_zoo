@@ -91,7 +91,8 @@ class AutoAWQ(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.safetensors','.pth','.bin']
+                            supported_file_extensions=['.safetensors','.pth','.bin'],
+                            models_dir_names=["awq"]
                         )
 
         
@@ -277,7 +278,7 @@ class AutoAWQ(LLMBinding):
         self.output = ""
         try:
             input_ids = self.tokenizer(
-                prompt_template.format(prompt="How are you today?"), 
+                prompt, 
                 return_tensors='pt'
             ).input_ids.cuda()
             prompt_tokens = input_ids.shape[-1]
@@ -392,20 +393,3 @@ class AutoAWQ(LLMBinding):
                 
                 return file_size        
         return 4000000000
-
-    def list_models(self, config:dict):
-        """Lists the models for this binding
-        """
-        models_dir:Path = self.lollms_paths.personal_models_path/config["binding_name"]  # replace with the actual path to the models folder
-        return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".") or f.suffix==".reference"]
-
-    @staticmethod
-    def get_available_models():
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-        return yaml_data

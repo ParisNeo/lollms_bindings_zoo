@@ -68,7 +68,7 @@ class EXLLAMA2(LLMBinding):
             
             {"name": "gpu_split", "type": "str", "value": '[24]',
                 "help": "A list depicting how many layers to offload to each GPU. [gpu1,gpu2 etc]. Example [16,24]. If you have just one, the list should contain one value"},
-            {"name": "ctx_size", "type": "int", "value": 2048, "min": 512,
+            {"name": "ctx_size", "type": "int", "value": 4090, "min": 512,
                 "help": "The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs. Reduce to save memory. Can also be increased, ideally while also using compress_pos_emn and a compatible model/LoRA"},
             {"name": "max_input_len", "type": "int", "value": 2048, "min": 512,
                 "help": "Maximum length of input IDs in a single forward pass. Sequences longer than this will be processed in multiple steps"},
@@ -91,7 +91,8 @@ class EXLLAMA2(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.safetensors','.pth','.bin']
+                            supported_file_extensions=['.safetensors'],
+                            models_dir_names=["gptq"]
                         )
 
         
@@ -141,11 +142,6 @@ class EXLLAMA2(LLMBinding):
             if not model_path:
                 self.model = None
                 return None
-
-            models_dir = self.lollms_paths.personal_models_path / "exllama2"
-            models_dir.mkdir(parents=True, exist_ok=True)
-
-            # model_path = models_dir/ path
 
             model_name = str(model_path).replace("\\","/")
 
@@ -274,8 +270,6 @@ class EXLLAMA2(LLMBinding):
             # Make models dir
             models_dir = self.lollms_paths.personal_models_path / "exllama2"
             models_dir.mkdir(parents=True, exist_ok=True)
-            models_dir = self.lollms_paths.personal_models_path / "gptq"
-            models_dir.mkdir(parents=True, exist_ok=True)    
 
             # Install custom version of transformers
             # subprocess.run(["pip", "install", "--upgrade", "transformers"])
@@ -491,19 +485,3 @@ class EXLLAMA2(LLMBinding):
                 return file_size        
         return 4000000000
 
-    def list_models(self, config:dict):
-        """Lists the models for this binding
-        """
-        models_dir:Path = self.lollms_paths.personal_models_path/config["binding_name"]  # replace with the actual path to the models folder
-        return [f.name for f in models_dir.iterdir() if f.is_dir() and not f.stem.startswith(".") or f.suffix==".reference"]
-
-    @staticmethod
-    def get_available_models():
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-        return yaml_data
