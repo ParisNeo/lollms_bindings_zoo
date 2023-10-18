@@ -1,10 +1,10 @@
-name: exLLAMA2 (My favorite for GPU)
-author: turboderp
-version: 2.0
-link: https://github.com/turboderp/exllama
+name: autoAWQ (Building in progress)
+author: matrix-yang
+version: 1.0
+link: https://github.com/matrix-yang/AutoAWQ
 supported_models: |
-    exLLAMA binding (Work in progress)
+    AWQ models binding (Work in progress)
 description: |
-    Python bindings for the exLLAMA type of files.
-    This binding is very fast but can only support GPTQ models
+    Python bindings for the AWQ type of files.
+    This binding is very fast but can only support AWQ models
     and can only run on <b>GPU</b>
