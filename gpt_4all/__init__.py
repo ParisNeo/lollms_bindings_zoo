@@ -84,7 +84,9 @@ class GPT4ALL(LLMBinding):
         
         if model_path.suffix!=".bin" and model_path.suffix!=".gguf":
             model_path = model_path.name.lower().replace("-ggml","").replace("-gguf","")
-            candidates = [m for m in (self.lollms_paths.personal_models_path/self.binding_folder_name).iterdir() if model_path in m.name]
+            candidates = []
+            for models_folder in self.models_folders:
+                candidates += [m for m in (models_folder).iterdir() if model_path in m.name]
             if len(candidates)>0:
                 model_path = candidates[0]
             else:
@@ -114,9 +116,8 @@ class GPT4ALL(LLMBinding):
 
     def install(self):
         super().install()
-        requirements_file = self.binding_dir / "requirements.txt"
         # install requirements
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        subprocess.run(["pip", "install", "--upgrade", "gpt4all"])
         ASCIIColors.success("Installed successfully")
 
     def tokenize(self, prompt:str):
