@@ -145,11 +145,11 @@ class HuggingFace(LLMBinding):
             ASCIIColors.info(f"Creating tokenizer {model_path}")
 
             self.tokenizer = AutoTokenizer.from_pretrained(
-                    model_name
+                    str(model_name)
                     )
             ASCIIColors.success(f"ok")
             ASCIIColors.info(f"Recovering generation config {model_path}")
-            self.generation_config = GenerationConfig.from_pretrained(model_path)
+            self.generation_config = GenerationConfig.from_pretrained(str(model_path))
             ASCIIColors.success(f"ok")
             ASCIIColors.info(f"Creating model {model_path}")
             # load model
