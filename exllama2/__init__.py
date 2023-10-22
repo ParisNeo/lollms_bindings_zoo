@@ -27,6 +27,7 @@ import shutil
 import sys
 import os
 import platform
+from tqdm import tqdm
 
 # sys.path.append(os.getcwd())
 # pth = Path(__file__).parent/"exllamav2"
@@ -386,12 +387,20 @@ class EXLLAMA2(LLMBinding):
 
         dont_download = [".gitattributes"]
 
-        main_url = '/'.join(repo.split("/")[:-3])+"/tree/main" #f"https://huggingface.co/{}/tree/main"
+        blocs = repo.split("/")
+        if len(blocs)!=2:
+            raise ValueError("Bad repository path")
+        
+        # https://huggingface.co/TheBloke/Spicyboros-13B-2.2-GPTQ/tree/main?not-for-all-audiences=true
+        
+        main_url = "https://huggingface.co/"+repo+"/tree/main" #f"https://huggingface.co/{}/tree/main"
         response = requests.get(main_url)
         html_content = response.text
         soup = BeautifulSoup(html_content, 'html.parser')
 
         file_names = []
+
+        
 
         for a_tag in soup.find_all('a', {'class': 'group'}):
             span_tag = a_tag.find('span', {'class': 'truncate'})
@@ -400,10 +409,20 @@ class EXLLAMA2(LLMBinding):
                 if file_name not in dont_download:
                     file_names.append(file_name)
 
-        print(f"Repo: {repo}")
-        print("Found files:")
-        for file in file_names:
-            print(" ", file)
+        if len(file_names)==0:
+            ASCIIColors.warning(f"No files found. This is probably a model with disclaimer. Please make sure you read the disclaimer before using the model.")
+            main_url = "https://huggingface.co/"+repo+"/tree/main?not-for-all-audiences=true" #f"https://huggingface.co/{}/tree/main"
+            response = requests.get(main_url)
+            html_content = response.text
+            soup = BeautifulSoup(html_content, 'html.parser')
+
+            file_names = []
+            for a_tag in soup.find_all('a', {'class': 'group'}):
+                span_tag = a_tag.find('span', {'class': 'truncate'})
+                if span_tag:
+                    file_name = span_tag.text
+                    if file_name not in dont_download:
+                        file_names.append(file_name)
         return file_names
                     
     @staticmethod
@@ -422,7 +441,15 @@ class EXLLAMA2(LLMBinding):
         
         import wget
         import os
-        from tqdm import tqdm
+
+        blocs = repo.split("/")
+        """
+        if len(blocs)!=2 and len(blocs)!=4:
+            raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")        
+        if len(blocs)==4:
+        """
+        if len(blocs)!=2:
+            repo="/".join(blocs[-5:-3])
 
         file_names = EXLLAMA2.get_filenames(repo)
 
@@ -431,8 +458,8 @@ class EXLLAMA2(LLMBinding):
         os.chdir(dest_dir)
 
         loading = ["none"]
+        pbar = tqdm(total=100, desc="Downloading", unit="step")
         previous = [0]
-        pbar = tqdm(total=100, desc="Processing", unit="step")
         def chunk_callback(current, total, width=80):
             # This function is called for each received chunk
             # Perform actions or computations on the received chunk
@@ -443,17 +470,18 @@ class EXLLAMA2(LLMBinding):
             # Example: Print the current progress
             downloaded = current 
             progress = (current  / total) * 100
-            pbar.update(current-previous[0])  # Update the tqdm progress bar
-            previous[0] = current
-            if callback and ".safetensors" in loading[0]:
+            pbar.update(progress-previous[0])  # Update the tqdm progress bar
+            previous[0] = progress
+            if callback and (".safetensors" in loading[0] or ".bin" in loading[0] ):
                 try:
                     callback(downloaded, total)
                 except:
                     callback(0, downloaded, total)
-                    
+
         def download_file(get_file):
-            src = "/".join(repo.split("/")[:-3])
-            filename = f"{src}/resolve/main/{get_file}"
+            main_url = "https://huggingface.co/"+repo#f"https://huggingface.co/{}/tree/main"
+
+            filename = f"{main_url}/resolve/main/{get_file}"
             print(f"\nDownloading {filename}")
             loading[0]=filename
             wget.download(filename, out=str(dest_dir), bar=chunk_callback)
