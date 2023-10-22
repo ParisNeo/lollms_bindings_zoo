@@ -74,10 +74,10 @@ class EXLLAMA2(LLMBinding):
                 "help": "Maximum length of input IDs in a single forward pass. Sequences longer than this will be processed in multiple steps"},
             {"name": "max_attention_size", "type": "int", "value": 2048**2, "min": 512,
                 "help": "Increase to compress positional embeddings applied to sequence"},
-            {"name": "compress_pos_emb", "type": "float", "value": 1, "min": 1, "max": 8,
+            {"name": "scale_pos_emb", "type": "float", "value": 1, "min": 1, "max": 8,
                 "help": "Positional embeddings compression value, set it to your ctx_size divided by 2048 when over 2048. Only set this or alpha. Increase to compress positional embeddings applied to sequence"},
             {"name": "alpha", "type": "int", "value": 1, "min": 1, "max": 32,
-                "help": "Alpha value for context size extension. Only use this or compress_pos_emb. Alpha value for NTK RoPE scaling. Similar to compress_pos_emb, higher values increaste ctx but add Perplexity."},
+                "help": "Alpha value for context size extension. Only use this or scale_pos_emb. Alpha value for NTK RoPE scaling. Similar to scale_pos_emb, higher values increaste ctx but add Perplexity."},
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
 
@@ -161,13 +161,11 @@ class EXLLAMA2(LLMBinding):
             config.max_seq_len = self.binding_config.config.ctx_size  # Reduce to save memory. Can also be increased, ideally while also using compress_pos_emn and a compatible model/LoRA
             config.max_input_len = self.binding_config.config.max_input_len  # Maximum length of input IDs in a single forward pass. Sequences longer than this will be processed in multiple steps
             config.max_attention_size = self.binding_config.config.max_attention_size  # Sequences will be processed in chunks to keep the size of the attention weights matrix <= this
-            config.compress_pos_emb = self.binding_config.config.compress_pos_emb  # Increase to compress positional embeddings applied to sequence
-            config.alpha_value = self.binding_config.config.alpha # Alpha value for NTK RoPE scaling. Similar to compress_pos_emb, higher values increaste ctx but add Perplexity.
-            config.gpu_peer_fix = False # Apparently Torch can have problems transferring tensors directly one GPU to another sometimes. Enable this to expliticly move tensors via system RAM instead, where needed
+            config.scale_pos_emb = self.binding_config.config.scale_pos_emb  # Increase to compress positional embeddings applied to sequence
+            config.scale_alpha_value = self.binding_config.config.alpha # Alpha value for NTK RoPE scaling. Similar to scale_pos_emb, higher values increaste ctx but add Perplexity.
 
             if torch_version.hip:
                 config.rmsnorm_no_half2 = True
-                config.rope_no_half2 = True
                 config.matmul_no_half2 = True
                 config.silu_no_half2 = True
 
@@ -194,6 +192,7 @@ class EXLLAMA2(LLMBinding):
             self.settings = ExLlamaV2Sampler.Settings()
             # Value to prepend
             self.bos = torch.tensor([[self.tokenizer.bos_token_id]])
+            self.generator.warmup()
 
             return self
 
@@ -362,7 +361,6 @@ class EXLLAMA2(LLMBinding):
             input_ids = self.tokenizer.encode(prompt)
             # Concatenate the value to the front of the existing tensor array
             input_ids = torch.cat((self.bos, input_ids), dim=1)
-            self.generator.warmup()
 
             self.generator.set_stop_conditions([self.tokenizer.eos_token_id])
             self.generator.begin_stream(input_ids, self.settings, token_healing = True)
