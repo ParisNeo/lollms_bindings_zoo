@@ -8,6 +8,5 @@ description: |
   For each node you want to create launch the server like this lollms-server --host (the host name: 0.0.0.0 if you want it to be accessible anywhere) --port (the specific port of the server instance).
   Once the server(s) are running, add them to the list of servers in the configuraion file of this binding and they'll be used.
   Set the list of remote servers and the generation will use the first available one or will queue it until there is an empty spot for you.
-:
 accepted_models: 
   - remote_lollms
