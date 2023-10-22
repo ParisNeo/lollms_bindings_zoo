@@ -3,3 +3,5 @@ author: Google
 version: 1.0
 link: https://bard.google.com/
 description: This binding uses the google bard api to make you use google Bard
+accepted_models: 
+  - google

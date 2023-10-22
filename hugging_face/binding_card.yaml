@@ -3,3 +3,6 @@ author: Hugging face Inc
 version: 1.0
 link: https://https://huggingface.co/
 description: 'Python bindings for the hugging face llms'
+accepted_models: 
+  - transformers
+  - gptq

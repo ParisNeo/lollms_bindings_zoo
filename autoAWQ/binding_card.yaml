@@ -7,4 +7,6 @@ supported_models: |
 description: |
     Python bindings for the AWQ type of files.
     This binding is very fast but can only support AWQ models
-    and can only run on <b>GPU</b>
+    and can only run on <b>AWQ</b>
+accepted_models: 
+  - awq

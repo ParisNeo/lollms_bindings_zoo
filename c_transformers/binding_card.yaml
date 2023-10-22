@@ -2,6 +2,9 @@ name: C Transformers (My favorite for CPU)
 author: marella
 version: 1.0
 link: https://github.com/marella/ctransformers
+accepted_models: 
+  - ggml
+  - gguf
 supported_models: |
     GGML models for:
     LLama, GPT-2, GPTJ, GPT-NEOX, MPT, Dolly V2, StarCoder, gptq

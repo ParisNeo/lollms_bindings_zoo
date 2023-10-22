@@ -3,3 +3,5 @@ author: ParisNeo
 version: 1.0
 link: https://lollms.com/
 description: This binding uses ParisNeo's lollms server called elf as backend
+accepted_models: 
+  - elf

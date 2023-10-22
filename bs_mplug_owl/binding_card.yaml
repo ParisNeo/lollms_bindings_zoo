@@ -3,3 +3,6 @@ author: X-PLUG
 version: 1.0
 link: https://github.com/X-PLUG/mPLUG-Owl
 description: 'Python bindings for the mplug-owl multimodal llms'
+
+accepted_models: 
+  - mplug_owl
