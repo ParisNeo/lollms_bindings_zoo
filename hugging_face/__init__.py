@@ -153,12 +153,22 @@ class HuggingFace(LLMBinding):
             ASCIIColors.success(f"ok")
             ASCIIColors.info(f"Creating model {model_path}")
             # load model
-            self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                          torch_dtype=torch.float16,
-                                                          device_map=self.binding_config.device_map,
-                                                          offload_folder="offload",
-                                                          offload_state_dict = True
-                                                          )
+            ASCIIColors.yellow(f"Using device map: {self.binding_config.device_map}")
+            if "gptq" in str(model_path).lower():
+                from transformers import GPTQConfig
+                self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                            torch_dtype=torch.float16,
+                                                            device_map=self.binding_config.device_map,
+                                                            offload_folder="offload",
+                                                            offload_state_dict = True
+                                                            )
+            else:
+                self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                            torch_dtype=torch.float16,
+                                                            device_map=self.binding_config.device_map,
+                                                            offload_folder="offload",
+                                                            offload_state_dict = True
+                                                            )
             
             from auto_gptq import exllama_set_max_input_length
             try:

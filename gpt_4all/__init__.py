@@ -71,8 +71,8 @@ class GPT4ALL(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.bin','.gguf'],
-                            models_dir_names=["ggml","gguf"]
+                            supported_file_extensions=['.gguf','.ggml'],
+                            models_dir_names=["gguf","ggml"]
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         
@@ -82,8 +82,9 @@ class GPT4ALL(LLMBinding):
             self.model = None
             return None
         
-        if model_path.suffix!=".bin" and model_path.suffix!=".gguf":
-            model_path = model_path.name.lower().replace("-ggml","").replace("-gguf","")
+        if model_path.suffix not in self.supported_file_extensions:
+            ext = model_path.suffix[1:]
+            model_path = model_path.name.lower().replace(f"-{ext}","")
             candidates = []
             for models_folder in self.models_folders:
                 candidates += [m for m in (models_folder).iterdir() if model_path in m.name]
