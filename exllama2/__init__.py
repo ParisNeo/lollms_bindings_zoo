@@ -169,8 +169,19 @@ class EXLLAMA2(LLMBinding):
                 config.rmsnorm_no_half2 = True
                 config.matmul_no_half2 = True
                 config.silu_no_half2 = True
-
+                
+            ASCIIColors.success("freeing memory")
+            AdvancedGarbageCollector.safeHardCollectMultiple(['model','tokenizer','cache','generator','settings'],self)
+            self.model = None
+            self.tokenizer = None
+            self.cache = None
+            self.generator = None
+            self.settings = None
+            
+            AdvancedGarbageCollector.collect()
             self.clear_cuda()
+            ASCIIColors.success("freed memory")
+
             ASCIIColors.red ("----------- LOLLMS EXLLAMA2 Model Information -----------------")
             ASCIIColors.magenta(f"Model name:{self.config.model_name}")
             self.print_class_attributes(config)
