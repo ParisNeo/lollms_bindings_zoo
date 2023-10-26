@@ -508,7 +508,11 @@ class EXLLAMA2(LLMBinding):
         file_names = EXLLAMA2.get_filenames(url)
         for file_name in file_names:
             if file_name.endswith(".safetensors"):
-                src = "/".join(url.split("/")[:-3])
+                splt = url.split("/")
+                if len(splt)==2:
+                    src = f"https://huggingface.co/{url}"
+                else:
+                    src = "/".join(splt[:-3])
                 filename = f"{src}/resolve/main/{file_name}"                
                 response = urllib.request.urlopen(filename)
                 
