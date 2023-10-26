@@ -399,12 +399,13 @@ class EXLLAMA2(LLMBinding):
         dont_download = [".gitattributes"]
 
         blocs = repo.split("/")
-        if len(blocs)!=2:
-            raise ValueError("Bad repository path")
+        if len(blocs)==2:
+            main_url = "https://huggingface.co/"+repo+"/tree/main" #f"https://huggingface.co/{}/tree/main"
+        else: 
+            main_url = "/".join(blocs[:-3])+"/tree/main" #f"https://huggingface.co/{}/tree/main"
         
         # https://huggingface.co/TheBloke/Spicyboros-13B-2.2-GPTQ/tree/main?not-for-all-audiences=true
         
-        main_url = "https://huggingface.co/"+repo+"/tree/main" #f"https://huggingface.co/{}/tree/main"
         response = requests.get(main_url)
         html_content = response.text
         soup = BeautifulSoup(html_content, 'html.parser')
