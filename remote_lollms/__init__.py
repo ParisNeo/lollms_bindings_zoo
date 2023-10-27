@@ -79,6 +79,9 @@ class LoLLMs(LLMBinding):
     def build_model(self):
         # Create two lists to hold active and inactive servers
         self.servers_addresses = self.binding_config.config.servers_addresses
+        
+        if len(self.servers_addresses)==1 and len(self.servers_addresses[0].split(","))>1:
+            self.servers_addresses = self.servers_addresses[0].split(",")
         active_servers = []
         inactive_servers = []
 
