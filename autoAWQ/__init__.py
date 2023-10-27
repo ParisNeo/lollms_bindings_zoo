@@ -1,14 +1,12 @@
 ######
 # Project       : lollms
 # File          : binding.py
-# Author        : ParisNeo with the help from bartowski
+# Author        : ParisNeo with the help of the community
 # Underlying 
-# engine author : turboderp 
+# engine author : Hugging face Inc 
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
-# Big thank you to turboderp and oobabooga for their
-# paving the way with their work
 ######
 from pathlib import Path
 from typing import Callable
@@ -21,28 +19,25 @@ from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector
 import subprocess
 import yaml
+from tqdm import tqdm
 import re
 import urllib
-import shutil
-import sys
-import os
-import platform
 
-# sys.path.append(os.getcwd())
-# pth = Path(__file__).parent/"exllamav2"
-# sys.path.append(str(pth))
 
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
+__github__ = "https://github.com/ParisNeo/GPTQ_binding"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
 binding_name = "AutoAWQ"
-binding_folder_name = "autoAWQ"
+binding_folder_name = "autoawq"
+import os
+import platform
 import os
 import subprocess
-import torch
+import gc
+
 class AutoAWQ(LLMBinding):
     
     def __init__(self, 
@@ -50,34 +45,20 @@ class AutoAWQ(LLMBinding):
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
                 ) -> None:
-        """Builds an Exllama binding
+        """Builds a GPTQ/AWQ binding
 
         Args:
             config (LOLLMSConfig): The configuration file
         """
-        self.model          = None
-        self.tokenizer      = None
-        self.cache          = None
-        self.generator      = None
-                
+        os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:512'
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
-
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-            
-            {"name": "gpu_split", "type": "str", "value": '[24]',
-                "help": "A list depicting how many layers to offload to each GPU. [gpu1,gpu2 etc]. Example [16,24]. If you have just one, the list should contain one value"},
-            {"name": "ctx_size", "type": "int", "value": 2048, "min": 512,
-                "help": "The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs. Reduce to save memory. Can also be increased, ideally while also using compress_pos_emn and a compatible model/LoRA"},
-            {"name": "max_input_len", "type": "int", "value": 2048, "min": 512,
-                "help": "Maximum length of input IDs in a single forward pass. Sequences longer than this will be processed in multiple steps"},
-            {"name": "max_attention_size", "type": "int", "value": 2048**2, "min": 512,
-                "help": "Increase to compress positional embeddings applied to sequence"},
-            {"name": "compress_pos_emb", "type": "float", "value": 1, "min": 1, "max": 8,
-                "help": "Positional embeddings compression value, set it to your ctx_size divided by 2048 when over 2048. Only set this or alpha. Increase to compress positional embeddings applied to sequence"},
-            {"name": "alpha", "type": "int", "value": 1, "min": 1, "max": 32,
-                "help": "Alpha value for context size extension. Only use this or compress_pos_emb. Alpha value for NTK RoPE scaling. Similar to compress_pos_emb, higher values increaste ctx but add Perplexity."},
+            {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
+            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
 
@@ -94,9 +75,7 @@ class AutoAWQ(LLMBinding):
                             supported_file_extensions=['.safetensors','.pth','.bin'],
                             models_dir_names=["awq"]
                         )
-
-        
-        self.config.ctx_size = self.binding_config.config.ctx_size
+        self.config.ctx_size=self.binding_config.config.ctx_size
         self.callback = None
         self.n_generated = 0
         self.n_prompt = 0
@@ -109,19 +88,35 @@ class AutoAWQ(LLMBinding):
         self.print_len = 0
         self.next_tokens_are_prompt = True
 
-    def build_model(self):
+        self.model = None
+        self.tokenizer = None
 
+    def embed(self, text):
+        """
+        Computes text embedding
+        Args:
+            text (str): The text to be embedded.
+        Returns:
+            List[float]
+        """
+        
+        pass
+    def __del__(self):
+        import torch
+        if self.tokenizer:
+            del self.tokenizer
+        if self.model:
+            del self.model
         try:
-            from awq import AutoAWQForCausalLM
-            from transformers import AutoTokenizer, TextStreamer
+            torch.cuda.empty_cache()
         except Exception as ex:
-            trace_exception(ex)
-            ASCIIColors.warning("Couldn't import dependencies? REINSTALL BINDING")
-            return
+            ASCIIColors.error("Couldn't clear cuda memory")
 
-        if self.config.model_name is None:
-            ASCIIColors.error('No model selected!!')
-            return
+    def build_model(self):
+        from awq import AutoAWQForCausalLM
+        from transformers import AutoTokenizer, TextStreamer
+        import torch
+        self.torch = torch
 
         if self.config.model_name:
 
@@ -132,70 +127,53 @@ class AutoAWQ(LLMBinding):
                 self.model = None
                 return None
 
-            models_dir = self.lollms_paths.personal_models_path / "awq"
+            models_dir = self.lollms_paths.personal_models_path / binding_folder_name
             models_dir.mkdir(parents=True, exist_ok=True)
-
             # model_path = models_dir/ path
 
             model_name = str(model_path).replace("\\","/")
+                         
+            self.tokenizer = None
+            gc.collect()
+            if self.config.enable_gpu:
+                self.clear_cuda()
 
-            for ext in ['.safetensors', '.pt', '.bin']:
-                found = list(model_path.glob(f"*{ext}"))
-                if len(found) > 0:
-                    if len(found) > 1:
-                        print(
-                            f'More than one {ext} model has been found. The last one will be selected. It could be wrong.')
+            import os
+            os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
 
-                    model_file = found[-1]
-                    break        
+            ASCIIColors.info(f"Creating tokenizer {model_path}")
 
-            self.clear_cuda()
-            ASCIIColors.red ("----------- LOLLMS AutoAWQ Model Information -----------------")
-            ASCIIColors.magenta(f"Model name:{self.config.model_name}")
-            self.print_class_attributes(config)
-            ASCIIColors.red ("--------------------------------------------------------------")
-            self.model = AutoAWQForCausalLM.from_quantized(model_path, model_file, fuse_layers=True)
-            self.tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
-            self.streamer = self#TextStreamer(tokenizer, skip_special_tokens=True)
-
-
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                    str(model_name)
+                    )
+            ASCIIColors.success(f"ok")
+            ASCIIColors.info(f"Creating model {model_path}")
+            # load model
+            ASCIIColors.yellow(f"Using device map: {self.binding_config.device_map}")
+            from transformers import GPTQConfig
+            self.model = AutoAWQForCausalLM.from_pretrained(str(model_path),
+                                                        fuse_layers=True
+                                                        )
+            ASCIIColors.success(f"ok")
             return self
-
-    def __del__(self):
-        del self.generator
-        del self.cache
-        del self.tokenizer
-        del self.model
-        try:
-            torch.cuda.empty_cache()
-        except Exception as ex:
-            ASCIIColors.error("Couldn't clear cuda memory")
+        else:
+            ASCIIColors.error('No model selected!!')
 
     def install(self):
-        # free up memory
         ASCIIColors.success("freeing memory")
-        AdvancedGarbageCollector.safeHardCollectMultiple(['model','tokenizer','cache','generator'],self)
-        AdvancedGarbageCollector.safeHardCollectMultiple(['ExLlamaGenerator','ExLlama','ExLlamaCache','ExLlamaConfig','ExLlamaTokenizer','torch_version'])
+        AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
+        AdvancedGarbageCollector.safeHardCollectMultiple(['AutoModelForCausalLM'])
         AdvancedGarbageCollector.collect()
-        self.clear_cuda()
         ASCIIColors.success("freed memory")
-        
+
         super().install()
-        print("This is the first time you are using this binding.")
-                # Step 1 : install pytorch with cuda
-        ASCIIColors.info("Checking pytorch")
-        
+
         if self.config.enable_gpu:
+            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
+            ASCIIColors.info("Checking pytorch")
             try:
                 import torch
-                from torch import version as torch_version
-                try:
-                    torch.cuda.empty_cache()
-                except Exception as ex:
-                    ASCIIColors.error("Couldn't clear cuda memory")
-            except:
-                pass       
-            try:
+                import torchvision
                 if torch.cuda.is_available():
                     ASCIIColors.success("CUDA is supported.")
                 else:
@@ -203,22 +181,18 @@ class AutoAWQ(LLMBinding):
                     self.reinstall_pytorch_with_cuda()
             except Exception as ex:
                 ASCIIColors.info("Pytorch not installed")
-                self.reinstall_pytorch_with_cuda()
+                self.reinstall_pytorch_with_cuda()    
 
-
-            models_dir = self.lollms_paths.personal_models_path / "awq"
-            models_dir.mkdir(parents=True, exist_ok=True)
-
-            subprocess.run(["pip", "install", "--upgrade", "autoawq"])
-        else:
-            ASCIIColors.error("autoawq is only installable on GPU. Please activate GPU support before proceeding")
-            
+        # Step 2: Install dependencies using pip from requirements.txt
+        requirements_file = self.binding_dir / "requirements.txt"
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "pytorch=2.0.1", "torchvision","torchaudio","--index-url https://download.pytorch.org/whl/cu118"])
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
+        ASCIIColors.success("Installed successfully")
 
 
     def uninstall(self):
         super().install()
         print("Uninstalling binding.")
-        subprocess.run(["pip", "uninstall", "--yes", "llama-cpp-python"])
         ASCIIColors.success("Installed successfully")
 
 
@@ -233,8 +207,7 @@ class AutoAWQ(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        t = self.tokenizer.encode(prompt)
-        return t[0].tolist()
+        return self.tokenizer.encode(prompt,add_special_tokens=False)
 
     def detokenize(self, tokens_list:list):
         """
@@ -246,9 +219,88 @@ class AutoAWQ(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        t = torch.IntTensor([tokens_list])
-        return  self.tokenizer.decode(t)[0]
+        return  self.tokenizer.decode(tokens_list)
     
+
+    def put(self, value):
+        """
+        Recives tokens, decodes them, and prints them to stdout as soon as they form entire words.
+        """
+        if len(value.shape)==1 and (value[0] == self.tokenizer.eos_token_id or value[0] == self.tokenizer.bos_token_id):
+            print("eos detected")
+            return
+        if len(value.shape) > 1 and value.shape[0] > 1:
+            raise ValueError("TextStreamer only supports batch size 1")
+        elif len(value.shape) > 1:
+            value = value[0]
+
+        if self.skip_prompt and self.next_tokens_are_prompt:
+            self.next_tokens_are_prompt = False
+            return
+
+        # Add the new token to the cache and decodes the entire thing.
+        self.token_cache.extend(value.tolist())
+        text = self.tokenizer.decode(self.token_cache, **self.decode_kwargs)
+
+        # After the symbol for a new line, we flush the cache.
+        if text.endswith("\n"):
+            printable_text = text[self.print_len :]
+            self.token_cache = []
+            self.print_len = 0
+        # If the last token is a CJK character, we print the characters.
+        elif len(text) > 0 and self._is_chinese_char(ord(text[-1])):
+            printable_text = text[self.print_len :]
+            self.print_len += len(printable_text)
+        # Otherwise, prints until the last space char (simple heuristic to avoid printing incomplete words,
+        # which may change with the subsequent token -- there are probably smarter ways to do this!)
+        else:
+            printable_text = text[self.print_len : text.rfind(" ") + 1]
+            self.print_len += len(printable_text)
+
+        self.output += printable_text
+        if  self.callback:
+            if not self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
+                raise Exception("canceled")    
+            
+    def _is_chinese_char(self, cp):
+        """Checks whether CP is the codepoint of a CJK character."""
+        # This defines a "chinese character" as anything in the CJK Unicode block:
+        #   https://en.wikipedia.org/wiki/CJK_Unified_Ideographs_(Unicode_block)
+        #
+        # Note that the CJK Unicode block is NOT all Japanese and Korean characters,
+        # despite its name. The modern Korean Hangul alphabet is a different block,
+        # as is Japanese Hiragana and Katakana. Those alphabets are used to write
+        # space-separated words, so they are not treated specially and handled
+        # like the all of the other languages.
+        if (
+            (cp >= 0x4E00 and cp <= 0x9FFF)
+            or (cp >= 0x3400 and cp <= 0x4DBF)  #
+            or (cp >= 0x20000 and cp <= 0x2A6DF)  #
+            or (cp >= 0x2A700 and cp <= 0x2B73F)  #
+            or (cp >= 0x2B740 and cp <= 0x2B81F)  #
+            or (cp >= 0x2B820 and cp <= 0x2CEAF)  #
+            or (cp >= 0xF900 and cp <= 0xFAFF)
+            or (cp >= 0x2F800 and cp <= 0x2FA1F)  #
+        ):  #
+            return True
+
+        return False
+    def end(self):
+        """Flushes any remaining cache and prints a newline to stdout."""
+        # Flush the cache, if it exists
+        if len(self.token_cache) > 0:
+            text = self.tokenizer.decode(self.token_cache, **self.decode_kwargs)
+            printable_text = text[self.print_len :]
+            self.token_cache = []
+            self.print_len = 0
+        else:
+            printable_text = ""
+
+        self.next_tokens_are_prompt = True
+        if  self.callback:
+            if self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
+                raise Exception("canceled")    
+
 
 
     def generate(self, 
@@ -265,31 +317,51 @@ class AutoAWQ(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        self.callback = callback
         default_params = {
-            'temperature': 0.7,
-            'top_k': 50,
-            'top_p': 0.96,
-            'repeat_penalty': 1.3,
+            'temperature': self.generation_config.temperature,
+            'top_k': self.generation_config.top_k,
+            'top_p': self.generation_config.top_p,
+            'repeat_penalty': self.generation_config.repetition_penalty,
+            'repeat_last_n':self.generation_config.no_repeat_ngram_size,
             "seed":-1,
             "n_threads":8,
-            "typical_p":0.0
+            "begin_suppress_tokens ": self.tokenize("!")
         }
-        self.output = ""
+        gpt_params = {**default_params, **gpt_params}
+        self.generation_config.max_new_tokens = int(n_predict)
+        self.generation_config.temperature = float(gpt_params["temperature"])
+        self.generation_config.top_k = int(gpt_params["top_k"])
+        self.generation_config.top_p = float(gpt_params["top_p"])
+        self.generation_config.repetition_penalty = float(gpt_params["repeat_penalty"])
+        self.generation_config.do_sample = True if float(gpt_params["temperature"])>0 else False
+        self.generation_config.pad_token_id = self.tokenizer.pad_token_id
+        self.generation_config.eos_token_id = self.tokenizer.eos_token_id
+        self.generation_config.output_attentions = False
+        self.callback = callback    
         try:
-            input_ids = self.tokenizer(
-                prompt, 
-                return_tensors='pt'
-            ).input_ids.cuda()
-            prompt_tokens = input_ids.shape[-1]
-            self.generator.warmup()
-        except Exception as ex:
-            ASCIIColors.error(ex)
-            trace_exception(ex)
-            if callback:
-                callback(str(ex),MSG_TYPE.MSG_TYPE_EXCEPTION)
-        return self.output
+            self.token_cache = []
+            self.print_len = 0
+            self.next_tokens_are_prompt = True            
+            self.n_generated = 0
+            self.output = ""
+            input_ids = self.tokenizer(prompt, add_special_tokens=False, return_tensors='pt').input_ids.to(self.model_device)
+            self.n_prompt = len(input_ids[0])
+            try:
+                with self.torch.no_grad():
+                    self.model.generate(
+                                        inputs=input_ids, 
+                                        generation_config=self.generation_config,
+                                        streamer = self,
+                                        )
+            except Exception as ex:
+                if str(ex)!="canceled":
+                    trace_exception(ex)
 
+        except Exception as ex:
+            ASCIIColors.error("Couldn't generate")
+            trace_exception(ex)
+        return self.output
+    
     @staticmethod
     def get_filenames(repo):
         import requests
@@ -297,12 +369,20 @@ class AutoAWQ(LLMBinding):
 
         dont_download = [".gitattributes"]
 
-        main_url = '/'.join(repo.split("/")[:-3])+"/tree/main" #f"https://huggingface.co/{}/tree/main"
+        blocs = repo.split("/")
+        if len(blocs)!=2:
+            raise ValueError("Bad repository path")
+        
+        # https://huggingface.co/TheBloke/Spicyboros-13B-2.2-GPTQ/tree/main?not-for-all-audiences=true
+        
+        main_url = "https://huggingface.co/"+repo+"/tree/main" #f"https://huggingface.co/{}/tree/main"
         response = requests.get(main_url)
         html_content = response.text
         soup = BeautifulSoup(html_content, 'html.parser')
 
         file_names = []
+
+        
 
         for a_tag in soup.find_all('a', {'class': 'group'}):
             span_tag = a_tag.find('span', {'class': 'truncate'})
@@ -311,10 +391,20 @@ class AutoAWQ(LLMBinding):
                 if file_name not in dont_download:
                     file_names.append(file_name)
 
-        print(f"Repo: {repo}")
-        print("Found files:")
-        for file in file_names:
-            print(" ", file)
+        if len(file_names)==0:
+            ASCIIColors.warning(f"No files found. This is probably a model with disclaimer. Please make sure you read the disclaimer before using the model.")
+            main_url = "https://huggingface.co/"+repo+"/tree/main?not-for-all-audiences=true" #f"https://huggingface.co/{}/tree/main"
+            response = requests.get(main_url)
+            html_content = response.text
+            soup = BeautifulSoup(html_content, 'html.parser')
+
+            file_names = []
+            for a_tag in soup.find_all('a', {'class': 'group'}):
+                span_tag = a_tag.find('span', {'class': 'truncate'})
+                if span_tag:
+                    file_name = span_tag.text
+                    if file_name not in dont_download:
+                        file_names.append(file_name)
         return file_names
                     
     @staticmethod
@@ -333,7 +423,15 @@ class AutoAWQ(LLMBinding):
         
         import wget
         import os
-        from tqdm import tqdm
+
+        blocs = repo.split("/")
+        """
+        if len(blocs)!=2 and len(blocs)!=4:
+            raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")        
+        if len(blocs)==4:
+        """
+        if len(blocs)!=2:
+            repo="/".join(blocs[-5:-3])
 
         file_names = AutoAWQ.get_filenames(repo)
 
@@ -342,8 +440,8 @@ class AutoAWQ(LLMBinding):
         os.chdir(dest_dir)
 
         loading = ["none"]
+        pbar = tqdm(total=100, desc="Downloading", unit="step")
         previous = [0]
-        pbar = tqdm(total=100, desc="Processing", unit="step")
         def chunk_callback(current, total, width=80):
             # This function is called for each received chunk
             # Perform actions or computations on the received chunk
@@ -354,17 +452,18 @@ class AutoAWQ(LLMBinding):
             # Example: Print the current progress
             downloaded = current 
             progress = (current  / total) * 100
-            pbar.update(current-previous[0])  # Update the tqdm progress bar
-            previous[0] = current
-            if callback and ".safetensors" in loading[0]:
+            pbar.update(progress-previous[0])  # Update the tqdm progress bar
+            previous[0] = progress
+            if callback and (".safetensors" in loading[0] or ".bin" in loading[0] ):
                 try:
                     callback(downloaded, total)
                 except:
                     callback(0, downloaded, total)
-                    
+
         def download_file(get_file):
-            src = "/".join(repo.split("/")[:-3])
-            filename = f"{src}/resolve/main/{get_file}"
+            main_url = "https://huggingface.co/"+repo#f"https://huggingface.co/{}/tree/main"
+
+            filename = f"{main_url}/resolve/main/{get_file}"
             print(f"\nDownloading {filename}")
             loading[0]=filename
             wget.download(filename, out=str(dest_dir), bar=chunk_callback)
@@ -376,11 +475,20 @@ class AutoAWQ(LLMBinding):
 
         print("Done")
         
-    def get_file_size(self, url):
-        file_names = AutoAWQ.get_filenames(url)
+    def get_file_size(self, repo):
+        blocs = repo.split("/")
+        """
+        if len(blocs)!=2 and len(blocs)!=4:
+            raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")        
+        if len(blocs)==4:
+        """
+        if len(blocs)!=2:
+            repo="/".join(blocs[-5:-3])
+
+        file_names = AutoAWQ.get_filenames(repo)
         for file_name in file_names:
-            if file_name.endswith(".safetensors"):
-                src = "/".join(url.split("/")[:-3])
+            if file_name.endswith(".safetensors") or  file_name.endswith(".bin"):
+                src = "https://huggingface.co/"+repo
                 filename = f"{src}/resolve/main/{file_name}"                
                 response = urllib.request.urlopen(filename)
                 
@@ -393,3 +501,25 @@ class AutoAWQ(LLMBinding):
                 
                 return file_size        
         return 4000000000
+
+
+    def train(self, model_name_or_path, model_basename):
+        from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
+        from auto_gptq.utils.peft_utils import get_gptq_peft_model, GPTQLoraConfig
+
+        model = AutoGPTQForCausalLM.from_quantized(
+            model_name_or_path,
+            model_basename=model_basename,
+            use_safetensors=True,
+            trust_remote_code=False,
+            use_triton=True,
+            device="cuda:0",
+            warmup_triton=False,
+            trainable=True,
+            inject_fused_attention=True,
+            inject_fused_mlp=False,
+        )
+        device = model.device
+        model = get_gptq_peft_model(
+            model, model_id=model_name_or_path, train_mode=False
+        )
