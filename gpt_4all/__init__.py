@@ -71,10 +71,17 @@ class GPT4ALL(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.gguf','.ggml'],
-                            models_dir_names=["gguf","ggml"]
+                            supported_file_extensions=['.gguf'], #,'.ggml'
+                            models_dir_names=["gguf"] # ,"ggml"
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+
+    def settings_updated(self):
+        """
+        When the configuration is updated
+        """
+        self.config.ctx_size=self.binding_config.config.ctx_size
+
         
     def build_model(self):        
         model_path = self.get_model_path()

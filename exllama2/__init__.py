@@ -109,6 +109,12 @@ class EXLLAMA2(LLMBinding):
         self.token_cache = []
         self.print_len = 0
         self.next_tokens_are_prompt = True
+    def settings_updated(self):
+        """
+        When the configuration is updated
+        """
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        
 
     def build_model(self):
 
@@ -504,7 +510,7 @@ class EXLLAMA2(LLMBinding):
             download_file(file_name)
 
         print("Done")
-        
+
     def get_file_size(self, url):
         file_names = EXLLAMA2.get_filenames(url)
         for file_name in file_names:
