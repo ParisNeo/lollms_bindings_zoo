@@ -142,7 +142,7 @@ class LoLLMs(LLMBinding):
             list: A list of tokens representing the tokenized prompt.
         """
         # Split text into words while preserving spaces
-        words = re.findall(r'\w+|\s+', prompt)
+        words = re.findall(r'\w+|\S+|\s+', prompt)
         return words
 
     def detokenize(self, tokens_list:list):
