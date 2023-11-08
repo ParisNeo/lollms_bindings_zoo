@@ -45,14 +45,20 @@ class OpenAIGPT(LLMBinding):
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         self.input_costs_by_model={
+            "gpt-4-1106-preview":0.01,
+            "gpt-4-1106-vision-preview":0.03,
             "gpt-4":0.03,
             "gpt-4-32k":0.06,
-            "gpt-3.5-turbo":0.0015,
+            "gpt-3.5-turbo-1106":0.0015,
+            "gpt-3.5-turbo":0.0010,
             "gpt-3.5-turbo-16k":0.003,
         }       
         self.output_costs_by_model={
+            "gpt-4-1106-preview":0.03,
+            "gpt-4-1106-vision-preview":0.03,
             "gpt-4":0.06,
             "gpt-4-32k":0.12,
+            "gpt-3.5-turbo-1106":0.0015,
             "gpt-3.5-turbo":0.002,
             "gpt-3.5-turbo-16k":0.004,
         }
@@ -171,7 +177,8 @@ class OpenAIGPT(LLMBinding):
             count = 0
             output = ""
             messages = [{"role": "user", "content": prompt}]
-            for resp in self.openai.ChatCompletion.create(model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
+            for resp in self.openai.chat.completions.create(
+                                model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                                 messages=messages,
                                 max_tokens=n_predict,  # Adjust the desired length of the generated response
                                 n=1,  # Specify the number of responses you want

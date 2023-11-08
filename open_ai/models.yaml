@@ -5,13 +5,41 @@
   license: commercial
   model_creator: openai
   model_creator_link: https://openai.com
-  name: gpt-4
+  name: gpt-4-1106-preview
   quantizer: None
   rank: 1.0
   type: api
   variants:
+  - name: The new big boss 
+    size: Too much
+- category: generic
+  datasets: unknown
+  icon: '/bindings/open_ai/logo2.png'
+  last_commit_time: 2023-09-17 17:21:17+00:00
+  license: commercial
+  model_creator: openai
+  model_creator_link: https://openai.com
+  name: gpt-4-1106-vision-preview
+  quantizer: None
+  rank: 1.0
+  type: api
+  variants:
+  - name: The new big boss 
+    size: Too much
+- category: generic
+  datasets: unknown
+  icon: '/bindings/open_ai/logo2.png'
+  last_commit_time: 2023-09-17 17:21:17+00:00
+  license: commercial
+  model_creator: openai
+  model_creator_link: https://openai.com
+  name: gpt-4
+  quantizer: None
+  rank: 2.0
+  type: api
+  variants:
   - name: The big boss
-    size: 999999999999
+    size: Too much
 - category: generic
   datasets: unknown
   icon: '/bindings/open_ai/logo2.png'
@@ -21,11 +49,25 @@
   model_creator_link: https://openai.com
   name: gpt-4-32k
   quantizer: None
-  rank: 1.0
+  rank: 2.0
   type: api
   variants:
   - name: The big boss 32k
-    size: 999999999999  
+    size: Too much  
+- category: generic
+  datasets: unknown
+  icon: '/bindings/open_ai/logo.png'
+  last_commit_time: 2023-09-17 17:21:17+00:00
+  license: commercial
+  model_creator: openai
+  model_creator_link: https://openai.com
+  name: gpt-3.5-turbo-1106
+  quantizer: None
+  rank: 3.0
+  type: api
+  variants:
+  - name: ChatGPT
+    size: Too much
 - category: generic
   datasets: unknown
   icon: '/bindings/open_ai/logo.png'
@@ -35,11 +77,11 @@
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo
   quantizer: None
-  rank: 2.0
+  rank: 3.0
   type: api
   variants:
   - name: ChatGPT
-    size: 35332203544
+    size: Too much
 - category: generic
   datasets: unknown
   icon: '/bindings/open_ai/logo.png'
@@ -49,9 +91,9 @@
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo-16k
   quantizer: None
-  rank: 2.0
+  rank: 3.0
   type: api
   variants:
   - name: ChatGPT 16k
-    size: 35332203544
+    size: Too much
 
