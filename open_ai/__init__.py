@@ -188,8 +188,8 @@ class OpenAIGPT(LLMBinding):
                 if count >= n_predict:
                     break
                 try:
-                    word = resp["choices"][0]["delta"]["content"]
-                except:
+                    word = resp.choices[0].delta.content
+                except Exception as ex:
                     word = ""
                 if callback is not None:
                     if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
