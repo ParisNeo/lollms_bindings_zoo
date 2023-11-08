@@ -36,7 +36,8 @@ class CTRansformers(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
-                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
+                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
+                notification_callback:Callable=None
                 ) -> None:
         """
         Initialize the Binding.
@@ -82,7 +83,8 @@ class CTRansformers(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=['.bin','.gguf'],
-                            models_dir_names=["ggml","gguf"]
+                            models_dir_names=["ggml","gguf"],
+                            notification_callback=notification_callback
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
     def __del__(self):

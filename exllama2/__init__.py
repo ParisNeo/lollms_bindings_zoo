@@ -49,7 +49,8 @@ class EXLLAMA2(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
-                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
+                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
+                notification_callback:Callable=None
                 ) -> None:
         """Builds an Exllama binding
 
@@ -93,7 +94,8 @@ class EXLLAMA2(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=['.safetensors'],
-                            models_dir_names=["gptq"]
+                            models_dir_names=["gptq"],
+                            notification_callback=notification_callback
                         )
 
         

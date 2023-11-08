@@ -38,7 +38,8 @@ class LoLLMs(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
-                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
+                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
+                notification_callback:Callable=None
                 ) -> None:
         """
         Initialize the Binding.
@@ -72,7 +73,8 @@ class LoLLMs(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['']
+                            supported_file_extensions=[''],
+                            notification_callback=notification_callback
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         

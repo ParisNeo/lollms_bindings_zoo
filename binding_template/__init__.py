@@ -36,7 +36,8 @@ class CustomBinding(LLMBinding):
                     self, 
                     config:LOLLMSConfig, 
                     lollms_paths:LollmsPaths = LollmsPaths(), 
-                    installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
+                    installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
+                notification_callback:Callable=None
                 ) -> None:
         """Builds a LLAMACPP binding
 
@@ -55,7 +56,8 @@ class CustomBinding(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.bin']
+                            supported_file_extensions=['.bin'],
+                            notification_callback=notification_callback
                         )
         
 

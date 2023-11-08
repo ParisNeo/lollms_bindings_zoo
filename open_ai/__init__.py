@@ -16,7 +16,7 @@ from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
-from lollms.helpers import ASCIIColors
+from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
 import subprocess
 import yaml
@@ -35,7 +35,8 @@ class OpenAIGPT(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
-                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY) -> None:
+                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
+                notification_callback:Callable=None) -> None:
         """
         Initialize the Binding.
 
@@ -87,7 +88,8 @@ class OpenAIGPT(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=[''] 
+                            supported_file_extensions=[''],
+                            notification_callback=notification_callback
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         
@@ -200,10 +202,12 @@ class OpenAIGPT(LLMBinding):
 
         except Exception as ex:
             #self.app.
-            print(ex)
+            self.notify(f'Error {ex}$', True)
+            trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
         self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
+        self.notify(f'Consumed {self.binding_config.config["total_output_cost"]}$', True)
         self.binding_config.save()
         return ""            
 

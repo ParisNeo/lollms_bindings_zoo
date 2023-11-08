@@ -46,7 +46,8 @@ class mPLUG_Owl(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
-                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY
+                installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
+                notification_callback:Callable=None
                 ) -> None:
         """Builds a GPTQ binding
 
@@ -76,7 +77,8 @@ class mPLUG_Owl(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=['.safetensors','.pth','.bin'],
-                            binding_type=BindingType.TEXT_ONLY
+                            binding_type=BindingType.TEXT_IMAGE,
+                            notification_callback=notification_callback
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.callback = None
