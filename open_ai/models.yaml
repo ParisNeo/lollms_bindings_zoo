@@ -19,7 +19,7 @@
   license: commercial
   model_creator: openai
   model_creator_link: https://openai.com
-  name: gpt-4-1106-vision-preview
+  name: gpt-4-vision-preview
   quantizer: None
   rank: 1.0
   type: api

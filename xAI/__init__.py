@@ -28,7 +28,7 @@ __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "OpenAIGPT"
+binding_name = "xAI"
 binding_folder_name = ""
 
 # Function to encode the image
@@ -36,7 +36,7 @@ def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
-class OpenAIGPT(LLMBinding):
+class xAI(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -51,22 +51,10 @@ class OpenAIGPT(LLMBinding):
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         self.input_costs_by_model={
-            "gpt-4-1106-preview":0.01,
-            "gpt-4-vision-preview":0.03,
-            "gpt-4":0.03,
-            "gpt-4-32k":0.06,
-            "gpt-3.5-turbo-1106":0.0015,
-            "gpt-3.5-turbo":0.0010,
-            "gpt-3.5-turbo-16k":0.003,
+            "grok":0.01
         }       
         self.output_costs_by_model={
-            "gpt-4-1106-preview":0.03,
-            "gpt-4-vision-preview":0.03,
-            "gpt-4":0.06,
-            "gpt-4-32k":0.12,
-            "gpt-3.5-turbo-1106":0.0015,
-            "gpt-3.5-turbo":0.002,
-            "gpt-3.5-turbo-16k":0.004,
+            "grok":0.03
         }
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
@@ -102,7 +90,7 @@ class OpenAIGPT(LLMBinding):
         import openai
         openai.api_key = self.binding_config.config["openai_key"]
         self.openai = openai
-
+        
         if "vision" in self.config.model_name:
             self.binding_type == BindingType.TEXT_IMAGE
 
@@ -305,12 +293,12 @@ class OpenAIGPT(LLMBinding):
                     count += 1
 
 
-            self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-            self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
-            self.notify(f'Error {ex}$', False)
+            self.notify(f'Error {ex}$', True)
             trace_exception(ex)
+        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
+        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
+        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         self.notify(f'Consumed {self.binding_config.config["total_output_cost"]}$', True)
         self.binding_config.save()
         return ""       
