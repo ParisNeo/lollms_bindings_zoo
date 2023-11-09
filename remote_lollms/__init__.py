@@ -230,6 +230,7 @@ class LoLLMs(LLMBinding):
             except Exception as ex:
                 index +=1
                 if index>=len(self.servers_addresses) and not infos["found"]:
+                    self.notify("No server was ready to serve!\nPlease check their state",False)
                     break
                 if index>=len(self.servers_addresses):
                     # Wait 1 second and retry again
