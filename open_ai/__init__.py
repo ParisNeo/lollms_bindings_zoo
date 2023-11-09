@@ -101,6 +101,9 @@ class OpenAIGPT(LLMBinding):
     def build_model(self):
         import openai
         openai.api_key = self.binding_config.config["openai_key"]
+        if openai.api_key =="":
+            self.notify("No API key is set!\nPlease set up your API key in the binding configuration", False)
+            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
         self.openai = openai
 
         if "vision" in self.config.model_name:
