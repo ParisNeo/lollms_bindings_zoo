@@ -228,7 +228,7 @@ class OpenAIGPT(LLMBinding):
 
 
         except Exception as ex:
-            self.notify(f'Error {ex}$', True)
+            self.notify(f'Error {ex}$', False)
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
         self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
