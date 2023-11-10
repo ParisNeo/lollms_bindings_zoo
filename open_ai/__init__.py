@@ -107,7 +107,7 @@ class OpenAIGPT(LLMBinding):
         self.openai = openai
 
         if "vision" in self.config.model_name:
-            self.binding_type == BindingType.TEXT_IMAGE
+            self.binding_type = BindingType.TEXT_IMAGE
 
         # Do your initialization stuff
         return self
@@ -209,7 +209,6 @@ class OpenAIGPT(LLMBinding):
                             messages=messages,
                             max_tokens=n_predict,  # Adjust the desired length of the generated response
                             n=1,  # Specify the number of responses you want
-                            stop=None,  # Define a stop sequence if needed
                             temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
                             stream=True)
             for resp in chat_completion:
@@ -288,11 +287,11 @@ class OpenAIGPT(LLMBinding):
             chat_completion = self.openai.chat.completions.create(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
+                            max_tokens=min(n_predict, 128),  # Adjust the desired length of the generated response
                             n=1,  # Specify the number of responses you want
-                            stop=None,  # Define a stop sequence if needed
                             temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                            stream=True)
+                            stream=True
+                            )
             for resp in chat_completion:
                 if count >= n_predict:
                     break
@@ -364,7 +363,6 @@ class OpenAIGPT(LLMBinding):
                             messages=messages,
                             max_tokens=n_predict,  # Adjust the desired length of the generated response
                             n=1,  # Specify the number of responses you want
-                            stop=None,  # Define a stop sequence if needed
                             temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
                             stream=True)
             for resp in chat_completion:
