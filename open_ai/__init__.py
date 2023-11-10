@@ -363,7 +363,7 @@ class OpenAIGPT(LLMBinding):
                             messages=messages,
                             max_tokens=n_predict,  # Adjust the desired length of the generated response
                             n=1,  # Specify the number of responses you want
-                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
+                            temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
                             stream=True)
             for resp in chat_completion:
                 if count >= n_predict:
