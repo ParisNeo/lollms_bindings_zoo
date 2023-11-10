@@ -26,7 +26,7 @@ import urllib
 
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/GPTQ_binding"
+__github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
@@ -74,7 +74,7 @@ class HuggingFace(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=['.safetensors','.pth','.bin'],
-                            models_dir_names=["transformers","gptq"],
+                            models_dir_names=["transformers","gptq","awq"],
                             notification_callback=notification_callback
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
@@ -164,6 +164,19 @@ class HuggingFace(LLMBinding):
                                                             offload_folder="offload",
                                                             offload_state_dict = True
                                                             )
+                from auto_gptq import exllama_set_max_input_length
+                try:
+                    self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
+                except:
+                    ASCIIColors.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
+                
+            elif "awq" in str(model_path).lower():
+                self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                            torch_dtype=torch.float16,
+                                                            device_map=self.binding_config.device_map,
+                                                            offload_folder="offload",
+                                                            offload_state_dict = True
+                                                            )
             else:
                 self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
                                                             torch_dtype=torch.float16,
@@ -172,11 +185,6 @@ class HuggingFace(LLMBinding):
                                                             offload_state_dict = True
                                                             )
             
-            from auto_gptq import exllama_set_max_input_length
-            try:
-                self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
-            except:
-                ASCIIColors.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
             self.model_device = self.model.parameters().__next__().device
             ASCIIColors.success(f"ok")
             """
@@ -222,6 +230,7 @@ class HuggingFace(LLMBinding):
         requirements_file = self.binding_dir / "requirements.txt"
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq", "--extra-index-url", "https://huggingface.github.io/autogptq-index/whl/cu118/"])
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "https://github.com/casper-hansen/AutoAWQ/releases/download/v0.1.6/autoawq-0.1.6+cu118-cp310-cp310-win_amd64.whl"])
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
         ASCIIColors.success("Installed successfully")
 
