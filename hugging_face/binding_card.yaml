@@ -2,7 +2,8 @@ name: Hugging Face
 author: Hugging face Inc
 version: 1.0
 link: https://https://huggingface.co/
-description: 'Python bindings for the hugging face llms'
+description: 'Python bindings for the hugging face llms. It supports transformers causal models, gptq quantized models and awq quantized models'
 accepted_models: 
   - transformers
   - gptq
+  - awq

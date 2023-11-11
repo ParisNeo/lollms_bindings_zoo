@@ -198,11 +198,11 @@ class GPT4ALL(LLMBinding):
             response_text = []
             for decoded_word in self.model.generate(prompt, 
                                             max_tokens=n_predict, 
-                                            temp=gpt_params["temperature"],
-                                            top_k=gpt_params['top_k'],
-                                            top_p=gpt_params['top_p'],
-                                            repeat_penalty=gpt_params['repeat_penalty'],
-                                            repeat_last_n = self.config['repeat_last_n'],                                            
+                                            temp=float(gpt_params["temperature"]),
+                                            top_k=int(gpt_params['top_k']),
+                                            top_p=float(gpt_params['top_p']),
+                                            repeat_penalty=float(gpt_params['repeat_penalty']),
+                                            repeat_last_n = int(self.config['repeat_last_n']),                                            
                                             streaming=True):
                 response_text.append( decoded_word )
                 if callback is not None:
