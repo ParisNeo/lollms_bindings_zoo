@@ -1,10 +1,14 @@
-- description: Most advanced language model by Google.
-  icon: /bindings/google/logo.png
-  filename: Bard
-  license: Commercial
-  owner_link: https://bard.google.com/
-  owner: Google
-  server: https://bard.google.com/
-  sha256: ~
-  model_type: api
-
+- category: generic
+  datasets: unknown
+  icon: '/bindings/google/logo.png'
+  last_commit_time: 2023-09-17 17:21:17+00:00
+  license: commercial
+  model_creator: google
+  model_creator_link: https://bard.google.com/
+  name: text-bison-001
+  quantizer: None
+  rank: 1.0
+  type: api
+  variants:
+  - name: The new big boss from google
+    size: Too much

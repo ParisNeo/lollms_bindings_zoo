@@ -229,9 +229,9 @@ class HuggingFace(LLMBinding):
         # Step 2: Install dependencies using pip from requirements.txt
         requirements_file = self.binding_dir / "requirements.txt"
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq", "--extra-index-url", "https://huggingface.github.io/autogptq-index/whl/cu118/"])
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
         ASCIIColors.success("Installed successfully")
 
 

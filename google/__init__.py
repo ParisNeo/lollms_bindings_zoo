@@ -84,7 +84,7 @@ class GoogleBard(LLMBinding):
         ASCIIColors.error("Attention please")
         ASCIIColors.error("----------------------")
         ASCIIColors.error("The google bard binding uses the Google Bard API which is a paid service. Please create an account on the google cloud website then generate a key and provide it in the configuration file.")
-
+    
     def tokenize(self, text: Union[str, List[str]]) -> List[str]:
         """Tokenizes a text string
 
@@ -111,69 +111,52 @@ class GoogleBard(LLMBinding):
         return " ".join(tokens)
     
     def generate(self, 
-                 prompt:str,                  
+                 prompt: str,                  
                  n_predict: int = 128,
                  callback: Callable[[str], None] = bool,
                  verbose: bool = False,
-                 **gpt_params ):
+                 **gpt_params) -> str:
         """Generates text out of a prompt
 
         Args:
             prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            n_predict (int, optional): Number of tokens to predict. Defaults to 128.
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        try:
-            default_params = {
-                'temperature': 0.7,
-                'top_k': 50,
-                'top_p': 0.96,
-                'repeat_penalty': 1.3
-            }
-            gpt_params = {**default_params, **gpt_params}
-            count = 0
-            output = ""
+        PALM_KEY = "YOUR KEY HERE"
 
-            # Create a URL for the `/v1/generate` endpoint of the API.
-            url = "https://bard.google.com/v1/generate"
+        headers = {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': PALM_KEY
+        }
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3
+        }
+        gpt_params = {**default_params, **gpt_params}
 
-            # Set the `Content-Type` and `Authorization` headers.
-            headers = {
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {self.binding_config.google_bard_key}"
-            }
+        data = {
+            'prompt': {
+                'text': prompt
+            },
+            "temperature": float(gpt_params["temperature"]),
+            "candidateCount": 1
+        }
 
-            # Create a dictionary called `data`. This dictionary contains the prompt for the poem.
-            data = {
-                "prompt": prompt,
-                "temperature": gpt_params["temperature"],
-                "top_k": gpt_params["top_k"],
-                "top_p": gpt_params["top_p"],
-                "repeat_penalty": gpt_params["repeat_penalty"]
-            }
+        url = f'https://generativelanguage.googleapis.com/v1beta3/models/{self.config.model_name}:generateText'
 
-            # Make a `POST` request to the API endpoint, passing the `headers` and `data` dictionary as arguments.
-            response = requests.post(url, headers=headers, data=json.dumps(data))
+        response = requests.post(url, headers=headers, data=json.dumps(data))
+        result = response.json()
+        if "error" in result:
+            ASCIIColors.error(result["error"]["message"])
+        else:
+            if callback:
+                callback(result["candidates"][0]["output"], MSG_TYPE.MSG_TYPE_FULL)
 
-            # If the request is successful, the function returns the generated text. Otherwise, it raises an exception.
-            if response.status_code == 200:
-                generated_text = response.json()["generated_text"]
-                for word in generated_text.split():
-                    if count >= n_predict:
-                        break
-                    if callback is not None:
-                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                            break
-                    output += word
-                    count += 1
-
-            else:
-                raise Exception(f"Error: {response.status_code}")
-
-        except Exception as ex:
-            print(ex)
-        return ""    
+        return result
 
     
     @staticmethod
@@ -186,7 +169,8 @@ class GoogleBard(LLMBinding):
         with open(file_path, 'r') as file:
             yaml_data = yaml.safe_load(file)
         
-        return yaml_data
+
+        return [f["name"] for f in yaml_data]
                 
     @staticmethod
     def get_available_models():
