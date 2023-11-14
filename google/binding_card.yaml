@@ -1,7 +1,7 @@
-name: Google BARD (Waiting for Aproval)
+name: Google BARD (Works outside EU)
 author: Google
 version: 1.0
 link: https://bard.google.com/
-description: This binding uses the google bard api to make you use google Bard
+description: This binding uses the google api to make you use google Palm models
 accepted_models: 
   - google

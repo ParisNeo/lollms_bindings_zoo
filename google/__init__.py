@@ -54,13 +54,14 @@ class GoogleBard(LLMBinding):
 
         binding_config = TypedConfig(
             ConfigTemplate([
-                {"name":"google_bard_key","type":"str","value":""},
+                {"name":"google_api_key","type":"str","value":""},
+                {"name":"google_api","type":"str","value":"v1beta2","options":["v1beta2","v1beta3"],"Help":"API"},
                 {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
             ]),
             BaseConfig(config={
-                "google_bard_key": "",     # use avx2
+                "google_api_key": "",     # use avx2
             })
         )
         super().__init__(
@@ -124,7 +125,7 @@ class GoogleBard(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        PALM_KEY = "YOUR KEY HERE"
+        PALM_KEY = self.binding_config.google_api_key
 
         headers = {
             'Content-Type': 'application/json',
@@ -146,7 +147,7 @@ class GoogleBard(LLMBinding):
             "candidateCount": 1
         }
 
-        url = f'https://generativelanguage.googleapis.com/v1beta3/models/{self.config.model_name}:generateText'
+        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models/{self.config.model_name}:generateText'
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
         result = response.json()
