@@ -157,7 +157,7 @@ class GoogleBard(LLMBinding):
             if callback:
                 callback(result["candidates"][0]["output"], MSG_TYPE.MSG_TYPE_FULL)
 
-        return result
+        return result["candidates"][0]["output"]
 
     
     @staticmethod
