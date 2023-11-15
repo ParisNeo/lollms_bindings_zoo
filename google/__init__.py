@@ -18,6 +18,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
+from lollms.utilities import detect_antiprompt, remove_text_from_string
 import subprocess
 import yaml
 import re
@@ -155,7 +156,12 @@ class GoogleBard(LLMBinding):
             ASCIIColors.error(result["error"]["message"])
         else:
             if callback:
-                callback(result["candidates"][0]["output"], MSG_TYPE.MSG_TYPE_FULL)
+                output = result["candidates"][0]["output"]
+                antiprompt = detect_antiprompt(output)
+                if antiprompt:
+                    ASCIIColors.warning(f"\nDetected hallucination with antiprompt: {antiprompt}")
+                    output = remove_text_from_string(output,antiprompt)                
+                callback(output, MSG_TYPE.MSG_TYPE_FULL)
 
         return result["candidates"][0]["output"]
 
