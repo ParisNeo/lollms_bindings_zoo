@@ -154,6 +154,8 @@ class GoogleBard(LLMBinding):
         result = response.json()
         if "error" in result:
             ASCIIColors.error(result["error"]["message"])
+            self.notify(result["error"]["message"],False)
+            return ''
         else:
             if callback:
                 output = result["candidates"][0]["output"]
