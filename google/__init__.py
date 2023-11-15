@@ -162,7 +162,7 @@ class GoogleBard(LLMBinding):
                 antiprompt = detect_antiprompt(output)
                 if antiprompt:
                     ASCIIColors.warning(f"\nDetected hallucination with antiprompt: {antiprompt}")
-                    output = remove_text_from_string(output,antiprompt)                
+                    output = remove_text_from_string(output, antiprompt)                
                 callback(output, MSG_TYPE.MSG_TYPE_FULL)
 
         return result["candidates"][0]["output"]
