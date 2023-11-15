@@ -1,13 +1,12 @@
 ######
 # Project       : lollms
-# File          : binding.py
+# File          : c_transformers/__init__.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
 # engine author : marella 
 # license       : Apache 2.0
 # Description   : 
-# This is an interface class for lollms bindings.
-
+# This is the ctransformers binding code
 # This binding is a wrapper to marella's binding
 
 ######
@@ -199,19 +198,6 @@ class CTRansformers(LLMBinding):
         
         if self.config.enable_gpu:
             ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
-            ASCIIColors.info("Checking pytorch")
-            try:
-                import torch
-                import torchvision
-                if torch.cuda.is_available():
-                    ASCIIColors.success("CUDA is supported.")
-                else:
-                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
-                    self.reinstall_pytorch_with_cuda()
-            except Exception as ex:
-                ASCIIColors.info("Pytorch not installed")
-                self.reinstall_pytorch_with_cuda()    
-
             # Step 2: Install dependencies using pip from requirements.txt
             ASCIIColors.info("Trying to install a cuda enabled version of ctransformers")
             # env = os.environ.copy()
