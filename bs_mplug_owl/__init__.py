@@ -21,7 +21,7 @@ import yaml
 from tqdm import tqdm
 import urllib
 from lollms.utilities import AdvancedGarbageCollector
-from lollms.utilities import reinstall_pytorch_with_cuda, reinstall_pytorch_with_cpu, reinstall_pytorch_with_rocm
+from lollms.utilities import                         check_and_install_torch(self.config.enable_gpu, version=2.1)(self.config.enable_gpu, version=2.1)(self.config.enable_gpu, version=2.1)
 
 import sys
 import os
@@ -194,35 +194,7 @@ class mPLUG_Owl(LLMBinding):
         AdvancedGarbageCollector.collect()
         ASCIIColors.success("freed memory")        
         super().install()
-        if self.config.enable_gpu:
-            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
-            ASCIIColors.info("Checking pytorch")
-            try:
-                import torch
-                import torchvision
-                if torch.cuda.is_available():
-                    ASCIIColors.success(f"CUDA is supported.\nCurrent version is {torch.__version__}.")
-                    if self.check_torch_version(2.1):
-                        ASCIIColors.yellow("Torch version is old. Installing new version")
-                        reinstall_pytorch_with_cuda()
-                    else:
-                        ASCIIColors.yellow("Torch OK")
-                else:
-                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
-                    reinstall_pytorch_with_cuda()
-            except Exception as ex:
-                ASCIIColors.info("Pytorch not installed. Reinstalling ...")
-                reinstall_pytorch_with_cuda()    
-        else:
-            try:
-                import torch
-                import torchvision
-                if self.check_torch_version(2.1):
-                    ASCIIColors.warning("Torch version is too old. Trying to reinstall PyTorch with CUDA support.")
-                    reinstall_pytorch_with_cpu()
-            except Exception as ex:
-                ASCIIColors.info("Pytorch not installed. Reinstalling ...")
-                reinstall_pytorch_with_cpu() 
+        check_and_install_torch(self.config.enable_gpu, version=2.1)
    
 
         repo_url = "https://github.com/ParisNeo/mPLUG-Owl.git"
