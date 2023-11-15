@@ -17,6 +17,7 @@ from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector
+from lollms.utilities import reinstall_pytorch_with_cuda, reinstall_pytorch_with_cpu, reinstall_pytorch_with_rocm
 import subprocess
 import yaml
 from tqdm import tqdm
@@ -220,24 +221,27 @@ class HuggingFace(LLMBinding):
                 if torch.cuda.is_available():
                     ASCIIColors.success(f"CUDA is supported.\nCurrent version is {torch.__version__}.")
                     if self.check_torch_version(2.1):
-                        self.reinstall_pytorch_with_cuda()
-
+                        ASCIIColors.yellow("Torch version is old. Installing new version")
+                        reinstall_pytorch_with_cuda()
+                    else:
+                        ASCIIColors.yellow("Torch OK")
                 else:
                     ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
-                    self.reinstall_pytorch_with_cuda()
+                    reinstall_pytorch_with_cuda()
             except Exception as ex:
-                ASCIIColors.info("Pytorch not installed")
-                self.reinstall_pytorch_with_cuda()    
+                ASCIIColors.info("Pytorch not installed. Reinstalling ...")
+                reinstall_pytorch_with_cuda()    
         else:
             try:
                 import torch
                 import torchvision
                 if self.check_torch_version(2.1):
-                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
-                    self.reinstall_pytorch_with_cpu()
+                    ASCIIColors.warning("Torch version is too old. Trying to reinstall PyTorch with CUDA support.")
+                    reinstall_pytorch_with_cpu()
             except Exception as ex:
-                ASCIIColors.info("Pytorch not installed")
-                self.reinstall_pytorch_with_cpu()  
+                ASCIIColors.info("Pytorch not installed. Reinstalling ...")
+                reinstall_pytorch_with_cpu() 
+
             
         # Step 2: Install dependencies using pip from requirements.txt
         requirements_file = self.binding_dir / "requirements.txt"
