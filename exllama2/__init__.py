@@ -1,6 +1,6 @@
 ######
 # Project       : lollms
-# File          : binding.py
+# File          : exllama2/__init__.py
 # Author        : ParisNeo with the help from bartowski
 # Underlying 
 # engine author : turboderp 
@@ -241,72 +241,76 @@ class EXLLAMA2(LLMBinding):
         ASCIIColors.info("Checking pytorch")
         
         if self.config.enable_gpu:
+            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
+            ASCIIColors.info("Checking pytorch")
             try:
-                from torch import version as torch_version
-                try:
-                    torch.cuda.empty_cache()
-                except Exception as ex:
-                    ASCIIColors.error("Couldn't clear cuda memory")
-            except:
-                pass       
-            try:
+                import torch
+                import torchvision
                 if torch.cuda.is_available():
-                    ASCIIColors.success("CUDA is supported.")
+                    ASCIIColors.success(f"CUDA is supported.\nCurrent version is {torch.__version__}.")
+                    if self.check_torch_version(2.1):
+                        self.reinstall_pytorch_with_cuda()
+
                 else:
                     ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
                     self.reinstall_pytorch_with_cuda()
             except Exception as ex:
                 ASCIIColors.info("Pytorch not installed")
-                self.reinstall_pytorch_with_cuda()
-
-            # requirements_file = self.binding_dir / "requirements.txt"
-            # subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
-
-            # Repository URL
-            repo_url = "https://github.com/ParisNeo/exllamav2.git"
-
-            # Get the path of the current script file
-            script_path = Path(__file__).resolve()
-
-            # Get the parent directory of the script file
-            parent_dir = script_path.parent
-
-            # Define the subfolder name
-            subfolder_name = "exllamav2"
-
-            # Create the full path to the subfolder
-            subfolder_path = parent_dir / subfolder_name
-
-            # Check if the subfolder exists and remove it if it does
-            # if subfolder_path.exists():
-            #     ASCIIColors.yellow("---------- Pulling exllama ---------")
-            #     subprocess.run(["git", "pull"], cwd = str(subfolder_path), check=True)
-            #     ASCIIColors.yellow("------------------------------------")
-
-            # else:
-                # Clone the repository to the subfolder
-            #     subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
-            # Make models dir
-            models_dir = self.lollms_paths.personal_models_path / "exllama2"
-            models_dir.mkdir(parents=True, exist_ok=True)
-
-            # Install custom version of transformers
-            # subprocess.run(["pip", "install", "--upgrade", "transformers"])
-            # subprocess.run(["pip", "install", "--upgrade", "accelerate"])
-            # subprocess.run(["pip", "install", "--upgrade", "peft"])
-            current_platform = platform.system()
-            if current_platform == 'Windows':
-                subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu118-cp310-cp310-win_amd64.whl"])
-            else:
-                subprocess.run(["pip", "install", "--upgrade", "https://github.com/turboderp/exllamav2/releases/download/v0.0.6/exllamav2-0.0.6+cu118-cp310-cp310-linux_x86_64.whl"])
-            # 
-            ASCIIColors.success("Installed successfully")
-            try:
-                from torch import version as torch_version
-            except:
-                pass            
+                self.reinstall_pytorch_with_cuda()    
         else:
-            ASCIIColors.error("Exllama is only installable on GPU. Please activate GPU support before proceeding")
+            try:
+                import torch
+                import torchvision
+                if self.check_torch_version(2.1):
+                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
+                    self.reinstall_pytorch_with_cpu()
+            except Exception as ex:
+                ASCIIColors.info("Pytorch not installed")
+                self.reinstall_pytorch_with_cpu() 
+
+        # requirements_file = self.binding_dir / "requirements.txt"
+        # subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+
+        # Repository URL
+        repo_url = "https://github.com/ParisNeo/exllamav2.git"
+
+        # Get the path of the current script file
+        script_path = Path(__file__).resolve()
+
+        # Get the parent directory of the script file
+        parent_dir = script_path.parent
+
+        # Define the subfolder name
+        subfolder_name = "exllamav2"
+
+        # Create the full path to the subfolder
+        subfolder_path = parent_dir / subfolder_name
+
+        # Check if the subfolder exists and remove it if it does
+        # if subfolder_path.exists():
+        #     ASCIIColors.yellow("---------- Pulling exllama ---------")
+        #     subprocess.run(["git", "pull"], cwd = str(subfolder_path), check=True)
+        #     ASCIIColors.yellow("------------------------------------")
+
+        # else:
+            # Clone the repository to the subfolder
+        #     subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
+        # Make models dir
+        models_dir = self.lollms_paths.personal_models_path / "exllama2"
+        models_dir.mkdir(parents=True, exist_ok=True)
+
+        # Install custom version of transformers
+        subprocess.run(["pip", "install", "--upgrade", "transformers"])
+        subprocess.run(["pip", "install", "--upgrade", "accelerate"])
+        subprocess.run(["pip", "install", "--upgrade", "peft"])
+        subprocess.run(["pip", "install", "--upgrade", "exllamav2"])
+        current_platform = platform.system()
+        # 
+        ASCIIColors.success("Installed successfully")
+        try:
+            from torch import version as torch_version
+        except:
+            pass            
             
 
 
