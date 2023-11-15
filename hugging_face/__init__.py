@@ -306,7 +306,7 @@ class HuggingFace(LLMBinding):
         if  self.callback:
             if not self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
                 raise Exception("canceled")    
-            
+
     def _is_chinese_char(self, cp):
         """Checks whether CP is the codepoint of a CJK character."""
         # This defines a "chinese character" as anything in the CJK Unicode block:

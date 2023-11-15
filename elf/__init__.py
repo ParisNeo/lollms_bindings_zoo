@@ -3,7 +3,7 @@
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
-# engine author : Open AI
+# engine author : Google 
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
@@ -21,17 +21,20 @@ from lollms.types import MSG_TYPE
 import subprocess
 import yaml
 import re
-
+import json
+import requests
+from typing import List, Union
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "OpenAIGPT"
+binding_name = "Elf"
 binding_folder_name = ""
 
-class OpenAIGPT(LLMBinding):
+class Elf(LLMBinding):
+    
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -45,35 +48,16 @@ class OpenAIGPT(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        self.input_costs_by_model={
-            "gpt-4":0.03,
-            "gpt-4-32k":0.06,
-            "gpt-3.5-turbo":0.0015,
-            "gpt-3.5-turbo-16k":0.003,
-        }       
-        self.output_costs_by_model={
-            "gpt-4":0.06,
-            "gpt-4-32k":0.12,
-            "gpt-3.5-turbo":0.002,
-            "gpt-3.5-turbo-16k":0.004,
-        }
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
+
         binding_config = TypedConfig(
             ConfigTemplate([
-                {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
-                {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
-                {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
-                {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
-                {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
-                {"name":"openai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
-                {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-
+                {"name":"address","type":"str","value":"http://127.0.0.1:5000"},
             ]),
             BaseConfig(config={
-                "openai_key": "",     # use avx2
+                "google_api_key": "",     # use avx2
             })
         )
         super().__init__(
@@ -85,122 +69,101 @@ class OpenAIGPT(LLMBinding):
                             supported_file_extensions=[''],
                             notification_callback=notification_callback
                         )
-        self.config.ctx_size=self.binding_config.config.ctx_size
         
     def build_model(self):
-        import openai
-        openai.api_key = self.binding_config.config["openai_key"]
-        self.openai = openai
-
-        # Do your initialization stuff
         return self
 
     def install(self):
         super().install()
-        requirements_file = self.binding_dir / "requirements.txt"
-        # install requirements
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         ASCIIColors.success("Installed successfully")
         ASCIIColors.error("----------------------")
         ASCIIColors.error("Attention please")
         ASCIIColors.error("----------------------")
-        ASCIIColors.error("The chatgpt/gpt4 binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration file.")
-
-    def tokenize(self, prompt:str):
-        """
-        Tokenizes the given prompt using the model's tokenizer.
-
-        Args:
-            prompt (str): The input prompt to be tokenized.
-
-        Returns:
-            list: A list of tokens representing the tokenized prompt.
-        """
-        import tiktoken
-        tokens_list = tiktoken.model.encoding_for_model(self.config["model_name"]).encode(prompt)
-
-        return tokens_list
-
-    def detokenize(self, tokens_list:list):
-        """
-        Detokenizes the given list of tokens using the model's tokenizer.
+        ASCIIColors.error("The google bard binding uses the Google Bard API which is a paid service. Please create an account on the google cloud website then generate a key and provide it in the configuration file.")
+    
+    def tokenize(self, text: Union[str, List[str]]) -> List[str]:
+        """Tokenizes a text string
 
         Args:
-            tokens_list (list): A list of tokens to be detokenized.
+            text (str): The text to tokenize
 
         Returns:
-            str: The detokenized text as a string.
+            A list of tokens
         """
-        import tiktoken
-        text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+        if isinstance(text, str):
+            return text.split()
+        else:
+            return text
 
-        return text
+    def detokenize(self, tokens: List[str]) -> str:
+        """Detokenizes a list of tokens
 
-    def embed(self, text):
-        """
-        Computes text embedding
         Args:
-            text (str): The text to be embedded.
+            tokens (List[str]): The tokens to detokenize
+
         Returns:
-            List[float]
+            A string
         """
-        
-        pass
+        return " ".join(tokens)
+    
     def generate(self, 
-                 prompt:str,                  
+                 prompt: str,                  
                  n_predict: int = 128,
                  callback: Callable[[str], None] = bool,
                  verbose: bool = False,
-                 **gpt_params ):
+                 **gpt_params) -> str:
         """Generates text out of a prompt
 
         Args:
             prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            n_predict (int, optional): Number of tokens to predict. Defaults to 128.
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
-        try:
-            default_params = {
-                'temperature': 0.7,
-                'top_k': 50,
-                'top_p': 0.96,
-                'repeat_penalty': 1.3
-            }
-            gpt_params = {**default_params, **gpt_params}
-            count = 0
-            output = ""
-            messages = [{"role": "user", "content": prompt}]
-            for resp in self.openai.ChatCompletion.create(model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                                messages=messages,
-                                max_tokens=n_predict,  # Adjust the desired length of the generated response
-                                n=1,  # Specify the number of responses you want
-                                stop=None,  # Define a stop sequence if needed
-                                temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                                stream=True):
-                if count >= n_predict:
-                    break
-                try:
-                    word = resp["choices"][0]["delta"]["content"]
-                except:
-                    word = ""
-                if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                        break
-                output += word
-                count += 1
 
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer NO_KEY_NEEDED',
+        }
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3
+        }
+        gpt_params = {**default_params, **gpt_params}
 
-        except Exception as ex:
-            #self.app.
-            print(ex)
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.binding_config.save()
-        return ""            
+        data = {
+            'model':'',
+            'messages': [{
+                'role': "",
+                'content': prompt
+            }],
+            "stream":True,
+            "temperature": float(gpt_params["temperature"]),
+            "max_tokens": n_predict
+        }
+
+        url = f'{self.binding_config.address}/v1/chat/completions'
+
+        response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
+
+        text = ""
+        for line in response.iter_lines(): 
+            decoded = line.decode("utf-8")
+            if len(decoded)>5:
+                txt = decoded[5:].strip()
+                if txt[0]=="{":
+                    json_data = json.loads(txt)
+                    chunk = json_data["choices"][0]["delta"]["content"]
+                else:
+                    chunk = decoded
+                ## Process the JSON data here
+                text +=chunk
+                if callback:
+                    callback(text, MSG_TYPE.MSG_TYPE_FULL)
+
+        return text
 
     
     @staticmethod
