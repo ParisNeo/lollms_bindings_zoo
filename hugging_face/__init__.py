@@ -1,6 +1,6 @@
 ######
 # Project       : lollms
-# File          : binding.py
+# File          : hugging_face/__init__.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
 # engine author : Hugging face Inc 
@@ -218,21 +218,36 @@ class HuggingFace(LLMBinding):
                 import torch
                 import torchvision
                 if torch.cuda.is_available():
-                    ASCIIColors.success("CUDA is supported.")
+                    ASCIIColors.success(f"CUDA is supported.\nCurrent version is {torch.__version__}.")
+                    if self.check_torch_version(2.1):
+                        self.reinstall_pytorch_with_cuda()
+
                 else:
                     ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
                     self.reinstall_pytorch_with_cuda()
             except Exception as ex:
                 ASCIIColors.info("Pytorch not installed")
                 self.reinstall_pytorch_with_cuda()    
-
+        else:
+            try:
+                import torch
+                import torchvision
+                if self.check_torch_version(2.1):
+                    ASCIIColors.warning("CUDA is not supported. Trying to reinstall PyTorch with CUDA support.")
+                    self.reinstall_pytorch_with_cpu()
+            except Exception as ex:
+                ASCIIColors.info("Pytorch not installed")
+                self.reinstall_pytorch_with_cpu()  
+            
         # Step 2: Install dependencies using pip from requirements.txt
         requirements_file = self.binding_dir / "requirements.txt"
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq", "--extra-index-url", "https://huggingface.github.io/autogptq-index/whl/cu118/"])
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
         ASCIIColors.success("Installed successfully")
+        self.notify("Successfull installation",True)
+        self.notify("Don't forget to reboot the app",True)
 
 
     def uninstall(self):
