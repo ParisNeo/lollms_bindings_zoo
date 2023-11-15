@@ -218,12 +218,12 @@ class OpenAIGPT(LLMBinding):
                     word = resp.choices[0].delta.content
                 except Exception as ex:
                     word = ""
-                if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                        break
-                if word:
+                if word is not None:
                     output += word
                     count += 1
+                    if callback is not None:
+                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
 
 
         except Exception as ex:
