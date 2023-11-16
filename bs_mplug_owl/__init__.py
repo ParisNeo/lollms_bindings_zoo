@@ -21,8 +21,7 @@ import yaml
 from tqdm import tqdm
 import urllib
 from lollms.utilities import AdvancedGarbageCollector
-from lollms.utilities import                         check_and_install_torch(self.config.enable_gpu, version=2.1)(self.config.enable_gpu, version=2.1)(self.config.enable_gpu, version=2.1)
-
+from lollms.utilities import check_and_install_torch
 import sys
 import os
 
