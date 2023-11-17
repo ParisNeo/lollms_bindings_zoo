@@ -1,8 +1,8 @@
-name: mplug-owl (under construction)
-author: X-PLUG
+name: LLAVA (under construction)
+author: haotian-liu
 version: 1.0
-link: https://github.com/X-PLUG/mPLUG-Owl
-description: 'Python bindings for the mplug-owl multimodal llms'
+link: https://github.com/haotian-liu/LLaVA
+description: 'Python bindings for the llava multimodal llms'
 
 accepted_models: 
-  - mplug_owl
+  - llava
