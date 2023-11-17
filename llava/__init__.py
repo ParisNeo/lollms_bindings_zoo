@@ -1,6 +1,6 @@
 ######
 # Project       : lollms
-# File          : bs_mplug_owl/__init__.py
+# File          : bs_Llava/__init__.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
 # engine author : X-PLUG 
@@ -27,21 +27,21 @@ import os
 
 
 sys.path.append(os.getcwd())
-pth = Path(__file__).parent/"mPLUG-Owl"
+pth = Path(__file__).parent/"llava"
 sys.path.append(str(pth))
 
 
 __author__ = "parisneo"
-__github__ = "https://github.com/ParisNeo/mPLUG-Owl"
+__github__ = "https://github.com/ParisNeo/llava"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "mPLUG_Owl"
-binding_folder_name = "mplug_owl"
+binding_name = "Llava"
+binding_folder_name = "Llava"
 import subprocess
 import gc
 
-class mPLUG_Owl(LLMBinding):
+class Llava(LLMBinding):
     
     def __init__(self, 
                 config: LOLLMSConfig, 
@@ -120,10 +120,8 @@ class mPLUG_Owl(LLMBinding):
     def build_model(self):
         import torch
         from transformers import AutoTokenizer, GenerationConfig
-        from mplug_owl2.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN
-        from mplug_owl2.conversation import conv_templates, SeparatorStyle
-        from mplug_owl2.model.builder import load_pretrained_model
-        from mplug_owl2.mm_utils import process_images, tokenizer_image_token, get_model_name_from_path, KeywordsStoppingCriteria
+        from Llava.modeling_Llava import MplugOwlForConditionalGeneration
+        from Llava.processing_Llava import MplugOwlImageProcessor, MplugOwlProcessor
 
         if self.config.model_name:
 
@@ -142,9 +140,10 @@ class mPLUG_Owl(LLMBinding):
                          
             self.tokenizer = None
             gc.collect()
+            import os
+            os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
 
-            # model_name = get_model_name_from_path(model_path)
-            self.tokenizer, self.model, self.image_processor, self.context_len = load_pretrained_model(model_path, None, model_name, load_8bit=False, load_4bit=True, device="cuda")
+            ASCIIColors.info(f"Creating tokenizer {model_path}")
 
             self.tokenizer = AutoTokenizer.from_pretrained(
                     model_name
@@ -197,11 +196,14 @@ class mPLUG_Owl(LLMBinding):
         check_and_install_torch(self.config.enable_gpu, version=2.1)
    
 
-        repo_url = "https://github.com/ParisNeo/mPLUG-Owl.git"
+        repo_url = "https://github.com/ParisNeo/llava.git"
         try:
             # Clone the Git repository
             subprocess.run(["git", "clone", repo_url])
 
+            # Change the current working directory to the cloned repository
+            repo_name = repo_url.split("/")[-1].split(".")[0]
+            os.chdir(repo_name)
             # Get the path of the current script file
             script_path = Path(__file__).resolve()
 
@@ -209,15 +211,13 @@ class mPLUG_Owl(LLMBinding):
             parent_dir = script_path.parent
 
             # Define the subfolder name
-            subfolder_name = "mPLUG-Owl"
+            subfolder_name = "llava"
 
             # Create the full path to the subfolder
             subfolder_path = parent_dir / subfolder_name
-            # Define the path to the mPLUG-Owl2 directory
-            mplug_owl2_path = subfolder_path / "mPLUG-Owl2"
             # Check if the subfolder exists and remove it if it does
             if subfolder_path.exists():
-                ASCIIColors.yellow("---------- Pulling mplug-owl ---------")
+                ASCIIColors.yellow("---------- Pulling llava ---------")
                 subprocess.run(["git", "pull"], cwd = str(subfolder_path), check=True)
                 ASCIIColors.yellow("------------------------------------")
 
@@ -225,14 +225,12 @@ class mPLUG_Owl(LLMBinding):
                 # Clone the repository to the subfolder
                 subprocess.run(["git", "clone", repo_url, str(subfolder_path)])
 
-            try:
-                # Install the package using pip with the specified working directory
-                subprocess.run(["pip", "install", "-e", "."], cwd=str(mplug_owl2_path), check=True)
-                ASCIIColors.success("mPLUG-Owl2 installed successfully")
-            except subprocess.CalledProcessError as e:
-                ASCIIColors.error(f"An error occurred: {e}")
+            # Install requirements from requirements.txt
+            subprocess.run(["pip", "install", "-r", f"{subfolder_path}/requirements.txt"])
+            # force latest transformers
+            subprocess.run(["pip", "install", "--upgrade", "transformers"])
 
-            print(f"Successfully cloned and installed {subfolder_path}.")
+            print(f"Successfully cloned and installed {repo_name}.")
         except Exception as e:
             print(f"Error: {e}")
         ASCIIColors.success("Installed successfully")
@@ -346,7 +344,24 @@ class mPLUG_Owl(LLMBinding):
         if  self.callback:
             if self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
                 raise Exception("canceled")    
+            
+            
+    def generate_with_images(self, 
+                prompt:str,
+                images:list=[],
+                n_predict: int = 128,
+                callback: Callable[[str, int, dict], bool] = None,
+                verbose: bool = False,
+                **gpt_params ):
+        """Generates text out of a prompt
 
+        Args:
+            prompt (str): The prompt to use for generation
+            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
+            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
+        """
+        pass
 
 
     def generate(self, 
@@ -483,7 +498,7 @@ class mPLUG_Owl(LLMBinding):
         if len(blocs)!=2:
             repo="/".join(blocs[-5:-3])
 
-        file_names = mPLUG_Owl.get_filenames(repo)
+        file_names = Llava.get_filenames(repo)
 
         dest_dir = Path(base_folder)
         dest_dir.mkdir(parents=True, exist_ok=True)
@@ -535,7 +550,7 @@ class mPLUG_Owl(LLMBinding):
         if len(blocs)!=2:
             repo="/".join(blocs[-5:-3])
 
-        file_names = mPLUG_Owl.get_filenames(repo)
+        file_names = Llava.get_filenames(repo)
         for file_name in file_names:
             if file_name.endswith(".safetensors") or  file_name.endswith(".bin"):
                 src = "https://huggingface.co/"+repo

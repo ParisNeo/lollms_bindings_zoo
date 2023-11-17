@@ -1,0 +1,11 @@
+beautifulsoup4
+wget
+einops 
+sentencepiece
+evaluate
+datasets
+transformers
+accelerate
+optimum
+auto-gptq
+peft

@@ -1,0 +1,28 @@
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/noauth/0lncTpIHXn6suB0p-oSma.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-22 23:48:14+00:00
+  license: apache-2.0
+  model_creator: MAGAer13
+  model_creator_link: https://huggingface.co/MAGAer13
+  name: mplug-owl-llama-7b-pt
+  quantizer: MAGAer13
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 14200000000
+- category: generic
+  datasets: unknown
+  icon: https://aeiljuispo.cloudimg.io/v7/https://cdn-uploads.huggingface.co/production/uploads/noauth/0lncTpIHXn6suB0p-oSma.jpeg?w=200&h=200&f=face
+  last_commit_time: 2023-09-22 23:48:14+00:00
+  license: apache-2.0
+  model_creator: MAGAer13
+  model_creator_link: https://huggingface.co/MAGAer13
+  name: mplug-owl-bloomz-7b-multilingual
+  quantizer: MAGAer13
+  rank: 10000000000.0
+  type: gptq
+  variants:
+  - name: model.safetensors
+    size: 14200000000
