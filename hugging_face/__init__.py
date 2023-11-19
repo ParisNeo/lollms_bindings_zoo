@@ -18,6 +18,7 @@ from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector
 from lollms.utilities import check_and_install_torch
+from zoos.bindings_zoo.hugging_face.encoders.clip import CLIPVisionTower
 import subprocess
 import yaml
 from tqdm import tqdm
@@ -38,6 +39,8 @@ import platform
 import os
 import subprocess
 import gc
+
+
 
 class HuggingFace(LLMBinding):
     
@@ -151,12 +154,15 @@ class HuggingFace(LLMBinding):
                     str(model_name)
                     )
             ASCIIColors.success(f"ok")
+
             ASCIIColors.info(f"Recovering generation config {model_path}")
             self.generation_config = GenerationConfig.from_pretrained(str(model_path))
             ASCIIColors.success(f"ok")
             ASCIIColors.info(f"Creating model {model_path}")
             # load model
             ASCIIColors.yellow(f"Using device map: {self.binding_config.device_map}")
+
+
             if "gptq" in str(model_path).lower():
                 from transformers import GPTQConfig
                 self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
@@ -442,7 +448,7 @@ class HuggingFace(LLMBinding):
                     if file_name not in dont_download:
                         file_names.append(file_name)
         return file_names
-                    
+    
     @staticmethod
     def download_model(repo, base_folder, callback=None):
         """

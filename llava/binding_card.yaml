@@ -1,8 +1,0 @@
-name: LLAVA (under construction)
-author: haotian-liu
-version: 1.0
-link: https://github.com/haotian-liu/LLaVA
-description: 'Python bindings for the llava multimodal llms'
-
-accepted_models: 
-  - llava

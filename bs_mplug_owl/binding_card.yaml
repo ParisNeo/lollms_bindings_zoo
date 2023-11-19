@@ -1,8 +1,0 @@
-name: mplug-owl (under construction)
-author: X-PLUG
-version: 2.0
-link: https://github.com/X-PLUG/mPLUG-Owl
-description: 'Python bindings for the mplug-owl 2 multimodal llms'
-
-accepted_models: 
-  - mplug_owl
