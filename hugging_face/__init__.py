@@ -12,19 +12,18 @@ from pathlib import Path
 from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
-from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector
-from lollms.utilities import check_and_install_torch
-from zoos.bindings_zoo.hugging_face.encoders.clip import CLIPVisionTower
+from lollms.utilities import check_and_install_torch, expand2square, load_image
 import subprocess
 import yaml
 from tqdm import tqdm
 import re
 import urllib
-
+import json
 
 
 __author__ = "parisneo"
@@ -161,9 +160,15 @@ class HuggingFace(LLMBinding):
             ASCIIColors.info(f"Creating model {model_path}")
             # load model
             ASCIIColors.yellow(f"Using device map: {self.binding_config.device_map}")
-
-
-            if "gptq" in str(model_path).lower():
+            if "llava" in str(model_path).lower():
+                import zoos.bindings_zoo.hugging_face.special.llama_llama as lm
+                self.model = lm.LlavaLlamaForCausalLM.from_pretrained(str(model_path),
+                                                            torch_dtype=torch.float16,
+                                                            device_map=self.binding_config.device_map,
+                                                            offload_folder="offload",
+                                                            offload_state_dict = True
+                                                            )
+            elif "gptq" in str(model_path).lower():
                 from transformers import GPTQConfig
                 self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
                                                             torch_dtype=torch.float16,
@@ -178,21 +183,41 @@ class HuggingFace(LLMBinding):
                     ASCIIColors.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
                 
             elif "awq" in str(model_path).lower():
-                self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
                                                             torch_dtype=torch.float16,
                                                             device_map=self.binding_config.device_map,
                                                             offload_folder="offload",
                                                             offload_state_dict = True
                                                             )
             else:
-                self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
                                                             torch_dtype=torch.float16,
                                                             device_map=self.binding_config.device_map,
                                                             offload_folder="offload",
                                                             offload_state_dict = True
                                                             )
-            
             self.model_device = self.model.parameters().__next__().device
+            
+            if "llava" in model_name.lower():
+                from zoos.bindings_zoo.hugging_face.special.llama_llama import build_vision_tower, build_vision_projector
+                cfg = model_path/"config.json"
+                with open(cfg,"r") as f:
+                    cfg = json.load(f)
+                self.binding_type = BindingType.TEXT_IMAGE
+                self.torch = torch
+                self.cfg = cfg
+                if not self.model.model.vision_tower.is_loaded:
+                    self.model.model.vision_tower.load_model()
+                self.model.model.vision_tower.to(device=self.model_device, dtype=torch.float16)
+                self.image_processor = self.model.model.vision_tower.image_processor
+                self.IGNORE_INDEX = -100
+                self.IMAGE_TOKEN_INDEX = -200
+                self.DEFAULT_IMAGE_TOKEN = "<image>"
+                self.DEFAULT_IMAGE_PATCH_TOKEN = "<im_patch>"
+                self.DEFAULT_IM_START_TOKEN = "<im_start>"
+                self.DEFAULT_IM_END_TOKEN = "<im_end>"
+                self.IMAGE_PLACEHOLDER = "<image-placeholder>"
+
             ASCIIColors.success(f"ok")
             """
             try:
@@ -343,7 +368,127 @@ class HuggingFace(LLMBinding):
             if self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
                 raise Exception("canceled")    
 
+    def process_images(self, images, image_processor, model_cfg):
+        image_aspect_ratio = model_cfg.get("image_aspect_ratio", None)
+        new_images = []
+        if image_aspect_ratio == 'pad':
+            for image in images:
+                image = expand2square(image, tuple(int(x*255)
+                                    for x in image_processor.image_mean))
+                image = image_processor.preprocess(image, return_tensors='pt')[
+                    'pixel_values'][0]
+                new_images.append(image)
+        else:
+            return image_processor(images, return_tensors='pt')['pixel_values']
+        if all(x.shape == new_images[0].shape for x in new_images):
+            new_images = self.torch.stack(new_images, dim=0)
+        return new_images
+    
+    def tokenizer_image_token(self, prompt, image_token_index=None, return_tensors=None):
+        if image_token_index is None:
+            image_token_index = self.IMAGE_TOKEN_INDEX
+        prompt_chunks = [
+            self.tokenizer(chunk).input_ids for chunk in prompt.split('<image>')]
 
+        def insert_separator(X, sep):
+            return [ele for sublist in zip(X, [sep]*len(X)) for ele in sublist][:-1]
+
+        input_ids = []
+        offset = 0
+        if len(prompt_chunks) > 0 and len(prompt_chunks[0]) > 0 and prompt_chunks[0][0] == self.tokenizer.bos_token_id:
+            offset = 1
+            input_ids.append(prompt_chunks[0][0])
+
+        for x in insert_separator(prompt_chunks, [image_token_index] * (offset + 1)):
+            input_ids.extend(x[offset:])
+
+        if return_tensors is not None:
+            if return_tensors == 'pt':
+                return self.torch.tensor(input_ids, dtype=self.torch.long)
+            raise ValueError(f'Unsupported tensor type: {return_tensors}')
+        return input_ids
+    
+
+
+    def generate_with_images(self, 
+                prompt:str,
+                images:list=[],
+                n_predict: int = 128,
+                callback: Callable[[str, int, dict], bool] = None,
+                verbose: bool = False,
+                **gpt_params ):
+        """Generates text out of a prompt
+
+        Args:
+            prompt (str): The prompt to use for generation
+            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
+            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
+        """
+        default_params = {
+            'temperature': self.generation_config.temperature,
+            'top_k': self.generation_config.top_k,
+            'top_p': self.generation_config.top_p,
+            'repeat_penalty': self.generation_config.repetition_penalty,
+            'repeat_last_n':self.generation_config.no_repeat_ngram_size,
+            "seed":-1,
+            "n_threads":8,
+            "begin_suppress_tokens ": self.tokenize("!")
+        }
+        gpt_params = {**default_params, **gpt_params}
+        self.generation_config.max_new_tokens = int(n_predict)
+        self.generation_config.temperature = float(gpt_params["temperature"])
+        self.generation_config.top_k = int(gpt_params["top_k"])
+        self.generation_config.top_p = float(gpt_params["top_p"])
+        self.generation_config.repetition_penalty = float(gpt_params["repeat_penalty"])
+        self.generation_config.do_sample = True if float(gpt_params["temperature"])>0 else False
+        self.generation_config.pad_token_id = self.tokenizer.pad_token_id
+        self.generation_config.eos_token_id = self.tokenizer.eos_token_id
+        self.generation_config.output_attentions = False
+        self.callback = callback    
+        try:
+            self.token_cache = []
+            self.print_len = 0
+            self.next_tokens_are_prompt = True            
+            self.n_generated = 0
+            self.output = ""
+
+            images_data = []
+            for img in images:
+                images_data.append(load_image(img))
+            # Similar operation in model_worker.py
+            image_tensor = self.process_images(images_data, self.image_processor, self.cfg)
+            if type(image_tensor) is list:
+                image_tensor = [image.to(self.model_device, dtype=self.torch.float16) for image in image_tensor]
+            else:
+                image_tensor = image_tensor.to(self.model_device, dtype=self.torch.float16)
+
+            if self.cfg["mm_use_im_start_end"]:
+                prompt = self.DEFAULT_IM_START_TOKEN + self.DEFAULT_IMAGE_TOKEN + self.DEFAULT_IM_END_TOKEN + '\n' + prompt
+            else:
+                prompt = self.DEFAULT_IMAGE_TOKEN + '\n' + prompt
+
+            input_ids = self.tokenizer_image_token(prompt, self.IMAGE_TOKEN_INDEX, return_tensors='pt').unsqueeze(0).to(self.model_device)
+
+            self.n_prompt = len(input_ids[0])
+            try:
+                with self.torch.no_grad():
+                    self.model.generate(
+                                        inputs=input_ids, 
+                                        images=image_tensor,
+                                        do_sample=True if float(gpt_params["temperature"]) > 0 else False,
+                                        generation_config=self.generation_config,
+                                        use_cache=True,
+                                        streamer = self,
+                                        )
+            except Exception as ex:
+                if str(ex)!="canceled":
+                    trace_exception(ex)
+
+        except Exception as ex:
+            ASCIIColors.error("Couldn't generate")
+            trace_exception(ex)
+        return self.output
 
     def generate(self, 
                  prompt:str,                  

@@ -11,8 +11,8 @@ class CLIPVisionTower(nn.Module):
         self.is_loaded = False
 
         self.vision_tower_name = vision_tower
-        self.select_layer = args.mm_vision_select_layer
-        self.select_feature = getattr(args, 'mm_vision_select_feature', 'patch')
+        self.select_layer = args["mm_vision_select_layer"]
+        self.select_feature = args.get('mm_vision_select_feature', 'patch')
 
         if not delay_load:
             self.load_model()

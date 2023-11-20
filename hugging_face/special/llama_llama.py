@@ -1,17 +1,5 @@
-#    Copyright 2023 Haotian Liu
-#
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
-#
-#        http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
-
+# LLAVA implementation
+# Inspired from the works of Haotian Liu
 
 from typing import List, Optional, Tuple, Union
 
@@ -25,11 +13,7 @@ from transformers.modeling_outputs import CausalLMOutputWithPast
 from zoos.bindings_zoo.hugging_face.encoders.clip import CLIPVisionTower
 import os
 import re
-
-CONTROLLER_HEART_BEAT_EXPIRATION = 30
-WORKER_HEART_BEAT_INTERVAL = 15
-
-LOGDIR = "."
+from abc import ABC, abstractmethod
 
 # Model Constants
 IGNORE_INDEX = -100
@@ -39,7 +23,6 @@ DEFAULT_IMAGE_PATCH_TOKEN = "<im_patch>"
 DEFAULT_IM_START_TOKEN = "<im_start>"
 DEFAULT_IM_END_TOKEN = "<im_end>"
 IMAGE_PLACEHOLDER = "<image-placeholder>"
-
 
 class IdentityMap(nn.Module):
     def __init__(self):
@@ -53,7 +36,9 @@ class IdentityMap(nn.Module):
         return {"mm_projector_type": 'identity'}
 
 def build_vision_tower(vision_tower_cfg, **kwargs):
-    vision_tower = getattr(vision_tower_cfg, 'mm_vision_tower', getattr(vision_tower_cfg, 'vision_tower', None))
+    if type(vision_tower_cfg)!=dict:
+       vision_tower_cfg = vars(vision_tower_cfg)
+    vision_tower = vision_tower_cfg.get('mm_vision_tower', vision_tower_cfg.get('vision_tower', None))
     is_absolute_path_exists = os.path.exists(vision_tower)
     if is_absolute_path_exists or vision_tower.startswith("openai") or vision_tower.startswith("laion"):
         return CLIPVisionTower(vision_tower, args=vision_tower_cfg, **kwargs)
@@ -62,18 +47,20 @@ def build_vision_tower(vision_tower_cfg, **kwargs):
 
 
 def build_vision_projector(config, delay_load=False, **kwargs):
-    projector_type = getattr(config, 'mm_projector_type', 'linear')
+    if type(config)!=dict:
+       config = vars(config)
+    projector_type = config.get('mm_projector_type', 'linear')
 
     if projector_type == 'linear':
-        return nn.Linear(config.mm_hidden_size, config.hidden_size)
+        return nn.Linear(config["mm_hidden_size"], config["hidden_size"])
 
     mlp_gelu_match = re.match(r'^mlp(\d+)x_gelu$', projector_type)
     if mlp_gelu_match:
         mlp_depth = int(mlp_gelu_match.group(1))
-        modules = [nn.Linear(config.mm_hidden_size, config.hidden_size)]
+        modules = [nn.Linear(config["mm_hidden_size"], config["hidden_size"])]
         for _ in range(1, mlp_depth):
             modules.append(nn.GELU())
-            modules.append(nn.Linear(config.hidden_size, config.hidden_size))
+            modules.append(nn.Linear(config["hidden_size"], config["hidden_size"]))
         return nn.Sequential(*modules)
 
     if projector_type == 'identity':
