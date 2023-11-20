@@ -34,8 +34,6 @@ __license__ = "Apache 2.0"
 binding_name = "HuggingFace"
 binding_folder_name = "hugging_face"
 import os
-import platform
-import os
 import subprocess
 import gc
 
@@ -169,7 +167,6 @@ class HuggingFace(LLMBinding):
                                                             offload_state_dict = True
                                                             )
             elif "gptq" in str(model_path).lower():
-                from transformers import GPTQConfig
                 self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
                                                             torch_dtype=torch.float16,
                                                             device_map=self.binding_config.device_map,
