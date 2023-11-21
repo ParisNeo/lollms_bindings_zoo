@@ -280,8 +280,12 @@ class HuggingFace(LLMBinding):
         except:
             pass
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        # pip install --upgrade --no-cache-dir transformers
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
+        # pip install --upgrade --no-cache-dir auto-gptq
+        # pip install auto-gptq --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu118/
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+        # pip install --upgrade --no-cache-dir autoawq
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
         ASCIIColors.success("Installed successfully")
         self.notify("Successfull installation",True)
