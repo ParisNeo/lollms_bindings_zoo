@@ -146,26 +146,65 @@ class HuggingFace(LLMBinding):
             os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
 
             ASCIIColors.info(f"Creating tokenizer {model_path}")
-
             self.tokenizer = AutoTokenizer.from_pretrained(
                     str(model_name)
                     )
             ASCIIColors.success(f"ok")
-
             ASCIIColors.info(f"Recovering generation config {model_path}")
             self.generation_config = GenerationConfig.from_pretrained(str(model_path))
             ASCIIColors.success(f"ok")
             ASCIIColors.info(f"Creating model {model_path}")
+
+
             # load model
             ASCIIColors.yellow(f"Using device map: {self.binding_config.device_map}")
             if "llava" in str(model_path).lower():
-                import zoos.bindings_zoo.hugging_face.special.llama_llama as lm
+                import zoos.bindings_zoo.hugging_face.special.llava_tools as lm
+                self.tokenizer, self.model, self.image_processor, self.context_len = lm.load_pretrained_model(
+                                            model_path = str(model_path),
+                                            model_base= str(model_path),
+                                            model_name=model_name, 
+                                            load_8bit=False, 
+                                            load_4bit=True, 
+                                            device_map="auto", 
+                                            device="cuda")
+                
+                """
                 self.model = lm.LlavaLlamaForCausalLM.from_pretrained(str(model_path),
                                                             torch_dtype=torch.float16,
-                                                            device_map=self.binding_config.device_map,
-                                                            offload_folder="offload",
-                                                            offload_state_dict = True
+                                                            device_map="cuda",#self.binding_config.device_map,
+                                                            # offload_folder="offload",
+                                                            # offload_state_dict = True,
+                                                            # low_cpu_mem_usage=True, 
                                                             )
+                mm_projector_weights = torch.load(os.path.join(model_path, 'mm_projector.bin'), map_location='cpu')
+                mm_projector_weights = {k: v.to(torch.float16) for k, v in mm_projector_weights.items()}
+                self.model.load_state_dict(mm_projector_weights, strict=False)                
+                """
+
+
+                self.model_device = self.model.parameters().__next__().device
+            
+                cfg = model_path/"config.json"
+                with open(cfg,"r") as f:
+                    cfg = json.load(f)
+                self.binding_type = BindingType.TEXT_IMAGE
+                self.torch = torch
+                self.cfg = cfg
+                if not self.model.model.vision_tower.is_loaded:
+                    self.model.model.vision_tower.load_model()
+                self.model.model.vision_tower.to(device=self.model_device, dtype=torch.float16)
+                self.image_processor = self.model.model.vision_tower.image_processor
+
+                self.IGNORE_INDEX = -100
+                self.IMAGE_TOKEN_INDEX = -200
+                self.DEFAULT_IMAGE_TOKEN = "<image>"
+                self.DEFAULT_IMAGE_PATCH_TOKEN = "<im_patch>"
+                self.DEFAULT_IM_START_TOKEN = "<im_start>"
+                self.DEFAULT_IM_END_TOKEN = "<im_end>"
+                self.IMAGE_PLACEHOLDER = "<image-placeholder>"
+
+
             elif "gptq" in str(model_path).lower():
                 self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
                                                             torch_dtype=torch.float16,
@@ -194,26 +233,6 @@ class HuggingFace(LLMBinding):
                                                             offload_state_dict = True
                                                             )
             self.model_device = self.model.parameters().__next__().device
-            
-            if "llava" in model_name.lower():
-                from zoos.bindings_zoo.hugging_face.special.llama_llama import build_vision_tower, build_vision_projector
-                cfg = model_path/"config.json"
-                with open(cfg,"r") as f:
-                    cfg = json.load(f)
-                self.binding_type = BindingType.TEXT_IMAGE
-                self.torch = torch
-                self.cfg = cfg
-                if not self.model.model.vision_tower.is_loaded:
-                    self.model.model.vision_tower.load_model()
-                self.model.model.vision_tower.to(device=self.model_device, dtype=torch.float16)
-                self.image_processor = self.model.model.vision_tower.image_processor
-                self.IGNORE_INDEX = -100
-                self.IMAGE_TOKEN_INDEX = -200
-                self.DEFAULT_IMAGE_TOKEN = "<image>"
-                self.DEFAULT_IMAGE_PATCH_TOKEN = "<im_patch>"
-                self.DEFAULT_IM_START_TOKEN = "<im_start>"
-                self.DEFAULT_IM_END_TOKEN = "<im_end>"
-                self.IMAGE_PLACEHOLDER = "<image-placeholder>"
 
             ASCIIColors.success(f"ok")
             """
@@ -245,6 +264,21 @@ class HuggingFace(LLMBinding):
             
         # Step 2: Install dependencies using pip from requirements.txt
         requirements_file = self.binding_dir / "requirements.txt"
+        try:
+            import transformers
+            subprocess.run(["pip", "uninstall", "transformers", "-y"])
+        except:
+            pass
+        try:
+            import auto_gptq
+            subprocess.run(["pip", "uninstall", "auto-gptq", "-y"])
+        except:
+            pass
+        try:
+            import autoawq
+            subprocess.run(["pip", "uninstall", "autoawq", "-y"])
+        except:
+            pass
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
@@ -384,6 +418,7 @@ class HuggingFace(LLMBinding):
     def tokenizer_image_token(self, prompt, image_token_index=None, return_tensors=None):
         if image_token_index is None:
             image_token_index = self.IMAGE_TOKEN_INDEX
+            
         prompt_chunks = [
             self.tokenizer(chunk).input_ids for chunk in prompt.split('<image>')]
 
@@ -442,6 +477,7 @@ class HuggingFace(LLMBinding):
         self.generation_config.pad_token_id = self.tokenizer.pad_token_id
         self.generation_config.eos_token_id = self.tokenizer.eos_token_id
         self.generation_config.output_attentions = False
+        
         self.callback = callback    
         try:
             self.token_cache = []
@@ -453,6 +489,7 @@ class HuggingFace(LLMBinding):
             images_data = []
             for img in images:
                 images_data.append(load_image(img))
+
             # Similar operation in model_worker.py
             image_tensor = self.process_images(images_data, self.image_processor, self.cfg)
             if type(image_tensor) is list:
@@ -474,7 +511,7 @@ class HuggingFace(LLMBinding):
                                         inputs=input_ids, 
                                         images=image_tensor,
                                         do_sample=True if float(gpt_params["temperature"]) > 0 else False,
-                                        generation_config=self.generation_config,
+                                        #generation_config=self.generation_config,
                                         use_cache=True,
                                         streamer = self,
                                         )
