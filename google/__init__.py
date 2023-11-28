@@ -166,7 +166,61 @@ class GoogleBard(LLMBinding):
                 callback(output, MSG_TYPE.MSG_TYPE_FULL)
 
         return result["candidates"][0]["output"]
+    def generate_with_images(self, 
+                prompt:str,
+                images:list=[],
+                n_predict: int = 128,
+                callback: Callable[[str, int, dict], bool] = None,
+                verbose: bool = False,
+                **gpt_params ):
+        """Generates text out of a prompt
 
+        Args:
+            prompt (str): The prompt to use for generation
+            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
+            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
+        """
+        PALM_KEY = self.binding_config.google_api_key
+
+        headers = {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': PALM_KEY
+        }
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3
+        }
+        gpt_params = {**default_params, **gpt_params}
+
+        data = {
+            'prompt': {
+                'text': prompt
+            },
+            "temperature": float(gpt_params["temperature"]),
+            "candidateCount": 1
+        }
+
+        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models/{self.config.model_name}:generateText'
+
+        response = requests.post(url, headers=headers, data=json.dumps(data))
+        result = response.json()
+        if "error" in result:
+            ASCIIColors.error(result["error"]["message"])
+            self.notify(result["error"]["message"],False)
+            return ''
+        else:
+            if callback:
+                output = result["candidates"][0]["output"]
+                antiprompt = detect_antiprompt(output)
+                if antiprompt:
+                    ASCIIColors.warning(f"\nDetected hallucination with antiprompt: {antiprompt}")
+                    output = remove_text_from_string(output, antiprompt)                
+                callback(output, MSG_TYPE.MSG_TYPE_FULL)
+
+        return result["candidates"][0]["output"]
     
     @staticmethod
     def list_models(config:dict):
