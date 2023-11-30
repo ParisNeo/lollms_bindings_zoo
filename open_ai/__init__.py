@@ -321,7 +321,7 @@ class OpenAIGPT(LLMBinding):
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
-                 callback: Callable[[str], None] = bool,
+                 callback: Callable[[str], None] = None,
                  verbose: bool = False,
                  **gpt_params ):
         """Generates text out of a prompt
@@ -388,7 +388,7 @@ class OpenAIGPT(LLMBinding):
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         self.notify(f'Consumed {self.binding_config.config["total_output_cost"]}$', True)
         self.binding_config.save()
-        return "" 
+        return output
 
     @staticmethod
     def list_models(config:dict):
