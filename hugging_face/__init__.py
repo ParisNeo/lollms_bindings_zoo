@@ -128,6 +128,7 @@ class HuggingFace(LLMBinding):
             model_path = self.get_model_path()
 
             if not model_path:
+                self.tokenizer = None
                 self.model = None
                 return None
 
@@ -136,8 +137,18 @@ class HuggingFace(LLMBinding):
             # model_path = models_dir/ path
 
             model_name = str(model_path).replace("\\","/")
-                         
+
+            # Delete any old model
+            if hasattr(self, "tokenizer"):
+                if self.tokenizer is not None:
+                    del self.model
+
+            if hasattr(self, "model"):
+                if self.model is not None:
+                    del self.model
+
             self.tokenizer = None
+            self.model = None
             gc.collect()
             if self.config.enable_gpu:
                 if self.model is not None:
