@@ -140,6 +140,12 @@ class HuggingFace(LLMBinding):
             self.tokenizer = None
             gc.collect()
             if self.config.enable_gpu:
+                if self.model is not None:
+                    AdvancedGarbageCollector.safeHardCollect("model", self)
+                    AdvancedGarbageCollector.safeHardCollect("tokenizer", self)
+                    self.model = None
+                    self.tokenizer = None
+                    gc.collect()
                 self.clear_cuda()
 
             import os
@@ -531,7 +537,7 @@ class HuggingFace(LLMBinding):
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
-                 callback: Callable[[str], None] = bool,
+                 callback: Callable[[str], None] = None,
                  verbose: bool = False,
                  **gpt_params ):
         """Generates text out of a prompt
