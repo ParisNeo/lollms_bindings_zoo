@@ -57,6 +57,8 @@ class HuggingFace(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
+            
+            {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
             {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
@@ -164,7 +166,7 @@ class HuggingFace(LLMBinding):
 
             ASCIIColors.info(f"Creating tokenizer {model_path}")
             self.tokenizer = AutoTokenizer.from_pretrained(
-                    str(model_name)
+                    str(model_name), trust_remote_code=self.binding_config.trust_remote_code
                     )
             ASCIIColors.success(f"ok")
             ASCIIColors.info(f"Recovering generation config {model_path}")
