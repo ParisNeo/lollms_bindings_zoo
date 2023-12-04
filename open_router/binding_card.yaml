@@ -1,0 +1,7 @@
+name: Open Router
+author: Open Router
+version: 1.0
+link: https://openrouter.ai/
+description: This binding uses the openrouter api to make you use for multiple AI models
+accepted_models: 
+  - openrouter
