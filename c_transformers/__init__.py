@@ -223,8 +223,8 @@ class CTRansformers(LLMBinding):
         UnInstallation procedure (to be implemented)
         """  
         super().uninstall()
-        subprocess.run(["pip","uninstall","ctransformers","-y"])
         self.configuration_file_path.unlink()
+        subprocess.run(["pip","uninstall","ctransformers","-y"])
 
             
     def tokenize(self, prompt:str):
