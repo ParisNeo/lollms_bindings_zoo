@@ -86,6 +86,7 @@ class CTRansformers(LLMBinding):
                             notification_callback=notification_callback
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        
     def __del__(self):
         if self.model:
             del self.model
@@ -216,7 +217,15 @@ class CTRansformers(LLMBinding):
             result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
                     
         ASCIIColors.success("Installed successfully")
-  
+
+    def uninstall(self):
+        """
+        UnInstallation procedure (to be implemented)
+        """  
+        super().uninstall()
+        subprocess.run(["pip","uninstall","ctransformers","-y"])
+        self.configuration_file_path.unlink()
+
             
     def tokenize(self, prompt:str):
         """
