@@ -57,7 +57,7 @@ class HuggingFace(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-            
+            {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
             {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},

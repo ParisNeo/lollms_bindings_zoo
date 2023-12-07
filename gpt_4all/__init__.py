@@ -55,7 +55,7 @@ class GPT4ALL(LLMBinding):
         # Initialization code goes here
         binding_config_templete =  ConfigTemplate(
             [
-                {"name":"processing_unit","type":"str","value":"auto", "options":["auto","cpu","gpu","amd"], "help":"The processing usit to use"},                
+                {"name":"processing_unit","type":"str","value":"auto", "options":["auto","cpu","gpu","amd","nvidia","intel"], "help":"The processing usit to use"},                
                 {"name":"n_threads","type":"int","value":8, "min":1, "help":"Number of threads to use (make sure you don't use more threadss than your CPU can handle)"},
                 {"name":"ctx_size","type":"int","value":4048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
