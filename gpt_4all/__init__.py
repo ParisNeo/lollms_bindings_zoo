@@ -73,7 +73,7 @@ class GPT4ALL(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=['.gguf'], #,'.ggml'
-                            models_dir_names=["gguf"],
+                            models_dir_names=["gpt4all"],
                             notification_callback=notification_callback
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
