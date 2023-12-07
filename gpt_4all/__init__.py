@@ -87,9 +87,10 @@ class GPT4ALL(LLMBinding):
         
     def build_model(self):        
         model_path = self.get_model_path()
-        if self.model:
-            del self.model
-            self.model = None
+        if hasattr(self, "model"):
+            if self.model:
+                del self.model
+                self.model = None
         if not model_path:
             self.model = None
             return None

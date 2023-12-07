@@ -106,8 +106,9 @@ class OpenAIGPT(LLMBinding):
             raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
         self.openai = openai
 
-        if "vision" in self.config.model_name:
-            self.binding_type = BindingType.TEXT_IMAGE
+        if self.config.model_name is not None:
+            if "vision" in self.config.model_name:
+                self.binding_type = BindingType.TEXT_IMAGE
 
         # Do your initialization stuff
         return self
