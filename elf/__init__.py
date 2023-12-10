@@ -39,7 +39,7 @@ class Elf(LLMBinding):
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                app=None) -> None:
+                lollmsCom=None) -> None:
         """
         Initialize the Binding.
 
@@ -67,7 +67,7 @@ class Elf(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=[''],
-                            app=app
+                            lollmsCom=lollmsCom
                         )
         
     def build_model(self):

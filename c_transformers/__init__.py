@@ -43,7 +43,7 @@ class CTRansformers(LLMBinding):
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                app=None
+                lollmsCom=None
                 ) -> None:
         """
         Initialize the Binding.
@@ -90,7 +90,7 @@ class CTRansformers(LLMBinding):
                             installation_option,
                             supported_file_extensions=['.bin','.gguf'],
                             models_dir_names=["ggml","gguf"],
-                            app=app
+                            lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         

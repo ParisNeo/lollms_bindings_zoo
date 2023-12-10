@@ -47,7 +47,7 @@ class HuggingFace(LLMBinding):
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                app=None
+                lollmsCom=None
                 ) -> None:
         """Builds a GPTQ/AWQ binding
 
@@ -80,7 +80,7 @@ class HuggingFace(LLMBinding):
                             installation_option,
                             supported_file_extensions=['.safetensors','.pth','.bin'],
                             models_dir_names=["transformers","gptq","awq"],
-                            app=app
+                            lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.callback = None
@@ -310,7 +310,7 @@ class HuggingFace(LLMBinding):
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
         ASCIIColors.success("Installed successfully")
         self.success("Successfull installation")
-        self.InfoMessage("Don't forget to reboot the app")
+        self.InfoMessage("Don't forget to reboot the lollmsCom")
 
 
     def uninstall(self):
