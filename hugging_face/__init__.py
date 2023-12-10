@@ -37,6 +37,8 @@ import os
 import subprocess
 import gc
 
+from lollms.helpers import NotificationDisplayType, NotificationType
+
 
 
 class HuggingFace(LLMBinding):
@@ -45,7 +47,7 @@ class HuggingFace(LLMBinding):
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                notification_callback:Callable=None
+                app=None
                 ) -> None:
         """Builds a GPTQ/AWQ binding
 
@@ -78,7 +80,7 @@ class HuggingFace(LLMBinding):
                             installation_option,
                             supported_file_extensions=['.safetensors','.pth','.bin'],
                             models_dir_names=["transformers","gptq","awq"],
-                            notification_callback=notification_callback
+                            app=app
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.callback = None
@@ -307,8 +309,8 @@ class HuggingFace(LLMBinding):
         # pip install --upgrade --no-cache-dir autoawq
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
         ASCIIColors.success("Installed successfully")
-        self.notify("Successfull installation",True)
-        self.notify("Don't forget to reboot the app",True)
+        self.success("Successfull installation")
+        self.InfoMessage("Don't forget to reboot the app")
 
 
     def uninstall(self):

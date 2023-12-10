@@ -41,7 +41,7 @@ class OpenAIGPT(LLMBinding):
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                notification_callback:Callable=None) -> None:
+                app=None) -> None:
         """
         Initialize the Binding.
 
@@ -94,7 +94,7 @@ class OpenAIGPT(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=[''],
-                            notification_callback=notification_callback
+                            app=app
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         
@@ -102,7 +102,7 @@ class OpenAIGPT(LLMBinding):
         import openai
         openai.api_key = self.binding_config.config["openai_key"]
         if openai.api_key =="":
-            self.notify("No API key is set!\nPlease set up your API key in the binding configuration", False)
+            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
             raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
         self.openai = openai
 
@@ -228,12 +228,12 @@ class OpenAIGPT(LLMBinding):
 
 
         except Exception as ex:
-            self.notify(f'Error {ex}$', False)
+            self.error(f'Error {ex}')
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
         self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.notify(f'Consumed {self.binding_config.config["total_output_cost"]}$', True)
+        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
         return ""      
 
@@ -312,9 +312,9 @@ class OpenAIGPT(LLMBinding):
             self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
             self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
-            self.notify(f'Error {ex}$', False)
+            self.error(f'Error {ex}')
             trace_exception(ex)
-        self.notify(f'Consumed {self.binding_config.config["total_output_cost"]}$', True)
+        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
         return ""       
 
@@ -382,12 +382,12 @@ class OpenAIGPT(LLMBinding):
 
 
         except Exception as ex:
-            self.notify(f'Error {ex}$', True)
+            self.error(f'Error {ex}$')
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
         self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.notify(f'Consumed {self.binding_config.config["total_output_cost"]}$', True)
+        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
         return output
 

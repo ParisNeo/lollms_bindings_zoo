@@ -40,7 +40,7 @@ class Petals(LLMBinding):
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                notification_callback:Callable=None
+                app=None
                 ) -> None:
         """Builds a GPTQ binding
 
@@ -72,7 +72,7 @@ class Petals(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=['.safetensors','.pth','.bin'],
-                            notification_callback=notification_callback
+                            app=app
                         )
         self.callback = None
         self.n_generated = 0

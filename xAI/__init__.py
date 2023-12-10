@@ -41,7 +41,7 @@ class xAI(LLMBinding):
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                notification_callback:Callable=None) -> None:
+                app=None) -> None:
         """
         Initialize the Binding.
 
@@ -82,7 +82,7 @@ class xAI(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=[''],
-                            notification_callback=notification_callback
+                            app=app
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         
