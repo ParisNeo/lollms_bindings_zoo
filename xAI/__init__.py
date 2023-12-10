@@ -213,12 +213,12 @@ class xAI(LLMBinding):
 
 
         except Exception as ex:
-            self.notify(f'Error {ex}$', True)
+            self.error(f'Error {ex}')
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
         self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.notify(f'Consumed {self.binding_config.config["total_output_cost"]}$', True)
+        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}')
         self.binding_config.save()
         return ""      
 
@@ -294,12 +294,12 @@ class xAI(LLMBinding):
 
 
         except Exception as ex:
-            self.notify(f'Error {ex}$', True)
+            self.error(f'Error {ex}')
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
         self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.notify(f'Consumed {self.binding_config.config["total_output_cost"]}$', True)
+        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
         return ""       
 
@@ -368,12 +368,12 @@ class xAI(LLMBinding):
 
 
         except Exception as ex:
-            self.notify(f'Error {ex}$', True)
+            self.error(f'Error {ex}')
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
         self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.notify(f'Consumed {self.binding_config.config["total_output_cost"]}$', True)
+        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
         return "" 
 

@@ -154,7 +154,7 @@ class GoogleBard(LLMBinding):
         result = response.json()
         if "error" in result:
             ASCIIColors.error(result["error"]["message"])
-            self.notify(result["error"]["message"],False)
+            self.error(result["error"]["message"])
             return ''
         else:
             if callback:
@@ -209,7 +209,7 @@ class GoogleBard(LLMBinding):
         result = response.json()
         if "error" in result:
             ASCIIColors.error(result["error"]["message"])
-            self.notify(result["error"]["message"],False)
+            self.info(result["error"]["message"])
             return ''
         else:
             if callback:
