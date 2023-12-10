@@ -37,7 +37,7 @@ import os
 import subprocess
 import gc
 
-from lollms.helpers import NotificationDisplayType, NotificationType
+from lollms.com import NotificationDisplayType, NotificationType
 
 
 

@@ -15,7 +15,8 @@ from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
-from lollms.helpers import ASCIIColors, NotificationType
+from lollms.helpers import ASCIIColors
+from lollms.com import NotificationType
 from lollms.types import MSG_TYPE
 from lollms.utilities import PackageManager
 from lollms.utilities import AdvancedGarbageCollector
