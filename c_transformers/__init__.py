@@ -15,13 +15,20 @@ from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
-from lollms.helpers import ASCIIColors
+from lollms.helpers import ASCIIColors, NotificationType
 from lollms.types import MSG_TYPE
+from lollms.utilities import PackageManager
 from lollms.utilities import AdvancedGarbageCollector
 import subprocess
 import yaml
 import os
+import sys
 
+if not PackageManager.check_package_installed("pyopencl"):
+    PackageManager.install_package("pyopencl")
+    import pyopencl as cl
+else:
+    import pyopencl as cl
 
 
 __author__ = "parisneo"
@@ -192,31 +199,124 @@ class CTRansformers(LLMBinding):
         super().install()
 
         # INstall other requirements
-        ASCIIColors.info("Installing requirements")
+        self.notify("Installing requirements", NotificationType.NOTIF_INFO)
         requirements_file = self.binding_dir / "requirements.txt"
         subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
-        ASCIIColors.success("Requirements install done")
-        
-        if self.config.enable_gpu:
-            ASCIIColors.yellow("This installation has enabled GPU support. Trying to install with GPU support")
-            # Step 2: Install dependencies using pip from requirements.txt
-            ASCIIColors.info("Trying to install a cuda enabled version of ctransformers")
-            # env = os.environ.copy()
-            # env["CT_CUBLAS"]="1"
-            # pip install --upgrade --no-cache-dir --no-binary ctransformers
-            # result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
-            result = subprocess.run(["pip","install","ctransformers","ctransformers[cuda]"])
-            if result.returncode != 0:
-                ASCIIColors.warning("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
+        self.notify("Requirements install done")
+        # Get the platforms
+        platforms = cl.get_platforms()
+
+        gpu_type = "None"
+
+        # Iterate over each platform
+        for platform in platforms:
+            # Get the devices for the platform
+            devices = platform.get_devices()
+            
+            # Iterate over each device
+            for device in devices:
+                # Check if the device is an Apple GPU
+                if "Apple" in device.vendor:
+                    self.notify("Apple GPU detected")
+                    gpu_type = "Apple"
+                    break                
+                # Check if the device is an NVIDIA GPU
+                elif "NVIDIA" in device.vendor:
+                    self.notify("NVIDIA GPU detected")
+                    gpu_type = "NVIDIA"
+                    break
+                # Check if the device is an AMD GPU
+                elif "AMD" in device.vendor:
+                    self.notify("AMD GPU detected")
+                    gpu_type = "AMD"
+                    break
+                # Check if the device is an Intel GPU
+                elif "Intel" in device.vendor:
+                    self.notify("Intel GPU detected")
+                    gpu_type = "Intel"
+                    break        
+
+        if sys.platform == "win32":
+            # Code for Windows platform
+            self.notify("Running on Windows")
+            if self.config.enable_gpu:
+                self.notify("This installation has enabled GPU support. Trying to install with GPU support")
+                # Step 2: Install dependencies using pip from requirements.txt
+                self.notify("Trying to install a cuda enabled version of ctransformers", notification_type=NotificationType.NOTIF_INFO)
+                # env = os.environ.copy()
+                # env["CT_CUBLAS"]="1"
+                # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                # result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
+                if gpu_type=="NVIDIA":
+                    result = subprocess.run(["pip","install","ctransformers","ctransformers[cuda]"])
+                    if result.returncode != 0:
+                        self.notify("Couldn't find Cuda build tools on your PC. Reverting to CPU. ", notification_type=NotificationType.NOTIF_WARNING)
+                        # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+                elif gpu_type=="AMD":
+                    result = subprocess.run(["CT_HIPBLAS=1","pip","install","ctransformers", "--no-binary", "ctransformers"])
+                    if result.returncode != 0:
+                        self.notify("Couldn't find Rocm build tools on your PC. Reverting to CPU. ", notification_type=NotificationType.NOTIF_WARNING)
+                        # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+                elif gpu_type=="Intel":
+                    self.notify("Installing for Intel.", notification_type=NotificationType.NOTIF_WARNING)
+                    # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                    result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+            else:
+                self.notify("Using CPU", notification_type=NotificationType.NOTIF_INFO)
                 # pip install --upgrade --no-cache-dir --no-binary ctransformers
                 result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
 
+            # Add your Windows-specific code here
+        elif sys.platform == "darwin":
+            # Code for macOS platform
+            self.notify("Running on macOS")
+            result = subprocess.run(["CT_METAL=1","pip","install","ctransformers", "--no-binary", "ctransformers"])
+            if result.returncode != 0:
+                self.notify("Couldn't find Metal build tools on your PC. Reverting to CPU. ", notification_type=NotificationType.NOTIF_WARNING)
+                # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+        elif sys.platform == "linux":
+            # Code for Linux platform
+            self.notify("Running on Linux")
+            if self.config.enable_gpu:
+                self.notify("This installation has enabled GPU support. Trying to install with GPU support", notification_type=NotificationType.NOTIF_INFO)
+                # Step 2: Install dependencies using pip from requirements.txt
+                # env = os.environ.copy()
+                # env["CT_CUBLAS"]="1"
+                # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                # result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
+                if gpu_type=="NVIDIA":
+                    result = subprocess.run(["pip","install","ctransformers","ctransformers[cuda]"])
+                    if result.returncode != 0:
+                        self.notify("Couldn't find Cuda build tools on your PC. Reverting to CPU. ", notification_type=NotificationType.NOTIF_WARNING)
+                        # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+                elif gpu_type=="AMD":
+                    result = subprocess.run(["CT_HIPBLAS=1","pip","install","ctransformers", "--no-binary", "ctransformers"])
+                    if result.returncode != 0:
+                        self.notify("Couldn't find Rocm build tools on your PC. Reverting to CPU. ", notification_type=NotificationType.NOTIF_WARNING)
+                        # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+                elif gpu_type=="Intel":
+                    self.notify("Installing for Intel. ", notification_type=NotificationType.NOTIF_INFO)
+                    # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                    result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+            else:
+                self.notify("Using CPU", notification_type=NotificationType.NOTIF_WARNING)
+                # pip install --upgrade --no-cache-dir --no-binary ctransformers
+                result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+
+            # Add your Linux-specific code here
         else:
-            ASCIIColors.info("Using CPU")
-            # pip install --upgrade --no-cache-dir --no-binary ctransformers
-            result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
+            # Code for other platforms
+            self.notify("Unsupported platform", notification_type=NotificationType.NOTIF_ERROR)
+            return
+        # CT_METAL=1 pip install ctransformers --no-binary ctransformers
+
                     
-        ASCIIColors.success("Installed successfully")
+        self.notify("Installed successfully")
 
     def uninstall(self):
         """
