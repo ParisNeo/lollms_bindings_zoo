@@ -100,10 +100,6 @@ class OpenAIGPT(LLMBinding):
         
     def build_model(self):
         import openai
-        openai.api_key = self.binding_config.config["openai_key"]
-        if openai.api_key =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
         self.openai = openai
 
         if self.config.model_name is not None:
@@ -179,6 +175,11 @@ class OpenAIGPT(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        self.openai.api_key = self.binding_config.config["openai_key"]
+        if self.openai.api_key =="":
+            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
+        
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
         self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
         try:
@@ -252,6 +253,11 @@ class OpenAIGPT(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        self.openai.api_key = self.binding_config.config["openai_key"]
+        if self.openai.api_key =="":
+            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
+        
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
         self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
         if not "vision" in self.config.model_name:
