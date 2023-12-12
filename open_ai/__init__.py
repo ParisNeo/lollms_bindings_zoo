@@ -373,7 +373,7 @@ class OpenAIGPT(LLMBinding):
             chat_completion = self.openai.chat.completions.create(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
+                            max_tokens=n_predict-7,  # Adjust the desired length of the generated response
                             n=1,  # Specify the number of responses you want
                             temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
                             stream=True)
