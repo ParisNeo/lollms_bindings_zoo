@@ -18,10 +18,15 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
+from lollms.utilities import PackageManager
 import subprocess
 import yaml
 import re
 import base64
+if not PackageManager.check_package_installed("PIL"):
+    PackageManager.install_package("pillow")
+from PIL import Image
+import io
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -32,10 +37,27 @@ binding_name = "OpenAIGPT"
 binding_folder_name = ""
 
 # Function to encode the image
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode('utf-8')
+def encode_image(image_path, max_image_width=-1):
+    image = Image.open(image_path)
+    width, height = image.size
 
+    if max_image_width != -1 and width > max_image_width:
+        ratio = max_image_width / width
+        new_width = max_image_width
+        new_height = int(height * ratio)
+        image = image.resize((new_width, new_height))
+
+    # Check and convert image format if needed
+    if image.format not in ['PNG', 'JPEG', 'GIF', 'WEBP']:
+        image = image.convert('JPEG')
+
+    # Save the image to a BytesIO object
+    byte_arr = io.BytesIO()
+    image.save(byte_arr, format=image.format)
+    byte_arr = byte_arr.getvalue()
+
+    return base64.b64encode(byte_arr).decode('utf-8')
+  
 class OpenAIGPT(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
@@ -81,6 +103,7 @@ class OpenAIGPT(LLMBinding):
                 {"name":"openai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+                {"name":"max_image_width","type":"int","value":-1,"help":"resize the images if they have a width bigger than this (reduces cost). -1 for no change"},
 
             ]),
             BaseConfig(config={
@@ -284,7 +307,7 @@ class OpenAIGPT(LLMBinding):
                                 {
                                     "type": "image_url",
                                     "image_url": {
-                                    "url": f"data:image/jpeg;base64,{encode_image(image_path)}"
+                                    "url": f"data:image/jpeg;base64,{encode_image(image_path, self.binding_config.max_image_width)}"
                                     }                                    
                                 }
                                 for image_path in images
