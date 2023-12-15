@@ -16,7 +16,7 @@ from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
-from lollms.utilities import AdvancedGarbageCollector
+from lollms.utilities import AdvancedGarbageCollector, PackageManager
 from lollms.utilities import check_and_install_torch, expand2square, load_image
 import subprocess
 import yaml
@@ -24,6 +24,9 @@ from tqdm import tqdm
 import re
 import urllib
 import json
+if not PackageManager.check_package_installed("PIL"):
+    PackageManager.install_package("pillow")
+from PIL import Image
 
 
 __author__ = "parisneo"
@@ -179,53 +182,21 @@ class HuggingFace(LLMBinding):
 
             # load model
             ASCIIColors.yellow(f"Using device map: {self.binding_config.device_map}")
-            if "llava" in str(model_path).lower():
-                import zoos.bindings_zoo.hugging_face.special.llava_tools as lm
-                self.tokenizer, self.model, self.image_processor, self.context_len = lm.load_pretrained_model(
-                                            model_path = str(model_path),
-                                            model_base= str(model_path),
-                                            model_name=model_name, 
-                                            load_8bit=False, 
-                                            load_4bit=True, 
-                                            device_map="auto", 
-                                            device="cuda")
-                
-                """
-                self.model = lm.LlavaLlamaForCausalLM.from_pretrained(str(model_path),
-                                                            torch_dtype=torch.float16,
-                                                            device_map="cuda",#self.binding_config.device_map,
-                                                            # offload_folder="offload",
-                                                            # offload_state_dict = True,
-                                                            # low_cpu_mem_usage=True, 
-                                                            )
-                mm_projector_weights = torch.load(os.path.join(model_path, 'mm_projector.bin'), map_location='cpu')
-                mm_projector_weights = {k: v.to(torch.float16) for k, v in mm_projector_weights.items()}
-                self.model.load_state_dict(mm_projector_weights, strict=False)                
-                """
-
-
-                self.model_device = self.model.parameters().__next__().device
-            
-                cfg = model_path/"config.json"
-                with open(cfg,"r") as f:
-                    cfg = json.load(f)
-                self.binding_type = BindingType.TEXT_IMAGE
-                self.torch = torch
-                self.cfg = cfg
-                if not self.model.model.vision_tower.is_loaded:
-                    self.model.model.vision_tower.load_model()
-                self.model.model.vision_tower.to(device=self.model_device, dtype=torch.float16)
-                self.image_processor = self.model.model.vision_tower.image_processor
-
-                self.IGNORE_INDEX = -100
-                self.IMAGE_TOKEN_INDEX = -200
-                self.DEFAULT_IMAGE_TOKEN = "<image>"
-                self.DEFAULT_IMAGE_PATCH_TOKEN = "<im_patch>"
-                self.DEFAULT_IM_START_TOKEN = "<im_start>"
-                self.DEFAULT_IM_END_TOKEN = "<im_end>"
-                self.IMAGE_PLACEHOLDER = "<image-placeholder>"
-
-
+            if "llava" in str(model_path).lower() or "vision" in str(model_path).lower():
+                from transformers import AutoProcessor, LlavaForConditionalGeneration
+                self.model = LlavaForConditionalGeneration.from_pretrained(str(model_path),
+                                            torch_dtype=torch.float16,
+                                            device_map=self.binding_config.device_map,
+                                            offload_folder="offload",
+                                            offload_state_dict = True, 
+                                            low_cpu_mem_usage=True, 
+                                            )
+                self.image_rocessor = AutoProcessor.from_pretrained(str(model_path))
+                self.binding_type= BindingType.TEXT_IMAGE
+                # from transformers import pipeline
+                # self.pipe = pipeline("image-to-text", model=str(model_path))
+                # self.binding_type = BindingType.TEXT_IMAGE
+                # self.model = self.pipe.model
             elif "gptq" in str(model_path).lower():
                 self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
                                                             torch_dtype=torch.float16,
@@ -491,7 +462,7 @@ class HuggingFace(LLMBinding):
             "seed":-1,
             "n_threads":8,
             "begin_suppress_tokens ": self.tokenize("!")
-        }
+        }        
         gpt_params = {**default_params, **gpt_params}
         self.generation_config.max_new_tokens = int(n_predict)
         self.generation_config.temperature = float(gpt_params["temperature"])
@@ -502,7 +473,6 @@ class HuggingFace(LLMBinding):
         self.generation_config.pad_token_id = self.tokenizer.pad_token_id
         self.generation_config.eos_token_id = self.tokenizer.eos_token_id
         self.generation_config.output_attentions = False
-        
         self.callback = callback    
         try:
             self.token_cache = []
@@ -510,36 +480,19 @@ class HuggingFace(LLMBinding):
             self.next_tokens_are_prompt = True            
             self.n_generated = 0
             self.output = ""
-
-            images_data = []
-            for img in images:
-                images_data.append(load_image(img))
-
-            # Similar operation in model_worker.py
-            image_tensor = self.process_images(images_data, self.image_processor, self.cfg)
-            if type(image_tensor) is list:
-                image_tensor = [image.to(self.model_device, dtype=self.torch.float16) for image in image_tensor]
-            else:
-                image_tensor = image_tensor.to(self.model_device, dtype=self.torch.float16)
-
-            if self.cfg["mm_use_im_start_end"]:
-                prompt = self.DEFAULT_IM_START_TOKEN + self.DEFAULT_IMAGE_TOKEN + self.DEFAULT_IM_END_TOKEN + '\n' + prompt
-            else:
-                prompt = self.DEFAULT_IMAGE_TOKEN + '\n' + prompt
-
-            input_ids = self.tokenizer_image_token(prompt, self.IMAGE_TOKEN_INDEX, return_tensors='pt').unsqueeze(0).to(self.model_device)
-
-            self.n_prompt = len(input_ids[0])
             try:
                 with self.torch.no_grad():
+                    image = Image.open(images[0])
+                    self.output=""
+                    inputs = self.image_rocessor("<image>"+prompt, image, return_tensors='pt').to(0, self.torch.float16)
+
+                    #self.output = self.model.generate(**inputs, max_new_tokens=200, do_sample=False)            
                     self.model.generate(
-                                        inputs=input_ids, 
-                                        images=image_tensor,
-                                        do_sample=True if float(gpt_params["temperature"]) > 0 else False,
-                                        #generation_config=self.generation_config,
-                                        use_cache=True,
+                                        **inputs, 
+                                        generation_config=self.generation_config,
                                         streamer = self,
                                         )
+                    
             except Exception as ex:
                 if str(ex)!="canceled":
                     trace_exception(ex)
