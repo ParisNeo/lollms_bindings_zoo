@@ -1,7 +1,7 @@
-name: Open AI
-author: Open AI
+name: Mistral AI
+author: Mistral AI
 version: 1.0
-link: https://openai.com/
-description: This binding uses the open ai api to make you use gpt4 and others
+link: https://mistral.ai/
+description: This binding uses the mistral ai api to make you use their private models
 accepted_models: 
-  - openai
+  - mistralai
