@@ -1,7 +1,7 @@
 - category: generic
   datasets: unknown
   icon: '/bindings/mistral_ai/logo.png'
-  last_commit_time: 2023-09-17 17:21:17+00:00
+  last_commit_time: 2023-12-15 17:21:17+00:00
   license: commercial
   model_creator: mistralai
   model_creator_link: https://mistral.ai
@@ -15,7 +15,7 @@
 - category: generic
   datasets: unknown
   icon: '/bindings/mistral_ai/logo.png'
-  last_commit_time: 2023-09-17 17:21:17+00:00
+  last_commit_time: 2023-12-15 17:21:17+00:00
   license: commercial
   model_creator: mistralai
   model_creator_link: https://mistral.ai
@@ -29,7 +29,7 @@
 - category: generic
   datasets: unknown
   icon: '/bindings/mistral_ai/logo.png'
-  last_commit_time: 2023-09-17 17:21:17+00:00
+  last_commit_time: 2023-12-15 17:21:17+00:00
   license: commercial
   model_creator: mistralai
   model_creator_link: https://mistral.ai
