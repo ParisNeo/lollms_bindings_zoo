@@ -24,7 +24,7 @@
   rank: 1.0
   type: api
   variants:
-  - name: A cute little mistral
+  - name: A cute small mistral
     size: 0
 - category: generic
   datasets: unknown
@@ -38,5 +38,5 @@
   rank: 1.0
   type: api
   variants:
-  - name: A cute little mistral
+  - name: A cute medium mistral
     size: 0
