@@ -259,26 +259,33 @@ class HuggingFace(LLMBinding):
         try:
             import transformers
             subprocess.run(["pip", "uninstall", "transformers", "-y"])
+            self.info("Uninstalled transformers")
         except:
             pass
         try:
             import auto_gptq
             subprocess.run(["pip", "uninstall", "auto-gptq", "-y"])
+            self.info("Uninstalled auto-gptq")
         except:
             pass
         try:
             import autoawq
             subprocess.run(["pip", "uninstall", "autoawq", "-y"])
+            self.info("Uninstalled autoawq")
         except:
             pass
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        self.info("installed requirements")
         # pip install --upgrade --no-cache-dir transformers
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
+        self.info("installed transformers")
         # pip install --upgrade --no-cache-dir auto-gptq
         # pip install auto-gptq --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu118/
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+        self.info("installed auto-gptq")
         # pip install --upgrade --no-cache-dir autoawq
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
+        self.info("installed autoawq")
         ASCIIColors.success("Installed successfully")
         self.success("Successfull installation")
 

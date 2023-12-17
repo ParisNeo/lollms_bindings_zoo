@@ -134,7 +134,7 @@ class MistralAI(LLMBinding):
         ASCIIColors.error("----------------------")
         ASCIIColors.error("Attention please")
         ASCIIColors.error("----------------------")
-        ASCIIColors.error("The chatgpt/gpt4 binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration file.")
+        ASCIIColors.error("The chatgpt/gpt4 binding uses the mistralai API which is a paid service. Please create an account on the mistral website (https://mistral.ai/) then generate a key and provide it in the configuration file.")
 
     def tokenize(self, prompt:str):
         """
@@ -147,7 +147,7 @@ class MistralAI(LLMBinding):
             list: A list of tokens representing the tokenized prompt.
         """
         import tiktoken
-        tokens_list = tiktoken.model.encoding_for_model(self.config["model_name"]).encode(prompt)
+        tokens_list = tiktoken.model.encoding_for_model("gpt-3.5-turbo-1106").encode(prompt)
 
         return tokens_list
 
@@ -162,7 +162,7 @@ class MistralAI(LLMBinding):
             str: The detokenized text as a string.
         """
         import tiktoken
-        text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+        text = tiktoken.model.encoding_for_model("gpt-3.5-turbo-1106").decode(tokens_list)
 
         return text
 
@@ -249,75 +249,7 @@ class MistralAI(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        self.openai.api_key = self.binding_config.config["mistralai_key"]
-        if self.openai.api_key =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
-        
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
-        if not "vision" in self.config.model_name:
-            raise Exception("You can not call a generate with vision on this model")
-        try:
-            default_params = {
-                'temperature': 0.7,
-                'top_k': 50,
-                'top_p': 0.96,
-                'repeat_penalty': 1.3
-            }
-            gpt_params = {**default_params, **gpt_params}
-            count = 0
-            output = ""
-            messages = [
-                        {
-                            "role": "user", 
-                            "content": [
-                                {
-                                    "type":"text",
-                                    "text":prompt
-                                }
-                            ]+[
-                                {
-                                    "type": "image_url",
-                                    "image_url": {
-                                    "url": f"data:image/jpeg;base64,{encode_image(image_path, self.binding_config.max_image_width)}"
-                                    }                                    
-                                }
-                                for image_path in images
-                            ]
-                        }
-                    ]
-            chat_completion = self.openai.chat.completions.create(
-                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                            messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
-                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                            stream=True
-                            )
-            for resp in chat_completion:
-                if count >= n_predict:
-                    break
-                try:
-                    word = resp.choices[0].delta.content
-                except Exception as ex:
-                    word = ""
-                if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                        break
-                if word:
-                    output += word
-                    count += 1
-
-
-            self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-            self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        except Exception as ex:
-            self.error(f'Error {ex}')
-            trace_exception(ex)
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
-        self.binding_config.save()
+        self.error("This model do not support vision")
         return ""       
 
 
@@ -335,8 +267,7 @@ class MistralAI(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        self.openai.api_key = self.binding_config.config["mistralai_key"]
-        if self.openai.api_key =="":
+        if self.binding_config.config["mistralai_key"] =="":
             self.error("No API key is set!\nPlease set up your API key in the binding configuration")
             raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
         
@@ -352,27 +283,20 @@ class MistralAI(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
             count = 0
             output = ""
-            if "vision" in self.config.model_name:
+            if "vision" in self.config.model_name: # For future
                 messages = [
-                            {
-                                "role": "user", 
-                                "content": [
-                                    {
-                                        "type":"text",
-                                        "text":prompt
-                                    }
-                                ]
-                            }
+                            self.ChatMessage(role="user", content=prompt)
                         ]
             else:
-                messages = [{"role": "user", "content": prompt}]
-            chat_completion = self.openai.chat.completions.create(
+                messages = [
+                            self.ChatMessage(role="user", content=prompt)
+                        ]
+            chat_completion = self.client.chat_stream(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
                             max_tokens=n_predict-7,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
                             temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
-                            stream=True)
+                            )
             for resp in chat_completion:
                 if count >= n_predict:
                     break
