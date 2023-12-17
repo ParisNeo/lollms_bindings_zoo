@@ -6,7 +6,7 @@
 # engine author : marella 
 # license       : Apache 2.0
 # Description   : 
-# This is the Python_LLAMA_CPP binding code
+# This is the LLAMA_Python_CPP binding code
 # This binding is a wrapper to marella's binding
 
 ######
@@ -32,9 +32,9 @@ __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "Python_LLAMA_CPP"
+binding_name = "LLAMA_Python_CPP"
 
-class Python_LLAMA_CPP(LLMBinding):
+class LLAMA_Python_CPP(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -101,28 +101,6 @@ class Python_LLAMA_CPP(LLMBinding):
            ASCIIColors.error("No model is selected")
            return
 
-        if 'gpt2' in self.config['model_name']:
-            model_type='gpt2'
-        elif 'gptj' in self.config['model_name']:
-            model_type='gptj'
-        elif 'gpt_neox' in self.config['model_name'] or 'guanaco' in self.config['model_name']:
-            model_type='gpt_neox'
-        elif 'dolly-v2' in self.config['model_name']:
-            model_type='dolly-v2'
-        elif 'starcoder' in self.config['model_name'] or 'starchat-beta' in self.config['model_name'] or 'starchat-beta' in self.config['model_name'] or 'WizardCoder' in self.config['model_name']:
-            model_type='starcoder'
-        elif 'mpt' in self.config['model_name']:
-            model_type='mpt'
-        elif 'falcon' in self.config['model_name'].lower():
-            model_type='falcon'
-        elif 'replit' in self.config['model_name'].lower():
-            model_type = 'replit'
-        elif 'gptq' in self.config['model_name'].lower(): # experimental
-            model_type="gptq"
-        else:
-            model_type='llama'
-
-        ASCIIColors.info(f"Model type : {model_type}")
         
         
         model_path = self.get_model_path()
@@ -187,7 +165,7 @@ class Python_LLAMA_CPP(LLMBinding):
         """  
         super().uninstall()
         self.configuration_file_path.unlink()
-        subprocess.run(["pip","uninstall","Python_LLAMA_CPP","-y"])
+        subprocess.run(["pip","uninstall","llama-cpp-python","-y"])
 
             
     def tokenize(self, prompt:str):

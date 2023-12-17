@@ -633,7 +633,10 @@ class HuggingFace(LLMBinding):
             repo="/".join(blocs[-5:-3])
 
         file_names = HuggingFace.get_filenames(repo)
-
+        # if there is a safetensor then remove all bins
+        nb_safe_tensors=len([f for f in file_names if ".safetensors" in str(f)])
+        if nb_safe_tensors>0:
+            file_names = [f for f in file_names if ".bin" not in str(f)]
         dest_dir = Path(base_folder)
         dest_dir.mkdir(parents=True, exist_ok=True)
         os.chdir(dest_dir)
