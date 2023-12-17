@@ -281,7 +281,6 @@ class HuggingFace(LLMBinding):
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
         ASCIIColors.success("Installed successfully")
         self.success("Successfull installation")
-        self.InfoMessage("Don't forget to reboot the lollmsCom")
 
 
     def uninstall(self):
