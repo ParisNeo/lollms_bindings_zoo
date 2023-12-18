@@ -75,7 +75,13 @@ class GoogleBard(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
-        
+
+    def settings_updated(self):
+        if self.binding_config.config["google_api"]:
+            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+
+        self.config.ctx_size=self.binding_config.config.ctx_size        
+
     def build_model(self):
         return self
 

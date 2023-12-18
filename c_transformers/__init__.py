@@ -94,7 +94,11 @@ class CTRansformers(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
-        
+
+    def settings_updated(self):
+        self.config.ctx_size=self.binding_config.config.ctx_size        
+
+
     def __del__(self):
         if self.model:
             del self.model

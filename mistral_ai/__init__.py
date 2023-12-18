@@ -112,7 +112,16 @@ class MistralAI(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
-        
+    
+    def settings_updated(self):
+        if not PackageManager.check_package_installed("mistralai"):
+            PackageManager.install_package("mistralai")
+        from mistralai.client import MistralClient
+        from mistralai.models.chat_completion import ChatMessage
+        self.client = MistralClient(api_key=self.binding_config.config["mistralai_key"])
+        self.config.ctx_size=self.binding_config.config.ctx_size
+    
+
     def build_model(self):
         if not PackageManager.check_package_installed("mistralai"):
             PackageManager.install_package("mistralai")
@@ -175,64 +184,10 @@ class MistralAI(LLMBinding):
             List[float]
         """
         
-        pass
-
-    def generate(self, 
-                 prompt:str,                  
-                 n_predict: int = 128,
-                 callback: Callable[[str], None] = bool,
-                 verbose: bool = False,
-                 **gpt_params ):
-        """Generates text out of a prompt
-
-        Args:
-            prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
-            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
-            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
-        """
-        if self.binding_config.config["mistralai_key"] =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
-        
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000000
-        try:
-            default_params = {
-                'temperature': 0.7,
-                'top_k': 50,
-                'top_p': 0.96,
-                'repeat_penalty': 1.3
-            }
-            gpt_params = {**default_params, **gpt_params}
-            count = 0
-            output = ""
-            messages = [{"role": "user", "content": prompt}]
-            for chunk in self.client.chat_stream(self.config["model_name"], messages=messages):
-                if count >= n_predict:
-                    break
-                try:
-                    word = chunk
-                except Exception as ex:
-                    word = ""
-                if word is not None:
-                    output += word
-                    count += 1
-                    if callback is not None:
-                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                            break
-
-
-        except Exception as ex:
-            self.error(f'Error {ex}')
-            trace_exception(ex)
-
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000000    
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
-        self.binding_config.save()
-        return ""      
+        return self.client.embeddings(
+            model="mistral-embed",
+            input=[text],
+        )
 
     def generate_with_images(self, 
                 prompt:str,

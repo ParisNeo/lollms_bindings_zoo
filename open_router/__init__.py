@@ -97,7 +97,10 @@ class OpenRouter(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
-        
+
+    def settings_updated(self):
+        self.config.ctx_size=self.binding_config.config.ctx_size        
+
     def build_model(self):
         from openai import OpenAI
         from os import getenv

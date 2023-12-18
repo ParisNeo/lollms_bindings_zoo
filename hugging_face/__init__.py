@@ -100,6 +100,9 @@ class HuggingFace(LLMBinding):
 
         self.model = None
         self.tokenizer = None
+        
+    def settings_updated(self):
+        self.config.ctx_size=self.binding_config.config.ctx_size        
 
     def embed(self, text):
         """

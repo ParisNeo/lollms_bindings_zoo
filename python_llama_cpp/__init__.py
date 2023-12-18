@@ -89,7 +89,11 @@ class LLAMA_Python_CPP(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+
+    def settings_updated(self):
+        self.config.ctx_size=self.binding_config.config.ctx_size        
         
+
     def __del__(self):
         if self.model:
             del self.model
@@ -117,6 +121,8 @@ class LLAMA_Python_CPP(LLMBinding):
             
 
         from llama_cpp import Llama
+        self.model = Llama(model_path=model_path)
+
         
         ASCIIColors.success("Model built")            
         return self
@@ -241,7 +247,8 @@ class LLAMA_Python_CPP(LLMBinding):
             output = ""
             # self.model.reset()
             count = 0
-            for chunk in self.model(
+            
+            for chunk in self.model.create_completion(
                                             prompt,
                                             max_new_tokens = n_predict,
                                             stream=True,

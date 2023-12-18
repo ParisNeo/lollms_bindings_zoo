@@ -121,6 +121,13 @@ class OpenAIGPT(LLMBinding):
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         
+    def settings_updated(self):
+        self.openai.api_key = self.binding_config.config["openai_key"]
+        if self.openai.api_key =="":
+            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+
+        self.config.ctx_size=self.binding_config.config.ctx_size
+
     def build_model(self):
         import openai
         self.openai = openai
@@ -129,6 +136,9 @@ class OpenAIGPT(LLMBinding):
             if "vision" in self.config.model_name:
                 self.binding_type = BindingType.TEXT_IMAGE
 
+        self.openai.api_key = self.binding_config.config["openai_key"]
+        if self.openai.api_key =="":
+            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
         # Do your initialization stuff
         return self
 
@@ -184,83 +194,6 @@ class OpenAIGPT(LLMBinding):
         
         pass
 
-    def generate(self, 
-                 prompt:str,                  
-                 n_predict: int = 128,
-                 callback: Callable[[str], None] = bool,
-                 verbose: bool = False,
-                 **gpt_params ):
-        """Generates text out of a prompt
-
-        Args:
-            prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
-            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
-            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
-        """
-        self.openai.api_key = self.binding_config.config["openai_key"]
-        if self.openai.api_key =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
-        
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
-        try:
-            default_params = {
-                'temperature': 0.7,
-                'top_k': 50,
-                'top_p': 0.96,
-                'repeat_penalty': 1.3
-            }
-            gpt_params = {**default_params, **gpt_params}
-            count = 0
-            output = ""
-            if "vision" in self.config.model_name:
-                messages = [
-                            {
-                                "role": "user", 
-                                "content": [
-                                    {
-                                        "type":"text",
-                                        "text":prompt
-                                    }
-                                ]
-                            }
-                        ]
-            else:
-                messages = [{"role": "user", "content": prompt}]
-            chat_completion = self.openai.chat.completions.create(
-                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                            messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
-                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                            stream=True)
-            for resp in chat_completion:
-                if count >= n_predict:
-                    break
-                try:
-                    word = resp.choices[0].delta.content
-                except Exception as ex:
-                    word = ""
-                if word is not None:
-                    output += word
-                    count += 1
-                    if callback is not None:
-                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                            break
-
-
-        except Exception as ex:
-            self.error(f'Error {ex}')
-            trace_exception(ex)
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
-        self.binding_config.save()
-        return ""      
-
     def generate_with_images(self, 
                 prompt:str,
                 images:list=[],
@@ -276,10 +209,6 @@ class OpenAIGPT(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        self.openai.api_key = self.binding_config.config["openai_key"]
-        if self.openai.api_key =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
         
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
         self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
@@ -362,10 +291,6 @@ class OpenAIGPT(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        self.openai.api_key = self.binding_config.config["openai_key"]
-        if self.openai.api_key =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
         
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
         self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
