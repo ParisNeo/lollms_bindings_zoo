@@ -121,7 +121,7 @@ class LLAMA_Python_CPP(LLMBinding):
             
 
         from llama_cpp import Llama
-        self.model = Llama(model_path=model_path)
+        self.model = Llama(model_path=str(model_path))
 
         
         ASCIIColors.success("Model built")            
@@ -184,7 +184,7 @@ class LLAMA_Python_CPP(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.model.tokenize(prompt)
+        return self.model.tokenize(prompt.encode("utf8"))
 
     def detokenize(self, tokens_list:list):
         """
@@ -196,7 +196,7 @@ class LLAMA_Python_CPP(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.model.detokenize(tokens_list)
+        return self.model.detokenize(tokens_list).decode("utf8")
     
     def embed(self, text):
         """
@@ -250,25 +250,27 @@ class LLAMA_Python_CPP(LLMBinding):
             
             for chunk in self.model.create_completion(
                                             prompt,
-                                            max_new_tokens = n_predict,
+                                            max_tokens = n_predict,
                                             stream=True,
                                             top_k=int(gpt_params['top_k']),
                                             top_p=float(gpt_params['top_p']),
                                             temperature=float(gpt_params['temperature']),
-                                            repetition_penalty=float(gpt_params['repeat_penalty']),
-                                            last_n_tokens=int(gpt_params['last_n_tokens']),
-                                            seed=int(gpt_params['seed']),
-                                            threads = int(gpt_params['n_threads']),
-                                            batch_size= int(gpt_params['batch_size']),
-                                            reset=True,
+                                            repeat_penalty=float(gpt_params['repeat_penalty']),
+                                            # seed=int(gpt_params['seed']),
+                                            #threads = int(gpt_params['n_threads']),
                                 ):
-                if chunk=="<0x0A>":
-                    chunk = "\n"
+                if count >= n_predict:
+                    break
+                try:
+                    word = chunk["choices"][0]["text"]
+                except Exception as ex:
+                    word = ""
                 if callback is not None:
-                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
                         break
-                output += chunk
-                count += 1
+                if word:
+                    output += word
+                    count += 1
                 
                 
         except Exception as ex:
