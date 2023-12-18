@@ -263,6 +263,8 @@ class LLAMA_Python_CPP(LLMBinding):
                     break
                 try:
                     word = chunk["choices"][0]["text"]
+                    if word=="<0x0A>":
+                        word = "\n"
                 except Exception as ex:
                     word = ""
                 if callback is not None:
