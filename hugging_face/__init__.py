@@ -102,7 +102,12 @@ class HuggingFace(LLMBinding):
         self.tokenizer = None
         
     def settings_updated(self):
-        self.config.ctx_size=self.binding_config.config.ctx_size        
+        self.config.ctx_size = self.binding_config.config.ctx_size        
+        from auto_gptq import exllama_set_max_input_length
+        try:
+            self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
+        except:
+            ASCIIColors.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
 
     def embed(self, text):
         """
