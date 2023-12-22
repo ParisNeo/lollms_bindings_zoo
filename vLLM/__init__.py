@@ -185,12 +185,16 @@ class vLLM(LLMBinding):
         py_version = sys.version.split(" ")[0][:4].replace(".","")
         os.environ['VLLM_VERSION'] = '0.2.6'
         os.environ['PYTHON_VERSION'] = py_version
-
+        try:
+            subprocess.run(["conda", "install", "-c", "nvidia/label/cuda-12.1.1", "cuda-compiler", "-y"], check=True)
+        except Exception as ex:
+            print(ex)
         super().install()
 
         check_and_install_torch(self.config.enable_gpu, version=2.1)
 
         try:
+            """
             # Create the "temp" folder if it does not exist
             self.info("Step 0: Preparing for install...")
             if not os.path.exists("temp"):
@@ -218,7 +222,9 @@ class vLLM(LLMBinding):
             # Step 4: Return to the current folder
             self.info("Step 4: Returning to the current folder...")
             os.chdir("..")
-
+            """
+            
+            subprocess.run(["pip", "install", "--upgrade", "vllm"], check=True)
             # Installation complete
             self.info("vLLM installation completed successfully!")
         except Exception as e:
