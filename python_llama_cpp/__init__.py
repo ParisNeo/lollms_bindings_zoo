@@ -146,9 +146,15 @@ class LLAMA_Python_CPP(LLMBinding):
         current_platform = platform.system()
         
         if current_platform == 'Linux':
-            subprocess.run(['pip', 'install', 'llama-cpp-python'])
+            if self.config.enable_gpu:
+                subprocess.run(['CMAKE_ARGS="-DLLAMA_CUBLAS=on"', 'pip', 'install', 'llama-cpp-python'])
+            else:
+                subprocess.run(['pip', 'install', 'llama-cpp-python'])
         elif current_platform == 'Windows':
-            subprocess.run(['pip', 'install', 'llama-cpp-python'])
+            if self.config.enable_gpu:
+                subprocess.run(['CMAKE_ARGS="-DLLAMA_CUBLAS=on"', 'pip', 'install', 'llama-cpp-python'])
+            else:
+                subprocess.run(['pip', 'install', 'llama-cpp-python'])
         elif current_platform == 'Darwin':
             gpu_support = 'y' if subprocess.run(['system_profiler', 'SPDisplaysDataType'], capture_output=True).stdout.decode().lower().find('gpu') != -1 else 'n'
             

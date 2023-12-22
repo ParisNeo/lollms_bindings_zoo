@@ -1,7 +1,7 @@
-name: vLLM
-author: Hugging face Inc
+name: vLLM (only linux)
+author: vllm-project
 version: 1.0
-link: https://github.com/vllm-project/vllm/tree/main
+link: https://github.com/vllm-project/vllm
 description: 'Python bindings for the vllm versice. It supports transformers causal models, gptq quantized models and awq quantized models'
 accepted_models: 
   - transformers

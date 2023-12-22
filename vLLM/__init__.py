@@ -195,8 +195,6 @@ class vLLM(LLMBinding):
 
         try:
             """
-            
-            """
             # Create the "temp" folder if it does not exist
             self.info("Step 0: Preparing for install...")
             if not os.path.exists("temp"):
@@ -224,9 +222,9 @@ class vLLM(LLMBinding):
             # Step 4: Return to the current folder
             self.info("Step 4: Returning to the current folder...")
             os.chdir("..")
+            """
             
-            
-            # subprocess.run(["pip", "install", "--upgrade", "vllm"], check=True)
+            subprocess.run(["pip", "install", "--upgrade", "vllm"], check=True)
             # Installation complete
             self.info("vLLM installation completed successfully!")
         except Exception as e:
