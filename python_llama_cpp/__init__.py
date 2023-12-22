@@ -146,26 +146,11 @@ class LLAMA_Python_CPP(LLMBinding):
         current_platform = platform.system()
         
         if current_platform == 'Linux':
-            if self.config.enable_gpu:
-                subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'], env={'CMAKE_ARGS': "-DLLAMA_CUBLAS=on"})
-            else:
-                subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'])
+            subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'])
         elif current_platform == 'Windows':
-            if self.config.enable_gpu:
-                subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'], env={'CMAKE_ARGS': "-DLLAMA_CUBLAS=on"})
-            else:
-                subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'])
+            subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'])
         elif current_platform == 'Darwin':
-            gpu_support = 'y' if subprocess.run(['system_profiler', 'SPDisplaysDataType'], capture_output=True).stdout.decode().lower().find('gpu') != -1 else 'n'
-            
-            cmake_args = []
-            
-            if gpu_support.lower() == 'y':
-                cmake_args.append("-DLLAMA_CUBLAS=on")
-            
-            env_vars = " ".join([f"-DCMAKE_ARGS={arg}" for arg in cmake_args])
-            
-            subprocess.run(['pip', 'install', 'llama-cpp-python'], env={'CMAKE_ARGS': env_vars})
+            subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'])
         else:
             print('Unsupported platform.')
                     
