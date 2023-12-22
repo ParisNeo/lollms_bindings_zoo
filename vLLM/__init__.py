@@ -8,6 +8,8 @@
 # Description   : 
 # This is an interface class for lollms bindings.
 ######
+import shutil
+
 from pathlib import Path
 from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
@@ -18,7 +20,7 @@ from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector, PackageManager
 from lollms.utilities import check_and_install_torch, expand2square, load_image
-import subprocess
+import subprocess, sys
 import yaml
 from tqdm import tqdm
 import re
@@ -175,13 +177,14 @@ class vLLM(LLMBinding):
         else:
             self.error("No model selected.\Please select a model to load")        
     def install(self):
-        ASCIIColors.success("freeing memory")
+        self.info("freeing memory")
         AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
         AdvancedGarbageCollector.safeHardCollectMultiple(['AutoModelForCausalLM'])
         AdvancedGarbageCollector.collect()
         ASCIIColors.success("freed memory")
+        py_version = sys.version.split(" ")[0][:4].replace(".","")
         os.environ['VLLM_VERSION'] = '0.2.6'
-        os.environ['PYTHON_VERSION'] = '310'
+        os.environ['PYTHON_VERSION'] = py_version
 
         super().install()
 
@@ -193,10 +196,16 @@ class vLLM(LLMBinding):
             if not os.path.exists("temp"):
                 os.makedirs("temp")
             os.system("python.exe -m pip install --upgrade pip")
-                
-            # Step 1: Clone the vLLM repository
-            self.info("Step 1: Cloning the vLLM repository...")
-            os.system("git clone https://github.com/ParisNeo/vllm.git temp/vllm")
+
+            # Check if the vllm folder exists
+            if os.path.exists("temp/vllm"):
+                self.info("vllm folder already exists. Trying to pull changes...")
+                os.chdir("temp/vllm")
+                subprocess.run(["git", "pull"], check=True)
+                os.chdir("..")
+            else:
+                self.info("vllm folder does not exist. Cloning the vLLM repository...")
+                subprocess.run(["git", "clone", "https://github.com/ParisNeo/vllm.git", "temp/vllm"], check=True)
 
             # Step 2: Navigate to the vLLM folder
             self.info("Step 2: Navigating to the vLLM folder...")
@@ -204,7 +213,7 @@ class vLLM(LLMBinding):
 
             # Step 3: Install vLLM from source
             self.info("Step 3: Installing vLLM from source.\nThis will compile the vLLM library for your ...")
-            os.system("pip install -e .")
+            subprocess.run(["pip", "install", "-e", "."], check=True)
 
             # Step 4: Return to the current folder
             self.info("Step 4: Returning to the current folder...")
@@ -213,7 +222,15 @@ class vLLM(LLMBinding):
             # Installation complete
             self.info("vLLM installation completed successfully!")
         except Exception as e:
-            self.info("An error occurred during vLLM installation: " + str(e))
+            if os.path.exists("temp/vllm"):
+                try:
+                    self.warning("An error occurred during vLLM installation: " + str(e))
+                    self.warning("Please stop the application and manually remove the 'temp/vllm' folder.")
+                except:
+                    pass
+            else:
+                self.error("An error occurred during vLLM installation: " + str(e))
+
 
     def uninstall(self):
         super().install()

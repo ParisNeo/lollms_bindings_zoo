@@ -40,7 +40,7 @@ class Petals(LLMBinding):
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                app=None
+                lollmsCom=None
                 ) -> None:
         """Builds a GPTQ binding
 
@@ -72,7 +72,7 @@ class Petals(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=['.safetensors','.pth','.bin'],
-                            app=app
+                            lollmsCom=lollmsCom
                         )
         self.callback = None
         self.n_generated = 0
@@ -91,6 +91,9 @@ class Petals(LLMBinding):
                 self.start_server(self.config.model_name, self.binding_config["Node Name"], self.binding_config["Device"])
         except:
             pass
+
+    def settings_updated(self):
+        pass
 
     def start_server(self, model_name, node_name, device):
 
