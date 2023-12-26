@@ -211,7 +211,7 @@ class OpenAIGPT(LLMBinding):
         """
         
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0.1) /1000
         if not "vision" in self.config.model_name:
             raise Exception("You can not call a generate with vision on this model")
         try:
@@ -267,7 +267,7 @@ class OpenAIGPT(LLMBinding):
 
 
             self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
+            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0.1)/1000    
             self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
             self.error(f'Error {ex}')
@@ -356,6 +356,7 @@ class OpenAIGPT(LLMBinding):
         """
         binding_path = Path(__file__).parent
         file_path = binding_path/"models.yaml"
+        
 
         with open(file_path, 'r') as file:
             yaml_data = yaml.safe_load(file)
