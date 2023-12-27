@@ -275,6 +275,7 @@ class Petals(LLMBinding):
             self.print_len += len(printable_text)
 
         self.output += printable_text
+        print(printable_text)
         if  self.callback:
             if not self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
                 raise Exception("canceled")    
