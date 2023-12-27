@@ -146,11 +146,11 @@ class LLAMA_Python_CPP(LLMBinding):
         current_platform = platform.system()
         
         if current_platform == 'Linux':
-            subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'])
+            subprocess.run(['pip', 'install', "--upgrade", 'https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.25/llama_cpp_python-0.2.25-cp310-cp310-manylinux_2_17_x86_64.whl'])
         elif current_platform == 'Windows':
-            subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'])
+            subprocess.run(['pip', 'install', "--upgrade", 'https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.25/llama_cpp_python-0.2.25-cp310-cp310-win_amd64.whl'])
         elif current_platform == 'Darwin':
-            subprocess.run(['pip', 'install', "--upgrade", 'llama-cpp-python'])
+            subprocess.run(['pip', 'install', "--upgrade", 'https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.25/llama_cpp_python-0.2.25-cp310-cp310-macosx_10_9_x86_64.whl'])
         else:
             print('Unsupported platform.')
                     
