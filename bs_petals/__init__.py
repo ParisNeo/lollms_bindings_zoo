@@ -237,6 +237,7 @@ class Petals(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
+        import torch
         t = torch.IntTensor([tokens_list])
         return  self.tokenizer.decode(t)[0]
 
