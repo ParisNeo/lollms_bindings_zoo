@@ -139,10 +139,10 @@ class LLAMA_Python_CPP(LLMBinding):
         super().install()
 
         # INstall other requirements
-        self.info("Installing requirements")
-        requirements_file = self.binding_dir / "requirements.txt"
-        subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
-        self.success("Requirements install done")
+        # self.info("Installing requirements")
+        # requirements_file = self.binding_dir / "requirements.txt"
+        # subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+        # self.success("Requirements install done")
         current_platform = platform.system()
         
         if current_platform == 'Linux':
