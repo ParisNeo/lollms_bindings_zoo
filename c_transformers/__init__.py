@@ -246,6 +246,7 @@ class CTRansformers(LLMBinding):
             elif sys.platform == "darwin":
                 gpu_type = "Apple"
 
+        self.info(f"GPU type detected: {gpu_type}")
         if sys.platform == "win32":
             # Code for Windows platform
             self.info("Running on Windows")
