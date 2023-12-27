@@ -16,6 +16,7 @@ from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
+from lollms.com import LoLLMsCom
 import subprocess
 import yaml
 import re
@@ -470,14 +471,13 @@ class Petals(LLMBinding):
                 return file_size        
         return 4000000000
 
-    def list_models(self, config:dict):
+    def list_models(self):
         """Lists the models for this binding
         """
 
         return ["petals-team/StableBeluga2","tiiuae/falcon-180B-chat", "codellama/CodeLlama-34b-Instruct-hf", "codellama/CodeLlama-34b-Instruct-hf", "meta-llama/Llama-2-70b-chat-hf", "huggyllama/llama-65b", "bigscience/bloomz", "bigscience/bloom-560m"]
 
-    @staticmethod
-    def get_available_models():
+    def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
         binding_path = Path(__file__).parent
         file_path = binding_path/"models.yaml"

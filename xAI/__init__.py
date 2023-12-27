@@ -17,6 +17,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
+from lollms.com import LoLLMsCom
 from lollms.types import MSG_TYPE
 import subprocess
 import yaml
@@ -377,8 +378,7 @@ class xAI(LLMBinding):
         self.binding_config.save()
         return "" 
 
-    @staticmethod
-    def list_models(config:dict):
+    def list_models(self):
         """Lists the models for this binding
         """
         binding_path = Path(__file__).parent
@@ -390,8 +390,8 @@ class xAI(LLMBinding):
 
         return [f["name"] for f in yaml_data]
                 
-    @staticmethod
-    def get_available_models():
+
+    def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
         binding_path = Path(__file__).parent
         file_path = binding_path/"models.yaml"

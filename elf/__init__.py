@@ -18,11 +18,13 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
+from lollms.com import LoLLMsCom
 import subprocess
 import yaml
 import re
 import json
 import requests
+from datetime import datetime
 from typing import List, Union
 
 __author__ = "parisneo"
@@ -32,7 +34,30 @@ __license__ = "Apache 2.0"
 
 binding_name = "Elf"
 binding_folder_name = ""
+elf_completion_formats={
+    "instruct":"/v1/completions",
+    "chat":"/v1/chat/completions"
+}
 
+def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
+    cfg_file_path = lollms_paths.personal_configuration_path/"bindings"/f"{binding_name}"/"config.yaml"
+    return LOLLMSConfig(cfg_file_path,lollms_paths)
+
+def get_model_info(url):
+    url = f'{url}/v1/models'
+    headers = {'accept': 'application/json'}
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    model_info = []
+
+    for model in data['data']:
+        model_name = model['id']
+        owned_by = model['owned_by']
+        created_timestamp = model['created']
+        created_datetime = datetime.utcfromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+        model_info.append({'model_name': model_name, 'owned_by': owned_by, 'created_datetime': created_datetime})
+
+    return model_info
 class Elf(LLMBinding):
     
     def __init__(self, 
@@ -52,12 +77,15 @@ class Elf(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
 
+
         binding_config = TypedConfig(
             ConfigTemplate([
-                {"name":"address","type":"str","value":"http://127.0.0.1:5000"},
+                {"name":"address","type":"str","value":"http://127.0.0.1:5000","help":"The server address"},
+                {"name":"completion_format","type":"str","value":"instruct","options":["instruct","chat"], "help":"The format supported by the server"},
+                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
             ]),
             BaseConfig(config={
-                "google_api_key": "",     # use avx2
             })
         )
         super().__init__(
@@ -69,6 +97,10 @@ class Elf(LLMBinding):
                             supported_file_extensions=[''],
                             lollmsCom=lollmsCom
                         )
+        self.config.ctx_size=self.binding_config.config.ctx_size
+
+    def settings_updated(self):
+        self.config.ctx_size = self.binding_config.config.ctx_size        
         
     def build_model(self):
         return self
@@ -123,7 +155,7 @@ class Elf(LLMBinding):
 
         headers = {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer NO_KEY_NEEDED',
+            'Authorization': f'Bearer {self.binding_config.server_key}',
         }
         default_params = {
             'temperature': 0.7,
@@ -133,42 +165,96 @@ class Elf(LLMBinding):
         }
         gpt_params = {**default_params, **gpt_params}
 
-        data = {
-            'model':'',
-            'messages': [{
-                'role': "",
-                'content': prompt
-            }],
-            "stream":True,
-            "temperature": float(gpt_params["temperature"]),
-            "max_tokens": n_predict
-        }
+        if self.binding_config.completion_format=="instruct":
+            data = {
+                'model':self.config.model_name,
+                'prompt': prompt,
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
+        else:
+            data = {
+                'model':self.config.model_name,
+                'messages': [{
+                    'role': "",
+                    'content': prompt
+                }],
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
 
-        url = f'{self.binding_config.address}/v1/chat/completions'
+        
+        url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
 
         response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
 
         text = ""
         for line in response.iter_lines(): 
             decoded = line.decode("utf-8")
-            if len(decoded)>5:
-                txt = decoded[5:].strip()
-                if txt[0]=="{":
-                    json_data = json.loads(txt)
-                    chunk = json_data["choices"][0]["delta"]["content"]
+            if decoded.startswith("data: "):
+                try:
+                    json_data = json.loads(decoded[5:].strip())
+                    if self.binding_config.completion_format=="chat":
+                        chunk = json_data["choices"][0]["delta"]["content"]
+                    else:
+                        chunk = json_data["choices"][0]["text"]
+                    ## Process the JSON data here
+                    text +=chunk
+                    if callback:
+                        if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
+                except:
+                    break
+            else:
+                if decoded.startswith("{"):
+                    json_data = json.loads(decoded)
+                    if json_data["object"]=="error":
+                        self.error(json_data["message"])
+                        break
                 else:
-                    chunk = decoded
-                ## Process the JSON data here
-                text +=chunk
-                if callback:
-                    callback(text, MSG_TYPE.MSG_TYPE_FULL)
-
+                    text +=decoded
+                    if callback:
+                        if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
         return text
 
     
-    @staticmethod
-    def list_models(config:dict):
+    def list_models(self):
         """Lists the models for this binding
+        """
+        model_names = get_model_info(f'{self.binding_config.address}')
+        entries=[]
+        for model in model_names:
+            entries.append(model["model_name"])
+        return entries
+                
+    def get_available_models(self, app:LoLLMsCom=None):
+        # Create the file path relative to the child class's directory
+        model_names = get_model_info(f'{self.binding_config.address}')
+        entries=[]
+        for model in model_names:
+            entry={
+                "category": "generic",
+                "datasets": "unknown",
+                "icon": '/bindings/elf/logo.png',
+                "last_commit_time": "2023-09-17 17:21:17+00:00",
+                "license": "unknown",
+                "model_creator": model["owned_by"],
+                "model_creator_link": "https://lollms.com/",
+                "name": model["model_name"],
+                "quantizer": None,
+                "rank": "1.0",
+                "type": "api",
+                "variants":[
+                    {
+                        "name":model,
+                        "size":0
+                    }
+                ]
+            }
+            entries.append(entry)
         """
         binding_path = Path(__file__).parent
         file_path = binding_path/"models.yaml"
@@ -176,16 +262,6 @@ class Elf(LLMBinding):
         with open(file_path, 'r') as file:
             yaml_data = yaml.safe_load(file)
         
-
-        return [f["name"] for f in yaml_data]
-                
-    @staticmethod
-    def get_available_models():
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
+        """
         
-        return yaml_data
+        return entries

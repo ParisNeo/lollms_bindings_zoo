@@ -18,6 +18,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
+from lollms.com import LoLLMsCom
 import subprocess
 import yaml
 import re
@@ -240,8 +241,7 @@ class LoLLMs(LLMBinding):
             ASCIIColors.error("No server was ready to receive this request")
         return infos["generated_text"]
     
-    @staticmethod
-    def list_models(config:dict):
+    def list_models(self):
         """Lists the models for this binding
         """
         # binding_path = Path(__file__).parent
@@ -253,8 +253,8 @@ class LoLLMs(LLMBinding):
         # return yaml_data
         return ["Default lollms remotes"]
           
-    @staticmethod
-    def get_available_models():
+          
+    def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
         binding_path = Path(__file__).parent
         file_path = binding_path/"models.yaml"

@@ -19,6 +19,7 @@ from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
 from lollms.utilities import PackageManager
+from lollms.com import LoLLMsCom
 import subprocess
 import yaml
 import re
@@ -277,8 +278,7 @@ class MistralAI(LLMBinding):
         self.binding_config.save()
         return output
 
-    @staticmethod
-    def list_models(config:dict):
+    def list_models(self):
         """Lists the models for this binding
         """
         binding_path = Path(__file__).parent
@@ -290,8 +290,8 @@ class MistralAI(LLMBinding):
 
         return [f["name"] for f in yaml_data]
                 
-    @staticmethod
-    def get_available_models():
+                
+    def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
         binding_path = Path(__file__).parent
         file_path = binding_path/"models.yaml"
