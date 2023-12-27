@@ -187,8 +187,13 @@ class Petals(LLMBinding):
 
     def install(self):
         super().install()
+        # INstall other requirements
+        self.info("Installing requirements")
+        requirements_file = self.binding_dir / "requirements.txt"
+        subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+        self.success("Requirements install done")
         
-        result = subprocess.run(["pip", "install", "--upgrade", "git+https://github.com/bigscience-workshop/petals"])
+        result = subprocess.run(["pip", "install", "--upgrade", "petals"])
         if result:   
             models_dir = self.lollms_paths.personal_models_path / "petals"
             models_dir.mkdir(parents=True, exist_ok=True)            
