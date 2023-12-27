@@ -287,13 +287,37 @@ class HuggingFace(LLMBinding):
         # pip install --upgrade --no-cache-dir transformers
         # pip install --upgrade --no-cache-dir auto-gptq
         # pip install auto-gptq --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu118/
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
-        self.info("installed auto-gptq")
+        supported_models = ["transformers"]
+        if self.lollmsCom.YesNoMessage("Do you want to install gptq library to allow gptq models usage?"):
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+            supported_models.append("gptq")
+            self.info("installed auto-gptq")
         # pip install --upgrade --no-cache-dir autoawq
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
-        self.info("installed autoawq")
+        if self.lollmsCom.YesNoMessage("Do you want to install awq library to allow awq models usage?"):
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
+            supported_models.append("awq")
+            self.info("installed autoawq")
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
         self.info("installed transformers")
+        # Initialization code goes here
+        binding_config_template = ConfigTemplate([
+            {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
+            {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
+            {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
+            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+
+        ])
+        binding_config_vals = BaseConfig.from_template(binding_config_template)
+
+        binding_config = TypedConfig(
+            binding_config_template,
+            binding_config_vals
+        )
+        self.binding_config = binding_config
+        self.add_default_configurations(binding_config)
+        self.sync_configuration(binding_config, self.lollms_paths)
+        self.binding_config.save()
         # ASCIIColors.success("Installed successfully")
         self.success("Successfull installation")
 
