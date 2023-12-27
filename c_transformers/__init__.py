@@ -209,37 +209,43 @@ class CTRansformers(LLMBinding):
         subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
         self.success("Requirements install done")
         # Get the platforms
-        platforms = cl.get_platforms()
+        try:
+            platforms = cl.get_platforms()
 
-        gpu_type = "None"
+            gpu_type = "None"
 
-        # Iterate over each platform
-        for platform in platforms:
-            # Get the devices for the platform
-            devices = platform.get_devices()
-            
-            # Iterate over each device
-            for device in devices:
-                # Check if the device is an Apple GPU
-                if "Apple" in device.vendor:
-                    self.info("Apple GPU detected")
-                    gpu_type = "Apple"
-                    break                
-                # Check if the device is an NVIDIA GPU
-                elif "NVIDIA" in device.vendor:
-                    self.info("NVIDIA GPU detected")
-                    gpu_type = "NVIDIA"
-                    break
-                # Check if the device is an AMD GPU
-                elif "AMD" in device.vendor:
-                    self.info("AMD GPU detected")
-                    gpu_type = "AMD"
-                    break
-                # Check if the device is an Intel GPU
-                elif "Intel" in device.vendor:
-                    self.info("Intel GPU detected")
-                    gpu_type = "Intel"
-                    break        
+            # Iterate over each platform
+            for platform in platforms:
+                # Get the devices for the platform
+                devices = platform.get_devices()
+                
+                # Iterate over each device
+                for device in devices:
+                    # Check if the device is an Apple GPU
+                    if "Apple" in device.vendor:
+                        self.info("Apple GPU detected")
+                        gpu_type = "Apple"
+                        break                
+                    # Check if the device is an NVIDIA GPU
+                    elif "NVIDIA" in device.vendor:
+                        self.info("NVIDIA GPU detected")
+                        gpu_type = "NVIDIA"
+                        break
+                    # Check if the device is an AMD GPU
+                    elif "AMD" in device.vendor:
+                        self.info("AMD GPU detected")
+                        gpu_type = "AMD"
+                        break
+                    # Check if the device is an Intel GPU
+                    elif "Intel" in device.vendor:
+                        self.info("Intel GPU detected")
+                        gpu_type = "Intel"
+                        break        
+        except:
+            if sys.platform == "win32" or sys.platform == "linux":
+                gpu_type = "NVIDIA"
+            elif sys.platform == "darwin":
+                gpu_type = "Apple"
 
         if sys.platform == "win32":
             # Code for Windows platform
