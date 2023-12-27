@@ -17,6 +17,7 @@ from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
 from lollms.com import LoLLMsCom
+from lollms.utilities import check_and_install_torch
 import subprocess
 import yaml
 import re
@@ -188,6 +189,9 @@ class Petals(LLMBinding):
     def install(self):
         super().install()
         # INstall other requirements
+        self.info("Installing torch")
+        check_and_install_torch(self.config.enable_gpu)
+
         self.info("Installing requirements")
         requirements_file = self.binding_dir / "requirements.txt"
         subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
