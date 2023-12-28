@@ -304,7 +304,7 @@ class HuggingFace(LLMBinding):
             
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "einops"])
             self.success("einops installed successfully")
-            if self.lollmsCom.YesNoMessage("Do you want to install flash attention?\nIt will accelerate the attention mechanism if activated but will be compiled on your computer which will make the install process slow."):
+            if self.lollmsCom.YesNoMessage("Do you want to install flash attention?\nIt is not absolutely required, but can increase the generation speed by at least 3 when activated\nIt will accelerate the attention mechanism if activated but will be compiled on your computer which will make the install process slow.\nIf ninja is installed it should take between 3 to 5 minutes, but if it is not installed, this may take up to 2hours!"):
                 try:
                     subprocess.run(["pip", "install", "--upgrade", "flash-attn", "--no-build-isolation"])
                     self.info("installed flash attention")
