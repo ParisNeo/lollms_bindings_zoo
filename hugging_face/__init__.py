@@ -289,6 +289,8 @@ class HuggingFace(LLMBinding):
         # pip install auto-gptq --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu118/
         supported_models = ["transformers"]
         if self.lollmsCom.YesNoMessage("Do you want to install gptq library to allow gptq models usage?"):
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "optimum"])
+            self.info("installed optimum")
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
             supported_models.append("gptq")
             self.info("installed auto-gptq")
@@ -297,6 +299,12 @@ class HuggingFace(LLMBinding):
             subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
             supported_models.append("awq")
             self.info("installed autoawq")
+
+        subprocess.run(["pip", "install", "--upgrade", "flash-attn", "--no-build-isolation"])
+        self.info("installed flash attention")
+        if self.config.enable_gpu:
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "accelerate"])
+            self.info("installed accelerate")
         subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
         self.info("installed transformers")
         # Initialization code goes here
