@@ -266,18 +266,21 @@ class HuggingFace(LLMBinding):
         requirements_file = self.binding_dir / "requirements.txt"
         try:
             import transformers
+            self.ShowBlockingMessage("Uninstalling transformers...")
             subprocess.run(["pip", "uninstall", "transformers", "-y"])
             self.info("Uninstalled transformers")
         except:
             pass
         try:
             import auto_gptq
+            self.ShowBlockingMessage("Uninstalling auto-gptq ...")
             subprocess.run(["pip", "uninstall", "auto-gptq", "-y"])
             self.info("Uninstalled auto-gptq")
         except:
             pass
         try:
             import autoawq
+            self.ShowBlockingMessage("Uninstalling autoawq ...")
             subprocess.run(["pip", "uninstall", "autoawq", "-y"])
             self.info("Uninstalled autoawq")
         except:
@@ -288,55 +291,65 @@ class HuggingFace(LLMBinding):
         # pip install --upgrade --no-cache-dir auto-gptq
         # pip install auto-gptq --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu118/
         supported_models = ["transformers"]
-        if self.lollmsCom.YesNoMessage("Do you want to install gptq library to allow gptq models usage?"):
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "optimum"])
-            self.info("optimum installed successfully")
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
-            supported_models.append("gptq")
-            self.info("auto-gptq installed successfully")
-        # pip install --upgrade --no-cache-dir autoawq
-        if self.lollmsCom.YesNoMessage("Do you want to install awq library to allow awq models usage?"):
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
-            supported_models.append("awq")
-            self.success("autoawq installed successfully")
+        try:
+            if self.lollmsCom.YesNoMessage("Do you want to install gptq library to allow gptq models usage?"):
+                self.ShowBlockingMessage("Installing optimum ...")
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "optimum"])
+                self.info("optimum installed successfully")
+                self.ShowBlockingMessage("Installing auto-gptq ...")
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
+                supported_models.append("gptq")
+                self.info("auto-gptq installed successfully")
+            # pip install --upgrade --no-cache-dir autoawq
+            if self.lollmsCom.YesNoMessage("Do you want to install awq library to allow awq models usage?"):
+                self.ShowBlockingMessage("Installing autoawq ...")
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
+                supported_models.append("awq")
+                self.success("autoawq installed successfully")
 
-        if self.config.enable_gpu:
-            
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "einops"])
-            self.success("einops installed successfully")
-            if self.lollmsCom.YesNoMessage("Do you want to install flash attention?\nIt is not absolutely required, but can increase the generation speed by at least 3 when activated\nIt will accelerate the attention mechanism if activated but will be compiled on your computer which will make the install process slow.\nIf ninja is installed it should take between 3 to 5 minutes, but if it is not installed, this may take up to 2hours!"):
-                try:
-                    subprocess.run(["pip", "install", "--upgrade", "flash-attn", "--no-build-isolation"])
-                    self.info("installed flash attention")
-                except:
-                    self.error("flash attention installation failed. ")
+            if self.config.enable_gpu:
+                self.ShowBlockingMessage("Installing einops ...")                
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "einops"])
+                self.success("einops installed successfully")
+                if self.lollmsCom.YesNoMessage("Do you want to install flash attention?\nIt is not absolutely required, but can increase the generation speed by at least 3 when activated\nIt will accelerate the attention mechanism if activated but will be compiled on your computer which will make the install process slow.\nIf ninja is installed it should take between 3 to 5 minutes, but if it is not installed, this may take up to 2hours!"):
+                    try:
+                        self.ShowBlockingMessage("Installing flash attention. This may take a while! ...")                
+                        subprocess.run(["pip", "install", "--upgrade", "flash-attn", "--no-build-isolation"])
+                        self.info("installed flash attention")
+                    except:
+                        self.error("flash attention installation failed. ")
 
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "accelerate"])
-            self.info("accelerate installed successfully")
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
-        self.info("transformers installed successfully")
-        # Initialization code goes here
-        binding_config_template = ConfigTemplate([
-            {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
-            {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
-            {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
-            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+                self.ShowBlockingMessage("Installing accelerate ...")                
+                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "accelerate"])
+                self.info("accelerate installed successfully")
+            self.ShowBlockingMessage("Installing transformers ...")                
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
+            self.info("transformers installed successfully")
+            # Initialization code goes here
+            binding_config_template = ConfigTemplate([
+                {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
+                {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
+                {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
+                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
-        ])
-        binding_config_vals = BaseConfig.from_template(binding_config_template)
+            ])
+            binding_config_vals = BaseConfig.from_template(binding_config_template)
 
-        binding_config = TypedConfig(
-            binding_config_template,
-            binding_config_vals
-        )
-        self.binding_config = binding_config
-        self.add_default_configurations(binding_config)
-        self.sync_configuration(binding_config, self.lollms_paths)
-        self.binding_config.save()
-        # ASCIIColors.success("Installed successfully")
-        self.success("Successfull installation")
-
+            binding_config = TypedConfig(
+                binding_config_template,
+                binding_config_vals
+            )
+            self.binding_config = binding_config
+            self.add_default_configurations(binding_config)
+            self.sync_configuration(binding_config, self.lollms_paths)
+            self.binding_config.save()
+            # ASCIIColors.success("Installed successfully")
+            self.success("Successfull installation")
+        except Exception as ex:
+            trace_exception(ex)
+            self.error(ex)
+        self.HideBlockingMessage()
 
     def uninstall(self):
         super().install()
