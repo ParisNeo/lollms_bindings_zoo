@@ -147,12 +147,18 @@ class OpenAIGPT(LLMBinding):
         super().install()
         requirements_file = self.binding_dir / "requirements.txt"
         # install requirements
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
-        ASCIIColors.success("Installed successfully")
-        ASCIIColors.error("----------------------")
-        ASCIIColors.error("Attention please")
-        ASCIIColors.error("----------------------")
-        ASCIIColors.error("The chatgpt/gpt4 binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration file.")
+        self.ShowBlockingMessage("Installing open ai api ...")
+        try:
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+            self.HideBlockingMessage()
+            ASCIIColors.success("Installed successfully")
+            ASCIIColors.error("----------------------")
+            ASCIIColors.error("Attention please")
+            ASCIIColors.error("----------------------")
+            ASCIIColors.error("The chatgpt/gpt4 binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration of the binding.")
+        except:
+            self.warning("The chatgpt/gpt4 binding uses the openai API which is a paid service.\nPlease create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration of the binding.",20)
+            self.HideBlockingMessage()
 
     def tokenize(self, prompt:str):
         """

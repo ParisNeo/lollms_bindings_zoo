@@ -139,12 +139,17 @@ class MistralAI(LLMBinding):
         super().install()
         requirements_file = self.binding_dir / "requirements.txt"
         # install requirements
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
-        ASCIIColors.success("Installed successfully")
-        ASCIIColors.error("----------------------")
-        ASCIIColors.error("Attention please")
-        ASCIIColors.error("----------------------")
-        ASCIIColors.error("The chatgpt/gpt4 binding uses the mistralai API which is a paid service. Please create an account on the mistral website (https://mistral.ai/) then generate a key and provide it in the configuration file.")
+        self.ShowBlockingMessage("Installing mistral ai api ...")
+        try:
+            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+            ASCIIColors.success("Installed successfully")
+            ASCIIColors.error("----------------------")
+            ASCIIColors.error("Attention please")
+            ASCIIColors.error("----------------------")
+            ASCIIColors.error("The mistralai binding uses the mistralai API which is a paid service. Please create an account on the mistral website (https://mistral.ai/) then generate a key and provide it in the configuration of the binding.")
+        except:
+            self.warning("The mistralai binding uses the openai API which is a paid service.\nPlease create an account on the openAi website (https://platform.mistral.ai/) then generate a key and provide it in the configuration of the binding.",20)
+            self.HideBlockingMessage()
 
     def tokenize(self, prompt:str):
         """
