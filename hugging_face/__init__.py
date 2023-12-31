@@ -251,6 +251,7 @@ class HuggingFace(LLMBinding):
             ASCIIColors.error('No model selected!!')
 
     def install(self):
+        self.ShowBlockingMessage("Freeing memory...")
         ASCIIColors.success("freeing memory")
         AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
         AdvancedGarbageCollector.safeHardCollectMultiple(['AutoModelForCausalLM'])
@@ -259,6 +260,7 @@ class HuggingFace(LLMBinding):
 
         super().install()
 
+        self.ShowBlockingMessage("Verifying pytorch installation\nRequired version 2.1 will be installed if not found on your system ...")
         check_and_install_torch(self.config.enable_gpu, version=2.1)
 
             
