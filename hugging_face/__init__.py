@@ -136,119 +136,117 @@ class HuggingFace(LLMBinding):
         from transformers import GenerationConfig
         import torch
         self.torch = torch
+        try:
 
-        if self.config.model_name:
+            if self.config.model_name:
 
-            path = self.config.model_name
-            model_path = self.get_model_path()
+                path = self.config.model_name
+                self.ShowBlockingMessage(f"Building model\n{path}")
+                model_path = self.get_model_path()
 
-            if not model_path:
+                if not model_path:
+                    self.tokenizer = None
+                    self.model = None
+                    return None
+                models_dir = self.lollms_paths.personal_models_path / binding_folder_name
+                models_dir.mkdir(parents=True, exist_ok=True)
+                # model_path = models_dir/ path
+
+                model_name = str(model_path).replace("\\","/")
+
+                # Delete any old model
+                if hasattr(self, "tokenizer"):
+                    if self.tokenizer is not None:
+                        del self.model
+
+                if hasattr(self, "model"):
+                    if self.model is not None:
+                        del self.model
+
                 self.tokenizer = None
                 self.model = None
-                return None
+                gc.collect()
+                if self.config.enable_gpu:
+                    if self.model is not None:
+                        AdvancedGarbageCollector.safeHardCollect("model", self)
+                        AdvancedGarbageCollector.safeHardCollect("tokenizer", self)
+                        self.model = None
+                        self.tokenizer = None
+                        gc.collect()
+                    self.clear_cuda()
 
-            models_dir = self.lollms_paths.personal_models_path / binding_folder_name
-            models_dir.mkdir(parents=True, exist_ok=True)
-            # model_path = models_dir/ path
+                import os
+                os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
+                self.ShowBlockingMessage(f"Creating tokenizer {model_path}")
+                self.tokenizer = AutoTokenizer.from_pretrained(
+                        str(model_name), trust_remote_code=self.binding_config.trust_remote_code
+                        )
+                self.ShowBlockingMessage(f"Recovering generation config {model_path}")
+                self.generation_config = GenerationConfig.from_pretrained(str(model_path))
+                self.ShowBlockingMessage(f"Creating model {model_path}\nUsing device map: {self.binding_config.device_map}")
 
-            model_name = str(model_path).replace("\\","/")
+                if "llava" in str(model_path).lower() or "vision" in str(model_path).lower():
+                    from transformers import AutoProcessor, LlavaForConditionalGeneration
+                    self.model = LlavaForConditionalGeneration.from_pretrained(str(model_path),
+                                                torch_dtype=torch.float16,
+                                                device_map=self.binding_config.device_map,
+                                                offload_folder="offload",
+                                                offload_state_dict = True, 
+                                                low_cpu_mem_usage=True, 
+                                                )
+                    self.image_rocessor = AutoProcessor.from_pretrained(str(model_path))
+                    self.binding_type= BindingType.TEXT_IMAGE
+                    # from transformers import pipeline
+                    # self.pipe = pipeline("image-to-text", model=str(model_path))
+                    # self.binding_type = BindingType.TEXT_IMAGE
+                    # self.model = self.pipe.model
+                elif "gptq" in str(model_path).lower():
+                    self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                                torch_dtype=torch.float16,
+                                                                device_map=self.binding_config.device_map,
+                                                                offload_folder="offload",
+                                                                offload_state_dict = True
+                                                                )
+                    from auto_gptq import exllama_set_max_input_length
+                    try:
+                        self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
+                    except:
+                        self.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
+                    
+                elif "awq" in str(model_path).lower():
+                    self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                                torch_dtype=torch.float16,
+                                                                device_map=self.binding_config.device_map,
+                                                                offload_folder="offload",
+                                                                offload_state_dict = True
+                                                                )
+                else:
+                    self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                                torch_dtype=torch.float16,
+                                                                device_map=self.binding_config.device_map,
+                                                                offload_folder="offload",
+                                                                offload_state_dict = True
+                                                                )
+                self.model_device = self.model.parameters().__next__().device
+                self.ShowBlockingMessage(f"Model loaded successfully")
+                self.HideBlockingMessage()
 
-            # Delete any old model
-            if hasattr(self, "tokenizer"):
-                if self.tokenizer is not None:
-                    del self.model
-
-            if hasattr(self, "model"):
-                if self.model is not None:
-                    del self.model
-
-            self.tokenizer = None
-            self.model = None
-            gc.collect()
-            if self.config.enable_gpu:
-                if self.model is not None:
-                    AdvancedGarbageCollector.safeHardCollect("model", self)
-                    AdvancedGarbageCollector.safeHardCollect("tokenizer", self)
-                    self.model = None
-                    self.tokenizer = None
-                    gc.collect()
-                self.clear_cuda()
-
-            import os
-            os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
-
-            ASCIIColors.info(f"Creating tokenizer {model_path}")
-            self.tokenizer = AutoTokenizer.from_pretrained(
-                    str(model_name), trust_remote_code=self.binding_config.trust_remote_code
-                    )
-            ASCIIColors.success(f"ok")
-            ASCIIColors.info(f"Recovering generation config {model_path}")
-            self.generation_config = GenerationConfig.from_pretrained(str(model_path))
-            ASCIIColors.success(f"ok")
-            ASCIIColors.info(f"Creating model {model_path}")
-
-
-            # load model
-            ASCIIColors.yellow(f"Using device map: {self.binding_config.device_map}")
-            if "llava" in str(model_path).lower() or "vision" in str(model_path).lower():
-                from transformers import AutoProcessor, LlavaForConditionalGeneration
-                self.model = LlavaForConditionalGeneration.from_pretrained(str(model_path),
-                                            torch_dtype=torch.float16,
-                                            device_map=self.binding_config.device_map,
-                                            offload_folder="offload",
-                                            offload_state_dict = True, 
-                                            low_cpu_mem_usage=True, 
-                                            )
-                self.image_rocessor = AutoProcessor.from_pretrained(str(model_path))
-                self.binding_type= BindingType.TEXT_IMAGE
-                # from transformers import pipeline
-                # self.pipe = pipeline("image-to-text", model=str(model_path))
-                # self.binding_type = BindingType.TEXT_IMAGE
-                # self.model = self.pipe.model
-            elif "gptq" in str(model_path).lower():
-                self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                            torch_dtype=torch.float16,
-                                                            device_map=self.binding_config.device_map,
-                                                            offload_folder="offload",
-                                                            offload_state_dict = True
-                                                            )
-                from auto_gptq import exllama_set_max_input_length
+                """
                 try:
-                    self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
+                    if not self.binding_config.automatic_context_size:
+                        self.model.seqlen = self.binding_config.ctx_size
+                    self.config.ctx_size = self.model.seqlen
                 except:
-                    ASCIIColors.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
-                
-            elif "awq" in str(model_path).lower():
-                self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                            torch_dtype=torch.float16,
-                                                            device_map=self.binding_config.device_map,
-                                                            offload_folder="offload",
-                                                            offload_state_dict = True
-                                                            )
-            else:
-                self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                            torch_dtype=torch.float16,
-                                                            device_map=self.binding_config.device_map,
-                                                            offload_folder="offload",
-                                                            offload_state_dict = True
-                                                            )
-            self.model_device = self.model.parameters().__next__().device
-
-            ASCIIColors.success(f"ok")
-            """
-            try:
-                if not self.binding_config.automatic_context_size:
                     self.model.seqlen = self.binding_config.ctx_size
-                self.config.ctx_size = self.model.seqlen
-            except:
-                self.model.seqlen = self.binding_config.ctx_size
-                self.config.ctx_size = self.model.seqlen
-            ASCIIColors.info(f"Context lenghth set to {self.model.seqlen}")
-            
-            """
-            return self
-        else:
-            ASCIIColors.error('No model selected!!')
+                    self.config.ctx_size = self.model.seqlen
+                ASCIIColors.info(f"Context lenghth set to {self.model.seqlen}")
+                
+                """
+                return self
+            else:
+                self.InfoMessage(f"No model is selected")
+        except Exception as ex:
+            self.HideBlockingMessage()
 
     def install(self):
         self.ShowBlockingMessage("Freeing memory...")
