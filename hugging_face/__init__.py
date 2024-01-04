@@ -179,6 +179,16 @@ class HuggingFace(LLMBinding):
                         gc.collect()
                     self.clear_cuda()
 
+                gen_cfg = model_path/"generation_config.json"
+                if not gen_cfg.exists():
+                    with open(gen_cfg,"w") as f:
+                        json.dump({
+                            "_from_model_config": True,
+                            "bos_token_id": 1,
+                            "eos_token_id": 32000,
+                            "transformers_version": "4.35.0.dev0"
+                    }
+                    ,f)
                 import os
                 os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
                 self.ShowBlockingMessage(f"Creating tokenizer {model_path}")
