@@ -65,6 +65,7 @@ class HuggingFace(LLMBinding):
 
             {"name":"gpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on GPU."},
             {"name":"cpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on CPU."},
+            {"name":"disable_exllama","type":"bool","value":False, "help":"Disables exllama support."},
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
@@ -292,8 +293,10 @@ class HuggingFace(LLMBinding):
                 requirements_file = self.binding_dir / "requirements_amd.txt"
             elif self.config.hardware_mode=="nvidia":
                 requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
+                check_and_install_torch(True)
             elif self.config.hardware_mode=="nvidia-tensorcores":
                 requirements_file = self.binding_dir / "requirements_nvidia.txt"
+                check_and_install_torch(True)
             elif self.config.hardware_mode=="apple-intel":
                 requirements_file = self.binding_dir / "requirements_apple_intel.txt"
             elif self.config.hardware_mode=="apple-silicon":
