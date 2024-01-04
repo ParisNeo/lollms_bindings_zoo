@@ -71,9 +71,8 @@ class CTRansformers(LLMBinding):
         binding_config_template = ConfigTemplate([
             {"name":"n_threads","type":"int","value":8, "min":1},
             {"name":"batch_size","type":"int","value":1, "min":1},
-            {"name":"gpu_layers","type":"int","value":20 if config.enable_gpu else 0, "min":0},
-            {"name":"use_avx2","type":"bool","value":True},
-            {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"gpu_layers","type":"int","value":20 if config.hardware_mode=="nvidia" or config.hardware_mode=="nvidia-tensorcores" else 0, "min":0},
+            {"name":"ctx_size","type":"int","value":4096, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
            
         ])
@@ -148,46 +147,34 @@ class CTRansformers(LLMBinding):
 
         from ctransformers import AutoModelForCausalLM
 
-        if self.binding_config.config["use_avx2"]:
-            if self.config.enable_gpu:
-                self.model = AutoModelForCausalLM.from_pretrained(
-                    str(model_path), model_type=model_type,
-                    gpu_layers = self.binding_config.config["gpu_layers"] if self.config.enable_gpu else 0,
-                    batch_size=self.binding_config.config["batch_size"],
-                    threads = self.binding_config.config["n_threads"],
-                    context_length = self.binding_config.config["ctx_size"],
-                    seed = self.binding_config.config["seed"],
-                    reset= False
-                    )
-            else:
-                self.model = AutoModelForCausalLM.from_pretrained(
-                    str(model_path), model_type=model_type,
-                    batch_size=self.binding_config.config["batch_size"],
-                    threads = self.binding_config.config["n_threads"],
-                    context_length = self.binding_config.config["ctx_size"],
-                    seed = self.binding_config.config["seed"],
-                    reset= False
-                    )
+        if self.config.hardware_mode=="nvidia" or self.config.hardware_mode=="nvidia-tensorcores" or self.config.hardware_mode=="amd" or self.config.hardware_mode=="amd-noavx":
+            self.model = AutoModelForCausalLM.from_pretrained(
+                str(model_path), model_type=model_type,
+                gpu_layers = self.binding_config.config["gpu_layers"],
+                batch_size=self.binding_config.config["batch_size"],
+                threads = self.binding_config.config["n_threads"],
+                context_length = self.binding_config.config["ctx_size"],
+                seed = self.binding_config.config["seed"],
+                reset= False
+                )
+        elif self.config.hardware_mode!="cpu-noavx":
+            self.model = AutoModelForCausalLM.from_pretrained(
+                str(model_path), model_type=model_type,
+                batch_size=self.binding_config.config["batch_size"],
+                threads = self.binding_config.config["n_threads"],
+                context_length = self.binding_config.config["ctx_size"],
+                seed = self.binding_config.config["seed"],
+                reset= False
+                )
         else:
-            if self.config.enable_gpu:
-                self.model = AutoModelForCausalLM.from_pretrained(
-                        str(model_path), model_type=model_type, lib = "avx",
-                        gpu_layers = self.binding_config.config["gpu_layers"],
-                        batch_size=self.binding_config.config["batch_size"],
-                        threads = self.binding_config.config["n_threads"],
-                        context_length = self.binding_config.config["ctx_size"],
-                        seed = self.binding_config.config["seed"],
-                        reset= False
-                        )
-            else:
-                self.model = AutoModelForCausalLM.from_pretrained(
-                        str(model_path), model_type=model_type, lib = "avx",
-                        batch_size=self.binding_config.config["batch_size"],
-                        threads = self.binding_config.config["n_threads"],
-                        context_length = self.binding_config.config["ctx_size"],
-                        seed = self.binding_config.config["seed"],
-                        reset= False
-                        )
+            self.model = AutoModelForCausalLM.from_pretrained(
+                    str(model_path), model_type=model_type, lib = "avx",
+                    batch_size=self.binding_config.config["batch_size"],
+                    threads = self.binding_config.config["n_threads"],
+                    context_length = self.binding_config.config["ctx_size"],
+                    seed = self.binding_config.config["seed"],
+                    reset= False
+                    )
         ASCIIColors.success("Model built")            
         return self
             
@@ -203,132 +190,30 @@ class CTRansformers(LLMBinding):
         super().install()
 
         # INstall other requirements
-        self.info("Installing requirements")
-        requirements_file = self.binding_dir / "requirements.txt"
-        subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
-        self.success("Requirements install done")
-        # Get the platforms
+        self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
         try:
-            platforms = cl.get_platforms()
+            if self.config.hardware_mode=="cpu-noavx":
+                requirements_file = self.binding_dir / "requirements_cpu_no_avx.txt"
+            elif self.config.hardware_mode=="cpu":
+                requirements_file = self.binding_dir / "requirements_cpu_only.txt"
+            elif self.config.hardware_mode=="amd-noavx":
+                requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
+            elif self.config.hardware_mode=="amd":
+                requirements_file = self.binding_dir / "requirements_amd.txt"
+            elif self.config.hardware_mode=="nvidia":
+                requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
+            elif self.config.hardware_mode=="nvidia-tensorcores":
+                requirements_file = self.binding_dir / "requirements_nvidia.txt"
+            elif self.config.hardware_mode=="apple-intel":
+                requirements_file = self.binding_dir / "requirements_apple_intel.txt"
+            elif self.config.hardware_mode=="apple-silicon":
+                requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
 
-            gpu_type = "None"
-
-            # Iterate over each platform
-            for platform in platforms:
-                # Get the devices for the platform
-                devices = platform.get_devices()
-                
-                # Iterate over each device
-                for device in devices:
-                    # Check if the device is an Apple GPU
-                    if "Apple" in device.vendor:
-                        self.info("Apple GPU detected")
-                        gpu_type = "Apple"
-                        break                
-                    # Check if the device is an NVIDIA GPU
-                    elif "NVIDIA" in device.vendor:
-                        self.info("NVIDIA GPU detected")
-                        gpu_type = "NVIDIA"
-                        break
-                    # Check if the device is an AMD GPU
-                    elif "AMD" in device.vendor:
-                        self.info("AMD GPU detected")
-                        gpu_type = "AMD"
-                        break
-                    # Check if the device is an Intel GPU
-                    elif "Intel" in device.vendor:
-                        self.info("Intel GPU detected")
-                        gpu_type = "Intel"
-                        break        
-        except:
-            if sys.platform == "win32" or sys.platform == "linux":
-                gpu_type = "NVIDIA"
-            elif sys.platform == "darwin":
-                gpu_type = "Apple"
-
-        self.info(f"GPU type detected: {gpu_type}")
-        if sys.platform == "win32":
-            # Code for Windows platform
-            self.info("Running on Windows")
-            if self.config.enable_gpu:
-                self.info("This installation has enabled GPU support. Trying to install with GPU support")
-                # Step 2: Install dependencies using pip from requirements.txt
-                self.info("Trying to install a cuda enabled version of ctransformers")
-                # env = os.environ.copy()
-                # env["CT_CUBLAS"]="1"
-                # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                # result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
-                if gpu_type=="NVIDIA":
-                    result = subprocess.run(["pip","install","ctransformers","ctransformers[cuda]"])
-                    if result.returncode != 0:
-                        self.warning("Couldn't find Cuda build tools on your PC. Reverting to CPU. ")
-                        # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-                elif gpu_type=="AMD":
-                    result = subprocess.run(["CT_HIPBLAS=1","pip","install","ctransformers", "--no-binary", "ctransformers"])
-                    if result.returncode != 0:
-                        self.warning("Couldn't find Rocm build tools on your PC. Reverting to CPU. ")
-                        # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-                elif gpu_type=="Intel":
-                    self.warning("Installing for Intel.")
-                    # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                    result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-            else:
-                self.info("Using CPU")
-                # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-
-            # Add your Windows-specific code here
-        elif sys.platform == "darwin":
-            # Code for macOS platform
-            self.info("Running on macOS")
-            result = subprocess.run(["CT_METAL=1","pip","install","ctransformers", "--no-binary", "ctransformers"])
-            if result.returncode != 0:
-                self.warning("Couldn't find Metal build tools on your PC. Reverting to CPU. ")
-                # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-        elif sys.platform == "linux":
-            # Code for Linux platform
-            self.info("Running on Linux")
-            if self.config.enable_gpu:
-                self.info("This installation has enabled GPU support. Trying to install with GPU support")
-                # Step 2: Install dependencies using pip from requirements.txt
-                # env = os.environ.copy()
-                # env["CT_CUBLAS"]="1"
-                # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                # result = subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "ctransformers", "--no-binary", "ctransformers"], env=env) # , "--no-binary"
-                if gpu_type=="NVIDIA":
-                    result = subprocess.run(["pip","install","ctransformers","ctransformers[cuda]"])
-                    if result.returncode != 0:
-                        self.notify("Couldn't find Cuda build tools on your PC. Reverting to CPU. ", notification_type=NotificationType.NOTIF_WARNING)
-                        # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-                elif gpu_type=="AMD":
-                    result = subprocess.run(["CT_HIPBLAS=1","pip","install","ctransformers", "--no-binary", "ctransformers"])
-                    if result.returncode != 0:
-                        self.notify("Couldn't find Rocm build tools on your PC. Reverting to CPU. ", notification_type=NotificationType.NOTIF_WARNING)
-                        # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                        result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-                elif gpu_type=="Intel":
-                    self.notify("Installing for Intel. ", notification_type=NotificationType.NOTIF_INFO)
-                    # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                    result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-            else:
-                self.notify("Using CPU", notification_type=NotificationType.NOTIF_WARNING)
-                # pip install --upgrade --no-cache-dir --no-binary ctransformers
-                result = subprocess.run(["pip", "install", "--upgrade", "ctransformers"])
-
-            # Add your Linux-specific code here
-        else:
-            # Code for other platforms
-            self.notify("Unsupported platform", notification_type=NotificationType.NOTIF_ERROR)
-            return
-        # CT_METAL=1 pip install ctransformers --no-binary ctransformers
-
-                    
-        self.notify("Installed successfully")
-
+            subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+            self.notify("Installed successfully")
+        except Exception as ex:
+            self.error(ex)
+        self.HideBlockingMessage()
     def uninstall(self):
         """
         UnInstallation procedure (to be implemented)
@@ -348,7 +233,7 @@ class CTRansformers(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.model.tokenize(prompt)
+        return self.model.tokenize(prompt, False)
 
     def detokenize(self, tokens_list:list):
         """
@@ -360,7 +245,7 @@ class CTRansformers(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.model.detokenize(tokens_list)
+        return self.model.detokenize(tokens_list).replace("<0x0A>","")
     
     def embed(self, text):
         """
@@ -409,7 +294,6 @@ class CTRansformers(LLMBinding):
             self.seed = self.binding_config.seed
         try:
             output = ""
-            # self.model.reset()
             count = 0
             for chunk in self.model(
                                             prompt,

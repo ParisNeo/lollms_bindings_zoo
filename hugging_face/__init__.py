@@ -62,6 +62,9 @@ class HuggingFace(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
+
+            {"name":"gpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on GPU."},
+            {"name":"cpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on CPU."},
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
@@ -166,7 +169,7 @@ class HuggingFace(LLMBinding):
                 self.tokenizer = None
                 self.model = None
                 gc.collect()
-                if self.config.enable_gpu:
+                if self.config.hardware_mode=="nvidia" or self.config.hardware_mode=="nvidia-tensorcores" or self.config.hardware_mode=="nvidia-tensorcores":
                     if self.model is not None:
                         AdvancedGarbageCollector.safeHardCollect("model", self)
                         AdvancedGarbageCollector.safeHardCollect("tokenizer", self)
@@ -227,6 +230,24 @@ class HuggingFace(LLMBinding):
                                                                 offload_folder="offload",
                                                                 offload_state_dict = True
                                                                 )
+                from accelerate.utils import is_xpu_available
+                if self.binding_config.gpu_memory or torch.cuda.device_count() > 1 or (is_xpu_available() and torch.xpu.device_count() > 1):
+                    if self.binding_config.gpu_memory:
+                        memory_map = list(map(lambda x: x.strip(), [self.binding_config.gpu_memory]))
+                        max_cpu_memory = self.binding_config.cpu_memory.strip() if self.binding_config.cpu_memory is not None else '99GiB'
+                        max_memory = {}
+                        for i in range(len(memory_map)):
+                            max_memory[i] = f'{memory_map[i]}GiB' if not re.match('.*ib$', memory_map[i].lower()) else memory_map[i]
+
+                        max_memory['cpu'] = f'{max_cpu_memory}GiB' if not re.match('.*ib$', max_cpu_memory.lower()) else max_cpu_memory
+                    else:
+                        max_memory = accelerate.utils.get_balanced_memory(self.model)                    
+                    import accelerate
+                    device_map = accelerate.infer_auto_device_map(self.model, max_memory=max_memory, no_split_module_classes=["LlamaDecoderLayer"])
+                    ASCIIColors.yellow(f"Using the following device map for the quantized model: {device_map}")
+                    # https://huggingface.co/docs/accelerate/package_reference/big_modeling#accelerate.dispatch_model
+                    self.model = accelerate.dispatch_model(self.model, device_map=device_map, offload_buffers=True)
+
                 self.model_device = self.model.parameters().__next__().device
                 self.ShowBlockingMessage(f"Model loaded successfully")
                 self.HideBlockingMessage()
@@ -246,6 +267,7 @@ class HuggingFace(LLMBinding):
             else:
                 self.InfoMessage(f"No model is selected")
         except Exception as ex:
+            self.error(str(ex))
             self.HideBlockingMessage()
 
     def install(self):
@@ -258,73 +280,26 @@ class HuggingFace(LLMBinding):
 
         super().install()
 
-        self.ShowBlockingMessage("Verifying pytorch installation\nRequired version 2.1 will be installed if not found on your system ...")
-        check_and_install_torch(self.config.enable_gpu, version=2.1)
+        self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
+        try:
+            if self.config.hardware_mode=="cpu-noavx":
+                requirements_file = self.binding_dir / "requirements_cpu_no_avx.txt"
+            elif self.config.hardware_mode=="cpu":
+                requirements_file = self.binding_dir / "requirements_cpu_only.txt"
+            elif self.config.hardware_mode=="amd-noavx":
+                requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
+            elif self.config.hardware_mode=="amd":
+                requirements_file = self.binding_dir / "requirements_amd.txt"
+            elif self.config.hardware_mode=="nvidia":
+                requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
+            elif self.config.hardware_mode=="nvidia-tensorcores":
+                requirements_file = self.binding_dir / "requirements_nvidia.txt"
+            elif self.config.hardware_mode=="apple-intel":
+                requirements_file = self.binding_dir / "requirements_apple_intel.txt"
+            elif self.config.hardware_mode=="apple-silicon":
+                requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
 
-            
-        # Step 2: Install dependencies using pip from requirements.txt
-        requirements_file = self.binding_dir / "requirements.txt"
-        try:
-            import transformers
-            self.ShowBlockingMessage("Uninstalling transformers...")
-            subprocess.run(["pip", "uninstall", "transformers", "-y"])
-            self.info("Uninstalled transformers")
-        except:
-            pass
-        try:
-            import auto_gptq
-            self.ShowBlockingMessage("Uninstalling auto-gptq ...")
-            subprocess.run(["pip", "uninstall", "auto-gptq", "-y"])
-            self.info("Uninstalled auto-gptq")
-        except:
-            pass
-        try:
-            import autoawq
-            self.ShowBlockingMessage("Uninstalling autoawq ...")
-            subprocess.run(["pip", "uninstall", "autoawq", "-y"])
-            self.info("Uninstalled autoawq")
-        except:
-            pass
-        # subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
-        # self.info("installed requirements")
-        # pip install --upgrade --no-cache-dir transformers
-        # pip install --upgrade --no-cache-dir auto-gptq
-        # pip install auto-gptq --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu118/
-        supported_models = ["transformers"]
-        try:
-            if self.lollmsCom.YesNoMessage("Do you want to install gptq library to allow gptq models usage?"):
-                self.ShowBlockingMessage("Installing optimum ...")
-                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "optimum"])
-                self.info("optimum installed successfully")
-                self.ShowBlockingMessage("Installing auto-gptq ...")
-                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "auto-gptq"])
-                supported_models.append("gptq")
-                self.info("auto-gptq installed successfully")
-            # pip install --upgrade --no-cache-dir autoawq
-            if self.lollmsCom.YesNoMessage("Do you want to install awq library to allow awq models usage?"):
-                self.ShowBlockingMessage("Installing autoawq ...")
-                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "autoawq"])
-                supported_models.append("awq")
-                self.success("autoawq installed successfully")
-
-            if self.config.enable_gpu:
-                self.ShowBlockingMessage("Installing einops ...")                
-                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "einops"])
-                self.success("einops installed successfully")
-                if self.lollmsCom.YesNoMessage("Do you want to install flash attention?\nIt is not absolutely required, but can increase the generation speed by at least 3 when activated\nIt will accelerate the attention mechanism if activated but will be compiled on your computer which will make the install process slow.\nIf ninja is installed it should take between 3 to 5 minutes, but if it is not installed, this may take up to 2hours!"):
-                    try:
-                        self.ShowBlockingMessage("Installing flash attention. This may take a while! ...")                
-                        subprocess.run(["pip", "install", "--upgrade", "flash-attn", "--no-build-isolation"])
-                        self.info("installed flash attention")
-                    except:
-                        self.error("flash attention installation failed. ")
-
-                self.ShowBlockingMessage("Installing accelerate ...")                
-                subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "accelerate"])
-                self.info("accelerate installed successfully")
-            self.ShowBlockingMessage("Installing transformers ...")                
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "transformers"])
-            self.info("transformers installed successfully")
+            subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
             # Initialization code goes here
             binding_config_template = ConfigTemplate([
                 {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
@@ -347,7 +322,6 @@ class HuggingFace(LLMBinding):
             # ASCIIColors.success("Installed successfully")
             self.success("Successfull installation")
         except Exception as ex:
-            trace_exception(ex)
             self.error(ex)
         self.HideBlockingMessage()
 

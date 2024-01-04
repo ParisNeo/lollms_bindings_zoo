@@ -26,6 +26,7 @@ import os
 import sys
 
 import platform
+from functools import partial
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -34,6 +35,16 @@ __license__ = "Apache 2.0"
 
 binding_name = "LLAMA_Python_CPP"
 
+def ban_eos_logits_processor(eos_token, input_ids, logits):
+    logits[eos_token] = -float('inf')
+    return logits
+
+
+def custom_token_ban_logits_processor(token_ids, input_ids, logits):
+    for token_id in token_ids:
+        logits[token_id] = -float('inf')
+
+    return logits
 class LLAMA_Python_CPP(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
@@ -64,13 +75,16 @@ class LLAMA_Python_CPP(LLMBinding):
             
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-            {"name":"n_threads","type":"int","value":8, "min":1},
+            {"name":"n_threads","type":"int","value":8, "min":1},            
+            {"name":"n_gpu_layers","type":"int","value":20 if config.hardware_mode=="nvidia" or  config.hardware_mode=="nvidia-tensorcores" or  config.hardware_mode=="amd" or  config.hardware_mode=="amd-noavx" else 0, "min":1},
+            {"name":"main_gpu","type":"int","value":0, "help":"If you have more than one gpu you can select the gpu to be used here"},
+            {"name":"offload_kqv","type":"bool","value":False if 'cpu' in self.config.hardware_mode or 'apple' in self.config.hardware_mode else True, "help":"If you have more than one gpu you can select the gpu to be used here"},
+            {"name":"cache_capacity","type":"int","value":(2 << 30) , "help":"The size of the cache in bytes"},            
             {"name":"batch_size","type":"int","value":1, "min":1},
-            {"name":"gpu_layers","type":"int","value":20 if config.enable_gpu else 0, "min":0},
-            {"name":"use_avx2","type":"bool","value":True},
-            {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"ctx_size","type":"int","value":4096, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-           
+            {"name":"lora_path","type":"str","value":"","help":"Path to a lora file to apply to the model."},
+            {"name":"lora_scale","type":"float","value":1.0,"help":"Scaling to apply to the lora."},
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
 
@@ -100,6 +114,30 @@ class LLAMA_Python_CPP(LLMBinding):
 
     def build_model(self):
 
+        try:
+            import llama_cpp
+        except:
+            llama_cpp = None
+
+        try:
+            import llama_cpp_cuda
+        except:
+            llama_cpp_cuda = None
+
+        try:
+            import llama_cpp_cuda_tensorcores
+        except:
+            llama_cpp_cuda_tensorcores = None
+        
+        if self.config.hardware_mode=="nvidia" and llama_cpp_cuda:
+            self.llama_cpp = llama_cpp_cuda
+        elif self.config.hardware_mode=="nvidia-tensorcores" and llama_cpp_cuda_tensorcores:
+            self.llama_cpp = llama_cpp_cuda_tensorcores
+        else:
+            self.llama_cpp = llama_cpp
+
+        Llama = self.llama_cpp.Llama
+        LlamaCache = self.llama_cpp.LlamaCache
         ASCIIColors.info("Building model")
         if self.config['model_name'] is None:
            ASCIIColors.error("No model is selected")
@@ -120,9 +158,23 @@ class LLAMA_Python_CPP(LLMBinding):
                 model_path = candidates[0]
             
 
-        from llama_cpp import Llama
-        self.model = Llama(model_path=str(model_path))
-
+        self.model = Llama(
+                                model_path=str(model_path), 
+                                n_gpu_layers=self.binding_config.n_gpu_layers, 
+                                main_gpu=self.binding_config.main_gpu, 
+                                n_ctx=self.config.ctx_size,
+                                n_threads=self.binding_config.n_threads,
+                                n_batch=self.binding_config.batch_size,
+                                offload_kqv=self.binding_config.offload_kqv,
+                                seed=self.binding_config.seed,
+                                lora_path=self.binding_config.lora_path,
+                                lora_scale=self.binding_config.lora_scale
+                            )
+        # self.model.set_cache(LlamaCache(capacity_bytes=0))
+        for chunk in self.model.create_completion("question: What is 1+1\nanswer:",
+                                        max_tokens = 2,
+                                        stream=True):
+            pass
         
         ASCIIColors.success("Model built")            
         return self
@@ -140,21 +192,32 @@ class LLAMA_Python_CPP(LLMBinding):
 
         # INstall other requirements
         # self.info("Installing requirements")
-        # requirements_file = self.binding_dir / "requirements.txt"
-        # subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+       
         # self.success("Requirements install done")
-        current_platform = platform.system()
-        
-        if current_platform == 'Linux':
-            subprocess.run(['pip', 'install', "--upgrade", 'https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.25/llama_cpp_python-0.2.25-cp310-cp310-manylinux_2_17_x86_64.whl'])
-        elif current_platform == 'Windows':
-            subprocess.run(['pip', 'install', "--upgrade", 'https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.25/llama_cpp_python-0.2.25-cp310-cp310-win_amd64.whl'])
-        elif current_platform == 'Darwin':
-            subprocess.run(['pip', 'install', "--upgrade", 'https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.25/llama_cpp_python-0.2.25-cp310-cp310-macosx_10_9_x86_64.whl'])
-        else:
-            print('Unsupported platform.')
-                    
-        self.notify("Installed successfully")
+        self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
+        try:
+            if self.config.hardware_mode=="cpu-noavx":
+                requirements_file = self.binding_dir / "requirements_cpu_no_avx.txt"
+            elif self.config.hardware_mode=="cpu":
+                requirements_file = self.binding_dir / "requirements_cpu_only.txt"
+            elif self.config.hardware_mode=="amd-noavx":
+                requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
+            elif self.config.hardware_mode=="amd":
+                requirements_file = self.binding_dir / "requirements_amd.txt"
+            elif self.config.hardware_mode=="nvidia":
+                requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
+            elif self.config.hardware_mode=="nvidia-tensorcores":
+                requirements_file = self.binding_dir / "requirements_nvidia.txt"
+            elif self.config.hardware_mode=="apple-intel":
+                requirements_file = self.binding_dir / "requirements_apple_intel.txt"
+            elif self.config.hardware_mode=="apple-silicon":
+                requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
+
+            subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+            self.notify("Installed successfully")
+        except Exception as ex:
+            self.error(ex)
+        self.HideBlockingMessage()
 
     def uninstall(self):
         """
@@ -187,7 +250,7 @@ class LLAMA_Python_CPP(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.model.detokenize(tokens_list).decode("utf8")
+        return self.model.detokenize(tokens_list).decode("utf8").replace("<0x0A>","")
     
     def embed(self, text):
         """
@@ -234,6 +297,14 @@ class LLAMA_Python_CPP(LLMBinding):
         gpt_params = {**default_params, **gpt_params}
         if gpt_params['seed']!=-1:
             self.seed = self.binding_config.seed
+        LogitsProcessorList = self.llama_cpp.LogitsProcessorList
+        prompt = prompt if type(prompt) is str else prompt.decode()
+
+        # Handle truncation
+        logit_processors = LogitsProcessorList()
+        logit_processors.append(partial(ban_eos_logits_processor, self.model.token_eos()))
+
+
         try:
             output = ""
             # self.model.reset()
@@ -247,6 +318,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                             top_p=float(gpt_params['top_p']),
                                             temperature=float(gpt_params['temperature']),
                                             repeat_penalty=float(gpt_params['repeat_penalty']),
+                                            logits_processor=logit_processors,
                                             # seed=int(gpt_params['seed']),
                                             #threads = int(gpt_params['n_threads']),
                                 ):
@@ -262,9 +334,9 @@ class LLAMA_Python_CPP(LLMBinding):
                     output=output.replace("<0x0A>","\n")
                     
 
-                if callback is not None:
-                    if not callback(output, MSG_TYPE.MSG_TYPE_FULL):
-                        break
+                    if callback is not None:
+                        if not callback(output, MSG_TYPE.MSG_TYPE_FULL):
+                            break
                 
                 
         except Exception as ex:

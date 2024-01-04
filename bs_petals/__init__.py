@@ -190,7 +190,7 @@ class Petals(LLMBinding):
         super().install()
         # INstall other requirements
         self.info("Installing torch")
-        check_and_install_torch(self.config.enable_gpu)
+        check_and_install_torch(self.config.hardware_mode=="nvidia" or self.config.hardware_mode=="nvidia-tensorcores")
 
         self.info("Installing requirements")
         requirements_file = self.binding_dir / "requirements.txt"

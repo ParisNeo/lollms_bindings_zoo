@@ -1,4 +1,0 @@
-setuptools
-transformers
-accelerate
-huggingface_hub
