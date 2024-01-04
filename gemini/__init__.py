@@ -235,15 +235,17 @@ class Gemini(LLMBinding):
         url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models?key={self.binding_config.google_api_key}'
 
         response = requests.get(url)
-        return [f["name"] for f in response["models"]]
-                
+        response_json = response.json()
+        return [f["name"] for f in response_json["models"]]                
+    
     def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
         url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models?key={self.binding_config.google_api_key}'
 
         response = requests.get(url)
         models = []
-        for model in response["models"]:
+        response_json = response.json()
+        for model in response_json["models"]:
             md = {
                 "category": "generic",
                 "datasets": "unknown",
