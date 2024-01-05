@@ -174,7 +174,7 @@ class Gemini(LLMBinding):
 
 
 
-        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models/{self.config.model_name}:generateContent'
+        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/{self.config.model_name}:generateContent'
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
         result = response.json()
@@ -247,7 +247,7 @@ class Gemini(LLMBinding):
 
 
 
-        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models/{self.config.model_name}:generateContent'
+        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/{self.config.model_name}:generateContent'
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
         result = response.json()
