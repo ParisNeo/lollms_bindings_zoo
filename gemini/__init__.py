@@ -27,6 +27,11 @@ import json
 import requests
 from typing import List, Union
 from datetime import datetime
+from PIL import Image
+import base64
+import io
+
+
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
@@ -35,6 +40,26 @@ __license__ = "Apache 2.0"
 binding_name = "Gemini"
 binding_folder_name = ""
 
+def encode_image(image_path, max_image_width=-1):
+    image = Image.open(image_path)
+    width, height = image.size
+
+    if max_image_width != -1 and width > max_image_width:
+        ratio = max_image_width / width
+        new_width = max_image_width
+        new_height = int(height * ratio)
+        image = image.resize((new_width, new_height))
+
+    # Check and convert image format if needed
+    if image.format not in ['PNG', 'JPEG', 'GIF', 'WEBP']:
+        image = image.convert('JPEG')
+
+    # Save the image to a BytesIO object
+    byte_arr = io.BytesIO()
+    image.save(byte_arr, format=image.format)
+    byte_arr = byte_arr.getvalue()
+
+    return base64.b64encode(byte_arr).decode('utf-8')
 class Gemini(LLMBinding):
     
     def __init__(self, 
@@ -208,6 +233,7 @@ class Gemini(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        
         PALM_KEY = self.binding_config.google_api_key
 
         headers = {
@@ -226,6 +252,12 @@ class Gemini(LLMBinding):
                 "contents": [{
                     "parts":[
                         {"text": prompt}
+                    ]+[        {
+                        "inline_data": {
+                            "mime_type":"image/jpeg",
+                            "data": encode_image(img, 512)
+                        }
+                        } for img in images
                     ]
                 }],
                 "safetySettings": [
