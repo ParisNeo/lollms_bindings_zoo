@@ -202,15 +202,32 @@ class Gemini(LLMBinding):
         }
         gpt_params = {**default_params, **gpt_params}
 
-        data = {
-            'prompt': {
-                'text': prompt
-            },
-            "temperature": float(gpt_params["temperature"]),
-            "candidateCount": 1
-        }
+        data ={
+                "contents": [{
+                    "parts":[
+                        {"text": prompt}
+                    ]
+                }],
+                "safetySettings": [
+                    {
+                        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                        "threshold": "BLOCK_ONLY_HIGH"
+                    }
+                ],
+                "generationConfig": {
+                    "stopSequences": [
+                        "Title"
+                    ],
+                    "temperature": float(gpt_params["temperature"]),
+                    "maxOutputTokens": n_predict,
+                    "topP": gpt_params["top_p"],
+                    "topK": gpt_params["top_k"]
+                }
+            }
 
-        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models/{self.config.model_name}:generateText'
+
+
+        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models/{self.config.model_name}:generateContent'
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
         result = response.json()
