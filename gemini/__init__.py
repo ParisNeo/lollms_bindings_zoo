@@ -236,7 +236,7 @@ class Gemini(LLMBinding):
 
         response = requests.get(url)
         response_json = response.json()
-response_json["models"]+=[
+        response_json["models"]+=[
             {
             "name": "models/chat-bison-001",
             "version": "001",
