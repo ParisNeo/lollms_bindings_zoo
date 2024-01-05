@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
-from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.utilities import detect_antiprompt, remove_text_from_string
@@ -84,6 +84,8 @@ class Gemini(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size        
 
     def build_model(self):
+        if "vision" in self.config.model_name:
+            self.binding_type==BindingType.TEXT_IMAGE
         return self
 
     def install(self):
@@ -147,21 +149,38 @@ class Gemini(LLMBinding):
         }
         gpt_params = {**default_params, **gpt_params}
 
-        data = {
-            'prompt': {
-                'text': prompt
-            },
-            "temperature": float(gpt_params["temperature"]),
-            "candidateCount": 1
-        }
+        data ={
+                "contents": [{
+                    "parts":[
+                        {"text": prompt}
+                    ]
+                }],
+                "safetySettings": [
+                    {
+                        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                        "threshold": "BLOCK_ONLY_HIGH"
+                    }
+                ],
+                "generationConfig": {
+                    "stopSequences": [
+                        "Title"
+                    ],
+                    "temperature": float(gpt_params["temperature"]),
+                    "maxOutputTokens": n_predict,
+                    "topP": gpt_params["top_p"],
+                    "topK": gpt_params["top_k"]
+                }
+            }
 
-        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models/{self.config.model_name}:generateText'
+
+
+        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models/{self.config.model_name}:generateContent'
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
         result = response.json()
         if "error" in result:
             ASCIIColors.error(result["error"]["message"])
-            self.error(result["error"]["message"])
+            self.info(result["error"]["message"])
             return ''
         else:
             if callback:
@@ -171,6 +190,7 @@ class Gemini(LLMBinding):
                     ASCIIColors.warning(f"\nDetected hallucination with antiprompt: {antiprompt}")
                     output = remove_text_from_string(output, antiprompt)                
                 callback(output, MSG_TYPE.MSG_TYPE_FULL)
+
 
         return result["candidates"][0]["output"]
     def generate_with_images(self, 
