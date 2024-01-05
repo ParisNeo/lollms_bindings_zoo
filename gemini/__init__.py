@@ -249,11 +249,11 @@ class Gemini(LLMBinding):
     def list_models(self):
         """Lists the models for this binding
         """
-        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models?key={self.binding_config.google_api_key}'
+        # url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models?key={self.binding_config.google_api_key}'
 
-        response = requests.get(url)
-        response_json = response.json()
-        response_json["models"]+=[
+        # response = requests.get(url)
+        # response_json = response.json()
+        response_json=[
             {
             "name": "models/chat-bison-001",
             "version": "001",
@@ -381,16 +381,16 @@ class Gemini(LLMBinding):
             "topK": 40
             }
         ]        
-        return [f["name"] for f in response_json["models"]]                
+        return [f["name"] for f in response_json]                
     
     def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
-        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models?key={self.binding_config.google_api_key}'
+        # url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/models?key={self.binding_config.google_api_key}'
 
-        response = requests.get(url)
+        # response = requests.get(url)
         models = []
-        response_json = response.json()
-        response_json["models"]+=[
+        #response_json = response.json()
+        response_json=[
             {
             "name": "models/chat-bison-001",
             "version": "001",
@@ -518,7 +518,7 @@ class Gemini(LLMBinding):
             "topK": 40
             }
         ]
-        for model in response_json["models"]:
+        for model in response_json:
             md = {
                 "category": "generic",
                 "datasets": "unknown",
