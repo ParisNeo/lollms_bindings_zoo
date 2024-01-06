@@ -209,7 +209,7 @@ class Gemini(LLMBinding):
             return ''
         else:
             if callback:
-                output = result["candidates"][0]["output"]
+                output = result["candidates"][0]["content"]["parts"][0]["text"]
                 antiprompt = detect_antiprompt(output)
                 if antiprompt:
                     ASCIIColors.warning(f"\nDetected hallucination with antiprompt: {antiprompt}")
@@ -289,7 +289,7 @@ class Gemini(LLMBinding):
             return ''
         else:
             if callback:
-                output = result["candidates"][0]["output"]
+                output = result["candidates"][0]["content"]["parts"][0]["text"]
                 antiprompt = detect_antiprompt(output)
                 if antiprompt:
                     ASCIIColors.warning(f"\nDetected hallucination with antiprompt: {antiprompt}")
