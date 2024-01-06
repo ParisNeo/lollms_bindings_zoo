@@ -217,7 +217,7 @@ class Gemini(LLMBinding):
                 callback(output, MSG_TYPE.MSG_TYPE_FULL)
 
 
-        return result["candidates"][0]["output"]
+        return result["candidates"][0]["content"]["parts"][0]["text"]
     def generate_with_images(self, 
                 prompt:str,
                 images:list=[],
@@ -296,7 +296,7 @@ class Gemini(LLMBinding):
                     output = remove_text_from_string(output, antiprompt)                
                 callback(output, MSG_TYPE.MSG_TYPE_FULL)
 
-        return result["candidates"][0]["output"]
+        return result["candidates"][0]["content"]["parts"][0]["text"]
     
     def list_models(self):
         """Lists the models for this binding
