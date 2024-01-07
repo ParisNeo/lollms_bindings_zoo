@@ -18,7 +18,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
-from lollms.utilities import detect_antiprompt, remove_text_from_string, trace_exception
+from lollms.utilities import detect_antiprompt, remove_text_from_string, trace_exception, PackageManager
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
@@ -30,6 +30,10 @@ from datetime import datetime
 from PIL import Image
 import base64
 import io
+
+if not PackageManager.check_package_installed("tiktoken"):
+    PackageManager.install_package('tiktoken')
+import tiktoken
 
 
 __author__ = "parisneo"
@@ -133,30 +137,36 @@ class Gemini(LLMBinding):
         ASCIIColors.error("----------------------")
         ASCIIColors.error("The google bard binding uses the Google Bard API which is a paid service. Please create an account on the google cloud website then generate a key and provide it in the configuration file.")
     
-    def tokenize(self, text: Union[str, List[str]]) -> List[str]:
-        """Tokenizes a text string
+    def tokenize(self, prompt:str):
+        """
+        Tokenizes the given prompt using the model's tokenizer.
 
         Args:
-            text (str): The text to tokenize
+            prompt (str): The input prompt to be tokenized.
 
         Returns:
-            A list of tokens
+            list: A list of tokens representing the tokenized prompt.
         """
-        if isinstance(text, str):
-            return text.split()
-        else:
-            return text
+        import tiktoken
+        tokens_list = tiktoken.model.encoding_for_model("gpt-3.5-turbo").encode(prompt)
 
-    def detokenize(self, tokens: List[str]) -> str:
-        """Detokenizes a list of tokens
+        return tokens_list
+
+    def detokenize(self, tokens_list:list):
+        """
+        Detokenizes the given list of tokens using the model's tokenizer.
 
         Args:
-            tokens (List[str]): The tokens to detokenize
+            tokens_list (list): A list of tokens to be detokenized.
 
         Returns:
-            A string
+            str: The detokenized text as a string.
         """
-        return " ".join(tokens)
+        import tiktoken
+        text = tiktoken.model.encoding_for_model("gpt-3.5-turbo").decode(tokens_list)
+
+        return text
+
     
     
     def embed(self, text):
