@@ -18,7 +18,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
-from lollms.utilities import detect_antiprompt, remove_text_from_string
+from lollms.utilities import detect_antiprompt, remove_text_from_string, trace_exception
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
@@ -183,38 +183,41 @@ class Gemini(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        default_params = {
-            'temperature': 0.7,
-            'top_k': 50,
-            'top_p': 0.96,
-            'repeat_penalty': 1.3
-        }
-        gpt_params = {**default_params, **gpt_params}
-        response = self.model.generate_content(
-                                                    prompt,
-                                                    generation_config=self.genai.types.GenerationConfig(
-                                                    # Only one candidate for now.
-                                                    candidate_count=1,
-                                                    stop_sequences=['x'],
-                                                    max_output_tokens=n_predict,
-                                                    temperature=float(gpt_params['temperature'])),
-                                                    stream=True)
-        count = 0
-        output = ""
-        for chunk in response:
-            if count >= n_predict:
-                break
-            try:
-                word = chunk.text
-            except Exception as ex:
-                word = ""
-            if callback is not None:
-                if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+        try:
+            output = ""
+            default_params = {
+                'temperature': 0.7,
+                'top_k': 50,
+                'top_p': 0.96,
+                'repeat_penalty': 1.3
+            }
+            gpt_params = {**default_params, **gpt_params}
+            response = self.model.generate_content(
+                                                        prompt,
+                                                        generation_config=self.genai.types.GenerationConfig(
+                                                        # Only one candidate for now.
+                                                        candidate_count=1,
+                                                        stop_sequences=['x'],
+                                                        max_output_tokens=n_predict,
+                                                        temperature=float(gpt_params['temperature'])),
+                                                        stream=True)
+            count = 0
+            for chunk in response:
+                if count >= n_predict:
                     break
-            if word:
-                output += word
-                count += 1
-
+                try:
+                    word = chunk.text
+                except Exception as ex:
+                    word = ""
+                if callback is not None:
+                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break
+                if word:
+                    output += word
+                    count += 1
+        except Exception as ex:
+            trace_exception(ex)
+            self.error(ex)
         return output
     
     def generate_with_images(self, 
