@@ -197,7 +197,7 @@ class Gemini(LLMBinding):
                                                         generation_config=self.genai.types.GenerationConfig(
                                                         # Only one candidate for now.
                                                         candidate_count=1,
-                                                        stop_sequences=['x'],
+                                                        stop_sequences=[],
                                                         max_output_tokens=n_predict,
                                                         temperature=float(gpt_params['temperature'])),
                                                         stream=True)
@@ -251,9 +251,9 @@ class Gemini(LLMBinding):
                                                     generation_config=self.genai.types.GenerationConfig(
                                                     # Only one candidate for now.
                                                     candidate_count=1,
-                                                    stop_sequences=['x'],
+                                                    stop_sequences=[],
                                                     max_output_tokens=n_predict,
-                                                    temperature=gpt_params['temperature']),
+                                                    temperature=float(gpt_params['temperature'])),
                                                     stream=True)
 
         count = 0
