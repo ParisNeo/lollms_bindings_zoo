@@ -197,7 +197,7 @@ class Gemini(LLMBinding):
                                                     candidate_count=1,
                                                     stop_sequences=['x'],
                                                     max_output_tokens=n_predict,
-                                                    temperature=gpt_params['temperature']),
+                                                    temperature=float(gpt_params['temperature'])),
                                                     stream=True)
         count = 0
         output = ""
