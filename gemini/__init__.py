@@ -113,10 +113,14 @@ class Gemini(LLMBinding):
     def build_model(self):
         import google.generativeai as genai
         genai.configure(api_key=self.binding_config.google_api_key)
-        self.model = genai.GenerativeModel(self.config.model_name)
+        if self.config.model_name!="gemini-pro-vision":
+            self.model = genai.GenerativeModel(self.config.model_name)
+        else:
+            self.config.model_name = "gemini-pro"
+            self.model = genai.GenerativeModel("gemini-pro")
+        self.vision_model = genai.GenerativeModel("gemini-pro-vision")
         self.genai = genai
-        if "vision" in self.config.model_name:
-            self.binding_type=BindingType.TEXT_IMAGE
+        self.binding_type=BindingType.TEXT_IMAGE
         
         return self
 
@@ -246,7 +250,7 @@ class Gemini(LLMBinding):
             'repeat_penalty': 1.3
         }
         gpt_params = {**default_params, **gpt_params}
-        response = self.model.generate_content(
+        response = self.vision_model.generate_content(
                                                     [prompt]+images_list,
                                                     generation_config=self.genai.types.GenerationConfig(
                                                     # Only one candidate for now.
@@ -283,61 +287,6 @@ class Gemini(LLMBinding):
         # response_json = response.json()
         response_json=[
             {
-            "name": "chat-bison-001",
-            "version": "001",
-            "displayName": "Chat Bison",
-            "description": "Chat-optimized generative language model.",
-            "inputTokenLimit": 4096,
-            "outputTokenLimit": 1024,
-            "supportedGenerationMethods": [
-                "generateMessage",
-                "countMessageTokens"
-            ],
-            "temperature": 0.25,
-            "topP": 0.95,
-            "topK": 40
-            },
-            {
-            "name": "text-bison-001",
-            "version": "001",
-            "displayName": "Text Bison",
-            "description": "Model targeted for text generation.",
-            "inputTokenLimit": 8196,
-            "outputTokenLimit": 1024,
-            "supportedGenerationMethods": [
-                "generateText",
-                "countTextTokens",
-                "createTunedTextModel"
-            ],
-            "temperature": 0.7,
-            "topP": 0.95,
-            "topK": 40
-            },
-            {
-            "name": "embedding-gecko-001",
-            "version": "001",
-            "displayName": "Embedding Gecko",
-            "description": "Obtain a distributed representation of a text.",
-            "inputTokenLimit": 1024,
-            "outputTokenLimit": 1,
-            "supportedGenerationMethods": [
-                "embedText",
-                "countTextTokens"
-            ]
-            },
-            {
-            "name": "embedding-gecko-002",
-            "version": "002",
-            "displayName": "Embedding Gecko 002",
-            "description": "Obtain a distributed representation of a text.",
-            "inputTokenLimit": 2048,
-            "outputTokenLimit": 1,
-            "supportedGenerationMethods": [
-                "embedText",
-                "countTextTokens"
-            ]
-            },
-            {
             "name": "gemini-pro",
             "version": "001",
             "displayName": "Gemini Pro",
@@ -382,32 +331,6 @@ class Gemini(LLMBinding):
             "topP": 1,
             "topK": 32
             },
-            {
-            "name": "embedding-001",
-            "version": "001",
-            "displayName": "Embedding 001",
-            "description": "Obtain a distributed representation of a text.",
-            "inputTokenLimit": 2048,
-            "outputTokenLimit": 1,
-            "supportedGenerationMethods": [
-                "embedContent",
-                "countTextTokens"
-            ]
-            },
-            {
-            "name": "aqa",
-            "version": "001",
-            "displayName": "Model that performs Attributed Question Answering.",
-            "description": "Model trained to return answers to questions that are grounded in provided sources, along with estimating answerable probability.",
-            "inputTokenLimit": 7168,
-            "outputTokenLimit": 1024,
-            "supportedGenerationMethods": [
-                "generateAnswer"
-            ],
-            "temperature": 0.2,
-            "topP": 1,
-            "topK": 40
-            }
         ]        
         return [f["name"] for f in response_json]                
     
@@ -420,61 +343,6 @@ class Gemini(LLMBinding):
         #response_json = response.json()
         response_json=[
             {
-            "name": "chat-bison-001",
-            "version": "001",
-            "displayName": "Chat Bison",
-            "description": "Chat-optimized generative language model.",
-            "inputTokenLimit": 4096,
-            "outputTokenLimit": 1024,
-            "supportedGenerationMethods": [
-                "generateMessage",
-                "countMessageTokens"
-            ],
-            "temperature": 0.25,
-            "topP": 0.95,
-            "topK": 40
-            },
-            {
-            "name": "text-bison-001",
-            "version": "001",
-            "displayName": "Text Bison",
-            "description": "Model targeted for text generation.",
-            "inputTokenLimit": 8196,
-            "outputTokenLimit": 1024,
-            "supportedGenerationMethods": [
-                "generateText",
-                "countTextTokens",
-                "createTunedTextModel"
-            ],
-            "temperature": 0.7,
-            "topP": 0.95,
-            "topK": 40
-            },
-            {
-            "name": "embedding-gecko-001",
-            "version": "001",
-            "displayName": "Embedding Gecko",
-            "description": "Obtain a distributed representation of a text.",
-            "inputTokenLimit": 1024,
-            "outputTokenLimit": 1,
-            "supportedGenerationMethods": [
-                "embedText",
-                "countTextTokens"
-            ]
-            },
-            {
-            "name": "embedding-gecko-002",
-            "version": "002",
-            "displayName": "Embedding Gecko 002",
-            "description": "Obtain a distributed representation of a text.",
-            "inputTokenLimit": 2048,
-            "outputTokenLimit": 1,
-            "supportedGenerationMethods": [
-                "embedText",
-                "countTextTokens"
-            ]
-            },
-            {
             "name": "gemini-pro",
             "version": "001",
             "displayName": "Gemini Pro",
@@ -519,32 +387,6 @@ class Gemini(LLMBinding):
             "topP": 1,
             "topK": 32
             },
-            {
-            "name": "embedding-001",
-            "version": "001",
-            "displayName": "Embedding 001",
-            "description": "Obtain a distributed representation of a text.",
-            "inputTokenLimit": 2048,
-            "outputTokenLimit": 1,
-            "supportedGenerationMethods": [
-                "embedContent",
-                "countTextTokens"
-            ]
-            },
-            {
-            "name": "aqa",
-            "version": "001",
-            "displayName": "Model that performs Attributed Question Answering.",
-            "description": "Model trained to return answers to questions that are grounded in provided sources, along with estimating answerable probability.",
-            "inputTokenLimit": 7168,
-            "outputTokenLimit": 1024,
-            "supportedGenerationMethods": [
-                "generateAnswer"
-            ],
-            "temperature": 0.2,
-            "topP": 1,
-            "topK": 40
-            }
         ]
         for model in response_json:
             md = {
