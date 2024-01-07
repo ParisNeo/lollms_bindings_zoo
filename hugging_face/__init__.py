@@ -242,6 +242,7 @@ class HuggingFace(LLMBinding):
                                                                 offload_state_dict = True
                                                                 )
                 from accelerate.utils import is_xpu_available
+                import accelerate
                 if self.binding_config.gpu_memory or torch.cuda.device_count() > 1 or (is_xpu_available() and torch.xpu.device_count() > 1):
                     if self.binding_config.gpu_memory:
                         memory_map = list(map(lambda x: x.strip(), [self.binding_config.gpu_memory]))
@@ -253,7 +254,6 @@ class HuggingFace(LLMBinding):
                         max_memory['cpu'] = f'{max_cpu_memory}GiB' if not re.match('.*ib$', max_cpu_memory.lower()) else max_cpu_memory
                     else:
                         max_memory = accelerate.utils.get_balanced_memory(self.model)                    
-                    import accelerate
                     device_map = accelerate.infer_auto_device_map(self.model, max_memory=max_memory, no_split_module_classes=["LlamaDecoderLayer"])
                     ASCIIColors.yellow(f"Using the following device map for the quantized model: {device_map}")
                     # https://huggingface.co/docs/accelerate/package_reference/big_modeling#accelerate.dispatch_model
