@@ -51,12 +51,12 @@ def encode_image(image_path, max_image_width=-1):
         image = image.resize((new_width, new_height))
 
     # Check and convert image format if needed
-    if image.format not in ['PNG', 'JPEG', 'GIF', 'WEBP']:
-        image = image.convert('JPEG')
+    # if image.format not in ['PNG', 'JPEG', 'GIF', 'WEBP']:
+    #     image = image.convert('JPEG')
 
     # Save the image to a BytesIO object
     byte_arr = io.BytesIO()
-    image.save(byte_arr, format=image.format)
+    image.save(byte_arr, format='PNG')
     byte_arr = byte_arr.getvalue()
 
     return base64.b64encode(byte_arr).decode('utf-8')
@@ -103,18 +103,26 @@ class Gemini(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size
 
     def settings_updated(self):
-        if self.binding_config.config["google_api"]:
+        if not self.binding_config.config["google_api_key"]:
             self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+        else:
+            self.build_model()
 
         self.config.ctx_size=self.binding_config.config.ctx_size        
 
     def build_model(self):
+        import google.generativeai as genai
+        genai.configure(api_key=self.binding_config.google_api_key)
+        self.model = genai.GenerativeModel(self.config.model_name)
+        self.genai = genai
         if "vision" in self.config.model_name:
             self.binding_type=BindingType.TEXT_IMAGE
+        
         return self
 
     def install(self):
         super().install()
+        subprocess.run(["pip", "install", "--upgrade", "google-generativeai"])
         ASCIIColors.success("Installed successfully")
         ASCIIColors.error("----------------------")
         ASCIIColors.error("Attention please")
@@ -160,64 +168,26 @@ class Gemini(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        PALM_KEY = self.binding_config.google_api_key
 
-        headers = {
-            'Content-Type': 'application/json',
-            'x-goog-api-key': PALM_KEY
-        }
-        default_params = {
-            'temperature': 0.7,
-            'top_k': 50,
-            'top_p': 0.96,
-            'repeat_penalty': 1.3
-        }
-        gpt_params = {**default_params, **gpt_params}
+        response = self.model.generate_content(prompt, stream=True)
+        count = 0
+        output = ""
+        for chunk in response:
+            if count >= n_predict:
+                break
+            try:
+                word = chunk.text
+            except Exception as ex:
+                word = ""
+            if callback is not None:
+                if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    break
+            if word:
+                output += word
+                count += 1
 
-        data ={
-                "contents": [{
-                    "parts":[
-                        {"text": prompt}
-                    ]
-                }],
-                "safetySettings": [
-                    {
-                        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                        "threshold": "BLOCK_ONLY_HIGH"
-                    }
-                ],
-                "generationConfig": {
-                    "stopSequences": [
-                        "Title"
-                    ],
-                    "temperature": float(gpt_params["temperature"]),
-                    "maxOutputTokens": n_predict,
-                    "topP": gpt_params["top_p"],
-                    "topK": gpt_params["top_k"]
-                }
-            }
-
-
-
-        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/{self.config.model_name}:generateContent'
-
-        response = requests.post(url, headers=headers, data=json.dumps(data))
-        result = response.json()
-        if "error" in result:
-            ASCIIColors.error(result["error"]["message"])
-            self.info(result["error"]["message"])
-            return ''
-        else:
-            if callback:
-                output = result["candidates"][0]["content"]["parts"][0]["text"]
-                antiprompt = detect_antiprompt(output)
-                if antiprompt:
-                    ASCIIColors.warning(f"\nDetected hallucination with antiprompt: {antiprompt}")
-                    output = remove_text_from_string(output, antiprompt)                
-                callback(output, MSG_TYPE.MSG_TYPE_FULL)
-
-
-        return result["candidates"][0]["content"]["parts"][0]["text"]
+        return output
+    
     def generate_with_images(self, 
                 prompt:str,
                 images:list=[],
@@ -233,70 +203,27 @@ class Gemini(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        
-        PALM_KEY = self.binding_config.google_api_key
+        images_list = []
+        for image in images:
+            images_list.append(Image.open(image))
+        response = self.model.generate_content([prompt]+images_list, stream=True)
+        count = 0
+        output = ""
+        for chunk in response:
+            if count >= n_predict:
+                break
+            try:
+                word = chunk.text
+            except Exception as ex:
+                word = ""
+            if callback is not None:
+                if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    break
+            if word:
+                output += word
+                count += 1
 
-        headers = {
-            'Content-Type': 'application/json',
-            'x-goog-api-key': PALM_KEY
-        }
-        default_params = {
-            'temperature': 0.7,
-            'top_k': 50,
-            'top_p': 0.96,
-            'repeat_penalty': 1.3
-        }
-        gpt_params = {**default_params, **gpt_params}
-
-        data ={
-                "contents": [{
-                    "parts":[
-                        {"text": prompt}
-                    ]+[        {
-                        "inline_data": {
-                            "mime_type":"image/jpeg",
-                            "data": encode_image(img, 512)
-                        }
-                        } for img in images
-                    ]
-                }],
-                "safetySettings": [
-                    {
-                        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                        "threshold": "BLOCK_ONLY_HIGH"
-                    }
-                ],
-                "generationConfig": {
-                    "stopSequences": [
-                        "Title"
-                    ],
-                    "temperature": float(gpt_params["temperature"]),
-                    "maxOutputTokens": n_predict,
-                    "topP": gpt_params["top_p"],
-                    "topK": gpt_params["top_k"]
-                }
-            }
-
-
-
-        url = f'https://generativelanguage.googleapis.com/{self.binding_config.google_api}/{self.config.model_name}:generateContent'
-
-        response = requests.post(url, headers=headers, data=json.dumps(data))
-        result = response.json()
-        if "error" in result:
-            ASCIIColors.error(result["error"]["message"])
-            self.info(result["error"]["message"])
-            return ''
-        else:
-            if callback:
-                output = result["candidates"][0]["content"]["parts"][0]["text"]
-                antiprompt = detect_antiprompt(output)
-                if antiprompt:
-                    ASCIIColors.warning(f"\nDetected hallucination with antiprompt: {antiprompt}")
-                    output = remove_text_from_string(output, antiprompt)                
-                callback(output, MSG_TYPE.MSG_TYPE_FULL)
-
-        return result["candidates"][0]["content"]["parts"][0]["text"]
+        return output
     
     def list_models(self):
         """Lists the models for this binding
@@ -307,7 +234,7 @@ class Gemini(LLMBinding):
         # response_json = response.json()
         response_json=[
             {
-            "name": "models/chat-bison-001",
+            "name": "chat-bison-001",
             "version": "001",
             "displayName": "Chat Bison",
             "description": "Chat-optimized generative language model.",
@@ -322,7 +249,7 @@ class Gemini(LLMBinding):
             "topK": 40
             },
             {
-            "name": "models/text-bison-001",
+            "name": "text-bison-001",
             "version": "001",
             "displayName": "Text Bison",
             "description": "Model targeted for text generation.",
@@ -338,7 +265,7 @@ class Gemini(LLMBinding):
             "topK": 40
             },
             {
-            "name": "models/embedding-gecko-001",
+            "name": "embedding-gecko-001",
             "version": "001",
             "displayName": "Embedding Gecko",
             "description": "Obtain a distributed representation of a text.",
@@ -350,7 +277,7 @@ class Gemini(LLMBinding):
             ]
             },
             {
-            "name": "models/embedding-gecko-002",
+            "name": "embedding-gecko-002",
             "version": "002",
             "displayName": "Embedding Gecko 002",
             "description": "Obtain a distributed representation of a text.",
@@ -362,7 +289,7 @@ class Gemini(LLMBinding):
             ]
             },
             {
-            "name": "models/gemini-pro",
+            "name": "gemini-pro",
             "version": "001",
             "displayName": "Gemini Pro",
             "description": "The best model for scaling across a wide range of tasks",
@@ -377,7 +304,7 @@ class Gemini(LLMBinding):
             "topK": 1
             },
             {
-            "name": "models/gemini-pro-vision",
+            "name": "gemini-pro-vision",
             "version": "001",
             "displayName": "Gemini Pro Vision",
             "description": "The best image understanding model to handle a broad range of applications",
@@ -392,7 +319,7 @@ class Gemini(LLMBinding):
             "topK": 32
             },
             {
-            "name": "models/gemini-ultra",
+            "name": "gemini-ultra",
             "version": "001",
             "displayName": "Gemini Ultra",
             "description": "The most capable model for highly complex tasks",
@@ -407,7 +334,7 @@ class Gemini(LLMBinding):
             "topK": 32
             },
             {
-            "name": "models/embedding-001",
+            "name": "embedding-001",
             "version": "001",
             "displayName": "Embedding 001",
             "description": "Obtain a distributed representation of a text.",
@@ -419,7 +346,7 @@ class Gemini(LLMBinding):
             ]
             },
             {
-            "name": "models/aqa",
+            "name": "aqa",
             "version": "001",
             "displayName": "Model that performs Attributed Question Answering.",
             "description": "Model trained to return answers to questions that are grounded in provided sources, along with estimating answerable probability.",
@@ -444,7 +371,7 @@ class Gemini(LLMBinding):
         #response_json = response.json()
         response_json=[
             {
-            "name": "models/chat-bison-001",
+            "name": "chat-bison-001",
             "version": "001",
             "displayName": "Chat Bison",
             "description": "Chat-optimized generative language model.",
@@ -459,7 +386,7 @@ class Gemini(LLMBinding):
             "topK": 40
             },
             {
-            "name": "models/text-bison-001",
+            "name": "text-bison-001",
             "version": "001",
             "displayName": "Text Bison",
             "description": "Model targeted for text generation.",
@@ -475,7 +402,7 @@ class Gemini(LLMBinding):
             "topK": 40
             },
             {
-            "name": "models/embedding-gecko-001",
+            "name": "embedding-gecko-001",
             "version": "001",
             "displayName": "Embedding Gecko",
             "description": "Obtain a distributed representation of a text.",
@@ -487,7 +414,7 @@ class Gemini(LLMBinding):
             ]
             },
             {
-            "name": "models/embedding-gecko-002",
+            "name": "embedding-gecko-002",
             "version": "002",
             "displayName": "Embedding Gecko 002",
             "description": "Obtain a distributed representation of a text.",
@@ -499,7 +426,7 @@ class Gemini(LLMBinding):
             ]
             },
             {
-            "name": "models/gemini-pro",
+            "name": "gemini-pro",
             "version": "001",
             "displayName": "Gemini Pro",
             "description": "The best model for scaling across a wide range of tasks",
@@ -514,7 +441,7 @@ class Gemini(LLMBinding):
             "topK": 1
             },
             {
-            "name": "models/gemini-pro-vision",
+            "name": "gemini-pro-vision",
             "version": "001",
             "displayName": "Gemini Pro Vision",
             "description": "The best image understanding model to handle a broad range of applications",
@@ -529,7 +456,7 @@ class Gemini(LLMBinding):
             "topK": 32
             },
             {
-            "name": "models/gemini-ultra",
+            "name": "gemini-ultra",
             "version": "001",
             "displayName": "Gemini Ultra",
             "description": "The most capable model for highly complex tasks",
@@ -544,7 +471,7 @@ class Gemini(LLMBinding):
             "topK": 32
             },
             {
-            "name": "models/embedding-001",
+            "name": "embedding-001",
             "version": "001",
             "displayName": "Embedding 001",
             "description": "Obtain a distributed representation of a text.",
@@ -556,7 +483,7 @@ class Gemini(LLMBinding):
             ]
             },
             {
-            "name": "models/aqa",
+            "name": "aqa",
             "version": "001",
             "displayName": "Model that performs Attributed Question Answering.",
             "description": "Model trained to return answers to questions that are grounded in provided sources, along with estimating answerable probability.",

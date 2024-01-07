@@ -281,7 +281,7 @@ class OpenAIGPT(LLMBinding):
             trace_exception(ex)
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
-        return ""       
+        return output    
 
 
     def generate(self, 
