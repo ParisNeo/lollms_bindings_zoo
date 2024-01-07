@@ -110,7 +110,7 @@ class Gemini(LLMBinding):
 
     def build_model(self):
         if "vision" in self.config.model_name:
-            self.binding_type==BindingType.TEXT_IMAGE
+            self.binding_type=BindingType.TEXT_IMAGE
         return self
 
     def install(self):
