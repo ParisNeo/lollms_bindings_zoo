@@ -154,6 +154,21 @@ class Gemini(LLMBinding):
         """
         return " ".join(tokens)
     
+    
+    def embed(self, text):
+        """
+        Computes text embedding
+        Args:
+            text (str): The text to be embedded.
+        Returns:
+            List[float]
+        """
+        return self.genai.embed_content(
+            model="models/embedding-001",
+            content="What is the meaning of life?",
+            task_type="retrieval_document",
+            title="Embedding of single string")['embedding']
+
     def generate(self, 
                  prompt: str,                  
                  n_predict: int = 128,
@@ -168,8 +183,22 @@ class Gemini(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-
-        response = self.model.generate_content(prompt, stream=True)
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3
+        }
+        gpt_params = {**default_params, **gpt_params}
+        response = self.model.generate_content(
+                                                    prompt,
+                                                    generation_config=self.genai.types.GenerationConfig(
+                                                    # Only one candidate for now.
+                                                    candidate_count=1,
+                                                    stop_sequences=['x'],
+                                                    max_output_tokens=n_predict,
+                                                    temperature=gpt_params['temperature']),
+                                                    stream=True)
         count = 0
         output = ""
         for chunk in response:
@@ -206,7 +235,24 @@ class Gemini(LLMBinding):
         images_list = []
         for image in images:
             images_list.append(Image.open(image))
-        response = self.model.generate_content([prompt]+images_list, stream=True)
+
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3
+        }
+        gpt_params = {**default_params, **gpt_params}
+        response = self.model.generate_content(
+                                                    [prompt]+images_list,
+                                                    generation_config=self.genai.types.GenerationConfig(
+                                                    # Only one candidate for now.
+                                                    candidate_count=1,
+                                                    stop_sequences=['x'],
+                                                    max_output_tokens=n_predict,
+                                                    temperature=gpt_params['temperature']),
+                                                    stream=True)
+
         count = 0
         output = ""
         for chunk in response:
