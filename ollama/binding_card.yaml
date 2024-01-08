@@ -1,0 +1,7 @@
+name: Ollama
+author: jmorganca
+version: 1.0
+link: https://github.com/jmorganca/ollama
+description: This binding uses Ollama service
+accepted_models: 
+  - ollama

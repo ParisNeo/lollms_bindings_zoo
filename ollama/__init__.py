@@ -32,11 +32,10 @@ __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "Elf"
+binding_name = "Ollama"
 binding_folder_name = ""
 elf_completion_formats={
-    "instruct":"/v1/completions",
-    "chat":"/v1/chat/completions",
+    "instruct":"/api",
 }
 
 def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
@@ -44,7 +43,7 @@ def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
     return LOLLMSConfig(cfg_file_path,lollms_paths)
 
 def get_model_info(url):
-    url = f'{url}/v1/models'
+    url = f'{url}/tags'
     headers = {'accept': 'application/json'}
     response = requests.get(url, headers=headers)
     data = response.json()
@@ -58,7 +57,7 @@ def get_model_info(url):
         model_info.append({'model_name': model_name, 'owned_by': owned_by, 'created_datetime': created_datetime})
 
     return model_info
-class Elf(LLMBinding):
+class Ollama(LLMBinding):
     
     def __init__(self, 
                 config: LOLLMSConfig, 
@@ -111,7 +110,7 @@ class Elf(LLMBinding):
         ASCIIColors.error("----------------------")
         ASCIIColors.error("Attention please")
         ASCIIColors.error("----------------------")
-        ASCIIColors.error("The google bard binding uses the Google Bard API which is a paid service. Please create an account on the google cloud website then generate a key and provide it in the configuration file.")
+        ASCIIColors.error("You need to install an ollama server somewhere and run it locally or remotely.")
     
     def tokenize(self, text: Union[str, List[str]]) -> List[str]:
         """Tokenizes a text string
@@ -224,7 +223,7 @@ class Elf(LLMBinding):
     def list_models(self):
         """Lists the models for this binding
         """
-        model_names = get_model_info(f'{self.binding_config.address}')
+        model_names = get_model_info(f'{self.binding_config.address}/api/')
         entries=[]
         for model in model_names:
             entries.append(model["model_name"])
@@ -232,13 +231,13 @@ class Elf(LLMBinding):
                 
     def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
-        model_names = get_model_info(f'{self.binding_config.address}')
+        model_names = get_model_info(f'{self.binding_config.address}/api/')
         entries=[]
         for model in model_names:
             entry={
                 "category": "generic",
                 "datasets": "unknown",
-                "icon": '/bindings/elf/logo.png',
+                "icon": '/bindings/Ollama/logo.png',
                 "last_commit_time": "2023-09-17 17:21:17+00:00",
                 "license": "unknown",
                 "model_creator": model["owned_by"],
