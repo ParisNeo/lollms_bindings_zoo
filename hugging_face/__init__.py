@@ -57,18 +57,24 @@ class HuggingFace(LLMBinding):
         Args:
             config (LOLLMSConfig): The configuration file
         """
+        device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
+        import torch
+
+        if torch.cuda.is_available():
+            device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
+
         os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:512'
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
 
-            {"name":"gpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on GPU."},
-            {"name":"cpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on CPU."},
+            {"name":"gpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on each GPU in Giga bytes. If you have more than a GPU, then write a value for each GPU, for example 12,8 will use 12G on first GPU and 8 on the second one."},
+            {"name":"cpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on CPU in Giga bytes."},
             {"name":"disable_exllama","type":"bool","value":False, "help":"Disables exllama support."},
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
-            {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
+            {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
             {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
@@ -245,7 +251,7 @@ class HuggingFace(LLMBinding):
                 import accelerate
                 if self.binding_config.gpu_memory or torch.cuda.device_count() > 1 or (is_xpu_available() and torch.xpu.device_count() > 1):
                     if self.binding_config.gpu_memory:
-                        memory_map = list(map(lambda x: x.strip(), [self.binding_config.gpu_memory]))
+                        memory_map = list(map(lambda x: x.strip(), self.binding_config.gpu_memory.split(",")))
                         max_cpu_memory = self.binding_config.cpu_memory.strip() if self.binding_config.cpu_memory is not None else '99GiB'
                         max_memory = {}
                         for i in range(len(memory_map)):
@@ -313,11 +319,18 @@ class HuggingFace(LLMBinding):
                 requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
 
             subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+
+            device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
+            import torch
+
+            if torch.cuda.is_available():
+                device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
+
             # Initialization code goes here
             binding_config_template = ConfigTemplate([
                 {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
                 {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
-                {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
+                {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
