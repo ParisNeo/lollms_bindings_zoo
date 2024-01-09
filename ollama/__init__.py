@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
-from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.com import LoLLMsCom
@@ -26,6 +26,7 @@ import json
 import requests
 from datetime import datetime
 from typing import List, Union
+from lollms.utilities import PackageManager, encode_image
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -49,11 +50,10 @@ def get_model_info(url):
     data = response.json()
     model_info = []
 
-    for model in data['data']:
-        model_name = model['id']
-        owned_by = model['owned_by']
-        created_timestamp = model['created']
-        created_datetime = datetime.utcfromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+    for model in data['models']:
+        model_name = model['name']
+        owned_by = ""
+        created_datetime = model["modified_at"]
         model_info.append({'model_name': model_name, 'owned_by': owned_by, 'created_datetime': created_datetime})
 
     return model_info
@@ -80,7 +80,8 @@ class Ollama(LLMBinding):
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://127.0.0.1:11434","help":"The server address"},
-                {"name":"completion_format","type":"str","value":"instruct","options":["instruct","chat"], "help":"The format supported by the server"},
+                {"name":"max_image_width","type":"int","value":1024, "help":"The maximum width of the image in pixels. If the mimage is bigger it gets shrunk before sent to ollama model"},
+                {"name":"completion_format","type":"str","value":"instruct","options":["instruct"], "help":"The format supported by the server"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
             ]),
@@ -102,6 +103,8 @@ class Ollama(LLMBinding):
         self.config.ctx_size = self.binding_config.config.ctx_size        
         
     def build_model(self):
+        if "llava" in self.config.model_nale or "vision" in self.config.model_nale:
+            self.binding_type = BindingType.TEXT_IMAGE
         return self
 
     def install(self):
@@ -164,66 +167,93 @@ class Ollama(LLMBinding):
         }
         gpt_params = {**default_params, **gpt_params}
 
-        if self.binding_config.completion_format=="instruct":
-            data = {
-                'model':self.config.model_name,
-                'prompt': prompt,
-                "stream":True,
-                "temperature": float(gpt_params["temperature"]),
-                "max_tokens": n_predict
-            }
-        else:
-            data = {
-                'model':self.config.model_name,
-                'messages': [{
-                    'role': "",
-                    'content': prompt
-                }],
-                "stream":True,
-                "temperature": float(gpt_params["temperature"]),
-                "max_tokens": n_predict
-            }
+        data = {
+            'model':self.config.model_name,
+            'prompt': prompt,
+            "stream":True,
+            "temperature": float(gpt_params["temperature"]),
+            "max_tokens": n_predict
+        }
 
         
-        url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
+        url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
 
         response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
 
         text = ""
         for line in response.iter_lines(): 
             decoded = line.decode("utf-8")
-            if decoded.startswith("data: "):
-                try:
-                    json_data = json.loads(decoded[5:].strip())
-                    if self.binding_config.completion_format=="chat":
-                        chunk = json_data["choices"][0]["delta"]["content"]
-                    else:
-                        chunk = json_data["choices"][0]["text"]
-                    ## Process the JSON data here
-                    text +=chunk
-                    if callback:
-                        if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                            break
-                except:
+            json_data = json.loads(decoded)
+            chunk = json_data["response"]
+            ## Process the JSON data here
+            text +=chunk
+            if callback:
+                if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
                     break
-            else:
-                if decoded.startswith("{"):
-                    json_data = json.loads(decoded)
-                    if json_data["object"]=="error":
-                        self.error(json_data["message"])
-                        break
-                else:
-                    text +=decoded
-                    if callback:
-                        if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
-                            break
         return text
 
+    def generate_with_images(self, 
+            prompt:str,
+            images:list=[],
+            n_predict: int = 128,
+            callback: Callable[[str, int, dict], bool] = None,
+            verbose: bool = False,
+            **gpt_params ):
+        """Generates text out of a prompt
+
+        Args:
+            prompt (str): The prompt to use for generation
+            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
+            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
+        """
+        from PIL import Image
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {self.binding_config.server_key}',
+        }
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3
+        }
+        gpt_params = {**default_params, **gpt_params}
+        images_list = []
+        for image in images:
+            images_list.append(f"data:image/jpeg;base64,{encode_image(image, self.binding_config.max_image_width)}")
+
+        data = {
+            'model':self.config.model_name,
+            'prompt': prompt,
+            'images': images_list,
+            "stream":True,
+            "temperature": float(gpt_params["temperature"]),
+            "max_tokens": n_predict
+        }
+
+        
+        url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
+
+        response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
+
+        text = ""
+        for line in response.iter_lines(): 
+            decoded = line.decode("utf-8")
+            json_data = json.loads(decoded)
+            chunk = json_data["response"]
+            ## Process the JSON data here
+            text +=chunk
+            if callback:
+                if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                    break
+        return text        
     
+
     def list_models(self):
         """Lists the models for this binding
         """
-        model_names = get_model_info(f'{self.binding_config.address}/api/')
+        model_names = get_model_info(f'{self.binding_config.address}/api')
         entries=[]
         for model in model_names:
             entries.append(model["model_name"])
@@ -231,7 +261,7 @@ class Ollama(LLMBinding):
                 
     def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
-        model_names = get_model_info(f'{self.binding_config.address}/api/')
+        model_names = get_model_info(f'{self.binding_config.address}/api')
         entries=[]
         for model in model_names:
             entry={

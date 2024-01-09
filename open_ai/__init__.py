@@ -18,7 +18,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
-from lollms.utilities import PackageManager
+from lollms.utilities import PackageManager, encode_image
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
@@ -37,27 +37,7 @@ __license__ = "Apache 2.0"
 binding_name = "OpenAIGPT"
 binding_folder_name = ""
 
-# Function to encode the image
-def encode_image(image_path, max_image_width=-1):
-    image = Image.open(image_path)
-    width, height = image.size
 
-    if max_image_width != -1 and width > max_image_width:
-        ratio = max_image_width / width
-        new_width = max_image_width
-        new_height = int(height * ratio)
-        image = image.resize((new_width, new_height))
-
-    # Check and convert image format if needed
-    if image.format not in ['PNG', 'JPEG', 'GIF', 'WEBP']:
-        image = image.convert('JPEG')
-
-    # Save the image to a BytesIO object
-    byte_arr = io.BytesIO()
-    image.save(byte_arr, format=image.format)
-    byte_arr = byte_arr.getvalue()
-
-    return base64.b64encode(byte_arr).decode('utf-8')
   
 class OpenAIGPT(LLMBinding):
     def __init__(self, 
