@@ -103,7 +103,7 @@ class Ollama(LLMBinding):
         self.config.ctx_size = self.binding_config.config.ctx_size        
         
     def build_model(self):
-        if "llava" in self.config.model_nale or "vision" in self.config.model_nale:
+        if "llava" in self.config.model_name or "vision" in self.config.model_name:
             self.binding_type = BindingType.TEXT_IMAGE
         return self
 
