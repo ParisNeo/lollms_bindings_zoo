@@ -26,7 +26,7 @@ import json
 import requests
 from datetime import datetime
 from typing import List, Union
-from lollms.utilities import PackageManager, encode_image
+from lollms.utilities import PackageManager, encode_image, trace_exception
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -207,7 +207,7 @@ class Ollama(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        from PIL import Image
+        text = ""
         headers = {
             'Content-Type': 'application/json',
             'Authorization': f'Bearer {self.binding_config.server_key}',
@@ -221,7 +221,7 @@ class Ollama(LLMBinding):
         gpt_params = {**default_params, **gpt_params}
         images_list = []
         for image in images:
-            images_list.append(f"data:image/jpeg;base64,{encode_image(image, self.binding_config.max_image_width)}")
+            images_list.append(f"{encode_image(image, self.binding_config.max_image_width)}")
 
         data = {
             'model':self.config.model_name,
@@ -232,21 +232,23 @@ class Ollama(LLMBinding):
             "max_tokens": n_predict
         }
 
-        
-        url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
+        try:
+            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
 
-        response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
 
-        text = ""
-        for line in response.iter_lines(): 
-            decoded = line.decode("utf-8")
-            json_data = json.loads(decoded)
-            chunk = json_data["response"]
-            ## Process the JSON data here
-            text +=chunk
-            if callback:
-                if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                    break
+            for line in response.iter_lines(): 
+                decoded = line.decode("utf-8")
+                json_data = json.loads(decoded)
+                chunk = json_data["response"]
+                ## Process the JSON data here
+                text +=chunk
+                if callback:
+                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break
+        except Exception as ex:
+            trace_exception(ex)
+            self.error(ex)
         return text        
     
 
