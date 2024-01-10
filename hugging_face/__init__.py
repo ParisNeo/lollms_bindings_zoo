@@ -300,9 +300,10 @@ class HuggingFace(LLMBinding):
         self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
         try:
             if self.config.hardware_mode=="cpu-noavx":
-                requirements_file = self.binding_dir / "requirements_cpu_no_avx.txt"
+                self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
             elif self.config.hardware_mode=="cpu":
-                requirements_file = self.binding_dir / "requirements_cpu_only.txt"
+                self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
+                return
             elif self.config.hardware_mode=="amd-noavx":
                 requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
             elif self.config.hardware_mode=="amd":
