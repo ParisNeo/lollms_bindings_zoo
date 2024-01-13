@@ -304,7 +304,10 @@ class OpenAIGPT(LLMBinding):
                             }
                         ]
             else:
-                messages = [{"role": "user", "content": prompt}]
+                if prompt.startswith("user:") or prompt.startswith("system:"):
+                    messages = [{"role": "user", "content": c} for c in prompt.split("user:")[1:]]
+                else:
+                    messages = [{"role": "user", "content": prompt}]
             chat_completion = self.openai.chat.completions.create(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
