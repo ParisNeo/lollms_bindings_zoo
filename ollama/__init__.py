@@ -157,42 +157,44 @@ class Ollama(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.binding_config.server_key}',
-        }
-        default_params = {
-            'temperature': 0.7,
-            'top_k': 50,
-            'top_p': 0.96,
-            'repeat_penalty': 1.3
-        }
-        gpt_params = {**default_params, **gpt_params}
-
-        data = {
-            'model':self.config.model_name,
-            'prompt': prompt,
-            "stream":True,
-            "temperature": float(gpt_params["temperature"]),
-            "max_tokens": n_predict
-        }
-
-        
-        url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
-
-        response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
-
         text = ""
-        for line in response.iter_lines(): 
-            decoded = line.decode("utf-8")
-            json_data = json.loads(decoded)
-            chunk = json_data["response"]
-            ## Process the JSON data here
-            text +=chunk
-            if callback:
-                if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                    break
+        try:
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': f'Bearer {self.binding_config.server_key}',
+            }
+            default_params = {
+                'temperature': 0.7,
+                'top_k': 50,
+                'top_p': 0.96,
+                'repeat_penalty': 1.3
+            }
+            gpt_params = {**default_params, **gpt_params}
+
+            data = {
+                'model':self.config.model_name,
+                'prompt': prompt,
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
+
+            
+            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
+
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
+            for line in response.iter_lines(): 
+                decoded = line.decode("utf-8")
+                json_data = json.loads(decoded)
+                chunk = json_data["response"]
+                ## Process the JSON data here
+                text +=chunk
+                if callback:
+                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break
+        except Exception as ex:
+            trace_exception(ex)
+            self.error("Couldn't generate text")
         return text
 
     def generate_with_images(self, 
