@@ -190,8 +190,26 @@ class vLLM(LLMBinding):
         except Exception as ex:
             print(ex)
         super().install()
-
-        check_and_install_torch(self.config.enable_gpu, version=2.1)
+        
+        if self.config.hardware_mode=="cpu-noavx":
+            self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
+        elif self.config.hardware_mode=="cpu":
+            self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
+            return
+        elif self.config.hardware_mode=="amd-noavx":
+            requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
+        elif self.config.hardware_mode=="amd":
+            requirements_file = self.binding_dir / "requirements_amd.txt"
+        elif self.config.hardware_mode=="nvidia":
+            requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
+            check_and_install_torch(True)
+        elif self.config.hardware_mode=="nvidia-tensorcores":
+            requirements_file = self.binding_dir / "requirements_nvidia.txt"
+            check_and_install_torch(True)
+        elif self.config.hardware_mode=="apple-intel":
+            requirements_file = self.binding_dir / "requirements_apple_intel.txt"
+        elif self.config.hardware_mode=="apple-silicon":
+            requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
 
         try:
             """
