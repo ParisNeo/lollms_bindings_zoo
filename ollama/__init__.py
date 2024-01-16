@@ -43,9 +43,13 @@ def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
     cfg_file_path = lollms_paths.personal_configuration_path/"bindings"/f"{binding_name}"/"config.yaml"
     return LOLLMSConfig(cfg_file_path,lollms_paths)
 
-def get_model_info(url):
+def get_model_info(url, authorization_key):
     url = f'{url}/tags'
-    headers = {'accept': 'application/json'}
+    headers = {
+                'accept': 'application/json',
+                'Authorization': f'Bearer {authorization_key}'
+            }
+    
     response = requests.get(url, headers=headers)
     data = response.json()
     model_info = []
@@ -260,7 +264,7 @@ class Ollama(LLMBinding):
     def list_models(self):
         """Lists the models for this binding
         """
-        model_names = get_model_info(f'{self.binding_config.address}/api')
+        model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key)
         entries=[]
         for model in model_names:
             entries.append(model["model_name"])
@@ -268,7 +272,7 @@ class Ollama(LLMBinding):
                 
     def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
-        model_names = get_model_info(f'{self.binding_config.address}/api')
+        model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key)
         entries=[]
         for model in model_names:
             entry={
