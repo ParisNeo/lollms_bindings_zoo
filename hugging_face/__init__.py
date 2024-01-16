@@ -141,6 +141,7 @@ class HuggingFace(LLMBinding):
             ASCIIColors.error("Couldn't clear cuda memory")
 
     def build_model(self):
+        from accelerate import Accelerator
         import torch
         from transformers import AutoTokenizer, AutoModelForCausalLM
         from transformers import GenerationConfig
@@ -247,23 +248,6 @@ class HuggingFace(LLMBinding):
                                                                 offload_folder="offload",
                                                                 offload_state_dict = True
                                                                 )
-                from accelerate.utils import is_xpu_available
-                import accelerate
-                if self.binding_config.gpu_memory or torch.cuda.device_count() > 1 or (is_xpu_available() and torch.xpu.device_count() > 1):
-                    if self.binding_config.gpu_memory:
-                        memory_map = list(map(lambda x: x.strip(), self.binding_config.gpu_memory.split(",")))
-                        max_cpu_memory = self.binding_config.cpu_memory.strip() if self.binding_config.cpu_memory is not None else '99GiB'
-                        max_memory = {}
-                        for i in range(len(memory_map)):
-                            max_memory[i] = f'{memory_map[i]}GiB' if not re.match('.*ib$', memory_map[i].lower()) else memory_map[i]
-
-                        max_memory['cpu'] = f'{max_cpu_memory}GiB' if not re.match('.*ib$', max_cpu_memory.lower()) else max_cpu_memory
-                    else:
-                        max_memory = accelerate.utils.get_balanced_memory(self.model)                    
-                    device_map = accelerate.infer_auto_device_map(self.model, max_memory=max_memory, no_split_module_classes=["LlamaDecoderLayer"])
-                    ASCIIColors.yellow(f"Using the following device map for the quantized model: {device_map}")
-                    # https://huggingface.co/docs/accelerate/package_reference/big_modeling#accelerate.dispatch_model
-                    self.model = accelerate.dispatch_model(self.model, device_map=device_map, offload_buffers=True)
 
                 self.model_device = self.model.parameters().__next__().device
                 self.ShowBlockingMessage(f"Model loaded successfully")
