@@ -122,6 +122,28 @@ class Ollama(LLMBinding):
         ASCIIColors.error("----------------------")
         ASCIIColors.error("You need to install an ollama server somewhere and run it locally or remotely.")
     
+    def install_model(self, model_type:str, model_path:str, variant_name:str, client_id:int=None):
+        url = f'{self.binding_config.address}/api/pull'
+        headers = {
+                    'accept': 'application/json',
+                    'Authorization': f'Bearer {self.binding_config.server_key}'
+                }
+        
+        payload = json.dumps({
+            'name':variant_name,
+            'stream':True
+        })
+
+        response = requests.post(url, headers=headers, data=payload, stream=True)
+        for line in response.iter_lines():
+            line = json.loads(line.decode("utf-8")) 
+            if line["status"]=="pulling manifest":
+                self.lollmsCom.info("Pulling")
+            elif line["status"]=="downloading digestname" or line["status"].startswith("pulling") and "completed" in line.keys():
+                self.lollmsCom.notify_model_install(model_path,variant_name,"", model_path,datetime.now().strftime("%Y-%m-%d %H:%M:%S"), line["total"], line["completed"], 100*line["completed"]/line["total"] if line["total"]>0 else 0,0,client_id=client_id)
+        self.InfoMessage("Installed")
+
+
     def tokenize(self, text: Union[str, List[str]]) -> List[str]:
         """Tokenizes a text string
 
@@ -271,8 +293,20 @@ class Ollama(LLMBinding):
         return entries
                 
     def get_available_models(self, app:LoLLMsCom=None):
+
+        #/pull
         # Create the file path relative to the child class's directory
-        model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key)
+        #model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key)
+        model_names=[
+            {"model_name":"llama2:latest", "owned_by": "meta"},
+            {"model_name":"codellama:latest", "owned_by": "meta"},
+            {"model_name":"llava:latest", "owned_by": "liuhaotian"},
+            {"model_name":"mistral:latest", "owned_by": "mistral.ai"},
+            {"model_name":"mixtral:latest", "owned_by": "mistral.ai"},
+            {"model_name":"neural-chat:latest", "owned_by": "intel"},
+            {"model_name":"dolphin-mixtral:latest", "owned_by": "microsoft"},
+            {"model_name":"mistral-openorca:latest", "owned_by": "microsoft"},
+        ]
         entries=[]
         for model in model_names:
             entry={
@@ -289,7 +323,7 @@ class Ollama(LLMBinding):
                 "type": "api",
                 "variants":[
                     {
-                        "name":model,
+                        "name":model["model_name"],
                         "size":0
                     }
                 ]

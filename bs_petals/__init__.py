@@ -32,8 +32,6 @@ __license__ = "Apache 2.0"
 binding_name = "Petals"
 binding_folder_name = "bs_petals"
 import os
-import platform
-import os
 import subprocess
 import gc
 
@@ -154,7 +152,6 @@ class Petals(LLMBinding):
         from petals import AutoDistributedModelForCausalLM
         
         gc.collect()
-        import os
         models_dir = self.lollms_paths.personal_models_path / "petals"
         models_dir.mkdir(parents=True, exist_ok=True)
         os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
@@ -425,8 +422,6 @@ class Petals(LLMBinding):
         """
         
         import wget
-        import os
-
         file_names = Petals.get_filenames(repo)
 
         dest_dir = Path(base_folder)
