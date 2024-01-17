@@ -1,6 +1,6 @@
 ######
 # Project       : lollms
-# File          : hugging_face/__init__.py
+# File          : exllamav2/__init__.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
 # engine author : Hugging face Inc 
@@ -34,8 +34,8 @@ __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "HuggingFace"
-binding_folder_name = "hugging_face"
+binding_name = "ExLLamav2"
+binding_folder_name = "bs_exllamav2"
 import os
 import subprocess
 import gc
@@ -44,7 +44,7 @@ from lollms.com import NotificationDisplayType, NotificationType
 
 
 
-class HuggingFace(LLMBinding):
+class ExLLamav2(LLMBinding):
     
     def __init__(self, 
                 config: LOLLMSConfig, 
@@ -90,7 +90,7 @@ class HuggingFace(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=['.safetensors','.pth','.bin'],
-                            models_dir_names=["transformers","gptq","awq"],
+                            models_dir_names=["gptq"],
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
@@ -196,70 +196,35 @@ class HuggingFace(LLMBinding):
                     ,f)
                 import os
                 os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
-                self.ShowBlockingMessage(f"Creating tokenizer {model_path}")
-                self.tokenizer = AutoTokenizer.from_pretrained(
-                        str(model_name), trust_remote_code=self.binding_config.trust_remote_code
-                        )
-                self.ShowBlockingMessage(f"Recovering generation config {model_path}")
                 self.generation_config = GenerationConfig.from_pretrained(str(model_path))
                 self.ShowBlockingMessage(f"Creating model {model_path}\nUsing device map: {self.binding_config.device_map}")
 
-                if "llava" in str(model_path).lower() or "vision" in str(model_path).lower():
-                    from transformers import AutoProcessor, LlavaForConditionalGeneration
-                    self.model = LlavaForConditionalGeneration.from_pretrained(str(model_path),
-                                                torch_dtype=torch.float16,
-                                                device_map=self.binding_config.device_map,
-                                                offload_folder="offload",
-                                                offload_state_dict = True, 
-                                                trust_remote_code=self.binding_config.trust_remote_code,
-                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                )
-                    self.image_rocessor = AutoProcessor.from_pretrained(str(model_path))
-                    self.binding_type= BindingType.TEXT_IMAGE
-                    # from transformers import pipeline
-                    # self.pipe = pipeline("image-to-text", model=str(model_path))
-                    # self.binding_type = BindingType.TEXT_IMAGE
-                    # self.model = self.pipe.model
-                elif "gptq" in str(model_path).lower():
-                    self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                torch_dtype=torch.float16,
-                                                                device_map=self.binding_config.device_map,
-                                                                offload_folder="offload",
-                                                                offload_state_dict = True, 
-                                                                attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code,
-                                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                )
-                    from auto_gptq import exllama_set_max_input_length
-                    try:
-                        self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
-                    except:
-                        self.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
-                    
-                elif "awq" in str(model_path).lower():
-                    self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                torch_dtype=torch.float16,
-                                                                device_map=self.binding_config.device_map,
-                                                                offload_folder="offload",
-                                                                offload_state_dict = True, 
-                                                                attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code,
-                                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                )
-                else:
-                    self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                torch_dtype=torch.float16,
-                                                                device_map=self.binding_config.device_map,
-                                                                offload_folder="offload",
-                                                                offload_state_dict = True, 
-                                                                attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code,
-                                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                )
+                
+                from exllamav2 import ExLlamaV2, ExLlamaV2Config,  ExLlamaV2Cache, ExLlamaV2Tokenizer
+                from exllamav2.generator import ExLlamaV2BaseGenerator, ExLlamaV2Sampler
 
-                self.model_device = self.model.parameters().__next__().device
+
+                config = ExLlamaV2Config()
+                config.model_dir = model_name
+                config.prepare()
+
+                self.model = ExLlamaV2(config)
+                print("Loading model: " + model_name)
+
+                cache = ExLlamaV2Cache(self.model, lazy = True)
+                self.model.load_autosplit(cache)
+                self.ShowBlockingMessage(f"Creating tokenizer {model_path}")
+                self.tokenizer = ExLlamaV2Tokenizer(config)
+                self.ShowBlockingMessage(f"Recovering generation config {model_path}")
+
+                # Initialize generator
+
+                self.generator = ExLlamaV2BaseGenerator(self.model, cache, self.tokenizer)
+                    
                 self.ShowBlockingMessage(f"Model loaded successfully")
                 self.HideBlockingMessage()
+                self.settings = ExLlamaV2Sampler.Settings()
+
 
                 """
                 try:
@@ -361,7 +326,7 @@ class HuggingFace(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.tokenizer.encode(prompt,add_special_tokens=False)
+        return self.tokenizer.encode(prompt)
 
     def detokenize(self, tokens_list:list):
         """
@@ -373,8 +338,8 @@ class HuggingFace(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return  self.tokenizer.decode(tokens_list)
-    
+        tk =  self.tokenizer.decode(tokens_list)
+        return tk
 
     def put(self, value):
         """
@@ -455,113 +420,6 @@ class HuggingFace(LLMBinding):
             if self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
                 raise Exception("canceled")    
 
-    def process_images(self, images, image_processor, model_cfg):
-        image_aspect_ratio = model_cfg.get("image_aspect_ratio", None)
-        new_images = []
-        if image_aspect_ratio == 'pad':
-            for image in images:
-                image = expand2square(image, tuple(int(x*255)
-                                    for x in image_processor.image_mean))
-                image = image_processor.preprocess(image, return_tensors='pt')[
-                    'pixel_values'][0]
-                new_images.append(image)
-        else:
-            return image_processor(images, return_tensors='pt')['pixel_values']
-        if all(x.shape == new_images[0].shape for x in new_images):
-            new_images = self.torch.stack(new_images, dim=0)
-        return new_images
-    
-    def tokenizer_image_token(self, prompt, image_token_index=None, return_tensors=None):
-        if image_token_index is None:
-            image_token_index = self.IMAGE_TOKEN_INDEX
-            
-        prompt_chunks = [
-            self.tokenizer(chunk).input_ids for chunk in prompt.split('<image>')]
-
-        def insert_separator(X, sep):
-            return [ele for sublist in zip(X, [sep]*len(X)) for ele in sublist][:-1]
-
-        input_ids = []
-        offset = 0
-        if len(prompt_chunks) > 0 and len(prompt_chunks[0]) > 0 and prompt_chunks[0][0] == self.tokenizer.bos_token_id:
-            offset = 1
-            input_ids.append(prompt_chunks[0][0])
-
-        for x in insert_separator(prompt_chunks, [image_token_index] * (offset + 1)):
-            input_ids.extend(x[offset:])
-
-        if return_tensors is not None:
-            if return_tensors == 'pt':
-                return self.torch.tensor(input_ids, dtype=self.torch.long)
-            raise ValueError(f'Unsupported tensor type: {return_tensors}')
-        return input_ids
-    
-
-
-    def generate_with_images(self, 
-                prompt:str,
-                images:list=[],
-                n_predict: int = 128,
-                callback: Callable[[str, int, dict], bool] = None,
-                verbose: bool = False,
-                **gpt_params ):
-        """Generates text out of a prompt
-
-        Args:
-            prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
-            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
-            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
-        """
-        default_params = {
-            'temperature': self.generation_config.temperature,
-            'top_k': self.generation_config.top_k,
-            'top_p': self.generation_config.top_p,
-            'repeat_penalty': self.generation_config.repetition_penalty,
-            'repeat_last_n':self.generation_config.no_repeat_ngram_size,
-            "seed":-1,
-            "n_threads":8,
-            "begin_suppress_tokens ": self.tokenize("!")
-        }        
-        gpt_params = {**default_params, **gpt_params}
-        self.generation_config.max_new_tokens = int(n_predict)
-        self.generation_config.temperature = float(gpt_params["temperature"])
-        self.generation_config.top_k = int(gpt_params["top_k"])
-        self.generation_config.top_p = float(gpt_params["top_p"])
-        self.generation_config.repetition_penalty = float(gpt_params["repeat_penalty"])
-        self.generation_config.do_sample = True if float(gpt_params["temperature"])>0 else False
-        self.generation_config.pad_token_id = self.tokenizer.pad_token_id
-        self.generation_config.eos_token_id = self.tokenizer.eos_token_id
-        self.generation_config.output_attentions = False
-        self.callback = callback    
-        try:
-            self.token_cache = []
-            self.print_len = 0
-            self.next_tokens_are_prompt = True            
-            self.n_generated = 0
-            self.output = ""
-            try:
-                with self.torch.no_grad():
-                    image = Image.open(images[0])
-                    self.output=""
-                    inputs = self.image_rocessor("<image>"+prompt, image, return_tensors='pt').to(0, self.torch.float16)
-
-                    #self.output = self.model.generate(**inputs, max_new_tokens=200, do_sample=False)            
-                    self.model.generate(
-                                        **inputs, 
-                                        generation_config=self.generation_config,
-                                        streamer = self,
-                                        )
-                    
-            except Exception as ex:
-                if str(ex)!="canceled":
-                    trace_exception(ex)
-
-        except Exception as ex:
-            ASCIIColors.error("Couldn't generate")
-            trace_exception(ex)
-        return self.output
-
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
@@ -587,15 +445,13 @@ class HuggingFace(LLMBinding):
             "begin_suppress_tokens ": self.tokenize("!")
         }
         gpt_params = {**default_params, **gpt_params}
-        self.generation_config.max_new_tokens = int(n_predict)
-        self.generation_config.temperature = float(gpt_params["temperature"])
-        self.generation_config.top_k = int(gpt_params["top_k"])
-        self.generation_config.top_p = float(gpt_params["top_p"])
-        self.generation_config.repetition_penalty = float(gpt_params["repeat_penalty"])
-        self.generation_config.do_sample = True if float(gpt_params["temperature"])>0 else False
-        self.generation_config.pad_token_id = self.tokenizer.pad_token_id
-        self.generation_config.eos_token_id = self.tokenizer.eos_token_id
-        self.generation_config.output_attentions = False
+
+        self.settings.temperature = float(gpt_params["temperature"])
+        self.settings.top_k = int(gpt_params["top_k"])
+        self.settings.top_p = float(gpt_params["top_p"])
+        self.settings.token_repetition_penalty = float(gpt_params["repeat_penalty"])
+        self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
+        self.generator.warmup()
         self.callback = callback    
         try:
             self.token_cache = []
@@ -606,12 +462,13 @@ class HuggingFace(LLMBinding):
             input_ids = self.tokenizer(prompt, add_special_tokens=False, return_tensors='pt').input_ids.to(self.model_device)
             self.n_prompt = len(input_ids[0])
             try:
-                with self.torch.no_grad():
-                    self.model.generate(
-                                        inputs=input_ids, 
-                                        generation_config=self.generation_config,
-                                        streamer = self,
-                                        )
+                for out in self.generator.generate_simple(
+                                        prompt, self.settings, n_predict, self.binding_config.seed
+                                        ):
+                    if callback:
+                        if not callback(out, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
+
             except Exception as ex:
                 if str(ex)!="canceled":
                     trace_exception(ex)
@@ -692,7 +549,7 @@ class HuggingFace(LLMBinding):
         if len(blocs)!=2:
             repo="/".join(blocs[-5:-3])
 
-        file_names = HuggingFace.get_filenames(repo)
+        file_names = ExLLamav2.get_filenames(repo)
         # if there is a safetensor then remove all bins
         nb_safe_tensors=len([f for f in file_names if ".safetensors" in str(f)])
         if nb_safe_tensors>0:
@@ -750,7 +607,7 @@ class HuggingFace(LLMBinding):
         if len(blocs)!=2:
             repo="/".join(blocs[-5:-3])
 
-        file_names = HuggingFace.get_filenames(repo)
+        file_names = ExLLamav2.get_filenames(repo)
         for file_name in file_names:
             if file_name.endswith(".safetensors") or  file_name.endswith(".bin"):
                 src = "https://huggingface.co/"+repo
