@@ -69,8 +69,7 @@ class HuggingFace(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
 
-            {"name":"gpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on each GPU in Giga bytes. If you have more than a GPU, then write a value for each GPU, for example 12,8 will use 12G on first GPU and 8 on the second one."},
-            {"name":"cpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on CPU in Giga bytes."},
+            {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
             {"name":"disable_exllama","type":"bool","value":False, "help":"Disables exllama support."},
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
@@ -213,7 +212,8 @@ class HuggingFace(LLMBinding):
                                                 device_map=self.binding_config.device_map,
                                                 offload_folder="offload",
                                                 offload_state_dict = True, 
-                                                low_cpu_mem_usage=True, 
+                                                trust_remote_code=self.binding_config.trust_remote_code,
+                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
                                                 )
                     self.image_rocessor = AutoProcessor.from_pretrained(str(model_path))
                     self.binding_type= BindingType.TEXT_IMAGE
@@ -228,7 +228,8 @@ class HuggingFace(LLMBinding):
                                                                 offload_folder="offload",
                                                                 offload_state_dict = True, 
                                                                 attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code
+                                                                trust_remote_code=self.binding_config.trust_remote_code,
+                                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
                                                                 )
                     from auto_gptq import exllama_set_max_input_length
                     try:
@@ -243,7 +244,8 @@ class HuggingFace(LLMBinding):
                                                                 offload_folder="offload",
                                                                 offload_state_dict = True, 
                                                                 attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code
+                                                                trust_remote_code=self.binding_config.trust_remote_code,
+                                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
                                                                 )
                 else:
                     self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
@@ -252,7 +254,8 @@ class HuggingFace(LLMBinding):
                                                                 offload_folder="offload",
                                                                 offload_state_dict = True, 
                                                                 attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code
+                                                                trust_remote_code=self.binding_config.trust_remote_code,
+                                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
                                                                 )
 
                 self.model_device = self.model.parameters().__next__().device
