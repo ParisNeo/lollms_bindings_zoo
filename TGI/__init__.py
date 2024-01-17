@@ -34,8 +34,8 @@ __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "HuggingFace"
-binding_folder_name = "hugging_face"
+binding_name = "TGI"
+binding_folder_name = "TGI"
 import os
 import subprocess
 import gc
@@ -44,7 +44,7 @@ from lollms.com import NotificationDisplayType, NotificationType
 
 
 
-class HuggingFace(LLMBinding):
+class TGI(LLMBinding):
     
     def __init__(self, 
                 config: LOLLMSConfig, 
@@ -68,7 +68,7 @@ class HuggingFace(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-
+            {"name":"address","type":"str","value":"127.0.0.1:8080","help":"The server address"},
             {"name":"gpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on each GPU in Giga bytes. If you have more than a GPU, then write a value for each GPU, for example 12,8 will use 12G on first GPU and 8 on the second one."},
             {"name":"cpu_memory","type":"str","value":"", "help":"Maximum amount of memory to put on CPU in Giga bytes."},
             {"name":"disable_exllama","type":"bool","value":False, "help":"Disables exllama support."},
@@ -141,14 +141,9 @@ class HuggingFace(LLMBinding):
             ASCIIColors.error("Couldn't clear cuda memory")
 
     def build_model(self):
-        from accelerate import Accelerator
-        import torch
-        from transformers import AutoTokenizer, AutoModelForCausalLM
-        from transformers import GenerationConfig
-        import torch
-        self.torch = torch
-        try:
 
+        try:
+            from huggingface_hub import InferenceClient
             if self.config.model_name:
 
                 path = self.config.model_name
@@ -177,102 +172,7 @@ class HuggingFace(LLMBinding):
                 self.tokenizer = None
                 self.model = None
                 gc.collect()
-                if self.config.hardware_mode=="nvidia" or self.config.hardware_mode=="nvidia-tensorcores" or self.config.hardware_mode=="nvidia-tensorcores":
-                    if self.model is not None:
-                        AdvancedGarbageCollector.safeHardCollect("model", self)
-                        AdvancedGarbageCollector.safeHardCollect("tokenizer", self)
-                        self.model = None
-                        self.tokenizer = None
-                        gc.collect()
-                    self.clear_cuda()
-
-                gen_cfg = model_path/"generation_config.json"
-                if not gen_cfg.exists():
-                    with open(gen_cfg,"w") as f:
-                        json.dump({
-                            "_from_model_config": True,
-                            "bos_token_id": 1,
-                            "eos_token_id": 32000,
-                            "transformers_version": "4.35.0.dev0"
-                    }
-                    ,f)
-                import os
-                os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
-                self.ShowBlockingMessage(f"Creating tokenizer {model_path}")
-                self.tokenizer = AutoTokenizer.from_pretrained(
-                        str(model_name), trust_remote_code=self.binding_config.trust_remote_code
-                        )
-                self.ShowBlockingMessage(f"Recovering generation config {model_path}")
-                self.generation_config = GenerationConfig.from_pretrained(str(model_path))
-                self.ShowBlockingMessage(f"Creating model {model_path}\nUsing device map: {self.binding_config.device_map}")
-
-                if "llava" in str(model_path).lower() or "vision" in str(model_path).lower():
-                    from transformers import AutoProcessor, LlavaForConditionalGeneration
-                    self.model = LlavaForConditionalGeneration.from_pretrained(str(model_path),
-                                                torch_dtype=torch.float16,
-                                                device_map=self.binding_config.device_map,
-                                                offload_folder="offload",
-                                                offload_state_dict = True, 
-                                                low_cpu_mem_usage=True, 
-                                                )
-                    self.image_rocessor = AutoProcessor.from_pretrained(str(model_path))
-                    self.binding_type= BindingType.TEXT_IMAGE
-                    # from transformers import pipeline
-                    # self.pipe = pipeline("image-to-text", model=str(model_path))
-                    # self.binding_type = BindingType.TEXT_IMAGE
-                    # self.model = self.pipe.model
-                elif "gptq" in str(model_path).lower():
-                    self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                torch_dtype=torch.float16,
-                                                                device_map=self.binding_config.device_map,
-                                                                offload_folder="offload",
-                                                                offload_state_dict = True, 
-                                                                attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code
-                                                                )
-                    from auto_gptq import exllama_set_max_input_length
-                    try:
-                        self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
-                    except:
-                        self.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
-                    
-                elif "awq" in str(model_path).lower():
-                    self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                torch_dtype=torch.float16,
-                                                                device_map=self.binding_config.device_map,
-                                                                offload_folder="offload",
-                                                                offload_state_dict = True, 
-                                                                attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code
-                                                                )
-                else:
-                    self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                torch_dtype=torch.float16,
-                                                                device_map=self.binding_config.device_map,
-                                                                offload_folder="offload",
-                                                                offload_state_dict = True, 
-                                                                attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code
-                                                                )
-
-                self.model_device = self.model.parameters().__next__().device
-                self.ShowBlockingMessage(f"Model loaded successfully")
-                self.HideBlockingMessage()
-
-                """
-                try:
-                    if not self.binding_config.automatic_context_size:
-                        self.model.seqlen = self.binding_config.ctx_size
-                    self.config.ctx_size = self.model.seqlen
-                except:
-                    self.model.seqlen = self.binding_config.ctx_size
-                    self.config.ctx_size = self.model.seqlen
-                ASCIIColors.info(f"Context lenghth set to {self.model.seqlen}")
-                
-                """
-                return self
-            else:
-                self.InfoMessage(f"No model is selected")
+                self.model = InferenceClient(self.binding_config.address)
         except Exception as ex:
             self.error(str(ex))
             self.HideBlockingMessage()
@@ -286,60 +186,35 @@ class HuggingFace(LLMBinding):
         ASCIIColors.success("freed memory")
 
         super().install()
+        subprocess.run(["pip", "install", "--upgrade", ""])
 
-        self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
-        try:
-            if self.config.hardware_mode=="cpu-noavx":
-                self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-            elif self.config.hardware_mode=="cpu":
-                self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-                return
-            elif self.config.hardware_mode=="amd-noavx":
-                requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
-            elif self.config.hardware_mode=="amd":
-                requirements_file = self.binding_dir / "requirements_amd.txt"
-            elif self.config.hardware_mode=="nvidia":
-                requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
-                check_and_install_torch(True)
-            elif self.config.hardware_mode=="nvidia-tensorcores":
-                requirements_file = self.binding_dir / "requirements_nvidia.txt"
-                check_and_install_torch(True)
-            elif self.config.hardware_mode=="apple-intel":
-                requirements_file = self.binding_dir / "requirements_apple_intel.txt"
-            elif self.config.hardware_mode=="apple-silicon":
-                requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
+        device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
+        import torch
 
-            subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+        if torch.cuda.is_available():
+            device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
 
-            device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
-            import torch
+        # Initialization code goes here
+        binding_config_template = ConfigTemplate([
+            {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
+            {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
+            {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
+            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
-            if torch.cuda.is_available():
-                device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
+        ])
+        binding_config_vals = BaseConfig.from_template(binding_config_template)
 
-            # Initialization code goes here
-            binding_config_template = ConfigTemplate([
-                {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
-                {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
-                {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
-                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-
-            ])
-            binding_config_vals = BaseConfig.from_template(binding_config_template)
-
-            binding_config = TypedConfig(
-                binding_config_template,
-                binding_config_vals
-            )
-            self.binding_config = binding_config
-            self.add_default_configurations(binding_config)
-            self.sync_configuration(binding_config, self.lollms_paths)
-            self.binding_config.save()
-            # ASCIIColors.success("Installed successfully")
-            self.success("Successfull installation")
-        except Exception as ex:
-            self.error(ex)
+        binding_config = TypedConfig(
+            binding_config_template,
+            binding_config_vals
+        )
+        self.binding_config = binding_config
+        self.add_default_configurations(binding_config)
+        self.sync_configuration(binding_config, self.lollms_paths)
+        self.binding_config.save()
+        # ASCIIColors.success("Installed successfully")
+        self.success("Successfull installation")
         self.HideBlockingMessage()
 
     def uninstall(self):
@@ -596,6 +471,21 @@ class HuggingFace(LLMBinding):
         self.generation_config.output_attentions = False
         self.callback = callback    
         try:
+            import requests
+
+            headers = {
+                "Content-Type": "application/json",
+            }
+
+            data = {
+                'inputs': 'What is Deep Learning?',
+                'parameters': {
+                    'max_new_tokens': 20,
+                },
+            }
+
+            response = requests.post(f'{self.binding_config.address}/generate', headers=headers, json=data)
+            print(response.json())
             self.token_cache = []
             self.print_len = 0
             self.next_tokens_are_prompt = True            
