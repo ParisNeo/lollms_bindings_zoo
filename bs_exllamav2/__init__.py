@@ -139,9 +139,7 @@ class ExLLamav2(LLMBinding):
             ASCIIColors.error("Couldn't clear cuda memory")
 
     def build_model(self):
-        from accelerate import Accelerator
         import torch
-        from transformers import AutoTokenizer, AutoModelForCausalLM
         from transformers import GenerationConfig
         import torch
         self.torch = torch
@@ -201,7 +199,7 @@ class ExLLamav2(LLMBinding):
 
                 
                 from exllamav2 import ExLlamaV2, ExLlamaV2Config,  ExLlamaV2Cache, ExLlamaV2Tokenizer
-                from exllamav2.generator import ExLlamaV2BaseGenerator, ExLlamaV2Sampler
+                from exllamav2.generator import ExLlamaV2StreamingGenerator, ExLlamaV2Sampler
 
 
                 config = ExLlamaV2Config()
@@ -219,7 +217,7 @@ class ExLLamav2(LLMBinding):
 
                 # Initialize generator
 
-                self.generator = ExLlamaV2BaseGenerator(self.model, cache, self.tokenizer)
+                self.generator = ExLlamaV2StreamingGenerator(self.model, cache, self.tokenizer)
                     
                 self.ShowBlockingMessage(f"Model loaded successfully")
                 self.HideBlockingMessage()
@@ -338,87 +336,7 @@ class ExLLamav2(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        tk =  self.tokenizer.decode(tokens_list)
-        return tk
-
-    def put(self, value):
-        """
-        Recives tokens, decodes them, and prints them to stdout as soon as they form entire words.
-        """
-        if len(value.shape)==1 and (value[0] == self.tokenizer.eos_token_id or value[0] == self.tokenizer.bos_token_id):
-            print("eos detected")
-            return
-        if len(value.shape) > 1 and value.shape[0] > 1:
-            raise ValueError("TextStreamer only supports batch size 1")
-        elif len(value.shape) > 1:
-            value = value[0]
-
-        if self.skip_prompt and self.next_tokens_are_prompt:
-            self.next_tokens_are_prompt = False
-            return
-
-        # Add the new token to the cache and decodes the entire thing.
-        self.token_cache.extend(value.tolist())
-        text = self.tokenizer.decode(self.token_cache, **self.decode_kwargs)
-
-        # After the symbol for a new line, we flush the cache.
-        if text.endswith("\n"):
-            printable_text = text[self.print_len :]
-            self.token_cache = []
-            self.print_len = 0
-        # If the last token is a CJK character, we print the characters.
-        elif len(text) > 0 and self._is_chinese_char(ord(text[-1])):
-            printable_text = text[self.print_len :]
-            self.print_len += len(printable_text)
-        # Otherwise, prints until the last space char (simple heuristic to avoid printing incomplete words,
-        # which may change with the subsequent token -- there are probably smarter ways to do this!)
-        else:
-            printable_text = text[self.print_len : text.rfind(" ") + 1]
-            self.print_len += len(printable_text)
-
-        self.output += printable_text
-        if  self.callback:
-            if not self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
-                raise Exception("canceled")    
-
-    def _is_chinese_char(self, cp):
-        """Checks whether CP is the codepoint of a CJK character."""
-        # This defines a "chinese character" as anything in the CJK Unicode block:
-        #   https://en.wikipedia.org/wiki/CJK_Unified_Ideographs_(Unicode_block)
-        #
-        # Note that the CJK Unicode block is NOT all Japanese and Korean characters,
-        # despite its name. The modern Korean Hangul alphabet is a different block,
-        # as is Japanese Hiragana and Katakana. Those alphabets are used to write
-        # space-separated words, so they are not treated specially and handled
-        # like the all of the other languages.
-        if (
-            (cp >= 0x4E00 and cp <= 0x9FFF)
-            or (cp >= 0x3400 and cp <= 0x4DBF)  #
-            or (cp >= 0x20000 and cp <= 0x2A6DF)  #
-            or (cp >= 0x2A700 and cp <= 0x2B73F)  #
-            or (cp >= 0x2B740 and cp <= 0x2B81F)  #
-            or (cp >= 0x2B820 and cp <= 0x2CEAF)  #
-            or (cp >= 0xF900 and cp <= 0xFAFF)
-            or (cp >= 0x2F800 and cp <= 0x2FA1F)  #
-        ):  #
-            return True
-
-        return False
-    def end(self):
-        """Flushes any remaining cache and prints a newline to stdout."""
-        # Flush the cache, if it exists
-        if len(self.token_cache) > 0:
-            text = self.tokenizer.decode(self.token_cache, **self.decode_kwargs)
-            printable_text = text[self.print_len :]
-            self.token_cache = []
-            self.print_len = 0
-        else:
-            printable_text = ""
-
-        self.next_tokens_are_prompt = True
-        if  self.callback:
-            if self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
-                raise Exception("canceled")    
+        return self.tokenizer.decode(tokens_list)[0]
 
     def generate(self, 
                  prompt:str,                  
@@ -449,24 +367,24 @@ class ExLLamav2(LLMBinding):
         self.settings.temperature = float(gpt_params["temperature"])
         self.settings.top_k = int(gpt_params["top_k"])
         self.settings.top_p = float(gpt_params["top_p"])
+        self.settings.top_a = 0.0
         self.settings.token_repetition_penalty = float(gpt_params["repeat_penalty"])
         self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
-        self.generator.warmup()
         self.callback = callback    
         try:
-            self.token_cache = []
-            self.print_len = 0
-            self.next_tokens_are_prompt = True            
-            self.n_generated = 0
             self.output = ""
-            input_ids = self.tokenizer(prompt, add_special_tokens=False, return_tensors='pt').input_ids.to(self.model_device)
-            self.n_prompt = len(input_ids[0])
+            input_ids = self.tokenizer.encode(prompt)
+            prompt_tokens = input_ids.shape[-1]
+            self.generator.warmup()
+            self.generator.begin_stream(input_ids, self.settings)            
             try:
-                for out in self.generator.generate_simple(
-                                        prompt, self.settings, n_predict, self.binding_config.seed
-                                        ):
+                generated_tokens = 0
+
+                while generated_tokens<n_predict:
+                    chunk, eos, _ = self.generator.stream()
+                    generated_tokens += 1
                     if callback:
-                        if not callback(out, MSG_TYPE.MSG_TYPE_CHUNK):
+                        if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
                             break
 
             except Exception as ex:
