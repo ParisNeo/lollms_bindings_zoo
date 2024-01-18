@@ -70,6 +70,7 @@ class HuggingFace(LLMBinding):
         binding_config_template = ConfigTemplate([
 
             {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
+            {"name":"enable_flash_attention_2","type":"bool","value":True, "help":"Low cpu memory."},            
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
@@ -221,15 +222,26 @@ class HuggingFace(LLMBinding):
                     # self.binding_type = BindingType.TEXT_IMAGE
                     # self.model = self.pipe.model
                 elif "gptq" in str(model_path).lower():
-                    self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                torch_dtype=torch.float16,
-                                                                device_map=self.binding_config.device_map,
-                                                                offload_folder="offload",
-                                                                offload_state_dict = True, 
-                                                                attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code,
-                                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                )
+                    if self.binding_config.enable_flash_attention_2:
+                        self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                                    torch_dtype=torch.float16,
+                                                                    device_map=self.binding_config.device_map,
+                                                                    offload_folder="offload",
+                                                                    offload_state_dict = True, 
+                                                                    attn_implementation="flash_attention_2",
+                                                                    trust_remote_code=self.binding_config.trust_remote_code,
+                                                                    low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                                                                    )
+                    else:
+                        self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                                    torch_dtype=torch.float16,
+                                                                    device_map=self.binding_config.device_map,
+                                                                    offload_folder="offload",
+                                                                    offload_state_dict = True, 
+                                                                    trust_remote_code=self.binding_config.trust_remote_code,
+                                                                    low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                                                                    )
+
                     from auto_gptq import exllama_set_max_input_length
                     try:
                         self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
@@ -237,15 +249,26 @@ class HuggingFace(LLMBinding):
                         self.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
                     
                 elif "awq" in str(model_path).lower():
-                    self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                torch_dtype=torch.float16,
-                                                                device_map=self.binding_config.device_map,
-                                                                offload_folder="offload",
-                                                                offload_state_dict = True, 
-                                                                attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code,
-                                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                )
+                    if self.binding_config.enable_flash_attention_2:
+                        self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                                    torch_dtype=torch.float16,
+                                                                    device_map=self.binding_config.device_map,
+                                                                    offload_folder="offload",
+                                                                    offload_state_dict = True, 
+                                                                    attn_implementation="flash_attention_2",
+                                                                    trust_remote_code=self.binding_config.trust_remote_code,
+                                                                    low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                                                                    )
+                    else:
+                        self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                                    torch_dtype=torch.float16,
+                                                                    device_map=self.binding_config.device_map,
+                                                                    offload_folder="offload",
+                                                                    offload_state_dict = True, 
+                                                                    trust_remote_code=self.binding_config.trust_remote_code,
+                                                                    low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                                                                    )
+
                 else:
                     self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
                                                                 torch_dtype=torch.float16,
