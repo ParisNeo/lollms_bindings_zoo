@@ -1,5 +1,5 @@
 name: Exllama v2
-author: exllamav2
+author: turboderp
 version: 1.0
 link: https://github.com/turboderp/exllamav2
 description: 'Python bindings for the exllamav2 llms. It supports gptq quantized models'
