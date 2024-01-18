@@ -70,7 +70,7 @@ class HuggingFace(LLMBinding):
         binding_config_template = ConfigTemplate([
 
             {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
-            {"name":"enable_flash_attention_2","type":"bool","value":True, "help":"Low cpu memory."},            
+            {"name":"enable_flash_attention_2","type":"bool","value":True, "help":"Enable flash attention 2 which encreases the generation speed. But it is not supported on ols GPUs, so if you have an old GPU, deactivate it"},            
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},

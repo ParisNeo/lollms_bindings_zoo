@@ -5,3 +5,4 @@ link: https://github.com/turboderp/exllamav2
 description: 'Python bindings for the exllamav2 llms. It supports gptq quantized models'
 accepted_models: 
   - gptq
+  - exl2

@@ -52,7 +52,7 @@ class ExLLamav2(LLMBinding):
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
                 lollmsCom=None
                 ) -> None:
-        """Builds a GPTQ/AWQ binding
+        """Builds a GPTQ/EXL2 binding
 
         Args:
             config (LOLLMSConfig): The configuration file
@@ -90,7 +90,7 @@ class ExLLamav2(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=['.safetensors','.pth','.bin'],
-                            models_dir_names=["gptq"],
+                            models_dir_names=["exl2","gptq"],
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
@@ -111,11 +111,6 @@ class ExLLamav2(LLMBinding):
         
     def settings_updated(self):
         self.config.ctx_size = self.binding_config.config.ctx_size        
-        from auto_gptq import exllama_set_max_input_length
-        try:
-            self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
-        except:
-            ASCIIColors.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
 
     def embed(self, text):
         """
