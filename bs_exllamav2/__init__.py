@@ -24,6 +24,7 @@ from tqdm import tqdm
 import re
 import urllib
 import json
+import shutil
 if not PackageManager.check_package_installed("PIL"):
     PackageManager.install_package("pillow")
 from PIL import Image
@@ -406,6 +407,12 @@ class ExLLamav2(LLMBinding):
         # https://huggingface.co/TheBloke/Spicyboros-13B-2.2-GPTQ/tree/main?not-for-all-audiences=true
         
         main_url = "https://huggingface.co/"+repo+"/tree/main" #f"https://huggingface.co/{}/tree/main"
+        if "bartowski" in main_url:
+            main_url = main_url.replace("main","4_0")
+
+        if "turboderp" in main_url:
+            main_url = main_url.replace("main","4.0bpw")                                
+
         response = requests.get(main_url)
         html_content = response.text
         soup = BeautifulSoup(html_content, 'html.parser')
@@ -737,8 +744,8 @@ class ExLLamav2(LLMBinding):
                         model_url,
                         self.download_infos[signature]['start_time'].strftime("%Y-%m-%d %H:%M:%S"),
                         self.download_infos[signature]['total_size'],
-                        self.download_infos[signature]['downloaded_size'],
-                        self.download_infos[signature]['progress'],
+                        self.download_infos[signature]['total_size'],
+                        100,
                         self.download_infos[signature]['speed'],
                         client_id,
                         status=True,
