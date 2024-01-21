@@ -160,12 +160,12 @@ class LLAMA_Python_CPP(LLMBinding):
 
         
         if "llava" in self.config.model_name:
+            proj_file = model_path.parent/"mmproj-model-f16.gguf"
             if not proj_file.exists():
                 self.InfoMessage("Projector file was not found. Please download it first.\nReverting to text only")
             else:
                 self.binding_type = BindingType.TEXT_IMAGE
-                proj_file = model_path.parent/"mmproj-model-f16.gguf"
-                self.chat_handler = self.llama_cpp.llama_chat_format.Llava15ChatHandler(clip_model_path=proj_file)
+                self.chat_handler = self.llama_cpp.llama_chat_format.Llava15ChatHandler(clip_model_path=str(proj_file))
             self.model = Llama(
                                     model_path=str(model_path), 
                                     n_gpu_layers=self.binding_config.n_gpu_layers, 
@@ -394,7 +394,8 @@ class LLAMA_Python_CPP(LLMBinding):
                                     {
                                         "role": "",
                                         "content": [
-                                            {"type": "image_url", "image_url": {"url": ""}},
+                                            {"type": "image_url", "image_url": {"url": img  }}
+                                            for img in images
                                         ]+[ {"type" : "text", "text": prompt}]
                                     }
                                 ]
