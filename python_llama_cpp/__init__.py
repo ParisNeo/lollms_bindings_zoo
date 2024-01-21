@@ -20,6 +20,7 @@ from lollms.com import NotificationType
 from lollms.types import MSG_TYPE
 from lollms.utilities import PackageManager
 from lollms.utilities import AdvancedGarbageCollector
+from ascii_colors import ASCIIColors, trace_exception
 import subprocess
 import yaml
 import os
@@ -348,9 +349,6 @@ class LLAMA_Python_CPP(LLMBinding):
                 if word:
                     output += word
                     count += 1
-                    output=output.replace("<0x0A>","\n")
-                    
-
                     if callback is not None:
                         if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
                             break
@@ -376,11 +374,6 @@ class LLAMA_Python_CPP(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        text = ""
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.binding_config.server_key}',
-        }
         default_params = {
             'temperature': 0.7,
             'top_k': 50,
@@ -388,7 +381,9 @@ class LLAMA_Python_CPP(LLMBinding):
             'repeat_penalty': 1.3
         }
         gpt_params = {**default_params, **gpt_params}
+        output = ""
         try:
+            count = 0
             for chunk in self.model.create_chat_completion(
                                 messages = [
                                     {
@@ -398,23 +393,25 @@ class LLAMA_Python_CPP(LLMBinding):
                                             for img in images
                                         ]+[ {"type" : "text", "text": prompt}]
                                     }
-                                ]
+                                ], 
+                                stop=["<0x0A>"],
+                                stream=True
                             ):
-                    if count >= n_predict:
-                        break
-                    try:
-                        word = chunk["choices"][0]["text"]
-                    except Exception as ex:
+                if count >= n_predict:
+                    break
+                try:
+                    if "content" in chunk["choices"][0]["delta"]:
+                        word = chunk["choices"][0]["delta"]["content"]
+                    else:
                         word = ""
-                    if word:
-                        output += word
-                        count += 1
-                        output=output.replace("<0x0A>","\n")
-                        
-
-                        if callback is not None:
-                            if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                                break
+                except Exception as ex:
+                    word = ""
+                if word:
+                    output += word
+                    count += 1
+                    if callback is not None:
+                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
         except Exception as ex:
-            print(ex)
+            trace_exception(ex)
         return output                   
