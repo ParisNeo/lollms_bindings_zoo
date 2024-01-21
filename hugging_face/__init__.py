@@ -164,26 +164,8 @@ class HuggingFace(LLMBinding):
 
                 model_name = str(model_path).replace("\\","/")
 
-                # Delete any old model
-                if hasattr(self, "tokenizer"):
-                    if self.tokenizer is not None:
-                        del self.model
+                self.destroy_model()
 
-                if hasattr(self, "model"):
-                    if self.model is not None:
-                        del self.model
-
-                self.tokenizer = None
-                self.model = None
-                gc.collect()
-                if self.config.hardware_mode=="nvidia" or self.config.hardware_mode=="nvidia-tensorcores" or self.config.hardware_mode=="nvidia-tensorcores":
-                    if self.model is not None:
-                        AdvancedGarbageCollector.safeHardCollect("model", self)
-                        AdvancedGarbageCollector.safeHardCollect("tokenizer", self)
-                        self.model = None
-                        self.tokenizer = None
-                        gc.collect()
-                    self.clear_cuda()
 
                 gen_cfg = model_path/"generation_config.json"
                 if not gen_cfg.exists():
@@ -301,6 +283,28 @@ class HuggingFace(LLMBinding):
         except Exception as ex:
             self.error(str(ex))
             self.HideBlockingMessage()
+
+    def destroy_model(self):
+        # Delete any old model
+        if hasattr(self, "tokenizer"):
+            if self.tokenizer is not None:
+                del self.model
+
+        if hasattr(self, "model"):
+            if self.model is not None:
+                del self.model
+
+        self.tokenizer = None
+        self.model = None
+        gc.collect()
+        if self.config.hardware_mode=="nvidia" or self.config.hardware_mode=="nvidia-tensorcores" or self.config.hardware_mode=="nvidia-tensorcores":
+            if self.model is not None:
+                AdvancedGarbageCollector.safeHardCollect("model", self)
+                AdvancedGarbageCollector.safeHardCollect("tokenizer", self)
+                self.model = None
+                self.tokenizer = None
+                gc.collect()
+            self.clear_cuda()
 
     def install(self):
         self.ShowBlockingMessage("Freeing memory...")

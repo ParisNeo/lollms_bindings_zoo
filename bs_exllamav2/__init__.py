@@ -158,26 +158,7 @@ class ExLLamav2(LLMBinding):
 
                 model_name = str(model_path).replace("\\","/")
 
-                # Delete any old model
-                if hasattr(self, "tokenizer"):
-                    if self.tokenizer is not None:
-                        del self.model
-
-                if hasattr(self, "model"):
-                    if self.model is not None:
-                        del self.model
-
-                self.tokenizer = None
-                self.model = None
-                gc.collect()
-                if self.config.hardware_mode=="nvidia" or self.config.hardware_mode=="nvidia-tensorcores" or self.config.hardware_mode=="nvidia-tensorcores":
-                    if self.model is not None:
-                        AdvancedGarbageCollector.safeHardCollect("model", self)
-                        AdvancedGarbageCollector.safeHardCollect("tokenizer", self)
-                        self.model = None
-                        self.tokenizer = None
-                        gc.collect()
-                    self.clear_cuda()
+                self.destroy_model()
 
                 gen_cfg = model_path/"generation_config.json"
                 if not gen_cfg.exists():
@@ -202,6 +183,12 @@ class ExLLamav2(LLMBinding):
                 config = ExLlamaV2Config()
                 config.model_dir = model_name
                 config.prepare()
+                # config.max_seq_len = shared.args.max_seq_len
+                # config.scale_pos_emb = shared.args.compress_pos_emb
+                # config.scale_alpha_value = shared.args.alpha_value
+                # config.no_flash_attn = shared.args.no_flash_attn
+                # config.num_experts_per_token = int(shared.args.num_experts_per_token)
+
 
                 self.model = ExLlamaV2(config)
                 print("Loading model: " + model_name)
@@ -366,7 +353,8 @@ class ExLLamav2(LLMBinding):
         self.settings.top_p = float(gpt_params["top_p"])
         self.settings.top_a = 0.0
         self.settings.token_repetition_penalty = float(gpt_params["repeat_penalty"])
-        self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
+        # self.settings.disallow_tokens(self.tokenizer, [self.tokenizer.eos_token_id])
+
         self.callback = callback    
         try:
             self.output = ""
@@ -379,6 +367,8 @@ class ExLLamav2(LLMBinding):
 
                 while generated_tokens<n_predict:
                     chunk, eos, _ = self.generator.stream()
+                    if eos:
+                        break
                     generated_tokens += 1
                     if callback:
                         if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
@@ -393,6 +383,29 @@ class ExLLamav2(LLMBinding):
             trace_exception(ex)
         return self.output
     
+    def destroy_model(self):
+        # Delete any old model
+        if hasattr(self, "tokenizer"):
+            if self.tokenizer is not None:
+                del self.model
+
+        if hasattr(self, "model"):
+            if self.model is not None:
+                del self.model
+
+        self.tokenizer = None
+        self.model = None
+        gc.collect()
+        if self.config.hardware_mode=="nvidia" or self.config.hardware_mode=="nvidia-tensorcores" or self.config.hardware_mode=="nvidia-tensorcores":
+            if self.model is not None:
+                AdvancedGarbageCollector.safeHardCollect("model", self)
+                AdvancedGarbageCollector.safeHardCollect("tokenizer", self)
+                self.model = None
+                self.tokenizer = None
+                gc.collect()
+            self.clear_cuda()
+        
+
     @staticmethod
     def get_filenames(repo):
         import requests
