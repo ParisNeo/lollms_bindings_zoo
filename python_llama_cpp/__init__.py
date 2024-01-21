@@ -76,7 +76,7 @@ class LLAMA_Python_CPP(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
             {"name":"n_threads","type":"int","value":8, "min":1},            
-            {"name":"n_gpu_layers","type":"int","value":20 if config.hardware_mode=="nvidia" or  config.hardware_mode=="nvidia-tensorcores" or  config.hardware_mode=="amd" or  config.hardware_mode=="amd-noavx" else 0, "min":1},
+            {"name":"n_gpu_layers","type":"int","value":33 if config.hardware_mode=="nvidia" or  config.hardware_mode=="nvidia-tensorcores" or  config.hardware_mode=="amd" or  config.hardware_mode=="amd-noavx" else 0, "min":1},
             {"name":"main_gpu","type":"int","value":0, "help":"If you have more than one gpu you can select the gpu to be used here"},
             {"name":"offload_kqv","type":"bool","value":False if 'cpu' in self.config.hardware_mode or 'apple' in self.config.hardware_mode else True, "help":"If you have more than one gpu you can select the gpu to be used here"},
             {"name":"cache_capacity","type":"int","value":(2 << 30) , "help":"The size of the cache in bytes"},            
@@ -297,13 +297,6 @@ class LLAMA_Python_CPP(LLMBinding):
         gpt_params = {**default_params, **gpt_params}
         if gpt_params['seed']!=-1:
             self.seed = self.binding_config.seed
-        LogitsProcessorList = self.llama_cpp.LogitsProcessorList
-        prompt = prompt if type(prompt) is str else prompt.decode()
-
-        # Handle truncation
-        logit_processors = LogitsProcessorList()
-        logit_processors.append(partial(ban_eos_logits_processor, self.model.token_eos()))
-
 
         try:
             output = ""
@@ -318,7 +311,6 @@ class LLAMA_Python_CPP(LLMBinding):
                                             top_p=float(gpt_params['top_p']),
                                             temperature=float(gpt_params['temperature']),
                                             repeat_penalty=float(gpt_params['repeat_penalty']),
-                                            logits_processor=logit_processors,
                                             # seed=int(gpt_params['seed']),
                                             #threads = int(gpt_params['n_threads']),
                                 ):
@@ -335,7 +327,7 @@ class LLAMA_Python_CPP(LLMBinding):
                     
 
                     if callback is not None:
-                        if not callback(output, MSG_TYPE.MSG_TYPE_FULL):
+                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
                             break
                 
                 
