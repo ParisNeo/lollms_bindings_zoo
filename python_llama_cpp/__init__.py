@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
-from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
 from lollms.types import MSG_TYPE
@@ -158,18 +158,43 @@ class LLAMA_Python_CPP(LLMBinding):
                 model_path = candidates[0]
             
 
-        self.model = Llama(
-                                model_path=str(model_path), 
-                                n_gpu_layers=self.binding_config.n_gpu_layers, 
-                                main_gpu=self.binding_config.main_gpu, 
-                                n_ctx=self.config.ctx_size,
-                                n_threads=self.binding_config.n_threads,
-                                n_batch=self.binding_config.batch_size,
-                                offload_kqv=self.binding_config.offload_kqv,
-                                seed=self.binding_config.seed,
-                                lora_path=self.binding_config.lora_path,
-                                lora_scale=self.binding_config.lora_scale
-                            )
+        
+        if "llava" in self.config.model_name:
+            if not proj_file.exists():
+                self.InfoMessage("Projector file was not found. Please download it first.\nReverting to text only")
+            else:
+                self.binding_type = BindingType.TEXT_IMAGE
+                proj_file = model_path.parent/"mmproj-model-f16.gguf"
+                self.chat_handler = self.llama_cpp.llama_chat_format.Llava15ChatHandler(clip_model_path=proj_file)
+            self.model = Llama(
+                                    model_path=str(model_path), 
+                                    n_gpu_layers=self.binding_config.n_gpu_layers, 
+                                    main_gpu=self.binding_config.main_gpu, 
+                                    n_ctx=self.config.ctx_size,
+                                    n_threads=self.binding_config.n_threads,
+                                    n_batch=self.binding_config.batch_size,
+                                    offload_kqv=self.binding_config.offload_kqv,
+                                    seed=self.binding_config.seed,
+                                    lora_path=self.binding_config.lora_path,
+                                    lora_scale=self.binding_config.lora_scale,
+
+                                    chat_handler=self.chat_handler,
+                                    logits_all=True
+                                )
+        else:
+            self.model = Llama(
+                                    model_path=str(model_path), 
+                                    n_gpu_layers=self.binding_config.n_gpu_layers, 
+                                    main_gpu=self.binding_config.main_gpu, 
+                                    n_ctx=self.config.ctx_size,
+                                    n_threads=self.binding_config.n_threads,
+                                    n_batch=self.binding_config.batch_size,
+                                    offload_kqv=self.binding_config.offload_kqv,
+                                    seed=self.binding_config.seed,
+                                    lora_path=self.binding_config.lora_path,
+                                    lora_scale=self.binding_config.lora_scale
+                                )
+
         # self.model.set_cache(LlamaCache(capacity_bytes=0))
         for chunk in self.model.create_completion("question: What is 1+1\nanswer:",
                                         max_tokens = 2,
@@ -310,7 +335,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                             top_k=int(gpt_params['top_k']),
                                             top_p=float(gpt_params['top_p']),
                                             temperature=float(gpt_params['temperature']),
-                                            repeat_penalty=float(gpt_params['repeat_penalty']),
+                                            repeat_penalty=float(gpt_params['repeat_penalty']), stop=["<0x0A>"]
                                             # seed=int(gpt_params['seed']),
                                             #threads = int(gpt_params['n_threads']),
                                 ):
@@ -334,3 +359,61 @@ class LLAMA_Python_CPP(LLMBinding):
         except Exception as ex:
             print(ex)
         return output            
+
+
+    def generate_with_images(self, 
+            prompt:str,
+            images:list=[],
+            n_predict: int = 128,
+            callback: Callable[[str, int, dict], bool] = None,
+            verbose: bool = False,
+            **gpt_params ):
+        """Generates text out of a prompt
+
+        Args:
+            prompt (str): The prompt to use for generation
+            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
+            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
+        """
+        text = ""
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {self.binding_config.server_key}',
+        }
+        default_params = {
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3
+        }
+        gpt_params = {**default_params, **gpt_params}
+        try:
+            for chunk in self.model.create_chat_completion(
+                                messages = [
+                                    {
+                                        "role": "",
+                                        "content": [
+                                            {"type": "image_url", "image_url": {"url": ""}},
+                                        ]+[ {"type" : "text", "text": prompt}]
+                                    }
+                                ]
+                            ):
+                    if count >= n_predict:
+                        break
+                    try:
+                        word = chunk["choices"][0]["text"]
+                    except Exception as ex:
+                        word = ""
+                    if word:
+                        output += word
+                        count += 1
+                        output=output.replace("<0x0A>","\n")
+                        
+
+                        if callback is not None:
+                            if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                                break
+        except Exception as ex:
+            print(ex)
+        return output                   
