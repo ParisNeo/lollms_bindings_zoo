@@ -279,7 +279,7 @@ class HuggingFace(LLMBinding):
                 """
                 return self
             else:
-                self.InfoMessage(f"No model is selected")
+                self.InfoMessage(f"No model is selected\nPlease select a model from the Models zoo to start using Hugging face binding")
         except Exception as ex:
             self.error(str(ex))
             self.HideBlockingMessage()

@@ -193,15 +193,15 @@ class ExLLamav2(LLMBinding):
                 self.model = ExLlamaV2(config)
                 print("Loading model: " + model_name)
 
-                cache = ExLlamaV2Cache(self.model, lazy = True)
-                self.model.load_autosplit(cache)
+                self.cache = ExLlamaV2Cache(self.model, lazy = True)
+                self.model.load_autosplit(self.cache)
                 self.ShowBlockingMessage(f"Creating tokenizer {model_path}")
                 self.tokenizer = ExLlamaV2Tokenizer(config)
                 self.ShowBlockingMessage(f"Recovering generation config {model_path}")
 
                 # Initialize generator
 
-                self.generator = ExLlamaV2StreamingGenerator(self.model, cache, self.tokenizer)
+                self.generator = ExLlamaV2StreamingGenerator(self.model, self.cache, self.tokenizer)
                     
                 self.ShowBlockingMessage(f"Model loaded successfully")
                 self.HideBlockingMessage()
@@ -221,8 +221,9 @@ class ExLLamav2(LLMBinding):
                 """
                 return self
             else:
-                self.InfoMessage(f"No model is selected")
+                self.InfoMessage(f"No model is selected\nPlease select a model from the Models zoo to start using ExllamaV2 binding")
         except Exception as ex:
+            trace_exception(ex)
             self.error(str(ex))
             self.HideBlockingMessage()
 
@@ -308,8 +309,9 @@ class ExLLamav2(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.tokenizer.encode(prompt)
-
+        ptt= self.tokenizer.encode(prompt)[0]
+        return ptt.tolist()
+    
     def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
@@ -320,7 +322,8 @@ class ExLLamav2(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.tokenizer.decode(tokens_list)[0]
+        tk = self.tokenizer.decode(self.torch.tensor(tokens_list))
+        return tk
 
     def generate(self, 
                  prompt:str,                  
@@ -388,6 +391,14 @@ class ExLLamav2(LLMBinding):
         if hasattr(self, "tokenizer"):
             if self.tokenizer is not None:
                 del self.model
+        if hasattr(self, "cache"):
+            if self.cache is not None:
+                del self.cache
+
+        if hasattr(self, "generator"):
+            if self.generator is not None:
+                del self.generator
+
 
         if hasattr(self, "model"):
             if self.model is not None:

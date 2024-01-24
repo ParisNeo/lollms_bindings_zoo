@@ -141,7 +141,7 @@ class LLAMA_Python_CPP(LLMBinding):
         LlamaCache = self.llama_cpp.LlamaCache
         ASCIIColors.info("Building model")
         if self.config['model_name'] is None:
-           ASCIIColors.error("No model is selected")
+           self.InfoMessage("No model is selected\nPlease select a model from the Models zoo to start using python_llama_cpp binding")
            return
 
         

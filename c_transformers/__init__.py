@@ -141,7 +141,7 @@ class CTRansformers(LLMBinding):
         if model_path.suffix not in self.supported_file_extensions:
             self.config['model_name'] = None
             self.model = None
-            ASCIIColors.error("No model is selected")
+            ASCIIColors.error("No model is selected\nPlease select a model from the Models zoo to start using CTransformers binding")
             return None
             
 
