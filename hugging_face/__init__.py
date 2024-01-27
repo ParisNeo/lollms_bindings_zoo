@@ -281,8 +281,9 @@ class HuggingFace(LLMBinding):
             else:
                 self.InfoMessage(f"No model is selected\nPlease select a model from the Models zoo to start using Hugging face binding")
         except Exception as ex:
-            self.error(str(ex))
+            trace_exception(ex)
             self.HideBlockingMessage()
+            self.InfoMessage(f"Couldn't load the model {model_path}\nHere is the error encountered during loading:\n"+str(ex)+"\nPlease choose another model or post a request on the discord channel.")
 
     def destroy_model(self):
         # Delete any old model
