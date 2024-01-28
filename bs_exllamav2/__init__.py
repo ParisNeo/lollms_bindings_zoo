@@ -194,7 +194,10 @@ class ExLLamav2(LLMBinding):
                 print("Loading model: " + model_name)
 
                 self.cache = ExLlamaV2Cache(self.model, lazy = True)
-                self.model.load_autosplit(self.cache)
+                try:
+                    self.model.load_autosplit(self.cache)
+                except Exception as ex:
+                    ASCIIColors.red("unsufficient VRAM!")
                 self.ShowBlockingMessage(f"Creating tokenizer {model_path}")
                 self.tokenizer = ExLlamaV2Tokenizer(config)
                 self.ShowBlockingMessage(f"Recovering generation config {model_path}")
@@ -387,6 +390,7 @@ class ExLLamav2(LLMBinding):
         return self.output
     
     def destroy_model(self):
+        ASCIIColors.bold("Destroying model")
         # Delete any old model
         if hasattr(self, "tokenizer"):
             if self.tokenizer is not None:

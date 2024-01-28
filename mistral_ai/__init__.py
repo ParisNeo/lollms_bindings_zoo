@@ -253,7 +253,7 @@ class MistralAI(LLMBinding):
                 messages = [
                             self.ChatMessage(role="user", content=prompt)
                         ]
-            messages[0].model_dump()
+            # messages[0].model_dump()
             chat_completion = self.client.chat_stream(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
