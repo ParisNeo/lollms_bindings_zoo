@@ -19,7 +19,7 @@ from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector, PackageManager
 from lollms.utilities import check_and_install_torch, expand2square, load_image, run_cmd
 import subprocess
-import yaml
+import platform
 from tqdm import tqdm
 import re
 import urllib
@@ -328,16 +328,25 @@ class HuggingFace(LLMBinding):
                 self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
                 return
             elif self.config.hardware_mode=="amd-noavx":
+                check_and_install_torch(False)
                 requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
             elif self.config.hardware_mode=="amd":
+                if platform.system() == 'Linux' or platform.system() == 'Darwin':
+                    os.system("pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.6")
+                else:
+                    check_and_install_torch(False)
                 requirements_file = self.binding_dir / "requirements_amd.txt"
             elif self.config.hardware_mode=="nvidia":
+                check_and_install_torch(True)
                 requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
             elif self.config.hardware_mode=="nvidia-tensorcores":
+                check_and_install_torch(True)
                 requirements_file = self.binding_dir / "requirements_nvidia.txt"
             elif self.config.hardware_mode=="apple-intel":
+                check_and_install_torch(True)
                 requirements_file = self.binding_dir / "requirements_apple_intel.txt"
             elif self.config.hardware_mode=="apple-silicon":
+                check_and_install_torch(False)
                 requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
 
             try:
