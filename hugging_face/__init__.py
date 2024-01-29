@@ -330,10 +330,8 @@ class HuggingFace(LLMBinding):
                 requirements_file = self.binding_dir / "requirements_amd.txt"
             elif self.config.hardware_mode=="nvidia":
                 requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
-                check_and_install_torch(True)
             elif self.config.hardware_mode=="nvidia-tensorcores":
                 requirements_file = self.binding_dir / "requirements_nvidia.txt"
-                check_and_install_torch(True)
             elif self.config.hardware_mode=="apple-intel":
                 requirements_file = self.binding_dir / "requirements_apple_intel.txt"
             elif self.config.hardware_mode=="apple-silicon":
