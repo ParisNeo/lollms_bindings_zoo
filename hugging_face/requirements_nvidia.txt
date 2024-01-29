@@ -1,6 +1,5 @@
 accelerate
 colorama
-datasets
 einops
 exllamav2
 
@@ -9,15 +8,11 @@ pandas
 peft
 Pillow
 pyyaml
-requests
-rich
 safetensors
-scipy
 sentencepiece
 tensorboard
 transformers
 tqdm
-wandb
 
 # bitsandbytes
 bitsandbytes; platform_system != "Windows"
