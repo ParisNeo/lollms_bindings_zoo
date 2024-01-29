@@ -311,6 +311,7 @@ class HuggingFace(LLMBinding):
             self.clear_cuda()
 
     def install(self):
+        import pip
         self.ShowBlockingMessage("Freeing memory...")
         ASCIIColors.success("freeing memory")
         AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
@@ -362,7 +363,15 @@ class HuggingFace(LLMBinding):
             except:
                 pass
 
-            subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+            # Load the requirements.txt file
+            with open(requirements_file, 'r') as f:
+                requirements = f.readlines()
+
+            # Install the packages using pip
+            for requirement in requirements:
+                pip.main(['install', '--no-cache-dir', '--upgrade', "--force", requirement.strip()])
+            
+            # subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
 
             device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
             import torch
