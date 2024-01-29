@@ -17,7 +17,7 @@ from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector, PackageManager
-from lollms.utilities import check_and_install_torch, expand2square, load_image
+from lollms.utilities import check_and_install_torch, expand2square, load_image, run_cmd
 import subprocess
 import yaml
 from tqdm import tqdm
@@ -336,6 +336,19 @@ class HuggingFace(LLMBinding):
                 requirements_file = self.binding_dir / "requirements_apple_intel.txt"
             elif self.config.hardware_mode=="apple-silicon":
                 requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
+
+            try:
+                with open(requirements_file,"r") as f:
+                    textgen_requirements = f.read()
+
+                git_requirements = [req for req in textgen_requirements if req.startswith("git+")]
+                for req in git_requirements:
+                    url = req.replace("git+", "")
+                    package_name = url.split("/")[-1].split("@")[0].rstrip(".git")
+                    run_cmd("python -m pip uninstall -y " + package_name, environment=True)
+                    print(f"Uninstalled {package_name}")
+            except:
+                pass
 
             subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
 
