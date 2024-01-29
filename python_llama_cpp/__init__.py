@@ -114,27 +114,39 @@ class LLAMA_Python_CPP(LLMBinding):
             del self.model
 
     def build_model(self):
-
-        try:
-            import llama_cpp
-        except:
-            llama_cpp = None
-
-        try:
-            import llama_cpp_cuda
-        except:
-            llama_cpp_cuda = None
-
-        try:
-            import llama_cpp_cuda_tensorcores
-        except:
-            llama_cpp_cuda_tensorcores = None
-        
-        if self.config.hardware_mode=="nvidia" and llama_cpp_cuda:
-            self.llama_cpp = llama_cpp_cuda
-        elif self.config.hardware_mode=="nvidia-tensorcores" and llama_cpp_cuda_tensorcores:
-            self.llama_cpp = llama_cpp_cuda_tensorcores
+        if self.config.hardware_mode=="nvidia":
+            try:
+                import llama_cpp_cuda
+                self.llama_cpp = llama_cpp_cuda
+            except:
+                self.error("Couldn't load Llamacpp for cuda.\nReverting to CPU")
+                try:
+                    import llama_cpp
+                except:
+                    llama_cpp = None
+                    self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
+                    return
+                self.llama_cpp = llama_cpp
+        elif self.config.hardware_mode=="nvidia-tensorcores":
+            try:
+                import llama_cpp_cuda_tensorcores
+                self.llama_cpp = llama_cpp_cuda_tensorcores
+            except:
+                llama_cpp_cuda_tensorcores = None
+                self.error("Couldn't load Llamacpp for cuda with tensorcores.\nReverting to CPU")
+                try:
+                    import llama_cpp
+                except:
+                    llama_cpp = None
+                    self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
+                    return
+                self.llama_cpp = llama_cpp
         else:
+            try:
+                import llama_cpp
+            except:
+                llama_cpp = None
+                self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
             self.llama_cpp = llama_cpp
 
         Llama = self.llama_cpp.Llama
