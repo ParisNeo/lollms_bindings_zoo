@@ -60,11 +60,13 @@ class ExLLamav2(LLMBinding):
             config (LOLLMSConfig): The configuration file
         """
         device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
-        import torch
-
-        if torch.cuda.is_available():
-            device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
-
+        try:
+            import torch
+    
+            if torch.cuda.is_available():
+                device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
+        except:
+            pass
         os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:512'
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
