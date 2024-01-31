@@ -26,7 +26,7 @@ import urllib
 import json
 import shutil
 if not PackageManager.check_package_installed("PIL"):
-    PackageManager.install_package("pillow")
+    PackageManager.install_package("Pillow")
 from PIL import Image
 
 
