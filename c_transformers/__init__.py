@@ -62,6 +62,9 @@ class CTRansformers(LLMBinding):
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         self.model = None
+        pth = Path(os.getcwd()).parent/"installer_files/lollms_env/bin"
+        if not pth.exists():
+            pth.mkdir(exist_ok=True, parents=True)
         
         self.config = config
         if lollms_paths is None:
