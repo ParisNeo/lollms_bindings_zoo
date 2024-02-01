@@ -37,7 +37,7 @@ __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
 binding_name = "vLLM"
-binding_folder_name = "hugging_face"
+binding_folder_name = "vLLM"
 import os
 import subprocess
 import gc
