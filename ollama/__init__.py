@@ -300,6 +300,20 @@ class Ollama(LLMBinding):
         model_names=[
             {"model_name":"llama2:latest", "owned_by": "meta"},
             {"model_name":"codellama:latest", "owned_by": "meta"},
+            {"model_name":"codellama:70b", "owned_by": "meta"},
+            {"model_name":"medllama2", "owned_by": "meta"},
+            {"model_name":"falcon:7b", "owned_by": "TII"},
+            {"model_name":"falcon:40b", "owned_by": "TII"},
+            {"model_name":"falcon:180b", "owned_by": "TII"},
+            {"model_name":"nous-hermes", "owned_by": "Nous-research"},
+            {"model_name":"openhermes", "owned_by": "Nous-research"},
+            {"model_name":"wizardcoder", "owned_by": "WizardLm"},
+            {"model_name":"deepseek-coder", "owned_by": "DeepSeek"},
+            {"model_name":"neural-chat", "owned_by": "Intel"},
+            {"model_name":"bakllava", "owned_by": "mistral based"},
+           
+            
+            
             {"model_name":"llava:latest", "owned_by": "liuhaotian"},
             {"model_name":"mistral:latest", "owned_by": "mistral.ai"},
             {"model_name":"mixtral:latest", "owned_by": "mistral.ai"},
