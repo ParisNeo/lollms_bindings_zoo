@@ -798,3 +798,18 @@ class ExLLamav2(LLMBinding):
                         status=False,
                         error=str(ex),
                         )
+
+
+if __name__=="__name__":
+    from lollms.paths import LollmsPaths
+    from lollms.main_config import LOLLMSConfig
+    from lollms.app import LollmsApplication
+    from pathlib import Path
+    root_path = Path(__file__).parent
+    lollms_paths = LollmsPaths.find_paths(tool_prefix="elf_",force_local=True, custom_default_cfg_path="configs/config.yaml")
+    config = LOLLMSConfig.autoload(lollms_paths)
+    lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
+
+    exl = ExLLamav2(config, lollms_paths)
+    exl.install()
+    exl.install_model("gptq")
