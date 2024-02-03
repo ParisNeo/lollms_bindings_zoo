@@ -800,7 +800,7 @@ class ExLLamav2(LLMBinding):
                         )
 
 
-if __name__=="__name__":
+if __name__=="__main__":
     from lollms.paths import LollmsPaths
     from lollms.main_config import LOLLMSConfig
     from lollms.app import LollmsApplication
@@ -810,6 +810,6 @@ if __name__=="__name__":
     config = LOLLMSConfig.autoload(lollms_paths)
     lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
 
-    exl = ExLLamav2(config, lollms_paths)
+    exl = ExLLamav2(config, lollms_paths,lollmsCom=lollms_app)
     exl.install()
-    exl.install_model("gptq")
+    exl.install_model("gptq","https://huggingface.co/TheBloke/Airoboros-M-7B-3.1.2-GPTQ/resolve/main/model.safetensors","model.safetensors")
