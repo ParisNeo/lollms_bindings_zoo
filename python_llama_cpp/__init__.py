@@ -426,4 +426,21 @@ class LLAMA_Python_CPP(LLMBinding):
                             break
         except Exception as ex:
             trace_exception(ex)
-        return output                   
+        return output
+
+if __name__=="__main__":
+    from lollms.paths import LollmsPaths
+    from lollms.main_config import LOLLMSConfig
+    from lollms.app import LollmsApplication
+    from pathlib import Path
+    root_path = Path(__file__).parent
+    lollms_paths = LollmsPaths.find_paths(tool_prefix="",force_local=True, custom_default_cfg_path="configs/config.yaml")
+    config = LOLLMSConfig.autoload(lollms_paths)
+    lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
+
+    plc = LLAMA_Python_CPP(config, lollms_paths,lollmsCom=lollms_app)
+    plc.install()
+    plc.install_model("gptq","https://huggingface.co/TheBloke/airoboros-m-7B-3.1.2-dare-0.85-GGUF/resolve/main/airoboros-m-7b-3.1.2-dare-0.85.Q4_0.gguf","airoboros-m-7b-3.1.2-dare-0.85.Q4_0.gguf")
+    config.binding_name = "python_llama_cpp"
+    config.model_name   = "Airoboros-M-7B-3.1.2-GPTQ"
+    config.save_config()
