@@ -375,9 +375,10 @@ if __name__=="__main__":
     config = LOLLMSConfig.autoload(lollms_paths)
     lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
 
-    exl = OpenAIGPT(config, lollms_paths,lollmsCom=lollms_app)
-    exl.install()
-    exl.install_model("gptq","https://huggingface.co/TheBloke/Airoboros-M-7B-3.1.2-GPTQ/resolve/main/model.safetensors","model.safetensors")
+    oai = OpenAIGPT(config, lollms_paths,lollmsCom=lollms_app)
+    oai.install()
+    oai.binding_config.openai_key = input("Open AI Key:")
+    oai.binding_config.save()
     config.binding_name= "open_ai"
-    config.model_name="Airoboros-M-7B-3.1.2-GPTQ"
+    config.model_name="gpt-3.5-turbo"
     config.save_config()
