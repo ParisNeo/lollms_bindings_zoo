@@ -363,3 +363,21 @@ class OpenAIGPT(LLMBinding):
             yaml_data = yaml.safe_load(file)
         
         return yaml_data
+    
+
+if __name__=="__main__":
+    from lollms.paths import LollmsPaths
+    from lollms.main_config import LOLLMSConfig
+    from lollms.app import LollmsApplication
+    from pathlib import Path
+    root_path = Path(__file__).parent
+    lollms_paths = LollmsPaths.find_paths(tool_prefix="",force_local=True, custom_default_cfg_path="configs/config.yaml")
+    config = LOLLMSConfig.autoload(lollms_paths)
+    lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
+
+    exl = OpenAIGPT(config, lollms_paths,lollmsCom=lollms_app)
+    exl.install()
+    exl.install_model("gptq","https://huggingface.co/TheBloke/Airoboros-M-7B-3.1.2-GPTQ/resolve/main/model.safetensors","model.safetensors")
+    config.binding_name= "open_ai"
+    config.model_name="Airoboros-M-7B-3.1.2-GPTQ"
+    config.save_config()

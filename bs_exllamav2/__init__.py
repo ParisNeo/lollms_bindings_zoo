@@ -806,10 +806,13 @@ if __name__=="__main__":
     from lollms.app import LollmsApplication
     from pathlib import Path
     root_path = Path(__file__).parent
-    lollms_paths = LollmsPaths.find_paths(tool_prefix="elf_",force_local=True, custom_default_cfg_path="configs/config.yaml")
+    lollms_paths = LollmsPaths.find_paths(tool_prefix="",force_local=True, custom_default_cfg_path="configs/config.yaml")
     config = LOLLMSConfig.autoload(lollms_paths)
     lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
 
     exl = ExLLamav2(config, lollms_paths,lollmsCom=lollms_app)
     exl.install()
     exl.install_model("gptq","https://huggingface.co/TheBloke/Airoboros-M-7B-3.1.2-GPTQ/resolve/main/model.safetensors","model.safetensors")
+    config.binding_name= "bs_exllamav2"
+    config.model_name="Airoboros-M-7B-3.1.2-GPTQ"
+    config.save_config()
