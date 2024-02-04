@@ -296,21 +296,20 @@ class LollmsRN(LLMBinding):
         return response.json()
                 
     def get_available_models(self, app:LoLLMsCom=None):
-
-        #/pull
-        # Create the file path relative to the child class's directory
-        #model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key)
-        
-        
-        url = f'{self.binding_config.address}/get_available_models'
-        headers = {
-                    'accept': 'application/json',
-                    'Authorization': f'Bearer {self.binding_config.server_key}'
-                }
-        
-        response = requests.get(url, headers=headers)
-        return response.json()
-
+       
+        try:
+            url = f'{self.binding_config.address}/get_available_models'
+            headers = {
+                        'accept': 'application/json',
+                        'Authorization': f'Bearer {self.binding_config.server_key}'
+                    }
+            
+            response = requests.get(url, headers=headers)
+            return response.json()
+        except Exception as ex:
+            trace_exception()
+            self.InfoMessage("Couldn't recover the list of models from the lollms server!\nMake sure the server is running and that you are connected.")
+        return {"status":False}
 
 if __name__=="__main__":
     from lollms.paths import LollmsPaths
