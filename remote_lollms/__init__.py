@@ -217,11 +217,7 @@ class LollmsRN(LLMBinding):
             url = f'{self.binding_config.address}/lollms_generate'
             ASCIIColors.yellow(f"{data}")
             response = requests.post(url, headers=headers, json=data, stream=True)
-            for line in response.iter_lines(): 
-                decoded = line.decode("utf-8")
-                json_data = json.loads(decoded)
-                chunk = json_data["response"]
-                ## Process the JSON data here
+            for chunk in response.iter_lines(): 
                 text +=chunk
                 if callback:
                     if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
