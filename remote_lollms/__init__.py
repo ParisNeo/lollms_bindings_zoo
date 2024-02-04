@@ -77,7 +77,6 @@ class LollmsRN(LLMBinding):
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://127.0.0.1:9601","help":"The server address"},
                 {"name":"max_image_width","type":"int","value":1024, "help":"The maximum width of the image in pixels. If the mimage is bigger it gets shrunk before sent to lollms remote nodes model"},
-                {"name":"completion_format","type":"str","value":"instruct","options":["instruct"], "help":"The format supported by the server"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
             ]),
@@ -125,7 +124,7 @@ class LollmsRN(LLMBinding):
         self.InfoMessage("You need to install a lollms remote nodes server somewhere and run it locally or remotely.")
     
     def install_model(self, model_type:str, model_path:str, variant_name:str, client_id:int=None):
-        url = f'{self.binding_config.address}/api/pull'
+        url = f'{self.binding_config.address}/install_model'
         headers = {
                     'accept': 'application/json',
                     'Authorization': f'Bearer {self.binding_config.server_key}'
@@ -215,7 +214,7 @@ class LollmsRN(LLMBinding):
 
             }
             
-            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/lollms_generate'
+            url = f'{self.binding_config.address}/lollms_generate'
             ASCIIColors.yellow(f"{data}")
             response = requests.post(url, headers=headers, json=data, stream=True)
             for line in response.iter_lines(): 
