@@ -177,6 +177,11 @@ class vLLM(LLMBinding):
         else:
             self.error("No model selected.\Please select a model to load")        
     def install(self):
+        import platform
+        if platform.system()=="Windows":
+            self.InfoMessage("vllm is only supported on linux.\nPlease use the remote vllm binding instead and make sure to activate the vllm server on this pc or a remote PC.")
+            return False
+        
         self.info("freeing memory")
         AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
         AdvancedGarbageCollector.safeHardCollectMultiple(['AutoModelForCausalLM'])
@@ -186,62 +191,13 @@ class vLLM(LLMBinding):
         os.environ['VLLM_VERSION'] = '0.2.6'
         os.environ['PYTHON_VERSION'] = py_version
         try:
-            subprocess.run(["conda", "install", "-c", "nvidia/label/cuda-12.1.1", "cuda-compiler", "-y"], check=True)
+            import conda.cli
+            conda.cli.main("install", "-c", "nvidia/label/cuda-12.1.1", "cuda-compiler", "-y")
         except Exception as ex:
-            print(ex)
+            trace_exception(ex)
         super().install()
         
-        if self.config.hardware_mode=="cpu-noavx":
-            self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-        elif self.config.hardware_mode=="cpu":
-            self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-            return
-        elif self.config.hardware_mode=="amd-noavx":
-            requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
-        elif self.config.hardware_mode=="amd":
-            requirements_file = self.binding_dir / "requirements_amd.txt"
-        elif self.config.hardware_mode=="nvidia":
-            requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
-            check_and_install_torch(True)
-        elif self.config.hardware_mode=="nvidia-tensorcores":
-            requirements_file = self.binding_dir / "requirements_nvidia.txt"
-            check_and_install_torch(True)
-        elif self.config.hardware_mode=="apple-intel":
-            requirements_file = self.binding_dir / "requirements_apple_intel.txt"
-        elif self.config.hardware_mode=="apple-silicon":
-            requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
-
         try:
-            """
-            # Create the "temp" folder if it does not exist
-            self.info("Step 0: Preparing for install...")
-            if not os.path.exists("temp"):
-                os.makedirs("temp")
-            os.system("python.exe -m pip install --upgrade pip")
-
-            # Check if the vllm folder exists
-            if os.path.exists("temp/vllm"):
-                self.info("vllm folder already exists. Trying to pull changes...")
-                os.chdir("temp/vllm")
-                subprocess.run(["git", "pull"], check=True)
-                os.chdir("..")
-            else:
-                self.info("vllm folder does not exist. Cloning the vLLM repository...")
-                subprocess.run(["git", "clone", "https://github.com/ParisNeo/vllm.git", "temp/vllm"], check=True)
-
-            # Step 2: Navigate to the vLLM folder
-            self.info("Step 2: Navigating to the vLLM folder...")
-            os.chdir("temp/vllm")
-
-            # Step 3: Install vLLM from source
-            self.info("Step 3: Installing vLLM from source.\nThis will compile the vLLM library for your ...")
-            subprocess.run(["pip", "install", "-e", "."], check=True)
-
-            # Step 4: Return to the current folder
-            self.info("Step 4: Returning to the current folder...")
-            os.chdir("..")
-            """
-            
             subprocess.run(["pip", "install", "--upgrade", "vllm"], check=True)
             # Installation complete
             self.info("vLLM installation completed successfully!")

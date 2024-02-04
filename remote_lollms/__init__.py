@@ -3,7 +3,7 @@
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
-# engine author : ParisNeo
+# engine author : LollmsRN 
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
@@ -15,33 +15,51 @@ from pathlib import Path
 from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
-from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
 import re
-
-import time
+import json
 import requests
-import socketio
+from datetime import datetime
+from typing import List, Union
+from lollms.utilities import PackageManager, encode_image, trace_exception
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
-__copyright__ = "Copyright 2023, "
+__copyright__ = "Copyright 2024, "
 __license__ = "Apache 2.0"
 
-binding_name = "LoLLMs"
+binding_name = "LollmsRN"
 binding_folder_name = ""
+elf_completion_formats={
+    "instruct":"/api",
+}
 
-class LoLLMs(LLMBinding):    
+def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
+    cfg_file_path = lollms_paths.personal_configuration_path/"bindings"/f"{binding_name}"/"config.yaml"
+    return LOLLMSConfig(cfg_file_path,lollms_paths)
+
+def get_model_info(url, authorization_key):
+    url = f'{url}/list_models'
+    headers = {
+                'accept': 'application/json',
+                'Authorization': f'Bearer {authorization_key}'
+            }
+    
+    response = requests.get(url, headers=headers)
+    return response.json()
+
+class LollmsRN(LLMBinding):
+    
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                lollmsCom=None
-                ) -> None:
+                lollmsCom=None) -> None:
         """
         Initialize the Binding.
 
@@ -54,18 +72,16 @@ class LoLLMs(LLMBinding):
             lollms_paths = LollmsPaths()
         # Initialization code goes here
 
+
         binding_config = TypedConfig(
-            ConfigTemplate(
-            [
-                {"name":"servers_addresses","type":"list","value":[], "help":"A list of server addresses for example ['http://localhost:9601', 'http://localhost:9602']"},
-                {"name":"keep_only_active_servers","type":"bool","value":True, "help":"If true, then only active servers will be kept in the loop"},
-                {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-            ]
-            ),
+            ConfigTemplate([
+                {"name":"address","type":"str","value":"http://127.0.0.1:9601","help":"The server address"},
+                {"name":"max_image_width","type":"int","value":1024, "help":"The maximum width of the image in pixels. If the mimage is bigger it gets shrunk before sent to lollms remote nodes model"},
+                {"name":"completion_format","type":"str","value":"instruct","options":["instruct"], "help":"The format supported by the server"},
+                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
+            ]),
             BaseConfig(config={
-                "servers_addresses"         : [],    # list of hosts to be used
-                "keep_only_active_servers"  : True   # if true only keep actiave servers in the list
             })
         )
         super().__init__(
@@ -78,94 +94,135 @@ class LoLLMs(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+
+    def settings_updated(self):
+        self.config.ctx_size = self.binding_config.config.ctx_size        
         
     def build_model(self):
-        # Create two lists to hold active and inactive servers
-        self.servers_addresses = self.binding_config.config.servers_addresses
+        if self.config.model_name is None:
+            return None
         
-        if len(self.servers_addresses)==1 and len(self.servers_addresses[0].split(","))>1:
-            self.servers_addresses = self.servers_addresses[0].split(",")
-        active_servers = []
-        inactive_servers = []
-
-        ASCIIColors.success(f" ╔══════════════════════════════════════════════════╗ ")
-        ASCIIColors.success(f" ║                 Checking servers                 ║ ")
-        ASCIIColors.success(f" ╚══════════════════════════════════════════════════╝ ")
-
-        # Ping servers
-        for server_url in self.servers_addresses:
-            try:
-                # Create a Socket.IO client instance
-                sio = socketio.Client()
-
-                # Define the event handler for the 'connect' event
-                @sio.event
-                def connect():
-                    pass
-
-                # Define the event handler for the 'disconnect' event
-                @sio.event
-                def disconnect():
-                    pass
-
-                # Connect to the server
-                sio.connect(server_url)
-
-                # Disconnect from the server
-                sio.disconnect()
-                active_servers.append(server_url)  # Add active server to the list
-                ASCIIColors.green(f"Server : {server_url} is active")
-            except:
-                inactive_servers.append(server_url)  # Add inactive server to the list
-                ASCIIColors.error(f"Server : {server_url} is unreachable")
-        # Do your initialization stuff
-        if self.binding_config.config["keep_only_active_servers"]:
-            self.servers_addresses = active_servers
-        ASCIIColors.success(f" ╔══════════════════════════════════════════════════╗ ")
-        ASCIIColors.success(f" ║                       DONE                       ║ ")
-        ASCIIColors.success(f" ╚══════════════════════════════════════════════════╝ ")
-
+        if "llava" in self.config.model_name or "vision" in self.config.model_name:
+            self.binding_type = BindingType.TEXT_IMAGE
         return self
 
     def install(self):
         super().install()
-        requirements_file = self.binding_dir / "requirements.txt"
-        # install requirements
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         ASCIIColors.success("Installed successfully")
+        ASCIIColors.error("----------------------")
+        ASCIIColors.error("Attention please")
+        ASCIIColors.error("----------------------")
+        ASCIIColors.error("You need to install a lollms remote nodes server somewhere and run it locally or remotely.")
+        self.InfoMessage("You need to install a lollms remote nodes server somewhere and run it locally or remotely.")
+    
+    def install_model(self, model_type:str, model_path:str, variant_name:str, client_id:int=None):
+        url = f'{self.binding_config.address}/api/pull'
+        headers = {
+                    'accept': 'application/json',
+                    'Authorization': f'Bearer {self.binding_config.server_key}'
+                }
+        
+        payload = json.dumps({
+            'name':variant_name,
+            'stream':True
+        })
 
-    def tokenize(self, prompt:str):
-        """
-        Tokenizes the given prompt using the model's tokenizer.
+        response = requests.post(url, headers=headers, data=payload, stream=True)
+        for line in response.iter_lines():
+            line = json.loads(line.decode("utf-8")) 
+            if line["status"]=="pulling manifest":
+                self.lollmsCom.info("Pulling")
+            elif line["status"]=="downloading digestname" or line["status"].startswith("pulling") and "completed" in line.keys():
+                self.lollmsCom.notify_model_install(model_path,variant_name,"", model_path,datetime.now().strftime("%Y-%m-%d %H:%M:%S"), line["total"], line["completed"], 100*line["completed"]/line["total"] if line["total"]>0 else 0,0,client_id=client_id)
+        self.InfoMessage("Installed")
+
+
+    def tokenize(self, text: Union[str, List[str]]) -> List[str]:
+        """Tokenizes a text string
 
         Args:
-            prompt (str): The input prompt to be tokenized.
+            text (str): The text to tokenize
 
         Returns:
-            list: A list of tokens representing the tokenized prompt.
+            A list of tokens
         """
-        # Split text into words while preserving spaces
-        words = re.findall(r'\w+|\S+|\s+', prompt)
-        return words
+        if isinstance(text, str):
+            return text.split()
+        else:
+            return text
 
-    def detokenize(self, tokens_list:list):
-        """
-        Detokenizes the given list of tokens using the model's tokenizer.
+    def detokenize(self, tokens: List[str]) -> str:
+        """Detokenizes a list of tokens
 
         Args:
-            tokens_list (list): A list of tokens to be detokenized.
+            tokens (List[str]): The tokens to detokenize
 
         Returns:
-            str: The detokenized text as a string.
+            A string
         """
-        return "".join(tokens_list)
+        return " ".join(tokens)
     
     def generate(self, 
-                 prompt:str,                  
+                 prompt: str,                  
                  n_predict: int = 128,
                  callback: Callable[[str], None] = bool,
                  verbose: bool = False,
-                 **gpt_params ):
+                 **gpt_params) -> str:
+        """Generates text out of a prompt
+
+        Args:
+            prompt (str): The prompt to use for generation
+            n_predict (int, optional): Number of tokens to predict. Defaults to 128.
+            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
+            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
+        """
+        text = ""
+        try:
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': f'Bearer {self.binding_config.server_key}',
+            }
+            default_params = {
+                'temperature': 0.7,
+                'top_k': 50,
+                'top_p': 0.96,
+                'repeat_penalty': 1.3
+            }
+            gpt_params = {**default_params, **gpt_params}
+
+            data = {
+                'model':self.config.model_name,
+                'prompt': prompt,
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
+
+            
+            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
+
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
+            for line in response.iter_lines(): 
+                decoded = line.decode("utf-8")
+                json_data = json.loads(decoded)
+                chunk = json_data["response"]
+                ## Process the JSON data here
+                text +=chunk
+                if callback:
+                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break
+        except Exception as ex:
+            trace_exception(ex)
+            self.error("Couldn't generate text")
+        return text
+
+    def generate_with_images(self, 
+            prompt:str,
+            images:list=[],
+            n_predict: int = 128,
+            callback: Callable[[str, int, dict], bool] = None,
+            verbose: bool = False,
+            **gpt_params ):
         """Generates text out of a prompt
 
         Args:
@@ -174,92 +231,94 @@ class LoLLMs(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        infos = {
-            "generated":False,
-            "found": False,
-            "generated_text":""
+        text = ""
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {self.binding_config.server_key}',
         }
-        index = 0
         default_params = {
-            'temperature': 0.1,
+            'temperature': 0.7,
             'top_k': 50,
-            'top_p': 0.9,
-            'repeat_penalty': 1.3,
-            'repeat_last_n':60,
-            "seed":-1,
-            "n_threads":8,
-            "begin_suppress_tokens ": self.tokenize("!")
+            'top_p': 0.96,
+            'repeat_penalty': 1.3
         }
         gpt_params = {**default_params, **gpt_params}
-        while True:
-            try:
-                server_url = self.servers_addresses[index]
-                # Create a Socket.IO client instance
-                sio = socketio.Client()
-                # Event handler for successful connection
-                @sio.event
-                def connect():
-                    infos["found"]= True
-                    if prompt:
-                        # Trigger the 'generate_text' event with the prompt
-                        sio.emit('generate_text', {'prompt': prompt, 'personality':-1, "n_predicts":n_predict, 'parameters':gpt_params})
+        images_list = []
+        for image in images:
+            images_list.append(f"{encode_image(image, self.binding_config.max_image_width)}")
 
-                @sio.event
-                def text_chunk(data):
-                    if callback is not None:
-                        if not callback(data["chunk"], MSG_TYPE(data["type"])):
-                            ASCIIColors.yellow("Front end asked for cancelling generation")
-                            sio.emit('cancel_generation',{})
+        data = {
+            'model':self.config.model_name,
+            'prompt': prompt,
+            'images': images_list,
+            "stream":True,
+            "temperature": float(gpt_params["temperature"]),
+            "max_tokens": n_predict
+        }
 
-                @sio.event
-                def text_generated(data):
-                    infos["generated_text"]=data["text"]
-                    sio.disconnect()
+        try:
+            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
 
-                @sio.event
-                def buzzy():
-                    #works but not ready We need to wait
-                    sio.disconnect()
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
 
-                # Connect to the Socket.IO server
-                sio.connect(server_url)
-
-                # Start the event loop
-                sio.wait()
-                infos["generated"] = True
-                break
-            except Exception as ex:
-                index +=1
-                if index>=len(self.servers_addresses) and not infos["found"]:
-                    self.error("No server was ready to serve!\nPlease check their state")
-                    break
-                if index>=len(self.servers_addresses):
-                    # Wait 1 second and retry again
-                    time.sleep(1)
-                    index = 0
-        if not infos["found"]:
-            ASCIIColors.error("No server was ready to receive this request")
-        return infos["generated_text"]
+            for line in response.iter_lines(): 
+                decoded = line.decode("utf-8")
+                json_data = json.loads(decoded)
+                chunk = json_data["response"]
+                ## Process the JSON data here
+                text +=chunk
+                if callback:
+                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break
+        except Exception as ex:
+            trace_exception(ex)
+            self.error(ex)
+        return text        
     
+
     def list_models(self):
         """Lists the models for this binding
         """
-        # binding_path = Path(__file__).parent
-        # file_path = binding_path/"models.yaml"
-
-        # with open(file_path, 'r') as file:
-        #    yaml_data = yaml.safe_load(file)
+        url = f'{self.binding_config.address}/list_models'
+        headers = {
+                    'accept': 'application/json',
+                    'Authorization': f'Bearer {self.binding_config.server_key}'
+                }
         
-        # return yaml_data
-        return ["Default lollms remotes"]
-          
-          
+        response = requests.get(url, headers=headers)
+        return response.json()
+                
     def get_available_models(self, app:LoLLMsCom=None):
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
 
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
+        #/pull
+        # Create the file path relative to the child class's directory
+        #model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key)
         
-        return yaml_data
+        
+        url = f'{self.binding_config.address}/get_available_models'
+        headers = {
+                    'accept': 'application/json',
+                    'Authorization': f'Bearer {self.binding_config.server_key}'
+                }
+        
+        response = requests.get(url, headers=headers)
+        return response.json()
+
+
+if __name__=="__main__":
+    from lollms.paths import LollmsPaths
+    from lollms.main_config import LOLLMSConfig
+    from lollms.app import LollmsApplication
+    from pathlib import Path
+    root_path = Path(__file__).parent
+    lollms_paths = LollmsPaths.find_paths(tool_prefix="",force_local=True, custom_default_cfg_path="configs/config.yaml")
+    config = LOLLMSConfig.autoload(lollms_paths)
+    lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
+
+    lrn = LollmsRN(config, lollms_paths,lollmsCom=lollms_app)
+    lrn.install()
+    lrn.binding_config.openai_key = input("Lollms Remote Nodes Key (If your server don't use keys, please leave it blank):")
+    lrn.binding_config.save()
+    config.binding_name= "remote_lollms"
+    config.model_name=""
+    config.save_config()
