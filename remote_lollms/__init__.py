@@ -76,6 +76,8 @@ class LollmsRN(LLMBinding):
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://127.0.0.1:9601","help":"The server address"},
+                {"name":"timeout_delay","type":"int","value":30,"help":"The timeout delay in seconds"},
+
                 {"name":"max_image_width","type":"int","value":1024, "help":"The maximum width of the image in pixels. If the mimage is bigger it gets shrunk before sent to lollms remote nodes model"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
@@ -215,7 +217,6 @@ class LollmsRN(LLMBinding):
             }
             
             url = f'{self.binding_config.address}/lollms_generate'
-            ASCIIColors.yellow(f"{data}")
             response = requests.post(url, headers=headers, json=data, stream=True)
             for chunk in response.iter_lines(): 
                 text +=chunk
@@ -297,7 +298,7 @@ class LollmsRN(LLMBinding):
                         'Authorization': f'Bearer {self.binding_config.server_key}'
                     }
             
-            response = requests.get(url, headers=headers, timeout=5)
+            response = requests.get(url, headers=headers, timeout=self.binding_config.timeout_delay)
             return response.json()
         except Exception as ex:
             trace_exception(ex)
@@ -313,7 +314,7 @@ class LollmsRN(LLMBinding):
                         'Authorization': f'Bearer {self.binding_config.server_key}'
                     }
             
-            response = requests.get(url, headers=headers, timeout=5)
+            response = requests.get(url, headers=headers, timeout=self.binding_config.timeout_delay)
             return response.json()
         except Exception as ex:
             trace_exception(ex)
