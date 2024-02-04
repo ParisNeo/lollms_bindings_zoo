@@ -304,10 +304,10 @@ class LollmsRN(LLMBinding):
                         'Authorization': f'Bearer {self.binding_config.server_key}'
                     }
             
-            response = requests.get(url, headers=headers)
+            response = requests.get(url, headers=headers, timeout=5)
             return response.json()
         except Exception as ex:
-            trace_exception()
+            trace_exception(ex)
             self.InfoMessage("Couldn't recover the list of models from the lollms server!\nMake sure the server is running and that you are connected.")
         return {"status":False}
 
