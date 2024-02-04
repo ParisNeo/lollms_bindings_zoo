@@ -191,15 +191,22 @@ class LollmsRN(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
 
             data = {
-                'model':self.config.model_name,
-                'prompt': prompt,
-                "stream":True,
+                "prompt": prompt,
+                "model_name": self.config.model_name,
+                "personality": -1,
+                "n_predict": n_predict,
+                "stream": True,
                 "temperature": float(gpt_params["temperature"]),
-                "max_tokens": n_predict
-            }
+                "top_k": 50,
+                "top_p": 0.95,
+                "repeat_penalty": 0.8,
+                "repeat_last_n": 40,
+                "seed": 0,
+                "n_threads": 8
 
+            }
             
-            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
+            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/lollms_generate'
 
             response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
             for line in response.iter_lines(): 
