@@ -94,6 +94,15 @@ class LollmsRN(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        host = self.binding_config.address.replace("http://","").split(":")[0]
+        port = self.binding_config.address.replace("http://","").split(":")[1]
+        if host == "127.0.0.1" and self.config.host=="localhost":
+            host = "localhost"
+
+        if  host== self.config.host and int(port) == self.config.port:
+            self.binding_config.address = f"http://{host}:{port}0"
+            self.binding_config.save()
+            self.InfoMessage(f"I detected that you are using lollms remotes server with the same address and port number of the current server which will cause an infinite loop.\nTo prevent this I have changed the port number and now the server address is {self.binding_config.address}")
 
     def settings_updated(self):
         self.config.ctx_size = self.binding_config.config.ctx_size        
@@ -286,14 +295,19 @@ class LollmsRN(LLMBinding):
     def list_models(self):
         """Lists the models for this binding
         """
-        url = f'{self.binding_config.address}/list_models'
-        headers = {
-                    'accept': 'application/json',
-                    'Authorization': f'Bearer {self.binding_config.server_key}'
-                }
-        
-        response = requests.get(url, headers=headers)
-        return response.json()
+        try:
+            url = f'{self.binding_config.address}/list_models'
+            headers = {
+                        'accept': 'application/json',
+                        'Authorization': f'Bearer {self.binding_config.server_key}'
+                    }
+            
+            response = requests.get(url, headers=headers, timeout=5)
+            return response.json()
+        except Exception as ex:
+            trace_exception(ex)
+            self.InfoMessage("Couldn't recover the list of models from the lollms server!\nMake sure the server is running and that you are connected.")
+        return {"status":False}
                 
     def get_available_models(self, app:LoLLMsCom=None):
        
@@ -308,7 +322,7 @@ class LollmsRN(LLMBinding):
             return response.json()
         except Exception as ex:
             trace_exception(ex)
-            self.InfoMessage("Couldn't recover the list of models from the lollms server!\nMake sure the server is running and that you are connected.")
+            self.InfoMessage("Couldn't recover the list of available models from the lollms server!\nMake sure the server is running and that you are connected.")
         return {"status":False}
 
 if __name__=="__main__":

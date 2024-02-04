@@ -102,6 +102,12 @@ class Ollama(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        host = self.binding_config.address.replace("http://","").split(":")[0]
+        port = self.binding_config.address.replace("http://","").split(":")[1]
+        if  host== self.config.host and port == self.config.port:
+            self.binding_config.address = "http://"+host+":"+port+"0"
+            self.binding_config.save()
+            self.InfoMessage(f"I detected that you are using lollms remotes server with the same address and port number of the current server which will cause an infinite loop.\nTo prevent this I have changed the port number and now the server address is {self.binding_config.address}")
 
     def settings_updated(self):
         self.config.ctx_size = self.binding_config.config.ctx_size        
