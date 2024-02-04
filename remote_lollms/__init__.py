@@ -219,6 +219,7 @@ class LollmsRN(LLMBinding):
             url = f'{self.binding_config.address}/lollms_generate'
             response = requests.post(url, headers=headers, json=data, stream=True)
             for chunk in response.iter_lines(): 
+                chunk = chunk.decode("utf-8")
                 text +=chunk
                 if callback:
                     if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
