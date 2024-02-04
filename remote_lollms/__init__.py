@@ -217,7 +217,7 @@ class LollmsRN(LLMBinding):
             
             url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/lollms_generate'
 
-            response = requests.post(url, data=json.dumps(data), stream=True)
+            response = requests.post(url, headers=headers, json=data, stream=True)
             for line in response.iter_lines(): 
                 decoded = line.decode("utf-8")
                 json_data = json.loads(decoded)
