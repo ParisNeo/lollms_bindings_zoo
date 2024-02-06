@@ -854,6 +854,6 @@ if __name__=="__main__":
     exl = HuggingFace(config, lollms_paths,lollmsCom=lollms_app)
     exl.install()
     exl.install_model("gptq","https://huggingface.co/TheBloke/Airoboros-M-7B-3.1.2-GPTQ/resolve/main/model.safetensors","model.safetensors")
-    config.binding_name= "bs_exllamav2"
+    config.binding_name= "hugging_face"
     config.model_name="Airoboros-M-7B-3.1.2-GPTQ"
     config.save_config()
