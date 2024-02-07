@@ -311,7 +311,6 @@ class HuggingFace(LLMBinding):
             self.clear_cuda()
 
     def install(self):
-        import pip
         self.ShowBlockingMessage("Freeing memory...")
         ASCIIColors.success("freeing memory")
         AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
@@ -329,41 +328,21 @@ class HuggingFace(LLMBinding):
                 self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
                 return
             elif self.config.hardware_mode=="amd-noavx":
-                check_and_install_torch(False)
                 requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
             elif self.config.hardware_mode=="amd":
-                if platform.system() == 'Linux' or platform.system() == 'Darwin':
-                    os.system("pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.6")
-                else:
-                    check_and_install_torch(False)
                 requirements_file = self.binding_dir / "requirements_amd.txt"
             elif self.config.hardware_mode=="nvidia":
-                check_and_install_torch(True)
                 requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
+                check_and_install_torch(True)
             elif self.config.hardware_mode=="nvidia-tensorcores":
-                check_and_install_torch(True)
                 requirements_file = self.binding_dir / "requirements_nvidia.txt"
-            elif self.config.hardware_mode=="apple-intel":
                 check_and_install_torch(True)
+            elif self.config.hardware_mode=="apple-intel":
                 requirements_file = self.binding_dir / "requirements_apple_intel.txt"
             elif self.config.hardware_mode=="apple-silicon":
-                check_and_install_torch(False)
                 requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
 
-            try:
-                with open(requirements_file,"r") as f:
-                    textgen_requirements = f.read()
-
-                git_requirements = [req for req in textgen_requirements if req.startswith("git+")]
-                for req in git_requirements:
-                    url = req.replace("git+", "")
-                    package_name = url.split("/")[-1].split("@")[0].rstrip(".git")
-                    run_cmd("python -m pip uninstall -y " + package_name, environment=True)
-                    print(f"Uninstalled {package_name}")
-            except:
-                pass
-
-            subprocess.run(["pip", "install", '--no-cache-dir', '--upgrade', "--force", "--upgrade", "-r", str(requirements_file)])
+            subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
 
             device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
             import torch
@@ -395,7 +374,7 @@ class HuggingFace(LLMBinding):
         except Exception as ex:
             self.error(ex)
         self.HideBlockingMessage()
-
+        
     def uninstall(self):
         super().install()
         print("Uninstalling binding.")
