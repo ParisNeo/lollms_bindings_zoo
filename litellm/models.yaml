@@ -1,0 +1,15 @@
+- category: generic
+  datasets: unknown
+  icon: '/bindings/elf/logo.png'
+  last_commit_time: 2023-09-17 17:21:17+00:00
+  license: commercial
+  model_creator: litellm
+  model_creator_link: https://lollms.com/
+  name: elf_service
+  quantizer: None
+  rank: 1.0
+  type: api
+  variants:
+  - name: A bridge to other llms
+    size: Unknown
+
