@@ -1,11 +1,11 @@
 - category: generic
   datasets: unknown
-  icon: '/bindings/elf/logo.png'
+  icon: '/bindings/litellm/logo.png'
   last_commit_time: 2023-09-17 17:21:17+00:00
   license: commercial
   model_creator: litellm
-  model_creator_link: https://lollms.com/
-  name: elf_service
+  model_creator_link: https://litellm.ai/ 
+  name: litellm_service
   quantizer: None
   rank: 1.0
   type: api

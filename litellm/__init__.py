@@ -1,14 +1,14 @@
 ######
-# Project       : lollms
+# Project       : LiteLLM
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
-# engine author : Open AI
+# engine author : LiteLLM
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
 
-# This binding is a wrapper to openrouter ai's api
+# This binding is a wrapper to LiteLLM's api
 
 ######
 from pathlib import Path
@@ -435,11 +435,10 @@ class LiteLLM(LLMBinding):
             entry={
                 "category": "generic",
                 "datasets": "unknown",
-                "icon": '/bindings/Ollama/logo.png',
+                "icon": '/bindings/litellm/logo.png',
                 "last_commit_time": "2023-09-17 17:21:17+00:00",
                 "license": "unknown",
                 "model_creator": model["owned_by"],
-                "model_creator_link": "https://lollms.com/",
                 "name": model["model_name"],
                 "quantizer": None,
                 "rank": "1.0",
