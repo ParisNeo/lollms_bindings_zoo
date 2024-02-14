@@ -8,38 +8,56 @@
 # Description   : 
 # This is an interface class for lollms bindings.
 
-# This binding is a wrapper to open ai's api
+# This binding is a wrapper to openrouter ai's api
 
 ######
 from pathlib import Path
+import requests
 from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
-from lollms.types import MSG_TYPE
-from lollms.utilities import PackageManager, encode_image
 from lollms.com import LoLLMsCom
+from lollms.types import MSG_TYPE
 import subprocess
 import yaml
 import re
 import base64
-if not PackageManager.check_package_installed("PIL"):
-    PackageManager.install_package("Pillow")
-from PIL import Image
-import io
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "OpenAIGPT"
+binding_name = "LiteLLM"
 binding_folder_name = ""
 
+# Function to encode the image
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode('utf-8')
 
-  
-class OpenAIGPT(LLMBinding):
+def get_model_info(url, authorization_key):
+    url = f'{url}/v1/models'
+    headers = {
+                'accept': 'application/json',
+                'Authorization': f'Bearer {authorization_key}'
+            }
+    
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    model_info = []
+
+    for model in data['data']:
+        model_name = model['id']
+        owned_by = model["owned_by"]
+        created_datetime = model["created"]
+        model_info.append({'model_name': model_name, 'owned_by': owned_by, 'created_datetime': created_datetime})
+
+    return model_info
+
+class LiteLLM(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -54,7 +72,7 @@ class OpenAIGPT(LLMBinding):
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         self.input_costs_by_model={
-            "gpt-4-1106-preview":0.01,
+            "mistralai/mistral-7b-instruct":0.0,
             "gpt-4-vision-preview":0.03,
             "gpt-4":0.03,
             "gpt-4-32k":0.06,
@@ -63,7 +81,7 @@ class OpenAIGPT(LLMBinding):
             "gpt-3.5-turbo-16k":0.003,
         }       
         self.output_costs_by_model={
-            "gpt-4-1106-preview":0.03,
+            "mistralai/mistral-7b-instruct":0.0,
             "gpt-4-vision-preview":0.03,
             "gpt-4":0.06,
             "gpt-4-32k":0.12,
@@ -76,19 +94,18 @@ class OpenAIGPT(LLMBinding):
         # Initialization code goes here
         binding_config = TypedConfig(
             ConfigTemplate([
+                {"name":"address","type":"str","value":"http://0.0.0.0:8000","help":"The server address"},
+                {"name":"server_key","type":"str","value":"anything","help":"The server key"},
                 {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
                 {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
                 {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
                 {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
                 {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
-                {"name":"openai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-                {"name":"max_image_width","type":"int","value":-1,"help":"resize the images if they have a width bigger than this (reduces cost). -1 for no change"},
 
             ]),
             BaseConfig(config={
-                "openai_key": "",     # use avx2
             })
         )
         super().__init__(
@@ -101,25 +118,30 @@ class OpenAIGPT(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
-        
-    def settings_updated(self):
-        self.openai.api_key = self.binding_config.config["openai_key"]
-        if self.openai.api_key =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
 
-        self.config.ctx_size=self.binding_config.config.ctx_size
+    def settings_updated(self):
+        self.config.ctx_size=self.binding_config.config.ctx_size        
 
     def build_model(self):
-        import openai
-        self.openai = openai
-
-        if self.config.model_name is not None:
-            if "vision" in self.config.model_name:
-                self.binding_type = BindingType.TEXT_IMAGE
-
-        self.openai.api_key = self.binding_config.config["openai_key"]
-        if self.openai.api_key =="":
+        from openai import OpenAI
+        from os import getenv
+        if self.binding_config.server_key =="":
             self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
+        if self.binding_config.address =="":
+            self.error("No API url is set!\nPlease set up your API url in the binding configuration")
+            raise Exception("No API url is set!\nPlease set up your API url in the binding configuration")
+        self.openai = OpenAI(
+            base_url=self.binding_config.address,
+            api_key=self.binding_config.server_key,
+        )
+
+        if self.config.model_name is None:
+            return None
+        
+        if "llava" in self.config.model_name or "vision" in self.config.model_name:
+            self.binding_type = BindingType.TEXT_IMAGE
+
         # Do your initialization stuff
         return self
 
@@ -127,18 +149,8 @@ class OpenAIGPT(LLMBinding):
         super().install()
         requirements_file = self.binding_dir / "requirements.txt"
         # install requirements
-        self.ShowBlockingMessage("Installing open ai api ...")
-        try:
-            subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
-            self.HideBlockingMessage()
-            ASCIIColors.success("Installed successfully")
-            ASCIIColors.error("----------------------")
-            ASCIIColors.error("Attention please")
-            ASCIIColors.error("----------------------")
-            ASCIIColors.error("The chatgpt/gpt4 binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration of the binding.")
-        except:
-            self.warning("The chatgpt/gpt4 binding uses the openai API which is a paid service.\nPlease create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration of the binding.",20)
-            self.HideBlockingMessage()
+        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        ASCIIColors.success("Installed successfully")
 
     def tokenize(self, prompt:str):
         """
@@ -151,7 +163,7 @@ class OpenAIGPT(LLMBinding):
             list: A list of tokens representing the tokenized prompt.
         """
         import tiktoken
-        tokens_list = tiktoken.model.encoding_for_model(self.config["model_name"]).encode(prompt)
+        tokens_list = tiktoken.model.encoding_for_model('gpt-3.5-turbo').encode(prompt)
 
         return tokens_list
 
@@ -166,7 +178,7 @@ class OpenAIGPT(LLMBinding):
             str: The detokenized text as a string.
         """
         import tiktoken
-        text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+        text = tiktoken.model.encoding_for_model('gpt-3.5-turbo').decode(tokens_list)
 
         return text
 
@@ -180,6 +192,78 @@ class OpenAIGPT(LLMBinding):
         """
         
         pass
+
+    def generate(self, 
+                 prompt:str,                  
+                 n_predict: int = 128,
+                 callback: Callable[[str], None] = bool,
+                 verbose: bool = False,
+                 **gpt_params ):
+        """Generates text out of a prompt
+
+        Args:
+            prompt (str): The prompt to use for generation
+            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
+            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
+        """
+        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+        try:
+            default_params = {
+                'temperature': 0.7,
+                'top_k': 50,
+                'top_p': 0.96,
+                'repeat_penalty': 1.3
+            }
+            gpt_params = {**default_params, **gpt_params}
+            count = 0
+            output = ""
+            if "vision" in self.config.model_name:
+                messages = [
+                            {
+                                "role": "user", 
+                                "content": [
+                                    {
+                                        "type":"text",
+                                        "text":prompt
+                                    }
+                                ]
+                            }
+                        ]
+            else:
+                messages = [{"role": "user", "content": prompt}]
+            chat_completion = self.openai.chat.completions.create(
+                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
+                            messages=messages,
+                            max_tokens=n_predict,  # Adjust the desired length of the generated response
+                            n=1,  # Specify the number of responses you want
+                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
+                            stream=True)
+            for resp in chat_completion:
+                if count >= n_predict:
+                    break
+                try:
+                    word = resp.choices[0].delta.content
+                except Exception as ex:
+                    word = ""
+                if word is not None:
+                    output += word
+                    count += 1
+                    if callback is not None:
+                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
+
+
+        except Exception as ex:
+            self.error(f'Error {ex}')
+            trace_exception(ex)
+        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
+        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
+        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
+        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
+        self.binding_config.save()
+        return ""      
 
     def generate_with_images(self, 
                 prompt:str,
@@ -196,9 +280,8 @@ class OpenAIGPT(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0.1) /1000
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
         if not "vision" in self.config.model_name:
             raise Exception("You can not call a generate with vision on this model")
         try:
@@ -223,7 +306,7 @@ class OpenAIGPT(LLMBinding):
                                 {
                                     "type": "image_url",
                                     "image_url": {
-                                    "url": f"data:image/jpeg;base64,{encode_image(image_path, self.binding_config.max_image_width)}"
+                                    "url": f"data:image/jpeg;base64,{encode_image(image_path)}"
                                     }                                    
                                 }
                                 for image_path in images
@@ -254,14 +337,14 @@ class OpenAIGPT(LLMBinding):
 
 
             self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0.1)/1000    
+            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
             self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
             self.error(f'Error {ex}')
             trace_exception(ex)
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
-        return output    
+        return ""       
 
 
     def generate(self, 
@@ -278,9 +361,8 @@ class OpenAIGPT(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+        self.binding_config.config["total_input_cost"] = self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"], 0) / 1000
         try:
             default_params = {
                 'temperature': 0.7,
@@ -304,14 +386,11 @@ class OpenAIGPT(LLMBinding):
                             }
                         ]
             else:
-                if prompt.startswith("user:") or prompt.startswith("system:"):
-                    messages = [{"role": "user", "content": c} for c in prompt.split("user:")[1:]]
-                else:
-                    messages = [{"role": "user", "content": prompt}]
+                messages = [{"role": "user", "content": prompt}]
             chat_completion = self.openai.chat.completions.create(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
-                            max_tokens=n_predict-7 if n_predict>512 else n_predict,  # Adjust the desired length of the generated response
+                            max_tokens=n_predict,  # Adjust the desired length of the generated response
                             n=1,  # Specify the number of responses you want
                             temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
                             stream=True)
@@ -334,7 +413,7 @@ class OpenAIGPT(LLMBinding):
             self.error(f'Error {ex}$')
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
+        self.binding_config.config["total_output_cost"] = self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"], 0) / 1000
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
@@ -343,42 +422,36 @@ class OpenAIGPT(LLMBinding):
     def list_models(self):
         """Lists the models for this binding
         """
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-        
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-
-        return [f["name"] for f in yaml_data]
-                
+        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key)
+        entries=[]
+        for model in model_names:
+            entries.append(model["model_name"])
+        return entries
                 
     def get_available_models(self, app:LoLLMsCom=None):
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
+        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key)
+        entries=[]
+        for model in model_names:
+            entry={
+                "category": "generic",
+                "datasets": "unknown",
+                "icon": '/bindings/Ollama/logo.png',
+                "last_commit_time": "2023-09-17 17:21:17+00:00",
+                "license": "unknown",
+                "model_creator": model["owned_by"],
+                "model_creator_link": "https://lollms.com/",
+                "name": model["model_name"],
+                "quantizer": None,
+                "rank": "1.0",
+                "type": "api",
+                "variants":[
+                    {
+                        "name":model["model_name"],
+                        "size":0
+                    }
+                ]
+            }
+            entries.append(entry)
         
-        return yaml_data
-    
+        return entries
 
-if __name__=="__main__":
-    from lollms.paths import LollmsPaths
-    from lollms.main_config import LOLLMSConfig
-    from lollms.app import LollmsApplication
-    from pathlib import Path
-    root_path = Path(__file__).parent
-    lollms_paths = LollmsPaths.find_paths(tool_prefix="",force_local=True, custom_default_cfg_path="configs/config.yaml")
-    config = LOLLMSConfig.autoload(lollms_paths)
-    lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
-
-    oai = OpenAIGPT(config, lollms_paths,lollmsCom=lollms_app)
-    oai.install()
-    oai.binding_config.openai_key = input("Open AI Key:")
-    oai.binding_config.save()
-    config.binding_name= "open_ai"
-    config.model_name="gpt-3.5-turbo"
-    config.save_config()
