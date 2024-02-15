@@ -259,7 +259,7 @@ class LiteLLM(LLMBinding):
             self.error(f'Error {ex}')
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
+        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"], 0) / 1000    
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
@@ -281,7 +281,7 @@ class LiteLLM(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"], 0) /1000
         if not "vision" in self.config.model_name:
             raise Exception("You can not call a generate with vision on this model")
         try:
@@ -337,7 +337,7 @@ class LiteLLM(LLMBinding):
 
 
             self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
+            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"], 0) / 1000    
             self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
             self.error(f'Error {ex}')
@@ -436,7 +436,6 @@ class LiteLLM(LLMBinding):
                 "category": "generic",
                 "datasets": "unknown",
                 "icon": '/bindings/litellm/logo.png',
-                "last_commit_time": "2023-09-17 17:21:17+00:00",
                 "license": "unknown",
                 "model_creator": model["owned_by"],
                 "name": model["model_name"],
