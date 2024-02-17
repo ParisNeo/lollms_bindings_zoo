@@ -20,13 +20,11 @@ from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
 import subprocess
-import yaml
-import re
 import base64
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
-__copyright__ = "Copyright 2023, "
+__copyright__ = "Copyright 2024"
 __license__ = "Apache 2.0"
 
 binding_name = "LiteLLM"
@@ -121,29 +119,29 @@ class LiteLLM(LLMBinding):
         )
 
         super().__init__(
-                            Path(__file__).parent, 
-                            lollms_paths, 
-                            config, 
-                            binding_config, 
-                            installation_option,
-                            supported_file_extensions=[''],
-                            lollmsCom=lollmsCom
-                        )
+            Path(__file__).parent, 
+            lollms_paths, 
+            config, 
+            binding_config, 
+            installation_option,
+            supported_file_extensions=[''],
+            lollmsCom=lollmsCom
+        )
         self.config.ctx_size=self.binding_config.config.ctx_size
 
-        # address = self.binding_config.config['address']
-        # server_key = self.binding_config.config['server_key']
+        address = self.binding_config.config['address']
+        server_key = self.binding_config.config['server_key']
 
-        # # Fetch model info using get_model_info
-        # model_info = get_model_info(address, server_key)
+        # Fetch model info using get_model_info
+        model_info = get_model_info(address, server_key)
 
-        # # Initialize and populate cost dictionaries
-        # self.input_costs_by_model = {}
-        # self.output_costs_by_model = {}
-        # for model in model_info:
-        #     model_name = model['model_name']
-        #     self.input_costs_by_model[model_name] = model.get('input_cost_per_token', 0)
-        #     self.output_costs_by_model[model_name] = model.get('output_cost_per_token', 0)
+        # Initialize and populate cost dictionaries
+        self.input_costs_by_model = {}
+        self.output_costs_by_model = {}
+        for model in model_info:
+            model_name = model['model_name']
+            self.input_costs_by_model[model_name] = model.get('input_cost_per_token', 0)
+            self.output_costs_by_model[model_name] = model.get('output_cost_per_token', 0)
 
     def settings_updated(self):
         self.config.ctx_size = self.binding_config.config.ctx_size
@@ -225,7 +223,7 @@ class LiteLLM(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         self.binding_config.config["total_input_tokens"] += len(self.tokenize(prompt))
-        self.binding_config.config["total_input_cost"] = self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]]
+        self.binding_config.config["total_input_cost"] = self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"], 0)
         try:
             default_params = {
                 'temperature': 0.7,
@@ -370,19 +368,28 @@ class LiteLLM(LLMBinding):
         return entries
                 
     def get_available_models(self, app=None):
-        print("get_available_models")
         models = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key)
         entries = []
         for model in models:
             icon_path = get_icon_path(model["model_name"])
             entry = {
                 "category": "generic",
+                "datasets": "unknown",
                 "icon": icon_path,
+                "license": "unknown",
+                "model_creator": "unknown",
                 "name": model["model_name"],
-                "type": "api"
+                "quantizer": None,
+                "rank": "1.0",
+                "type": "api",
+                "variants": [
+                    {
+                        "name": model["model_name"],
+                        "size": 0
+                    }
+                ]
             }
             entries.append(entry)
-        print(entries)
 
         return entries
 
