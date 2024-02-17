@@ -1,7 +1,7 @@
 ######
 # Project       : LiteLLM
 # File          : binding.py
-# Author        : ParisNeo with the help of the community
+# Author        : g1ibby
 # Underlying 
 # engine author : LiteLLM
 # license       : Apache 2.0
@@ -22,7 +22,7 @@ from lollms.types import MSG_TYPE
 import subprocess
 import base64
 
-__author__ = "parisneo"
+__author__ = "g1ibby"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2024"
 __license__ = "Apache 2.0"
