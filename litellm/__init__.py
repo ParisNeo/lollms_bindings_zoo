@@ -18,7 +18,6 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
-from lollms.com import LoLLMsCom
 from lollms.types import MSG_TYPE
 import subprocess
 import yaml
@@ -52,23 +51,39 @@ def get_icon_path(model_name):
         return '/bindings/litellm/logo.png'
 
 def get_model_info(url, authorization_key):
-    url = f'{url}/v1/models'
+    url = f'{url}/model/info'
     headers = {
-                'accept': 'application/json',
-                'Authorization': f'Bearer {authorization_key}'
-            }
-    
+        'accept': 'application/json',
+        'Authorization': f'Bearer {authorization_key}'
+    }
+
     response = requests.get(url, headers=headers)
     data = response.json()
-    model_info = []
+    model_info_list = []
 
     for model in data['data']:
-        model_name = model['id']
-        owned_by = model["owned_by"]
-        created_datetime = model["created"]
-        model_info.append({'model_name': model_name, 'owned_by': owned_by, 'created_datetime': created_datetime})
+        model_name = model['model_name']
+        model_info = model.get('model_info', {})
 
-    return model_info
+        # Extracting the required fields, setting default to 0 if not found
+        input_cost_per_token = model_info.get('input_cost_per_token', 0)
+        output_cost_per_token = model_info.get('output_cost_per_token', 0)
+        max_tokens = model_info.get('max_tokens', 0)
+        max_input_tokens = model_info.get('max_input_tokens', 0)
+        max_output_tokens = model_info.get('max_output_tokens', 0)
+
+        model_details = {
+            'model_name': model_name,
+            'input_cost_per_token': input_cost_per_token,
+            'output_cost_per_token': output_cost_per_token,
+            'max_tokens': max_tokens,
+            'max_input_tokens': max_input_tokens,
+            'max_output_tokens': max_output_tokens
+        }
+
+        model_info_list.append(model_details)
+
+    return model_info_list
 
 class LiteLLM(LLMBinding):
     def __init__(self, 
@@ -78,34 +93,16 @@ class LiteLLM(LLMBinding):
                 lollmsCom=None) -> None:
         """
         Initialize the Binding.
-
         Args:
             config (LOLLMSConfig): The configuration object for LOLLMS.
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        # TODO: Add your model's input and output costs here based on API results
-        self.input_costs_by_model={
-            "mistralai/mistral-7b-instruct":0.0,
-            "gpt-4-vision-preview":0.03,
-            "gpt-4":0.03,
-            "gpt-4-32k":0.06,
-            "gpt-3.5-turbo-1106":0.0015,
-            "gpt-3.5-turbo":0.0010,
-            "gpt-3.5-turbo-16k":0.003,
-        }       
-        self.output_costs_by_model={
-            "mistralai/mistral-7b-instruct":0.0,
-            "gpt-4-vision-preview":0.03,
-            "gpt-4":0.06,
-            "gpt-4-32k":0.12,
-            "gpt-3.5-turbo-1106":0.0015,
-            "gpt-3.5-turbo":0.002,
-            "gpt-3.5-turbo-16k":0.004,
-        }
+        self.input_costs_by_model={}
+        self.output_costs_by_model={}
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
-        # Initialization code goes here
+
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://0.0.0.0:8000","help":"The server address"},
@@ -122,6 +119,7 @@ class LiteLLM(LLMBinding):
             BaseConfig(config={
             })
         )
+
         super().__init__(
                             Path(__file__).parent, 
                             lollms_paths, 
@@ -133,12 +131,25 @@ class LiteLLM(LLMBinding):
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
 
+        # address = self.binding_config.config['address']
+        # server_key = self.binding_config.config['server_key']
+
+        # # Fetch model info using get_model_info
+        # model_info = get_model_info(address, server_key)
+
+        # # Initialize and populate cost dictionaries
+        # self.input_costs_by_model = {}
+        # self.output_costs_by_model = {}
+        # for model in model_info:
+        #     model_name = model['model_name']
+        #     self.input_costs_by_model[model_name] = model.get('input_cost_per_token', 0)
+        #     self.output_costs_by_model[model_name] = model.get('output_cost_per_token', 0)
+
     def settings_updated(self):
-        self.config.ctx_size=self.binding_config.config.ctx_size        
+        self.config.ctx_size = self.binding_config.config.ctx_size
 
     def build_model(self):
         from openai import OpenAI
-        from os import getenv
         if self.binding_config.server_key =="":
             self.error("No API key is set!\nPlease set up your API key in the binding configuration")
             raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
@@ -152,11 +163,9 @@ class LiteLLM(LLMBinding):
 
         if self.config.model_name is None:
             return None
-        
         if "llava" in self.config.model_name or "vision" in self.config.model_name:
             self.binding_type = BindingType.TEXT_IMAGE
 
-        # Do your initialization stuff
         return self
 
     def install(self):
@@ -169,10 +178,8 @@ class LiteLLM(LLMBinding):
     def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
-
         Args:
             prompt (str): The input prompt to be tokenized.
-
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
@@ -184,10 +191,8 @@ class LiteLLM(LLMBinding):
     def detokenize(self, tokens_list:list):
         """
         Detokenizes the given list of tokens using the model's tokenizer.
-
         Args:
             tokens_list (list): A list of tokens to be detokenized.
-
         Returns:
             str: The detokenized text as a string.
         """
@@ -204,25 +209,23 @@ class LiteLLM(LLMBinding):
         Returns:
             List[float]
         """
-        
         pass
 
     def generate(self, 
-                 prompt:str,                  
+                 prompt: str,
                  n_predict: int = 128,
                  callback: Callable[[str], None] = bool,
                  verbose: bool = False,
-                 **gpt_params ):
+                 **gpt_params):
         """Generates text out of a prompt
-
         Args:
             prompt (str): The prompt to use for generation
             n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+        self.binding_config.config["total_input_tokens"] += len(self.tokenize(prompt))
+        self.binding_config.config["total_input_cost"] = self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]]
         try:
             default_params = {
                 'temperature': 0.7,
@@ -267,15 +270,14 @@ class LiteLLM(LLMBinding):
                     if callback is not None:
                         if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
                             break
-
-
         except Exception as ex:
             self.error(f'Error {ex}')
             trace_exception(ex)
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"], 0) / 1000    
+
+        self.binding_config.config["total_output_tokens"] += len(self.tokenize(output))
+        self.binding_config.config["total_output_cost"] = self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"], 0)
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
+        self.info(f'Consumed {self.binding_config.config["total_cost"]}$')
         self.binding_config.save()
         return ""      
 
@@ -287,7 +289,6 @@ class LiteLLM(LLMBinding):
                 verbose: bool = False,
                 **gpt_params ):
         """Generates text out of a prompt
-
         Args:
             prompt (str): The prompt to use for generation
             n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
@@ -295,7 +296,7 @@ class LiteLLM(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"], 0) /1000
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"], 0)
         if not "vision" in self.config.model_name:
             raise Exception("You can not call a generate with vision on this model")
         try:
@@ -349,93 +350,19 @@ class LiteLLM(LLMBinding):
                     output += word
                     count += 1
 
-
-            self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"], 0) / 1000    
+            self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))
+            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"], 0)
             self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
             self.error(f'Error {ex}')
             trace_exception(ex)
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
+
+        self.info(f'Consumed {self.binding_config.config["total_cost"]}$')
         self.binding_config.save()
-        return ""       
-
-
-    def generate(self, 
-                 prompt:str,                  
-                 n_predict: int = 128,
-                 callback: Callable[[str], None] = None,
-                 verbose: bool = False,
-                 **gpt_params ):
-        """Generates text out of a prompt
-
-        Args:
-            prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
-            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
-            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
-        """
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] = self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"], 0) / 1000
-        try:
-            default_params = {
-                'temperature': 0.7,
-                'top_k': 50,
-                'top_p': 0.96,
-                'repeat_penalty': 1.3
-            }
-            gpt_params = {**default_params, **gpt_params}
-            count = 0
-            output = ""
-            if "vision" in self.config.model_name:
-                messages = [
-                            {
-                                "role": "user", 
-                                "content": [
-                                    {
-                                        "type":"text",
-                                        "text":prompt
-                                    }
-                                ]
-                            }
-                        ]
-            else:
-                messages = [{"role": "user", "content": prompt}]
-            chat_completion = self.openai.chat.completions.create(
-                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                            messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
-                            temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
-                            stream=True)
-            for resp in chat_completion:
-                if count >= n_predict:
-                    break
-                try:
-                    word = resp.choices[0].delta.content
-                except Exception as ex:
-                    word = ""
-                if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                        break
-                if word:
-                    output += word
-                    count += 1
-
-
-        except Exception as ex:
-            self.error(f'Error {ex}$')
-            trace_exception(ex)
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] = self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"], 0) / 1000
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
-        self.binding_config.save()
-        return output
+        return ""
 
     def list_models(self):
-        """Lists the models for this binding
-        """
+        """Lists the models for this binding"""
         model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key)
         entries=[]
         for model in model_names:
@@ -443,29 +370,19 @@ class LiteLLM(LLMBinding):
         return entries
                 
     def get_available_models(self, app=None):
+        print("get_available_models")
         models = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key)
         entries = []
         for model in models:
-            # Determine the icon path using a separate function
             icon_path = get_icon_path(model["model_name"])
             entry = {
                 "category": "generic",
-                "datasets": "unknown",
                 "icon": icon_path,
-                "license": "unknown",
-                "model_creator": model["owned_by"],
                 "name": model["model_name"],
-                "quantizer": None,
-                "rank": "1.0",
-                "type": "api",
-                "variants": [
-                    {
-                        "name": model["model_name"],
-                        "size": 0
-                    }
-                ]
+                "type": "api"
             }
             entries.append(entry)
+        print(entries)
 
         return entries
 
