@@ -3,6 +3,3 @@ author: BerriAI
 version: 1.0
 link: https://github.com/BerriAI/litellm 
 description: This binding uses local OpenAI API with liteLLM 
-accepted_models: 
-  - ollama
-  - openai

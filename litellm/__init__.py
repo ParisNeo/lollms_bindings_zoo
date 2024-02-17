@@ -38,6 +38,19 @@ def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
+def get_icon_path(model_name):
+    model_name = model_name.lower()
+    if 'gpt-3' in model_name:
+        return '/bindings/open_ai/logo.png'
+    elif 'gpt-4' in model_name:
+        return '/bindings/open_ai/logo2.png'
+    elif 'openai' in model_name:
+        return '/bindings/open_ai/logo.png'
+    elif 'mistral' in model_name or 'mixtral' in model_name:
+        return '/bindings/mistral_ai/logo.png'
+    else:
+        return '/bindings/litellm/logo.png'
+
 def get_model_info(url, authorization_key):
     url = f'{url}/v1/models'
     headers = {
@@ -71,6 +84,7 @@ class LiteLLM(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
+        # TODO: Add your model's input and output costs here based on API results
         self.input_costs_by_model={
             "mistralai/mistral-7b-instruct":0.0,
             "gpt-4-vision-preview":0.03,
@@ -428,28 +442,30 @@ class LiteLLM(LLMBinding):
             entries.append(model["model_name"])
         return entries
                 
-    def get_available_models(self, app:LoLLMsCom=None):
-        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key)
-        entries=[]
-        for model in model_names:
-            entry={
+    def get_available_models(self, app=None):
+        models = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key)
+        entries = []
+        for model in models:
+            # Determine the icon path using a separate function
+            icon_path = get_icon_path(model["model_name"])
+            entry = {
                 "category": "generic",
                 "datasets": "unknown",
-                "icon": '/bindings/litellm/logo.png',
+                "icon": icon_path,
                 "license": "unknown",
                 "model_creator": model["owned_by"],
                 "name": model["model_name"],
                 "quantizer": None,
                 "rank": "1.0",
                 "type": "api",
-                "variants":[
+                "variants": [
                     {
-                        "name":model["model_name"],
-                        "size":0
+                        "name": model["model_name"],
+                        "size": 0
                     }
                 ]
             }
             entries.append(entry)
-        
+
         return entries
 
