@@ -18,7 +18,7 @@ from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
 from lollms.types import MSG_TYPE
-from lollms.utilities import PackageManager
+from lollms.utilities import PackageManager, discussion_path_to_url
 from lollms.utilities import AdvancedGarbageCollector
 from ascii_colors import ASCIIColors, trace_exception
 import subprocess
@@ -396,13 +396,14 @@ class LLAMA_Python_CPP(LLMBinding):
         output = ""
         try:
             count = 0
+            url_imgs = [f"http://{self.config.host}:{self.config.port}"+discussion_path_to_url(img) for img in images]
             for chunk in self.model.create_chat_completion(
                                 messages = [
                                     {
-                                        "role": "",
+                                        "role": "user",
                                         "content": [
                                             {"type": "image_url", "image_url": {"url": img  }}
-                                            for img in images
+                                            for img in url_imgs
                                         ]+[ {"type" : "text", "text": prompt}]
                                     }
                                 ], 

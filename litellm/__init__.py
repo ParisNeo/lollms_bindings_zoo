@@ -133,8 +133,11 @@ class LiteLLM(LLMBinding):
         server_key = self.binding_config.config['server_key']
 
         # Fetch model info using get_model_info
-        model_info = get_model_info(address, server_key)
-
+        try:
+            model_info = get_model_info(address, server_key)
+        except Exception as ex:
+            model_info = []
+            self.InfoMessage("Couldn't connect to the server. Please make sure that the server is running with the specified parameters or change the parameters in the settings.")
         # Initialize and populate cost dictionaries
         self.input_costs_by_model = {}
         self.output_costs_by_model = {}
