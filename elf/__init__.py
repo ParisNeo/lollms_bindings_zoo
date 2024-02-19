@@ -35,8 +35,9 @@ __license__ = "Apache 2.0"
 binding_name = "Elf"
 binding_folder_name = ""
 elf_completion_formats={
-    "instruct":"/v1/completions",
-    "chat":"/v1/chat/completions",
+    "openai instruct":"/v1/completions",
+    "openai chat":"/v1/chat/completions",
+    "vllm chat":"/v1/chat/completions",
 }
 
 def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
@@ -81,7 +82,7 @@ class Elf(LLMBinding):
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://127.0.0.1:5000","help":"The server address"},
-                {"name":"completion_format","type":"str","value":"instruct","options":["instruct","chat"], "help":"The format supported by the server"},
+                {"name":"completion_format","type":"str","value":"instruct","options":["openai instruct","openai chat","vllm chat"], "help":"The format supported by the server"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
             ]),
@@ -98,6 +99,7 @@ class Elf(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.model_name = "elf_server_model"
 
     def settings_updated(self):
         self.config.ctx_size = self.binding_config.config.ctx_size        
@@ -165,15 +167,18 @@ class Elf(LLMBinding):
         }
         gpt_params = {**default_params, **gpt_params}
 
-        if self.binding_config.completion_format=="instruct":
+
+
+
+        if self.binding_config.completion_format=="openai instruct":
             data = {
-                'model':self.config.model_name,
+                'model':'',#self.config.model_name,
                 'prompt': prompt,
                 "stream":True,
                 "temperature": float(gpt_params["temperature"]),
                 "max_tokens": n_predict
             }
-        else:
+        elif self.binding_config.completion_format=="openai chat":
             data = {
                 'model':self.config.model_name,
                 'messages': [{
@@ -184,7 +189,14 @@ class Elf(LLMBinding):
                 "temperature": float(gpt_params["temperature"]),
                 "max_tokens": n_predict
             }
-
+        elif self.binding_config.completion_format=="vllm chat":
+            data = {
+                'model':self.config.model_name,
+                'messages': prompt,
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
         
         url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
 
