@@ -258,7 +258,10 @@ class Elf(LLMBinding):
                             try:
                                 json_data = json.loads(decoded[5:].strip())
                                 if "chat" in self.binding_config.completion_format:
-                                    chunk = json_data["choices"][0]["delta"]["content"]
+                                    try:
+                                        chunk = json_data["choices"][0]["delta"]["content"]
+                                    except:
+                                        chunk = ""
                                 else:
                                     chunk = json_data["choices"][0]["text"]
                                 ## Process the JSON data here
