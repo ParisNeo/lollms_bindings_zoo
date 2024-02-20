@@ -87,7 +87,7 @@ class Elf(LLMBinding):
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://127.0.0.1:5000","help":"The server address"},
-                {"name":"completion_format","type":"str","value":"instruct","options":["openai instruct","openai chat","vllm chat"], "help":"The format supported by the server"},
+                {"name":"completion_format","type":"str","value":"instruct","options":["openai instruct","openai chat","vllm chat","ollama chat","litellm chat"], "help":"The format supported by the server"},
                 {"name":"model","type":"str","value":"gpt-3.5-turbo","help":"Model name"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
@@ -161,11 +161,15 @@ class Elf(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.binding_config.server_key}',
-        }
+        if self.binding_config.server_key:
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': f'Bearer {self.binding_config.server_key}',
+            }
+        else:
+            headers = {
+                'Content-Type': 'application/json',
+            }
         default_params = {
             'temperature': 0.7,
             'top_k': 50,
@@ -173,9 +177,6 @@ class Elf(LLMBinding):
             'repeat_penalty': 1.3
         }
         gpt_params = {**default_params, **gpt_params}
-
-
-
 
         if self.binding_config.completion_format=="openai instruct":
             data = {
@@ -189,7 +190,7 @@ class Elf(LLMBinding):
             data = {
                 'model':self.binding_config.model,
                 'messages': [{
-                    'role': "",
+                    'role': "user",
                     'content': prompt
                 }],
                 "stream":True,
@@ -224,53 +225,68 @@ class Elf(LLMBinding):
         
         url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
 
-        response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
+        try:
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
 
-        text = ""
-        for line in response.iter_lines():
-            if self.binding_config.completion_format=="litellm chat":
-                text +=chunk
-                if callback:
-                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                        break            
-            else:
-                decoded = line.decode("utf-8")
-                if self.binding_config.completion_format=="ollama chat":
-                    json_data = json.loads(decoded)
-                    chunk = json_data["response"]
-                    ## Process the JSON data here
+            if response.status_code==400:
+                if "openai" in self.binding_config.completion_format or "vllm" in self.binding_config.completion_format:
+                    content = response.content.decode("utf8")
+                    content = json.loads(content)
+                    self.error(content["error"]["message"])
+                    return
+                else:
+                    pass
+            text = ""
+            for line in response.iter_lines():
+                if self.binding_config.completion_format=="litellm chat":
                     text +=chunk
                     if callback:
                         if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
                             break            
                 else:
-                    if decoded.startswith("data: "):
-                        try:
-                            json_data = json.loads(decoded[5:].strip())
-                            if self.binding_config.completion_format=="chat":
-                                chunk = json_data["choices"][0]["delta"]["content"]
-                            else:
-                                chunk = json_data["choices"][0]["text"]
-                            ## Process the JSON data here
-                            text +=chunk
-                            if callback:
-                                if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                                    break
-                        except:
-                            break
+                    decoded = line.decode("utf-8")
+                    if self.binding_config.completion_format=="ollama chat":
+                        json_data = json.loads(decoded)
+                        chunk = json_data["response"]
+                        ## Process the JSON data here
+                        text +=chunk
+                        if callback:
+                            if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                                break            
                     else:
-                        if decoded.startswith("{"):
-                            json_data = json.loads(decoded)
-                            if json_data["object"]=="error":
-                                self.error(json_data["message"])
+                        if decoded.startswith("data: "):
+                            try:
+                                json_data = json.loads(decoded[5:].strip())
+                                if "chat" in self.binding_config.completion_format:
+                                    chunk = json_data["choices"][0]["delta"]["content"]
+                                else:
+                                    chunk = json_data["choices"][0]["text"]
+                                ## Process the JSON data here
+                                text +=chunk
+                                if callback:
+                                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                                        break
+                            except:
                                 break
                         else:
-                            text +=decoded
-                            if callback:
-                                if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
-                                    break
-        return text
-
+                            if decoded.startswith("{"):
+                                for line_ in response.iter_lines():
+                                    decoded += line_.decode("utf-8")
+                                try:
+                                    json_data = json.loads(decoded)
+                                    if json_data["object"]=="error":
+                                        self.error(json_data["message"])
+                                        break
+                                except:
+                                    self.error("Couldn't generate text, verify your key or model name")
+                            else:
+                                text +=decoded
+                                if callback:
+                                    if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                                        break
+            return text
+        except Exception as ex:
+            self.error("Couldn't connect to server.\nPlease verify your connection or that the server is up.")
     
     def list_models(self):
         """Lists the models for this binding
