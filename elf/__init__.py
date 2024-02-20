@@ -38,18 +38,23 @@ elf_completion_formats={
     "openai instruct":"/v1/completions",
     "openai chat":"/v1/chat/completions",
     "vllm chat":"/v1/chat/completions",
+    "ollama chat":"/api/generate",
+    "litellm chat":"/chat/completions"
 }
 
 def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
     cfg_file_path = lollms_paths.personal_configuration_path/"bindings"/f"{binding_name}"/"config.yaml"
     return LOLLMSConfig(cfg_file_path,lollms_paths)
 
-def get_model_info(url):
-    url = f'{url}/v1/models'
+def get_model_info(url, completion_format):
+    if completion_format in["openai instruct"]:
+        url = f'{url}/v1/models'
+    else:
+        return [{'model_name': "elf_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
     headers = {'accept': 'application/json'}
     response = requests.get(url, headers=headers)
     data = response.json()
-    model_info = []
+    model_info = [{'model_name': "elf_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
 
     for model in data['data']:
         model_name = model['id']
@@ -83,6 +88,7 @@ class Elf(LLMBinding):
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://127.0.0.1:5000","help":"The server address"},
                 {"name":"completion_format","type":"str","value":"instruct","options":["openai instruct","openai chat","vllm chat"], "help":"The format supported by the server"},
+                {"name":"model","type":"str","value":"gpt-3.5-turbo","help":"Model name"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
             ]),
@@ -99,7 +105,8 @@ class Elf(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
-        self.config.model_name = "elf_server_model"
+        if self.config.model_name is None:
+            self.config.model_name = "elf_remote_model"
 
     def settings_updated(self):
         self.config.ctx_size = self.binding_config.config.ctx_size        
@@ -172,7 +179,7 @@ class Elf(LLMBinding):
 
         if self.binding_config.completion_format=="openai instruct":
             data = {
-                'model':'',#self.config.model_name,
+                'model':self.binding_config.model,#self.config.model_name,
                 'prompt': prompt,
                 "stream":True,
                 "temperature": float(gpt_params["temperature"]),
@@ -180,7 +187,7 @@ class Elf(LLMBinding):
             }
         elif self.binding_config.completion_format=="openai chat":
             data = {
-                'model':self.config.model_name,
+                'model':self.binding_config.model,
                 'messages': [{
                     'role': "",
                     'content': prompt
@@ -191,52 +198,84 @@ class Elf(LLMBinding):
             }
         elif self.binding_config.completion_format=="vllm chat":
             data = {
-                'model':self.config.model_name,
+                'model':self.binding_config.model,
                 'messages': prompt,
                 "stream":True,
                 "temperature": float(gpt_params["temperature"]),
                 "max_tokens": n_predict
             }
+        elif self.binding_config.completion_format=="ollama chat":
+            data = {
+                'model':self.binding_config.model,
+                'prompt': prompt,
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
+        elif self.binding_config.completion_format=="litellm chat":
+            data = {
+                'model':self.binding_config.model,
+                'prompt': prompt,
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
+
         
         url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
 
         response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
 
         text = ""
-        for line in response.iter_lines(): 
-            decoded = line.decode("utf-8")
-            if decoded.startswith("data: "):
-                try:
-                    json_data = json.loads(decoded[5:].strip())
-                    if self.binding_config.completion_format=="chat":
-                        chunk = json_data["choices"][0]["delta"]["content"]
-                    else:
-                        chunk = json_data["choices"][0]["text"]
+        for line in response.iter_lines():
+            if self.binding_config.completion_format=="litellm chat":
+                text +=chunk
+                if callback:
+                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break            
+            else:
+                decoded = line.decode("utf-8")
+                if self.binding_config.completion_format=="ollama chat":
+                    json_data = json.loads(decoded)
+                    chunk = json_data["response"]
                     ## Process the JSON data here
                     text +=chunk
                     if callback:
                         if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                            break
-                except:
-                    break
-            else:
-                if decoded.startswith("{"):
-                    json_data = json.loads(decoded)
-                    if json_data["object"]=="error":
-                        self.error(json_data["message"])
-                        break
+                            break            
                 else:
-                    text +=decoded
-                    if callback:
-                        if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if decoded.startswith("data: "):
+                        try:
+                            json_data = json.loads(decoded[5:].strip())
+                            if self.binding_config.completion_format=="chat":
+                                chunk = json_data["choices"][0]["delta"]["content"]
+                            else:
+                                chunk = json_data["choices"][0]["text"]
+                            ## Process the JSON data here
+                            text +=chunk
+                            if callback:
+                                if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                                    break
+                        except:
                             break
+                    else:
+                        if decoded.startswith("{"):
+                            json_data = json.loads(decoded)
+                            if json_data["object"]=="error":
+                                self.error(json_data["message"])
+                                break
+                        else:
+                            text +=decoded
+                            if callback:
+                                if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                                    break
         return text
 
     
     def list_models(self):
         """Lists the models for this binding
         """
-        model_names = get_model_info(f'{self.binding_config.address}')
+        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.completion_format)
         entries=[]
         for model in model_names:
             entries.append(model["model_name"])
@@ -244,7 +283,7 @@ class Elf(LLMBinding):
                 
     def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
-        model_names = get_model_info(f'{self.binding_config.address}')
+        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.completion_format)
         entries=[]
         for model in model_names:
             entry={
