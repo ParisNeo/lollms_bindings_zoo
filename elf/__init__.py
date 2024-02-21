@@ -200,7 +200,10 @@ class Elf(LLMBinding):
         elif self.binding_config.completion_format=="vllm chat":
             data = {
                 'model':self.binding_config.model,
-                'messages': prompt,
+                'messages': [{
+                    'role': "user",
+                    'content': prompt
+                }],
                 "stream":True,
                 "temperature": float(gpt_params["temperature"]),
                 "max_tokens": n_predict
