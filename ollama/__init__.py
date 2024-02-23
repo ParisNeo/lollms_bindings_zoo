@@ -160,7 +160,7 @@ class Ollama(LLMBinding):
             A list of tokens
         """
         if isinstance(text, str):
-            return text.split()
+            return text.split(" ")
         else:
             return text
 
