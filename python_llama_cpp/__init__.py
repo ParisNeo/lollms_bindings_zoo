@@ -18,14 +18,14 @@ from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
 from lollms.types import MSG_TYPE
-from lollms.utilities import PackageManager, discussion_path_to_url
+from lollms.utilities import PackageManager, discussion_path_to_url, show_message_dialog
 from lollms.utilities import AdvancedGarbageCollector
 from ascii_colors import ASCIIColors, trace_exception
 import subprocess
 import yaml
 import os
 import sys
-
+import shutil
 import platform
 from functools import partial
 
@@ -46,6 +46,17 @@ def custom_token_ban_logits_processor(token_ids, input_ids, logits):
         logits[token_id] = -float('inf')
 
     return logits
+
+
+def check_file_type(suffix, extensions):
+    # Remove the dot from the suffix
+    suffix = suffix.replace('.', '')
+    
+    # Check if any extension (without the dot) is a substring of the suffix
+    for ext in extensions:
+        if ext.replace('.', '').lower() in suffix.lower():
+            return True
+    return False
 class LLAMA_Python_CPP(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
@@ -113,6 +124,8 @@ class LLAMA_Python_CPP(LLMBinding):
         if self.model:
             del self.model
 
+
+
     def build_model(self):
         if self.config.hardware_mode=="nvidia":
             try:
@@ -163,37 +176,62 @@ class LLAMA_Python_CPP(LLMBinding):
             self.model = None
             return None
 
-        if model_path.suffix not in self.supported_file_extensions:
-            ext = model_path.suffix[1:]
-            model_path = model_path.name.lower().replace(f"-{ext}","")
-            candidates = [m for m in (self.lollms_paths.personal_models_path/self.binding_folder_name).iterdir() if model_path in m.name]
-            if len(candidates)>0:
-                model_path = candidates[0]
-            
-
-        
-        if "llava" in self.config.model_name:
-            proj_file = model_path.parent/"mmproj-model-f16.gguf"
-            if not proj_file.exists():
-                self.InfoMessage("Projector file was not found. Please download it first.\nReverting to text only")
+        if model_path.is_dir():
+            root_path = model_path
+            variants = [v for v in root_path.iterdir() if "mmproj" not in str(v)]
+            if len(variants)==0:
+                ASCIIColors.error("No model variant found. Please download a variant of the model")
+                return None
             else:
+                model_path = root_path/variants[0]
+
+        else:
+            show_message_dialog("Warning","I detected that your model was installed with previous format.\nI'll just migrate it to thre new format.\nThe new format allows you to have multiple model variants and also have the possibility to use multimodal models.")
+            model_root:Path = model_path.parent/model_path.stem
+            model_root.mkdir(exist_ok=True, parents=True)
+            shutil.move(model_path, model_root)
+            model_path = model_root/model_path.name
+            self.config.model_name = model_root.name
+            root_path = model_root
+            self.config.save_config()
+
+        if "llava" in self.config.model_name:
+            mmproj_variants = [v for v in root_path.iterdir() if "mmproj" in str(v)]
+            if len(mmproj_variants)==0:
+                self.InfoMessage("Projector file was not found. Please download it first.\nReverting to text only")
+
+                self.model = Llama(
+                                        model_path=str(model_path), 
+                                        n_gpu_layers=self.binding_config.n_gpu_layers, 
+                                        main_gpu=self.binding_config.main_gpu, 
+                                        n_ctx=self.config.ctx_size,
+                                        n_threads=self.binding_config.n_threads,
+                                        n_batch=self.binding_config.batch_size,
+                                        offload_kqv=self.binding_config.offload_kqv,
+                                        seed=self.binding_config.seed,
+                                        lora_path=self.binding_config.lora_path,
+                                        lora_scale=self.binding_config.lora_scale
+                                    )
+
+            else:
+                proj_file = mmproj_variants[0]
                 self.binding_type = BindingType.TEXT_IMAGE
                 self.chat_handler = self.llama_cpp.llama_chat_format.Llava15ChatHandler(clip_model_path=str(proj_file))
-            self.model = Llama(
-                                    model_path=str(model_path), 
-                                    n_gpu_layers=self.binding_config.n_gpu_layers, 
-                                    main_gpu=self.binding_config.main_gpu, 
-                                    n_ctx=self.config.ctx_size,
-                                    n_threads=self.binding_config.n_threads,
-                                    n_batch=self.binding_config.batch_size,
-                                    offload_kqv=self.binding_config.offload_kqv,
-                                    seed=self.binding_config.seed,
-                                    lora_path=self.binding_config.lora_path,
-                                    lora_scale=self.binding_config.lora_scale,
+                self.model = Llama(
+                                        model_path=str(model_path), 
+                                        n_gpu_layers=self.binding_config.n_gpu_layers, 
+                                        main_gpu=self.binding_config.main_gpu, 
+                                        n_ctx=self.config.ctx_size,
+                                        n_threads=self.binding_config.n_threads,
+                                        n_batch=self.binding_config.batch_size,
+                                        offload_kqv=self.binding_config.offload_kqv,
+                                        seed=self.binding_config.seed,
+                                        lora_path=self.binding_config.lora_path,
+                                        lora_scale=self.binding_config.lora_scale,
 
-                                    chat_handler=self.chat_handler,
-                                    logits_all=True
-                                )
+                                        chat_handler=self.chat_handler,
+                                        logits_all=True
+                                    )
         else:
             self.model = Llama(
                                     model_path=str(model_path), 
