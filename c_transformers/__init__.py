@@ -20,10 +20,12 @@ from lollms.com import NotificationType
 from lollms.types import MSG_TYPE
 from lollms.utilities import PackageManager
 from lollms.utilities import AdvancedGarbageCollector
+from lollms.utilities import show_message_dialog
 import subprocess
 import yaml
 import os
 import sys
+import shutil
 
 if not PackageManager.check_package_installed("pyopencl"):
     PackageManager.install_package("pyopencl")
@@ -140,12 +142,31 @@ class CTRansformers(LLMBinding):
         if not model_path:
             self.model = None
             return None
-
-        if model_path.suffix not in self.supported_file_extensions:
-            self.config['model_name'] = None
+        
+        model_path = self.get_model_path()
+        if not model_path:
             self.model = None
-            ASCIIColors.error("No model is selected\nPlease select a model from the Models zoo to start using CTransformers binding")
             return None
+
+        if model_path.is_dir():
+            root_path = model_path
+            variants = [v for v in root_path.iterdir() if "mmproj" not in str(v)]
+            if len(variants)==0:
+                ASCIIColors.error("No model variant found. Please download a variant of the model")
+                return None
+            else:
+                model_path = root_path/variants[0]
+
+        else:
+            show_message_dialog("Warning","I detected that your model was installed with previous format.\nI'll just migrate it to thre new format.\nThe new format allows you to have multiple model variants and also have the possibility to use multimodal models.")
+            model_root:Path = model_path.parent/model_path.stem
+            model_root.mkdir(exist_ok=True, parents=True)
+            shutil.move(model_path, model_root)
+            model_path = model_root/model_path.name
+            self.config.model_name = model_root.name
+            root_path = model_root
+            self.config.save_config()        
+
             
 
         from ctransformers import AutoModelForCausalLM
