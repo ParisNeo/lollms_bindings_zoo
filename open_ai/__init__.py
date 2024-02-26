@@ -200,7 +200,8 @@ class OpenAIGPT(LLMBinding):
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
         self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0.1) /1000
         if not "vision" in self.config.model_name:
-            raise Exception("You can not call a generate with vision on this model")
+            self.error("You can not call a generate with vision on this model")
+            return
         try:
             default_params = {
                 'temperature': 0.7,
