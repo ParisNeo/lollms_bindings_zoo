@@ -76,12 +76,14 @@ class MistralAI(LLMBinding):
         self.input_costs_by_model={
             "mistral-tiny":0.14,
             "mistral-small":0.6,
-            "mistral-medium":2.5
+            "mistral-medium":2.5,
+            "mistral-large-latest":2.5
         }       
         self.output_costs_by_model={
             "mistral-tiny":0.42,
             "mistral-small":1.8,
-            "mistral-medium":7.5
+            "mistral-medium":7.5,
+            "mistral-large-latest":2.5
         }
         if lollms_paths is None:
             lollms_paths = LollmsPaths()

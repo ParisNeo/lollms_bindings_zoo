@@ -40,3 +40,17 @@
   variants:
   - name: A cute medium mistral
     size: 0
+- category: generic
+  datasets: unknown
+  icon: '/bindings/mistral_ai/logo.png'
+  last_commit_time: 2023-12-15 17:21:17+00:00
+  license: commercial
+  model_creator: mistralai
+  model_creator_link: https://mistral.ai
+  name: mistral-large-latest
+  quantizer: None
+  rank: 1.0
+  type: api
+  variants:
+  - name: The beast
+    size: 0
