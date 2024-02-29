@@ -425,7 +425,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                             for img in url_imgs
                                         ]+[ {"type" : "text", "text": prompt}]
                                     }
-                                ], 
+                                ],
                                 stop=["<0x0A>"],
                                 stream=True
                             ):
