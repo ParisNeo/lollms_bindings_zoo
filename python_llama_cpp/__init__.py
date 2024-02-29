@@ -110,8 +110,8 @@ class LLAMA_Python_CPP(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.bin','.gguf'],
-                            models_dir_names=["ggml","gguf"],
+                            supported_file_extensions=['.gguf', '.bin'],
+                            models_dir_names=["gguf", "ggml"],
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
