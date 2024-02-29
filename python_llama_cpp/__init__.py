@@ -361,23 +361,22 @@ class LLAMA_Python_CPP(LLMBinding):
             output = ""
             # self.model.reset()
             count = 0
-            
-            for chunk in self.model.create_completion(
-                                            prompt,
-                                            max_tokens = n_predict,
-                                            stream=True,
-                                            top_k=int(gpt_params['top_k']),
-                                            top_p=float(gpt_params['top_p']),
-                                            temperature=float(gpt_params['temperature']),
-                                            repeat_penalty=float(gpt_params['repeat_penalty']), stop=["<0x0A>"]
-                                            # seed=int(gpt_params['seed']),
-                                            #threads = int(gpt_params['n_threads']),
-                                ):
+            for chunk in self.model.create_chat_completion(
+                                messages = [                             
+                                    {
+                                        "role": "user",
+                                        "content":prompt
+                                    }
+                                ],
+                                stop=["<0x0A>"],
+                                stream=True
+                            ):
+
                 if count >= n_predict:
                     break
-                try:
-                    word = chunk["choices"][0]["text"]
-                except Exception as ex:
+                if "content" in chunk["choices"][0]["delta"]:
+                    word = chunk["choices"][0]["delta"]["content"]
+                else:
                     word = ""
                 if word:
                     output += word
