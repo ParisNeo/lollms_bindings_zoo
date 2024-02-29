@@ -175,6 +175,8 @@ class LLAMA_Python_CPP(LLMBinding):
         if not model_path:
             self.model = None
             return None
+        
+        self.binding_type = BindingType.TEXT_ONLY
 
         if "llava" in self.config.model_name.lower() or "vision" in self.config.model_name.lower():
             mmproj_variants = [v for v in model_path.parent.iterdir() if "mmproj" in str(v)]
