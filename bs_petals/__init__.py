@@ -20,7 +20,7 @@ from lollms.com import LoLLMsCom
 from lollms.utilities import check_and_install_torch
 import subprocess
 import yaml
-import re
+import sys
 import urllib
 
 
@@ -191,10 +191,10 @@ class Petals(LLMBinding):
 
         self.info("Installing requirements")
         requirements_file = self.binding_dir / "requirements.txt"
-        subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+        subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "-r", str(requirements_file)])
         self.success("Requirements install done")
         
-        result = subprocess.run(["pip", "install", "--upgrade", "petals"])
+        result = subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "petals"])
         if result:   
             models_dir = self.lollms_paths.personal_models_path / "petals"
             models_dir.mkdir(parents=True, exist_ok=True)            
@@ -207,7 +207,7 @@ class Petals(LLMBinding):
         super().uninstall()
         print("Uninstalling binding.")
         self.binding_config.config.file_path.unlink()
-        subprocess.run(["pip", "uninstall", "--yes", "petals"])
+        subprocess.run([sys.executable, "-m", "pip", "uninstall", "--yes", "petals"])
         ASCIIColors.success("Installed successfully")
 
   

@@ -23,7 +23,7 @@ from lollms.utilities import check_and_install_torch, expand2square, load_image
 import subprocess, sys
 import yaml
 from tqdm import tqdm
-import re
+import sys
 import urllib
 import json
 if not PackageManager.check_package_installed("PIL"):
@@ -198,7 +198,7 @@ class vLLM(LLMBinding):
         super().install()
         
         try:
-            subprocess.run(["pip", "install", "--upgrade", "vllm"], check=True)
+            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "vllm"], check=True)
             # Installation complete
             self.info("vLLM installation completed successfully!")
         except Exception as e:

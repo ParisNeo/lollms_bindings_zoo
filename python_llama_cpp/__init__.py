@@ -272,7 +272,7 @@ class LLAMA_Python_CPP(LLMBinding):
             elif self.config.hardware_mode=="apple-silicon":
                 requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
 
-            subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "-r", str(requirements_file)])
             self.notify("Installed successfully")
         except Exception as ex:
             self.error(ex)

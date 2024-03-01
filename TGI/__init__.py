@@ -21,7 +21,7 @@ from lollms.utilities import check_and_install_torch, expand2square, load_image
 import subprocess
 import yaml
 from tqdm import tqdm
-import re
+import sys
 import urllib
 import json
 if not PackageManager.check_package_installed("PIL"):
@@ -186,7 +186,7 @@ class TGI(LLMBinding):
         ASCIIColors.success("freed memory")
 
         super().install()
-        subprocess.run(["pip", "install", "--upgrade", ""])
+        subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", ""])
 
         device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
         import torch

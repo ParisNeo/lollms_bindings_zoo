@@ -22,7 +22,7 @@ from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 import subprocess
 import yaml
-import re
+import sys
 
 
 __author__ = "parisneo"
@@ -131,7 +131,7 @@ class GPT4ALL(LLMBinding):
     def install(self):
         super().install()
         # install requirements
-        subprocess.run(["pip", "install", "--upgrade", "gpt4all"])
+        subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "gpt4all"])
         ASCIIColors.success("Installed successfully")
 
     def tokenize(self, prompt:str):

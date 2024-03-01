@@ -21,7 +21,8 @@ from lollms.com import LoLLMsCom
 from lollms.types import MSG_TYPE
 import subprocess
 import yaml
-import re
+import sys
+import os
 import base64
 
 __author__ = "parisneo"
@@ -67,7 +68,7 @@ class xAI(LLMBinding):
                 {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
                 {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
                 {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
-                {"name":"openai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
+                {"name":"xai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
@@ -88,9 +89,9 @@ class xAI(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size
         
     def build_model(self):
-        import openai
-        openai.api_key = self.binding_config.config["openai_key"]
-        self.openai = openai
+        import xai_sdk
+        os.environ["XAI_API_KEY"] = self.binding_config.config["xai_key"]
+        self.xai_client = xai_sdk.Client()
         
         if "vision" in self.config.model_name:
             self.binding_type == BindingType.TEXT_IMAGE
@@ -102,12 +103,12 @@ class xAI(LLMBinding):
         super().install()
         requirements_file = self.binding_dir / "requirements.txt"
         # install requirements
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         ASCIIColors.success("Installed successfully")
         ASCIIColors.error("----------------------")
         ASCIIColors.error("Attention please")
         ASCIIColors.error("----------------------")
-        ASCIIColors.error("The chatgpt/gpt4 binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration file.")
+        ASCIIColors.error("The xAI binding uses the XAI API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration file.")
 
     def tokenize(self, prompt:str):
         """
@@ -120,7 +121,7 @@ class xAI(LLMBinding):
             list: A list of tokens representing the tokenized prompt.
         """
         import tiktoken
-        tokens_list = tiktoken.model.encoding_for_model(self.config["model_name"]).encode(prompt)
+        tokens_list = tiktoken.model.encoding_for_model("gpt-3.5-turbo-1106").encode(prompt)
 
         return tokens_list
 
@@ -135,7 +136,7 @@ class xAI(LLMBinding):
             str: The detokenized text as a string.
         """
         import tiktoken
-        text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+        text = tiktoken.model.encoding_for_model("gpt-3.5-turbo-1106").decode(tokens_list)
 
         return text
 
@@ -176,33 +177,11 @@ class xAI(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
             count = 0
             output = ""
-            if "vision" in self.config.model_name:
-                messages = [
-                            {
-                                "role": "user", 
-                                "content": [
-                                    {
-                                        "type":"text",
-                                        "text":prompt
-                                    }
-                                ]
-                            }
-                        ]
-            else:
-                messages = [{"role": "user", "content": prompt}]
-            chat_completion = self.openai.chat.completions.create(
-                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                            messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
-                            stop=None,  # Define a stop sequence if needed
-                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                            stream=True)
-            for resp in chat_completion:
+            for token in self.xai_client.sampler.sample(prompt, max_len=3):
                 if count >= n_predict:
                     break
                 try:
-                    word = resp.choices[0].delta.content
+                    word = token.token_str
                 except Exception as ex:
                     word = ""
                 if callback is not None:
@@ -222,88 +201,6 @@ class xAI(LLMBinding):
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}')
         self.binding_config.save()
         return ""      
-
-    def generate_with_images(self, 
-                prompt:str,
-                images:list=[],
-                n_predict: int = 128,
-                callback: Callable[[str, int, dict], bool] = None,
-                verbose: bool = False,
-                **gpt_params ):
-        """Generates text out of a prompt
-
-        Args:
-            prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
-            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
-            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
-        """
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
-        if not "vision" in self.config.model_name:
-            raise Exception("You can not call a generate with vision on this model")
-        try:
-            default_params = {
-                'temperature': 0.7,
-                'top_k': 50,
-                'top_p': 0.96,
-                'repeat_penalty': 1.3
-            }
-            gpt_params = {**default_params, **gpt_params}
-            count = 0
-            output = ""
-            messages = [
-                        {
-                            "role": "user", 
-                            "content": [
-                                {
-                                    "type":"text",
-                                    "text":prompt
-                                }
-                            ]+[
-                                {
-                                    "type": "image_url",
-                                    "image_url": {
-                                    "url": f"data:image/jpeg;base64,{encode_image(image_path)}"
-                                    }                                    
-                                }
-                                for image_path in images
-                            ]
-                        }
-                    ]
-            chat_completion = self.openai.chat.completions.create(
-                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                            messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
-                            stop=None,  # Define a stop sequence if needed
-                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                            stream=True)
-            for resp in chat_completion:
-                if count >= n_predict:
-                    break
-                try:
-                    word = resp.choices[0].delta.content
-                except Exception as ex:
-                    word = ""
-                if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                        break
-                if word:
-                    output += word
-                    count += 1
-
-
-        except Exception as ex:
-            self.error(f'Error {ex}')
-            trace_exception(ex)
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
-        self.binding_config.save()
-        return ""       
-
 
     def generate(self, 
                  prompt:str,                  

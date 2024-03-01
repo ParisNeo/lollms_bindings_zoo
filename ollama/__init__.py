@@ -21,7 +21,7 @@ from lollms.types import MSG_TYPE
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
-import re
+import sys
 import json
 import requests
 from datetime import datetime

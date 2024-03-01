@@ -21,6 +21,7 @@ from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
 import subprocess
 import base64
+import sys
 
 __author__ = "g1ibby"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -173,7 +174,7 @@ class LiteLLM(LLMBinding):
         super().install()
         requirements_file = self.binding_dir / "requirements.txt"
         # install requirements
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         ASCIIColors.success("Installed successfully")
 
     def tokenize(self, prompt:str):

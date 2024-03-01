@@ -22,7 +22,7 @@ from lollms.utilities import detect_antiprompt, remove_text_from_string
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
-import re
+import sys
 import json
 import requests
 from typing import List, Union

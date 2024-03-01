@@ -117,10 +117,6 @@ class Elf(LLMBinding):
     def install(self):
         super().install()
         ASCIIColors.success("Installed successfully")
-        ASCIIColors.error("----------------------")
-        ASCIIColors.error("Attention please")
-        ASCIIColors.error("----------------------")
-        ASCIIColors.error("The google bard binding uses the Google Bard API which is a paid service. Please create an account on the google cloud website then generate a key and provide it in the configuration file.")
     
     def tokenize(self, text: Union[str, List[str]]) -> List[str]:
         """Tokenizes a text string

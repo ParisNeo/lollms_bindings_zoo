@@ -21,7 +21,7 @@ from lollms.utilities import check_and_install_torch, expand2square, load_image
 import subprocess
 import yaml
 from tqdm import tqdm
-import re
+import sys
 import urllib
 import json
 import shutil
@@ -264,7 +264,7 @@ class ExLLamav2(LLMBinding):
             elif self.config.hardware_mode=="apple-silicon":
                 requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
 
-            subprocess.run(["pip", "install", "--upgrade", "-r", str(requirements_file)])
+            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "-r", str(requirements_file)])
 
             device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
             import torch

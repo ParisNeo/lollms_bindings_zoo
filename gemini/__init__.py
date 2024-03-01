@@ -22,7 +22,7 @@ from lollms.utilities import detect_antiprompt, remove_text_from_string, trace_e
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
-import re
+import sys
 import json
 import requests
 from typing import List, Union
@@ -130,7 +130,7 @@ class Gemini(LLMBinding):
 
     def install(self):
         super().install()
-        subprocess.run(["pip", "install", "--upgrade", "google-generativeai"])
+        subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "google-generativeai"])
         ASCIIColors.success("Installed successfully")
         ASCIIColors.error("----------------------")
         ASCIIColors.error("Attention please")

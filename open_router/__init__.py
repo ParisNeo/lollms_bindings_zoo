@@ -21,7 +21,7 @@ from lollms.com import LoLLMsCom
 from lollms.types import MSG_TYPE
 import subprocess
 import yaml
-import re
+import sys
 import base64
 
 __author__ = "parisneo"
@@ -123,7 +123,7 @@ class OpenRouter(LLMBinding):
         super().install()
         requirements_file = self.binding_dir / "requirements.txt"
         # install requirements
-        subprocess.run(["pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
         ASCIIColors.success("Installed successfully")
         ASCIIColors.error("----------------------")
         ASCIIColors.error("Attention please")

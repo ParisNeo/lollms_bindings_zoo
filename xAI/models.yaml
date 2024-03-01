@@ -3,8 +3,8 @@
   icon: https://grok.x.ai/_next/static/media/logo_with_text.223bef95.svg
   last_commit_time: 2023-09-17 17:21:17+00:00
   license: commercial
-  model_creator: openai
-  model_creator_link: https://openai.com
+  model_creator: xai
+  model_creator_link: https://x.ai
   name: grok
   quantizer: None
   rank: 1.0
