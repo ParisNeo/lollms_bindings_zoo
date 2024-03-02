@@ -245,6 +245,16 @@ class ExLLamav2(LLMBinding):
             print(f"Subprocess failed with returncode {e.returncode}")
             return False
 
+    def install_transformers(self):
+        # Use subprocess to run the pip install command
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "install", "-r", self.binding_dir / "requirements.txt", "--upgrade"], check=True)
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+        
+
     def install_flash_attention(self):
         # Use subprocess to run the pip install command
         try:
@@ -298,9 +308,11 @@ class ExLLamav2(LLMBinding):
                     return                
                 elif self.config.hardware_mode=="nvidia":
                     reinstall_pytorch_with_cuda()
+                    self.install_transformers()
                     self.install_cuda(install_path)
                 elif self.config.hardware_mode=="nvidia-tensorcores":
                     reinstall_pytorch_with_cuda()
+                    self.install_transformers()
                     self.install_cuda(install_path)
                 elif self.config.hardware_mode=="apple-intel":
                     self.InfoMessage("Exllamav2 binding requires NVidia GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
