@@ -300,15 +300,6 @@ class MistralAI(LLMBinding):
         return [f["name"] for f in yaml_data]
                 
                 
-    def get_available_models(self, app:LoLLMsCom=None):
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-        return yaml_data
 if __name__=="__main__":
     from lollms.paths import LollmsPaths
     from lollms.main_config import LOLLMSConfig

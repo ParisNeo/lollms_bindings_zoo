@@ -481,15 +481,3 @@ class Petals(LLMBinding):
         """
 
         return ["petals-team/StableBeluga2","tiiuae/falcon-180B-chat", "codellama/CodeLlama-34b-Instruct-hf", "codellama/CodeLlama-34b-Instruct-hf", "meta-llama/Llama-2-70b-chat-hf", "huggyllama/llama-65b", "bigscience/bloomz", "bigscience/bloom-560m"]
-
-    def get_available_models(self, app:LoLLMsCom=None):
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-
-        ASCIIColors.yellow(f"Models:\n{yaml_data}")
-        
-        return yaml_data

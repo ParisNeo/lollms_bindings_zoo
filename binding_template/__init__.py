@@ -17,6 +17,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
+from lollms.databases import ModelsDB
 from lollms.types import MSG_TYPE
 from lollms.com import LoLLMsCom
 import subprocess
@@ -174,10 +175,9 @@ This is a photo
         
     def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
+        full_data = []
+        for models_dir_name in self.models_dir_names:
+            self.models_db = ModelsDB(self.lollms_paths.models_zoo_path/f"{models_dir_name}.db")
+            full_data+=self.models_db.query()
         
-        return yaml_data
+        return full_data
