@@ -237,7 +237,7 @@ class ExLLamav2(LLMBinding):
             self.HideBlockingMessage()
 
     def install_cuda(self, path):
-       # Use subprocess to run the pip install command
+        # Use subprocess to run the pip install command
         try:
             subprocess.run([sys.executable, "-m", "pip", "install", path, "--upgrade"], check=True)
             return True
