@@ -4,8 +4,6 @@ numpy==1.26.*
 optimum==1.17.*
 safetensors==0.4.*
 transformers==4.37.*
-https://github.com/jllllll/AutoGPTQ/releases/download/v0.6.0/auto_gptq-0.6.0+cu121-cp311-cp311-win_amd64.whl; platform_system == "Windows" and python_version == "3.11"
-https://github.com/jllllll/AutoGPTQ/releases/download/v0.6.0/auto_gptq-0.6.0+cu121-cp311-cp311-linux_x86_64.whl; platform_system == "Linux" and platform_machine == "x86_64" and python_version == "3.11"
 # bitsandbytes
 bitsandbytes==0.42.*; platform_system != "Windows"
 https://github.com/jllllll/bitsandbytes-windows-webui/releases/download/wheels/bitsandbytes-0.41.1-py3-none-win_amd64.whl; platform_system == "Windows"
