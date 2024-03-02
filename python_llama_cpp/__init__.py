@@ -230,14 +230,72 @@ class LLAMA_Python_CPP(LLMBinding):
                                 )
 
         # self.model.set_cache(LlamaCache(capacity_bytes=0))
+        print("Testing model")
         for chunk in self.model.create_completion("question: What is 1+1\nanswer:",
                                         max_tokens = 2,
                                         stream=True):
-            pass
+            print(chunk)
         
         ASCIIColors.success("Model built")            
         return self
-            
+    
+    def install_cpu(self):
+        # Set the environment variable
+        os.environ['CMAKE_ARGS'] = ""
+        # Use subprocess to run the pip install command
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--upgrade"], check=True)
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+
+    def install_cuda(self):
+        # Set the environment variable
+        os.environ['CMAKE_ARGS'] = "-DLLAMA_CUBLAS=on"
+        # Use subprocess to run the pip install command
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--upgrade"], check=True)
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+
+    def install_metal(self):
+        # Set the environment variable
+        os.environ['CMAKE_ARGS'] = "-DLLAMA_METAL=on"
+        # Use subprocess to run the pip install command
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--upgrade"], check=True)
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+
+    def install_rocm(self):
+        # Set the environment variable
+        os.environ['CMAKE_ARGS'] = "-DLLAMA_HIPBLAS=on"
+        # Use subprocess to run the pip install command
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--upgrade"], check=True)
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+
+    def install_vulkan(self):
+        # Set the environment variable
+        os.environ['CMAKE_ARGS'] = "-DLLAMA_VULKAN=on"
+        # Use subprocess to run the pip install command
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--upgrade"], check=True)
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+
+
+
     def install(self):
         # free up memory
         ASCIIColors.success("freeing memory")
@@ -256,23 +314,35 @@ class LLAMA_Python_CPP(LLMBinding):
         self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
         try:
             if self.config.hardware_mode=="cpu-noavx":
-                requirements_file = self.binding_dir / "requirements_cpu_no_avx.txt"
+                self.install_cpu()
             elif self.config.hardware_mode=="cpu":
-                requirements_file = self.binding_dir / "requirements_cpu_only.txt"
+                self.install_cpu()
             elif self.config.hardware_mode=="amd-noavx":
-                requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
+                if not self.install_rocm():
+                    ASCIIColors.warning("Couldn't install with rocm, reverting to CPU")
+                    self.install_cpu()
             elif self.config.hardware_mode=="amd":
-                requirements_file = self.binding_dir / "requirements_amd.txt"
+                if not self.install_rocm():
+                    ASCIIColors.warning("Couldn't install with rocm, reverting to CPU")
+                    self.install_cpu()
             elif self.config.hardware_mode=="nvidia":
-                requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
+                if not self.install_cuda():
+                    ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
+                    self.install_cpu()
             elif self.config.hardware_mode=="nvidia-tensorcores":
-                requirements_file = self.binding_dir / "requirements_nvidia.txt"
+                if not self.install_cuda():
+                    ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
+                    self.install_cpu()
             elif self.config.hardware_mode=="apple-intel":
-                requirements_file = self.binding_dir / "requirements_apple_intel.txt"
+                if not self.install_vulkan():
+                    ASCIIColors.warning("Couldn't install with vulkan, reverting to CPU")
+                    self.install_cpu()
+                    
             elif self.config.hardware_mode=="apple-silicon":
-                requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
+                if not self.install_metal():
+                    ASCIIColors.warning("Couldn't install with metal, reverting to CPU")
+                    self.install_cpu()
 
-            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "-r", str(requirements_file)])
             self.notify("Installed successfully")
         except Exception as ex:
             self.error(ex)

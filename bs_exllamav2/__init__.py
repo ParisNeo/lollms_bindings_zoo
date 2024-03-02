@@ -16,8 +16,8 @@ from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
-from lollms.utilities import AdvancedGarbageCollector, PackageManager
-from lollms.utilities import check_and_install_torch, expand2square, load_image
+from lollms.utilities import AdvancedGarbageCollector, PackageManager, clone_repository, show_yes_no_dialog
+from lollms.utilities import reinstall_pytorch_with_cuda, expand2square, load_image
 import subprocess
 import yaml
 from tqdm import tqdm
@@ -74,7 +74,11 @@ class ExLLamav2(LLMBinding):
         binding_config_template = ConfigTemplate([
 
             {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
+            {"name":"enable_flash_attention_2","type":"bool","value":True, "help":"Enable flash attention 2 which encreases the generation speed. But it is not supported on ols GPUs, so if you have an old GPU, deactivate it"},            
+            {"name":"num_experts_per_token","type":"int","value":2, "help":"Number of experts per token for mixture of experts models"},            
+            
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
+
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
             {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
@@ -188,8 +192,8 @@ class ExLLamav2(LLMBinding):
                 # config.max_seq_len = shared.args.max_seq_len
                 # config.scale_pos_emb = shared.args.compress_pos_emb
                 # config.scale_alpha_value = shared.args.alpha_value
-                # config.no_flash_attn = shared.args.no_flash_attn
-                # config.num_experts_per_token = int(shared.args.num_experts_per_token)
+                config.no_flash_attn = not self.binding_config.enable_flash_attention_2
+                config.num_experts_per_token = int(self.binding_config.num_experts_per_token)
 
 
                 self.model = ExLlamaV2(config)
@@ -232,6 +236,30 @@ class ExLLamav2(LLMBinding):
             self.error(str(ex))
             self.HideBlockingMessage()
 
+    def install_cuda(self, path):
+       # Use subprocess to run the pip install command
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "install", path, "--upgrade"], check=True)
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+
+    def install_flash_attention(self):
+        # Use subprocess to run the pip install command
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "uninstall", "flash_attn", "--yes"], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "install", "flash_attn", "--upgrade"], check=True)
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+
+
     def install(self):
         self.ShowBlockingMessage("Freeing memory...")
         ASCIIColors.success("freeing memory")
@@ -241,60 +269,84 @@ class ExLLamav2(LLMBinding):
         ASCIIColors.success("freed memory")
 
         super().install()
+        self.ShowBlockingMessage(f"Cloning exllama git repository")
 
-        self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
+        install_path = self.lollms_paths.personal_path/"tmp"
+        install_path.mkdir(parents=True, exist_ok=True)
+        install_path = install_path/"exllamav2"
         try:
-            if self.config.hardware_mode=="cpu-noavx":
-                self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-            elif self.config.hardware_mode=="cpu":
-                self.InfoMessage("Hugging face binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-                return
-            elif self.config.hardware_mode=="amd-noavx":
-                requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
-            elif self.config.hardware_mode=="amd":
-                requirements_file = self.binding_dir / "requirements_amd.txt"
-            elif self.config.hardware_mode=="nvidia":
-                requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
-                check_and_install_torch(True)
-            elif self.config.hardware_mode=="nvidia-tensorcores":
-                requirements_file = self.binding_dir / "requirements_nvidia.txt"
-                check_and_install_torch(True)
-            elif self.config.hardware_mode=="apple-intel":
-                requirements_file = self.binding_dir / "requirements_apple_intel.txt"
-            elif self.config.hardware_mode=="apple-silicon":
-                requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
-
-            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "-r", str(requirements_file)])
-
-            device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
-            import torch
-
-            if torch.cuda.is_available():
-                device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
-
-            # Initialization code goes here
-            binding_config_template = ConfigTemplate([
-                {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
-                {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
-                {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
-                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-
-            ])
-            binding_config_vals = BaseConfig.from_template(binding_config_template)
-
-            binding_config = TypedConfig(
-                binding_config_template,
-                binding_config_vals
-            )
-            self.binding_config = binding_config
-            self.add_default_configurations(binding_config)
-            self.sync_configuration(binding_config, self.lollms_paths)
-            self.binding_config.save()
-            # ASCIIColors.success("Installed successfully")
-            self.success("Successfull installation")
+            clone_repository("https://github.com/turboderp/exllamav2", install_path, True)
         except Exception as ex:
-            self.error(ex)
+            trace_exception(ex)
+            self.HideBlockingMessage()
+            self.InfoMessage(f"It looks like I couldn't clone exllamav2 the repository\nThis may hapen if you have an old version on the repository in your personal folder.\nPlease remove it.\nThe other common problem is when you have no internet connection.\nError:{ex}")
+            return
+        try:
+            self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
+            try:
+                if self.config.hardware_mode=="cpu-noavx":
+                    self.InfoMessage("Exllamav2 binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
+                    return                
+                elif self.config.hardware_mode=="cpu":
+                    self.InfoMessage("Exllamav2 binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
+                    return
+                elif self.config.hardware_mode=="amd-noavx":
+                    self.InfoMessage("Exllamav2 binding requires NVidia GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
+                    return                
+                elif self.config.hardware_mode=="amd":
+                    self.InfoMessage("Exllamav2 binding requires NVidia GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
+                    return                
+                elif self.config.hardware_mode=="nvidia":
+                    reinstall_pytorch_with_cuda()
+                    self.install_cuda(install_path)
+                elif self.config.hardware_mode=="nvidia-tensorcores":
+                    reinstall_pytorch_with_cuda()
+                    self.install_cuda(install_path)
+                elif self.config.hardware_mode=="apple-intel":
+                    self.InfoMessage("Exllamav2 binding requires NVidia GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
+                    return                
+                elif self.config.hardware_mode=="apple-silicon":
+                    self.InfoMessage("Exllamav2 binding requires NVidia GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
+                    return       
+                
+                if show_yes_no_dialog("Request","Do you want me to install flash attention?\nFlash attention is required by some models but can take up to 1h to be built on your system!\nYou can deactivate  its use in the configuration."):
+                    self.install_flash_attention()
+                    enable_flash_attention_2 = True
+                else:
+                    enable_flash_attention_2 = False
+
+                device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
+                import torch
+
+                if torch.cuda.is_available():
+                    device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
+
+                # Initialization code goes here
+                binding_config_template = ConfigTemplate([
+                    {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
+                    {"name":"enable_flash_attention_2","type":"bool","value":enable_flash_attention_2, "help":"Enable flash attention 2 which encreases the generation speed. But it is not supported on ols GPUs, so if you have an old GPU, deactivate it"},            
+                    {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
+                    {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
+                    {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                    {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+
+                ])
+                binding_config_vals = BaseConfig.from_template(binding_config_template)
+
+                binding_config = TypedConfig(
+                    binding_config_template,
+                    binding_config_vals
+                )
+                self.binding_config = binding_config
+                self.add_default_configurations(binding_config)
+                self.sync_configuration(binding_config, self.lollms_paths)
+                self.binding_config.save()
+                # ASCIIColors.success("Installed successfully")
+                self.success("Successfull installation")
+            except Exception as ex:
+                self.error(ex)
+        except Exception as ex:
+            shutil.rmtree(install_path/"exllamav2")
         self.HideBlockingMessage()
 
     def uninstall(self):
