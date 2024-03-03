@@ -19,7 +19,7 @@ from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
 from lollms.types import MSG_TYPE
 from lollms.utilities import PackageManager, discussion_path_to_url, show_message_dialog
-from lollms.utilities import AdvancedGarbageCollector, install_cuda, install_ninja
+from lollms.utilities import AdvancedGarbageCollector, install_cuda, install_ninja, show_yes_no_dialog
 from ascii_colors import ASCIIColors, trace_exception
 import subprocess
 import yaml
@@ -294,7 +294,23 @@ class LLAMA_Python_CPP(LLMBinding):
             print(f"Subprocess failed with returncode {e.returncode}")
             return False
 
+    def test_vs_build_tools(self):
+        if platform.system() == 'Windows' and show_yes_no_dialog("info","Do you want to install vs build tools? If the install fails, it means that you need to install build tools"):
+            # Download the file from the given link
+            url = "https://aka.ms/vs/17/release/vs_BuildTools.exe"
+            file_name = "vs_BuildTools.exe"
 
+            # Save it to the desired folder
+            download_folder = self.lollms_paths.personal_path / "tmp"
+            download_folder.mkdir(exist_ok=True, parents=True)
+            save_path = os.path.join(str(download_folder), file_name)
+
+            # Open a terminal or command prompt
+            os.chdir(download_folder)
+
+            # Run the downloaded file
+            subprocess.call([sys.executable, "wget", url, "-O", save_path])
+            subprocess.call([save_path])
 
     def install(self):
         # free up memory
@@ -312,6 +328,7 @@ class LLAMA_Python_CPP(LLMBinding):
        
         # self.success("Requirements install done")
         self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
+
         try:
             if self.config.hardware_mode=="cpu-noavx":
                 self.install_cpu()
