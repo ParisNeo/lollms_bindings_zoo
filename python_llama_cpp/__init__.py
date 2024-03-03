@@ -87,7 +87,8 @@ class LLAMA_Python_CPP(LLMBinding):
             
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
-            {"name":"n_threads","type":"int","value":8, "min":1},            
+            {"name":"n_threads","type":"int","value":8, "min":1},
+            {"name":"generation_mode","type":"str","value":"chat", "options":["chat","instruct"], "help":"generation mode can be either chat or instruct.\nChat is good but doesn't allow cooperative mode or playground use. Instruct may be subject to halucination with bad models but allow more flexibility"},
             {"name":"n_gpu_layers","type":"int","value":33 if config.hardware_mode=="nvidia" or  config.hardware_mode=="nvidia-tensorcores" or  config.hardware_mode=="amd" or  config.hardware_mode=="amd-noavx" else 0, "min":1},
             {"name":"main_gpu","type":"int","value":0, "help":"If you have more than one gpu you can select the gpu to be used here"},
             {"name":"offload_kqv","type":"bool","value":False if 'cpu' in self.config.hardware_mode or 'apple' in self.config.hardware_mode else True, "help":"If you have more than one gpu you can select the gpu to be used here"},
@@ -323,6 +324,9 @@ class LLAMA_Python_CPP(LLMBinding):
         
         super().install()
 
+        if not show_yes_no_dialog("info","This binding will be compiled on your machine.\nOt is mandatory that you have build tools installed on your system. The process may fail if you don't have them.\nOn linux, just install using sudo apt-get install build-essential\nOn windows you can install vs build tools from : https://aka.ms/vs/17/release/vs_BuildTools.exe\nDo you want to continue?")
+            return
+
         # INstall other requirements
         # self.info("Installing requirements")
        
@@ -368,6 +372,7 @@ class LLAMA_Python_CPP(LLMBinding):
         except Exception as ex:
             self.error(ex)
         self.HideBlockingMessage()
+        self.InfoMessage("After installing a binding, it is often required to reboot the application.\nPlease try to reboot it first.")
 
     def uninstall(self):
         """
@@ -448,37 +453,58 @@ class LLAMA_Python_CPP(LLMBinding):
         if gpt_params['seed']!=-1:
             self.seed = self.binding_config.seed
 
-        try:
-            output = ""
-            # self.model.reset()
-            count = 0
-            for chunk in self.model.create_chat_completion(
-                                messages = [                             
-                                    {
-                                        "role": "user",
-                                        "content":prompt
-                                    }
-                                ],
-                                stop=["<0x0A>"],
-                                stream=True
-                            ):
 
-                if count >= n_predict:
-                    break
-                if "content" in chunk["choices"][0]["delta"]:
-                    word = chunk["choices"][0]["delta"]["content"]
-                else:
-                    word = ""
+        if self.binding_config.generation_mode=="chat":
+
+            try:
+                output = ""
+                # self.model.reset()
+                count = 0
+                for chunk in self.model.create_chat_completion(
+                                    messages = [                             
+                                        {
+                                            "role": "user",
+                                            "content":prompt
+                                        }
+                                    ],
+                                    max_tokens=n_predict,
+                                    temperature=gpt_params["temperature"],
+                                    stop=["<0x0A>"],
+                                    stream=True
+                                ):
+
+                    if count >= n_predict:
+                        break
+                    if "content" in chunk["choices"][0]["delta"]:
+                        word = chunk["choices"][0]["delta"]["content"]
+                    else:
+                        word = ""
+                    if word:
+                        output += word
+                        count += 1
+                        if callback is not None:
+                            if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                                break
+                    
+                    
+            except Exception as ex:
+                print(ex)
+        else:
+            for chunk in self.model.create_completion(
+                                    prompt,
+                                    max_tokens=n_predict,
+                                    temperature=gpt_params["temperature"],
+                                    stop=["<0x0A>"],
+                                    stream=True
+                        ):
+                word = chunk
+
                 if word:
                     output += word
                     count += 1
                     if callback is not None:
                         if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
                             break
-                
-                
-        except Exception as ex:
-            print(ex)
         return output            
 
 
