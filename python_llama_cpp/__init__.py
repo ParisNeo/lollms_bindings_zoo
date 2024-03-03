@@ -19,7 +19,7 @@ from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
 from lollms.types import MSG_TYPE
 from lollms.utilities import PackageManager, discussion_path_to_url, show_message_dialog
-from lollms.utilities import AdvancedGarbageCollector
+from lollms.utilities import AdvancedGarbageCollector, install_cuda
 from ascii_colors import ASCIIColors, trace_exception
 import subprocess
 import yaml
@@ -332,6 +332,7 @@ class LLAMA_Python_CPP(LLMBinding):
             elif self.config.hardware_mode=="nvidia-tensorcores":
                 if not self.install_cuda():
                     ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
+                    install_cuda()
                     self.install_cpu()
             elif self.config.hardware_mode=="apple-intel":
                 if not self.install_vulkan():
