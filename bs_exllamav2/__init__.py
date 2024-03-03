@@ -485,6 +485,8 @@ class ExLLamav2(LLMBinding):
                 self.tokenizer = None
                 gc.collect()
             self.clear_cuda()
+            self.clear_cuda()
+            gc.collect()
         
 
     @staticmethod
