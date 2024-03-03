@@ -235,7 +235,7 @@ class LLAMA_Python_CPP(LLMBinding):
         for chunk in self.model.create_completion("question: What is 1+1\nanswer:",
                                         max_tokens = 2,
                                         stream=True):
-            print(chunk)
+            print(chunk["choices"][0]["text"])
         
         ASCIIColors.success("Model built")            
         return self
@@ -490,6 +490,7 @@ class LLAMA_Python_CPP(LLMBinding):
             except Exception as ex:
                 print(ex)
         else:
+            output = ""
             for chunk in self.model.create_completion(
                                     prompt,
                                     max_tokens=n_predict,
@@ -497,7 +498,8 @@ class LLAMA_Python_CPP(LLMBinding):
                                     stop=["<0x0A>"],
                                     stream=True
                         ):
-                word = chunk
+                
+                word = chunk["choices"][0]["text"]
 
                 if word:
                     output += word
