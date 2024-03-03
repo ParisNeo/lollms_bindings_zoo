@@ -19,7 +19,7 @@ from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
 from lollms.types import MSG_TYPE
 from lollms.utilities import PackageManager, discussion_path_to_url, show_message_dialog
-from lollms.utilities import AdvancedGarbageCollector, install_cuda
+from lollms.utilities import AdvancedGarbageCollector, install_cuda, install_ninja
 from ascii_colors import ASCIIColors, trace_exception
 import subprocess
 import yaml
@@ -326,13 +326,16 @@ class LLAMA_Python_CPP(LLMBinding):
                     ASCIIColors.warning("Couldn't install with rocm, reverting to CPU")
                     self.install_cpu()
             elif self.config.hardware_mode=="nvidia":
+                install_ninja()
+                install_cuda()
                 if not self.install_cuda():
                     ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
                     self.install_cpu()
             elif self.config.hardware_mode=="nvidia-tensorcores":
+                install_ninja()
+                install_cuda()
                 if not self.install_cuda():
                     ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
-                    install_cuda()
                     self.install_cpu()
             elif self.config.hardware_mode=="apple-intel":
                 if not self.install_vulkan():
