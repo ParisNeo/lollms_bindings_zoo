@@ -324,7 +324,7 @@ class LLAMA_Python_CPP(LLMBinding):
         
         super().install()
 
-        if not show_yes_no_dialog("info","This binding will be compiled on your machine.\nOt is mandatory that you have build tools installed on your system. The process may fail if you don't have them.\nOn linux, just install using sudo apt-get install build-essential\nOn windows you can install vs build tools from : https://aka.ms/vs/17/release/vs_BuildTools.exe\nDo you want to continue?"):
+        if not show_yes_no_dialog("info","This binding will be compiled on your machine.\nIt is mandatory that you have build tools installed on your system. The process may fail if you don't have them.\nOn linux, just install using sudo apt-get install build-essential\nOn windows you can install vs build tools from : https://aka.ms/vs/17/release/vs_BuildTools.exe\nDo you want to continue?"):
             return
 
         # INstall other requirements
