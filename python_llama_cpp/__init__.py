@@ -491,6 +491,7 @@ class LLAMA_Python_CPP(LLMBinding):
                 print(ex)
         else:
             output = ""
+            count = 0
             for chunk in self.model.create_completion(
                                     prompt,
                                     max_tokens=n_predict,
