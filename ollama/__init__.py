@@ -317,6 +317,7 @@ class Ollama(LLMBinding):
             {"model_name":"deepseek-coder", "owned_by": "DeepSeek"},
             {"model_name":"neural-chat", "owned_by": "Intel"},
             {"model_name":"bakllava", "owned_by": "mistral based"},
+            {"model_name":"starcoder:15b-plus-fp16", "owned_by": "bigcode"},
            
             
             
