@@ -1,5 +1,5 @@
-name: Open AI
-author: Open AI
+name: Anthropic
+author: Anthropic
 version: 1.0
 link: https://anthropic.com/
 description: This binding uses the anthropic ai api to make you use Claude and other anthropic models
