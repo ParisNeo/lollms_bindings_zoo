@@ -126,9 +126,9 @@ class Anthropic(LLMBinding):
             ASCIIColors.error("----------------------")
             ASCIIColors.error("Attention please")
             ASCIIColors.error("----------------------")
-            ASCIIColors.error("The openai binding uses the anthropic API which is a paid service. Please create an account on the anthropic website (https://console.anthropic.com/) then generate a key and provide it in the configuration of the binding.")
+            ASCIIColors.error("The anthropic binding uses the anthropic API which is a paid service. Please create an account on the anthropic website (https://console.anthropic.com/) then generate a key and provide it in the configuration of the binding.")
         except:
-            self.warning("The anthropic binding uses the openai API which is a paid service.\nPlease create an account on the openAi website (https://console.anthropic.com/) then generate a key and provide it in the configuration of the binding.",20)
+            self.warning("The anthropic binding uses the anthropic API which is a paid service.\nPlease create an account on the anthropic website (https://console.anthropic.com/) then generate a key and provide it in the configuration of the binding.",20)
             self.HideBlockingMessage()
 
     def tokenize(self, prompt:str):
@@ -262,7 +262,6 @@ if __name__=="__main__":
 
     oai = Anthropic(config, lollms_paths,lollmsCom=lollms_app)
     oai.install()
-    oai.binding_config.openai_key = input("Anthropic Key:")
     oai.binding_config.save()
     config.binding_name= "anthropic"
     config.model_name="claude-3-opus-20240229"
