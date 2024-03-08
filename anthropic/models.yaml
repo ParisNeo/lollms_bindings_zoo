@@ -1,7 +1,7 @@
 - category: generic
   datasets: unknown
   icon: /bindings/anthropic/Anthropic.png
-  last_commit_time: 1686588896
+  last_commit_time: null
   license: commercial
   model_creator: anthropic
   model_creator_link: https://anthropic.com
@@ -11,4 +11,4 @@
   type: api
   variants:
   - name: claude-3-opus-20240229
-    size: 999999999999
+    size: null
