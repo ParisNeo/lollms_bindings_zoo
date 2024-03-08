@@ -91,6 +91,7 @@ class Anthropic(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size
         
     def settings_updated(self):
+        import anthropic
         if self.binding_config.config["anthropic_key"] =="":
             self.error("No API key is set!\nPlease set up your API key in the binding configuration")
         else:
@@ -102,6 +103,7 @@ class Anthropic(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size
 
     def build_model(self):
+        import anthropic
         if self.binding_config.config["anthropic_key"] =="":
             self.error("No API key is set!\nPlease set up your API key in the binding configuration")
             return
