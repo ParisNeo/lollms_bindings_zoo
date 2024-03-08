@@ -1,6 +1,6 @@
 - category: generic
   datasets: unknown
-  icon: /bindings/anthropic/Anthropic.png
+  icon: /bindings/anthropic_llm/Anthropic.png
   last_commit_time: null
   license: commercial
   model_creator: anthropic
