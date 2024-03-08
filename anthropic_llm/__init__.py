@@ -34,12 +34,12 @@ __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "Anthropic"
+binding_name = "AnthropicLLM"
 binding_folder_name = ""
 
 
   
-class Anthropic(LLMBinding):
+class AnthropicLLM(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -110,7 +110,7 @@ class Anthropic(LLMBinding):
         else:
             self.client = anthropic.Anthropic(
                 # defaults to os.environ.get("ANTHROPIC_API_KEY")
-                api_key=self.binding_config.config["anthropic_key"],
+                api_key=self.binding_config.config["anthropic_key"]
             )        
 
         # Do your initialization stuff
@@ -144,8 +144,11 @@ class Anthropic(LLMBinding):
             list: A list of tokens representing the tokenized prompt.
         """
         import tiktoken
-        tokens_list = tiktoken.model.encoding_for_model(self.config["model_name"]).encode(prompt)
-
+        try:
+            tokens_list = tiktoken.encoding_for_model(self.config["model_name"]).encode(prompt)
+        except:
+            tokens_list = tiktoken.encoding_for_model("gpt-4").encode(prompt)
+            
         return tokens_list
 
     def detokenize(self, tokens_list:list):
@@ -159,7 +162,10 @@ class Anthropic(LLMBinding):
             str: The detokenized text as a string.
         """
         import tiktoken
-        text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+        try:
+            text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+        except:
+            text = tiktoken.model.encoding_for_model("gpt-4").decode(tokens_list)
 
         return text
 
@@ -262,7 +268,7 @@ if __name__=="__main__":
     config = LOLLMSConfig.autoload(lollms_paths)
     lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
 
-    oai = Anthropic(config, lollms_paths,lollmsCom=lollms_app)
+    oai = AnthropicLLM(config, lollms_paths,lollmsCom=lollms_app)
     oai.install()
     oai.binding_config.save()
     config.binding_name= "anthropic"
