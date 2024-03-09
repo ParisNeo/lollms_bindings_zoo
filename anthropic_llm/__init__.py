@@ -18,7 +18,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
-from lollms.utilities import PackageManager, encode_image
+from lollms.utilities import PackageManager, encode_image, get_media_type
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
@@ -112,7 +112,7 @@ class AnthropicLLM(LLMBinding):
                 # defaults to os.environ.get("ANTHROPIC_API_KEY")
                 api_key=self.binding_config.config["anthropic_key"]
             )        
-
+            self.binding_type = BindingType.TEXT_IMAGE
         # Do your initialization stuff
         return self
 
@@ -232,6 +232,91 @@ class AnthropicLLM(LLMBinding):
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
         return output
+
+
+
+    def generate_with_images(self, 
+                prompt:str,
+                images:list=[],
+                n_predict: int = 128,
+                callback: Callable[[str, int, dict], bool] = None,
+                verbose: bool = False,
+                **gpt_params ):
+        """Generates text out of a prompt
+
+        Args:
+            prompt (str): The prompt to use for generation
+            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
+            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
+        """
+        
+        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0.1) /1000
+        try:
+            default_params = {
+                'temperature': 0.7,
+                'top_k': 50,
+                'top_p': 0.96,
+                'repeat_penalty': 1.3
+            }
+            gpt_params = {**default_params, **gpt_params}
+            count = 0
+            output = ""
+            messages = [
+                        {
+                            "role": "user", 
+                            "content": 
+                            [
+                                {
+                                    "type": "image",
+                                    "source": {
+                                        "type":"base64",
+                                        "media_type": get_media_type(image_path),
+                                        "data": encode_image(image_path, self.binding_config.max_image_width)
+                                    }                                    
+                                }
+                                for image_path in images
+                            ]+
+                            [
+                                {
+                                    "type":"text",
+                                    "text":prompt
+                                }
+                            ]
+                        }
+                    ]
+            chat_completion = self.client.messages.create(
+                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
+                            messages=messages,
+                            max_tokens=n_predict,  # Adjust the desired length of the generated response
+                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
+                            stream=True
+                            )
+            for resp in chat_completion:
+                if count >= n_predict:
+                    break
+                try:
+                    word = resp.delta.text
+                except Exception as ex:
+                    word = ""
+                if callback is not None:
+                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break
+                if word:
+                    output += word
+                    count += 1
+
+
+            self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
+            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0.1)/1000    
+            self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
+        except Exception as ex:
+            self.error(f'Error {ex}')
+            trace_exception(ex)
+        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
+        self.binding_config.save()
+        return output    
 
     def list_models(self):
         """Lists the models for this binding
