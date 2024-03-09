@@ -63,7 +63,8 @@ class CustomBinding(LLMBinding):
                         )
         
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         seed = self.config["seed"]
 
         # if seed <=0:

@@ -140,7 +140,8 @@ class TGI(LLMBinding):
         except Exception as ex:
             ASCIIColors.error("Couldn't clear cuda memory")
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
 
         try:
             from huggingface_hub import InferenceClient

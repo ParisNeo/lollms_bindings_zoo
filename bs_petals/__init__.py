@@ -146,7 +146,8 @@ class Petals(LLMBinding):
         
         pass
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
 
         from transformers import AutoTokenizer
         from petals import AutoDistributedModelForCausalLM

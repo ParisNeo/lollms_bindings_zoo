@@ -85,7 +85,8 @@ class GPT4ALL(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size
 
         
-    def build_model(self):        
+    def build_model(self, model_name=None):
+        super().build_model(model_name)        
         model_path = self.get_model_path()
         if hasattr(self, "model"):
             if self.model:

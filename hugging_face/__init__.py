@@ -142,7 +142,8 @@ class HuggingFace(LLMBinding):
         except Exception as ex:
             ASCIIColors.error("Couldn't clear cuda memory")
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         from accelerate import Accelerator
         from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig
         import torch

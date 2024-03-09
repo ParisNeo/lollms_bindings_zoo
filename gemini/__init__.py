@@ -114,7 +114,8 @@ class Gemini(LLMBinding):
 
         self.config.ctx_size=self.binding_config.config.ctx_size        
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         import google.generativeai as genai
         genai.configure(api_key=self.binding_config.google_api_key)
         if self.config.model_name!="gemini-pro-vision":

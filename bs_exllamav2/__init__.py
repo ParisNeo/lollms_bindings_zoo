@@ -141,7 +141,8 @@ class ExLLamav2(LLMBinding):
         except Exception as ex:
             ASCIIColors.error("Couldn't clear cuda memory")
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         import torch
         from transformers import GenerationConfig
         import torch

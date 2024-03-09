@@ -125,7 +125,8 @@ class MistralAI(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size
     
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         if not PackageManager.check_package_installed("mistralai"):
             PackageManager.install_package("mistralai")
         from mistralai.client import MistralClient

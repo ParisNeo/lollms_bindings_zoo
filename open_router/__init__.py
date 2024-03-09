@@ -102,7 +102,8 @@ class OpenRouter(LLMBinding):
     def settings_updated(self):
         self.config.ctx_size=self.binding_config.config.ctx_size        
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         from openai import OpenAI
         from os import getenv
         if self.binding_config.config["open_router_key"] =="":

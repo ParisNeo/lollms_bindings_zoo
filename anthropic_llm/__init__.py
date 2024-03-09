@@ -53,26 +53,30 @@ class AnthropicLLM(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        self.input_costs_by_model={
-            "claude-3-opus-20240229":0.01,
-        }       
-        self.output_costs_by_model={
-            "claude-3-opus-20240229":0.03,
-        }
+        models = self.get_available_models()
+
+        self.input_costs_by_model={ }       
+        self.output_costs_by_model={ }
+        for model in models:
+            self.input_costs_by_model[model["name"]]=model["variants"][0]["input_cost"]
+            self.output_costs_by_model[model["name"]]=model["variants"][0]["output_cost"]
+            
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config = TypedConfig(
             ConfigTemplate([
+                
+                {"name":"anthropic_key","type":"str","value":"","help":"A valid open AI key to generate text using anthropic api"},
+                {"name":"mode","type":"str","value":"Chat", "options":["Chat","Instruct"],"help":"The format to be used. Completion anebles the use of some personas, but Chat is generally more stable is you don't want to use any forcing of the AI"},
+                {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
+                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+                {"name":"max_image_width","type":"int","value":-1,"help":"resize the images if they have a width bigger than this (reduces cost). -1 for no change"},
                 {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
                 {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
                 {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
                 {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
-                {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
-                {"name":"anthropic_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
-                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-                {"name":"max_image_width","type":"int","value":-1,"help":"resize the images if they have a width bigger than this (reduces cost). -1 for no change"},
 
             ]),
             BaseConfig(config={
@@ -102,7 +106,8 @@ class AnthropicLLM(LLMBinding):
 
         self.config.ctx_size=self.binding_config.config.ctx_size
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         import anthropic
         if self.binding_config.config["anthropic_key"] =="":
             self.error("No API key is set!\nPlease set up your API key in the binding configuration")
@@ -208,19 +213,32 @@ class AnthropicLLM(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
             count = 0
             output = ""
-
-            with self.client.messages.stream(
-                max_tokens=n_predict,
-                messages=[{"role": "user", "content": prompt}],
-                model=self.config.model_name,
-            ) as stream:
-                for word in stream.text_stream:
-                    if callback is not None:
-                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                            break
-                    if word:
-                        output += word
-                        count += 1
+            if self.binding_config.mode=="Instruct" and "claude-3" not in self.config.model_name:
+                with self.client.completions.create(
+                    max_tokens_to_sample=n_predict,
+                    prompt= "\n\nHuman: hi\n\nAssistant:Hi\n\n"+prompt,
+                    model=self.config.model_name,
+                ) as stream:
+                    for word in stream:
+                        if callback is not None:
+                            if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                                break
+                        if word:
+                            output += word
+                            count += 1
+            else:
+                with self.client.messages.stream(
+                    max_tokens=n_predict,
+                    messages=[{"role": "user", "content": prompt}],
+                    model=self.config.model_name,
+                ) as stream:
+                    for word in stream.text_stream:
+                        if callback is not None:
+                            if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                                break
+                        if word:
+                            output += word
+                            count += 1
 
 
         except Exception as ex:

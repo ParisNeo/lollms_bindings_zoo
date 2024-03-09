@@ -127,7 +127,8 @@ class LLAMA_Python_CPP(LLMBinding):
 
 
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         if self.config.hardware_mode=="nvidia":
             try:
                 import llama_cpp_cuda

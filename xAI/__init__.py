@@ -88,7 +88,8 @@ class xAI(LLMBinding):
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         import xai_sdk
         os.environ["XAI_API_KEY"] = self.binding_config.config["xai_key"]
         self.xai_client = xai_sdk.Client()

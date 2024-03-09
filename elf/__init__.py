@@ -111,7 +111,8 @@ class Elf(LLMBinding):
     def settings_updated(self):
         self.config.ctx_size = self.binding_config.config.ctx_size        
         
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
         return self
 
     def install(self):

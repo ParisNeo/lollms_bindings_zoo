@@ -107,7 +107,8 @@ class CTRansformers(LLMBinding):
         if self.model:
             del self.model
 
-    def build_model(self):
+    def build_model(self, model_name=None):
+        super().build_model(model_name)
 
         ASCIIColors.info("Building model")
         if self.config['model_name'] is None:
