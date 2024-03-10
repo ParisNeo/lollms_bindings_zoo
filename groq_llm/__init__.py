@@ -220,8 +220,8 @@ class GroqLLM(LLMBinding):
                     if callback is not None:
                         if not callback(word.choices[0].delta.content, MSG_TYPE.MSG_TYPE_CHUNK):
                             break
-                    if word:
-                        output += word
+                    if word.choices[0].delta.content:
+                        output += word.choices[0].delta.content
                         count += 1
 
 
