@@ -1,0 +1,7 @@
+name: GROQ
+author: GROQ
+version: 1.0
+link: https://groq.com/
+description: This binding uses the groq api to make you use Mixtral and other GROQ supplied models
+accepted_models: 
+  - groq models

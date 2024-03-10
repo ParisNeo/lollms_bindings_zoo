@@ -1,0 +1,17 @@
+- category: generic
+  datasets: unknown
+  icon: '/bindings/mistral_ai/logo.png'
+  last_commit_time: null
+  license: Apache 2.0
+  model_creator: mistralai
+  model_creator_link: https://mistral.ai
+  name: mixtral-8x7b-32768
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: mixtral-8x7b-32768
+    size: null
+    ctx_size: 4096
+    input_cost: 0.0
+    output_cost: 0.0
