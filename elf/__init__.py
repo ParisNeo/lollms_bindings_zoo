@@ -47,22 +47,26 @@ def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
     return LOLLMSConfig(cfg_file_path,lollms_paths)
 
 def get_model_info(url, completion_format):
-    if completion_format in["openai instruct"]:
-        url = f'{url}/v1/models'
-    else:
+    try:
+        if completion_format in["openai instruct"]:
+            url = f'{url}/v1/models'
+        else:
+            return [{'model_name': "elf_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
+        headers = {'accept': 'application/json'}
+        response = requests.get(url, headers=headers)
+        data = response.json()
+        model_info = [{'model_name': "elf_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
+
+        for model in data['data']:
+            model_name = model['id']
+            owned_by = model['owned_by']
+            created_timestamp = model['created']
+            created_datetime = datetime.utcfromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+            model_info.append({'model_name': model_name, 'owned_by': owned_by, 'created_datetime': created_datetime})
+    except:
         return [{'model_name': "elf_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
-    headers = {'accept': 'application/json'}
-    response = requests.get(url, headers=headers)
-    data = response.json()
-    model_info = [{'model_name': "elf_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
 
-    for model in data['data']:
-        model_name = model['id']
-        owned_by = model['owned_by']
-        created_timestamp = model['created']
-        created_datetime = datetime.utcfromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
-        model_info.append({'model_name': model_name, 'owned_by': owned_by, 'created_datetime': created_datetime})
-
+        
     return model_info
 class Elf(LLMBinding):
     
