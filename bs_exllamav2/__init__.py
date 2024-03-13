@@ -548,8 +548,7 @@ class ExLLamav2(LLMBinding):
                         file_names.append(file_name)
         return file_names
     
-    @staticmethod
-    def download_model(repo, base_folder, callback=None):
+    def download_model(self, repo, base_folder, callback=None):
         """
         Downloads a folder from a Hugging Face repository URL, reports the download progress using a callback function,
         and displays a progress bar.
