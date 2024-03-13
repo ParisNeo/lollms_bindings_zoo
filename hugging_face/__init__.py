@@ -210,9 +210,10 @@ class HuggingFace(LLMBinding):
                     from auto_gptq.utils.peft_utils import get_gptq_peft_model, GPTQLoraConfig
                     quantize_config = BaseQuantizeConfig.from_pretrained(str(model_path))
                     if self.binding_config.enable_flash_attention_2:
-                        self.model = AutoGPTQForCausalLM.from_pretrained(str(model_path),
+                        self.model = AutoGPTQForCausalLM.from_quantized(str(model_path),
                                                                     use_safetensors=True,
                                                                     torch_dtype=torch.float16,
+                                                                    
                                                                     device_map=self.binding_config.device_map,
                                                                     offload_folder="offload",
                                                                     offload_state_dict = True, 
@@ -222,9 +223,10 @@ class HuggingFace(LLMBinding):
                                                                     quantize_config=quantize_config
                                                                     )
                     else:
-                        self.model = AutoGPTQForCausalLM.from_pretrained(str(model_path),
-                                                                          use_safetensors=True,
+                        self.model = AutoGPTQForCausalLM.from_quantized(str(model_path),
+                                                                    use_safetensors=True,
                                                                     torch_dtype=torch.float16,
+
                                                                     device_map=self.binding_config.device_map,
                                                                     offload_folder="offload",
                                                                     offload_state_dict = True, 
