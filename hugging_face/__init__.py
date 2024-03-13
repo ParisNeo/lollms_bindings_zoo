@@ -27,7 +27,7 @@ import json
 if not PackageManager.check_package_installed("PIL"):
     PackageManager.install_package("Pillow")
 from PIL import Image
-
+import shutil
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -206,8 +206,16 @@ class HuggingFace(LLMBinding):
                     # self.binding_type = BindingType.TEXT_IMAGE
                     # self.model = self.pipe.model
                 elif "gptq" in str(model_path).lower():
+                    from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
+                    from auto_gptq.utils.peft_utils import get_gptq_peft_model, GPTQLoraConfig
+
+                    quantize_config = BaseQuantizeConfig(
+                        bits=4,  # quantize model to 4-bit
+                        group_size=128,  # it is recommended to set the value to 128
+                        desc_act=False,  # set to False can significantly speed up inference but the perplexity may slightly bad
+                    )
                     if self.binding_config.enable_flash_attention_2:
-                        self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                        self.model = AutoGPTQForCausalLM.from_pretrained(str(model_path),
                                                                     torch_dtype=torch.float16,
                                                                     device_map=self.binding_config.device_map,
                                                                     offload_folder="offload",
@@ -215,15 +223,17 @@ class HuggingFace(LLMBinding):
                                                                     attn_implementation="flash_attention_2",
                                                                     trust_remote_code=self.binding_config.trust_remote_code,
                                                                     low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                                                                    quantize_config=quantize_config
                                                                     )
                     else:
-                        self.model = AutoModelForCausalLM.from_pretrained(str(model_path),
+                        self.model = AutoGPTQForCausalLM.from_pretrained(str(model_path),
                                                                     torch_dtype=torch.float16,
                                                                     device_map=self.binding_config.device_map,
                                                                     offload_folder="offload",
                                                                     offload_state_dict = True, 
                                                                     trust_remote_code=self.binding_config.trust_remote_code,
                                                                     low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                                                                    quantize_config=quantize_config
                                                                     )
 
                     from auto_gptq import exllama_set_max_input_length
@@ -365,8 +375,7 @@ class HuggingFace(LLMBinding):
             elif self.config.hardware_mode=="apple-silicon":
                 self.install_transformers()
 
-            if show_yes_no_dialog("Request","Do you want me to install flash attention?\nFlash attention is required by some models but can take up to 1h to be built on your system!\nYou can deactivate  its use in the configuration."):
-                self.install_flash_attention()
+            if show_yes_no_dialog("Request","Activate flash attention?\nFlash attention may accelerate the inference a great deal"):
                 enable_flash_attention_2 = True
             else:
                 enable_flash_attention_2 = False
