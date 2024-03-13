@@ -37,9 +37,11 @@ binding_folder_name = ""
 elf_completion_formats={
     "openai instruct":"/v1/completions",
     "openai chat":"/v1/chat/completions",
+    "vllm instruct":"/v1/completions",
     "vllm chat":"/v1/chat/completions",
     "ollama chat":"/api/generate",
-    "litellm chat":"/chat/completions"
+    "litellm chat":"/chat/completions",
+    "lollms":"/generate"
 }
 
 def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
@@ -91,7 +93,7 @@ class Elf(LLMBinding):
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://127.0.0.1:5000","help":"The server address"},
-                {"name":"completion_format","type":"str","value":"instruct","options":["openai instruct","openai chat","vllm chat","ollama chat","litellm chat"], "help":"The format supported by the server"},
+                {"name":"completion_format","type":"str","value":"instruct","options":list(elf_completion_formats.keys()), "help":"The format supported by the server"},
                 {"name":"model","type":"str","value":"gpt-3.5-turbo","help":"Model name"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
@@ -198,6 +200,14 @@ class Elf(LLMBinding):
                 "temperature": float(gpt_params["temperature"]),
                 "max_tokens": n_predict
             }
+        elif self.binding_config.completion_format=="vllm instruct":
+            data = {
+                'model':self.binding_config.model,
+                'prompt': prompt,
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
         elif self.binding_config.completion_format=="vllm chat":
             data = {
                 'model':self.binding_config.model,
@@ -226,7 +236,8 @@ class Elf(LLMBinding):
                 "max_tokens": n_predict
             }
 
-        
+        if self.binding_config.address.endswith("/"):
+            self.binding_config.address = self.binding_config.address[:-1]
         url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
 
         try:
@@ -240,6 +251,8 @@ class Elf(LLMBinding):
                     return
                 else:
                     pass
+            elif response.status_code==404:
+                ASCIIColors.error(response.content.decode("utf-8", errors='ignore'))
             text = ""
             for line in response.iter_lines():
                 if self.binding_config.completion_format=="litellm chat":
