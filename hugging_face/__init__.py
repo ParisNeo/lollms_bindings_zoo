@@ -208,14 +208,10 @@ class HuggingFace(LLMBinding):
                 elif "gptq" in str(model_path).lower():
                     from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
                     from auto_gptq.utils.peft_utils import get_gptq_peft_model, GPTQLoraConfig
-
-                    quantize_config = BaseQuantizeConfig(
-                        bits=4,  # quantize model to 4-bit
-                        group_size=128,  # it is recommended to set the value to 128
-                        desc_act=False,  # set to False can significantly speed up inference but the perplexity may slightly bad
-                    )
+                    quantize_config = BaseQuantizeConfig.from_pretrained(str(model_path))
                     if self.binding_config.enable_flash_attention_2:
                         self.model = AutoGPTQForCausalLM.from_pretrained(str(model_path),
+                                                                    use_safetensors=True,
                                                                     torch_dtype=torch.float16,
                                                                     device_map=self.binding_config.device_map,
                                                                     offload_folder="offload",
@@ -227,6 +223,7 @@ class HuggingFace(LLMBinding):
                                                                     )
                     else:
                         self.model = AutoGPTQForCausalLM.from_pretrained(str(model_path),
+                                                                          use_safetensors=True,
                                                                     torch_dtype=torch.float16,
                                                                     device_map=self.binding_config.device_map,
                                                                     offload_folder="offload",
@@ -359,16 +356,32 @@ class HuggingFace(LLMBinding):
             elif self.config.hardware_mode=="cpu":
                 self.install_transformers()
             elif self.config.hardware_mode=="amd-noavx":
-                reinstall_pytorch_with_rocm()
+                if not PackageManager.check_package_installed("torch"):
+                    reinstall_pytorch_with_rocm()
+                else:
+                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
+                        reinstall_pytorch_with_rocm()
                 self.install_transformers()
             elif self.config.hardware_mode=="amd":
-                reinstall_pytorch_with_rocm()
+                if not PackageManager.check_package_installed("torch"):
+                    reinstall_pytorch_with_rocm()
+                else:
+                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
+                        reinstall_pytorch_with_rocm()
                 self.install_transformers()
             elif self.config.hardware_mode=="nvidia":
-                reinstall_pytorch_with_cuda()
+                if not PackageManager.check_package_installed("torch"):
+                    reinstall_pytorch_with_cuda()
+                else:
+                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
+                        reinstall_pytorch_with_cuda()
                 self.install_transformers()
             elif self.config.hardware_mode=="nvidia-tensorcores":
-                reinstall_pytorch_with_cuda()
+                if not PackageManager.check_package_installed("torch"):
+                    reinstall_pytorch_with_cuda()
+                else:
+                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
+                        reinstall_pytorch_with_cuda()
                 self.install_transformers()
             elif self.config.hardware_mode=="apple-intel":
                 self.install_transformers()
