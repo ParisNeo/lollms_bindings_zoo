@@ -16,7 +16,7 @@ from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
-from lollms.helpers import ASCIIColors
+from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
 from lollms.com import LoLLMsCom
 import subprocess
@@ -319,6 +319,7 @@ class Elf(LLMBinding):
                                         break
             return text
         except Exception as ex:
+            trace_exception(ex)
             self.error("Couldn't connect to server.\nPlease verify your connection or that the server is up.")
     
     def list_models(self):
