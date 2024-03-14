@@ -144,7 +144,7 @@ class Elf(LLMBinding):
             list: A list of tokens representing the tokenized prompt.
         """
         import tiktoken
-        tokens_list = tiktoken.model.encoding_for_model(self.config["model_name"]).encode(prompt)
+        tokens_list = tiktoken.model.encoding_for_model("gpt3.5-turbo").encode(prompt)
 
         return tokens_list
 
@@ -159,7 +159,7 @@ class Elf(LLMBinding):
             str: The detokenized text as a string.
         """
         import tiktoken
-        text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+        text = tiktoken.model.encoding_for_model("gpt3.5-turbo").decode(tokens_list)
 
         return text
     
