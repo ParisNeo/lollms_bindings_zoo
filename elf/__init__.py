@@ -123,7 +123,15 @@ class Elf(LLMBinding):
 
     def install(self):
         super().install()
-        ASCIIColors.success("Installed successfully")
+        requirements_file = self.binding_dir / "requirements.txt"
+        self.ShowBlockingMessage("Installing ELF ...")
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+            ASCIIColors.success("Installed successfully")
+        except Exception as ex:
+            ASCIIColors.error(ex)
+        finally:
+            self.HideBlockingMessage()
     
     def tokenize(self, prompt:str):
         """
