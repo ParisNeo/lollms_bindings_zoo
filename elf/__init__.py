@@ -26,6 +26,7 @@ import json
 import requests
 from datetime import datetime
 from typing import List, Union
+import sys
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
