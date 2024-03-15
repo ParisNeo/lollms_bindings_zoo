@@ -15,3 +15,39 @@
     ctx_size: 4096
     input_cost: 0.0
     output_cost: 0.0
+
+- category: generic
+  datasets: unknown
+  icon: '/bindings/groq_llm/llama.png'
+  last_commit_time: null
+  license: llama
+  model_creator: meta
+  model_creator_link: https://meta.com
+  name: llama2-70b-4096
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: llama2-70b-4096
+    size: null
+    ctx_size: 4096
+    input_cost: 0.0
+    output_cost: 0.0
+
+- category: generic
+  datasets: unknown
+  icon: '/bindings/gemini/logo.png'
+  last_commit_time: null
+  license: llama
+  model_creator: meta
+  model_creator_link: https://google.com
+  name: gemma-7b-it
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: gemma-7b-it
+    size: null
+    ctx_size: 8192
+    input_cost: 0.0
+    output_cost: 0.0
