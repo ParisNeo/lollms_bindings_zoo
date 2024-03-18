@@ -261,7 +261,7 @@ class CTRansformers(LLMBinding):
     def generate(self, 
                  prompt:str,                  
                  n_predict: int = 128,
-                 callback: Callable[[str], None] = bool,
+                 callback: Callable[[str], None] = None,
                  verbose: bool = False,
                  **gpt_params ):
         """Generates text out of a prompt
