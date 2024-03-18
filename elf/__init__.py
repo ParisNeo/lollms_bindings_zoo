@@ -258,13 +258,16 @@ class Elf(LLMBinding):
             response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
 
             if response.status_code==400:
-                if "openai" in self.binding_config.completion_format or "vllm" in self.binding_config.completion_format:
+                if "openai" in self.binding_config.completion_format:
                     content = response.content.decode("utf8")
                     content = json.loads(content)
                     self.error(content["error"]["message"])
                     return
-                else:
-                    pass
+                elif "vllm" in self.binding_config.completion_format:
+                    content = response.content.decode("utf8")
+                    content = json.loads(content)
+                    self.error(content["message"])
+                    return
             elif response.status_code==404:
                 ASCIIColors.error(response.content.decode("utf-8", errors='ignore'))
             text = ""
