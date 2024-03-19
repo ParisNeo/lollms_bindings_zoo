@@ -1,14 +1,14 @@
 ######
 # Project       : lollms
-# File          : binding.py
+# File          : anthropic/__init__.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
-# engine author : Open AI
-# license       : Apache 2.0
+# engine author : Anthropic AI
+# license       : 
 # Description   : 
 # This is an interface class for lollms bindings.
 
-# This binding is a wrapper to open ai's api
+# This binding is a wrapper to anthropic ai's api
 
 ######
 from pathlib import Path
@@ -308,7 +308,7 @@ class AnthropicLLM(LLMBinding):
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
                             max_tokens=n_predict,  # Adjust the desired length of the generated response
-                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
+                            temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
                             stream=True
                             )
             for resp in chat_completion:
