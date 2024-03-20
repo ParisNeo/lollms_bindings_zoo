@@ -133,11 +133,13 @@ class LLAMA_Python_CPP(LLMBinding):
             try:
                 import llama_cpp_cuda
                 self.llama_cpp = llama_cpp_cuda
-            except:
+            except Exception as ex:
+                trace_exception(ex)
                 self.error("Couldn't load Llamacpp for cuda.\nReverting to CPU")
                 try:
                     import llama_cpp
-                except:
+                except Exception as ex:
+                    trace_exception(ex)
                     llama_cpp = None
                     self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
                     return
@@ -146,12 +148,14 @@ class LLAMA_Python_CPP(LLMBinding):
             try:
                 import llama_cpp_cuda_tensorcores
                 self.llama_cpp = llama_cpp_cuda_tensorcores
-            except:
+            except Exception as ex:
+                trace_exception(ex)
                 llama_cpp_cuda_tensorcores = None
                 self.error("Couldn't load Llamacpp for cuda with tensorcores.\nReverting to CPU")
                 try:
                     import llama_cpp
-                except:
+                except Exception as ex:
+                    trace_exception(ex)
                     llama_cpp = None
                     self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
                     return
@@ -159,7 +163,8 @@ class LLAMA_Python_CPP(LLMBinding):
         else:
             try:
                 import llama_cpp
-            except:
+            except Exception as ex:
+                trace_exception(ex)
                 llama_cpp = None
                 self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
             self.llama_cpp = llama_cpp
