@@ -395,6 +395,7 @@ class LLAMA_Python_CPP(LLMBinding):
             try:
                 subprocess.run([sys.executable, "-m", "pip", "install", "-r", requirements, "--upgrade"], check=True)
             except subprocess.CalledProcessError as e:
+                trace_exception(e)
                 self.HideBlockingMessage()
                 print(f"Subprocess failed with returncode {e.returncode}")
                 return False            
