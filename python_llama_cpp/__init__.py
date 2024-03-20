@@ -333,8 +333,10 @@ class LLAMA_Python_CPP(LLMBinding):
 
         print(f"Running on : {sys.executable}")
         env_path = Path(sys.executable).parent
-        if (env_path.parent == "lollms_env" and not(env_path.parent/"bin").exists()):
+        print(f"Running on : {sys.executable}")
+        if (env_path.name == "lollms_env" and not(env_path.parent/"bin").exists()):
             (env_path.parent/"bin").mkdir(exist_ok=True, parents=True)
+            ASCIIColors.yellow("Creating bin folder")
 
 
         answer = show_custom_dialog("Question", "What kind of install do you prefer", ["Build on your device\n(Requires build tools)", "install a prebuilt wheel"])
