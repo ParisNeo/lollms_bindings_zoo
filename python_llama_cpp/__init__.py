@@ -333,7 +333,6 @@ class LLAMA_Python_CPP(LLMBinding):
 
         print(f"Running on : {sys.executable}")
         env_path = Path(sys.executable).parent
-        print(f"Running on : {sys.executable}")
         if (env_path.name == "lollms_env" and not(env_path.parent/"bin").exists()):
             (env_path.parent/"bin").mkdir(exist_ok=True, parents=True)
             ASCIIColors.yellow("Creating bin folder")
