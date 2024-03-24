@@ -131,16 +131,19 @@ class ExLLamav2(LLMBinding):
         
         pass
     def __del__(self):
-        import torch
-        if self.tokenizer:
-            del self.tokenizer
-        if self.model:
-            del self.model
         try:
-            torch.cuda.empty_cache()
+            import torch
+            if self.tokenizer:
+                del self.tokenizer
+            if self.model:
+                del self.model
+            try:
+                torch.cuda.empty_cache()
+            except Exception as ex:
+                ASCIIColors.error("Couldn't clear cuda memory")
         except Exception as ex:
-            ASCIIColors.error("Couldn't clear cuda memory")
-
+            trace_exception(ex)
+            
     def build_model(self, model_name=None):
         super().build_model(model_name)
         import torch
