@@ -1,6 +1,4 @@
 accelerate==0.27.*
-aqlm[gpu,cpu]==1.1.0; platform_system == "Linux"
-bitsandbytes==0.43.*
 colorama
 datasets
 einops
@@ -31,5 +29,3 @@ SpeechRecognition==3.10.0
 flask_cloudflared==0.0.14
 sse-starlette==1.6.5
 tiktoken
-
-https://github.com/jllllll/ctransformers-cuBLAS-wheels/releases/download/AVX2/ctransformers-0.2.27+cu121-py3-none-any.whl
