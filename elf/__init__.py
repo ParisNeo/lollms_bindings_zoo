@@ -185,7 +185,7 @@ class Elf(LLMBinding):
             }
         else:
             headers = {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
             }
         default_params = {
             'temperature': 0.7,
