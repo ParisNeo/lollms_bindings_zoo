@@ -263,20 +263,22 @@ class MistralAI(LLMBinding):
                             max_tokens=n_predict-7,  # Adjust the desired length of the generated response
                             temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
                             )
-            for resp in chat_completion:
-                if count >= n_predict:
-                    break
-                try:
-                    word = resp.choices[0].delta.content
-                except Exception as ex:
-                    word = ""
-                if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+            try:
+                for resp in chat_completion:
+                    if count >= n_predict:
                         break
-                if word:
-                    output += word
-                    count += 1
-
+                    try:
+                        word = resp.choices[0].delta.content
+                    except Exception as ex:
+                        word = ""
+                    if callback is not None:
+                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
+                    if word:
+                        output += word
+                        count += 1
+            except Exception as ex:
+                self.InfoMessage("The generation process failed.\nThis can happen if you exceeded your maximum spending set in your mistralai interface or if your key has been revoked.\nPlease check your mistralai acount settings.")
 
         except Exception as ex:
             self.error(f'Error {ex}$')
