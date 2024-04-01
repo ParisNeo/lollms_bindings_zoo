@@ -383,7 +383,7 @@ if __name__=="__main__":
     if show_yes_no_dialog("Info","Now it is time to download and install ollama on your system.\nOllama is a separate tool that servs a variaty of llms and lollms can use it as one of its bindings.\nIf you already have it installed, you can press No.\nYou can install it manually from their webite ollama.com.\nPress yes If you want to install it automatically now.\n"):
         system = platform.system()
         download_folder = Path.home() / "Downloads"
-
+        ASCIIColors.yellow("Downloading installer, please wait ...")
         if system == "Windows":
             url = "https://ollama.com/download/OllamaSetup.exe"
             filename = "OllamaSetup.exe"
