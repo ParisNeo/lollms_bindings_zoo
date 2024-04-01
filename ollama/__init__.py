@@ -26,7 +26,7 @@ import json
 import requests
 from datetime import datetime
 from typing import List, Union
-from lollms.utilities import PackageManager, encode_image, trace_exception
+from lollms.utilities import PackageManager, encode_image, trace_exception, show_yes_no_dialog
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -361,3 +361,58 @@ class Ollama(LLMBinding):
         """
         
         return entries
+if __name__=="__main__":
+    from lollms.paths import LollmsPaths
+    from lollms.main_config import LOLLMSConfig
+    from lollms.app import LollmsApplication
+    from pathlib import Path
+    import platform
+    import os
+    import shutil
+    import urllib.request
+    import subprocess
+    from pathlib import Path
+    root_path = Path(__file__).parent
+    lollms_paths = LollmsPaths.find_paths(tool_prefix="",force_local=True, custom_default_cfg_path="configs/config.yaml")
+    config = LOLLMSConfig.autoload(lollms_paths)
+    lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
+
+    oai = Ollama(config, lollms_paths,lollmsCom=lollms_app)
+    oai.install()
+
+    if show_yes_no_dialog("Info","Now it is time to download and install ollama on your system.\nOllama is a separate tool that servs a variaty of llms and lollms can use it as one of its bindings.\nIf you already have it installed, you can press No.\nYou can install it manually from their webite ollama.com.\nPress yes If you want to install it automatically now.\n"):
+        system = platform.system()
+        download_folder = Path.home() / "Downloads"
+
+        if system == "Windows":
+            url = "https://ollama.com/download/OllamaSetup.exe"
+            filename = "OllamaSetup.exe"
+            urllib.request.urlretrieve(url, download_folder / filename)
+            install_process = subprocess.Popen([str(download_folder / filename)])
+            install_process.wait()
+
+        elif system == "Linux":
+            url = "https://ollama.com/install.sh"
+            filename = "install.sh"
+            urllib.request.urlretrieve(url, download_folder / filename)
+            os.chmod(download_folder / filename, 0o755)
+            install_process = subprocess.Popen([str(download_folder / filename)])
+            install_process.wait()
+
+        elif system == "Darwin":
+            url = "https://ollama.com/download/Ollama-darwin.zip"
+            filename = "Ollama-darwin.zip"
+            urllib.request.urlretrieve(url, download_folder / filename)
+            shutil.unpack_archive(download_folder / filename, extract_dir=download_folder)
+            install_process = subprocess.Popen([str(download_folder / "Ollama-darwin" / "install.sh")])
+            install_process.wait()
+
+        else:
+            print("Unsupported operating system.")
+
+
+    oai.binding_config.save()
+    config.binding_name= "ollama"
+
+    config.model_name="llama2"
+    config.save_config()
