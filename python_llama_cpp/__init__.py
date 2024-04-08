@@ -512,7 +512,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                         }
                                     ],
                                     max_tokens=n_predict,
-                                    temperature=gpt_params["temperature"],
+                                    temperature=float(gpt_params["temperature"]),
                                     stop=["<0x0A>"],
                                     stream=True
                                 ):
@@ -539,7 +539,7 @@ class LLAMA_Python_CPP(LLMBinding):
             for chunk in self.model.create_completion(
                                     prompt,
                                     max_tokens=n_predict,
-                                    temperature=gpt_params["temperature"],
+                                    temperature=float(gpt_params["temperature"]),
                                     stop=["<0x0A>"],
                                     stream=True
                         ):
