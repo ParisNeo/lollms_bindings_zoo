@@ -180,12 +180,12 @@ class Elf(LLMBinding):
         """
         if self.binding_config.server_key:
             headers = {
-                'Content-Type': 'application/json; charset=utf-8',
+                'Content-Type': 'application/json',
                 'Authorization': f'Bearer {self.binding_config.server_key}',
             }
         else:
             headers = {
-                'Content-Type': 'application/json; charset=utf-8',
+                'Content-Type': 'application/json',
             }
         default_params = {
             'temperature': 0.7,
