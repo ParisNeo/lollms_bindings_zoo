@@ -420,3 +420,22 @@ class OpenRouter(LLMBinding):
             yaml_data = yaml.safe_load(file)
         
         return yaml_data
+    
+
+if __name__=="__main__":
+    from lollms.paths import LollmsPaths
+    from lollms.main_config import LOLLMSConfig
+    from lollms.app import LollmsApplication
+    from pathlib import Path
+    root_path = Path(__file__).parent
+    lollms_paths = LollmsPaths.find_paths(tool_prefix="",force_local=True, custom_default_cfg_path="configs/config.yaml")
+    config = LOLLMSConfig.autoload(lollms_paths)
+    lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
+
+    oai = OpenRouter(config, lollms_paths,lollmsCom=lollms_app)
+    oai.install()
+    oai.binding_config.open_router_key = input("Open Router Key (If you don't have one, head over to https://openrouter.ai/ and create an acount, then generate a key):")
+    oai.binding_config.save()
+    config.binding_name= "open_router"
+    config.model_name="mistralai/mistral-7b-instruct:free"
+    config.save_config()

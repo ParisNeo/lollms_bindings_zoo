@@ -416,3 +416,20 @@ if __name__=="__main__":
 
     config.model_name="llama2"
     config.save_config()
+
+
+if __name__=="__main__":
+    from lollms.paths import LollmsPaths
+    from lollms.main_config import LOLLMSConfig
+    from lollms.app import LollmsApplication
+    from pathlib import Path
+    root_path = Path(__file__).parent
+    lollms_paths = LollmsPaths.find_paths(tool_prefix="",force_local=True, custom_default_cfg_path="configs/config.yaml")
+    config = LOLLMSConfig.autoload(lollms_paths)
+    lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
+
+    oai = Ollama(config, lollms_paths,lollmsCom=lollms_app)
+    oai.install()
+    config.binding_name= "ollama"
+    config.model_name="llama2:latest"
+    config.save_config()
