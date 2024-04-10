@@ -180,7 +180,7 @@ class Elf(LLMBinding):
         """
         if self.binding_config.server_key:
             headers = {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
                 'Authorization': f'Bearer {self.binding_config.server_key}',
             }
         else:
