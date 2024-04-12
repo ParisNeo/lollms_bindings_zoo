@@ -227,6 +227,10 @@ class Ollama(LLMBinding):
                         break
         except Exception as ex:
             trace_exception(ex)
+            try:
+                ASCIIColors.red(json_data)
+            except Exception as ex:
+                pass
             self.error("Couldn't generate text")
         return text
 
