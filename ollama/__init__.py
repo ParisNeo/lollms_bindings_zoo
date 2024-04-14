@@ -175,7 +175,25 @@ class Ollama(LLMBinding):
             A string
         """
         return " ".join(tokens)
-    
+
+
+
+    def embed(self, text, model="mxbai-embed-large"):
+        """
+        Computes text embedding
+        Args:
+            text (str): The text to be embedded.
+            model (str, optional): The model to use for embedding. Defaults to "mxbai-embed-large".
+        Returns:
+            List[float]: The text embedding as a list of float values.
+        """
+        url = f"{self.binding_config.address}/api/embeddings"
+        payload = {"model": model, "prompt": text}
+        response = requests.post(url, json=payload)
+        response.raise_for_status()  # Raise an exception for non-2xx status codes
+        return response.json()
+
+
     def generate(self, 
                  prompt: str,                  
                  n_predict: int = 128,
@@ -207,6 +225,7 @@ class Ollama(LLMBinding):
             data = {
                 'model':self.config.model_name,
                 'prompt': prompt,
+                "raw": True,
                 "stream":True,
                 "temperature": float(gpt_params["temperature"]),
                 "max_tokens": n_predict
@@ -269,6 +288,7 @@ class Ollama(LLMBinding):
             'model':self.config.model_name,
             'prompt': prompt,
             'images': images_list,
+            "raw": True,
             "stream":True,
             "temperature": float(gpt_params["temperature"]),
             "max_tokens": n_predict
