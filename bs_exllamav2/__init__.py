@@ -341,7 +341,6 @@ class ExLLamav2(LLMBinding):
             
                     
         if show_yes_no_dialog("Request","Do you want me to install flash attention?\nFlash attention is required by some models but can take up to 1h to be built on your system!\nYou can deactivate  its use in the configuration."):
-            self.install_flash_attention()
             enable_flash_attention_2 = True
         else:
             enable_flash_attention_2 = False
