@@ -283,96 +283,83 @@ class ExLLamav2(LLMBinding):
         ASCIIColors.success("freed memory")
 
         super().install()
-        if show_yes_no_dialog("Install type","Do you prefer compiling the exllama repository from source or use the precompiled version?\nPress yes if you want to compile from source."):
 
-            self.ShowBlockingMessage(f"Cloning exllama git repository")
-
-            install_path = self.lollms_paths.personal_path/"tmp"
-            install_path.mkdir(parents=True, exist_ok=True)
-            install_path = install_path/"exllamav2"
-            try:
-                clone_repository("https://github.com/turboderp/exllamav2", install_path, True)
-            except Exception as ex:
-                trace_exception(ex)
-                self.HideBlockingMessage()
-                self.InfoMessage(f"It looks like I couldn't clone exllamav2 the repository\nThis may hapen if you have an old version on the repository in your personal folder.\nPlease remove it.\nThe other common problem is when you have no internet connection.\nError:{ex}")
-                return
-            try:
-                self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
-                try:
-                    if self.config.hardware_mode=="cpu-noavx":
-                        self.InfoMessage("Exllamav2 binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-                        return                
-                    elif self.config.hardware_mode=="cpu":
-                        self.InfoMessage("Exllamav2 binding requires GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-                        return
-                    elif self.config.hardware_mode=="amd-noavx":
-                        self.InfoMessage("Exllamav2 binding requires NVidia GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-                        return                
-                    elif self.config.hardware_mode=="amd":
-                        self.InfoMessage("Exllamav2 binding requires NVidia GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-                        return                
-                    elif self.config.hardware_mode=="nvidia":
+        self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
+        try:
+            if self.config.hardware_mode=="cpu-noavx":
+                self.install_transformers()
+            elif self.config.hardware_mode=="cpu":
+                self.install_transformers()
+            elif self.config.hardware_mode=="amd-noavx":
+                if not PackageManager.check_package_installed("torch"):
+                    reinstall_pytorch_with_rocm()
+                else:
+                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
+                        reinstall_pytorch_with_rocm()
+                self.install_transformers()
+            elif self.config.hardware_mode=="amd":
+                if not PackageManager.check_package_installed("torch"):
+                    reinstall_pytorch_with_rocm()
+                else:
+                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
+                        reinstall_pytorch_with_rocm()
+                self.install_transformers()
+            elif self.config.hardware_mode=="nvidia":
+                if not PackageManager.check_package_installed("torch"):
+                    reinstall_pytorch_with_cuda()
+                else:
+                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
                         reinstall_pytorch_with_cuda()
-                        self.install_transformers()
-                        self.install_cuda(install_path)
-                    elif self.config.hardware_mode=="nvidia-tensorcores":
+                self.install_transformers()
+            elif self.config.hardware_mode=="nvidia-tensorcores":
+                if not PackageManager.check_package_installed("torch"):
+                    reinstall_pytorch_with_cuda()
+                else:
+                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
                         reinstall_pytorch_with_cuda()
-                        self.install_transformers()
-                        self.install_cuda(install_path)
-                    elif self.config.hardware_mode=="apple-intel":
-                        self.InfoMessage("Exllamav2 binding requires NVidia GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-                        return                
-                    elif self.config.hardware_mode=="apple-silicon":
-                        self.InfoMessage("Exllamav2 binding requires NVidia GPU, please select A GPU configuration in your hardware selection section then try again or just select another binding.")
-                        return
-                except Exception as ex:
-                    self.error(ex)
-            except Exception as ex:
-                shutil.rmtree(install_path/"exllamav2")
-        else:
-            self.ShowBlockingMessage(f"Installing exllama from precompiled wheels")
-            try:
-                subprocess.run([sys.executable, "-m", "pip", "install", "-r", self.binding_dir / "requirements.txt", "--upgrade"], check=True)
-            except subprocess.CalledProcessError as e:
-                print(f"Subprocess failed with returncode {e.returncode}")
-                self.HideBlockingMessage()
-                return False
-            
-                    
-        if show_yes_no_dialog("Request","Do you want me to install flash attention?\nFlash attention is required by some models but can take up to 1h to be built on your system!\nYou can deactivate  its use in the configuration."):
-            enable_flash_attention_2 = True
-        else:
-            enable_flash_attention_2 = False
+                self.install_transformers()
+            elif self.config.hardware_mode=="apple-intel":
+                self.install_transformers()
+            elif self.config.hardware_mode=="apple-silicon":
+                self.install_transformers()
 
-        device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
-        import torch
+            if show_yes_no_dialog("Request","Activate flash attention?\nFlash attention may accelerate the inference a great deal"):
+                enable_flash_attention_2 = True
+            else:
+                enable_flash_attention_2 = False
 
-        if torch.cuda.is_available():
-            device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
 
-        # Initialization code goes here
-        binding_config_template = ConfigTemplate([
-            {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
-            {"name":"enable_flash_attention_2","type":"bool","value":enable_flash_attention_2, "help":"Enable flash attention 2 which encreases the generation speed. But it is not supported on ols GPUs, so if you have an old GPU, deactivate it"},            
-            {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
-            {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
-            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+            device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
+            import torch
 
-        ])
-        binding_config_vals = BaseConfig.from_template(binding_config_template)
+            if torch.cuda.is_available():
+                device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
 
-        binding_config = TypedConfig(
-            binding_config_template,
-            binding_config_vals
-        )
-        self.binding_config = binding_config
-        self.add_default_configurations(binding_config)
-        self.sync_configuration(binding_config, self.lollms_paths)
-        self.binding_config.save()
-        # ASCIIColors.success("Installed successfully")
-        self.success("Successfull installation")
+            # Initialization code goes here
+            binding_config_template = ConfigTemplate([
+                {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
+                {"name":"enable_flash_attention_2","type":"bool","value":True, "help":"Enable flash attention 2 which encreases the generation speed. But it is not supported on ols GPUs, so if you have an old GPU, deactivate it"},            
+                {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
+                {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
+                {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
+                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
+
+            ])
+            binding_config_vals = BaseConfig.from_template(binding_config_template)
+
+            binding_config = TypedConfig(
+                binding_config_template,
+                binding_config_vals
+            )
+            self.binding_config = binding_config
+            self.add_default_configurations(binding_config)
+            self.sync_configuration(binding_config, self.lollms_paths)
+            self.binding_config.save()
+            # ASCIIColors.success("Installed successfully")
+            self.success("Successfull installation")
+        except Exception as ex:
+            self.error(ex)
         self.HideBlockingMessage()
 
     def uninstall(self):
