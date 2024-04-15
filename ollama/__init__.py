@@ -143,13 +143,25 @@ class Ollama(LLMBinding):
         })
 
         response = requests.post(url, headers=headers, data=payload, stream=True, verify= self.binding_config.verify_ssl_certificate)
-        for line in response.iter_lines():
-            line = json.loads(line.decode("utf-8")) 
-            if line["status"]=="pulling manifest":
-                self.lollmsCom.info("Pulling")
-            elif line["status"]=="downloading digestname" or line["status"].startswith("pulling") and "completed" in line.keys():
-                self.lollmsCom.notify_model_install(model_path,variant_name,"", model_path,datetime.now().strftime("%Y-%m-%d %H:%M:%S"), line["total"], line["completed"], 100*line["completed"]/line["total"] if line["total"]>0 else 0,0,client_id=client_id)
-        self.InfoMessage("Installed")
+        if response.status_code==200:
+            for line in response.iter_lines():
+                line = json.loads(line.decode("utf-8"))
+                if "status" in line:
+                    if line["status"]=="pulling manifest":
+                        self.lollmsCom.info("Pulling")
+                    elif line["status"]=="downloading digestname" or line["status"].startswith("pulling") and "completed" in line.keys():
+                        self.lollmsCom.notify_model_install(model_path,variant_name,"", model_path,datetime.now().strftime("%Y-%m-%d %H:%M:%S"), line["total"], line["completed"], 100*line["completed"]/line["total"] if line["total"]>0 else 0,0,client_id=client_id)
+                else:
+                    self.InfoMessage(line["error"])
+                    return
+                    
+            self.InfoMessage("Installed")
+        else:
+            try:
+                self.InfoMessage(json.loads(response.text)["error"])
+            except:
+                self.InfoMessage(f"Couldn't generate because of error: {response.status_code}")
+            
 
 
     def tokenize(self, text: Union[str, List[str]]) -> List[str]:
@@ -232,19 +244,32 @@ class Ollama(LLMBinding):
                 "max_tokens": n_predict
             }
 
+            if len(self.binding_config.address)==0:
+                self.error("The address field is empty, please configure it in the binding settings")
+                return
             
+            if self.binding_config.address.endswith("/") :
+                self.binding_config.address = self.binding_config.address[:-1]
+                self.binding_config.save()
+                
             url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
 
             response = requests.post(url, headers=headers, data=json.dumps(data), stream=True, verify= self.binding_config.verify_ssl_certificate)
-            for line in response.iter_lines(): 
-                decoded = line.decode("utf-8")
-                json_data = json.loads(decoded)
-                chunk = json_data["response"]
-                ## Process the JSON data here
-                text +=chunk
-                if callback:
-                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                        break
+            if response.status_code==200:
+                for line in response.iter_lines(): 
+                    decoded = line.decode("utf-8")
+                    json_data = json.loads(decoded)
+                    chunk = json_data["response"]
+                    ## Process the JSON data here
+                    text +=chunk
+                    if callback:
+                        if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
+            else:
+                try:
+                    self.InfoMessage(json.loads(response.text)["error"])
+                except:
+                    self.InfoMessage(f"Couldn't generate because of error: {response.status_code}")
         except Exception as ex:
             trace_exception(ex)
             try:
