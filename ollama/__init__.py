@@ -43,14 +43,14 @@ def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
     cfg_file_path = lollms_paths.personal_configuration_path/"bindings"/f"{binding_name}"/"config.yaml"
     return LOLLMSConfig(cfg_file_path,lollms_paths)
 
-def get_model_info(url, authorization_key):
+def get_model_info(url, authorization_key, verify_ssl_certificate=True):
     url = f'{url}/tags'
     headers = {
                 'accept': 'application/json',
                 'Authorization': f'Bearer {authorization_key}'
             }
     
-    response = requests.get(url, headers=headers, verify= self.binding_config.verify_ssl_certificate)
+    response = requests.get(url, headers=headers, verify= verify_ssl_certificate)
     data = response.json()
     model_info = []
 
@@ -318,7 +318,7 @@ class Ollama(LLMBinding):
     def list_models(self):
         """Lists the models for this binding
         """
-        model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key)
+        model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key, self.binding_config.verify_ssl_certificate)
         entries=[]
         for model in model_names:
             entries.append(model["model_name"])
@@ -328,7 +328,7 @@ class Ollama(LLMBinding):
 
         #/pull
         # Create the file path relative to the child class's directory
-        #model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key)
+        #model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key, self.binding_config.verify_ssl_certificate)
         model_names=[
             {"model_name":"llama2:latest", "owned_by": "meta"},
             {"model_name":"codellama:latest", "owned_by": "meta"},
