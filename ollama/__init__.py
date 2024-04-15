@@ -50,7 +50,7 @@ def get_model_info(url, authorization_key):
                 'Authorization': f'Bearer {authorization_key}'
             }
     
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify= self.binding_config.verify_ssl_certificate)
     data = response.json()
     model_info = []
 
@@ -84,6 +84,7 @@ class Ollama(LLMBinding):
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://127.0.0.1:11434","help":"The server address"},
+                {"name":"verify_ssl_certificate","type":"bool","value":True,"help":"Deactivate if you don't want the client to verify the SSL certificate"},
                 {"name":"max_image_width","type":"int","value":1024, "help":"The maximum width of the image in pixels. If the mimage is bigger it gets shrunk before sent to ollama model"},
                 {"name":"completion_format","type":"str","value":"instruct","options":["instruct"], "help":"The format supported by the server"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
@@ -141,7 +142,7 @@ class Ollama(LLMBinding):
             'stream':True
         })
 
-        response = requests.post(url, headers=headers, data=payload, stream=True)
+        response = requests.post(url, headers=headers, data=payload, stream=True, verify= self.binding_config.verify_ssl_certificate)
         for line in response.iter_lines():
             line = json.loads(line.decode("utf-8")) 
             if line["status"]=="pulling manifest":
@@ -189,7 +190,7 @@ class Ollama(LLMBinding):
         """
         url = f"{self.binding_config.address}/api/embeddings"
         payload = {"model": model, "prompt": text}
-        response = requests.post(url, json=payload)
+        response = requests.post(url, json=payload, verify= self.binding_config.verify_ssl_certificate)
         response.raise_for_status()  # Raise an exception for non-2xx status codes
         return response.json()
 
@@ -234,7 +235,7 @@ class Ollama(LLMBinding):
             
             url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
 
-            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True, verify= self.binding_config.verify_ssl_certificate)
             for line in response.iter_lines(): 
                 decoded = line.decode("utf-8")
                 json_data = json.loads(decoded)
@@ -297,7 +298,7 @@ class Ollama(LLMBinding):
         try:
             url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
 
-            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True, verify= self.binding_config.verify_ssl_certificate)
 
             for line in response.iter_lines(): 
                 decoded = line.decode("utf-8")
