@@ -49,14 +49,14 @@ def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
     cfg_file_path = lollms_paths.personal_configuration_path/"bindings"/f"{binding_name}"/"config.yaml"
     return LOLLMSConfig(cfg_file_path,lollms_paths)
 
-def get_model_info(url, completion_format):
+def get_model_info(url, completion_format, verify_ssl_certificate=True):
     try:
         if completion_format in["openai instruct"]:
             url = f'{url}/v1/models'
         else:
             return [{'model_name': "elf_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
         headers = {'accept': 'application/json'}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, verify=verify_ssl_certificate)
         data = response.json()
         model_info = [{'model_name': "elf_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
 
@@ -94,6 +94,7 @@ class Elf(LLMBinding):
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"address","type":"str","value":"http://127.0.0.1:5000","help":"The server address"},
+                {"name":"verify_ssl_certificate","type":"bool","value":True,"help":"Deactivate if you don't want the client to verify the SSL certificate"},
                 {"name":"completion_format","type":"str","value":"openai instruct","options":list(elf_completion_formats.keys()), "help":"The format supported by the server"},
                 {"name":"model","type":"str","value":"gpt-3.5-turbo","help":"Model name"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
@@ -116,6 +117,10 @@ class Elf(LLMBinding):
             self.config.model_name = "elf_remote_model"
 
     def settings_updated(self):
+        if len(self.binding_config.address)>0 and self.binding_config.address.endswith("/"):
+            self.binding_config.address = self.binding_config.address[:-1]
+            self.binding_config.save()
+            
         self.config.ctx_size = self.binding_config.config.ctx_size        
         
     def build_model(self, model_name=None):
@@ -255,7 +260,7 @@ class Elf(LLMBinding):
         url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
 
         try:
-            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True)
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True, verify=self.binding_config.verify_ssl_certificate)
 
             if response.status_code==400:
                 if "openai" in self.binding_config.completion_format:
@@ -329,7 +334,7 @@ class Elf(LLMBinding):
     def list_models(self):
         """Lists the models for this binding
         """
-        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.completion_format)
+        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.completion_format, self.binding_config.verify_ssl_certificate)
         entries=[]
         for model in model_names:
             entries.append(model["model_name"])
@@ -337,7 +342,7 @@ class Elf(LLMBinding):
                 
     def get_available_models(self, app:LoLLMsCom=None):
         # Create the file path relative to the child class's directory
-        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.completion_format)
+        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.completion_format, self.binding_config.verify_ssl_certificate)
         entries=[]
         for model in model_names:
             entry={
