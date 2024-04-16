@@ -154,10 +154,7 @@ class LiteLLM(LLMBinding):
     def build_model(self, model_name=None):
         super().build_model(model_name)
         from openai import OpenAI
-        if self.binding_config.server_key =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
-        if self.binding_config.address =="":
+        if self.binding_config.address == "":
             self.error("No API url is set!\nPlease set up your API url in the binding configuration")
             raise Exception("No API url is set!\nPlease set up your API url in the binding configuration")
         self.openai = OpenAI(
@@ -367,14 +364,14 @@ class LiteLLM(LLMBinding):
 
     def list_models(self):
         """Lists the models for this binding"""
-        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key)
+        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key, verify_ssl_certificate=self.binding_config.verify_ssl_certificate)
         entries=[]
         for model in model_names:
             entries.append(model["model_name"])
         return entries
                 
     def get_available_models(self, app=None):
-        models = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key)
+        models = get_model_info(f'{self.binding_config.address}', self.binding_config.server_key, verify_ssl_certificate=self.binding_config.verify_ssl_certificate)
         entries = []
         for model in models:
             icon_path = get_icon_path(model["model_name"])
