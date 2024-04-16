@@ -49,14 +49,14 @@ def get_icon_path(model_name):
     else:
         return '/bindings/litellm/logo.png'
 
-def get_model_info(url, authorization_key):
+def get_model_info(url, authorization_key, verify_ssl_certificate=True):
     url = f'{url}/model/info'
     headers = {
         'accept': 'application/json',
         'Authorization': f'Bearer {authorization_key}'
     }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=verify_ssl_certificate)
     data = response.json()
     model_info_list = []
 
@@ -104,7 +104,8 @@ class LiteLLM(LLMBinding):
 
         binding_config = TypedConfig(
             ConfigTemplate([
-                {"name":"address","type":"str","value":"http://0.0.0.0:8000","help":"The server address"},
+                {"name":"address","type":"str","value":"http://localhost:8000","help":"The server address"},
+                {"name":"verify_ssl_certificate","type":"bool","value":True,"help":"Deactivate if you don't want the client to verify the SSL certificate"},
                 {"name":"server_key","type":"str","value":"anything","help":"The server key"},
                 {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
                 {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
@@ -135,7 +136,7 @@ class LiteLLM(LLMBinding):
 
         # Fetch model info using get_model_info
         try:
-            model_info = get_model_info(address, server_key)
+            model_info = get_model_info(address, server_key, verify_ssl_certificate=self.binding_config.verify_ssl_certificate)
         except Exception as ex:
             model_info = []
             self.InfoMessage("Couldn't connect to the server. Please make sure that the server is running with the specified parameters or change the parameters in the settings.")
