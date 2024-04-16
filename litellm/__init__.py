@@ -272,32 +272,15 @@ class LiteLLM(LLMBinding):
 
             for line in response.iter_lines():
                 decoded = line.decode("utf-8")
-                if decoded.startswith("data: "):
-                    try:
-                        json_data = json.loads(decoded[5:].strip())
-                        chunk = json_data["choices"][0]["text"]
-                        ## Process the JSON data here
-                        text +=chunk
-                        if callback:
-                            if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                                break
-                    except:
+                if decoded.startswith("{"):
+                    json_data = json.loads(decoded)
+                    if json_data["object"]=="error":
+                        self.error(json_data["message"])
                         break
                 else:
-                    if decoded.startswith("{"):
-                        for line_ in response.iter_lines():
-                            decoded += line_.decode("utf-8")
-                        try:
-                            json_data = json.loads(decoded)
-                            if json_data["object"]=="error":
-                                self.error(json_data["message"])
-                                break
-                        except:
-                            self.error("Couldn't generate text, verify your key or model name")
-                    else:
-                        text +=decoded
-                        if callback:
-                            if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                    text +=decoded
+                    if callback:
+                        if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
                                 break
         except Exception as ex:
             self.error(f'Error {ex}')
