@@ -1,81 +1,99 @@
 ######
 # Project       : lollms
-# File          : hugging_face/__init__.py
+# File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
-# engine author : Hugging face Inc 
+# engine author : vLLM 
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
-######
-import shutil
 
+# This binding is a wrapper to open ai's api
+
+######
 from pathlib import Path
 from typing import Callable
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
-from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
-from lollms.helpers import ASCIIColors
+from lollms.binding import LLMBinding, LOLLMSConfig
+from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
-from lollms.helpers import trace_exception
-from lollms.utilities import AdvancedGarbageCollector, PackageManager
-from lollms.utilities import check_and_install_torch, expand2square, load_image
-import subprocess, sys
+from lollms.com import LoLLMsCom
+import subprocess
 import yaml
-from tqdm import tqdm
-import sys
-import urllib
+import re
 import json
-if not PackageManager.check_package_installed("PIL"):
-    PackageManager.install_package("Pillow")
-from PIL import Image
-
+import requests
+from datetime import datetime
+from typing import List, Union
+import sys
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "vLLM"
-binding_folder_name = "vLLM"
-import os
-import subprocess
-import gc
+binding_name = "Vllm"
+binding_folder_name = ""
+elf_completion_formats={
+    "vllm instruct":"/v1/completions",
+    "vllm chat":"/v1/chat/completions",
+}
 
-from lollms.com import NotificationDisplayType, NotificationType
+def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
+    cfg_file_path = lollms_paths.personal_configuration_path/"bindings"/f"{binding_name}"/"config.yaml"
+    return LOLLMSConfig(cfg_file_path,lollms_paths)
 
+def get_model_info(url, completion_format, verify_ssl_certificate=True):
+    try:
+        url = f'{url}/v1/models'
+        headers = {'accept': 'application/json'}
+        response = requests.get(url, headers=headers, verify=verify_ssl_certificate)
+        data = response.json()
+        model_info = [{'model_name': "vllm_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
 
+        for model in data['data']:
+            model_name = model['id']
+            owned_by = model['owned_by']
+            created_timestamp = model['created']
+            created_datetime = datetime.utcfromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+            model_info.append({'model_name': model_name, 'owned_by': owned_by, 'created_datetime': created_datetime})
+    except:
+        return [{'model_name': "vllm_remote_model", 'owned_by': "remote server", 'created_datetime': "unknown"}]
 
-class vLLM(LLMBinding):
+        
+    return model_info
+class Vllm(LLMBinding):
     
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                lollmsCom=None
-                ) -> None:
-        """Builds a GPTQ/AWQ binding
+                lollmsCom=None) -> None:
+        """
+        Initialize the Binding.
 
         Args:
-            config (LOLLMSConfig): The configuration file
+            config (LOLLMSConfig): The configuration object for LOLLMS.
+            lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
+            installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:512'
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
-        binding_config_template = ConfigTemplate([
-            {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
-            {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
-            {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
-            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-            {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
-        ])
-        binding_config_vals = BaseConfig.from_template(binding_config_template)
 
         binding_config = TypedConfig(
-            binding_config_template,
-            binding_config_vals
+            ConfigTemplate([
+                {"name":"address","type":"str","value":"http://127.0.0.1:5000","help":"The server address"},
+                {"name":"verify_ssl_certificate","type":"bool","value":True,"help":"Deactivate if you don't want the client to verify the SSL certificate"},
+                {"name":"completion_format","type":"str","value":"openai instruct","options":list(elf_completion_formats.keys()), "help":"The format supported by the server"},
+                {"name":"model","type":"str","value":"gpt-3.5-turbo","help":"Model name"},
+                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
+            ]),
+            BaseConfig(config={
+            })
         )
         super().__init__(
                             Path(__file__).parent, 
@@ -83,143 +101,36 @@ class vLLM(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.safetensors','.pth','.bin'],
-                            models_dir_names=["transformers","gptq","awq"],
+                            supported_file_extensions=[''],
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
-        self.callback = None
-        self.n_generated = 0
-        self.n_prompt = 0
+        if self.config.model_name is None:
+            self.config.model_name = "vllm_remote_model"
 
-        self.skip_prompt = True
-        self.decode_kwargs = {}
-
-        # variables used in the streaming process
-        self.token_cache = []
-        self.print_len = 0
-        self.next_tokens_are_prompt = True
-
-        self.model = None
-        self.tokenizer = None
-        
     def settings_updated(self):
+        if len(self.binding_config.address.strip())>0 and self.binding_config.address.strip().endswith("/"):
+            self.binding_config.address = self.binding_config.address.strip()[:-1]
+            self.binding_config.save()
+            
         self.config.ctx_size = self.binding_config.config.ctx_size        
-        from auto_gptq import exllama_set_max_input_length
-        try:
-            self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
-        except:
-            ASCIIColors.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
-
-    def embed(self, text):
-        """
-        Computes text embedding
-        Args:
-            text (str): The text to be embedded.
-        Returns:
-            List[float]
-        """
         
-        pass
-    def __del__(self):
-        import torch
-        if self.tokenizer:
-            del self.tokenizer
-        if self.model:
-            del self.model
-        try:
-            torch.cuda.empty_cache()
-        except Exception as ex:
-            ASCIIColors.error("Couldn't clear cuda memory")
-
     def build_model(self, model_name=None):
         super().build_model(model_name)
-        from vllm import LLM, SamplingParams
-        if not PackageManager.check_package_installed("transformers"):
-            PackageManager.install_package("transformers")
-        from transformers import AutoTokenizer
+        return self
 
-        if self.config.model_name:
-
-            path = self.config.model_name
-            model_path = self.get_model_path()
-
-            if not model_path:
-                self.tokenizer = None
-                self.model = None
-                return None
-
-            models_dir = self.lollms_paths.personal_models_path / binding_folder_name
-            models_dir.mkdir(parents=True, exist_ok=True)
-            # model_path = models_dir/ path
-
-            model_name = str(model_path).replace("\\","/")
-
-            # Delete any old model
-            if hasattr(self, "tokenizer"):
-                if self.tokenizer is not None:
-                    del self.model
-
-            if hasattr(self, "model"):
-                if self.model is not None:
-                    del self.model
-
-            self.tokenizer = None
-            self.model = None
-            gc.collect()
-            ASCIIColors.info(f"Creating tokenizer {model_path}")
-            self.tokenizer = AutoTokenizer.from_pretrained(
-                    str(model_name), trust_remote_code=self.binding_config.trust_remote_code
-                    )
-            ASCIIColors.success(f"ok")
-            
-            self.SamplingParams = SamplingParams
-            self.model = LLM(model=model_path, revision="v1.1.8", trust_remote_code=self.binding_config.trust_remote_code)
-        else:
-            self.error("No model selected.\Please select a model to load")        
     def install(self):
-        import platform
-        if platform.system()=="Windows":
-            self.InfoMessage("vllm is only supported on linux.\nPlease use the remote vllm binding instead and make sure to activate the vllm server on this pc or a remote PC.")
-            return False
-        
-        self.info("freeing memory")
-        AdvancedGarbageCollector.safeHardCollectMultiple(['model'],self)
-        AdvancedGarbageCollector.safeHardCollectMultiple(['AutoModelForCausalLM'])
-        AdvancedGarbageCollector.collect()
-        ASCIIColors.success("freed memory")
-        py_version = sys.version.split(" ")[0][:4].replace(".","")
-        os.environ['VLLM_VERSION'] = '0.2.6'
-        os.environ['PYTHON_VERSION'] = py_version
+        super().install()
+        requirements_file = self.binding_dir / "requirements.txt"
+        self.ShowBlockingMessage("Installing vLLM ...")
         try:
-            import conda.cli
-            conda.cli.main("install", "-c", "nvidia/label/cuda-12.1.1", "cuda-compiler", "-y")
+            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+            ASCIIColors.success("Installed successfully")
         except Exception as ex:
-            trace_exception(ex)
-        super().install()
-        
-        try:
-            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "vllm"], check=True)
-            # Installation complete
-            self.info("vLLM installation completed successfully!")
-        except Exception as e:
-            if os.path.exists("temp/vllm"):
-                try:
-                    self.warning("An error occurred during vLLM installation: " + str(e))
-                    self.warning("Please stop the application and manually remove the 'temp/vllm' folder.")
-                except:
-                    pass
-            else:
-                self.error("An error occurred during vLLM installation: " + str(e))
-
-
-    def uninstall(self):
-        super().install()
-        print("Uninstalling binding.")
-        ASCIIColors.success("Installed successfully")
-
-
-
+            ASCIIColors.error(ex)
+        finally:
+            self.HideBlockingMessage()
+    
     def tokenize(self, prompt:str):
         """
         Tokenizes the given prompt using the model's tokenizer.
@@ -230,7 +141,10 @@ class vLLM(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.tokenizer.encode(prompt,add_special_tokens=False)
+        import tiktoken
+        tokens_list = tiktoken.model.encoding_for_model("gpt-3.5-turbo").encode(prompt)
+
+        return tokens_list
 
     def detokenize(self, tokens_list:list):
         """
@@ -242,232 +156,173 @@ class vLLM(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return  self.tokenizer.decode(tokens_list)
+        import tiktoken
+        text = tiktoken.model.encoding_for_model("gpt-3.5-turbo").decode(tokens_list)
+
+        return text
     
-    def generate_with_images(self, 
-                prompt:str,
-                images:list=[],
-                n_predict: int = 128,
-                callback: Callable[[str, int, dict], bool] = None,
-                verbose: bool = False,
-                **gpt_params ):
-        """Generates text out of a prompt
-
-        Args:
-            prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
-            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
-            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
-        """
-        return
-
-
     def generate(self, 
-                 prompt:str,                  
+                 prompt: str,                  
                  n_predict: int = 128,
                  callback: Callable[[str], None] = None,
                  verbose: bool = False,
-                 **gpt_params ):
+                 **gpt_params) -> str:
         """Generates text out of a prompt
 
         Args:
             prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
+            n_predict (int, optional): Number of tokens to predict. Defaults to 128.
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
+        if self.binding_config.server_key:
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': f'Bearer {self.binding_config.server_key}',
+            }
+        else:
+            headers = {
+                'Content-Type': 'application/json',
+            }
         default_params = {
-            'temperature': self.generation_config.temperature,
-            'top_k': self.generation_config.top_k,
-            'top_p': self.generation_config.top_p,
-            'repeat_penalty': self.generation_config.repetition_penalty,
-            'repeat_last_n':self.generation_config.no_repeat_ngram_size,
-            "seed":-1,
-            "n_threads":8,
-            "begin_suppress_tokens ": self.tokenize("!")
+            'temperature': 0.7,
+            'top_k': 50,
+            'top_p': 0.96,
+            'repeat_penalty': 1.3
         }
         gpt_params = {**default_params, **gpt_params}
-        
+        if self.binding_config.completion_format=="vllm instruct":
+            data = {
+                'model':self.binding_config.model,
+                'prompt': prompt,
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
+        elif self.binding_config.completion_format=="vllm chat":
+            data = {
+                'model':self.binding_config.model,
+                'messages': [{
+                    'role': "user",
+                    'content': prompt
+                }],
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }
+
+        if self.binding_config.address.strip().endswith("/"):
+            self.binding_config.address = self.binding_config.address.strip()[:-1]
+        url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
+
         try:
-            self.sampling_params = self.SamplingParams(temperature=gpt_params["temperature"], top_p=gpt_params["top_p"])
-            outputs = self.model.generate([prompt], self.sampling_params)
-            # Print the outputs.
-            for output in outputs:
-                prompt = output.prompt
-                generated_text = output.outputs[0].text
-                if self.callback:
-                    self.callback(generated_text, MSG_TYPE.MSG_TYPE_FULL)
-                print(f"Prompt: {prompt!r}, Generated text: {generated_text!r}")
-                
-        except:
-            pass
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True, verify=self.binding_config.verify_ssl_certificate)
 
-        return outputs
+            if response.status_code==400:
+                content = response.content.decode("utf8")
+                content = json.loads(content)
+                self.error(content["message"])
+                return
+            elif response.status_code==404:
+                ASCIIColors.error(response.content.decode("utf-8", errors='ignore'))
+            text = ""
+            for line in response.iter_lines():
+                decoded = line.decode("utf-8")
+                if decoded.startswith("data: "):
+                    try:
+                        json_data = json.loads(decoded[5:].strip())
+                        if "chat" in self.binding_config.completion_format:
+                            try:
+                                chunk = json_data["choices"][0]["delta"]["content"]
+                            except:
+                                chunk = ""
+                        else:
+                            chunk = json_data["choices"][0]["text"]
+                        ## Process the JSON data here
+                        text +=chunk
+                        if callback:
+                            if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                                break
+                    except:
+                        break
+                else:
+                    if decoded.startswith("{"):
+                        for line_ in response.iter_lines():
+                            decoded += line_.decode("utf-8")
+                        try:
+                            json_data = json.loads(decoded)
+                            if json_data["object"]=="error":
+                                self.error(json_data["message"])
+                                break
+                        except:
+                            self.error("Couldn't generate text, verify your key or model name")
+                    else:
+                        text +=decoded
+                        if callback:
+                            if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                                break
+            return text
+        except Exception as ex:
+            trace_exception(ex)
+            self.error("Couldn't connect to server.\nPlease verify your connection or that the server is up.")
     
-    @staticmethod
-    def get_filenames(repo):
-        import requests
-        from bs4 import BeautifulSoup
-
-        dont_download = [".gitattributes"]
-
-        blocs = repo.split("/")
-        if len(blocs)!=2:
-            raise ValueError("Bad repository path")
-        
-        # https://huggingface.co/TheBloke/Spicyboros-13B-2.2-GPTQ/tree/main?not-for-all-audiences=true
-        
-        main_url = "https://huggingface.co/"+repo+"/tree/main" #f"https://huggingface.co/{}/tree/main"
-        response = requests.get(main_url)
-        html_content = response.text
-        soup = BeautifulSoup(html_content, 'html.parser')
-
-        file_names = []
-
-        
-
-        for a_tag in soup.find_all('a', {'class': 'group'}):
-            span_tag = a_tag.find('span', {'class': 'truncate'})
-            if span_tag:
-                file_name = span_tag.text
-                if file_name not in dont_download:
-                    file_names.append(file_name)
-
-        if len(file_names)==0:
-            ASCIIColors.warning(f"No files found. This is probably a model with disclaimer. Please make sure you read the disclaimer before using the model.")
-            main_url = "https://huggingface.co/"+repo+"/tree/main?not-for-all-audiences=true" #f"https://huggingface.co/{}/tree/main"
-            response = requests.get(main_url)
-            html_content = response.text
-            soup = BeautifulSoup(html_content, 'html.parser')
-
-            file_names = []
-            for a_tag in soup.find_all('a', {'class': 'group'}):
-                span_tag = a_tag.find('span', {'class': 'truncate'})
-                if span_tag:
-                    file_name = span_tag.text
-                    if file_name not in dont_download:
-                        file_names.append(file_name)
-        return file_names
-    
-    @staticmethod
-    def download_model(repo, base_folder, callback=None):
+    def list_models(self):
+        """Lists the models for this binding
         """
-        Downloads a folder from a Hugging Face repository URL, reports the download progress using a callback function,
-        and displays a progress bar.
-
-        Args:
-            repo (str): The name of the Hugging Face repository.
-            base_folder (str): The base folder where the repository should be saved.
-            installation_path (str): The path where the folder should be saved.
-            callback (function, optional): A callback function to be called during the download
-                with the progress percentage as an argument. Defaults to None.
-        """
-        
-        import wget
-        import os
-
-        blocs = repo.split("/")
-        """
-        if len(blocs)!=2 and len(blocs)!=4:
-            raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")        
-        if len(blocs)==4:
-        """
-        if len(blocs)!=2:
-            repo="/".join(blocs[-5:-3])
-
-        file_names = vLLM.get_filenames(repo)
-        # if there is a safetensor then remove all bins
-        nb_safe_tensors=len([f for f in file_names if ".safetensors" in str(f)])
-        if nb_safe_tensors>0:
-            file_names = [f for f in file_names if ".bin" not in str(f)]
-        dest_dir = Path(base_folder)
-        dest_dir.mkdir(parents=True, exist_ok=True)
-        os.chdir(dest_dir)
-
-        loading = ["none"]
-        pbar = tqdm(total=100, desc="Downloading", unit="step")
-        previous = [0]
-        def chunk_callback(current, total, width=80):
-            # This function is called for each received chunk
-            # Perform actions or computations on the received chunk
-            # chunk: The chunk of data received
-            # chunk_size: The size of each chunk in bytes
-            # total_size: The total size of the file being downloaded
-
-            # Example: Print the current progress
-            downloaded = current 
-            if total>0:
-                progress = (current  / total) * 100
-            else:
-                progress=0
-            pbar.update(progress-previous[0])  # Update the tqdm progress bar
-            previous[0] = progress
-            if callback and (".safetensors" in loading[0] or ".bin" in loading[0] ):
-                try:
-                    callback(downloaded, total)
-                except:
-                    callback(0, downloaded, total)
-
-        def download_file(get_file):
-            main_url = "https://huggingface.co/"+repo#f"https://huggingface.co/{}/tree/main"
-
-            filename = f"{main_url}/resolve/main/{get_file}"
-            print(f"\nDownloading {filename}")
-            loading[0]=filename
-            wget.download(filename, out=str(dest_dir), bar=chunk_callback)
-
-        # with concurrent.futures.ThreadPoolExecutor() as executor:
-        #     executor.map(download_file, file_names)
-        for file_name in file_names:
-            download_file(file_name)
-
-        print("Done")
-        
-    def get_file_size(self, repo):
-        blocs = repo.split("/")
-        """
-        if len(blocs)!=2 and len(blocs)!=4:
-            raise ValueError("Bad repository path. Make sure the path is a valid hugging face path")        
-        if len(blocs)==4:
-        """
-        if len(blocs)!=2:
-            repo="/".join(blocs[-5:-3])
-
-        file_names = vLLM.get_filenames(repo)
-        for file_name in file_names:
-            if file_name.endswith(".safetensors") or  file_name.endswith(".bin"):
-                src = "https://huggingface.co/"+repo
-                filename = f"{src}/resolve/main/{file_name}"                
-                response = urllib.request.urlopen(filename)
+        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.completion_format, self.binding_config.verify_ssl_certificate)
+        entries=[]
+        for model in model_names:
+            entries.append(model["model_name"])
+        return entries
                 
-                # Extract the Content-Length header value
-                file_size = response.headers.get('Content-Length')
-                
-                # Convert the file size to integer
-                if file_size:
-                    file_size = int(file_size)
-                
-                return file_size        
-        return 4000000000
+    def get_available_models(self, app:LoLLMsCom=None):
+        # Create the file path relative to the child class's directory
+        model_names = get_model_info(f'{self.binding_config.address}', self.binding_config.completion_format, self.binding_config.verify_ssl_certificate)
+        entries=[]
+        for model in model_names:
+            entry={
+                "category": "generic",
+                "datasets": "unknown",
+                "icon": '/bindings/vLLM/logo.png',
+                "last_commit_time": "2023-09-17 17:21:17+00:00",
+                "license": "unknown",
+                "model_creator": model["owned_by"],
+                "model_creator_link": "https://lollms.com/",
+                "name": model["model_name"],
+                "quantizer": None,
+                "rank": "1.0",
+                "type": "api",
+                "variants":[
+                    {
+                        "name":model,
+                        "size":0
+                    }
+                ]
+            }
+            entries.append(entry)
+        """
+        binding_path = Path(__file__).parent
+        file_path = binding_path/"models.yaml"
 
+        with open(file_path, 'r') as file:
+            yaml_data = yaml.safe_load(file)
+        
+        """
+        
+        return entries
+if __name__=="__main__":
+    from lollms.paths import LollmsPaths
+    from lollms.main_config import LOLLMSConfig
+    from lollms.app import LollmsApplication
+    from pathlib import Path
+    root_path = Path(__file__).parent
+    lollms_paths = LollmsPaths.find_paths(tool_prefix="",force_local=True, custom_default_cfg_path="configs/config.yaml")
+    config = LOLLMSConfig.autoload(lollms_paths)
+    lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
 
-    def train(self, model_name_or_path, model_basename):
-        from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
-        from auto_gptq.utils.peft_utils import get_gptq_peft_model, GPTQLoraConfig
-
-        model = AutoGPTQForCausalLM.from_quantized(
-            model_name_or_path,
-            model_basename=model_basename,
-            use_safetensors=True,
-            trust_remote_code=False,
-            use_triton=True,
-            device="cuda:0",
-            warmup_triton=False,
-            trainable=True,
-            inject_fused_attention=True,
-            inject_fused_mlp=False,
-        )
-        device = model.device
-        model = get_gptq_peft_model(
-            model, model_id=model_name_or_path, train_mode=False
-        )
+    oai = Vllm(config, lollms_paths,lollmsCom=lollms_app)
+    oai.install()
+    oai.binding_config.save()
+    config.binding_name= "vLLM"
+    config.model_name=""
+    config.save_config()
