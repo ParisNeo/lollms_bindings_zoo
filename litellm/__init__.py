@@ -22,6 +22,7 @@ from lollms.types import MSG_TYPE
 import subprocess
 import base64
 import sys
+import json 
 
 __author__ = "g1ibby"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -232,60 +233,82 @@ class LiteLLM(LLMBinding):
         self.binding_config.config["total_input_tokens"] += len(self.tokenize(prompt))
         self.binding_config.config["total_input_cost"] = self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"], 0)
         try:
+            if self.binding_config.server_key:
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': f'Bearer {self.binding_config.server_key}',
+                }
+            else:
+                headers = {
+                    'Content-Type': 'application/json',
+                }            
             default_params = {
                 'temperature': 0.7,
                 'top_k': 50,
                 'top_p': 0.96,
                 'repeat_penalty': 1.3
             }
+            data = {
+                'model':self.binding_config.model,#self.config.model_name,
+                'prompt': prompt,
+                "stream":True,
+                "temperature": float(gpt_params["temperature"]),
+                "max_tokens": n_predict
+            }            
             gpt_params = {**default_params, **gpt_params}
-            count = 0
-            output = ""
-            if "vision" in self.config.model_name:
-                messages = [
-                            {
-                                "role": "user", 
-                                "content": [
-                                    {
-                                        "type":"text",
-                                        "text":prompt
-                                    }
-                                ]
-                            }
-                        ]
-            else:
-                messages = [{"role": "user", "content": prompt}]
-            self.openai.verify_ssl_certs = self.binding_config.verify_ssl_certificate
-            chat_completion = self.openai.chat.completions.create(
-                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                            messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
-                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                            stream=True)
-            for resp in chat_completion:
-                if count >= n_predict:
-                    break
-                try:
-                    word = resp.choices[0].delta.content
-                except Exception as ex:
-                    word = ""
-                if word is not None:
-                    output += word
-                    count += 1
-                    if callback is not None:
-                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
-                            break
+            if self.binding_config.address.strip().endswith("/"):
+                self.binding_config.address = self.binding_config.address.strip()[:-1]
+            url = f'{self.binding_config.address}/v1/completions'
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True, verify=self.binding_config.verify_ssl_certificate)
+
+            if response.status_code==400:
+                content = response.content.decode("utf8")
+                content = json.loads(content)
+                self.error(content["error"]["message"])
+                return
+            elif response.status_code==404:
+                ASCIIColors.error(response.content.decode("utf-8", errors='ignore'))
+            text = ""
+
+            for line in response.iter_lines():
+                decoded = line.decode("utf-8")
+                if decoded.startswith("data: "):
+                    try:
+                        json_data = json.loads(decoded[5:].strip())
+                        chunk = json_data["choices"][0]["text"]
+                        ## Process the JSON data here
+                        text +=chunk
+                        if callback:
+                            if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                                break
+                    except:
+                        break
+                else:
+                    if decoded.startswith("{"):
+                        for line_ in response.iter_lines():
+                            decoded += line_.decode("utf-8")
+                        try:
+                            json_data = json.loads(decoded)
+                            if json_data["object"]=="error":
+                                self.error(json_data["message"])
+                                break
+                        except:
+                            self.error("Couldn't generate text, verify your key or model name")
+                    else:
+                        text +=decoded
+                        if callback:
+                            if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                                break
         except Exception as ex:
             self.error(f'Error {ex}')
             trace_exception(ex)
 
-        self.binding_config.config["total_output_tokens"] += len(self.tokenize(output))
+        self.binding_config.config["total_output_tokens"] += len(self.tokenize(text))
         self.binding_config.config["total_output_cost"] = self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"], 0)
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         self.info(f'Consumed {self.binding_config.config["total_cost"]}$')
         self.binding_config.save()
-        return ""      
+        return text     
 
     def generate_with_images(self, 
                 prompt:str,
@@ -334,15 +357,12 @@ class LiteLLM(LLMBinding):
                             ]
                         }
                     ]
-            self.openai.verify_ssl_certs = self.binding_config.verify_ssl_certificate
-            chat_completion = self.openai.chat.completions.create(
-                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                            messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
-                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                            stream=True
-                            )
+            
+            if self.binding_config.address.strip().endswith("/"):
+                self.binding_config.address = self.binding_config.address.strip()[:-1]
+            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
+            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True, verify=self.binding_config.verify_ssl_certificate)
+
             for resp in chat_completion:
                 if count >= n_predict:
                     break
