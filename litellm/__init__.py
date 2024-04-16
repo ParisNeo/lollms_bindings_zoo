@@ -149,6 +149,10 @@ class LiteLLM(LLMBinding):
             self.output_costs_by_model[model_name] = model.get('output_cost_per_token', 0)
 
     def settings_updated(self):
+        if len(self.binding_config.address.strip())>0 and self.binding_config.address.strip().endswith("/"):
+            self.binding_config.address = self.binding_config.address.strip()[:-1]
+            self.binding_config.save()
+            
         self.config.ctx_size = self.binding_config.config.ctx_size
 
     def build_model(self, model_name=None):
