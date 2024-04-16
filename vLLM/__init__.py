@@ -88,7 +88,6 @@ class Vllm(LLMBinding):
                 {"name":"address","type":"str","value":"http://127.0.0.1:5000","help":"The server address"},
                 {"name":"verify_ssl_certificate","type":"bool","value":True,"help":"Deactivate if you don't want the client to verify the SSL certificate"},
                 {"name":"completion_format","type":"str","value":"openai instruct","options":list(elf_completion_formats.keys()), "help":"The format supported by the server"},
-                {"name":"model","type":"str","value":"gpt-3.5-turbo","help":"Model name"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
             ]),
@@ -193,7 +192,7 @@ class Vllm(LLMBinding):
         gpt_params = {**default_params, **gpt_params}
         if self.binding_config.completion_format=="vllm instruct":
             data = {
-                'model':self.binding_config.model,
+                'model':self.config.model_name,
                 'prompt': prompt,
                 "stream":True,
                 "temperature": float(gpt_params["temperature"]),
@@ -201,7 +200,7 @@ class Vllm(LLMBinding):
             }
         elif self.binding_config.completion_format=="vllm chat":
             data = {
-                'model':self.binding_config.model,
+                'model':self.config.model_name,
                 'messages': [{
                     'role': "user",
                     'content': prompt
