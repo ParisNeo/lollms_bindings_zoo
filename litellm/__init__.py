@@ -249,7 +249,7 @@ class LiteLLM(LLMBinding):
                 'repeat_penalty': 1.3
             }
             data = {
-                'model':self.binding_config.model,#self.config.model_name,
+                'model':self.config.model_name,
                 'prompt': prompt,
                 "stream":True,
                 "temperature": float(gpt_params["temperature"]),
