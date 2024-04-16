@@ -255,6 +255,7 @@ class LiteLLM(LLMBinding):
                         ]
             else:
                 messages = [{"role": "user", "content": prompt}]
+            self.openai.verify_ssl_certs = self.binding_config.verify_ssl_certificate
             chat_completion = self.openai.chat.completions.create(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
@@ -333,6 +334,7 @@ class LiteLLM(LLMBinding):
                             ]
                         }
                     ]
+            self.openai.verify_ssl_certs = self.binding_config.verify_ssl_certificate
             chat_completion = self.openai.chat.completions.create(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
