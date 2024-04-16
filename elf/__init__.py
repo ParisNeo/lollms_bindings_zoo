@@ -117,8 +117,8 @@ class Elf(LLMBinding):
             self.config.model_name = "elf_remote_model"
 
     def settings_updated(self):
-        if len(self.binding_config.address)>0 and self.binding_config.address.endswith("/"):
-            self.binding_config.address = self.binding_config.address[:-1]
+        if len(self.binding_config.address.strip())>0 and self.binding_config.address.strip().endswith("/"):
+            self.binding_config.address = self.binding_config.address.strip()[:-1]
             self.binding_config.save()
             
         self.config.ctx_size = self.binding_config.config.ctx_size        
@@ -255,8 +255,8 @@ class Elf(LLMBinding):
                 "max_tokens": n_predict
             }
 
-        if self.binding_config.address.endswith("/"):
-            self.binding_config.address = self.binding_config.address[:-1]
+        if self.binding_config.address.strip().endswith("/"):
+            self.binding_config.address = self.binding_config.address.strip()[:-1]
         url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
 
         try:
