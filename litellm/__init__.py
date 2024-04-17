@@ -274,8 +274,8 @@ class LiteLLM(LLMBinding):
                 decoded = line.decode("utf-8")
                 if decoded.startswith("{"):
                     json_data = json.loads(decoded)
-                    if json_data["object"]=="error":
-                        self.error(json_data["message"])
+                    if "error" in json_data:
+                        self.error(json_data["error"]["message"])
                         break
                 else:
                     text +=decoded
