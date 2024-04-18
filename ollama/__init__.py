@@ -355,6 +355,7 @@ class Ollama(LLMBinding):
         # Create the file path relative to the child class's directory
         #model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key, self.binding_config.verify_ssl_certificate)
         model_names=[
+            {"model_name":"llama3", "owned_by": "meta"},
             {"model_name":"llama2:latest", "owned_by": "meta"},
             {"model_name":"codellama:latest", "owned_by": "meta"},
             {"model_name":"codellama:70b", "owned_by": "meta"},
