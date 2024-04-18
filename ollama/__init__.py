@@ -370,12 +370,26 @@ class Ollama(LLMBinding):
             {"model_name":"neural-chat", "owned_by": "Intel"},
             {"model_name":"bakllava", "owned_by": "mistral based"},
             {"model_name":"starcoder:15b-plus-fp16", "owned_by": "bigcode"},
-           
+            {"model_name":"stable-code", "owned_by": "meta"},
+            {"model_name":"tinyllama", "owned_by": "meta"},
+            {"model_name":"vicuna", "owned_by": "meta"},
+            {"model_name":"dbrx", "owned_by": "Databricks"},
+            {"model_name":"gemma", "owned_by": "google"},
+            {"model_name":"ifioravanti/bagel-hermes:2x34b-q6_k", "owned_by": "ifioravanti"},
             
             
+
             {"model_name":"llava:latest", "owned_by": "liuhaotian"},
             {"model_name":"mistral:latest", "owned_by": "mistral.ai"},
             {"model_name":"mixtral:latest", "owned_by": "mistral.ai"},
+            {"model_name":"mixtral:8x7b", "owned_by": "mistral.ai"},
+            {"model_name":"mixtral:8x22b", "owned_by": "mistral.ai"},
+            {"model_name":"mistrallite", "owned_by": "amazon"},
+            
+
+            {"model_name":"openhermes", "owned_by": "NousSearch"},
+            
+
             {"model_name":"neural-chat:latest", "owned_by": "intel"},
             {"model_name":"dolphin-mixtral:latest", "owned_by": "microsoft"},
             {"model_name":"mistral-openorca:latest", "owned_by": "microsoft"},
