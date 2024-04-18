@@ -356,6 +356,8 @@ class Ollama(LLMBinding):
         #model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key, self.binding_config.verify_ssl_certificate)
         model_names=[
             {"model_name":"llama3", "owned_by": "meta"},
+            {"model_name":"llama3:70b", "owned_by": "meta"},
+            
             {"model_name":"llama2:latest", "owned_by": "meta"},
             {"model_name":"codellama:latest", "owned_by": "meta"},
             {"model_name":"codellama:70b", "owned_by": "meta"},
@@ -376,6 +378,7 @@ class Ollama(LLMBinding):
             {"model_name":"dbrx", "owned_by": "Databricks"},
             {"model_name":"gemma", "owned_by": "google"},
             {"model_name":"ifioravanti/bagel-hermes:2x34b-q6_k", "owned_by": "ifioravanti"},
+            
             
             
 
