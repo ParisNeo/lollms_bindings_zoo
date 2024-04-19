@@ -28,6 +28,7 @@ import sys
 import shutil
 import platform
 from functools import partial
+import gc
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -129,6 +130,14 @@ class LLAMA_Python_CPP(LLMBinding):
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        if self.model:
+            ASCIIColors.yellow("A model is already loaded. Unloading it")
+            self.model = None
+            gc.collect()
+
+
+
+
         if self.config.hardware_mode=="nvidia":
             try:
                 import llama_cpp_cuda
