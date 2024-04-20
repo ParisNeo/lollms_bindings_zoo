@@ -62,6 +62,7 @@ class OpenAIGPT(LLMBinding):
             "gpt-3.5-turbo-1106":0.0015,
             "gpt-3.5-turbo":0.0010,
             "gpt-3.5-turbo-16k":0.003,
+            "gpt-3.5-turbo-instruct":0
         }       
         self.output_costs_by_model={
             "gpt-4-1106-preview":0.03,
@@ -72,12 +73,14 @@ class OpenAIGPT(LLMBinding):
             "gpt-3.5-turbo-1106":0.0015,
             "gpt-3.5-turbo":0.002,
             "gpt-3.5-turbo-16k":0.004,
+            "gpt-3.5-turbo-instruct":0
         }
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config = TypedConfig(
             ConfigTemplate([
+                {"name":"turn_on_cost_estimation","type":"bool", "value":True,"help":"Turns on measuring the cost of queries"},
                 {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
                 {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
                 {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
@@ -199,9 +202,9 @@ class OpenAIGPT(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0.1) /1000
+        if self.binding_config.config.turn_on_cost_estimation:
+            self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
+            self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0.1) /1000
         if not "vision" in self.config.model_name:
             self.error("You can not call a generate with vision on this model")
             return
@@ -215,6 +218,8 @@ class OpenAIGPT(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
             count = 0
             output = ""
+
+
             messages = [
                         {
                             "role": "user", 
@@ -242,6 +247,7 @@ class OpenAIGPT(LLMBinding):
                             temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
                             stream=True
                             )
+            
             for resp in chat_completion:
                 if count >= n_predict:
                     break
@@ -256,15 +262,16 @@ class OpenAIGPT(LLMBinding):
                     output += word
                     count += 1
 
-
-            self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0.1)/1000    
-            self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
+            if self.binding_config.config.turn_on_cost_estimation:
+                self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
+                self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0.1)/1000    
+                self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
             self.error(f'Error {ex}')
             trace_exception(ex)
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
-        self.binding_config.save()
+        if self.binding_config.config.turn_on_cost_estimation:
+            self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
+            self.binding_config.save()
         return output    
 
 
@@ -282,9 +289,9 @@ class OpenAIGPT(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+        if self.binding_config.config.turn_on_cost_estimation:
+            self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
+            self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
         try:
             default_params = {
                 'temperature': 0.7,
@@ -337,11 +344,12 @@ class OpenAIGPT(LLMBinding):
         except Exception as ex:
             self.error(f'Error {ex}$')
             trace_exception(ex)
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
-        self.binding_config.save()
+        if self.binding_config.config.turn_on_cost_estimation:
+            self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
+            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
+            self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
+            self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
+            self.binding_config.save()
         return output
 
     def list_models(self):
