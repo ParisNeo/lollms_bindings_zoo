@@ -444,7 +444,7 @@ class LLAMA_Python_CPP(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.model.tokenize(prompt.encode("utf8"), special=True)
+        return self.model.tokenize(prompt.encode("utf8", errors="ignore"), special=True)
 
     def detokenize(self, tokens_list:list):
         """
@@ -456,7 +456,7 @@ class LLAMA_Python_CPP(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.model.detokenize(tokens_list).decode("utf8").replace("<0x0A>","!@>")
+        return self.model.detokenize(tokens_list).decode("utf8", errors="ignore").replace("<0x0A>","!@>")
     
     def embed(self, text):
         """
