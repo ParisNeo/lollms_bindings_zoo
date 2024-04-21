@@ -66,7 +66,7 @@ class GroqLLM(LLMBinding):
         # Initialization code goes here
         binding_config = TypedConfig(
             ConfigTemplate([
-                
+                {"name":"turn_on_cost_estimation","type":"bool", "value":True,"help":"Turns on measuring the cost of queries"},
                 {"name":"groq_key","type":"str","value":"","help":"A valid open AI key to generate text using groq api"},
                 {"name":"mode","type":"str","value":"Chat", "options":["Chat","Instruct"],"help":"The format to be used. Completion anebles the use of some personas, but Chat is generally more stable is you don't want to use any forcing of the AI"},
                 {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
@@ -198,9 +198,9 @@ class GroqLLM(LLMBinding):
             callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
-        
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+        if self.binding_config.turn_on_cost_estimation:
+            self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
+            self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
         try:
             default_params = {
                 'temperature': 0.7,
@@ -228,11 +228,12 @@ class GroqLLM(LLMBinding):
         except Exception as ex:
             self.error(f'Error {ex}$')
             trace_exception(ex)
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
-        self.binding_config.save()
+        if self.binding_config.turn_on_cost_estimation:
+            self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
+            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
+            self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
+            self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
+            self.binding_config.save()
         return output
 
 
