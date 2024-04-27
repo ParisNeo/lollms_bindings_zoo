@@ -1,7 +1,7 @@
-name: Google Gemini API (Works outside EU)
-author: Google Inc
+name: mlc-llm
+author: mlc-ai
 version: 1.0
-link: https://ai.google.dev/
-description: This binding uses the google gimini api to make you use google gemini models
+link: https://github.com/mlc-ai/mlc-llm
+description: This binding uses compiled versions of the models optimized to run on your hardware
 accepted_models: 
-  - google
+  - mlc
