@@ -273,6 +273,7 @@ class Ollama(LLMBinding):
         except Exception as ex:
             trace_exception(ex)
             try:
+                ASCIIColors.red(decoded)
                 ASCIIColors.red(json_data)
             except Exception as ex:
                 pass
