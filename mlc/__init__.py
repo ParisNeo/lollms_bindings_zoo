@@ -30,10 +30,9 @@ from datetime import datetime
 from PIL import Image
 import base64
 import io
-
-if not PackageManager.check_package_installed("tiktoken"):
-    PackageManager.install_package('tiktoken')
-import tiktoken
+import platform
+import tempfile
+import os
 
 
 __author__ = "parisneo"
@@ -106,6 +105,9 @@ class MLC(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size        
 
     def build_model(self, model_name="HF://mlc-ai/Llama-3-8B-Instruct-q4f16_1-MLC"):
+        if model_name is None:
+            ASCIIColors.error("Please select a model first")
+            return
         super().build_model(model_name)
         from mlc_llm import MLCEngine
         # Create engine
@@ -115,7 +117,38 @@ class MLC(LLMBinding):
 
     def install(self):
         super().install()
-        subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "mlc_llm"])
+        url = "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.4/LLVM-16.0.4-win64.exe"
+
+        subprocess.run([sys.executable, "-m", "pip", "install", "--pre", "-U", "-f", "https://mlc.ai/wheels", "mlc-llm-nightly","mlc-ai-nightly"])
+        if platform.system() != 'Windows':
+            print("This script is designed to run on Windows systems only.")
+            return
+
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            tmp_file_path = os.path.join(tmpdirname, 'installer.exe')
+            try:
+                # Download the file
+                print("Downloading the file...")
+                response = requests.get(url)
+                response.raise_for_status()  # Raise an error for bad responses
+                with open(tmp_file_path, 'wb') as tmp_file:
+                    tmp_file.write(response.content)
+                print(f"File downloaded to temporary directory and saved as {tmp_file_path}")
+
+                # Execute the downloaded file
+                print("Executing the file...")
+                subprocess.run(tmp_file_path, shell=True)
+                print("Execution completed.")
+
+                # Perform the pip install
+                self.install()
+
+            except requests.RequestException as e:
+                print(f"Error downloading the file: {e}")
+            except Exception as e:
+                print(f"An error occurred: {e}")
+
+            # The temporary directory and files within are automatically cleaned up        
         ASCIIColors.success("Installed successfully")
     
     def tokenize(self, prompt:str):
@@ -128,8 +161,7 @@ class MLC(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        import tiktoken
-        tokens_list = tiktoken.model.encoding_for_model("gpt-3.5-turbo").encode(prompt)
+        tokens_list = self.engine.tokenizer.encode(prompt)
 
         return tokens_list
 
@@ -143,8 +175,7 @@ class MLC(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        import tiktoken
-        text = tiktoken.model.encoding_for_model("gpt-3.5-turbo").decode(tokens_list)
+        text = self.engine.tokenizer.decode(tokens_list)
 
         return text
 
@@ -158,11 +189,7 @@ class MLC(LLMBinding):
         Returns:
             List[float]
         """
-        return self.genai.embed_content(
-            model="models/embedding-001",
-            content="What is the meaning of life?",
-            task_type="retrieval_document",
-            title="Embedding of single string")['embedding']
+        return 
 
     def generate(self, 
                  prompt: str,                  
@@ -191,8 +218,10 @@ class MLC(LLMBinding):
 
             # Run chat completion in OpenAI API.
             for response in self.engine.chat.completions.create(
-                messages=[{"role": "user", "content": "What is the meaning of life?"}],
+                messages=[{"role": "user", "content": prompt}],
                 model=self.model_name,
+                max_tokens=n_predict,
+                temperature=float(gpt_params["temperature"]),
                 stream=True,
             ):
                 for choice in response.choices:
@@ -218,6 +247,9 @@ class MLC(LLMBinding):
             "name": "mlc-ai/Llama-3-8B-Instruct-q4f16_1-MLC",
             },
             {
+            "name": "mlc-ai/Mistral-7B-Instruct-v0.2-q4f16_1-MLC",
+            },
+            {
             "name": "mlc-ai/phi-2-q4f16_1-MLC",
             },
             {
@@ -237,6 +269,10 @@ class MLC(LLMBinding):
             {
             "name": "mlc-ai/Llama-3-8B-Instruct-q4f16_1-MLC",
             "model_creator": "meta"
+            },
+            {
+            "name": "mlc-ai/Mistral-7B-Instruct-v0.2-q4f16_1-MLC",
+            "model_creator": "mistral ai"
             },
             {
             "name": "mlc-ai/phi-2-q4f16_1-MLC",

@@ -277,13 +277,19 @@ class Elf(LLMBinding):
                 ASCIIColors.error(response.content.decode("utf-8", errors='ignore'))
             text = ""
             for line in response.iter_lines():
+                decoded = line.decode("utf-8")
                 if self.binding_config.completion_format=="litellm chat":
-                    text +=chunk
-                    if callback:
-                        if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
-                            break            
+                    if decoded.startswith("{"):
+                        json_data = json.loads(decoded)
+                        if "error" in json_data:
+                            self.error(json_data["error"]["message"])
+                            break
+                    else:
+                        text +=decoded
+                        if callback:
+                            if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                                    break
                 else:
-                    decoded = line.decode("utf-8")
                     if self.binding_config.completion_format=="ollama chat":
                         json_data = json.loads(decoded)
                         chunk = json_data["response"]
