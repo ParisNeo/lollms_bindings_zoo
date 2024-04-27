@@ -200,8 +200,9 @@ class ExLLamav2(LLMBinding):
                 try:
                     config.num_experts_per_token = int(self.binding_config.num_experts_per_token)
                 except:
-                    self.binding_config.num_experts_per_token = 2
-                    
+                    self.binding_config.config["num_experts_per_token"] = 2
+                    self.binding_config.save()
+
                 self.model = ExLlamaV2(config)
                 print("Loading model: " + model_name)
 
