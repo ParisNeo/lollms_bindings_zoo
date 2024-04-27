@@ -197,9 +197,11 @@ class ExLLamav2(LLMBinding):
                 # config.scale_pos_emb = shared.args.compress_pos_emb
                 # config.scale_alpha_value = shared.args.alpha_value
                 config.no_flash_attn = not self.binding_config.enable_flash_attention_2
-                config.num_experts_per_token = int(self.binding_config.num_experts_per_token)
-
-
+                try:
+                    config.num_experts_per_token = int(self.binding_config.num_experts_per_token)
+                except:
+                    self.binding_config.num_experts_per_token = 2
+                    
                 self.model = ExLlamaV2(config)
                 print("Loading model: " + model_name)
 
