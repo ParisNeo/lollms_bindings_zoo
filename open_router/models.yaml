@@ -46,6 +46,20 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
+  model_creator_link: /models/openchat/openchat-7b:free
+  name: openchat/openchat-7b:free
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: OpenChat 3.5 (free)
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
   model_creator_link: /models/gryphe/mythomist-7b:free
   name: gryphe/mythomist-7b:free
   quantizer: null
@@ -102,20 +116,6 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/jebcarter/psyfighter-13b
-  name: jebcarter/psyfighter-13b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Psyfighter 13B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
   model_creator_link: /models/koboldai/psyfighter-13b-2
   name: koboldai/psyfighter-13b-2
   quantizer: null
@@ -144,55 +144,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/haotian-liu/llava-13b
-  name: haotian-liu/llava-13b
+  model_creator_link: /models/gryphe/mythomax-l2-13b
+  name: gryphe/mythomax-l2-13b
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Llava 13B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/nousresearch/nous-hermes-2-vision-7b
-  name: nousresearch/nous-hermes-2-vision-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Nous: Hermes 2 Vision 7B (alpha)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/meta-llama/llama-2-13b-chat
-  name: meta-llama/llama-2-13b-chat
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Meta: Llama v2 13B Chat'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/migtissera/synthia-70b
-  name: migtissera/synthia-70b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Synthia 70B
+  - name: MythoMax 13B
     size: Not so much
 - category: generic
   datasets: unknown
@@ -284,6 +242,20 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
+  model_creator_link: /models/sao10k/fimbulvetr-11b-v2
+  name: sao10k/fimbulvetr-11b-v2
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: Fimbulvetr 11B v2
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
   model_creator_link: /models/undi95/remm-slerp-l2-13b:extended
   name: undi95/remm-slerp-l2-13b:extended
   quantizer: null
@@ -312,13 +284,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/mancer/weaver
-  name: mancer/weaver
+  model_creator_link: /models/meta-llama/llama-3-8b-instruct:extended
+  name: meta-llama/llama-3-8b-instruct:extended
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Mancer: Weaver (alpha)'
+  - name: 'Meta: Llama 3 8B Instruct (extended)'
     size: Not so much
 - category: generic
   datasets: unknown
@@ -326,13 +298,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/nousresearch/nous-hermes-llama2-13b
-  name: nousresearch/nous-hermes-llama2-13b
+  model_creator_link: /models/mancer/weaver
+  name: mancer/weaver
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Nous: Hermes 13B'
+  - name: 'Mancer: Weaver (alpha)'
     size: Not so much
 - category: generic
   datasets: unknown
@@ -410,20 +382,6 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/teknium/openhermes-2.5-mistral-7b
-  name: teknium/openhermes-2.5-mistral-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: OpenHermes 2.5 Mistral 7B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
   model_creator_link: /models/undi95/remm-slerp-l2-13b
   name: undi95/remm-slerp-l2-13b
   quantizer: null
@@ -431,20 +389,6 @@
   type: api
   variants:
   - name: ReMM SLERP 13B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/undi95/toppy-m-7b
-  name: undi95/toppy-m-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Toppy M 7B
     size: Not so much
 - category: generic
   datasets: unknown
@@ -592,13 +536,27 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/mistralai/mixtral-8x22b
-  name: mistralai/mixtral-8x22b
+  model_creator_link: /models/meta-llama/llama-3-70b-instruct
+  name: meta-llama/llama-3-70b-instruct
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Mistral: Mixtral 8x22B (base)'
+  - name: 'Meta: Llama 3 70B Instruct'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mixtral-8x7b-instruct:nitro
+  name: mistralai/mixtral-8x7b-instruct:nitro
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: Mixtral 8x7B Instruct (nitro)
     size: Not so much
 - category: generic
   datasets: unknown
@@ -970,6 +928,20 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
+  model_creator_link: /models/fireworks/firellava-13b
+  name: fireworks/firellava-13b
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: FireLLaVA 13B
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
   model_creator_link: /models/anthropic/claude-3-opus
   name: anthropic/claude-3-opus
   quantizer: null
@@ -1005,6 +977,76 @@
   type: api
   variants:
   - name: 'Anthropic: Claude 3 Haiku'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2
+  name: anthropic/claude-2
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Anthropic: Claude v2'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2.1
+  name: anthropic/claude-2.1
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Anthropic: Claude v2.1'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2.0
+  name: anthropic/claude-2.0
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Anthropic: Claude v2.0'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-instant-1
+  name: anthropic/claude-instant-1
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Anthropic: Claude Instant v1'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-instant-1.2
+  name: anthropic/claude-instant-1.2
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Anthropic: Claude Instant v1.2'
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1054,6 +1096,76 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
+  model_creator_link: /models/anthropic/claude-2:beta
+  name: anthropic/claude-2:beta
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Anthropic: Claude v2 (self-moderated)'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2.1:beta
+  name: anthropic/claude-2.1:beta
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Anthropic: Claude v2.1 (self-moderated)'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2.0:beta
+  name: anthropic/claude-2.0:beta
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Anthropic: Claude v2.0 (self-moderated)'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-instant-1:beta
+  name: anthropic/claude-instant-1:beta
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Anthropic: Claude Instant v1 (self-moderated)'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-2-13b-chat
+  name: meta-llama/llama-2-13b-chat
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Meta: Llama v2 13B Chat'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
   model_creator_link: /models/meta-llama/llama-2-70b-chat
   name: meta-llama/llama-2-70b-chat
   quantizer: null
@@ -1061,6 +1173,20 @@
   type: api
   variants:
   - name: 'Meta: Llama v2 70B Chat'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/nous-hermes-llama2-13b
+  name: nousresearch/nous-hermes-llama2-13b
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Nous: Hermes 13B'
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1096,20 +1222,6 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/jondurbin/bagel-34b
-  name: jondurbin/bagel-34b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Bagel 34B v0.2
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
   model_creator_link: /models/austism/chronos-hermes-13b
   name: austism/chronos-hermes-13b
   quantizer: null
@@ -1138,13 +1250,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/gryphe/mythomax-l2-13b
-  name: gryphe/mythomax-l2-13b
+  model_creator_link: /models/teknium/openhermes-2.5-mistral-7b
+  name: teknium/openhermes-2.5-mistral-7b
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: MythoMax 13B
+  - name: OpenHermes 2.5 Mistral 7B
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1159,6 +1271,20 @@
   type: api
   variants:
   - name: OpenChat 3.5
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/undi95/toppy-m-7b
+  name: undi95/toppy-m-7b
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: Toppy M 7B
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1306,13 +1432,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/anthropic/claude-2
-  name: anthropic/claude-2
+  model_creator_link: /models/huggingfaceh4/zephyr-orpo-141b-a35b
+  name: huggingfaceh4/zephyr-orpo-141b-a35b
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Anthropic: Claude v2'
+  - name: Zephyr 141B-A35B
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1320,13 +1446,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/anthropic/claude-2.1
-  name: anthropic/claude-2.1
+  model_creator_link: /models/meta-llama/llama-3-8b-instruct
+  name: meta-llama/llama-3-8b-instruct
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Anthropic: Claude v2.1'
+  - name: 'Meta: Llama 3 8B Instruct'
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1334,13 +1460,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/anthropic/claude-2.0
-  name: anthropic/claude-2.0
+  model_creator_link: /models/microsoft/wizardlm-2-8x22b
+  name: microsoft/wizardlm-2-8x22b
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Anthropic: Claude v2.0'
+  - name: WizardLM-2 8x22B
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1348,13 +1474,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/anthropic/claude-instant-1
-  name: anthropic/claude-instant-1
+  model_creator_link: /models/microsoft/wizardlm-2-7b
+  name: microsoft/wizardlm-2-7b
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Anthropic: Claude Instant v1'
+  - name: WizardLM-2 7B
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1362,13 +1488,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/anthropic/claude-instant-1.2
-  name: anthropic/claude-instant-1.2
+  model_creator_link: /models/mistralai/mixtral-8x22b
+  name: mistralai/mixtral-8x22b
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Anthropic: Claude Instant v1.2'
+  - name: 'Mistral: Mixtral 8x22B (base)'
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1376,13 +1502,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/anthropic/claude-2:beta
-  name: anthropic/claude-2:beta
+  model_creator_link: /models/mistralai/mixtral-8x22b-instruct
+  name: mistralai/mixtral-8x22b-instruct
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Anthropic: Claude v2 (self-moderated)'
+  - name: 'Mistral: Mixtral 8x22B Instruct'
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1390,41 +1516,13 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/anthropic/claude-2.1:beta
-  name: anthropic/claude-2.1:beta
+  model_creator_link: /models/lynn/soliloquy-l3
+  name: lynn/soliloquy-l3
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Anthropic: Claude v2.1 (self-moderated)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-2.0:beta
-  name: anthropic/claude-2.0:beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude v2.0 (self-moderated)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-instant-1:beta
-  name: anthropic/claude-instant-1:beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude Instant v1 (self-moderated)'
+  - name: 'Lynn: Llama 3 Soliloquy 8B'
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1439,34 +1537,6 @@
   type: api
   variants:
   - name: 'Hugging Face: Zephyr 7B (free)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openchat/openchat-7b:free
-  name: openchat/openchat-7b:free
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: OpenChat 3.5 (free)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/mistralai/mixtral-8x7b-instruct:nitro
-  name: mistralai/mixtral-8x7b-instruct:nitro
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Mixtral 8x7B Instruct (nitro)
     size: Not so much
 - category: generic
   datasets: unknown
@@ -1530,13 +1600,83 @@
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/databricks/dbrx-instruct:nitro
-  name: databricks/dbrx-instruct:nitro
+  model_creator_link: /models/undi95/toppy-m-7b:nitro
+  name: undi95/toppy-m-7b:nitro
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Databricks: DBRX 132B Instruct (nitro)'
+  - name: Toppy M 7B (nitro)
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/microsoft/wizardlm-2-8x22b:nitro
+  name: microsoft/wizardlm-2-8x22b:nitro
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: WizardLM-2 8x22B (nitro)
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3-8b-instruct:nitro
+  name: meta-llama/llama-3-8b-instruct:nitro
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Meta: Llama 3 8B Instruct (nitro)'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3-70b-instruct:nitro
+  name: meta-llama/llama-3-70b-instruct:nitro
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Meta: Llama 3 70B Instruct (nitro)'
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/haotian-liu/llava-13b
+  name: haotian-liu/llava-13b
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: Llava 13B
+    size: Not so much
+- category: generic
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/nous-hermes-2-vision-7b
+  name: nousresearch/nous-hermes-2-vision-7b
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - name: 'Nous: Hermes 2 Vision 7B (alpha)'
     size: Not so much
 - category: generic
   datasets: unknown
