@@ -1,0 +1,7 @@
+name: Google Gemini API (Works outside EU)
+author: Google Inc
+version: 1.0
+link: https://ai.google.dev/
+description: This binding uses the google gimini api to make you use google gemini models
+accepted_models: 
+  - google

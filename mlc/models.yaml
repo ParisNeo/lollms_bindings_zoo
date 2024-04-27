@@ -1,0 +1,14 @@
+- category: generic
+  datasets: unknown
+  icon: '/bindings/google/logo.png'
+  last_commit_time: 2023-09-17 17:21:17+00:00
+  license: commercial
+  model_creator: google
+  model_creator_link: https://bard.google.com/
+  name: text-bison-001
+  quantizer: None
+  rank: 1.0
+  type: api
+  variants:
+  - name: The new big boss from google
+    size: Too much
