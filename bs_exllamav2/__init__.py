@@ -17,7 +17,7 @@ from lollms.helpers import ASCIIColors
 from lollms.types import MSG_TYPE
 from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector, PackageManager, clone_repository, show_yes_no_dialog
-from lollms.utilities import reinstall_pytorch_with_cuda, expand2square, load_image
+from lollms.utilities import reinstall_pytorch_with_cuda, expand2square, load_image, reinstall_pytorch_with_rocm
 import subprocess
 import yaml
 from tqdm import tqdm

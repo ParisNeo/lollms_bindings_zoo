@@ -191,26 +191,9 @@ class CTRansformers(LLMBinding):
         super().install()
 
         # INstall other requirements
-        self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
+        self.ShowBlockingMessage(f"Installing requirements")
         try:
-            if self.config.hardware_mode=="cpu-noavx":
-                requirements_file = self.binding_dir / "requirements_cpu_no_avx.txt"
-            elif self.config.hardware_mode=="cpu":
-                requirements_file = self.binding_dir / "requirements_cpu_only.txt"
-            elif self.config.hardware_mode=="amd-noavx":
-                requirements_file = self.binding_dir / "requirements_amd_noavx2.txt"
-            elif self.config.hardware_mode=="amd":
-                requirements_file = self.binding_dir / "requirements_amd.txt"
-            elif self.config.hardware_mode=="nvidia":
-                requirements_file = self.binding_dir / "requirements_nvidia_no_tensorcores.txt"
-            elif self.config.hardware_mode=="nvidia-tensorcores":
-                requirements_file = self.binding_dir / "requirements_nvidia.txt"
-            elif self.config.hardware_mode=="apple-intel":
-                requirements_file = self.binding_dir / "requirements_apple_intel.txt"
-            elif self.config.hardware_mode=="apple-silicon":
-                requirements_file = self.binding_dir / "requirements_apple_silicon.txt"
-
-            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "-r", str(requirements_file)])
+            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "ctransformers"])
             self.notify("Installed successfully")
         except Exception as ex:
             self.error(ex)
