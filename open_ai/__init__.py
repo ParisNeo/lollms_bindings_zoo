@@ -19,6 +19,8 @@ from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_TYPE
 from lollms.utilities import PackageManager, encode_image
+from lollms.databases.models_database import ModelsDB
+
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
@@ -120,7 +122,7 @@ class OpenAIGPT(LLMBinding):
         self.openai = openai
 
         if self.config.model_name is not None:
-            if "vision" in self.config.model_name:
+            if "vision" in self.config.model_name or "4o" in self.config.model_name:
                 self.binding_type = BindingType.TEXT_IMAGE
 
         self.openai.api_key = self.binding_config.config["openai_key"]
@@ -157,7 +159,10 @@ class OpenAIGPT(LLMBinding):
             list: A list of tokens representing the tokenized prompt.
         """
         import tiktoken
-        tokens_list = tiktoken.model.encoding_for_model(self.config["model_name"]).encode(prompt)
+        try:
+            tokens_list = tiktoken.model.encoding_for_model(self.config["model_name"]).encode(prompt)
+        except:
+            tokens_list = tiktoken.model.encoding_for_model("gpt-4-turbo-preview").encode(prompt)
 
         return tokens_list
 
@@ -172,7 +177,10 @@ class OpenAIGPT(LLMBinding):
             str: The detokenized text as a string.
         """
         import tiktoken
-        text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+        try:
+            text = tiktoken.model.encoding_for_model(self.config["model_name"]).decode(tokens_list)
+        except:
+            text = tiktoken.model.encoding_for_model("gpt-4-turbo-preview").decode(tokens_list)
 
         return text
 
@@ -355,26 +363,21 @@ class OpenAIGPT(LLMBinding):
     def list_models(self):
         """Lists the models for this binding
         """
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-        
+        full_data = []
+        for models_dir_name in self.models_dir_names:
+            self.models_db = ModelsDB(self.lollms_paths.models_zoo_path/f"{models_dir_name}.db")
+            full_data+=self.models_db.query()
 
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-
-        return [f["name"] for f in yaml_data]
+        return [f["name"] for f in full_data]
                 
                 
     def get_available_models(self, app:LoLLMsCom=None):
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
+        full_data = []
+        for models_dir_name in self.models_dir_names:
+            self.models_db = ModelsDB(self.lollms_paths.models_zoo_path/f"{models_dir_name}.db")
+            full_data+=self.models_db.query()
 
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-        return yaml_data
+        return full_data
     
 
 if __name__=="__main__":

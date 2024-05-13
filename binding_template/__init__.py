@@ -17,7 +17,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
-from lollms.databases import ModelsDB
+from lollms.databases.models_database import ModelsDB
 from lollms.types import MSG_TYPE
 from lollms.com import LoLLMsCom
 import subprocess
