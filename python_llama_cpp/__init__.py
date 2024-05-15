@@ -269,7 +269,7 @@ class LLAMA_Python_CPP(LLMBinding):
         os.environ['CMAKE_ARGS'] = "-DLLAMA_CUBLAS=on"
         # Use subprocess to run the pip install command
         try:
-            subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--upgrade"], check=True)
+            subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--force-reinstall", "--upgrade", "--extra-index-url", "https://abetlen.github.io/llama-cpp-python/whl/cu122"], check=True)
             return True
         except subprocess.CalledProcessError as e:
             print(f"Subprocess failed with returncode {e.returncode}")
@@ -298,8 +298,6 @@ class LLAMA_Python_CPP(LLMBinding):
             return False
 
     def install_vulkan(self):
-        # Set the environment variable
-        os.environ['CMAKE_ARGS'] = "-DLLAMA_VULKAN=on"
         # Use subprocess to run the pip install command
         try:
             subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--upgrade"], check=True)
@@ -347,81 +345,44 @@ class LLAMA_Python_CPP(LLMBinding):
             ASCIIColors.yellow(f"Creating bin folder at :{bin_folder}")
 
 
-        answer = show_custom_dialog("Question", "What kind of install do you prefer", ["Build on your device\n(Requires build tools)", "install a prebuilt wheel"])
-        if answer == "Build on your device\n(Requires build tools)":
-            if not show_yes_no_dialog("info","This binding will be compiled on your machine.\nIt is mandatory that you have build tools installed on your system. The process may fail if you don't have them.\nOn linux, just install using sudo apt-get install build-essential\nOn windows you can install vs build tools from : https://aka.ms/vs/17/release/vs_BuildTools.exe\nDo you want to continue?"):
-                return
-            self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
+        self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
 
-            try:
-                if self.config.hardware_mode=="cpu-noavx":
-                    self.install_cpu()
-                elif self.config.hardware_mode=="cpu":
-                    self.install_cpu()
-                elif self.config.hardware_mode=="amd-noavx":
-                    if not self.install_rocm():
-                        ASCIIColors.warning("Couldn't install with rocm, reverting to CPU")
-                        self.install_cpu()
-                elif self.config.hardware_mode=="amd":
-                    if not self.install_rocm():
-                        ASCIIColors.warning("Couldn't install with rocm, reverting to CPU")
-                        self.install_cpu()
-                elif self.config.hardware_mode=="nvidia":
-                    install_ninja()
-                    install_cuda()
-                    if not self.install_cuda():
-                        ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
-                        self.install_cpu()
-                elif self.config.hardware_mode=="nvidia-tensorcores":
-                    install_ninja()
-                    install_cuda()
-                    if not self.install_cuda():
-                        ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
-                        self.install_cpu()
-                elif self.config.hardware_mode=="apple-intel":
-                    if not self.install_vulkan():
-                        ASCIIColors.warning("Couldn't install with vulkan, reverting to CPU")
-                        self.install_cpu()
-                        
-                elif self.config.hardware_mode=="apple-silicon":
-                    if not self.install_metal():
-                        ASCIIColors.warning("Couldn't install with metal, reverting to CPU")
-                        self.install_cpu()
-
-                self.notify("Installed successfully")
-            except Exception as ex:
-                self.error(ex)
-            self.HideBlockingMessage()
-        else:
-            root_folder = Path(__file__).parent
+        try:
             if self.config.hardware_mode=="cpu-noavx":
-                requirements = root_folder/"requirements_cpu_only_noavx2.txt"
+                self.install_cpu()
             elif self.config.hardware_mode=="cpu":
-                requirements = root_folder/"requirements_cpu_only.txt"
+                self.install_cpu()
             elif self.config.hardware_mode=="amd-noavx":
-                requirements = root_folder/"requirements_amd_noavx2.txt"
+                if not self.install_rocm():
+                    ASCIIColors.warning("Couldn't install with rocm, reverting to CPU")
+                    self.install_cpu()
             elif self.config.hardware_mode=="amd":
-                requirements = root_folder/"requirements_amd.txt"
+                if not self.install_rocm():
+                    ASCIIColors.warning("Couldn't install with rocm, reverting to CPU")
+                    self.install_cpu()
             elif self.config.hardware_mode=="nvidia":
-                requirements = root_folder/"requirements.txt"
+                install_ninja()
+                if not self.install_cuda():
+                    ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
+                    self.install_cpu()
             elif self.config.hardware_mode=="nvidia-tensorcores":
-                requirements = root_folder/"requirements.txt"
+                install_ninja()
+                if not self.install_cuda():
+                    ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
+                    self.install_cpu()
             elif self.config.hardware_mode=="apple-intel":
-                requirements = root_folder/"requirements_apple_intel.txt"
+                if not self.install_vulkan():
+                    ASCIIColors.warning("Couldn't install with vulkan, reverting to CPU")
+                    self.install_cpu()
+                    
             elif self.config.hardware_mode=="apple-silicon":
-                requirements = root_folder/"requirements_apple_silicon.txt"
-            try:
-                subprocess.run([sys.executable, "-m", "pip", "install", "-r", requirements, "--upgrade"], check=True)
-            except subprocess.CalledProcessError as e:
-                trace_exception(e)
-                self.HideBlockingMessage()
-                print(f"Subprocess failed with returncode {e.returncode}")
-                return False            
-        # INstall other requirements
-        # self.info("Installing requirements")
-       
-        # self.success("Requirements install done")
+                if not self.install_metal():
+                    ASCIIColors.warning("Couldn't install with metal, reverting to CPU")
+                    self.install_cpu()
 
+            self.notify("Installed successfully")
+        except Exception as ex:
+            self.error(ex)
         self.HideBlockingMessage()
         self.InfoMessage("After installing a binding, it is often required to reboot the application.\nPlease try to reboot it first.")
 

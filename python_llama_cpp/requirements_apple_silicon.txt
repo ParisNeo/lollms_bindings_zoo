@@ -31,4 +31,4 @@ sse-starlette==1.6.5
 tiktoken
 
 # Mac wheels
-https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.74/llama_cpp_python-0.2.74-cp311-cp311-macosx_10_9_x86_64.whl
+llama_cpp_python>=0.2.74
