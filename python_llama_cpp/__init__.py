@@ -361,12 +361,10 @@ class LLAMA_Python_CPP(LLMBinding):
                     ASCIIColors.warning("Couldn't install with rocm, reverting to CPU")
                     self.install_cpu()
             elif self.config.hardware_mode=="nvidia":
-                install_ninja()
                 if not self.install_cuda():
                     ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
                     self.install_cpu()
             elif self.config.hardware_mode=="nvidia-tensorcores":
-                install_ninja()
                 if not self.install_cuda():
                     ASCIIColors.warning("Couldn't install with cuda, reverting to CPU")
                     self.install_cpu()
