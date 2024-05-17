@@ -115,6 +115,8 @@ class Vllm(LLMBinding):
         self.config.ctx_size = self.binding_config.config.ctx_size        
         
     def build_model(self, model_name=None):
+        if model_name=="vllm_remote_model":
+            model_name = self.binding_config.model_name
         super().build_model(model_name)
         return self
 
