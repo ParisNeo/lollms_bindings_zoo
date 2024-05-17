@@ -116,6 +116,7 @@ class Vllm(LLMBinding):
         
     def build_model(self, model_name=None):
         if model_name=="vllm_remote_model":
+            ASCIIColors.blue(f"vllm_remote_model detected, using manual configuration model: {self.binding_config.model_name}")
             model_name = self.binding_config.model_name
         super().build_model(model_name)
         return self
