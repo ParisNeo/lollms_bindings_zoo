@@ -116,7 +116,7 @@ class Vllm(LLMBinding):
         
     def build_model(self, model_name=None):
         ASCIIColors.yellow(f"Building vllm model {model_name}")
-        if model_name=="vllm_remote_model":
+        if model_name=="vllm_remote_model" or model_name is None and self.config.model_name=="vllm_remote_model":
             model_name = self.binding_config.model_name
         super().build_model(model_name)
         return self
