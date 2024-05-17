@@ -115,8 +115,8 @@ class Vllm(LLMBinding):
         self.config.ctx_size = self.binding_config.config.ctx_size        
         
     def build_model(self, model_name=None):
+        ASCIIColors.yellow(f"Building vllm model {model_name}")
         if model_name=="vllm_remote_model":
-            ASCIIColors.blue(f"vllm_remote_model detected, using manual configuration model: {self.binding_config.model_name}")
             model_name = self.binding_config.model_name
         super().build_model(model_name)
         return self
