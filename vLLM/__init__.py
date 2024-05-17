@@ -115,9 +115,8 @@ class Vllm(LLMBinding):
         self.config.ctx_size = self.binding_config.config.ctx_size        
         
     def build_model(self, model_name=None):
-        ASCIIColors.yellow(f"Building vllm model {model_name}")
-        if model_name=="vllm_remote_model" or model_name is None and self.config.model_name=="vllm_remote_model":
-            model_name = self.binding_config.model_name
+        ASCIIColors.yellow(f"vllm selected model {self.config.model_name}")
+        ASCIIColors.yellow(f"vllm custom model {self.binding_config.model_name}")
         super().build_model(model_name)
         return self
 
@@ -195,7 +194,7 @@ class Vllm(LLMBinding):
         gpt_params = {**default_params, **gpt_params}
         if self.binding_config.completion_format=="vllm instruct":
             data = {
-                'model':self.config.model_name,
+                'model':self.config.model_name if self.config.model_name!="vllm_remote_model" else self.binding_config.model_name,
                 'prompt': prompt,
                 "stream":True,
                 "temperature": float(gpt_params["temperature"]),
@@ -203,7 +202,7 @@ class Vllm(LLMBinding):
             }
         elif self.binding_config.completion_format=="vllm chat":
             data = {
-                'model':self.config.model_name,
+                'model':self.config.model_name if self.config.model_name!="vllm_remote_model" else self.binding_config.model_name,
                 'messages': [{
                     'role': "user",
                     'content': prompt
