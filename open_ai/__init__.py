@@ -218,7 +218,7 @@ class OpenAIGPT(LLMBinding):
         """
         if self.binding_config.config.turn_on_cost_estimation:
             self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-            self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0.1) /1000
+            self.binding_config.config["total_input_cost"] =  (self.binding_config.config["total_input_tokens"]/1000) * self.input_costs_by_model.get(self.config["model_name"], 0)
         if not ("vision" in self.config.model_name or "4o" in self.config.model_name):
             self.error("You can not call a generate with vision on this model")
             return
@@ -278,13 +278,13 @@ class OpenAIGPT(LLMBinding):
 
             if self.binding_config.config.turn_on_cost_estimation:
                 self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-                self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0.1)/1000    
+                self.binding_config.config["total_output_cost"] =  ((self.binding_config.config["total_output_tokens"])/1000) * self.output_costs_by_model.get(self.config["model_name"],0)    
                 self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
             self.error(f'Error {ex}')
             trace_exception(ex)
         if self.binding_config.config.turn_on_cost_estimation:
-            self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
+            self.info(f'Total consumption since last reset: {self.binding_config.config["total_output_cost"]}$')
             self.binding_config.save()
         return output    
 
@@ -305,7 +305,7 @@ class OpenAIGPT(LLMBinding):
         """
         if self.binding_config.config.turn_on_cost_estimation:
             self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-            self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * (self.input_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.input_costs_by_model else 0) /1000
+            self.binding_config.config["total_input_cost"] =  (self.binding_config.config["total_input_tokens"]/1000) * (self.input_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.input_costs_by_model else 0)
         try:
             default_params = {
                 'temperature': 0.7,
@@ -360,9 +360,9 @@ class OpenAIGPT(LLMBinding):
             trace_exception(ex)
         if self.binding_config.config.turn_on_cost_estimation:
             self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.output_costs_by_model else 0/1000    
+            self.binding_config.config["total_output_cost"] =  (self.binding_config.config["total_output_tokens"]/1000) * self.output_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.output_costs_by_model else 0    
             self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-            self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
+            self.info(f'Total consumption since last reset: {self.binding_config.config["total_output_cost"]}$')
             self.binding_config.save()
         return output
 
