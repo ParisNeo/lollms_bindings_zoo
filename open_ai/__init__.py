@@ -56,33 +56,39 @@ class OpenAIGPT(LLMBinding):
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         self.input_costs_by_model={
+            "gpt-4o":0.005,
+            "gpt-4o-2024-05-13":0.005,
+            "gpt-4-turbo":0.010,
+            "gpt-4-turbo-preview":0.010,
             "gpt-4-1106-preview":0.01,
             "gpt-4-vision-preview":0.03,
             "gpt-4":0.03,
-            "gpt-4-turbo-preview":0.015,
             "gpt-4-32k":0.06,
-            "gpt-3.5-turbo-1106":0.0015,
+            "gpt-3.5-turbo-1106":0.0005,
             "gpt-3.5-turbo":0.0010,
             "gpt-3.5-turbo-16k":0.003,
-            "gpt-3.5-turbo-instruct":0
+            "gpt-3.5-turbo-instruct":0.0015
         }       
         self.output_costs_by_model={
+            "gpt-4o":0.015,
+            "gpt-4o-2024-05-13":0.015,
+            "gpt-4-turbo":0.03,
+            "gpt-4-turbo-preview":0.03,
             "gpt-4-1106-preview":0.03,
             "gpt-4-vision-preview":0.03,
             "gpt-4":0.06,
-            "gpt-4-turbo-preview":0.03,
             "gpt-4-32k":0.12,
             "gpt-3.5-turbo-1106":0.0015,
             "gpt-3.5-turbo":0.002,
             "gpt-3.5-turbo-16k":0.004,
-            "gpt-3.5-turbo-instruct":0
+            "gpt-3.5-turbo-instruct":0.002
         }
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
         binding_config = TypedConfig(
             ConfigTemplate([
-                {"name":"turn_on_cost_estimation","type":"bool", "value":True,"help":"Turns on measuring the cost of queries"},
+                {"name":"turn_on_cost_estimation","type":"bool", "value":False,"help":"Turns on measuring the cost of queries"},
                 {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
                 {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
                 {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
