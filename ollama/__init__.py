@@ -385,6 +385,9 @@ class Ollama(LLMBinding):
             
 
             {"model_name":"llava:latest", "owned_by": "liuhaotian"},
+            {"model_name":"mistral:v0.3", "owned_by": "mistral.ai"},
+            {"model_name":"mistral:v0.2", "owned_by": "mistral.ai"},
+            {"model_name":"mistral:v0.1", "owned_by": "mistral.ai"},
             {"model_name":"mistral:latest", "owned_by": "mistral.ai"},
             {"model_name":"mixtral:latest", "owned_by": "mistral.ai"},
             {"model_name":"mixtral:8x7b", "owned_by": "mistral.ai"},
