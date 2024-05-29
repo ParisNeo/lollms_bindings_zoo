@@ -6,10 +6,10 @@ accepted_models:
   - ggml
   - gguf
 supported_models: |
-    GGML models for:
+   GGML models for:
     LLama, GPT-2, GPTJ, GPT-NEOX, MPT, Dolly V2, StarCoder, gptq, mistral, mixtral
 description: |
-    Python bindings for the Transformer models implemented in C/C++ using GGML library.
+   Python bindings for the Transformer models implemented in C/C++ using GGML library.
     This is one of the most complete bindings out there.
 
     <b>Supported Models</b>

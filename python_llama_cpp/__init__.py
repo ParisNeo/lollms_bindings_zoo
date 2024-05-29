@@ -415,7 +415,7 @@ class LLAMA_Python_CPP(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.model.detokenize(tokens_list).decode("utf8", errors="ignore").replace("<0x0A>","!@>")
+        return self.model.detokenize(tokens_list).decode("utf8", errors="ignore").replace("<0x0A>",f"{self.config.start_header_id_template}")
     
     def embed(self, text):
         """
