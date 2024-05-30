@@ -295,6 +295,9 @@ class OpenAIGPT(LLMBinding):
                  callback: Callable[[str], None] = None,
                  verbose: bool = False,
                  **gpt_params ):
+        start_header_id_template    = self.config.start_header_id_template
+        end_header_id_template      = self.config.end_header_id_template
+        system_message_template     = self.config.system_message_template
         """Generates text out of a prompt
 
         Args:
@@ -329,10 +332,8 @@ class OpenAIGPT(LLMBinding):
                             }
                         ]
             else:
-                if prompt.startswith("user:") or prompt.startswith("system:"):
-                    messages = [{"role": "user", "content": c} for c in prompt.split("user:")[1:]]
-                else:
-                    messages = [{"role": "user", "content": prompt}]
+                messages = [{"role": "user", "content": prompt}]
+                
             chat_completion = self.openai.chat.completions.create(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,

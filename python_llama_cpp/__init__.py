@@ -470,13 +470,8 @@ class LLAMA_Python_CPP(LLMBinding):
                 output = ""
                 # self.model.reset()
                 count = 0
-                for chunk in self.model.create_chat_completion(
-                                    messages = [                             
-                                        {
-                                            "role": "user",
-                                            "content":prompt
-                                        }
-                                    ],
+                for chunk in self.model.create_completion(
+                                    prompt= prompt,
                                     max_tokens=n_predict,
                                     temperature=float(gpt_params["temperature"]),
                                     stop=["<0x0A>"],
