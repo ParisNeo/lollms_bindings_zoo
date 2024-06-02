@@ -328,6 +328,8 @@ class ExLLamav2(LLMBinding):
 
             if show_yes_no_dialog("Request","Activate flash attention?\nFlash attention may accelerate the inference a great deal"):
                 enable_flash_attention_2 = True
+                self.install_flash_attention()
+
             else:
                 enable_flash_attention_2 = False
 
@@ -341,7 +343,7 @@ class ExLLamav2(LLMBinding):
             # Initialization code goes here
             binding_config_template = ConfigTemplate([
                 {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
-                {"name":"enable_flash_attention_2","type":"bool","value":True, "help":"Enable flash attention 2 which encreases the generation speed. But it is not supported on ols GPUs, so if you have an old GPU, deactivate it"},            
+                {"name":"enable_flash_attention_2","type":"bool","value":enable_flash_attention_2, "help":"Enable flash attention 2 which encreases the generation speed. But it is not supported on ols GPUs, so if you have an old GPU, deactivate it"},            
                 {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
                 {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
                 {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
@@ -397,6 +399,7 @@ class ExLLamav2(LLMBinding):
         """
         tk = self.tokenizer.decode(self.torch.tensor(tokens_list))
         return tk
+    
 
     def generate(self, 
                  prompt:str,                  
@@ -436,13 +439,15 @@ class ExLLamav2(LLMBinding):
             self.output = ""
             input_ids = self.tokenizer.encode(prompt)
             prompt_tokens = input_ids.shape[-1]
-            self.generator.warmup()
-            self.generator.begin_stream(input_ids, self.settings)            
+            self.generator.begin_stream_ex(input_ids, self.settings)    
             try:
                 generated_tokens = 0
 
                 while generated_tokens<n_predict:
-                    chunk, eos, _ = self.generator.stream()
+                    res = self.generator.stream_ex()
+                    chunk = res["chunk"]
+                    eos = res["eos"]
+                    tokens = res["chunk_token_ids"]
                     if eos:
                         break
                     generated_tokens += 1
