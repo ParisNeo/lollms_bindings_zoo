@@ -414,6 +414,51 @@ class Gemini(LLMBinding):
             "topK": 1
             },
             {
+            "name": "gemini-1.5-pro",
+            "version": "001",
+            "displayName": "Gemini Pro",
+            "description": "The best model for scaling across a wide range of tasks",
+            "inputTokenLimit": 30720,
+            "outputTokenLimit": 2048,
+            "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens"
+            ],
+            "temperature": 0.9,
+            "topP": 1,
+            "topK": 1
+            },
+            {
+            "name": "gemini-1.5-flash",
+            "version": "001",
+            "displayName": "Gemini Pro",
+            "description": "The best model for scaling across a wide range of tasks",
+            "inputTokenLimit": 30720,
+            "outputTokenLimit": 2048,
+            "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens"
+            ],
+            "temperature": 0.9,
+            "topP": 1,
+            "topK": 1
+            },
+            {
+            "name": "gemini-1.0-pro",
+            "version": "001",
+            "displayName": "Gemini Pro",
+            "description": "The best model for scaling across a wide range of tasks",
+            "inputTokenLimit": 30720,
+            "outputTokenLimit": 2048,
+            "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens"
+            ],
+            "temperature": 0.9,
+            "topP": 1,
+            "topK": 1
+            },            
+            {
             "name": "gemini-pro-vision",
             "version": "001",
             "displayName": "Gemini Pro Vision",
