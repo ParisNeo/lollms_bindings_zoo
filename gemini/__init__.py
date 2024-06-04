@@ -87,7 +87,7 @@ class Gemini(LLMBinding):
             ConfigTemplate([
                 {"name":"google_api_key","type":"str","value":""},
                 {"name":"google_api","type":"str","value":"v1beta","options":["v1beta","v1beta2","v1beta3"],"Help":"API"},
-                {"name":"ctx_size","type":"int","value":2048, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"ctx_size","type":"int","value":4096, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
             ]),
