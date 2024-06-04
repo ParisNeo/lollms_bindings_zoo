@@ -403,7 +403,7 @@ class LLAMA_Python_CPP(LLMBinding):
         Returns:
             list: A list of tokens representing the tokenized prompt.
         """
-        return self.model.tokenize(prompt.encode("utf8", errors="ignore"), special=True)
+        return self.model.tokenize(prompt.encode("utf8", errors="ignore"))
 
     def detokenize(self, tokens_list:list):
         """
@@ -415,7 +415,7 @@ class LLAMA_Python_CPP(LLMBinding):
         Returns:
             str: The detokenized text as a string.
         """
-        return self.model.detokenize(tokens_list).decode("utf8", errors="ignore").replace("<0x0A>",f"{self.config.start_header_id_template}")
+        return self.model.detokenize(tokens_list).decode("utf8", errors="ignore")
     
     def embed(self, text):
         """
@@ -470,11 +470,16 @@ class LLAMA_Python_CPP(LLMBinding):
                 output = ""
                 # self.model.reset()
                 count = 0
-                for chunk in self.model.create_completion(
-                                    prompt= prompt,
+                for chunk in self.model.create_chat_completion(
+                                    messages= [
+                                        {
+                                            "role": "user",
+                                            "content": prompt
+                                        }
+                                    ],
                                     max_tokens=n_predict,
                                     temperature=float(gpt_params["temperature"]),
-                                    stop=["<0x0A>"],
+                                    stop=["<0x0A>","assistant\n"],
                                     stream=True
                                 ):
 
@@ -501,7 +506,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                     prompt,
                                     max_tokens=n_predict,
                                     temperature=float(gpt_params["temperature"]),
-                                    stop=["<0x0A>"],
+                                    stop=["<0x0A>","assistant\n"],
                                     stream=True
                         ):
                 
