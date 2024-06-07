@@ -90,11 +90,11 @@ class LLAMA_Python_CPP(LLMBinding):
         binding_config_template = ConfigTemplate([
             {"name":"n_threads","type":"int","value":8, "min":1},
             {"name":"generation_mode","type":"str","value":"instruct", "options":["chat","instruct"], "help":"generation mode can be either chat or instruct.\nChat is good but doesn't allow cooperative mode or playground use. Instruct may be subject to halucination with bad models but allow more flexibility"},
-            {"name":"n_gpu_layers","type":"int","value":33 if config.hardware_mode=="nvidia" or  config.hardware_mode=="nvidia-tensorcores" or  config.hardware_mode=="amd" or  config.hardware_mode=="amd-noavx" else 0, "min":1},
+            {"name":"n_gpu_layers","type":"int","value":-1 if config.hardware_mode=="nvidia" or  config.hardware_mode=="nvidia-tensorcores" or  config.hardware_mode=="amd" or  config.hardware_mode=="amd-noavx" else 0, "min":1},
             {"name":"main_gpu","type":"int","value":0, "help":"If you have more than one gpu you can select the gpu to be used here"},
             {"name":"offload_kqv","type":"bool","value":False if 'cpu' in self.config.hardware_mode or 'apple' in self.config.hardware_mode else True, "help":"If you have more than one gpu you can select the gpu to be used here"},
             {"name":"cache_capacity","type":"int","value":(2 << 30) , "help":"The size of the cache in bytes"},            
-            {"name":"batch_size","type":"int","value":1, "min":1},
+            {"name":"batch_size","type":"int","value":512, "min":1, "help":"The batch size (the bigger the less warmup time)"},
             {"name":"ctx_size","type":"int","value":4096, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
             {"name":"lora_path","type":"str","value":"","help":"Path to a lora file to apply to the model."},
@@ -135,55 +135,18 @@ class LLAMA_Python_CPP(LLMBinding):
             self.model = None
             gc.collect()
 
-
-        if self.config.hardware_mode=="nvidia":
-            try:
-                import llama_cpp_cuda
-                self.llama_cpp = llama_cpp_cuda
-            except Exception as ex:
-                trace_exception(ex)
-                self.error("Couldn't load Llamacpp for cuda.\nReverting to CPU")
-                try:
-                    import llama_cpp
-                except Exception as ex:
-                    trace_exception(ex)
-                    llama_cpp = None
-                    self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
-                    return
-                self.llama_cpp = llama_cpp
-        elif self.config.hardware_mode=="nvidia-tensorcores":
-            try:
-                import llama_cpp_cuda_tensorcores
-                self.llama_cpp = llama_cpp_cuda_tensorcores
-            except Exception as ex:
-                trace_exception(ex)
-                llama_cpp_cuda_tensorcores = None
-                self.error("Couldn't load Llamacpp for cuda with tensorcores.\nReverting to CPU")
-                try:
-                    import llama_cpp
-                except Exception as ex:
-                    trace_exception(ex)
-                    llama_cpp = None
-                    self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
-                    return
-                self.llama_cpp = llama_cpp
-        else:
-            try:
-                import llama_cpp
-            except Exception as ex:
-                trace_exception(ex)
-                llama_cpp = None
-                self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
-            self.llama_cpp = llama_cpp
-
-        Llama = self.llama_cpp.Llama
-        LlamaCache = self.llama_cpp.LlamaCache
+        try:
+            import llama_cpp
+        except Exception as ex:
+            trace_exception(ex)
+            self.InfoMessage("Couldn't load Llamacpp!!!\nBinding broken. Try reinstalling it")
+            return
+        
         ASCIIColors.info("Building model")
         if self.config['model_name'] is None:
            self.InfoMessage("No model is selected\nPlease select a model from the Models zoo to start using python_llama_cpp binding")
            return
 
-        
         
         model_path = self.get_model_path()
         if not model_path:
@@ -197,7 +160,7 @@ class LLAMA_Python_CPP(LLMBinding):
             if len(mmproj_variants)==0:
                 self.InfoMessage("Projector file was not found. Please download it first.\nReverting to text only")
 
-                self.model = Llama(
+                self.model = llama_cpp.Llama(
                                         model_path=str(model_path), 
                                         n_gpu_layers=self.binding_config.n_gpu_layers, 
                                         main_gpu=self.binding_config.main_gpu, 
@@ -207,14 +170,14 @@ class LLAMA_Python_CPP(LLMBinding):
                                         offload_kqv=self.binding_config.offload_kqv,
                                         seed=self.binding_config.seed,
                                         lora_path=self.binding_config.lora_path,
-                                        lora_scale=self.binding_config.lora_scale
+                                        lora_scale=self.binding_config.lora_scale, 
                                     )
 
             else:
                 proj_file = mmproj_variants[0]
                 self.binding_type = BindingType.TEXT_IMAGE
-                self.chat_handler = self.llama_cpp.llama_chat_format.Llava15ChatHandler(clip_model_path=str(proj_file))
-                self.model = Llama(
+                self.chat_handler = llama_cpp.llama_chat_format.Llava15ChatHandler(clip_model_path=str(proj_file))
+                self.model = llama_cpp.Llama(
                                         model_path=str(model_path), 
                                         n_gpu_layers=self.binding_config.n_gpu_layers, 
                                         main_gpu=self.binding_config.main_gpu, 
@@ -227,12 +190,12 @@ class LLAMA_Python_CPP(LLMBinding):
                                         lora_scale=self.binding_config.lora_scale,
 
                                         chat_handler=self.chat_handler,
-                                        logits_all=True
+                                        logits_all=True, 
                                     )
         else:
-            self.model = Llama(
+            self.model = llama_cpp.Llama(
                                     model_path=str(model_path), 
-                                    n_gpu_layers=self.binding_config.n_gpu_layers, 
+                                    n_gpu_layers= self.binding_config.n_gpu_layers, 
                                     main_gpu=self.binding_config.main_gpu, 
                                     n_ctx=self.config.ctx_size,
                                     n_threads=self.binding_config.n_threads,
@@ -240,7 +203,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                     offload_kqv=self.binding_config.offload_kqv,
                                     seed=self.binding_config.seed,
                                     lora_path=self.binding_config.lora_path,
-                                    lora_scale=self.binding_config.lora_scale
+                                    lora_scale=self.binding_config.lora_scale, 
                                 )
 
         # self.model.set_cache(LlamaCache(capacity_bytes=0))
@@ -463,7 +426,27 @@ class LLAMA_Python_CPP(LLMBinding):
         if gpt_params['seed']!=-1:
             self.seed = self.binding_config.seed
 
-
+        """
+        chunks = self.model(prompt, max_tokens=n_predict,temperature=float(gpt_params["temperature"]),stop=["<0x0A>","assistant\n"],stream=True)
+        count = 0
+        output = ""
+        for chunk in chunks:
+            if count >= n_predict:
+                break
+            if "text" in chunk["choices"][0]:
+                word = chunk["choices"][0]["text"]
+            else:
+                word = ""
+            if word:
+                output += word
+                count += 1
+                if callback is not None:
+                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                        break  
+        
+          
+        """
+        
         if self.binding_config.generation_mode=="chat":
 
             try:
@@ -479,7 +462,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                     ],
                                     max_tokens=n_predict,
                                     temperature=float(gpt_params["temperature"]),
-                                    stop=["<0x0A>","assistant\n"],
+                                    stop=["<0x0A>","assistant\n", self.config.start_header_id_template,self.config.start_user_header_id_template, self.config.start_ai_header_id_template],
                                     stream=True
                                 ):
 
@@ -506,7 +489,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                     prompt,
                                     max_tokens=n_predict,
                                     temperature=float(gpt_params["temperature"]),
-                                    stop=["<0x0A>","assistant\n"],
+                                    stop=["<0x0A>","assistant\n", self.config.start_header_id_template,self.config.start_user_header_id_template, self.config.start_ai_header_id_template],
                                     stream=True
                         ):
                 
@@ -518,6 +501,8 @@ class LLAMA_Python_CPP(LLMBinding):
                     if callback is not None:
                         if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
                             break
+        
+
         return output            
 
 
@@ -557,7 +542,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                         ]+[ {"type" : "text", "text": prompt}]
                                     }
                                 ],
-                                stop=["<0x0A>"],
+                                stop=["<0x0A>","assistant\n", self.config.start_header_id_template,self.config.start_user_header_id_template, self.config.start_ai_header_id_template],
                                 stream=True
                             ):
                 if count >= n_predict:
