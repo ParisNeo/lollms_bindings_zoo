@@ -88,6 +88,7 @@ class OpenAIGPT(LLMBinding):
         # Initialization code goes here
         binding_config = TypedConfig(
             ConfigTemplate([
+                {"name":"generation_mode","type":"str", "value":"chat","options":["chat","instruct"],"help":"Select the generation mode. Make sure the model you are using supports the generation mode you have. Instruct models allow more control. Chat models are more likely to stick to the communication but can not be forced to start talking in a certain way easily."},
                 {"name":"turn_on_cost_estimation","type":"bool", "value":False,"help":"Turns on measuring the cost of queries"},
                 {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
                 {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
@@ -334,26 +335,54 @@ class OpenAIGPT(LLMBinding):
             else:
                 messages = [{"role": "user", "content": prompt}]
                 
-            chat_completion = self.openai.chat.completions.create(
-                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                            messages=messages,
-                            max_tokens=n_predict-7 if n_predict>512 else n_predict,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
-                            temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
-                            stream=True)
-            for resp in chat_completion:
-                if count >= n_predict:
-                    break
-                try:
-                    word = resp.choices[0].delta.content
-                except Exception as ex:
-                    word = ""
-                if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+
+            if self.binding_config.generation_mode=="chat":
+                chat_completion = self.openai.chat.completions.create(
+                                model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
+                                messages=messages,
+                                max_tokens=n_predict-7 if n_predict>512 else n_predict,  # Adjust the desired length of the generated response
+                                n=1,  # Specify the number of responses you want
+                                temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
+                                stream=True)
+                
+                for resp in chat_completion:
+                    if count >= n_predict:
                         break
-                if word:
-                    output += word
-                    count += 1
+                    try:
+                        word = resp.choices[0].delta.content
+                    except Exception as ex:
+                        word = ""
+                    if callback is not None:
+                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
+                    if word:
+                        output += word
+                        count += 1
+            else:
+                completion = self.openai.completions.create(
+                                model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
+                                prompt=prompt,
+                                max_tokens=n_predict-7 if n_predict>512 else n_predict,  # Adjust the desired length of the generated response
+                                n=1,  # Specify the number of responses you want
+                                temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
+                                stream=True)
+                
+                for resp in completion:
+                    if count >= n_predict:
+                        break
+                    try:
+                        word = resp.choices[0].text
+                    except Exception as ex:
+                        word = ""
+                    if callback is not None:
+                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                            break
+                    if word:
+                        output += word
+                        count += 1
+
+
+
 
 
         except Exception as ex:
