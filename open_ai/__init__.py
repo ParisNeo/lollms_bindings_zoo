@@ -117,9 +117,16 @@ class OpenAIGPT(LLMBinding):
         self.config.ctx_size=self.binding_config.config.ctx_size
         
     def settings_updated(self):
-        self.openai.api_key = self.binding_config.config["openai_key"]
+        # The local key overrides the environment variable key
         if self.openai.api_key =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+            # If there is no key, try find one in the environment
+            api_key = os.getenv('OPENAI_API_KEY')
+            if not api_key:
+                self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+            self.openai.api_key = api_key
+        else:
+            # If there is a key in the configuration, then use it
+            self.openai.api_key = self.binding_config.config["openai_key"]
 
         self.config.ctx_size=self.binding_config.config.ctx_size
 
@@ -132,9 +139,16 @@ class OpenAIGPT(LLMBinding):
             if "vision" in self.config.model_name or "4o" in self.config.model_name:
                 self.binding_type = BindingType.TEXT_IMAGE
 
-        self.openai.api_key = self.binding_config.config["openai_key"]
+        # The local key overrides the environment variable key
         if self.openai.api_key =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+            # If there is no key, try find one in the environment
+            api_key = os.getenv('OPENAI_API_KEY')
+            if not api_key:
+                self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+            self.openai.api_key = api_key
+        else:
+            # If there is a key in the configuration, then use it
+            self.openai.api_key = self.binding_config.config["openai_key"]
         # Do your initialization stuff
         return self
 
