@@ -30,6 +30,7 @@ if not PackageManager.check_package_installed("PIL"):
     PackageManager.install_package("Pillow")
 from PIL import Image
 import io
+import os
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
