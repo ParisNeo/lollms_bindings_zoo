@@ -90,7 +90,7 @@ class LLAMA_Python_CPP(LLMBinding):
         binding_config_template = ConfigTemplate([
             {"name":"n_threads","type":"int","value":8, "min":1},
             {"name":"generation_mode","type":"str","value":"instruct", "options":["chat","instruct"], "help":"generation mode can be either chat or instruct.\nChat is good but doesn't allow cooperative mode or playground use. Instruct may be subject to halucination with bad models but allow more flexibility"},
-            {"name":"n_gpu_layers","type":"int","value":-1 if config.hardware_mode=="nvidia" or  config.hardware_mode=="nvidia-tensorcores" or  config.hardware_mode=="amd" or  config.hardware_mode=="amd-noavx" else 0, "min":1},
+            {"name":"n_gpu_layers","type":"int","value":-1 if config.hardware_mode=="nvidia" or  config.hardware_mode=="nvidia-tensorcores" or  config.hardware_mode=="amd" or  config.hardware_mode=="amd-noavx" else 0, "min":-1},
             {"name":"main_gpu","type":"int","value":0, "help":"If you have more than one gpu you can select the gpu to be used here"},
             {"name":"offload_kqv","type":"bool","value":False if 'cpu' in self.config.hardware_mode or 'apple' in self.config.hardware_mode else True, "help":"If you have more than one gpu you can select the gpu to be used here"},
             {"name":"cache_capacity","type":"int","value":(2 << 30) , "help":"The size of the cache in bytes"},            
