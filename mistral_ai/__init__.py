@@ -236,7 +236,7 @@ class MistralAI(LLMBinding):
             raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
         
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0) /1000
         try:
             default_params = {
                 'temperature': 0.7,

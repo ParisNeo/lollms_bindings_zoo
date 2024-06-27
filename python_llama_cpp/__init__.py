@@ -169,7 +169,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                         n_batch=self.binding_config.batch_size,
                                         offload_kqv=self.binding_config.offload_kqv,
                                         seed=self.binding_config.seed,
-                                        lora_path=self.binding_config.lora_path,
+                                        lora_path=self.binding_config.lora_path if self.binding_config.lora_path!="" else None,
                                         lora_scale=self.binding_config.lora_scale, 
                                     )
 
@@ -186,11 +186,11 @@ class LLAMA_Python_CPP(LLMBinding):
                                         n_batch=self.binding_config.batch_size,
                                         offload_kqv=self.binding_config.offload_kqv,
                                         seed=self.binding_config.seed,
-                                        lora_path=self.binding_config.lora_path,
+                                        lora_path=self.binding_config.lora_path if self.binding_config.lora_path!="" else None,
                                         lora_scale=self.binding_config.lora_scale,
 
                                         chat_handler=self.chat_handler,
-                                        logits_all=True, 
+                                        logits_all=True
                                     )
         else:
             self.model = llama_cpp.Llama(
@@ -202,7 +202,7 @@ class LLAMA_Python_CPP(LLMBinding):
                                     n_batch=self.binding_config.batch_size,
                                     offload_kqv=self.binding_config.offload_kqv,
                                     seed=self.binding_config.seed,
-                                    lora_path=self.binding_config.lora_path,
+                                    lora_path=self.binding_config.lora_path if self.binding_config.lora_path!="" else None,
                                     lora_scale=self.binding_config.lora_scale, 
                                 )
 
