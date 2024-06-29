@@ -5,6 +5,25 @@
   license: commercial
   model_creator: anthropic
   model_creator_link: https://anthropic.com
+  name: claude-3-5-sonnet-20240620
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: claude-3-5-sonnet-20240620
+    size: null
+    ctx_size: 4096
+    input_cost: 0.0
+    output_cost: 0.0
+
+
+- category: generic
+  datasets: unknown
+  icon: /bindings/anthropic_llm/Anthropic.png
+  last_commit_time: null
+  license: commercial
+  model_creator: anthropic
+  model_creator_link: https://anthropic.com
   name: claude-3-opus-20240229
   quantizer: null
   rank: 1.0
