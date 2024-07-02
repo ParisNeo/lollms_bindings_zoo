@@ -23,11 +23,12 @@ from lollms.com import LoLLMsCom
 import subprocess
 import yaml
 import sys
-import base64
+import os
+import json
 if not PackageManager.check_package_installed("PIL"):
     PackageManager.install_package("Pillow")
 from PIL import Image
-import io
+import requests
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -53,13 +54,6 @@ class GroqLLM(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        models = self.get_available_models()
-
-        self.input_costs_by_model={ }       
-        self.output_costs_by_model={ }
-        for model in models:
-            self.input_costs_by_model[model["name"]]=model["variants"][0]["input_cost"]
-            self.output_costs_by_model[model["name"]]=model["variants"][0]["output_cost"]
             
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
@@ -93,11 +87,24 @@ class GroqLLM(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        models = self.get_available_models()
+
+        self.input_costs_by_model={ }       
+        self.output_costs_by_model={ }
+        for model in models:
+            self.input_costs_by_model[model["name"]]=model["variants"][0]["input_cost"]
+            self.output_costs_by_model[model["name"]]=model["variants"][0]["output_cost"]
+
         
     def settings_updated(self):
         import groq
         if self.binding_config.config["groq_key"] =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+            try:
+                self.client = groq.Groq(
+                    api_key=os.environ.get("GROQ_API_KEY"),
+                )        
+            except:
+                self.error("No API key is set!\nPlease set up your API key in the binding configuration")
         else:
             self.client = groq.Groq(
                 api_key=self.binding_config.config["groq_key"],
@@ -109,11 +116,16 @@ class GroqLLM(LLMBinding):
         super().build_model(model_name)
         import groq
         if self.binding_config.config["groq_key"] =="":
-            self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            return
+            try:
+                self.client = groq.Groq(
+                    api_key=os.environ.get("GROQ_API_KEY"),
+                ) 
+                self.binding_type = BindingType.TEXT_IMAGE
+            except:
+                self.error("No API key is set!\nPlease set up your API key in the binding configuration")
         else:
             self.client = groq.Groq(
-                api_key=self.binding_config.config["groq_key"]
+                api_key=self.binding_config.config["groq_key"],
             )        
             self.binding_type = BindingType.TEXT_IMAGE
         # Do your initialization stuff
@@ -335,16 +347,86 @@ class GroqLLM(LLMBinding):
         return [f["name"] for f in yaml_data]
                 
                 
-    def get_available_models(self, app:LoLLMsCom=None):
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
 
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-        return yaml_data
-    
+    def list_models(self):
+        """Lists the models for this binding
+        """
+        try:
+            full_data = []
+            if self.binding_config.config["groq_key"] =="":
+                try:
+                    api_key=os.environ.get("GROQ_API_KEY"),
+                except:
+                    self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+                    return []
+            else:
+                api_key=self.binding_config.config["groq_key"]
+            url = "https://api.groq.com/openai/v1/models"
+
+            headers = {
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json"
+            }
+
+            response = requests.get(url, headers=headers)
+            full_data = json.loads(response.content.decode("utf-8"))['data']
+
+            return [f["id"] for f in full_data if not "whisper" in f["id"]]
+        except Exception as ex:
+            trace_exception(ex)
+            return []            
+                
+    def get_available_models(self, app:LoLLMsCom=None):
+        try:
+            full_data = []
+            if self.binding_config.config["groq_key"] =="":
+                try:
+                    api_key=os.environ.get("GROQ_API_KEY"),
+                except:
+                    self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+                    return []
+            else:
+                api_key=self.binding_config.config["groq_key"]
+            url = "https://api.groq.com/openai/v1/models"
+
+            headers = {
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json"
+            }
+
+            response = requests.get(url, headers=headers)
+            full_data = json.loads(response.content.decode("utf-8"))['data']
+            return [{
+                    "category": "generic",
+                    "datasets": "unknown",
+                    "icon": "/bindings/groq_llm/llama.png" if "llama" in f["id"] else "/bindings/mistral_ai/logo.png" if "mistral" in f["id"] or "mixtral" in f["id"] else "/bindings/gemini/logo.png" if "gemma" in f["id"] else "unknown",
+                    "last_commit_time": None,
+                    "license": "llama",
+                    "model_creator": "meta" if "llama" in f["id"] else "mistralai" if "mistral" in f["id"] or "mixtral" in f["id"] else "google" if "gemma" in f["id"] else "unknown",
+                    "model_creator": "meta.com" if "llama" in f["id"] else "mistal.ai" if "mistral" in f["id"] or "mixtral" in f["id"] else "google.com" if "gemma" in f["id"] else "unknown",
+                    "name": f["id"],
+                    "quantizer": None,
+                    "rank": 1.0,
+                    "type": "api",
+                    "variants": [
+                        {
+                        "name":f["id"],
+                        "size":None,
+                        "ctx_size":8192,
+                        "input_cost": 0.0,
+                        "output_cost": 0.0            
+
+                        }
+                    ],
+                } for f in full_data if not "whisper" in f["id"]]
+        except Exception as ex:
+            binding_path = Path(__file__).parent
+            file_path = binding_path/"models.yaml"
+
+            with open(file_path, 'r') as file:
+                yaml_data = yaml.safe_load(file)
+            
+            return yaml_data
 
 if __name__=="__main__":
     from lollms.paths import LollmsPaths
