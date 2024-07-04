@@ -12,9 +12,10 @@
   variants:
   - name: claude-3-5-sonnet-20240620
     size: null
-    ctx_size: 4096
-    input_cost: 0.0
-    output_cost: 0.0
+    ctx_size: 200000
+    max_n_predict: 4096
+    input_cost: 3.0
+    output_cost: 15.0
 
 
 - category: generic
@@ -32,8 +33,9 @@
   - name: claude-3-opus-20240229
     size: null
     ctx_size: 4096
-    input_cost: 0.0
-    output_cost: 0.0
+    max_n_predict: 4096
+    input_cost: 3.0
+    output_cost: 15.0
 
 - category: generic
   datasets: unknown
@@ -50,6 +52,7 @@
   - name: claude-3-sonnet-20240229
     size: null
     ctx_size: 4096
+    max_n_predict: 4096
     input_cost: 0.0
     output_cost: 0.0
 
@@ -68,5 +71,6 @@
   - name: claude-3-haiku-20240229
     size: null
     ctx_size: 4096
+    max_n_predict: 4096
     input_cost: 0.0
     output_cost: 0.0

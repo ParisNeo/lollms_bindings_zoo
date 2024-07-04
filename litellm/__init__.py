@@ -114,6 +114,7 @@ class LiteLLM(LLMBinding):
                 {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
                 {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
             ]),
@@ -131,6 +132,7 @@ class LiteLLM(LLMBinding):
             lollmsCom=lollmsCom
         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
 
         address = self.binding_config.config['address']
         server_key = self.binding_config.config['server_key']

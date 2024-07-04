@@ -97,6 +97,7 @@ class MistralAI(LLMBinding):
                 {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
                 {"name":"mistralai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
                 {"name":"max_image_width","type":"int","value":-1,"help":"resize the images if they have a width bigger than this (reduces cost). -1 for no change"},
 
@@ -115,6 +116,7 @@ class MistralAI(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
     
     def settings_updated(self):
         if not PackageManager.check_package_installed("mistralai"):
@@ -123,10 +125,13 @@ class MistralAI(LLMBinding):
         from mistralai.models.chat_completion import ChatMessage
         self.client = MistralClient(api_key=self.binding_config.config["mistralai_key"])
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
     
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         if not PackageManager.check_package_installed("mistralai"):
             PackageManager.install_package("mistralai")
         from mistralai.client import MistralClient

@@ -87,7 +87,8 @@ class Gemini(LLMBinding):
             ConfigTemplate([
                 {"name":"google_api_key","type":"str","value":""},
                 {"name":"google_api","type":"str","value":"v1beta","options":["v1beta","v1beta2","v1beta3"],"Help":"API"},
-                {"name":"ctx_size","type":"int","value":4096, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
             ]),
@@ -105,6 +106,7 @@ class Gemini(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
 
     def settings_updated(self):
         if not self.binding_config.config["google_api_key"]:
@@ -116,6 +118,8 @@ class Gemini(LLMBinding):
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         import google.generativeai as genai
         genai.configure(api_key=self.binding_config.google_api_key)
         if self.config.model_name!="gemini-pro-vision":

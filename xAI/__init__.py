@@ -70,6 +70,7 @@ class xAI(LLMBinding):
                 {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
                 {"name":"xai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
             ]),
@@ -87,9 +88,12 @@ class xAI(LLMBinding):
                             app=app
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         import xai_sdk
         os.environ["XAI_API_KEY"] = self.binding_config.config["xai_key"]
         self.xai_client = xai_sdk.Client()

@@ -98,6 +98,7 @@ class Elf(LLMBinding):
                 {"name":"completion_format","type":"str","value":"openai instruct","options":list(elf_completion_formats.keys()), "help":"The format supported by the server"},
                 {"name":"model","type":"str","value":"gpt-3.5-turbo","help":"Model name"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
             ]),
             BaseConfig(config={
@@ -113,6 +114,7 @@ class Elf(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         if self.config.model_name is None:
             self.config.model_name = "elf_remote_model"
 
@@ -125,6 +127,8 @@ class Elf(LLMBinding):
         
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         return self
 
     def install(self):

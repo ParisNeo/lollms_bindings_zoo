@@ -77,7 +77,8 @@ class CTRansformers(LLMBinding):
             {"name":"n_threads","type":"int","value":8, "min":1},
             {"name":"batch_size","type":"int","value":1, "min":1},
             {"name":"gpu_layers","type":"int","value":20 if config.hardware_mode=="nvidia" or config.hardware_mode=="nvidia-tensorcores" else 0, "min":0},
-            {"name":"ctx_size","type":"int","value":4096, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
            
         ])
@@ -98,6 +99,7 @@ class CTRansformers(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
 
     def settings_updated(self):
         self.config.ctx_size=self.binding_config.config.ctx_size        
@@ -109,6 +111,8 @@ class CTRansformers(LLMBinding):
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
 
         ASCIIColors.info("Building model")
         if self.config['model_name'] is None:

@@ -82,6 +82,7 @@ class ExLLamav2(LLMBinding):
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
             {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
         ])
@@ -102,6 +103,7 @@ class ExLLamav2(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         self.callback = None
         self.n_generated = 0
         self.n_prompt = 0
@@ -146,6 +148,8 @@ class ExLLamav2(LLMBinding):
             
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         import torch
         from transformers import GenerationConfig
         import torch

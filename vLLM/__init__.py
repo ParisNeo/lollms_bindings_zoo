@@ -89,6 +89,7 @@ class Vllm(LLMBinding):
                 {"name":"verify_ssl_certificate","type":"bool","value":True,"help":"Deactivate if you don't want the client to verify the SSL certificate"},
                 {"name":"completion_format","type":"str","value":"openai instruct","options":list(elf_completion_formats.keys()), "help":"The format supported by the server"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
             ]),
             BaseConfig(config={
@@ -104,6 +105,7 @@ class Vllm(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         if self.config.model_name is None:
             self.config.model_name = "vllm_remote_model"
 
@@ -112,9 +114,12 @@ class Vllm(LLMBinding):
             self.binding_config.address = self.binding_config.address.strip()[:-1]
             self.binding_config.save()
             
-        self.config.ctx_size = self.binding_config.config.ctx_size        
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         
     def build_model(self, model_name=None):
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         ASCIIColors.yellow(f"vllm selected model {self.config.model_name}")
         ASCIIColors.yellow(f"vllm custom model {self.binding_config.model_name}")
         super().build_model(model_name)

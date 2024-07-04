@@ -57,6 +57,8 @@ class Petals(LLMBinding):
             {"name":"Node Name","type":"str","value":"Unnamed", "help":"The current node name"},
             {"name":"GPU to share","type":"str","value":"cuda:0", "help":"If you have moire than 1 GPU you can select a different GPU to be used"},
             {"name":"device_map","type":"str","value":'auto','options':['auto','cpu','cuda:0', 'balanced', 'balanced_low_0', 'sequential'], "help":"Force using quantized version"},
+            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
         ])
         binding_config_vals = BaseConfig.from_template(binding_config_template)
@@ -148,6 +150,8 @@ class Petals(LLMBinding):
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
 
         from transformers import AutoTokenizer
         from petals import AutoDistributedModelForCausalLM

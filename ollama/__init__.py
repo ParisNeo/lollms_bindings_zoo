@@ -88,6 +88,7 @@ class Ollama(LLMBinding):
                 {"name":"max_image_width","type":"int","value":1024, "help":"The maximum width of the image in pixels. If the mimage is bigger it gets shrunk before sent to ollama model"},
                 {"name":"completion_format","type":"str","value":"instruct","options":["instruct"], "help":"The format supported by the server"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
             ]),
             BaseConfig(config={
@@ -103,6 +104,7 @@ class Ollama(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         host = self.binding_config.address.replace("http://","").split(":")[0]
         port = self.binding_config.address.replace("http://","").split(":")[1]
         if  host== self.config.host and port == self.config.port:
@@ -111,10 +113,13 @@ class Ollama(LLMBinding):
             self.InfoMessage(f"I detected that you are using lollms remotes server with the same address and port number of the current server which will cause an infinite loop.\nTo prevent this I have changed the port number and now the server address is {self.binding_config.address}")
 
     def settings_updated(self):
-        self.config.ctx_size = self.binding_config.config.ctx_size        
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         if self.config.model_name is None:
             return None
         

@@ -95,7 +95,8 @@ class LLAMA_Python_CPP(LLMBinding):
             {"name":"offload_kqv","type":"bool","value":False if 'cpu' in self.config.hardware_mode or 'apple' in self.config.hardware_mode else True, "help":"If you have more than one gpu you can select the gpu to be used here"},
             {"name":"cache_capacity","type":"int","value":(2 << 30) , "help":"The size of the cache in bytes"},            
             {"name":"batch_size","type":"int","value":512, "min":1, "help":"The batch size (the bigger the less warmup time)"},
-            {"name":"ctx_size","type":"int","value":4096, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+            {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
             {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
             {"name":"lora_path","type":"str","value":"","help":"Path to a lora file to apply to the model."},
             {"name":"lora_scale","type":"float","value":1.0,"help":"Scaling to apply to the lora."},
@@ -117,9 +118,11 @@ class LLAMA_Python_CPP(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
 
     def settings_updated(self):
-        self.config.ctx_size=self.binding_config.config.ctx_size        
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         
 
     def __del__(self):
@@ -130,6 +133,8 @@ class LLAMA_Python_CPP(LLMBinding):
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
+        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.max_n_predict=self.binding_config.max_n_predict
         if self.model:
             ASCIIColors.yellow("A model is already loaded. Unloading it")
             self.model = None
