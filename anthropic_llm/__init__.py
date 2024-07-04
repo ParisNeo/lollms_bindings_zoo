@@ -73,6 +73,7 @@ class AnthropicLLM(LLMBinding):
                 {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
                 {"name":"max_image_width","type":"int","value":-1,"help":"resize the images if they have a width bigger than this (reduces cost). -1 for no change"},
+                {"name":"turn_on_cost_estimation","type":"bool", "value":False,"help":"Turns on measuring the cost of queries"},
                 {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
                 {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
                 {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
@@ -205,8 +206,9 @@ class AnthropicLLM(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+        if self.binding_config.config.turn_on_cost_estimation:
+            self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
+            self.binding_config.config["total_input_cost"] =  (self.binding_config.config["total_input_tokens"]/1000000) * (self.input_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.input_costs_by_model else 0)
         try:
             default_params = {
                 'temperature': 0.7,
@@ -243,14 +245,15 @@ class AnthropicLLM(LLMBinding):
                         if word:
                             output += word
                             count += 1
+            if self.binding_config.config.turn_on_cost_estimation:
+                self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
+                self.binding_config.config["total_output_cost"] =  ((self.binding_config.config["total_output_tokens"])/1000000) * self.output_costs_by_model.get(self.config["model_name"],0)    
+                self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
 
 
         except Exception as ex:
             self.error(f'Error {ex}$')
             trace_exception(ex)
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
         return output
@@ -273,8 +276,9 @@ class AnthropicLLM(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0.1) /1000
+        if self.binding_config.config.turn_on_cost_estimation:
+            self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
+            self.binding_config.config["total_input_cost"] =  (self.binding_config.config["total_input_tokens"]/1000000) * (self.input_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.input_costs_by_model else 0)
         try:
             default_params = {
                 'temperature': 0.7,
@@ -328,11 +332,11 @@ class AnthropicLLM(LLMBinding):
                 if word:
                     output += word
                     count += 1
+            if self.binding_config.config.turn_on_cost_estimation:
+                self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
+                self.binding_config.config["total_output_cost"] =  ((self.binding_config.config["total_output_tokens"])/1000000) * self.output_costs_by_model.get(self.config["model_name"],0)    
+                self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
 
-
-            self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0.1)/1000    
-            self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
             self.error(f'Error {ex}')
             trace_exception(ex)

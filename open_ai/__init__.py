@@ -314,9 +314,7 @@ class OpenAIGPT(LLMBinding):
                  callback: Callable[[str], None] = None,
                  verbose: bool = False,
                  **gpt_params ):
-        start_header_id_template    = self.config.start_header_id_template
-        end_header_id_template      = self.config.end_header_id_template
-        system_message_template     = self.config.system_message_template
+
         """Generates text out of a prompt
 
         Args:
