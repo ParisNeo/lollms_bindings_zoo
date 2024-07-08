@@ -113,7 +113,10 @@ class Vllm(LLMBinding):
         if len(self.binding_config.address.strip())>0 and self.binding_config.address.strip().endswith("/"):
             self.binding_config.address = self.binding_config.address.strip()[:-1]
             self.binding_config.save()
-            
+        else:
+            self.binding_config.address = self.binding_config.address.strip()
+            self.binding_config.save()
+                        
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
         
@@ -219,6 +222,8 @@ class Vllm(LLMBinding):
 
         if self.binding_config.address.strip().endswith("/"):
             self.binding_config.address = self.binding_config.address.strip()[:-1]
+        else:
+            self.binding_config.address = self.binding_config.address.strip()
         url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}'
 
         try:
