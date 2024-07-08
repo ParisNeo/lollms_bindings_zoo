@@ -115,11 +115,23 @@ class Ollama(LLMBinding):
     def settings_updated(self):
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
-        
+        if self.binding_config.address.strip().endswith("/") :
+            self.binding_config.address = self.binding_config.address.strip()[:-1]
+            self.binding_config.save()
+        else:
+            self.binding_config.address = self.binding_config.address.strip()
+            self.binding_config.save() 
+                   
     def build_model(self, model_name=None):
         super().build_model(model_name)
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
+        if self.binding_config.address.strip().endswith("/") :
+            self.binding_config.address = self.binding_config.address.strip()[:-1]
+            self.binding_config.save()
+        else:
+            self.binding_config.address = self.binding_config.address.strip()
+            self.binding_config.save()        
         if self.config.model_name is None:
             return None
         
@@ -253,9 +265,13 @@ class Ollama(LLMBinding):
                 self.error("The address field is empty, please configure it in the binding settings")
                 return
             
-            if self.binding_config.address.endswith("/") :
-                self.binding_config.address = self.binding_config.address[:-1]
+            if self.binding_config.address.strip().endswith("/") :
+                self.binding_config.address = self.binding_config.address.strip()[:-1]
                 self.binding_config.save()
+            else:
+                self.binding_config.address = self.binding_config.address.strip()
+                self.binding_config.save()
+                
                 
             url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
 
