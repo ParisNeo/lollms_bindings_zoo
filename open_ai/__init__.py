@@ -57,6 +57,7 @@ class OpenAIGPT(LLMBinding):
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
         self.input_costs_by_model={
+            "gpt-4o-mini":0.00015,
             "gpt-4o":0.005,
             "gpt-4o-2024-05-13":0.005,
             "gpt-4-turbo":0.010,
@@ -71,6 +72,7 @@ class OpenAIGPT(LLMBinding):
             "gpt-3.5-turbo-instruct":0.0015
         }       
         self.output_costs_by_model={
+            "gpt-4o-mini":0.0006,
             "gpt-4o":0.015,
             "gpt-4o-2024-05-13":0.015,
             "gpt-4-turbo":0.03,
