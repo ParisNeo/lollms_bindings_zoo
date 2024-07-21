@@ -26,6 +26,20 @@ import urllib
 import json
 if not PackageManager.check_package_installed("PIL"):
     PackageManager.install_package("Pillow")
+
+if not PackageManager.check_package_installed("torch"):
+    pytorch_cuda_url = "https://download.pytorch.org/whl/cu121"
+    pytorch_package = "torch torchvision torchaudio"
+    PackageManager.install_or_update(pytorch_package, index_url=pytorch_cuda_url)
+if not PackageManager.check_package_installed("transformers"):
+    PackageManager.install_or_update("transformers")
+
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig, AutoConfig, AutoProcessor, LlavaForConditionalGeneration    
+from transformers import GPTQConfig
+from transformers import AwqConfig
+
+
 from PIL import Image
 import shutil
 
@@ -41,6 +55,9 @@ import subprocess
 import gc
 
 from lollms.com import NotificationDisplayType, NotificationType
+
+
+import torch
 
 
 
@@ -73,7 +90,6 @@ class HuggingFace(LLMBinding):
         binding_config_template = ConfigTemplate([
 
             {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
-            {"name":"enable_flash_attention_2","type":"bool","value":True, "help":"Enable flash attention 2 which encreases the generation speed. But it is not supported on ols GPUs, so if you have an old GPU, deactivate it"},            
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
@@ -149,14 +165,10 @@ class HuggingFace(LLMBinding):
         super().build_model(model_name)
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
-        from accelerate import Accelerator
-        from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig
-        import torch
-        self.torch = torch
+
+        
         try:
-
             if self.config.model_name:
-
                 path = self.config.model_name
                 self.ShowBlockingMessage(f"Building model\n{path}")
                 model_path = self.get_model_path()
@@ -184,18 +196,17 @@ class HuggingFace(LLMBinding):
                             "transformers_version": "4.35.0.dev0"
                     }
                     ,f)
+                        
                 import os
-                os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
+                os.environ['HF_HOME'] = str(models_dir)
                 self.ShowBlockingMessage(f"Creating tokenizer {model_path}")
+                
                 self.tokenizer = AutoTokenizer.from_pretrained(
                         str(model_name), trust_remote_code=self.binding_config.trust_remote_code
                         )
-                self.ShowBlockingMessage(f"Recovering generation config {model_path}")
-                self.generation_config = GenerationConfig.from_pretrained(str(model_path))
-                self.ShowBlockingMessage(f"Creating model {model_path}\nUsing device map: {self.binding_config.device_map}")
+                
 
                 if "llava" in str(model_path).lower() or "vision" in str(model_path).lower():
-                    from transformers import AutoProcessor, LlavaForConditionalGeneration
                     self.model = LlavaForConditionalGeneration.from_pretrained(str(model_path),
                                                 torch_dtype=torch.float16,
                                                 device_map=self.binding_config.device_map,
@@ -211,77 +222,28 @@ class HuggingFace(LLMBinding):
                     # self.binding_type = BindingType.TEXT_IMAGE
                     # self.model = self.pipe.model
                 elif "gptq" in str(model_path).lower():
-                    from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
-                    from auto_gptq.utils.peft_utils import get_gptq_peft_model, GPTQLoraConfig
-                    quantize_config = BaseQuantizeConfig.from_pretrained(str(model_path))
-                    if self.binding_config.enable_flash_attention_2:
-                        self.model = AutoGPTQForCausalLM.from_quantized(str(model_path),
-                                                                    use_safetensors=True,
-                                                                    torch_dtype=torch.float16,
-                                                                    
-                                                                    device_map=self.binding_config.device_map,
-                                                                    offload_folder="offload",
-                                                                    offload_state_dict = True, 
-                                                                    attn_implementation="flash_attention_2",
-                                                                    trust_remote_code=self.binding_config.trust_remote_code,
-                                                                    low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                    quantize_config=quantize_config
-                                                                    )
-                    else:
-                        self.model = AutoGPTQForCausalLM.from_quantized(str(model_path),
-                                                                    use_safetensors=True,
-                                                                    torch_dtype=torch.float16,
-
-                                                                    device_map=self.binding_config.device_map,
-                                                                    offload_folder="offload",
-                                                                    offload_state_dict = True, 
-                                                                    trust_remote_code=self.binding_config.trust_remote_code,
-                                                                    low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                    quantize_config=quantize_config
-                                                                    )
-
-                    from auto_gptq import exllama_set_max_input_length
-                    try:
-                        self.model = exllama_set_max_input_length(self.model, self.binding_config.ctx_size)
-                    except:
-                        self.warning("Couldn't force exllama max imput size. This is a model that doesn't support exllama.")       
-                    
+                    self.tokenizer = AutoTokenizer.from_pretrained(str(model_path), padding_side="left")
+                    gptq_config = GPTQConfig(bits=4, tokenizer=self.tokenizer)
+                    self.model = AutoModelForCausalLM.from_pretrained(
+                        str(model_path), quantization_config=gptq_config, 
+                        device_map=self.binding_config.device_map,
+                        trust_remote_code=self.binding_config.trust_remote_code,
+                        low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                    )
                 elif "awq" in str(model_path).lower():
-                    if self.binding_config.enable_flash_attention_2:
-                        self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                    torch_dtype=torch.float16,
-                                                                    device_map=self.binding_config.device_map,
-                                                                    offload_folder="offload",
-                                                                    offload_state_dict = True, 
-                                                                    attn_implementation="flash_attention_2",
-                                                                    trust_remote_code=self.binding_config.trust_remote_code,
-                                                                    low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                    )
-                    else:
-                        self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                    torch_dtype=torch.float16,
-                                                                    device_map=self.binding_config.device_map,
-                                                                    offload_folder="offload",
-                                                                    offload_state_dict = True, 
-                                                                    trust_remote_code=self.binding_config.trust_remote_code,
-                                                                    low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                    )
-
-                else:
-                    self.model:AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(str(model_path),
-                                                                torch_dtype=torch.float16,
-                                                                device_map=self.binding_config.device_map,
-                                                                offload_folder="offload",
-                                                                offload_state_dict = True, 
-                                                                attn_implementation="flash_attention_2",
-                                                                trust_remote_code=self.binding_config.trust_remote_code,
-                                                                low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                                                                )
-
+                    self.tokenizer = AutoTokenizer.from_pretrained(str(model_path), padding_side="left")
+                    awq_config = AwqConfig(bits=4, tokenizer=self.tokenizer)
+                    self.model = AutoModelForCausalLM.from_pretrained(
+                        str(model_path), quantization_config=awq_config, 
+                        device_map=self.binding_config.device_map,
+                        trust_remote_code=self.binding_config.trust_remote_code,
+                        low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                    )                    
+                print(f"Model {model_name} built successfully.")
                 self.model_device = self.model.parameters().__next__().device
                 self.ShowBlockingMessage(f"Model loaded successfully")
                 self.HideBlockingMessage()
-
+                self.generation_config = GenerationConfig.from_pretrained(str(model_path))
                 """
                 try:
                     if not self.binding_config.automatic_context_size:
@@ -300,6 +262,33 @@ class HuggingFace(LLMBinding):
             trace_exception(ex)
             self.HideBlockingMessage()
             self.InfoMessage(f"Couldn't load the model {model_path}\nHere is the error encountered during loading:\n"+str(ex)+"\nPlease choose another model or post a request on the discord channel.")
+
+
+    @staticmethod
+    def get_device():
+        if torch.cuda.is_available():
+            return "cuda"
+        elif torch.backends.mps.is_available():
+            return "mps"
+        else:
+            return "cpu"
+
+    @staticmethod
+    def is_cuda_supported():
+        return torch.cuda.is_available()
+
+    def download_model(self, model_name):
+        """
+        Download a model to the specified directory.
+        """
+        try:
+            config = AutoConfig.from_pretrained(model_name)
+            config.save_pretrained(os.path.join(self.model_dir, model_name))
+            AutoModelForCausalLM.from_pretrained(model_name).save_pretrained(os.path.join(self.model_dir, model_name))
+            AutoTokenizer.from_pretrained(model_name).save_pretrained(os.path.join(self.model_dir, model_name))
+            print(f"Model {model_name} downloaded successfully.")
+        except Exception as e:
+            print(f"Error downloading model: {str(e)}")
 
     def destroy_model(self):
         # Delete any old model
@@ -332,19 +321,6 @@ class HuggingFace(LLMBinding):
             print(f"Subprocess failed with returncode {e.returncode}")
             return False
 
-    def install_flash_attention(self):
-        # Use subprocess to run the pip install command
-        try:
-            subprocess.run([sys.executable, "-m", "pip", "uninstall", "flash_attn", "--yes"], check=True)
-        except subprocess.CalledProcessError as e:
-            print(f"Subprocess failed with returncode {e.returncode}")
-            return False
-        try:
-            subprocess.run([sys.executable, "-m", "pip", "install", "flash_attn", "--upgrade"], check=True)
-            return True
-        except subprocess.CalledProcessError as e:
-            print(f"Subprocess failed with returncode {e.returncode}")
-            return False
 
     def install(self):
         self.ShowBlockingMessage("Freeing memory...")
@@ -395,12 +371,6 @@ class HuggingFace(LLMBinding):
             elif self.config.hardware_mode=="apple-silicon":
                 self.install_transformers()
 
-            if show_yes_no_dialog("Request","Activate flash attention?\nFlash attention may accelerate the inference a great deal"):
-                enable_flash_attention_2 = True
-            else:
-                enable_flash_attention_2 = False
-
-
             device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
             import torch
 
@@ -410,7 +380,6 @@ class HuggingFace(LLMBinding):
             # Initialization code goes here
             binding_config_template = ConfigTemplate([
                 {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
-                {"name":"enable_flash_attention_2","type":"bool","value":True, "help":"Enable flash attention 2 which encreases the generation speed. But it is not supported on ols GPUs, so if you have an old GPU, deactivate it"},            
                 {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
                 {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
                 {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
@@ -699,12 +668,12 @@ class HuggingFace(LLMBinding):
             input_ids = self.tokenizer(prompt, add_special_tokens=False, return_tensors='pt').input_ids.to(self.model_device)
             self.n_prompt = len(input_ids[0])
             try:
-                with self.torch.no_grad():
-                    self.model.generate(
-                                        inputs=input_ids, 
-                                        generation_config=self.generation_config,
-                                        streamer = self,
-                                        )
+                print(f"Generating text on device: {self.model.device}")
+                self.model.generate(
+                                    inputs=input_ids, 
+                                    generation_config=self.generation_config,
+                                    streamer = self,
+                                    )
             except Exception as ex:
                 if str(ex)!="canceled":
                     trace_exception(ex)

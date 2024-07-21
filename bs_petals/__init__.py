@@ -159,7 +159,7 @@ class Petals(LLMBinding):
         gc.collect()
         models_dir = self.lollms_paths.personal_models_path / "petals"
         models_dir.mkdir(parents=True, exist_ok=True)
-        os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
+        os.environ['HF_HOME'] = str(models_dir)
         self.tokenizer = None
 
         if self.config.model_name:

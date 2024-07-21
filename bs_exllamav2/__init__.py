@@ -185,7 +185,7 @@ class ExLLamav2(LLMBinding):
                     }
                     ,f)
                 import os
-                os.environ['TRANSFORMERS_CACHE'] = str(models_dir)
+                os.environ['HF_HOME'] = str(models_dir)
                 self.generation_config = GenerationConfig.from_pretrained(str(model_path))
                 self.ShowBlockingMessage(f"Creating model {model_path}\nUsing device map: {self.binding_config.device_map}")
 
