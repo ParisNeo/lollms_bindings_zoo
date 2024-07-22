@@ -25,10 +25,17 @@ import sys
 import urllib
 import json
 import shutil
+
 if not PackageManager.check_package_installed("PIL"):
     PackageManager.install_package("Pillow")
-from PIL import Image
 
+if not PackageManager.check_package_installed("torch"):
+    PackageManager.install_package("torch torchvision torchaudio", "https://download.pytorch.org/whl/cu121")
+
+if not PackageManager.check_package_installed("transformers"):
+    PackageManager.install_package("transformers")
+
+import torch
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -247,40 +254,6 @@ class ExLLamav2(LLMBinding):
             self.error(str(ex))
             self.HideBlockingMessage()
 
-    def install_cuda(self, path):
-        # Use subprocess to run the pip install command
-        try:
-            subprocess.run([sys.executable, "-m", "pip", "install", path, "--upgrade"], check=True)
-            return True
-        except subprocess.CalledProcessError as e:
-            print(f"Subprocess failed with returncode {e.returncode}")
-            return False
-
-    def install_transformers(self):
-        # Use subprocess to run the pip install command
-        try:
-            subprocess.run([sys.executable, "-m", "pip", "install", "-r", self.binding_dir / "requirements.txt", "--upgrade"], check=True)
-            return True
-        except subprocess.CalledProcessError as e:
-            print(f"Subprocess failed with returncode {e.returncode}")
-            return False
-        
-
-    def install_flash_attention(self):
-        # Use subprocess to run the pip install command
-        try:
-            subprocess.run([sys.executable, "-m", "pip", "uninstall", "flash_attn", "--yes"], check=True)
-        except subprocess.CalledProcessError as e:
-            print(f"Subprocess failed with returncode {e.returncode}")
-            return False
-        try:
-            subprocess.run([sys.executable, "-m", "pip", "install", "flash_attn", "--upgrade"], check=True)
-            return True
-        except subprocess.CalledProcessError as e:
-            print(f"Subprocess failed with returncode {e.returncode}")
-            return False
-
-
     def install(self):
         self.ShowBlockingMessage("Freeing memory...")
         ASCIIColors.success("freeing memory")
@@ -293,54 +266,15 @@ class ExLLamav2(LLMBinding):
 
         self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
         try:
-            if self.config.hardware_mode=="cpu-noavx":
-                self.install_transformers()
-            elif self.config.hardware_mode=="cpu":
-                self.install_transformers()
-            elif self.config.hardware_mode=="amd-noavx":
-                if not PackageManager.check_package_installed("torch"):
-                    reinstall_pytorch_with_rocm()
-                else:
-                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
-                        reinstall_pytorch_with_rocm()
-                self.install_transformers()
-            elif self.config.hardware_mode=="amd":
-                if not PackageManager.check_package_installed("torch"):
-                    reinstall_pytorch_with_rocm()
-                else:
-                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
-                        reinstall_pytorch_with_rocm()
-                self.install_transformers()
-            elif self.config.hardware_mode=="nvidia":
-                if not PackageManager.check_package_installed("torch"):
-                    reinstall_pytorch_with_cuda()
-                else:
-                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
-                        reinstall_pytorch_with_cuda()
-                self.install_transformers()
-            elif self.config.hardware_mode=="nvidia-tensorcores":
-                if not PackageManager.check_package_installed("torch"):
-                    reinstall_pytorch_with_cuda()
-                else:
-                    if show_yes_no_dialog("Request","Do you want to force reinstalling pytorch?"):
-                        reinstall_pytorch_with_cuda()
-                self.install_transformers()
-            elif self.config.hardware_mode=="apple-intel":
-                self.install_transformers()
-            elif self.config.hardware_mode=="apple-silicon":
-                self.install_transformers()
+            
 
             if show_yes_no_dialog("Request","Activate flash attention?\nFlash attention may accelerate the inference a great deal"):
                 enable_flash_attention_2 = True
-                self.install_flash_attention()
-
             else:
                 enable_flash_attention_2 = False
 
 
             device_names = ['auto', 'cpu', 'balanced', 'balanced_low_0', 'sequential']
-            import torch
-
             if torch.cuda.is_available():
                 device_names.extend(['cuda:' + str(i) for i in range(torch.cuda.device_count())])
 
