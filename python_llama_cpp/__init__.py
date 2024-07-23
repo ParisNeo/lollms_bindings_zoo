@@ -234,10 +234,18 @@ class LLAMA_Python_CPP(LLMBinding):
 
     def install_cuda(self):
         # Set the environment variable
-        os.environ['CMAKE_ARGS'] = "-DLLAMA_CUBLAS=on"
+        os.environ['CMAKE_ARGS'] = "-DGGML_CUDA=on"
         # Use subprocess to run the pip install command
         try:
-            subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--force-reinstall", "--upgrade", "--extra-index-url", "https://abetlen.github.io/llama-cpp-python/whl/cu122"], check=True)
+            try:
+                platform_name = platform.system()
+                if platform_name=="Windows":
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.83-cu123/llama_cpp_python-0.2.83-cp311-cp311-win_amd64.whl", "--force-reinstall", "--upgrade"], check=True)
+                else:        
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.83-cu123/llama_cpp_python-0.2.83-cp311-cp311-linux_x86_64.whl", "--force-reinstall", "--upgrade"], check=True)
+            except:
+                # try rebuilding
+                subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--force-reinstall", "--upgrade", "--extra-index-url", "https://abetlen.github.io/llama-cpp-python/whl/cu122"], check=True)
             return True
         except subprocess.CalledProcessError as e:
             print(f"Subprocess failed with returncode {e.returncode}")
