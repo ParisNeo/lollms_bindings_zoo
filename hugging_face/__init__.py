@@ -27,10 +27,16 @@ import json
 if not PackageManager.check_package_installed("PIL"):
     PackageManager.install_package("Pillow")
 
-if not PackageManager.check_package_installed("torch"):
-    pytorch_cuda_url = "https://download.pytorch.org/whl/cu121"
-    pytorch_package = "torch torchvision torchaudio"
-    PackageManager.install_or_update(pytorch_package, index_url=pytorch_cuda_url)
+import pipmaster as pm
+if not pm.is_installed("torch"):
+    ASCIIColors.yellow("Diffusers: Torch not found. Installing it")
+    pm.install_multiple(["torch","torchvision","torchaudio"], "https://download.pytorch.org/whl/cu121", force_reinstall=True)
+
+import torch
+if not torch.cuda.is_available():
+    ASCIIColors.yellow("Diffusers: Torch not using cuda. Reinstalling it")
+    pm.install_multiple(["torch","torchvision","torchaudio"], "https://download.pytorch.org/whl/cu121", force_reinstall=True)
+
 if not PackageManager.check_package_installed("transformers"):
     PackageManager.install_or_update("transformers")
 
