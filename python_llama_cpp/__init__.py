@@ -470,12 +470,12 @@ class LLAMA_Python_CPP(LLMBinding):
                                     messages= [
                                         {
                                             "role": "user",
-                                            "content": prompt
+                                            "content": prompt.strip()
                                         }
                                     ],
                                     max_tokens=n_predict,
                                     temperature=float(gpt_params["temperature"]),
-                                    stop=["<0x0A>","assistant\n", self.config.start_header_id_template,self.config.start_user_header_id_template, self.config.start_ai_header_id_template],
+                                    stop=["<0x0A>","assistant\n", self.config.start_header_id_template,self.config.start_user_header_id_template, self.config.start_ai_header_id_template],#
                                     stream=True
                                 ):
 
@@ -499,7 +499,7 @@ class LLAMA_Python_CPP(LLMBinding):
             output = ""
             count = 0
             for chunk in self.model.create_completion(
-                                    prompt,
+                                    prompt.strip(),
                                     max_tokens=n_predict,
                                     temperature=float(gpt_params["temperature"]),
                                     stop=["<0x0A>","assistant\n", self.config.start_header_id_template,self.config.start_user_header_id_template, self.config.start_ai_header_id_template],
