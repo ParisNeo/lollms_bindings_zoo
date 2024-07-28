@@ -1,5 +1,59 @@
 - category: generic
   datasets: unknown
+  icon: '/bindings/groq_llm/llama.png'
+  last_commit_time: null
+  license: llama
+  model_creator: meta
+  model_creator_link: https://meta.com
+  name: llama-3.1-405b-reasoning
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: llama-3.1-405b-reasoning
+    size: null
+    ctx_size: 128000
+    input_cost: 0.0
+    output_cost: 0.0
+
+- category: generic
+  datasets: unknown
+  icon: '/bindings/groq_llm/llama.png'
+  last_commit_time: null
+  license: llama
+  model_creator: meta
+  model_creator_link: https://meta.com
+  name: llama-3.1-70b-versatile
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: llama-3.1-70b-versatile
+    size: null
+    ctx_size: 128000
+    input_cost: 0.0
+    output_cost: 0.0
+
+- category: generic
+  datasets: unknown
+  icon: '/bindings/groq_llm/llama.png'
+  last_commit_time: null
+  license: llama
+  model_creator: meta
+  model_creator_link: https://meta.com
+  name: llama-3.1-8b-instant
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: llama-3.1-8b-instant
+    size: null
+    ctx_size: 128000
+    input_cost: 0.0
+    output_cost: 0.0    
+
+- category: generic
+  datasets: unknown
   icon: '/bindings/mistral_ai/logo.png'
   last_commit_time: null
   license: Apache 2.0
