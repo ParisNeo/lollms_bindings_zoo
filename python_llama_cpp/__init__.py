@@ -240,9 +240,9 @@ class LLAMA_Python_CPP(LLMBinding):
             try:
                 platform_name = platform.system()
                 if platform_name=="Windows":
-                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.83-cu123/llama_cpp_python-0.2.83-cp311-cp311-win_amd64.whl", "--force-reinstall", "--upgrade"], check=True)
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.85-cu123/llama_cpp_python-0.2.85-cp311-cp311-win_amd64.whl", "--force-reinstall", "--upgrade"], check=True)
                 else:        
-                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.83-cu123/llama_cpp_python-0.2.83-cp311-cp311-linux_x86_64.whl", "--force-reinstall", "--upgrade"], check=True)
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.85-cu123/llama_cpp_python-0.2.85-cp311-cp311-linux_x86_64.whl", "--force-reinstall", "--upgrade"], check=True)
             except:
                 # try rebuilding
                 subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--force-reinstall", "--upgrade", "--extra-index-url", "https://abetlen.github.io/llama-cpp-python/whl/cu122"], check=True)
