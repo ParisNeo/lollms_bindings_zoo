@@ -63,12 +63,12 @@
   license: commercial
   model_creator: anthropic
   model_creator_link: https://anthropic.com
-  name: claude-3-haiku-20240229
+  name: claude-3-haiku-20240307
   quantizer: null
   rank: 1.0
   type: api
   variants:
-  - name: claude-3-haiku-20240229
+  - name: claude-3-haiku-20240307
     size: null
     ctx_size: 4096
     max_n_predict: 4096
