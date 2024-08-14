@@ -17,7 +17,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 from lollms.utilities import PackageManager, encode_image, get_media_type
 from lollms.com import LoLLMsCom
 import subprocess
@@ -235,7 +235,7 @@ class GroqLLM(LLMBinding):
             ) as stream:
                 for word in stream:
                     if callback is not None:
-                        if not callback(word.choices[0].delta.content, MSG_TYPE.MSG_TYPE_CHUNK):
+                        if not callback(word.choices[0].delta.content, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                             break
                     if word.choices[0].delta.content:
                         output += word.choices[0].delta.content
@@ -321,7 +321,7 @@ class GroqLLM(LLMBinding):
                 except Exception as ex:
                     word = ""
                 if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
                 if word:
                     output += word

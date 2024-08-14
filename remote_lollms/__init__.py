@@ -17,7 +17,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
@@ -228,7 +228,7 @@ class LollmsRN(LLMBinding):
                 chunk = chunk.decode("utf-8")
                 text +=chunk
                 if callback:
-                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(chunk, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
         except Exception as ex:
             trace_exception(ex)
@@ -287,7 +287,7 @@ class LollmsRN(LLMBinding):
                 ## Process the JSON data here
                 text +=chunk
                 if callback:
-                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(chunk, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
         except Exception as ex:
             trace_exception(ex)

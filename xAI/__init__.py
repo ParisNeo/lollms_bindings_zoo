@@ -18,7 +18,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
 from lollms.com import LoLLMsCom
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 import subprocess
 import yaml
 import sys
@@ -190,7 +190,7 @@ class xAI(LLMBinding):
                 except Exception as ex:
                     word = ""
                 if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
                 if word:
                     output += word
@@ -264,7 +264,7 @@ class xAI(LLMBinding):
                 except Exception as ex:
                     word = ""
                 if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
                 if word:
                     output += word

@@ -14,7 +14,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector, PackageManager, show_yes_no_dialog
 from lollms.utilities import reinstall_pytorch_with_cuda, reinstall_pytorch_with_rocm, expand2square, load_image, run_cmd
@@ -481,7 +481,7 @@ class HuggingFace(LLMBinding):
 
         self.output += printable_text
         if  self.callback:
-            if not self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
+            if not self.callback(printable_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                 raise Exception("canceled")    
 
     def _is_chinese_char(self, cp):
@@ -520,7 +520,7 @@ class HuggingFace(LLMBinding):
 
         self.next_tokens_are_prompt = True
         if  self.callback:
-            if self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
+            if self.callback(printable_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                 raise Exception("canceled")    
 
     def process_images(self, images, image_processor, model_cfg):

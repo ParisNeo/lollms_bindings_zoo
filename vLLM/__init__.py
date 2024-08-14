@@ -17,7 +17,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors, trace_exception
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 from lollms.com import LoLLMsCom
 import subprocess
 import yaml
@@ -252,7 +252,7 @@ class Vllm(LLMBinding):
                         ## Process the JSON data here
                         text +=chunk
                         if callback:
-                            if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                            if not callback(chunk, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                                 break
                     except:
                         break
@@ -270,7 +270,7 @@ class Vllm(LLMBinding):
                     else:
                         text +=decoded
                         if callback:
-                            if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                            if not callback(decoded, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                                 break
             return text
         except Exception as ex:

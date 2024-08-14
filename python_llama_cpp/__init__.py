@@ -17,7 +17,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 from lollms.utilities import PackageManager, discussion_path_to_url, show_message_dialog, show_custom_dialog
 from lollms.utilities import AdvancedGarbageCollector, install_cuda, install_ninja, show_yes_no_dialog
 from ascii_colors import ASCIIColors, trace_exception
@@ -454,7 +454,7 @@ class LLAMA_Python_CPP(LLMBinding):
                 output += word
                 count += 1
                 if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break  
         
           
@@ -489,7 +489,7 @@ class LLAMA_Python_CPP(LLMBinding):
                         output += word
                         count += 1
                         if callback is not None:
-                            if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                            if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                                 break
                     
                     
@@ -512,7 +512,7 @@ class LLAMA_Python_CPP(LLMBinding):
                     output += word
                     count += 1
                     if callback is not None:
-                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                        if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                             break
         
 
@@ -571,7 +571,7 @@ class LLAMA_Python_CPP(LLMBinding):
                     output += word
                     count += 1
                     if callback is not None:
-                        if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                        if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                             break
         except Exception as ex:
             trace_exception(ex)

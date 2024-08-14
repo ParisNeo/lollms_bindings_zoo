@@ -17,7 +17,7 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 from lollms.utilities import PackageManager
 from lollms.utilities import AdvancedGarbageCollector
 from lollms.utilities import show_message_dialog
@@ -300,7 +300,7 @@ class CTRansformers(LLMBinding):
                 if chunk=="<0x0A>":
                     chunk = "\n"
                 if callback is not None:
-                    if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(chunk, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
                 output += chunk
                 count += 1

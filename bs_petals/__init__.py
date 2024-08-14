@@ -14,7 +14,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig
 from lollms.helpers import ASCIIColors
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 from lollms.helpers import trace_exception
 from lollms.com import LoLLMsCom
 from lollms.utilities import check_and_install_torch
@@ -278,7 +278,7 @@ class Petals(LLMBinding):
 
         self.output += printable_text
         if  self.callback:
-            if not self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
+            if not self.callback(printable_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                 raise Exception("canceled")    
             
     def _is_chinese_char(self, cp):
@@ -318,7 +318,7 @@ class Petals(LLMBinding):
 
         self.next_tokens_are_prompt = True
         if  self.callback:
-            if self.callback(printable_text, MSG_TYPE.MSG_TYPE_CHUNK):
+            if self.callback(printable_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                 raise Exception("canceled")
 
 

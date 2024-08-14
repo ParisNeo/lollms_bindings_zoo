@@ -14,7 +14,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 from lollms.helpers import trace_exception
 from lollms.utilities import AdvancedGarbageCollector, PackageManager, clone_repository, show_yes_no_dialog
 from lollms.utilities import reinstall_pytorch_with_cuda, expand2square, load_image, reinstall_pytorch_with_rocm
@@ -398,7 +398,7 @@ class ExLLamav2(LLMBinding):
                         break
                     generated_tokens += 1
                     if callback:
-                        if not callback(chunk, MSG_TYPE.MSG_TYPE_CHUNK):
+                        if not callback(chunk, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                             break
 
             except Exception as ex:

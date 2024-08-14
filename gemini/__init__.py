@@ -17,7 +17,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 from lollms.utilities import detect_antiprompt, remove_text_from_string, trace_exception, PackageManager
 from lollms.com import LoLLMsCom
 import subprocess
@@ -229,7 +229,7 @@ class Gemini(LLMBinding):
                 except Exception as ex:
                     word = ""
                 if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
                 if word:
                     output += word
@@ -285,7 +285,7 @@ class Gemini(LLMBinding):
             except Exception as ex:
                 word = ""
             if callback is not None:
-                if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                     break
             if word:
                 output += word

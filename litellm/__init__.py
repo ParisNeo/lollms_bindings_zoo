@@ -18,7 +18,7 @@ from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
-from lollms.types import MSG_TYPE
+from lollms.types import MSG_OPERATION_TYPE
 import subprocess
 import base64
 import sys
@@ -282,7 +282,7 @@ class LiteLLM(LLMBinding):
                 else:
                     text +=decoded
                     if callback:
-                        if not callback(decoded, MSG_TYPE.MSG_TYPE_CHUNK):
+                        if not callback(decoded, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                                 break
         except Exception as ex:
             self.error(f'Error {ex}')
@@ -356,7 +356,7 @@ class LiteLLM(LLMBinding):
                 except Exception as ex:
                     word = ""
                 if callback is not None:
-                    if not callback(word, MSG_TYPE.MSG_TYPE_CHUNK):
+                    if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
                 if word:
                     output += word
