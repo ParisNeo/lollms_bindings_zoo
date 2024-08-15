@@ -236,7 +236,7 @@ class LlavaMetaForCausalLM(ABC):
                     cur_image_features = image_features[cur_image_idx]
                     cur_image_idx += 1
                     cur_new_input_embeds.append(cur_image_features)
-                    cur_new_labels.append(torch.full((cur_image_features.shape[0],), IGNORE_INDEX, device=cur_labels.device, dtype=cur_labels.dtype))
+                    cur_new_labels.append(torch.set_message_content((cur_image_features.shape[0],), IGNORE_INDEX, device=cur_labels.device, dtype=cur_labels.dtype))
 
             cur_new_input_embeds = torch.cat(cur_new_input_embeds)
             cur_new_labels = torch.cat(cur_new_labels)
@@ -255,7 +255,7 @@ class LlavaMetaForCausalLM(ABC):
         batch_size = len(new_input_embeds)
 
         new_input_embeds_padded = []
-        new_labels_padded = torch.full((batch_size, max_len), IGNORE_INDEX, dtype=new_labels[0].dtype, device=new_labels[0].device)
+        new_labels_padded = torch.set_message_content((batch_size, max_len), IGNORE_INDEX, dtype=new_labels[0].dtype, device=new_labels[0].device)
         attention_mask = torch.zeros((batch_size, max_len), dtype=attention_mask.dtype, device=attention_mask.device)
         position_ids = torch.zeros((batch_size, max_len), dtype=position_ids.dtype, device=position_ids.device)
 
