@@ -3,7 +3,7 @@
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
-# engine author : Open AI
+# engine author : X AI
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
@@ -24,6 +24,7 @@ import yaml
 import sys
 import os
 import base64
+import pipmaster as pm
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -43,7 +44,7 @@ class xAI(LLMBinding):
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
                 installation_option:InstallOption=InstallOption.INSTALL_IF_NECESSARY,
-                app=None) -> None:
+                lollmsCom=None) -> None:
         """
         Initialize the Binding.
 
@@ -85,7 +86,7 @@ class xAI(LLMBinding):
                             binding_config, 
                             installation_option,
                             supported_file_extensions=[''],
-                            app=app
+                            lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
@@ -94,6 +95,8 @@ class xAI(LLMBinding):
         super().build_model(model_name)
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
+        if not pm.is_installed("xai-sdk"):
+            pm.install_or_update("xai-sdk")
         import xai_sdk
         os.environ["XAI_API_KEY"] = self.binding_config.config["xai_key"]
         self.xai_client = xai_sdk.Client()
