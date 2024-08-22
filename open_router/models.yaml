@@ -1,32 +1,1087 @@
-- category: generic
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Yi
+  category: generic
+  context_length: 4096
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/openrouter/auto
-  name: openrouter/auto
+  model_creator_link: /models/01-ai/yi-1.5-34b-chat
+  name: 01-ai/yi-1.5-34b-chat
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Auto (best for prompt)
-    size: Not so much
-- category: generic
+  - input_cost: 7.2e-07
+    name: Yi 1.5 34B Chat
+    output_cost: 7.2e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: phi3
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 128000
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/nousresearch/nous-capybara-7b:free
-  name: nousresearch/nous-capybara-7b:free
+  model_creator_link: /models/microsoft/phi-3.5-mini-128k-instruct
+  name: microsoft/phi-3.5-mini-128k-instruct
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Nous: Capybara 7B (free)'
-    size: Not so much
-- category: generic
+  - input_cost: 1.0e-07
+    name: Phi-3.5 Mini 128K Instruct
+    output_cost: 1.0e-07
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 131072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/hermes-3-llama-3.1-70b
+  name: nousresearch/hermes-3-llama-3.1-70b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 4.0e-07
+    name: 'Nous: Hermes 3 70B Instruct'
+    output_cost: 4.0e-07
+    size: 'Context length: 131072'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 131072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/hermes-3-llama-3.1-405b
+  name: nousresearch/hermes-3-llama-3.1-405b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: 'Nous: Hermes 3 405B Instruct'
+    output_cost: 0.0
+    size: 'Context length: 131072'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/hermes-3-llama-3.1-405b:extended
+  name: nousresearch/hermes-3-llama-3.1-405b:extended
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: 'Nous: Hermes 3 405B Instruct (extended)'
+    output_cost: 0.0
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 127072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3.1-sonar-huge-128k-online
+  name: perplexity/llama-3.1-sonar-huge-128k-online
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-06
+    name: 'Perplexity: Llama 3.1 Sonar 405B Online'
+    output_cost: 5.0e-06
+    size: 'Context length: 127072'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/chatgpt-4o-latest
+  name: openai/chatgpt-4o-latest
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-06
+    name: 'OpenAI: ChatGPT-4o'
+    output_cost: 1.5e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/sao10k/l3-lunaris-8b
+  name: sao10k/l3-lunaris-8b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.0e-06
+    name: Llama 3 8B Lunaris
+    output_cost: 2.0e-06
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 12000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/aetherwiing/mn-starcannon-12b
+  name: aetherwiing/mn-starcannon-12b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.0e-06
+    name: Mistral Nemo 12B Starcannon
+    output_cost: 2.0e-06
+    size: 'Context length: 12000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4o-2024-08-06
+  name: openai/gpt-4o-2024-08-06
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-06
+    name: 'OpenAI: GPT-4o (2024-08-06)'
+    output_cost: 1.0e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: none
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 131072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3.1-405b
+  name: meta-llama/llama-3.1-405b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.0e-06
+    name: 'Meta: Llama 3.1 405B (base)'
+    output_cost: 2.0e-06
+    size: 'Context length: 131072'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Yi
+  category: generic
+  context_length: 16384
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/01-ai/yi-vision
+  name: 01-ai/yi-vision
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.9e-07
+    name: '01.AI: Yi Vision'
+    output_cost: 1.9e-07
+    size: 'Context length: 16384'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Yi
+  category: generic
+  context_length: 16384
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/01-ai/yi-large-fc
+  name: 01-ai/yi-large-fc
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-06
+    name: '01.AI: Yi Large FC'
+    output_cost: 3.0e-06
+    size: 'Context length: 16384'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Yi
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/01-ai/yi-large-turbo
+  name: 01-ai/yi-large-turbo
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.9e-07
+    name: '01.AI: Yi Large Turbo'
+    output_cost: 1.9e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nothingiisreal/mn-celeste-12b
+  name: nothingiisreal/mn-celeste-12b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.5e-06
+    name: Mistral Nemo 12B Celeste
+    output_cost: 1.5e-06
+    size: 'Context length: 32000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 4000000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemini-pro-1.5-exp
+  name: google/gemini-pro-1.5-exp
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-06
+    name: 'Google: Gemini Pro 1.5 (0801)'
+    output_cost: 7.5e-06
+    size: 'Context length: 4000000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 127072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3.1-sonar-large-128k-online
+  name: perplexity/llama-3.1-sonar-large-128k-online
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-06
+    name: 'Perplexity: Llama 3.1 Sonar 70B Online'
+    output_cost: 1.0e-06
+    size: 'Context length: 127072'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 131072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3.1-sonar-large-128k-chat
+  name: perplexity/llama-3.1-sonar-large-128k-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-06
+    name: 'Perplexity: Llama 3.1 Sonar 70B'
+    output_cost: 1.0e-06
+    size: 'Context length: 131072'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 127072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3.1-sonar-small-128k-online
+  name: perplexity/llama-3.1-sonar-small-128k-online
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.0e-07
+    name: 'Perplexity: Llama 3.1 Sonar 8B Online'
+    output_cost: 2.0e-07
+    size: 'Context length: 127072'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 131072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3.1-sonar-small-128k-chat
+  name: perplexity/llama-3.1-sonar-small-128k-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.0e-07
+    name: 'Perplexity: Llama 3.1 Sonar 8B'
+    output_cost: 2.0e-07
+    size: 'Context length: 131072'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 131072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3.1-70b-instruct
+  name: meta-llama/llama-3.1-70b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 4.0e-07
+    name: 'Meta: Llama 3.1 70B Instruct'
+    output_cost: 4.0e-07
+    size: 'Context length: 131072'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 131072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3.1-8b-instruct:free
+  name: meta-llama/llama-3.1-8b-instruct:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: 'Meta: Llama 3.1 8B Instruct (free)'
+    output_cost: 0.0
+    size: 'Context length: 131072'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 131072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3.1-8b-instruct
+  name: meta-llama/llama-3.1-8b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 6.0e-08
+    name: 'Meta: Llama 3.1 8B Instruct'
+    output_cost: 6.0e-08
+    size: 'Context length: 131072'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 131072
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3.1-405b-instruct
+  name: meta-llama/llama-3.1-405b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.7e-06
+    name: 'Meta: Llama 3.1 405B Instruct'
+    output_cost: 2.7e-06
+    size: 'Context length: 131072'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/cognitivecomputations/dolphin-llama-3-70b
+  name: cognitivecomputations/dolphin-llama-3-70b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.9e-07
+    name: "Dolphin Llama 3 70B \U0001F42C"
+    output_cost: 7.9e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 256000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/codestral-mamba
+  name: mistralai/codestral-mamba
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: 'Mistral: Codestral Mamba'
+    output_cost: 2.5e-07
+    size: 'Context length: 256000'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mistral-nemo
+  name: mistralai/mistral-nemo
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.7e-07
+    name: 'Mistral: Mistral Nemo'
+    output_cost: 1.7e-07
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4o-mini-2024-07-18
+  name: openai/gpt-4o-mini-2024-07-18
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.5e-07
+    name: 'OpenAI: GPT-4o-mini (2024-07-18)'
+    output_cost: 6.0e-07
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4o-mini
+  name: openai/gpt-4o-mini
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.5e-07
+    name: 'OpenAI: GPT-4o-mini'
+    output_cost: 6.0e-07
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qwen-2-7b-instruct:free
+  name: qwen/qwen-2-7b-instruct:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: Qwen 2 7B Instruct (free)
+    output_cost: 0.0
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qwen-2-7b-instruct
+  name: qwen/qwen-2-7b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.0e-08
+    name: Qwen 2 7B Instruct
+    output_cost: 7.0e-08
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: gemma
+    modality: text->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemma-2-27b-it
+  name: google/gemma-2-27b-it
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.7e-07
+    name: 'Google: Gemma 2 27B'
+    output_cost: 2.7e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 16384
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/alpindale/magnum-72b
+  name: alpindale/magnum-72b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.75e-06
+    name: Magnum 72B
+    output_cost: 4.5e-06
+    size: 'Context length: 16384'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 16384
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/hermes-2-theta-llama-3-8b
+  name: nousresearch/hermes-2-theta-llama-3-8b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.875e-07
+    name: 'Nous: Hermes 2 Theta 8B'
+    output_cost: 1.125e-06
+    size: 'Context length: 16384'
+- architecture:
+    instruct_type: gemma
+    modality: text->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemma-2-9b-it:free
+  name: google/gemma-2-9b-it:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: 'Google: Gemma 2 9B (free)'
+    output_cost: 0.0
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: gemma
+    modality: text->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemma-2-9b-it
+  name: google/gemma-2-9b-it
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-08
+    name: 'Google: Gemma 2 9B'
+    output_cost: 8.0e-08
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Router
+  category: generic
+  context_length: 32000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openrouter/flavor-of-the-week
+  name: openrouter/flavor-of-the-week
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: -1.0
+    name: Flavor of The Week
+    output_cost: -1.0
+    size: 'Context length: 32000'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 32000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/sao10k/l3-stheno-8b
+  name: sao10k/l3-stheno-8b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: Llama 3 Stheno 8B v3.3 32K
+    output_cost: 1.5e-06
+    size: 'Context length: 32000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 256000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/ai21/jamba-instruct
+  name: ai21/jamba-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-07
+    name: 'AI21: Jamba Instruct'
+    output_cost: 7.0e-07
+    size: 'Context length: 256000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Yi
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/01-ai/yi-large
+  name: 01-ai/yi-large
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-06
+    name: '01.AI: Yi Large'
+    output_cost: 3.0e-06
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-3.5-sonnet
+  name: anthropic/claude-3.5-sonnet
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-06
+    name: 'Anthropic: Claude 3.5 Sonnet'
+    output_cost: 1.5e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-3.5-sonnet:beta
+  name: anthropic/claude-3.5-sonnet:beta
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-06
+    name: 'Anthropic: Claude 3.5 Sonnet (self-moderated)'
+    output_cost: 1.5e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/sao10k/l3-euryale-70b
+  name: sao10k/l3-euryale-70b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.9e-07
+    name: Llama 3 Euryale 70B v2.1
+    output_cost: 7.9e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: phi3
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 4000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/microsoft/phi-3-medium-4k-instruct
+  name: microsoft/phi-3-medium-4k-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.4e-07
+    name: Phi-3 Medium 4K Instruct
+    output_cost: 1.4e-07
+    size: 'Context length: 4000'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 65536
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/cognitivecomputations/dolphin-mixtral-8x22b
+  name: cognitivecomputations/dolphin-mixtral-8x22b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 9.0e-07
+    name: "Dolphin 2.9.2 Mixtral 8x22B \U0001F42C"
+    output_cost: 9.0e-07
+    size: 'Context length: 65536'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qwen-2-72b-instruct
+  name: qwen/qwen-2-72b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.6e-07
+    name: Qwen 2 72B Instruct
+    output_cost: 7.7e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: openchat
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openchat/openchat-8b
+  name: openchat/openchat-8b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 6.4e-08
+    name: OpenChat 3.6 8B
+    output_cost: 6.4e-08
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/hermes-2-pro-llama-3-8b
+  name: nousresearch/hermes-2-pro-llama-3-8b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.4e-07
+    name: 'NousResearch: Hermes 2 Pro - Llama-3 8B'
+    output_cost: 1.4e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mistral-7b-instruct-v0.3
+  name: mistralai/mistral-7b-instruct-v0.3
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.9e-08
+    name: 'Mistral: Mistral 7B Instruct v0.3'
+    output_cost: 5.9e-08
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
   datasets: unknown
   icon: ''
   last_commit_time: ''
@@ -34,1203 +1089,21 @@
   model_creator: ''
   model_creator_link: /models/mistralai/mistral-7b-instruct:free
   name: mistralai/mistral-7b-instruct:free
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Mistral 7B Instruct (free)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openchat/openchat-7b:free
-  name: openchat/openchat-7b:free
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: OpenChat 3.5 (free)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/gryphe/mythomist-7b:free
-  name: gryphe/mythomist-7b:free
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: MythoMist 7B (free)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/undi95/toppy-m-7b:free
-  name: undi95/toppy-m-7b:free
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Toppy M 7B (free)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openrouter/cinematika-7b:free
-  name: openrouter/cinematika-7b:free
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Cinematika 7B (alpha) (free)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/google/gemma-7b-it:free
-  name: google/gemma-7b-it:free
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Google: Gemma 7B (free)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/koboldai/psyfighter-13b-2
-  name: koboldai/psyfighter-13b-2
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Psyfighter v2 13B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/intel/neural-chat-7b
-  name: intel/neural-chat-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Neural Chat 7B v3.1
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/gryphe/mythomax-l2-13b
-  name: gryphe/mythomax-l2-13b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: MythoMax 13B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/pygmalionai/mythalion-13b
-  name: pygmalionai/mythalion-13b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Pygmalion: Mythalion 13B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/xwin-lm/xwin-lm-70b
-  name: xwin-lm/xwin-lm-70b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Xwin 70B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/alpindale/goliath-120b
-  name: alpindale/goliath-120b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Goliath 120B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/neversleep/noromaid-20b
-  name: neversleep/noromaid-20b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Noromaid 20B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/gryphe/mythomist-7b
-  name: gryphe/mythomist-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: MythoMist 7B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/sophosympatheia/midnight-rose-70b
-  name: sophosympatheia/midnight-rose-70b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Midnight Rose 70B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/sao10k/fimbulvetr-11b-v2
-  name: sao10k/fimbulvetr-11b-v2
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Fimbulvetr 11B v2
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/undi95/remm-slerp-l2-13b:extended
-  name: undi95/remm-slerp-l2-13b:extended
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: ReMM SLERP 13B (extended)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/gryphe/mythomax-l2-13b:extended
-  name: gryphe/mythomax-l2-13b:extended
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: MythoMax 13B (extended)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/meta-llama/llama-3-8b-instruct:extended
-  name: meta-llama/llama-3-8b-instruct:extended
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Meta: Llama 3 8B Instruct (extended)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/mancer/weaver
-  name: mancer/weaver
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Mancer: Weaver (alpha)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/nousresearch/nous-capybara-7b
-  name: nousresearch/nous-capybara-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Nous: Capybara 7B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/meta-llama/codellama-34b-instruct
-  name: meta-llama/codellama-34b-instruct
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Meta: CodeLlama 34B Instruct'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/codellama/codellama-70b-instruct
-  name: codellama/codellama-70b-instruct
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Meta: CodeLlama 70B Instruct'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/phind/phind-codellama-34b
-  name: phind/phind-codellama-34b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Phind: CodeLlama 34B v2'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/teknium/openhermes-2-mistral-7b
-  name: teknium/openhermes-2-mistral-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: OpenHermes 2 Mistral 7B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/undi95/remm-slerp-l2-13b
-  name: undi95/remm-slerp-l2-13b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: ReMM SLERP 13B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openrouter/cinematika-7b
-  name: openrouter/cinematika-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Cinematika 7B (alpha)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/01-ai/yi-34b-chat
-  name: 01-ai/yi-34b-chat
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Yi 34B Chat
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/01-ai/yi-34b
-  name: 01-ai/yi-34b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Yi 34B (base)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/01-ai/yi-6b
-  name: 01-ai/yi-6b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Yi 6B (base)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/togethercomputer/stripedhyena-nous-7b
-  name: togethercomputer/stripedhyena-nous-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: StripedHyena Nous 7B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/togethercomputer/stripedhyena-hessian-7b
-  name: togethercomputer/stripedhyena-hessian-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: StripedHyena Hessian 7B (base)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/mistralai/mixtral-8x7b
-  name: mistralai/mixtral-8x7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Mixtral 8x7B (base)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/nousresearch/nous-hermes-yi-34b
-  name: nousresearch/nous-hermes-yi-34b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Nous: Hermes 2 Yi 34B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/nousresearch/nous-hermes-2-mixtral-8x7b-sft
-  name: nousresearch/nous-hermes-2-mixtral-8x7b-sft
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Nous: Hermes 2 Mixtral 8x7B SFT'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/nousresearch/nous-hermes-2-mistral-7b-dpo
-  name: nousresearch/nous-hermes-2-mistral-7b-dpo
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Nous: Hermes 2 Mistral 7B DPO'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/meta-llama/llama-3-70b-instruct
-  name: meta-llama/llama-3-70b-instruct
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Meta: Llama 3 70B Instruct'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/mistralai/mixtral-8x7b-instruct:nitro
-  name: mistralai/mixtral-8x7b-instruct:nitro
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Mixtral 8x7B Instruct (nitro)
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/open-orca/mistral-7b-openorca
-  name: open-orca/mistral-7b-openorca
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Mistral OpenOrca 7B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/huggingfaceh4/zephyr-7b-beta
-  name: huggingfaceh4/zephyr-7b-beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Hugging Face: Zephyr 7B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-3.5-turbo
-  name: openai/gpt-3.5-turbo
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'OpenAI: GPT-3.5 Turbo'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-3.5-turbo-0125
-  name: openai/gpt-3.5-turbo-0125
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'OpenAI: GPT-3.5 Turbo 16k'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-3.5-turbo-16k
-  name: openai/gpt-3.5-turbo-16k
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'OpenAI: GPT-3.5 Turbo 16k'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-4-turbo
-  name: openai/gpt-4-turbo
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'OpenAI: GPT-4 Turbo'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-4-turbo-preview
-  name: openai/gpt-4-turbo-preview
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'OpenAI: GPT-4 Turbo Preview'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-4
-  name: openai/gpt-4
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'OpenAI: GPT-4'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-4-32k
-  name: openai/gpt-4-32k
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'OpenAI: GPT-4 32k'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-4-vision-preview
-  name: openai/gpt-4-vision-preview
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'OpenAI: GPT-4 Vision'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-3.5-turbo-instruct
-  name: openai/gpt-3.5-turbo-instruct
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'OpenAI: GPT-3.5 Turbo Instruct'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/google/palm-2-chat-bison
-  name: google/palm-2-chat-bison
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Google: PaLM 2 Chat'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/google/palm-2-codechat-bison
-  name: google/palm-2-codechat-bison
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Google: PaLM 2 Code Chat'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/google/palm-2-chat-bison-32k
-  name: google/palm-2-chat-bison-32k
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Google: PaLM 2 Chat 32k'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/google/palm-2-codechat-bison-32k
-  name: google/palm-2-codechat-bison-32k
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Google: PaLM 2 Code Chat 32k'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/google/gemini-pro
-  name: google/gemini-pro
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Google: Gemini Pro 1.0'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/google/gemini-pro-vision
-  name: google/gemini-pro-vision
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Google: Gemini Pro Vision 1.0'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/google/gemini-pro-1.5
-  name: google/gemini-pro-1.5
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Google: Gemini Pro 1.5 (preview)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/perplexity/pplx-70b-online
-  name: perplexity/pplx-70b-online
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Perplexity: PPLX 70B Online'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/perplexity/pplx-7b-online
-  name: perplexity/pplx-7b-online
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Perplexity: PPLX 7B Online'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/perplexity/pplx-7b-chat
-  name: perplexity/pplx-7b-chat
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Perplexity: PPLX 7B Chat'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/perplexity/pplx-70b-chat
-  name: perplexity/pplx-70b-chat
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Perplexity: PPLX 70B Chat'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/perplexity/sonar-small-chat
-  name: perplexity/sonar-small-chat
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Perplexity: Sonar 7B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/perplexity/sonar-medium-chat
-  name: perplexity/sonar-medium-chat
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Perplexity: Sonar 8x7B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/perplexity/sonar-small-online
-  name: perplexity/sonar-small-online
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Perplexity: Sonar 7B Online'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/perplexity/sonar-medium-online
-  name: perplexity/sonar-medium-online
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Perplexity: Sonar 8x7B Online'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/fireworks/firellava-13b
-  name: fireworks/firellava-13b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: FireLLaVA 13B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-3-opus
-  name: anthropic/claude-3-opus
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude 3 Opus'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-3-sonnet
-  name: anthropic/claude-3-sonnet
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude 3 Sonnet'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-3-haiku
-  name: anthropic/claude-3-haiku
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude 3 Haiku'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-2
-  name: anthropic/claude-2
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude v2'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-2.1
-  name: anthropic/claude-2.1
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude v2.1'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-2.0
-  name: anthropic/claude-2.0
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude v2.0'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-instant-1
-  name: anthropic/claude-instant-1
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude Instant v1'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-instant-1.2
-  name: anthropic/claude-instant-1.2
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude Instant v1.2'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-3-opus:beta
-  name: anthropic/claude-3-opus:beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude 3 Opus (self-moderated)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-3-sonnet:beta
-  name: anthropic/claude-3-sonnet:beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude 3 Sonnet (self-moderated)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-3-haiku:beta
-  name: anthropic/claude-3-haiku:beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude 3 Haiku (self-moderated)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-2:beta
-  name: anthropic/claude-2:beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude v2 (self-moderated)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-2.1:beta
-  name: anthropic/claude-2.1:beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude v2.1 (self-moderated)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-2.0:beta
-  name: anthropic/claude-2.0:beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude v2.0 (self-moderated)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/anthropic/claude-instant-1:beta
-  name: anthropic/claude-instant-1:beta
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Anthropic: Claude Instant v1 (self-moderated)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/meta-llama/llama-2-13b-chat
-  name: meta-llama/llama-2-13b-chat
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Meta: Llama v2 13B Chat'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/meta-llama/llama-2-70b-chat
-  name: meta-llama/llama-2-70b-chat
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Meta: Llama v2 70B Chat'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/nousresearch/nous-hermes-llama2-13b
-  name: nousresearch/nous-hermes-llama2-13b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Nous: Hermes 13B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/nousresearch/nous-capybara-34b
-  name: nousresearch/nous-capybara-34b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Nous: Capybara 34B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/jondurbin/airoboros-l2-70b
-  name: jondurbin/airoboros-l2-70b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Airoboros 70B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/austism/chronos-hermes-13b
-  name: austism/chronos-hermes-13b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Chronos Hermes 13B v2
-    size: Not so much
-- category: generic
+  - input_cost: 0.0
+    name: 'Mistral: Mistral 7B Instruct (free)'
+    output_cost: 0.0
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
   datasets: unknown
   icon: ''
   last_commit_time: ''
@@ -1238,335 +1111,21 @@
   model_creator: ''
   model_creator_link: /models/mistralai/mistral-7b-instruct
   name: mistralai/mistral-7b-instruct
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Mistral 7B Instruct
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/teknium/openhermes-2.5-mistral-7b
-  name: teknium/openhermes-2.5-mistral-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: OpenHermes 2.5 Mistral 7B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openchat/openchat-7b
-  name: openchat/openchat-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: OpenChat 3.5
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/undi95/toppy-m-7b
-  name: undi95/toppy-m-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Toppy M 7B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/lizpreciatior/lzlv-70b-fp16-hf
-  name: lizpreciatior/lzlv-70b-fp16-hf
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: lzlv 70B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/mistralai/mixtral-8x7b-instruct
-  name: mistralai/mixtral-8x7b-instruct
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Mixtral 8x7B Instruct
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/cognitivecomputations/dolphin-mixtral-8x7b
-  name: cognitivecomputations/dolphin-mixtral-8x7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: "Dolphin 2.6 Mixtral 8x7B \U0001F42C"
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/neversleep/noromaid-mixtral-8x7b-instruct
-  name: neversleep/noromaid-mixtral-8x7b-instruct
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Noromaid Mixtral 8x7B Instruct
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/nousresearch/nous-hermes-2-mixtral-8x7b-dpo
-  name: nousresearch/nous-hermes-2-mixtral-8x7b-dpo
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Nous: Hermes 2 Mixtral 8x7B DPO'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/rwkv/rwkv-5-world-3b
-  name: rwkv/rwkv-5-world-3b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: RWKV v5 World 3B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/recursal/rwkv-5-3b-ai-town
-  name: recursal/rwkv-5-3b-ai-town
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: RWKV v5 3B AI Town
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/recursal/eagle-7b
-  name: recursal/eagle-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'RWKV v5: Eagle 7B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/google/gemma-7b-it
-  name: google/gemma-7b-it
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Google: Gemma 7B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/databricks/dbrx-instruct
-  name: databricks/dbrx-instruct
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Databricks: DBRX 132B Instruct'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/huggingfaceh4/zephyr-orpo-141b-a35b
-  name: huggingfaceh4/zephyr-orpo-141b-a35b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: Zephyr 141B-A35B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/meta-llama/llama-3-8b-instruct
-  name: meta-llama/llama-3-8b-instruct
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Meta: Llama 3 8B Instruct'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/microsoft/wizardlm-2-8x22b
-  name: microsoft/wizardlm-2-8x22b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: WizardLM-2 8x22B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/microsoft/wizardlm-2-7b
-  name: microsoft/wizardlm-2-7b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: WizardLM-2 7B
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/mistralai/mixtral-8x22b
-  name: mistralai/mixtral-8x22b
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Mistral: Mixtral 8x22B (base)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/mistralai/mixtral-8x22b-instruct
-  name: mistralai/mixtral-8x22b-instruct
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Mistral: Mixtral 8x22B Instruct'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/lynn/soliloquy-l3
-  name: lynn/soliloquy-l3
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Lynn: Llama 3 Soliloquy 8B'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/huggingfaceh4/zephyr-7b-beta:free
-  name: huggingfaceh4/zephyr-7b-beta:free
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Hugging Face: Zephyr 7B (free)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/meta-llama/llama-2-70b-chat:nitro
-  name: meta-llama/llama-2-70b-chat:nitro
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: 'Meta: Llama v2 70B Chat (nitro)'
-    size: Not so much
-- category: generic
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/gryphe/mythomax-l2-13b:nitro
-  name: gryphe/mythomax-l2-13b:nitro
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - name: MythoMax 13B (nitro)
-    size: Not so much
-- category: generic
+  - input_cost: 5.9e-08
+    name: 'Mistral: Mistral 7B Instruct'
+    output_cost: 5.9e-08
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
   datasets: unknown
   icon: ''
   last_commit_time: ''
@@ -1574,69 +1133,703 @@
   model_creator: ''
   model_creator_link: /models/mistralai/mistral-7b-instruct:nitro
   name: mistralai/mistral-7b-instruct:nitro
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Mistral 7B Instruct (nitro)
-    size: Not so much
-- category: generic
+  - input_cost: 7.0e-08
+    name: 'Mistral: Mistral 7B Instruct (nitro)'
+    output_cost: 7.0e-08
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: phi3
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 128000
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/google/gemma-7b-it:nitro
-  name: google/gemma-7b-it:nitro
+  model_creator_link: /models/microsoft/phi-3-mini-128k-instruct:free
+  name: microsoft/phi-3-mini-128k-instruct:free
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Google: Gemma 7B (nitro)'
-    size: Not so much
-- category: generic
+  - input_cost: 0.0
+    name: Phi-3 Mini 128K Instruct (free)
+    output_cost: 0.0
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: phi3
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 128000
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/undi95/toppy-m-7b:nitro
-  name: undi95/toppy-m-7b:nitro
+  model_creator_link: /models/microsoft/phi-3-mini-128k-instruct
+  name: microsoft/phi-3-mini-128k-instruct
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Toppy M 7B (nitro)
-    size: Not so much
-- category: generic
+  - input_cost: 1.0e-07
+    name: Phi-3 Mini 128K Instruct
+    output_cost: 1.0e-07
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: phi3
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 128000
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/microsoft/wizardlm-2-8x22b:nitro
-  name: microsoft/wizardlm-2-8x22b:nitro
+  model_creator_link: /models/microsoft/phi-3-medium-128k-instruct:free
+  name: microsoft/phi-3-medium-128k-instruct:free
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: WizardLM-2 8x22B (nitro)
-    size: Not so much
-- category: generic
+  - input_cost: 0.0
+    name: Phi-3 Medium 128K Instruct (free)
+    output_cost: 0.0
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: phi3
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 128000
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/meta-llama/llama-3-8b-instruct:nitro
-  name: meta-llama/llama-3-8b-instruct:nitro
+  model_creator_link: /models/microsoft/phi-3-medium-128k-instruct
+  name: microsoft/phi-3-medium-128k-instruct
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Meta: Llama 3 8B Instruct (nitro)'
-    size: Not so much
-- category: generic
+  - input_cost: 1.0e-06
+    name: Phi-3 Medium 128K Instruct
+    output_cost: 1.0e-06
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/neversleep/llama-3-lumimaid-70b
+  name: neversleep/llama-3-lumimaid-70b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.375e-06
+    name: Llama 3 Lumimaid 70B
+    output_cost: 4.5e-06
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 4000000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemini-flash-1.5
+  name: google/gemini-flash-1.5
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.75e-08
+    name: 'Google: Gemini Flash 1.5'
+    output_cost: 1.5e-07
+    size: 'Context length: 4000000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/deepseek/deepseek-coder
+  name: deepseek/deepseek-coder
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.4e-07
+    name: DeepSeek-Coder-V2
+    output_cost: 2.8e-07
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/deepseek/deepseek-chat
+  name: deepseek/deepseek-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.4e-07
+    name: DeepSeek-V2 Chat
+    output_cost: 2.8e-07
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 28000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3-sonar-large-32k-online
+  name: perplexity/llama-3-sonar-large-32k-online
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-06
+    name: 'Perplexity: Llama3 Sonar 70B Online'
+    output_cost: 1.0e-06
+    size: 'Context length: 28000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3-sonar-large-32k-chat
+  name: perplexity/llama-3-sonar-large-32k-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-06
+    name: 'Perplexity: Llama3 Sonar 70B'
+    output_cost: 1.0e-06
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 28000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3-sonar-small-32k-online
+  name: perplexity/llama-3-sonar-small-32k-online
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.0e-07
+    name: 'Perplexity: Llama3 Sonar 8B Online'
+    output_cost: 2.0e-07
+    size: 'Context length: 28000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3-sonar-small-32k-chat
+  name: perplexity/llama-3-sonar-small-32k-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.0e-07
+    name: 'Perplexity: Llama3 Sonar 8B'
+    output_cost: 2.0e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: none
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-guard-2-8b
+  name: meta-llama/llama-guard-2-8b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: 'Meta: LlamaGuard 2 8B'
+    output_cost: 1.8e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3-70b
+  name: meta-llama/llama-3-70b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.1e-07
+    name: 'Meta: Llama 3 70B (Base)'
+    output_cost: 8.1e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3-8b
+  name: meta-llama/llama-3-8b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: 'Meta: Llama 3 8B (Base)'
+    output_cost: 1.8e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4o-2024-05-13
+  name: openai/gpt-4o-2024-05-13
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-06
+    name: 'OpenAI: GPT-4o (2024-05-13)'
+    output_cost: 1.5e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4o
+  name: openai/gpt-4o
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-06
+    name: 'OpenAI: GPT-4o'
+    output_cost: 1.5e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4o:extended
+  name: openai/gpt-4o:extended
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 6.0e-06
+    name: 'OpenAI: GPT-4o (extended)'
+    output_cost: 1.8e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: zephyr
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 2048
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/allenai/olmo-7b-instruct
+  name: allenai/olmo-7b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: OLMo 7B Instruct
+    output_cost: 1.8e-07
+    size: 'Context length: 2048'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qwen-4b-chat
+  name: qwen/qwen-4b-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 9.0e-08
+    name: Qwen 1.5 4B Chat
+    output_cost: 9.0e-08
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qwen-7b-chat
+  name: qwen/qwen-7b-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: Qwen 1.5 7B Chat
+    output_cost: 1.8e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qwen-14b-chat
+  name: qwen/qwen-14b-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.7e-07
+    name: Qwen 1.5 14B Chat
+    output_cost: 2.7e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qwen-32b-chat
+  name: qwen/qwen-32b-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.2e-07
+    name: Qwen 1.5 32B Chat
+    output_cost: 7.2e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qwen-72b-chat
+  name: qwen/qwen-72b-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.1e-07
+    name: Qwen 1.5 72B Chat
+    output_cost: 8.1e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qwen-110b-chat
+  name: qwen/qwen-110b-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.62e-06
+    name: Qwen 1.5 110B Chat
+    output_cost: 1.62e-06
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 24576
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/neversleep/llama-3-lumimaid-8b
+  name: neversleep/llama-3-lumimaid-8b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.875e-07
+    name: Llama 3 Lumimaid 8B
+    output_cost: 1.125e-06
+    size: 'Context length: 24576'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 24576
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/neversleep/llama-3-lumimaid-8b:extended
+  name: neversleep/llama-3-lumimaid-8b:extended
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.875e-07
+    name: Llama 3 Lumimaid 8B (extended)
+    output_cost: 1.125e-06
+    size: 'Context length: 24576'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/snowflake/snowflake-arctic-instruct
+  name: snowflake/snowflake-arctic-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.16e-06
+    name: 'Snowflake: Arctic Instruct'
+    output_cost: 2.16e-06
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 24576
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/lynn/soliloquy-l3
+  name: lynn/soliloquy-l3
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-08
+    name: 'Lynn: Llama 3 Soliloquy 8B v2'
+    output_cost: 5.0e-08
+    size: 'Context length: 24576'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/sao10k/fimbulvetr-11b-v2
+  name: sao10k/fimbulvetr-11b-v2
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.75e-07
+    name: Fimbulvetr 11B v2
+    output_cost: 1.5e-06
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-3-70b-instruct
+  name: meta-llama/llama-3-70b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.1e-07
+    name: 'Meta: Llama 3 70B Instruct'
+    output_cost: 7.4e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
   datasets: unknown
   icon: ''
   last_commit_time: ''
@@ -1644,125 +1837,241 @@
   model_creator: ''
   model_creator_link: /models/meta-llama/llama-3-70b-instruct:nitro
   name: meta-llama/llama-3-70b-instruct:nitro
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Meta: Llama 3 70B Instruct (nitro)'
-    size: Not so much
-- category: generic
+  - input_cost: 7.92e-07
+    name: 'Meta: Llama 3 70B Instruct (nitro)'
+    output_cost: 7.92e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/haotian-liu/llava-13b
-  name: haotian-liu/llava-13b
+  model_creator_link: /models/meta-llama/llama-3-8b-instruct:free
+  name: meta-llama/llama-3-8b-instruct:free
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Llava 13B
-    size: Not so much
-- category: generic
+  - input_cost: 0.0
+    name: 'Meta: Llama 3 8B Instruct (free)'
+    output_cost: 0.0
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/nousresearch/nous-hermes-2-vision-7b
-  name: nousresearch/nous-hermes-2-vision-7b
+  model_creator_link: /models/meta-llama/llama-3-8b-instruct
+  name: meta-llama/llama-3-8b-instruct
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Nous: Hermes 2 Vision 7B (alpha)'
-    size: Not so much
-- category: generic
+  - input_cost: 6.0e-08
+    name: 'Meta: Llama 3 8B Instruct'
+    output_cost: 6.0e-08
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 8192
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/mistralai/mistral-tiny
-  name: mistralai/mistral-tiny
+  model_creator_link: /models/meta-llama/llama-3-8b-instruct:nitro
+  name: meta-llama/llama-3-8b-instruct:nitro
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Mistral Tiny
-    size: Not so much
-- category: generic
+  - input_cost: 1.62e-07
+    name: 'Meta: Llama 3 8B Instruct (nitro)'
+    output_cost: 1.62e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: llama3
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 16384
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/mistralai/mistral-small
-  name: mistralai/mistral-small
+  model_creator_link: /models/meta-llama/llama-3-8b-instruct:extended
+  name: meta-llama/llama-3-8b-instruct:extended
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Mistral Small
-    size: Not so much
-- category: generic
+  - input_cost: 1.875e-07
+    name: 'Meta: Llama 3 8B Instruct (extended)'
+    output_cost: 1.125e-06
+    size: 'Context length: 16384'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 65536
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/mistralai/mistral-medium
-  name: mistralai/mistral-medium
+  model_creator_link: /models/mistralai/mixtral-8x22b-instruct
+  name: mistralai/mixtral-8x22b-instruct
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Mistral Medium
-    size: Not so much
-- category: generic
+  - input_cost: 6.5e-07
+    name: 'Mistral: Mixtral 8x22B Instruct'
+    output_cost: 6.5e-07
+    size: 'Context length: 65536'
+- architecture:
+    instruct_type: vicuna
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32000
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/mistralai/mistral-large
-  name: mistralai/mistral-large
+  model_creator_link: /models/microsoft/wizardlm-2-7b
+  name: microsoft/wizardlm-2-7b
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: Mistral Large
-    size: Not so much
-- category: generic
+  - input_cost: 6.0e-08
+    name: WizardLM-2 7B
+    output_cost: 6.0e-08
+    size: 'Context length: 32000'
+- architecture:
+    instruct_type: vicuna
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 65536
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/cohere/command
-  name: cohere/command
+  model_creator_link: /models/microsoft/wizardlm-2-8x22b
+  name: microsoft/wizardlm-2-8x22b
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Cohere: Command'
-    size: Not so much
-- category: generic
+  - input_cost: 6.2e-07
+    name: WizardLM-2 8x22B
+    output_cost: 6.2e-07
+    size: 'Context length: 65536'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 65536
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/cohere/command-r
-  name: cohere/command-r
+  model_creator_link: /models/mistralai/mixtral-8x22b
+  name: mistralai/mixtral-8x22b
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Cohere: Command R'
-    size: Not so much
-- category: generic
+  - input_cost: 1.08e-06
+    name: 'Mistral: Mixtral 8x22B (base)'
+    output_cost: 1.08e-06
+    size: 'Context length: 65536'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 4000000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemini-pro-1.5
+  name: google/gemini-pro-1.5
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-06
+    name: 'Google: Gemini Pro 1.5'
+    output_cost: 7.5e-06
+    size: 'Context length: 4000000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4-turbo
+  name: openai/gpt-4-turbo
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-05
+    name: 'OpenAI: GPT-4 Turbo'
+    output_cost: 3.0e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Cohere
+  category: generic
+  context_length: 128000
   datasets: unknown
   icon: ''
   last_commit_time: ''
@@ -1770,9 +2079,2212 @@
   model_creator: ''
   model_creator_link: /models/cohere/command-r-plus
   name: cohere/command-r-plus
+  per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - name: 'Cohere: Command R+'
-    size: Not so much
+  - input_cost: 3.0e-06
+    name: 'Cohere: Command R+'
+    output_cost: 1.5e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/databricks/dbrx-instruct
+  name: databricks/dbrx-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.08e-06
+    name: 'Databricks: DBRX 132B Instruct'
+    output_cost: 1.08e-06
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: airoboros
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/sophosympatheia/midnight-rose-70b
+  name: sophosympatheia/midnight-rose-70b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-07
+    name: Midnight Rose 70B
+    output_cost: 8.0e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Cohere
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/cohere/command-r
+  name: cohere/command-r
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-07
+    name: 'Cohere: Command R'
+    output_cost: 1.5e-06
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Cohere
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/cohere/command
+  name: cohere/command
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-06
+    name: 'Cohere: Command'
+    output_cost: 2.0e-06
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-3-haiku
+  name: anthropic/claude-3-haiku
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: 'Anthropic: Claude 3 Haiku'
+    output_cost: 1.25e-06
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-3-haiku:beta
+  name: anthropic/claude-3-haiku:beta
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: 'Anthropic: Claude 3 Haiku (self-moderated)'
+    output_cost: 1.25e-06
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-3-sonnet
+  name: anthropic/claude-3-sonnet
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-06
+    name: 'Anthropic: Claude 3 Sonnet'
+    output_cost: 1.5e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-3-sonnet:beta
+  name: anthropic/claude-3-sonnet:beta
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-06
+    name: 'Anthropic: Claude 3 Sonnet (self-moderated)'
+    output_cost: 1.5e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-3-opus
+  name: anthropic/claude-3-opus
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.5e-05
+    name: 'Anthropic: Claude 3 Opus'
+    output_cost: 7.5e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-3-opus:beta
+  name: anthropic/claude-3-opus:beta
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.5e-05
+    name: 'Anthropic: Claude 3 Opus (self-moderated)'
+    output_cost: 7.5e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mistral-large
+  name: mistralai/mistral-large
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-06
+    name: Mistral Large
+    output_cost: 9.0e-06
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: gemma
+    modality: text->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemma-7b-it:free
+  name: google/gemma-7b-it:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: 'Google: Gemma 7B (free)'
+    output_cost: 0.0
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: gemma
+    modality: text->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemma-7b-it
+  name: google/gemma-7b-it
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.0e-08
+    name: 'Google: Gemma 7B'
+    output_cost: 7.0e-08
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: gemma
+    modality: text->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemma-7b-it:nitro
+  name: google/gemma-7b-it:nitro
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.0e-08
+    name: 'Google: Gemma 7B (nitro)'
+    output_cost: 7.0e-08
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/nous-hermes-2-mistral-7b-dpo
+  name: nousresearch/nous-hermes-2-mistral-7b-dpo
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: 'Nous: Hermes 2 Mistral 7B DPO'
+    output_cost: 1.8e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: code-llama
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 2048
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/codellama-70b-instruct
+  name: meta-llama/codellama-70b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.1e-07
+    name: 'Meta: CodeLlama 70B Instruct'
+    output_cost: 8.1e-07
+    size: 'Context length: 2048'
+- architecture:
+    instruct_type: rwkv
+    modality: text->text
+    tokenizer: RWKV
+  category: generic
+  context_length: 10000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/recursal/eagle-7b
+  name: recursal/eagle-7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: 'RWKV v5: Eagle 7B'
+    output_cost: 0.0
+    size: 'Context length: 10000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4-turbo-preview
+  name: openai/gpt-4-turbo-preview
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-05
+    name: 'OpenAI: GPT-4 Turbo Preview'
+    output_cost: 3.0e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 4095
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-3.5-turbo-0613
+  name: openai/gpt-3.5-turbo-0613
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-06
+    name: 'OpenAI: GPT-3.5 Turbo (older v0613)'
+    output_cost: 2.0e-06
+    size: 'Context length: 4095'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/nous-hermes-2-mixtral-8x7b-sft
+  name: nousresearch/nous-hermes-2-mixtral-8x7b-sft
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.4e-07
+    name: 'Nous: Hermes 2 Mixtral 8x7B SFT'
+    output_cost: 5.4e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/nous-hermes-2-mixtral-8x7b-dpo
+  name: nousresearch/nous-hermes-2-mixtral-8x7b-dpo
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 4.5e-07
+    name: 'Nous: Hermes 2 Mixtral 8x7B DPO'
+    output_cost: 4.5e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mistral-medium
+  name: mistralai/mistral-medium
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.7e-06
+    name: Mistral Medium
+    output_cost: 8.1e-06
+    size: 'Context length: 32000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mistral-small
+  name: mistralai/mistral-small
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.0e-06
+    name: Mistral Small
+    output_cost: 6.0e-06
+    size: 'Context length: 32000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mistral-tiny
+  name: mistralai/mistral-tiny
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: Mistral Tiny
+    output_cost: 2.5e-07
+    size: 'Context length: 32000'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/austism/chronos-hermes-13b
+  name: austism/chronos-hermes-13b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.3e-07
+    name: Chronos Hermes 13B v2
+    output_cost: 1.3e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Yi
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/nous-hermes-yi-34b
+  name: nousresearch/nous-hermes-yi-34b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.2e-07
+    name: 'Nous: Hermes 2 Yi 34B'
+    output_cost: 7.2e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mistral-7b-instruct-v0.2
+  name: mistralai/mistral-7b-instruct-v0.2
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 6.0e-08
+    name: 'Mistral: Mistral 7B Instruct v0.2'
+    output_cost: 6.0e-08
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/cognitivecomputations/dolphin-mixtral-8x7b
+  name: cognitivecomputations/dolphin-mixtral-8x7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-07
+    name: "Dolphin 2.6 Mixtral 8x7B \U0001F42C"
+    output_cost: 5.0e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 65536
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemini-pro-vision
+  name: google/gemini-pro-vision
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.25e-07
+    name: 'Google: Gemini Pro Vision 1.0'
+    output_cost: 3.75e-07
+    size: 'Context length: 65536'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 131040
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemini-pro
+  name: google/gemini-pro
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.25e-07
+    name: 'Google: Gemini Pro 1.0'
+    output_cost: 3.75e-07
+    size: 'Context length: 131040'
+- architecture:
+    instruct_type: rwkv
+    modality: text->text
+    tokenizer: RWKV
+  category: generic
+  context_length: 10000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/recursal/rwkv-5-3b-ai-town
+  name: recursal/rwkv-5-3b-ai-town
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: RWKV v5 3B AI Town
+    output_cost: 0.0
+    size: 'Context length: 10000'
+- architecture:
+    instruct_type: rwkv
+    modality: text->text
+    tokenizer: RWKV
+  category: generic
+  context_length: 10000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/rwkv/rwkv-5-world-3b
+  name: rwkv/rwkv-5-world-3b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: RWKV v5 World 3B
+    output_cost: 0.0
+    size: 'Context length: 10000'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mixtral-8x7b-instruct
+  name: mistralai/mixtral-8x7b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.4e-07
+    name: Mixtral 8x7B Instruct
+    output_cost: 2.4e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mixtral-8x7b-instruct:nitro
+  name: mistralai/mixtral-8x7b-instruct:nitro
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.4e-07
+    name: Mixtral 8x7B Instruct (nitro)
+    output_cost: 5.4e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: none
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mixtral-8x7b
+  name: mistralai/mixtral-8x7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.4e-07
+    name: Mixtral 8x7B (base)
+    output_cost: 5.4e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: none
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/togethercomputer/stripedhyena-hessian-7b
+  name: togethercomputer/stripedhyena-hessian-7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: StripedHyena Hessian 7B (base)
+    output_cost: 1.8e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/togethercomputer/stripedhyena-nous-7b
+  name: togethercomputer/stripedhyena-nous-7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: StripedHyena Nous 7B
+    output_cost: 1.8e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/gryphe/mythomist-7b:free
+  name: gryphe/mythomist-7b:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: MythoMist 7B (free)
+    output_cost: 0.0
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/gryphe/mythomist-7b
+  name: gryphe/mythomist-7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.75e-07
+    name: MythoMist 7B
+    output_cost: 3.75e-07
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: none
+    modality: text->text
+    tokenizer: Yi
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/01-ai/yi-6b
+  name: 01-ai/yi-6b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: Yi 6B (base)
+    output_cost: 1.8e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: none
+    modality: text->text
+    tokenizer: Yi
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/01-ai/yi-34b
+  name: 01-ai/yi-34b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.2e-07
+    name: Yi 34B (base)
+    output_cost: 7.2e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Yi
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/01-ai/yi-34b-chat
+  name: 01-ai/yi-34b-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.2e-07
+    name: Yi 34B Chat
+    output_cost: 7.2e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: airoboros
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/nous-capybara-7b:free
+  name: nousresearch/nous-capybara-7b:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: 'Nous: Capybara 7B (free)'
+    output_cost: 0.0
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: airoboros
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/nous-capybara-7b
+  name: nousresearch/nous-capybara-7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: 'Nous: Capybara 7B'
+    output_cost: 1.8e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: openchat
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openchat/openchat-7b:free
+  name: openchat/openchat-7b:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: OpenChat 3.5 7B (free)
+    output_cost: 0.0
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: openchat
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openchat/openchat-7b
+  name: openchat/openchat-7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 6.0e-08
+    name: OpenChat 3.5 7B
+    output_cost: 6.0e-08
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/neversleep/noromaid-20b
+  name: neversleep/noromaid-20b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.5e-06
+    name: Noromaid 20B
+    output_cost: 2.25e-06
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: claude
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 100000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-instant-1.1
+  name: anthropic/claude-instant-1.1
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-07
+    name: 'Anthropic: Claude Instant v1.1'
+    output_cost: 2.4e-06
+    size: 'Context length: 100000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2.1
+  name: anthropic/claude-2.1
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-06
+    name: 'Anthropic: Claude v2.1'
+    output_cost: 2.4e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2.1:beta
+  name: anthropic/claude-2.1:beta
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-06
+    name: 'Anthropic: Claude v2.1 (self-moderated)'
+    output_cost: 2.4e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2
+  name: anthropic/claude-2
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-06
+    name: 'Anthropic: Claude v2'
+    output_cost: 2.4e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2:beta
+  name: anthropic/claude-2:beta
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-06
+    name: 'Anthropic: Claude v2 (self-moderated)'
+    output_cost: 2.4e-05
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/teknium/openhermes-2.5-mistral-7b
+  name: teknium/openhermes-2.5-mistral-7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.7e-07
+    name: OpenHermes 2.5 Mistral 7B
+    output_cost: 1.7e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4-vision-preview
+  name: openai/gpt-4-vision-preview
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-05
+    name: 'OpenAI: GPT-4 Vision'
+    output_cost: 3.0e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: airoboros
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/lizpreciatior/lzlv-70b-fp16-hf
+  name: lizpreciatior/lzlv-70b-fp16-hf
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.8e-07
+    name: lzlv 70B
+    output_cost: 7.8e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: airoboros
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 6144
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/alpindale/goliath-120b
+  name: alpindale/goliath-120b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 9.375e-06
+    name: Goliath 120B
+    output_cost: 9.375e-06
+    size: 'Context length: 6144'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/undi95/toppy-m-7b:free
+  name: undi95/toppy-m-7b:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: Toppy M 7B (free)
+    output_cost: 0.0
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/undi95/toppy-m-7b
+  name: undi95/toppy-m-7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.0e-08
+    name: Toppy M 7B
+    output_cost: 7.0e-08
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/undi95/toppy-m-7b:nitro
+  name: undi95/toppy-m-7b:nitro
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.0e-08
+    name: Toppy M 7B (nitro)
+    output_cost: 7.0e-08
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Router
+  category: generic
+  context_length: 200000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openrouter/auto
+  name: openrouter/auto
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: -1.0
+    name: Auto (best for prompt)
+    output_cost: -1.0
+    size: 'Context length: 200000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4-1106-preview
+  name: openai/gpt-4-1106-preview
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-05
+    name: 'OpenAI: GPT-4 Turbo (older v1106)'
+    output_cost: 3.0e-05
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 16385
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-3.5-turbo-1106
+  name: openai/gpt-3.5-turbo-1106
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-06
+    name: 'OpenAI: GPT-3.5 Turbo 16k (older v1106)'
+    output_cost: 2.0e-06
+    size: 'Context length: 16385'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: PaLM
+  category: generic
+  context_length: 131040
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/palm-2-codechat-bison-32k
+  name: google/palm-2-codechat-bison-32k
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: 'Google: PaLM 2 Code Chat 32k'
+    output_cost: 5.0e-07
+    size: 'Context length: 131040'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: PaLM
+  category: generic
+  context_length: 131040
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/palm-2-chat-bison-32k
+  name: google/palm-2-chat-bison-32k
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: 'Google: PaLM 2 Chat 32k'
+    output_cost: 5.0e-07
+    size: 'Context length: 131040'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/teknium/openhermes-2-mistral-7b
+  name: teknium/openhermes-2-mistral-7b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: OpenHermes 2 Mistral 7B
+    output_cost: 1.8e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/open-orca/mistral-7b-openorca
+  name: open-orca/mistral-7b-openorca
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.8e-07
+    name: Mistral OpenOrca 7B
+    output_cost: 1.8e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: airoboros
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/jondurbin/airoboros-l2-70b
+  name: jondurbin/airoboros-l2-70b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-07
+    name: Airoboros 70B
+    output_cost: 5.0e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: airoboros
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/xwin-lm/xwin-lm-70b
+  name: xwin-lm/xwin-lm-70b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.75e-06
+    name: Xwin 70B
+    output_cost: 3.75e-06
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: mistral
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mistralai/mistral-7b-instruct-v0.1
+  name: mistralai/mistral-7b-instruct-v0.1
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 6.0e-08
+    name: 'Mistral: Mistral 7B Instruct v0.1'
+    output_cost: 6.0e-08
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: chatml
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 4095
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-3.5-turbo-instruct
+  name: openai/gpt-3.5-turbo-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.5e-06
+    name: 'OpenAI: GPT-3.5 Turbo Instruct'
+    output_cost: 2.0e-06
+    size: 'Context length: 4095'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/pygmalionai/mythalion-13b
+  name: pygmalionai/mythalion-13b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.125e-06
+    name: 'Pygmalion: Mythalion 13B'
+    output_cost: 1.125e-06
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 32767
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4-32k-0314
+  name: openai/gpt-4-32k-0314
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 6.0e-05
+    name: 'OpenAI: GPT-4 32k (older v0314)'
+    output_cost: 0.00012
+    size: 'Context length: 32767'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 32767
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4-32k
+  name: openai/gpt-4-32k
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 6.0e-05
+    name: 'OpenAI: GPT-4 32k'
+    output_cost: 0.00012
+    size: 'Context length: 32767'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 16385
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-3.5-turbo-16k
+  name: openai/gpt-3.5-turbo-16k
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-06
+    name: 'OpenAI: GPT-3.5 Turbo 16k'
+    output_cost: 4.0e-06
+    size: 'Context length: 16385'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/nousresearch/nous-hermes-llama2-13b
+  name: nousresearch/nous-hermes-llama2-13b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.7e-07
+    name: 'Nous: Hermes 13B'
+    output_cost: 1.7e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/phind/phind-codellama-34b
+  name: phind/phind-codellama-34b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.2e-07
+    name: 'Phind: CodeLlama 34B v2'
+    output_cost: 7.2e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: llama2
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/codellama-34b-instruct
+  name: meta-llama/codellama-34b-instruct
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 7.2e-07
+    name: 'Meta: CodeLlama 34B Instruct'
+    output_cost: 7.2e-07
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: zephyr
+    modality: text->text
+    tokenizer: Mistral
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/huggingfaceh4/zephyr-7b-beta:free
+  name: huggingfaceh4/zephyr-7b-beta:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: 'Hugging Face: Zephyr 7B (free)'
+    output_cost: 0.0
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 8000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/mancer/weaver
+  name: mancer/weaver
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.875e-06
+    name: 'Mancer: Weaver (alpha)'
+    output_cost: 2.25e-06
+    size: 'Context length: 8000'
+- architecture:
+    instruct_type: claude
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 100000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-instant-1.0
+  name: anthropic/claude-instant-1.0
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-07
+    name: 'Anthropic: Claude Instant v1.0'
+    output_cost: 2.4e-06
+    size: 'Context length: 100000'
+- architecture:
+    instruct_type: claude
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 100000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-1.2
+  name: anthropic/claude-1.2
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-06
+    name: 'Anthropic: Claude v1.2'
+    output_cost: 2.4e-05
+    size: 'Context length: 100000'
+- architecture:
+    instruct_type: claude
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 100000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-1
+  name: anthropic/claude-1
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-06
+    name: 'Anthropic: Claude v1'
+    output_cost: 2.4e-05
+    size: 'Context length: 100000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 100000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-instant-1
+  name: anthropic/claude-instant-1
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-07
+    name: 'Anthropic: Claude Instant v1'
+    output_cost: 2.4e-06
+    size: 'Context length: 100000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 100000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-instant-1:beta
+  name: anthropic/claude-instant-1:beta
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-07
+    name: 'Anthropic: Claude Instant v1 (self-moderated)'
+    output_cost: 2.4e-06
+    size: 'Context length: 100000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 100000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2.0
+  name: anthropic/claude-2.0
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-06
+    name: 'Anthropic: Claude v2.0'
+    output_cost: 2.4e-05
+    size: 'Context length: 100000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Claude
+  category: generic
+  context_length: 100000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/anthropic/claude-2.0:beta
+  name: anthropic/claude-2.0:beta
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.0e-06
+    name: 'Anthropic: Claude v2.0 (self-moderated)'
+    output_cost: 2.4e-05
+    size: 'Context length: 100000'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/undi95/remm-slerp-l2-13b
+  name: undi95/remm-slerp-l2-13b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.7e-07
+    name: ReMM SLERP 13B
+    output_cost: 2.7e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 6144
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/undi95/remm-slerp-l2-13b:extended
+  name: undi95/remm-slerp-l2-13b:extended
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.125e-06
+    name: ReMM SLERP 13B (extended)
+    output_cost: 1.125e-06
+    size: 'Context length: 6144'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: PaLM
+  category: generic
+  context_length: 28672
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/palm-2-codechat-bison
+  name: google/palm-2-codechat-bison
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: 'Google: PaLM 2 Code Chat'
+    output_cost: 5.0e-07
+    size: 'Context length: 28672'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: PaLM
+  category: generic
+  context_length: 36864
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/palm-2-chat-bison
+  name: google/palm-2-chat-bison
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: 'Google: PaLM 2 Chat'
+    output_cost: 5.0e-07
+    size: 'Context length: 36864'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/gryphe/mythomax-l2-13b
+  name: gryphe/mythomax-l2-13b
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-07
+    name: MythoMax 13B
+    output_cost: 1.0e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/gryphe/mythomax-l2-13b:nitro
+  name: gryphe/mythomax-l2-13b:nitro
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.0e-07
+    name: MythoMax 13B (nitro)
+    output_cost: 2.0e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: alpaca
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 8192
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/gryphe/mythomax-l2-13b:extended
+  name: gryphe/mythomax-l2-13b:extended
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.125e-06
+    name: MythoMax 13B (extended)
+    output_cost: 1.125e-06
+    size: 'Context length: 8192'
+- architecture:
+    instruct_type: llama2
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-2-70b-chat
+  name: meta-llama/llama-2-70b-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 8.1e-07
+    name: 'Meta: Llama v2 70B Chat'
+    output_cost: 8.1e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: llama2
+    modality: text->text
+    tokenizer: Llama2
+  category: generic
+  context_length: 4096
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/meta-llama/llama-2-13b-chat
+  name: meta-llama/llama-2-13b-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.7e-07
+    name: 'Meta: Llama v2 13B Chat'
+    output_cost: 2.7e-07
+    size: 'Context length: 4096'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 8191
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4-0314
+  name: openai/gpt-4-0314
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-05
+    name: 'OpenAI: GPT-4 (older v0314)'
+    output_cost: 6.0e-05
+    size: 'Context length: 8191'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 8191
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-4
+  name: openai/gpt-4
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-05
+    name: 'OpenAI: GPT-4'
+    output_cost: 6.0e-05
+    size: 'Context length: 8191'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 4095
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-3.5-turbo-0301
+  name: openai/gpt-3.5-turbo-0301
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-06
+    name: 'OpenAI: GPT-3.5 Turbo (older v0301)'
+    output_cost: 2.0e-06
+    size: 'Context length: 4095'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 16385
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-3.5-turbo-0125
+  name: openai/gpt-3.5-turbo-0125
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-07
+    name: 'OpenAI: GPT-3.5 Turbo 16k'
+    output_cost: 1.5e-06
+    size: 'Context length: 16385'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: GPT
+  category: generic
+  context_length: 16385
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/openai/gpt-3.5-turbo
+  name: openai/gpt-3.5-turbo
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 5.0e-07
+    name: 'OpenAI: GPT-3.5 Turbo'
+    output_cost: 1.5e-06
+    size: 'Context length: 16385'

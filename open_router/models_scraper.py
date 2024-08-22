@@ -1,62 +1,68 @@
 import requests
-from bs4 import BeautifulSoup
-from selenium import webdriver
 import yaml
-import time
-# Set up the webdriver
-driver = webdriver.Chrome()
+from typing import List, Dict
+from pathlib import Path
 
-# Navigate to the webpage
-driver.get('https://openrouter.ai/docs#quick-start')
+class OpenRouterModelFetcher:
+    API_URL = "https://openrouter.ai/api/v1/models"
 
-# Wait for the webpage to load completely
-time.sleep(10)
+    def fetch_models(self) -> List[Dict]:
+        """Fetches the model data from the OpenRouter API"""
+        try:
+            response = requests.get(self.API_URL)
+            response.raise_for_status()  # Raises an HTTPError for bad responses
+            data = response.json()
+            return data.get('data', [])
+        except requests.RequestException as e:
+            print(f"Error fetching models: {e}")
+            return []
 
-# Parse the HTML content using BeautifulSoup
-soup = BeautifulSoup(driver.page_source, 'html.parser')
-
-# Find the table with the class 'table-fixed w-full'
-models_table = soup.find('table', {'class': 'table-fixed w-full'})
-
-# Assuming each model is in a row within the table body (tbody)
-model_rows = models_table.find('tbody').find_all('tr')
-
-models_data = []
-for row in model_rows:
-    # Find the anchor and code tags within the row
-    model_name_tag = row.find('a')
-    model_id_tag = row.find('code')
-    
-    # Extract the text from the tags
-    model_name = model_name_tag.text.strip() if model_name_tag else ""
-    model_id = model_id_tag.text.strip() if model_id_tag else ""
-    model_href = model_name_tag['href'] if model_name_tag else ""
-    
-    model_info = {
-        "category": "generic",
-        "datasets": "unknown",
-        "icon": "",  # Placeholder for icon URL
-        "last_commit_time": "",  # Placeholder for last commit time
-        "license": "commercial",
-        "model_creator": "",  # Placeholder for model creator
-        "model_creator_link": model_href,  # Extracted href from the anchor tag
-        "name": model_id,
-        "quantizer": None,
-        "rank": 0.0,  # Placeholder for rank
-        "type": "api",
-        "variants": [
-            {
-                "name": model_name,
-                "size": "Not so much"  # Placeholder for size
+    def format_models(self, models_data: List[Dict]) -> List[Dict]:
+        """Formats the raw API data into the desired structure"""
+        formatted_models = []
+        for model in models_data:
+            formatted_model = {
+                "category": "generic",
+                "datasets": "unknown",
+                "icon": "",
+                "last_commit_time": "",
+                "license": "commercial",
+                "model_creator": "",
+                "model_creator_link": f"/models/{model['id']}",
+                "name": model['id'],
+                "quantizer": None,
+                "rank": 0.0,
+                "type": "api",
+                "context_length": model['context_length'],
+                "architecture": {
+                    "modality": model['architecture'].get('modality', ''),
+                    "tokenizer": model['architecture'].get('tokenizer', ''),
+                    "instruct_type": model['architecture'].get('instruct_type', '')
+                },
+                "per_request_limits": model.get('per_request_limits'),
+                "variants": [{
+                    "name": model['name'],
+                    "size": f"Context length: {model['context_length']}",
+                    "input_cost": float(model['pricing']['prompt']),
+                    "output_cost": float(model['pricing']['completion'])
+                }]
             }
-        ]
-    }
-    models_data.append(model_info)
+            formatted_models.append(formatted_model)
+        return formatted_models
 
-# Convert the list of dictionaries to YAML
-models_yaml = yaml.dump(models_data)
+    def save_models_yaml(self, output_path: str = None):
+        """Fetches models, formats them, and saves to a YAML file"""
+        if not output_path:
+            output_path = str(Path(__file__).parent/"models.yaml")
+        models_data = self.fetch_models()
+        formatted_models = self.format_models(models_data)
 
-# Output the YAML or write it to a file
-print(models_yaml)
-with open('models.yaml', 'w') as yaml_file:
-    yaml_file.write(models_yaml)
+        with open(output_path, 'w') as file:
+            yaml.dump(formatted_models, file, default_flow_style=False)
+
+        print(f"Models data saved to {output_path}")
+
+# Usage
+if __name__ == "__main__":
+    fetcher = OpenRouterModelFetcher()
+    fetcher.save_models_yaml()

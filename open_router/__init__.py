@@ -12,7 +12,7 @@
 
 ######
 from pathlib import Path
-from typing import Callable, Any
+from typing import Callable, Any, List
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
@@ -23,6 +23,7 @@ import subprocess
 import yaml
 import sys
 import base64
+import requests
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -51,26 +52,13 @@ class OpenRouter(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        self.input_costs_by_model={
-            "mistralai/mistral-7b-instruct":0.0,
-            "gpt-4-vision-preview":0.03,
-            "gpt-4":0.03,
-            "gpt-4-32k":0.06,
-            "gpt-3.5-turbo-1106":0.0015,
-            "gpt-3.5-turbo":0.0010,
-            "gpt-3.5-turbo-16k":0.003,
-        }       
-        self.output_costs_by_model={
-            "mistralai/mistral-7b-instruct":0.0,
-            "gpt-4-vision-preview":0.03,
-            "gpt-4":0.06,
-            "gpt-4-32k":0.12,
-            "gpt-3.5-turbo-1106":0.0015,
-            "gpt-3.5-turbo":0.002,
-            "gpt-3.5-turbo-16k":0.004,
-        }
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
+        
+        with open(Path(__file__).parent/"models.yaml") as f:
+            self.models = yaml.safe_load(f)
+         
+
         # Initialization code goes here
         binding_config = TypedConfig(
             ConfigTemplate([
@@ -107,10 +95,19 @@ class OpenRouter(LLMBinding):
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
+
+        if model_name is not None:
+            return
+        # Search for the model by name
+        self.current_model_metadata = None
+
+        for model in self.models:
+            if model['name'] == model_name:
+                self.current_model_metadata = model 
+
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
         from openai import OpenAI
-        from os import getenv
         if self.binding_config.config["open_router_key"] =="":
             self.error("No API key is set!\nPlease set up your API key in the binding configuration")
             raise Exception("No API key is set!\nPlease set up your API key in the binding configuration")
@@ -119,7 +116,7 @@ class OpenRouter(LLMBinding):
             api_key=self.binding_config.config["open_router_key"],
         )
 
-        if "vision" in self.config.model_name:
+        if self.current_model_metadata["architecture"]["modality"] in ["text+image->text"]:
             self.binding_type = BindingType.TEXT_IMAGE
 
         # Do your initialization stuff
@@ -403,17 +400,46 @@ class OpenRouter(LLMBinding):
         self.binding_config.save()
         return output
 
-    def list_models(self):
-        """Lists the models for this binding
-        """
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
+    API_URL = "https://openrouter.ai/api/v1/models"
 
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
+    def fetch_models(self) -> List[Dict]:
+        """Fetches the model data from the OpenRouter API"""
+        try:
+            response = requests.get(self.API_URL)
+            response.raise_for_status()  # Raises an HTTPError for bad responses
+            data = response.json()
+            return data.get('data', [])
+        except requests.RequestException as e:
+            print(f"Error fetching models: {e}")
+            return []
+
+    def list_models(self) -> List[str]:
+        """Lists the models for this binding"""
+        models_data = self.fetch_models()
         
+        formatted_models = []
+        for model in models_data:
+            formatted_model = {
+                "category": "generic",
+                "datasets": "unknown",
+                "icon": "",
+                "last_commit_time": "",
+                "license": "commercial",
+                "model_creator": "",
+                "model_creator_link": f"/models/{model['id']}",
+                "name": model['id'],
+                "quantizer": None,
+                "rank": 0.0,
+                "type": "api",
+                "variants": [{
+                    "name": model['name'],
+                    "size": f"Context length: {model['context_length']}"
+                }]
+            }
+            formatted_models.append(formatted_model)
 
-        return [f["name"] for f in yaml_data]
+        return [model['name'] for model in formatted_models]
+
                 
                 
     def get_available_models(self, app:LoLLMsCom=None):
