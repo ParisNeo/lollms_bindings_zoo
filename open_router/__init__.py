@@ -12,7 +12,7 @@
 
 ######
 from pathlib import Path
-from typing import Callable, Any, List
+from typing import Callable, Any, List, Dict
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
