@@ -68,7 +68,7 @@ class OpenRouter(LLMBinding):
                 {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
                 {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
                 {"name":"open_router_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
-                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
+                {"name":"ctx_size","type":"int","value":-1, "min":-1, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
 
@@ -105,7 +105,7 @@ class OpenRouter(LLMBinding):
             if model['name'] == model_name:
                 self.current_model_metadata = model 
 
-        self.config.ctx_size=self.binding_config.config.ctx_size
+        self.config.ctx_size=self.binding_config.config.ctx_size if self.binding_config.config.ctx_size>0 else self.current_model_metadata["context_length"]
         self.config.max_n_predict=self.binding_config.max_n_predict
         from openai import OpenAI
         if self.binding_config.config["open_router_key"] =="":
@@ -200,7 +200,7 @@ class OpenRouter(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
             count = 0
             output = ""
-            if "vision" in self.config.model_name:
+            if self.current_model_metadata["architecture"]["modality"] in ["text+image->text"]:
                 messages = [
                             {
                                 "role": "user", 
@@ -244,7 +244,7 @@ class OpenRouter(LLMBinding):
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
-        return ""      
+        return output      
 
     def generate_with_images(self, 
                 prompt:str,
@@ -263,8 +263,9 @@ class OpenRouter(LLMBinding):
         """
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
         self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.current_model_metadata["variants"][0]["input_cost"]
-        if not "vision" in self.config.model_name:
-            raise Exception("You can not call a generate with vision on this model")
+        if not self.current_model_metadata["architecture"]["modality"] in ["text+image->text"]:
+            self.error("You can not call a generate with vision on this model")
+            return self.generate(prompt, n_predict, callback, verbose, gpt_params)
         try:
             default_params = {
                 'temperature': 0.7,
@@ -325,7 +326,7 @@ class OpenRouter(LLMBinding):
             trace_exception(ex)
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
-        return ""       
+        return output      
 
 
     def generate(self, 
@@ -354,7 +355,7 @@ class OpenRouter(LLMBinding):
             gpt_params = {**default_params, **gpt_params}
             count = 0
             output = ""
-            if "vision" in self.config.model_name:
+            if self.current_model_metadata["architecture"]["modality"] in ["text+image->text"]:
                 messages = [
                             {
                                 "role": "user", 
