@@ -96,8 +96,8 @@ class OpenRouter(LLMBinding):
     def build_model(self, model_name=None):
         super().build_model(model_name)
 
-        if model_name is not None:
-            return
+        if model_name is None:
+            model_name = self.lollmsCom.config.model_name
         # Search for the model by name
         self.current_model_metadata = None
 
@@ -189,7 +189,7 @@ class OpenRouter(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0) /1000
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.current_model_metadata["variants"][0]["input_cost"]
         try:
             default_params = {
                 'temperature': 0.7,
@@ -240,7 +240,7 @@ class OpenRouter(LLMBinding):
             self.error(f'Error {ex}')
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0)/1000    
+        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.current_model_metadata["variants"][0]["output_cost"]    
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
@@ -262,7 +262,7 @@ class OpenRouter(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0) /1000
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.current_model_metadata["variants"][0]["input_cost"]
         if not "vision" in self.config.model_name:
             raise Exception("You can not call a generate with vision on this model")
         try:
@@ -318,7 +318,7 @@ class OpenRouter(LLMBinding):
 
 
             self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0)/1000    
+            self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.current_model_metadata["variants"][0]["output_cost"]   
             self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         except Exception as ex:
             self.error(f'Error {ex}')
@@ -343,7 +343,7 @@ class OpenRouter(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model.get(self.config["model_name"],0) /1000
+        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.current_model_metadata["variants"][0]["input_cost"]
         try:
             default_params = {
                 'temperature': 0.7,
@@ -394,7 +394,7 @@ class OpenRouter(LLMBinding):
             self.error(f'Error {ex}$')
             trace_exception(ex)
         self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model.get(self.config["model_name"],0)/1000    
+        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.current_model_metadata["variants"][0]["output_cost"]    
         self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
         self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
         self.binding_config.save()
@@ -415,42 +415,13 @@ class OpenRouter(LLMBinding):
 
     def list_models(self) -> List[str]:
         """Lists the models for this binding"""
-        models_data = self.fetch_models()
-        
-        formatted_models = []
-        for model in models_data:
-            formatted_model = {
-                "category": "generic",
-                "datasets": "unknown",
-                "icon": "",
-                "last_commit_time": "",
-                "license": "commercial",
-                "model_creator": "",
-                "model_creator_link": f"/models/{model['id']}",
-                "name": model['id'],
-                "quantizer": None,
-                "rank": 0.0,
-                "type": "api",
-                "variants": [{
-                    "name": model['name'],
-                    "size": f"Context length: {model['context_length']}"
-                }]
-            }
-            formatted_models.append(formatted_model)
-
-        return [model['name'] for model in formatted_models]
+        return [model['name'] for model in self.models]
 
                 
                 
     def get_available_models(self, app:LoLLMsCom=None):
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-        return yaml_data
+        # Create the file path relative to the child class's directory        
+        return self.models
     
 
 if __name__=="__main__":
