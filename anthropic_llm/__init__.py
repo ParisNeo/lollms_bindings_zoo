@@ -263,7 +263,7 @@ class AnthropicLLM(LLMBinding):
     def generate_with_images(self, 
                 prompt:str,
                 images:list=[],
-                n_predict: int = 128,
+                n_predict: int = None,
                 callback: Callable[[str, int, dict], bool] = None,
                 verbose: bool = False,
                 **gpt_params ):
