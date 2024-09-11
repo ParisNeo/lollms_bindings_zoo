@@ -117,7 +117,10 @@ class DeepSeek(LLMBinding):
     def build_model(self, model_name=None):
         super().build_model(model_name)
         from openai import OpenAI
-        self.openai = OpenAI(api_key=self.binding_config.deepseek_key or os.getenv('OPENAI_API_KEY'), base_url="https://api.deepseek.com")
+        try:
+            self.openai = OpenAI(api_key=self.binding_config.deepseek_key or os.getenv('OPENAI_API_KEY'), base_url="https://api.deepseek.com")
+        except:
+            self.warning("No api key is set. This binding will not work")
         # Do your initialization stuff
         return self
 
