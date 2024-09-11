@@ -1,0 +1,7 @@
+name: DeepSeek
+author: DeepSeek
+version: 1.0
+link: https://deepseek.com/
+description: This binding uses the deepseek api to make you use deepseek models
+accepted_models: 
+  - deepkeep

@@ -1,0 +1,29 @@
+- category: generic
+  datasets: unknown
+  icon: https://cdn.deepseek.com/platform/favicon.png
+  last_commit_time: 1686587434
+  license: commercial
+  model_creator: deepseek
+  model_creator_link: https://deepseek.com
+  name: deepseek-chat
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: deepseek-chat
+    size: 999999999999
+
+- category: generic
+  datasets: unknown
+  icon: https://cdn.deepseek.com/platform/favicon.png
+  last_commit_time: 1698959748
+  license: commercial
+  model_creator: deepseek
+  model_creator_link: https://deepseek.com
+  name: deepseek-coder
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: gdeepseek-coder
+    size: 999999999999
