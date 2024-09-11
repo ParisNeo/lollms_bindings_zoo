@@ -116,23 +116,8 @@ class DeepSeek(LLMBinding):
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
-        import openai
-        self.openai = openai
-
-        if self.config.model_name is not None:
-            if "vision" in self.config.model_name or "4o" in self.config.model_name:
-                self.binding_type = BindingType.TEXT_IMAGE
-
-        # The local key overrides the environment variable key
-        if self.openai.api_key =="":
-            # If there is no key, try find one in the environment
-            api_key = os.getenv('OPENAI_API_KEY')
-            if not api_key:
-                self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            self.openai.api_key = api_key
-        else:
-            # If there is a key in the configuration, then use it
-            self.openai.api_key = self.binding_config.config["deepseek_key"]
+        from openai import OpenAI
+        self.openai = OpenAI(api_key=self.binding_config.deepseek_key or os.getenv('OPENAI_API_KEY'), base_url="https://api.deepseek.com")
         # Do your initialization stuff
         return self
 
@@ -258,8 +243,7 @@ class DeepSeek(LLMBinding):
                             max_tokens=n_predict,  # Adjust the desired length of the generated response
                             n=1,  # Specify the number of responses you want
                             temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                            stream=True,
-                            base_url="https://api.deepseek.com"
+                            stream=True
                             )
             
             for resp in chat_completion:
@@ -340,8 +324,8 @@ class DeepSeek(LLMBinding):
                                 max_tokens=n_predict-7 if n_predict>512 else n_predict,  # Adjust the desired length of the generated response
                                 n=1,  # Specify the number of responses you want
                                 temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
-                                stream=True,
-                                base_url="https://api.deepseek.com")
+                                stream=True
+                                )
                 
                 for resp in chat_completion:
                     if count >= n_predict:
