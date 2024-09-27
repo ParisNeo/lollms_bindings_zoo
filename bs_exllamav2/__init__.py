@@ -118,7 +118,12 @@ class ExLLamav2(LLMBinding):
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size
-        self.config.max_n_predict=self.binding_config.max_n_predict
+        try:
+            self.config.max_n_predict=self.binding_config.max_n_predict
+        except:
+            self.config.max_n_predict=4096
+            self.binding_config.max_n_predict=4096
+            self.binding_config.save()
         self.callback = None
         self.n_generated = 0
         self.n_prompt = 0
@@ -274,8 +279,11 @@ class ExLLamav2(LLMBinding):
 
         self.ShowBlockingMessage(f"Installing requirements for hardware configuration {self.config.hardware_mode}")
         try:
-            
-
+            subprocess.run([sys.executable, "-m", "pip", "install", "-r", self.binding_dir / "requirements.txt", "--upgrade"], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Subprocess failed with returncode {e.returncode}")
+            return False
+        try:
             if show_yes_no_dialog("Request","Activate flash attention?\nFlash attention may accelerate the inference a great deal"):
                 enable_flash_attention_2 = True
             else:
