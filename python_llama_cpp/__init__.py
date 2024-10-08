@@ -590,7 +590,7 @@ if __name__=="__main__":
     plc = LLAMA_Python_CPP(config, lollms_paths,lollmsCom=lollms_app)
     plc.install()
     
-    plc.install_model("gguf","https://huggingface.co/TheBloke/Airoboros-M-7B-3.1.1-GGUF/resolve/main/airoboros-m-7b-3.1.1.Q4_0.gguf","airoboros-m-7b-3.1.1.Q4_0.gguf")
+    plc.install_model("gguf","https://huggingface.co/ParisNeo/LLama-3.2-3B-Lollms-Finetuned-GGUF/resolve/main/LLama-3.2-3B-Lollms-Finetuned-GGUF.Q8_0.gguf","LLama-3.2-3B-Lollms-Finetuned-GGUF.Q8_0.gguf")
     config.binding_name = "python_llama_cpp"
-    config.model_name   = "Airoboros-M-7B-3.1.1-GGUF"
+    config.model_name   = "LLama-3.2-3B-Lollms-Finetuned-GGUF"
     config.save_config()
