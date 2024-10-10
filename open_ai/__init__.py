@@ -359,27 +359,36 @@ class OpenAIGPT(LLMBinding):
                 
 
             if self.binding_config.generation_mode=="chat":
-                chat_completion = self.openai.chat.completions.create(
+                if "o1" in self.model_name:
+                    chat_completion = self.openai.chat.completions.create(
                                 model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                                 messages=messages,
-                                max_tokens=n_predict-7 if n_predict>512 else n_predict,  # Adjust the desired length of the generated response
                                 n=1,  # Specify the number of responses you want
-                                temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
-                                stream=True)
+                                )
+                    output = chat_completion.choices[0].message.content
+                    callback(output, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK)
+                else:
+                    chat_completion = self.openai.chat.completions.create(
+                                    model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
+                                    messages=messages,
+                                    max_tokens=n_predict-7 if n_predict>512 else n_predict,  # Adjust the desired length of the generated response
+                                    n=1,  # Specify the number of responses you want
+                                    temperature=float(gpt_params["temperature"]),  # Adjust the temperature for more or less randomness in the output
+                                    stream=True)
                 
-                for resp in chat_completion:
-                    if count >= n_predict:
-                        break
-                    try:
-                        word = resp.choices[0].delta.content
-                    except Exception as ex:
-                        word = ""
-                    if callback is not None:
-                        if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
+                    for resp in chat_completion:
+                        if count >= n_predict:
                             break
-                    if word:
-                        output += word
-                        count += 1
+                        try:
+                            word = resp.choices[0].delta.content
+                        except Exception as ex:
+                            word = ""
+                        if callback is not None:
+                            if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
+                                break
+                        if word:
+                            output += word
+                            count += 1
             else:
                 completion = self.openai.completions.create(
                                 model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
