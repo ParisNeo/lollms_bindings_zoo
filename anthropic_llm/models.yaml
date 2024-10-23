@@ -1,3 +1,23 @@
+
+- category: generic
+  datasets: unknown
+  icon: /bindings/anthropic_llm/Anthropic.png
+  last_commit_time: null
+  license: commercial
+  model_creator: anthropic
+  model_creator_link: https://anthropic.com
+  name: claude-3-5-sonnet-latest
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: claude-3-5-sonnet-latest
+    size: null
+    ctx_size: 200000
+    max_n_predict: 4096
+    input_cost: 3.0
+    output_cost: 15.0
+
 - category: generic
   datasets: unknown
   icon: /bindings/anthropic_llm/Anthropic.png
@@ -17,6 +37,24 @@
     input_cost: 3.0
     output_cost: 15.0
 
+- category: generic
+  datasets: unknown
+  icon: /bindings/anthropic_llm/Anthropic.png
+  last_commit_time: null
+  license: commercial
+  model_creator: anthropic
+  model_creator_link: https://anthropic.com
+  name: claude-3-5-sonnet-20241022
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: claude-3-5-sonnet-20241022
+    size: null
+    ctx_size: 200000
+    max_n_predict: 4096
+    input_cost: 3.0
+    output_cost: 15.0
 
 - category: generic
   datasets: unknown
