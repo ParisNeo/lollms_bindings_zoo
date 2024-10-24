@@ -75,7 +75,7 @@ class Grok(LLMBinding):
             lollmsCom=lollmsCom
         )
         
-        self.binding_type = BindingType.TEXT
+        self.binding_type = BindingType.TEXT_IMAGE  # or BindingType.TEXT if image support is confirmed
         
     def settings_updated(self):
         """Called when settings are updated"""
@@ -165,6 +165,91 @@ class Grok(LLMBinding):
             self.error(ex)
             
         return output
+        
+
+    def generate_with_images(self, 
+                prompt:str,
+                images:list=[],
+                n_predict: int = 128,
+                callback: Callable[[str, int, dict], bool] = None,
+                verbose: bool = False,
+                **gpt_params ):
+        """Generates text from a prompt with images
+
+        Args:
+            prompt (str): The prompt to use for generation
+            images (list): List of image file paths to process
+            n_predict (int, optional): Number of tokens to predict. Defaults to 128.
+            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
+            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
+        """
+        try:
+            # Process images
+            processed_images = []
+            for image_path in images:
+                with Image.open(image_path) as img:
+                    # Convert image to base64
+                    buffered = io.BytesIO()
+                    img.save(buffered, format="PNG")
+                    img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
+                    processed_images.append({
+                        "type": "image",
+                        "data": img_str
+                    })
+
+            # Prepare messages with both text and images
+            messages = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        *processed_images
+                    ]
+                }
+            ]
+
+            # Prepare request payload
+            payload = {
+                "model": self.config.model_name,
+                "messages": messages,
+                "max_tokens": min(n_predict, self.binding_config.max_tokens),
+                "temperature": self.binding_config.temperature,
+                "top_p": self.binding_config.top_p,
+                "stream": True
+            }
+
+            # Make streaming request
+            response = requests.post(
+                f"{self.binding_config.base_url}/chat/completions",
+                headers=self.headers,
+                json=payload,
+                stream=True
+            )
+
+            if response.status_code != 200:
+                raise Exception(f"API request failed with status {response.status_code}: {response.text}")
+
+            output = ""
+            for line in response.iter_lines():
+                if line:
+                    try:
+                        chunk = json.loads(line.decode('utf-8').replace('data: ', ''))
+                        if chunk and 'choices' in chunk and len(chunk['choices']) > 0:
+                            content = chunk['choices'][0].get('delta', {}).get('content', '')
+                            if content:
+                                if callback is not None:
+                                    if not callback(content, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
+                                        break
+                                output += content
+                    except json.JSONDecodeError:
+                        continue
+
+        except Exception as ex:
+            trace_exception(ex)
+            self.error(ex)
+            
+        return output
+
 
     def list_models(self):
         """Lists available models"""
