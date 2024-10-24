@@ -3,43 +3,45 @@
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
-# engine author : X AI
+# engine author : xAI
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
-
-# This binding is a wrapper to open ai's api
-
+# This binding is a wrapper for xAI's Grok API
 ######
+
 from pathlib import Path
 from typing import Callable, Any
 from lollms.config import BaseConfig, TypedConfig, ConfigTemplate, InstallOption
 from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
-from lollms.helpers import ASCIIColors, trace_exception
-from lollms.com import LoLLMsCom
+from lollms.helpers import ASCIIColors
 from lollms.types import MSG_OPERATION_TYPE
+from lollms.utilities import detect_antiprompt, remove_text_from_string, trace_exception, PackageManager
+from lollms.com import LoLLMsCom
 import subprocess
-import yaml
 import sys
-import os
+import json
+import requests
+from typing import List, Union
+from datetime import datetime
+from PIL import Image
 import base64
-import pipmaster as pm
+import io
+
+if not PackageManager.check_package_installed("tiktoken"):
+    PackageManager.install_package('tiktoken')
+import tiktoken
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
-__copyright__ = "Copyright 2023, "
+__copyright__ = "Copyright 2024, "
 __license__ = "Apache 2.0"
 
-binding_name = "xAI"
+binding_name = "Grok"
 binding_folder_name = ""
 
-# Function to encode the image
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode('utf-8')
-
-class xAI(LLMBinding):
+class Grok(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -47,262 +49,177 @@ class xAI(LLMBinding):
                 lollmsCom=None) -> None:
         """
         Initialize the Binding.
-
-        Args:
-            config (LOLLMSConfig): The configuration object for LOLLMS.
-            lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
-            installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        self.input_costs_by_model={
-            "grok":0.01
-        }       
-        self.output_costs_by_model={
-            "grok":0.03
-        }
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
-        # Initialization code goes here
+
         binding_config = TypedConfig(
             ConfigTemplate([
-                {"name":"total_input_tokens","type":"float", "value":0,"help":"The total number of input tokens in $"},
-                {"name":"total_output_tokens","type":"float", "value":0,"help":"The total number of output tokens in $"},
-                {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
-                {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
-                {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
-                {"name":"xai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
-                {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
-                {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
-                {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
-
+                {"name":"api_key","type":"str","value":"", "help":"Your xAI API key"},
+                {"name":"base_url","type":"str","value":"https://api.grok.x.ai/v1", "help":"API base URL"},
+                {"name":"ctx_size","type":"int","value":8192, "min":512, "help":"The current context size"},
+                {"name":"max_tokens","type":"int","value":4096, "min":1, "help":"Maximum number of tokens to generate"},
+                {"name":"temperature","type":"float","value":0.7, "min":0.0, "max":2.0, "help":"Temperature for sampling"},
+                {"name":"top_p","type":"float","value":0.95, "min":0.0, "max":1.0, "help":"Top-p sampling parameter"},
             ]),
-            BaseConfig(config={
-                "openai_key": "",     # use avx2
-            })
+            BaseConfig(config={})
         )
+        
         super().__init__(
-                            Path(__file__).parent, 
-                            lollms_paths, 
-                            config, 
-                            binding_config, 
-                            installation_option,
-                            supported_file_extensions=[''],
-                            lollmsCom=lollmsCom
-                        )
-        self.config.ctx_size=self.binding_config.config.ctx_size
-        self.config.max_n_predict=self.binding_config.max_n_predict
+            Path(__file__).parent, 
+            lollms_paths, 
+            config, 
+            binding_config, 
+            installation_option,
+            supported_file_extensions=[''],
+            lollmsCom=lollmsCom
+        )
         
-    def build_model(self, model_name=None):
-        super().build_model(model_name)
-        self.config.ctx_size=self.binding_config.config.ctx_size
-        self.config.max_n_predict=self.binding_config.max_n_predict
-        if not pm.is_installed("xai-sdk"):
-            pm.install_or_update("xai-sdk")
-        import xai_sdk
-        os.environ["XAI_API_KEY"] = self.binding_config.config["xai_key"]
-        self.xai_client = xai_sdk.Client()
+        self.binding_type = BindingType.TEXT
         
-        if "vision" in self.config.model_name:
-            self.binding_type == BindingType.TEXT_IMAGE
+    def settings_updated(self):
+        """Called when settings are updated"""
+        if not self.binding_config.api_key:
+            self.error("No API key is set! Please set up your xAI API key in the binding configuration")
+        else:
+            self.build_model()
 
-        # Do your initialization stuff
+    def build_model(self, model_name=None):
+        """Builds the model"""
+        super().build_model(model_name)
+        self.headers = {
+            "Authorization": f"Bearer {self.binding_config.api_key}",
+            "Content-Type": "application/json"
+        }
         return self
 
     def install(self):
+        """Installs required packages"""
         super().install()
-        requirements_file = self.binding_dir / "requirements.txt"
-        # install requirements
-        subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "--no-cache-dir", "-r", str(requirements_file)])
+        PackageManager.install_package("requests")
         ASCIIColors.success("Installed successfully")
-        ASCIIColors.error("----------------------")
-        ASCIIColors.error("Attention please")
-        ASCIIColors.error("----------------------")
-        ASCIIColors.error("The xAI binding uses the XAI API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration file.")
+        ASCIIColors.warning("----------------------")
+        ASCIIColors.warning("Attention please")
+        ASCIIColors.warning("----------------------")
+        ASCIIColors.warning("The Grok binding uses xAI's API which is a paid service. Please create an account on xAI and provide your API key in the configuration.")
 
     def tokenize(self, prompt:str):
-        """
-        Tokenizes the given prompt using the model's tokenizer.
-
-        Args:
-            prompt (str): The input prompt to be tokenized.
-
-        Returns:
-            list: A list of tokens representing the tokenized prompt.
-        """
-        import tiktoken
-        tokens_list = tiktoken.model.encoding_for_model("gpt-3.5-turbo-1106").encode(prompt)
-
-        return tokens_list
+        """Tokenizes the given prompt"""
+        return tiktoken.model.encoding_for_model("gpt-4").encode(prompt)
 
     def detokenize(self, tokens_list:list):
-        """
-        Detokenizes the given list of tokens using the model's tokenizer.
-
-        Args:
-            tokens_list (list): A list of tokens to be detokenized.
-
-        Returns:
-            str: The detokenized text as a string.
-        """
-        import tiktoken
-        text = tiktoken.model.encoding_for_model("gpt-3.5-turbo-1106").decode(tokens_list)
-
-        return text
-
-    def embed(self, text):
-        """
-        Computes text embedding
-        Args:
-            text (str): The text to be embedded.
-        Returns:
-            List[float]
-        """
-        
-        pass
+        """Detokenizes the given tokens"""
+        return tiktoken.model.encoding_for_model("gpt-4").decode(tokens_list)
 
     def generate(self, 
-                 prompt:str,                  
-                 n_predict: int = 128,
-                 callback: Callable[[str], None] = None,
-                 verbose: bool = False,
-                 **gpt_params ):
-        """Generates text out of a prompt
-
-        Args:
-            prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
-            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
-            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
-        """
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
+                prompt: str,                  
+                n_predict: int = 128,
+                callback: Callable[[str], None] = None,
+                verbose: bool = False,
+                **gpt_params) -> str:
+        """Generates text from a prompt"""
         try:
-            default_params = {
-                'temperature': 0.7,
-                'top_k': 50,
-                'top_p': 0.96,
-                'repeat_penalty': 1.3
-            }
-            gpt_params = {**default_params, **gpt_params}
-            count = 0
             output = ""
-            for token in self.xai_client.sampler.sample(prompt, max_len=3):
-                if count >= n_predict:
-                    break
-                try:
-                    word = token.token_str
-                except Exception as ex:
-                    word = ""
-                if callback is not None:
-                    if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
-                        break
-                if word:
-                    output += word
-                    count += 1
+            
+            # Prepare the chat message
+            messages = [{"role": "user", "content": prompt}]
+            
+            # Prepare the request payload
+            payload = {
+                "model": self.config.model_name,
+                "messages": messages,
+                "max_tokens": min(n_predict, self.binding_config.max_tokens),
+                "temperature": self.binding_config.temperature,
+                "top_p": self.binding_config.top_p,
+                "stream": True
+            }
 
+            # Make streaming request
+            response = requests.post(
+                f"{self.binding_config.base_url}/chat/completions",
+                headers=self.headers,
+                json=payload,
+                stream=True
+            )
+
+            if response.status_code != 200:
+                raise Exception(f"API request failed with status {response.status_code}: {response.text}")
+
+            for line in response.iter_lines():
+                if line:
+                    # Remove "data: " prefix and parse JSON
+                    try:
+                        chunk = json.loads(line.decode('utf-8').replace('data: ', ''))
+                        if chunk and 'choices' in chunk and len(chunk['choices']) > 0:
+                            content = chunk['choices'][0].get('delta', {}).get('content', '')
+                            if content:
+                                if callback is not None:
+                                    if not callback(content, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
+                                        break
+                                output += content
+                    except json.JSONDecodeError:
+                        continue
 
         except Exception as ex:
-            self.error(f'Error {ex}')
             trace_exception(ex)
-        
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}')
-        self.binding_config.save()
-        return ""      
-
-    def generate(self, 
-                 prompt:str,                  
-                 n_predict: int = 128,
-                 callback: Callable[[str], None] = None,
-                 verbose: bool = False,
-                 **gpt_params ):
-        """Generates text out of a prompt
-
-        Args:
-            prompt (str): The prompt to use for generation
-            n_predict (int, optional): Number of tokens to prodict. Defaults to 128.
-            callback (Callable[[str], None], optional): A callback function that is called everytime a new text element is generated. Defaults to None.
-            verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
-        """
-        self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-        self.binding_config.config["total_input_cost"] =  self.binding_config.config["total_input_tokens"] * self.input_costs_by_model[self.config["model_name"]] /1000
-        try:
-            default_params = {
-                'temperature': 0.7,
-                'top_k': 50,
-                'top_p': 0.96,
-                'repeat_penalty': 1.3
-            }
-            gpt_params = {**default_params, **gpt_params}
-            count = 0
-            output = ""
-            if "vision" in self.config.model_name:
-                messages = [
-                            {
-                                "role": "user", 
-                                "content": [
-                                    {
-                                        "type":"text",
-                                        "text":prompt
-                                    }
-                                ]
-                            }
-                        ]
-            else:
-                messages = [{"role": "user", "content": prompt}]
-            chat_completion = self.openai.chat.completions.create(
-                            model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
-                            messages=messages,
-                            max_tokens=n_predict,  # Adjust the desired length of the generated response
-                            n=1,  # Specify the number of responses you want
-                            stop=None,  # Define a stop sequence if needed
-                            temperature=gpt_params["temperature"],  # Adjust the temperature for more or less randomness in the output
-                            stream=True)
-            for resp in chat_completion:
-                if count >= n_predict:
-                    break
-                try:
-                    word = resp.choices[0].delta.content
-                except Exception as ex:
-                    word = ""
-                if callback is not None:
-                    if not callback(word, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
-                        break
-                if word:
-                    output += word
-                    count += 1
-
-
-        except Exception as ex:
-            self.error(f'Error {ex}')
-            trace_exception(ex)
-        self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-        self.binding_config.config["total_output_cost"] =  self.binding_config.config["total_output_tokens"] * self.output_costs_by_model[self.config["model_name"]]/1000    
-        self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
-        self.info(f'Consumed {self.binding_config.config["total_output_cost"]}$')
-        self.binding_config.save()
-        return "" 
+            self.error(ex)
+            
+        return output
 
     def list_models(self):
-        """Lists the models for this binding
-        """
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
-        
-
-        return [f["name"] for f in yaml_data]
-                
+        """Lists available models"""
+        try:
+            response = requests.get(
+                f"{self.binding_config.base_url}/models",
+                headers=self.headers
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                return [model["id"] for model in data.get("models", [])]
+            else:
+                self.error(f"Failed to get models list: {response.text}")
+                return []
+        except Exception as ex:
+            trace_exception(ex)
+            return []
 
     def get_available_models(self, app:LoLLMsCom=None):
-        # Create the file path relative to the child class's directory
-        binding_path = Path(__file__).parent
-        file_path = binding_path/"models.yaml"
-
-        with open(file_path, 'r') as file:
-            yaml_data = yaml.safe_load(file)
+        """Gets information about available models"""
+        models = []
         
-        return yaml_data
+        try:
+            response = requests.get(
+                f"{self.binding_config.base_url}/models",
+                headers=self.headers
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                for model in data.get("models", []):
+                    md = {
+                        "category": "generic",
+                        "datasets": "unknown",
+                        "icon": '/bindings/grok/logo.png',
+                        "last_commit_time": datetime.now().timestamp(),
+                        "license": "commercial",
+                        "model_creator": "xAI",
+                        "model_creator_link": "https://grok.x.ai/",
+                        "name": model["id"],
+                        "quantizer": None,
+                        "rank": 1.0,
+                        "type": "api",
+                        "variants":[
+                            {
+                                "name": model["id"],
+                                "size": 999999999999
+                            }
+                        ]
+                    }
+                    models.append(md)
+                    
+        except Exception as ex:
+            trace_exception(ex)
+            
+        return models
