@@ -244,7 +244,7 @@ class OpenAIGPT(LLMBinding):
         if self.binding_config.config.turn_on_cost_estimation:
             self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
             self.binding_config.config["total_input_cost"] =  (self.binding_config.config["total_input_tokens"]/1000) * self.input_costs_by_model.get(self.config["model_name"], 0)
-        if not ("vision" in self.config.model_name or "4o" in self.config.model_name):
+        if not ("vision" in self.config.model_name or "o" in self.config.model_name):
             self.error("You can not call a generate with vision on this model")
             return
         try:
