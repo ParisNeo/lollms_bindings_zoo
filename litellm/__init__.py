@@ -276,19 +276,22 @@ class LiteLLM(LLMBinding):
                 decoded = line.decode("utf-8")
                 if decoded.startswith("{"):
                     json_data = json.loads(decoded)
+                    decoded = json_data["choices"][0]["text"]
                     if "error" in json_data:
                         self.error(json_data["error"]["message"])
                         break
                 elif decoded.startswith("data"):
-                    json_data = json.loads("{"+decoded+"}")
+                    decoded=decoded[6:]
+                    json_data = json.loads()
+                    decoded = json_data["choices"][0]["text"]
                     if "error" in json_data:
                         self.error(json_data["error"]["message"])
                         break
                 else:
                     text +=decoded
-                    if callback:
-                        if not callback(decoded, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
-                                break
+                if callback:
+                    if not callback(decoded, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
+                            break
         except Exception as ex:
             self.error(f'Error {ex}')
             trace_exception(ex)
