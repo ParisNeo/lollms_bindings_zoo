@@ -279,6 +279,11 @@ class LiteLLM(LLMBinding):
                     if "error" in json_data:
                         self.error(json_data["error"]["message"])
                         break
+                elif decoded.startswith("data"):
+                    json_data = json.loads("{"+decoded+"}")
+                    if "error" in json_data:
+                        self.error(json_data["error"]["message"])
+                        break
                 else:
                     text +=decoded
                     if callback:
