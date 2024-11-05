@@ -280,6 +280,9 @@ class LiteLLM(LLMBinding):
                     if "error" in json_data:
                         self.error(json_data["error"]["message"])
                         break
+                elif decoded.startswith("[DONE]"):
+                    decoded = ""
+                    break
                 elif decoded.startswith("data"):
                     decoded=decoded[6:]
                     json_data = json.loads(decoded)
