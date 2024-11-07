@@ -18,6 +18,26 @@
     input_cost: 3.0
     output_cost: 15.0
 
+
+- category: generic
+  datasets: unknown
+  icon: /bindings/anthropic_llm/Anthropic.png
+  last_commit_time: null
+  license: commercial
+  model_creator: anthropic
+  model_creator_link: https://anthropic.com
+  name: claude-3-5-haiku-latest
+  quantizer: null
+  rank: 1.0
+  type: api
+  variants:
+  - name: claude-3-5-haiku-latest
+    size: null
+    ctx_size: 200000
+    max_n_predict: 4096
+    input_cost: 3.0
+    output_cost: 15.0
+
 - category: generic
   datasets: unknown
   icon: /bindings/anthropic_llm/Anthropic.png
