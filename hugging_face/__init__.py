@@ -244,7 +244,14 @@ class HuggingFace(LLMBinding):
                         device_map=self.binding_config.device_map,
                         trust_remote_code=self.binding_config.trust_remote_code,
                         low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
-                    )                    
+                    )
+                else:
+                    self.model = AutoModelForCausalLM.from_pretrained(
+                        str(model_path),
+                        device_map="auto",
+                        torch_dtype=torch.float16  # Load in float16 for quantization
+                    )
+                                     
                 print(f"Model {model_name} built successfully.")
                 self.model_device = self.model.parameters().__next__().device
                 self.ShowBlockingMessage(f"Model loaded successfully")
