@@ -206,6 +206,11 @@ class HuggingFace(LLMBinding):
                 import os
                 os.environ['HF_HOME'] = str(models_dir)
                 self.ShowBlockingMessage(f"Creating tokenizer {model_path}")
+                mn= Path(model_name)
+                ref_path = mn/(mn.stem+".reference")
+                if (ref_path).exists():
+                    model_name = ref_path.read_text()
+                    model_path = model_name
                 
                 self.tokenizer = AutoTokenizer.from_pretrained(
                         str(model_name), trust_remote_code=self.binding_config.trust_remote_code
