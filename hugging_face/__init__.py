@@ -252,7 +252,8 @@ class HuggingFace(LLMBinding):
                     self.tokenizer = AutoTokenizer.from_pretrained(str(model_path), padding_side="left")
                     awq_config = AwqConfig(bits=4, tokenizer=self.tokenizer)
                     self.model = AutoModelForCausalLM.from_pretrained(
-                        str(model_path), quantization_config=awq_config, 
+                        str(model_path),
+                        quantization_config=awq_config, 
                         device_map=self.binding_config.device_map,
                         trust_remote_code=self.binding_config.trust_remote_code,
                         low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
