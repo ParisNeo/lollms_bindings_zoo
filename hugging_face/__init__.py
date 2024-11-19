@@ -95,6 +95,9 @@ class HuggingFace(LLMBinding):
         # Initialization code goes here
         binding_config_template = ConfigTemplate([
 
+            {"name":"load_quantized_8bit","type":"bool","value":False, "help":"Quantize the model to 8 bits."},
+            {"name":"load_quantized_4bit","type":"bool","value":False, "help":"Quantize the model to 4 bits."},
+            {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
             {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
@@ -136,6 +139,8 @@ class HuggingFace(LLMBinding):
 
         self.model = None
         self.tokenizer = None
+
+        self.binding_config = binding_config
         
     def settings_updated(self):
         self.config.ctx_size=self.binding_config.config.ctx_size
@@ -219,12 +224,14 @@ class HuggingFace(LLMBinding):
 
                 if "llava" in str(model_path).lower() or "vision" in str(model_path).lower():
                     self.model = LlavaForConditionalGeneration.from_pretrained(str(model_path),
-                                                torch_dtype=torch.float16,
                                                 device_map=self.binding_config.device_map,
                                                 offload_folder="offload",
                                                 offload_state_dict = True, 
                                                 trust_remote_code=self.binding_config.trust_remote_code,
                                                 low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                                                load_in_8bit = self.binding_config.load_quantized_8bit,
+                                                load_in_4bit = self.binding_config.load_quantized_4bit if not self.binding_config.load_quantized_8bit else False,
+                                                torch_dtype=torch.bfloat16  # Load in float16 for quantization
                                                 )
                     self.image_rocessor = AutoProcessor.from_pretrained(str(model_path))
                     self.binding_type= BindingType.TEXT_IMAGE
@@ -253,8 +260,12 @@ class HuggingFace(LLMBinding):
                 else:
                     self.model = AutoModelForCausalLM.from_pretrained(
                         str(model_path),
-                        device_map="auto",
-                        torch_dtype=torch.float16  # Load in float16 for quantization
+                        device_map=self.binding_config.device_map,
+                        trust_remote_code=self.binding_config.trust_remote_code,
+                        low_cpu_mem_usage=self.binding_config.low_cpu_mem_usage,
+                        load_in_8bit = self.binding_config.load_quantized_8bit,
+                        load_in_4bit = self.binding_config.load_quantized_4bit if not self.binding_config.load_quantized_8bit else False,
+                        torch_dtype=torch.bfloat16  # Load in float16 for quantization
                     )
                                      
                 print(f"Model {model_name} built successfully.")
@@ -915,7 +926,7 @@ class HuggingFace(LLMBinding):
                 file_name = span_tag.text
                 if file_name not in dont_download:
                     file_names.append(file_name)
-
+        file_names = file_names[1::2]
         if len(file_names)==0:
             ASCIIColors.warning(f"No files found. This is probably a model with disclaimer. Please make sure you read the disclaimer before using the model.")
             main_url = "https://huggingface.co/"+repo+"/tree/main?not-for-all-audiences=true" #f"https://huggingface.co/{}/tree/main"
