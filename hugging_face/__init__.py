@@ -98,7 +98,6 @@ class HuggingFace(LLMBinding):
             {"name":"load_quantized_8bit","type":"bool","value":False, "help":"Quantize the model to 8 bits."},
             {"name":"load_quantized_4bit","type":"bool","value":False, "help":"Quantize the model to 4 bits."},
             {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
-            {"name":"low_cpu_mem_usage","type":"bool","value":True, "help":"Low cpu memory."},
             {"name":"lora_file","type":"str","value":"", "help":"If you want to load a lora on top of your model then set the path to the lora here."},
             {"name":"trust_remote_code","type":"bool","value":False, "help":"If true, remote codes found inside models ort their tokenizer are trusted and executed."},
             {"name":"device_map","type":"str","value":'auto','options':device_names, "help":"Select how the model will be spread on multiple devices"},
