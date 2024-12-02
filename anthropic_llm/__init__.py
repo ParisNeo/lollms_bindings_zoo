@@ -23,9 +23,10 @@ from lollms.com import LoLLMsCom
 import subprocess
 import yaml
 import sys
+import pipmaster as pm
 import base64
-if not PackageManager.check_package_installed("PIL"):
-    PackageManager.install_package("Pillow")
+if not pm.is_installed("PIL"):
+    pm.install("Pillow")
 from PIL import Image
 import io
 
@@ -97,6 +98,8 @@ class AnthropicLLM(LLMBinding):
         self.config.max_n_predict=self.binding_config.max_n_predict
         
     def settings_updated(self):
+        if not pm.is_installed("anthropic"):
+            pm.install("anthropic")
         import anthropic
         if self.binding_config.config["anthropic_key"] =="":
             self.error("No API key is set!\nPlease set up your API key in the binding configuration")
