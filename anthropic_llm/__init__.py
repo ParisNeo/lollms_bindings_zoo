@@ -25,7 +25,7 @@ import yaml
 import sys
 import pipmaster as pm
 import base64
-if not pm.is_installed("PIL"):
+if not pm.is_installed("Pillow"):
     pm.install("Pillow")
 from PIL import Image
 import io
