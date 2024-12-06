@@ -25,9 +25,6 @@ from lollms.com import LoLLMsCom
 import subprocess
 import yaml
 import sys
-import base64
-if not PackageManager.check_package_installed("PIL"):
-    PackageManager.install_package("Pillow")
 from PIL import Image
 import io
 import os
