@@ -18,8 +18,8 @@ from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
 from lollms.types import MSG_OPERATION_TYPE
-from lollms.utilities import PackageManager, discussion_path_to_url, show_message_dialog, show_custom_dialog
-from lollms.utilities import AdvancedGarbageCollector, install_cuda, install_ninja, show_yes_no_dialog
+from lollms.utilities import PackageManager, discussion_path_to_url
+from lollms.utilities import AdvancedGarbageCollector, show_yes_no_dialog
 from ascii_colors import ASCIIColors, trace_exception
 import subprocess
 import yaml
@@ -233,17 +233,22 @@ class LLAMA_Python_CPP(LLMBinding):
             return False
 
     def install_cuda(self):
-        # Set the environment variable
-        os.environ['CMAKE_ARGS'] = "-DGGML_CUDA=on"
         # Use subprocess to run the pip install command
         try:
             try:
                 platform_name = platform.system()
                 if platform_name=="Windows":
-                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.90-cu123/llama_cpp_python-0.2.90-cp311-cp311-win_amd64.whl", "--force-reinstall", "--upgrade"], check=True)
-                else:        
-                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.2.90-cu123/llama_cpp_python-0.2.90-cp311-cp311-linux_x86_64.whl", "--force-reinstall", "--upgrade"], check=True)
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.4-cu121/llama_cpp_python-0.3.4-cp311-cp311-win_amd64.whl", "--force-reinstall", "--upgrade"], check=True)
+                elif platform_name=="Linux":        
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.4-cu121/llama_cpp_python-0.3.4-cp311-cp311-linux_x86_64.whl", "--force-reinstall", "--upgrade"], check=True)
+                elif platform_name=="Darwin":        
+                    # Set the environment variable
+                    os.environ['CMAKE_ARGS'] = "-DGGML_CUDA=on"
+                    # try rebuilding
+                    subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--force-reinstall", "--upgrade", "--extra-index-url", "https://abetlen.github.io/llama-cpp-python/whl/cu122"], check=True)
             except:
+                # Set the environment variable
+                os.environ['CMAKE_ARGS'] = "-DGGML_CUDA=on"
                 # try rebuilding
                 subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--force-reinstall", "--upgrade", "--extra-index-url", "https://abetlen.github.io/llama-cpp-python/whl/cu122"], check=True)
             return True
@@ -256,7 +261,7 @@ class LLAMA_Python_CPP(LLMBinding):
         os.environ['CMAKE_ARGS'] = "-DLLAMA_METAL=on"
         # Use subprocess to run the pip install command
         try:
-            subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--upgrade"], check=True)
+            subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.4-metal/llama_cpp_python-0.3.4-cp311-cp311-macosx_11_0_arm64.whl", "--upgrade"], check=True)
             return True
         except subprocess.CalledProcessError as e:
             print(f"Subprocess failed with returncode {e.returncode}")
