@@ -376,53 +376,19 @@ class Ollama(LLMBinding):
         #/pull
         # Create the file path relative to the child class's directory
         #model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key, self.binding_config.verify_ssl_certificate)
-        model_names=[
-            {"model_name":"llama3:latest", "owned_by": "meta"},
-            {"model_name":"llama3", "owned_by": "meta"},
-            {"model_name":"llama3:70b", "owned_by": "meta"},
-            
-            {"model_name":"llama2:latest", "owned_by": "meta"},
-            {"model_name":"codellama:latest", "owned_by": "meta"},
-            {"model_name":"codellama:70b", "owned_by": "meta"},
-            {"model_name":"medllama2", "owned_by": "meta"},
-            {"model_name":"falcon:7b", "owned_by": "TII"},
-            {"model_name":"falcon:40b", "owned_by": "TII"},
-            {"model_name":"falcon:180b", "owned_by": "TII"},
-            {"model_name":"nous-hermes", "owned_by": "Nous-research"},
-            {"model_name":"openhermes", "owned_by": "Nous-research"},
-            {"model_name":"wizardcoder", "owned_by": "WizardLm"},
-            {"model_name":"deepseek-coder", "owned_by": "DeepSeek"},
-            {"model_name":"neural-chat", "owned_by": "Intel"},
-            {"model_name":"bakllava", "owned_by": "mistral based"},
-            {"model_name":"starcoder:15b-plus-fp16", "owned_by": "bigcode"},
-            {"model_name":"stable-code", "owned_by": "meta"},
-            {"model_name":"tinyllama", "owned_by": "meta"},
-            {"model_name":"vicuna", "owned_by": "meta"},
-            {"model_name":"dbrx", "owned_by": "Databricks"},
-            {"model_name":"gemma", "owned_by": "google"},
-            {"model_name":"ifioravanti/bagel-hermes:2x34b-q6_k", "owned_by": "ifioravanti"},
-            
-            
-            
-
-            {"model_name":"llava:latest", "owned_by": "liuhaotian"},
-            {"model_name":"mistral:v0.3", "owned_by": "mistral.ai"},
-            {"model_name":"mistral:v0.2", "owned_by": "mistral.ai"},
-            {"model_name":"mistral:v0.1", "owned_by": "mistral.ai"},
-            {"model_name":"mistral:latest", "owned_by": "mistral.ai"},
-            {"model_name":"mixtral:latest", "owned_by": "mistral.ai"},
-            {"model_name":"mixtral:8x7b", "owned_by": "mistral.ai"},
-            {"model_name":"mixtral:8x22b", "owned_by": "mistral.ai"},
-            {"model_name":"mistrallite", "owned_by": "amazon"},
-            
-
-            {"model_name":"openhermes", "owned_by": "NousSearch"},
-            
-
-            {"model_name":"neural-chat:latest", "owned_by": "intel"},
-            {"model_name":"dolphin-mixtral:latest", "owned_by": "microsoft"},
-            {"model_name":"mistral-openorca:latest", "owned_by": "microsoft"},
-        ]
+        # Load the JSON file
+        try:
+            with open('zoos/models_zoo/ollama.json', 'r', encoding='utf-8') as f:
+                model_names = json.load(f)
+            print(f"[DEBUG] Successfully loaded {len(model_names)} models")
+            print("[DEBUG] First few models:", model_names[:3])  # Print first 3 models as a sample
+        except FileNotFoundError:
+            print("[ERROR] ollama_models.json file not found")
+            model_names = []
+        except json.JSONDecodeError:
+            print("[ERROR] Error decoding JSON file")
+            model_names = []
+ 
         entries=[]
         for model in model_names:
             entry={
