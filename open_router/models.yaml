@@ -1,9 +1,97 @@
 - architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
+  context_length: 16000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/sao10k/l3.1-70b-hanami-x1
+  name: sao10k/l3.1-70b-hanami-x1
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 3.0e-06
+    name: 'Sao10K: Llama 3.1 70B Hanami x1'
+    output_cost: 3.0e-06
+    size: 'Context length: 16000'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Other
+  category: generic
+  context_length: 64000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/deepseek/deepseek-chat
+  name: deepseek/deepseek-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.4e-07
+    name: DeepSeek V3
+    output_cost: 2.8e-07
+    size: 'Context length: 64000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Qwen
+  category: generic
+  context_length: 128000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/qwen/qvq-72b-preview
+  name: qwen/qvq-72b-preview
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 2.5e-07
+    name: 'Qwen: QvQ 72B Preview'
+    output_cost: 5.0e-07
+    size: 'Context length: 128000'
+- architecture:
+    instruct_type: null
+    modality: text+image->text
+    tokenizer: Gemini
+  category: generic
+  context_length: 40000
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/google/gemini-2.0-flash-thinking-exp:free
+  name: google/gemini-2.0-flash-thinking-exp:free
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 0.0
+    name: 'Google: Gemini 2.0 Flash Thinking Experimental (free)'
+    output_cost: 0.0
+    size: 'Context length: 40000'
+- architecture:
     instruct_type: llama3
     modality: text->text
     tokenizer: Llama3
   category: generic
-  context_length: 8000
+  context_length: 16384
   datasets: unknown
   icon: ''
   last_commit_time: ''
@@ -19,7 +107,7 @@
   - input_cost: 1.5e-06
     name: 'Sao10K: Llama 3.3 Euryale 70B'
     output_cost: 1.5e-06
-    size: 'Context length: 8000'
+    size: 'Context length: 16384'
 - architecture:
     instruct_type: chatml
     modality: text->text
@@ -214,9 +302,9 @@
   rank: 0.0
   type: api
   variants:
-  - input_cost: 1.3e-07
+  - input_cost: 1.2e-07
     name: 'Meta: Llama 3.3 70B Instruct'
-    output_cost: 4.0e-07
+    output_cost: 3.0e-07
     size: 'Context length: 131072'
 - architecture:
     instruct_type: null
@@ -531,7 +619,7 @@
     modality: text->text
     tokenizer: Qwen
   category: generic
-  context_length: 32768
+  context_length: 33000
   datasets: unknown
   icon: ''
   last_commit_time: ''
@@ -544,10 +632,10 @@
   rank: 0.0
   type: api
   variants:
-  - input_cost: 8.0e-08
+  - input_cost: 7.0e-08
     name: Qwen2.5 Coder 32B Instruct
-    output_cost: 1.8e-07
-    size: 'Context length: 32768'
+    output_cost: 1.6e-07
+    size: 'Context length: 33000'
 - architecture:
     instruct_type: vicuna
     modality: text->text
@@ -896,9 +984,9 @@
   rank: 0.0
   type: api
   variants:
-  - input_cost: 2.0e-07
+  - input_cost: 1.2e-07
     name: 'NVIDIA: Llama 3.1 Nemotron 70B Instruct'
-    output_cost: 2.0e-07
+    output_cost: 3.0e-07
     size: 'Context length: 131000'
 - architecture:
     instruct_type: null
@@ -1059,7 +1147,7 @@
     modality: text->text
     tokenizer: Llama3
   category: generic
-  context_length: 131072
+  context_length: 131000
   datasets: unknown
   icon: ''
   last_commit_time: ''
@@ -1072,10 +1160,10 @@
   rank: 0.0
   type: api
   variants:
-  - input_cost: 1.8e-08
+  - input_cost: 1.5e-08
     name: 'Meta: Llama 3.2 3B Instruct'
-    output_cost: 3.0e-08
-    size: 'Context length: 131072'
+    output_cost: 2.5e-08
+    size: 'Context length: 131000'
 - architecture:
     instruct_type: llama3
     modality: text->text
@@ -1118,7 +1206,7 @@
   variants:
   - input_cost: 1.0e-08
     name: 'Meta: Llama 3.2 1B Instruct'
-    output_cost: 2.0e-08
+    output_cost: 1.0e-08
     size: 'Context length: 131072'
 - architecture:
     instruct_type: llama3
@@ -1600,9 +1688,9 @@
   rank: 0.0
   type: api
   variants:
-  - input_cost: 2.0e-07
+  - input_cost: 1.2e-07
     name: 'Nous: Hermes 3 70B Instruct'
-    output_cost: 2.0e-07
+    output_cost: 3.0e-07
     size: 'Context length: 131000'
 - architecture:
     instruct_type: chatml
@@ -1622,9 +1710,9 @@
   rank: 0.0
   type: api
   variants:
-  - input_cost: 9.0e-07
+  - input_cost: 8.0e-07
     name: 'Nous: Hermes 3 405B Instruct'
-    output_cost: 9.0e-07
+    output_cost: 8.0e-07
     size: 'Context length: 131072'
 - architecture:
     instruct_type: null
@@ -1930,9 +2018,9 @@
   rank: 0.0
   type: api
   variants:
-  - input_cost: 9.0e-07
+  - input_cost: 8.0e-07
     name: 'Meta: Llama 3.1 405B Instruct'
-    output_cost: 9.0e-07
+    output_cost: 8.0e-07
     size: 'Context length: 32000'
 - architecture:
     instruct_type: llama3
@@ -2040,9 +2128,9 @@
   rank: 0.0
   type: api
   variants:
-  - input_cost: 1.3e-07
+  - input_cost: 1.2e-07
     name: 'Meta: Llama 3.1 70B Instruct'
-    output_cost: 4.0e-07
+    output_cost: 3.0e-07
     size: 'Context length: 131072'
 - architecture:
     instruct_type: llama3
@@ -2546,9 +2634,9 @@
   rank: 0.0
   type: api
   variants:
-  - input_cost: 3.0e-08
+  - input_cost: 2.5e-08
     name: 'NousResearch: Hermes 2 Pro - Llama-3 8B'
-    output_cost: 3.0e-08
+    output_cost: 4.0e-08
     size: 'Context length: 131000'
 - architecture:
     instruct_type: phi3
@@ -2687,6 +2775,28 @@
     modality: text->text
     tokenizer: Llama3
   category: generic
+  context_length: 32768
+  datasets: unknown
+  icon: ''
+  last_commit_time: ''
+  license: commercial
+  model_creator: ''
+  model_creator_link: /models/perplexity/llama-3-sonar-large-32k-chat
+  name: perplexity/llama-3-sonar-large-32k-chat
+  per_request_limits: null
+  quantizer: null
+  rank: 0.0
+  type: api
+  variants:
+  - input_cost: 1.0e-06
+    name: 'Perplexity: Llama3 Sonar 70B'
+    output_cost: 1.0e-06
+    size: 'Context length: 32768'
+- architecture:
+    instruct_type: null
+    modality: text->text
+    tokenizer: Llama3
+  category: generic
   context_length: 28000
   datasets: unknown
   icon: ''
@@ -2709,23 +2819,23 @@
     modality: text->text
     tokenizer: Other
   category: generic
-  context_length: 65536
+  context_length: 8192
   datasets: unknown
   icon: ''
   last_commit_time: ''
   license: commercial
   model_creator: ''
-  model_creator_link: /models/deepseek/deepseek-chat
-  name: deepseek/deepseek-chat
+  model_creator_link: /models/deepseek/deepseek-chat-v2.5
+  name: deepseek/deepseek-chat-v2.5
   per_request_limits: null
   quantizer: null
   rank: 0.0
   type: api
   variants:
-  - input_cost: 1.4e-07
+  - input_cost: 2.0e-06
     name: DeepSeek V2.5
-    output_cost: 2.8e-07
-    size: 'Context length: 65536'
+    output_cost: 2.0e-06
+    size: 'Context length: 8192'
 - architecture:
     instruct_type: null
     modality: text->text
@@ -2747,28 +2857,6 @@
   - input_cost: 2.0e-07
     name: 'Perplexity: Llama3 Sonar 8B'
     output_cost: 2.0e-07
-    size: 'Context length: 32768'
-- architecture:
-    instruct_type: null
-    modality: text->text
-    tokenizer: Llama3
-  category: generic
-  context_length: 32768
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/perplexity/llama-3-sonar-large-32k-chat
-  name: perplexity/llama-3-sonar-large-32k-chat
-  per_request_limits: null
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - input_cost: 1.0e-06
-    name: 'Perplexity: Llama3 Sonar 70B'
-    output_cost: 1.0e-06
     size: 'Context length: 32768'
 - architecture:
     instruct_type: null
@@ -3585,28 +3673,6 @@
     output_cost: 8.1e-06
     size: 'Context length: 32000'
 - architecture:
-    instruct_type: mistral
-    modality: text->text
-    tokenizer: Mistral
-  category: generic
-  context_length: 32768
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/mistralai/mistral-7b-instruct-v0.2
-  name: mistralai/mistral-7b-instruct-v0.2
-  per_request_limits: null
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - input_cost: 1.8e-07
-    name: 'Mistral: Mistral 7B Instruct v0.2'
-    output_cost: 1.8e-07
-    size: 'Context length: 32768'
-- architecture:
     instruct_type: chatml
     modality: text->text
     tokenizer: Mistral
@@ -3915,28 +3981,6 @@
     output_cost: 1.7e-07
     size: 'Context length: 4096'
 - architecture:
-    instruct_type: null
-    modality: text+image->text
-    tokenizer: GPT
-  category: generic
-  context_length: 128000
-  datasets: unknown
-  icon: ''
-  last_commit_time: ''
-  license: commercial
-  model_creator: ''
-  model_creator_link: /models/openai/gpt-4-vision-preview
-  name: openai/gpt-4-vision-preview
-  per_request_limits: null
-  quantizer: null
-  rank: 0.0
-  type: api
-  variants:
-  - input_cost: 1.0e-05
-    name: 'OpenAI: GPT-4 Vision'
-    output_cost: 3.0e-05
-    size: 'Context length: 128000'
-- architecture:
     instruct_type: airoboros
     modality: text->text
     tokenizer: Llama2
@@ -4051,7 +4095,7 @@
     modality: text->text
     tokenizer: Router
   category: generic
-  context_length: 200000
+  context_length: 2000000
   datasets: unknown
   icon: ''
   last_commit_time: ''
@@ -4065,9 +4109,9 @@
   type: api
   variants:
   - input_cost: -1.0
-    name: Auto (best for prompt)
+    name: Auto Router (best for prompt)
     output_cost: -1.0
-    size: 'Context length: 200000'
+    size: 'Context length: 2000000'
 - architecture:
     instruct_type: null
     modality: text->text
@@ -4637,7 +4681,7 @@
   type: api
   variants:
   - input_cost: 1.98e-07
-    name: 'Meta: Llama v2 13B Chat'
+    name: 'Meta: Llama 2 13B Chat'
     output_cost: 1.98e-07
     size: 'Context length: 4096'
 - architecture:
