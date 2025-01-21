@@ -378,7 +378,7 @@ class Ollama(LLMBinding):
         #model_names = get_model_info(f'{self.binding_config.address}/api', self.binding_config.server_key, self.binding_config.verify_ssl_certificate)
         # Load the JSON file
         try:
-            with open('zoos/models_zoo/ollama.json', 'r', encoding='utf-8') as f:
+            with open('zoos/models_zoo/ollama_models.json', 'r', encoding='utf-8') as f:
                 model_names = json.load(f)
             print(f"[DEBUG] Successfully loaded {len(model_names)} models")
             print("[DEBUG] First few models:", model_names[:3])  # Print first 3 models as a sample
