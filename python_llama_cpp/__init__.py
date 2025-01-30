@@ -238,14 +238,11 @@ class LLAMA_Python_CPP(LLMBinding):
             try:
                 platform_name = platform.system()
                 if platform_name=="Windows":
-                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.4-cu121/llama_cpp_python-0.3.4-cp311-cp311-win_amd64.whl", "--force-reinstall", "--upgrade"], check=True)
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.4-cu124/llama_cpp_python-0.3.4-cp311-cp311-win_amd64.whl", "--force-reinstall", "--upgrade"], check=True)
                 elif platform_name=="Linux":        
                     subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.4-cu121/llama_cpp_python-0.3.4-cp311-cp311-linux_x86_64.whl", "--force-reinstall", "--upgrade"], check=True)
                 elif platform_name=="Darwin":        
-                    # Set the environment variable
-                    os.environ['CMAKE_ARGS'] = "-DGGML_CUDA=on"
-                    # try rebuilding
-                    subprocess.run([sys.executable, "-m", "pip", "install", "llama-cpp-python", "--force-reinstall", "--upgrade", "--extra-index-url", "https://abetlen.github.io/llama-cpp-python/whl/cu122"], check=True)
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.5-metal/llama_cpp_python-0.3.5-cp311-cp311-macosx_11_0_arm64.whl", "--force-reinstall", "--upgrade"], check=True)
             except:
                 # Set the environment variable
                 os.environ['CMAKE_ARGS'] = "-DGGML_CUDA=on"
@@ -261,7 +258,7 @@ class LLAMA_Python_CPP(LLMBinding):
         os.environ['CMAKE_ARGS'] = "-DLLAMA_METAL=on"
         # Use subprocess to run the pip install command
         try:
-            subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.4-metal/llama_cpp_python-0.3.4-cp311-cp311-macosx_11_0_arm64.whl", "--upgrade"], check=True)
+            subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.5-metal/llama_cpp_python-0.3.5-cp311-cp311-macosx_11_0_arm64.whl", "--upgrade"], check=True)
             return True
         except subprocess.CalledProcessError as e:
             print(f"Subprocess failed with returncode {e.returncode}")
