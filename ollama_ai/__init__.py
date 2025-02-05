@@ -27,6 +27,10 @@ import requests
 from datetime import datetime
 from typing import List, Union
 from lollms.utilities import PackageManager, encode_image, trace_exception, show_yes_no_dialog
+import pipmaster as pm
+if not pm.is_installed("ollama"):
+    pm.install("ollama")
+import ollama
 
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
@@ -44,6 +48,7 @@ def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
     return LOLLMSConfig(cfg_file_path,lollms_paths)
 
 def get_model_info(url, authorization_key, verify_ssl_certificate=True):
+
     url = f'{url}/tags'
     headers = {
                 'accept': 'application/json',
@@ -90,6 +95,7 @@ class Ollama(LLMBinding):
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
+                {"name":"timeout","type":"int","value":-1, "help":"the timeout value in ms (-1 for no timeout)."},
             ]),
             BaseConfig(config={
             })
@@ -244,60 +250,25 @@ class Ollama(LLMBinding):
                 'Content-Type': 'application/json',
                 'Authorization': f'Bearer {self.binding_config.server_key}',
             }
+
             default_params = {
                 'temperature': 0.7,
                 'top_k': 50,
                 'top_p': 0.96,
-                'repeat_penalty': 1.3
+                'repeat_penalty': 1.3,
+                'repeat_last_n': 1.3,
+                "num_predict": n_predict
             }
             gpt_params = {**default_params, **gpt_params}
-
-            data = {
-                'model':self.config.model_name,
-                'prompt': prompt,
-                "raw": True,
-                "stream":True,
-                "temperature": float(gpt_params["temperature"]),
-                "max_tokens": n_predict
-            }
-
-            if len(self.binding_config.address)==0:
-                self.error("The address field is empty, please configure it in the binding settings")
-                return
-            
-            if self.binding_config.address.strip().endswith("/") :
-                self.binding_config.address = self.binding_config.address.strip()[:-1]
-                self.binding_config.save()
-            else:
-                self.binding_config.address = self.binding_config.address.strip()
-                self.binding_config.save()
-                
-                
-            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
-
-            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True, verify= self.binding_config.verify_ssl_certificate)
-            if response.status_code==200:
-                for line in response.iter_lines(): 
-                    decoded = line.decode("utf-8")
-                    json_data = json.loads(decoded)
-                    chunk = json_data["response"]
-                    ## Process the JSON data here
-                    text +=chunk
-                    if callback:
-                        if not callback(chunk, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
-                            break
-            else:
-                try:
-                    self.InfoMessage(json.loads(response.text)["error"])
-                except:
-                    self.InfoMessage(f"Couldn't generate because of error: {response.status_code}")
+            for chunk in ollama.chat(model=self.config.model_name, messages=[
+                {'role': 'user', 'content': prompt}
+            ], stream=True, options = gpt_params):
+                text +=chunk['message']['content']
+                if callback:
+                    if not callback(chunk['message']['content'], MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
+                        break
         except Exception as ex:
             trace_exception(ex)
-            try:
-                ASCIIColors.red(decoded)
-                ASCIIColors.red(json_data)
-            except Exception as ex:
-                pass
             self.error("Couldn't generate text")
         return text
 
@@ -317,49 +288,33 @@ class Ollama(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         text = ""
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.binding_config.server_key}',
-        }
-        default_params = {
-            'temperature': 0.7,
-            'top_k': 50,
-            'top_p': 0.96,
-            'repeat_penalty': 1.3
-        }
-        gpt_params = {**default_params, **gpt_params}
-        images_list = []
-        for image in images:
-            images_list.append(f"{encode_image(image, self.binding_config.max_image_width)}")
-
-        data = {
-            'model':self.config.model_name,
-            'prompt': prompt,
-            'images': images_list,
-            "raw": True,
-            "stream":True,
-            "temperature": float(gpt_params["temperature"]),
-            "max_tokens": n_predict
-        }
-
         try:
-            url = f'{self.binding_config.address}{elf_completion_formats[self.binding_config.completion_format]}/generate'
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': f'Bearer {self.binding_config.server_key}',
+            }
 
-            response = requests.post(url, headers=headers, data=json.dumps(data), stream=True, verify= self.binding_config.verify_ssl_certificate)
-
-            for line in response.iter_lines(): 
-                decoded = line.decode("utf-8")
-                json_data = json.loads(decoded)
-                chunk = json_data["response"]
-                ## Process the JSON data here
-                text +=chunk
+            default_params = {
+                'temperature': 0.7,
+                'top_k': 50,
+                'top_p': 0.96,
+                'repeat_penalty': 1.3,
+                'repeat_last_n': 1.3,
+                "num_predict": n_predict
+            }
+            gpt_params = {**default_params, **gpt_params}
+            for chunk in ollama.chat(model=self.config.model_name, messages=[
+                {'role': 'images', 'content': images},
+                {'role': 'user', 'content': prompt}
+            ], stream=True, options = gpt_params):
+                text +=chunk['message']['content']
                 if callback:
-                    if not callback(chunk, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
+                    if not callback(chunk['message']['content'], MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
         except Exception as ex:
             trace_exception(ex)
-            self.error(ex)
-        return text        
+            self.error("Couldn't generate text")
+        return text    
     
 
     def list_models(self):
