@@ -304,8 +304,7 @@ class Ollama(LLMBinding):
             }
             gpt_params = {**default_params, **gpt_params}
             for chunk in self.client.chat(model=self.config.model_name, messages=[
-                {'role': 'images', 'content': images},
-                {'role': 'user', 'content': prompt}
+                {'role': 'user', 'content': prompt, 'images':images}
             ], stream=True, options = gpt_params):
                 text +=chunk['message']['content']
                 if callback:
