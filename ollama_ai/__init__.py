@@ -113,13 +113,7 @@ class Ollama(LLMBinding):
         self.config.max_n_predict=self.binding_config.max_n_predict
         host = self.binding_config.address.replace("http://","").split(":")[0]
         port = self.binding_config.address.replace("http://","").split(":")[1]
-        
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.binding_config.server_key}',
-        }        
-        self.client = ollama.Client(self.binding_config.address,headers=headers)
-        
+                
         if  host== self.config.host and port == self.config.port:
             self.binding_config.address = "http://"+host+":"+port+"0"
             self.binding_config.save()
@@ -134,11 +128,7 @@ class Ollama(LLMBinding):
         else:
             self.binding_config.address = self.binding_config.address.strip()
             self.binding_config.save() 
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.binding_config.server_key}',
-        }        
-        self.client = ollama.Client(self.binding_config.address,headers=headers)
+        self.build_model(self.binding_config.address)
                    
     def build_model(self, model_name=None):
         super().build_model(model_name)
@@ -149,12 +139,19 @@ class Ollama(LLMBinding):
             self.binding_config.save()
         else:
             self.binding_config.address = self.binding_config.address.strip()
-            self.binding_config.save()        
+            self.binding_config.save()                    
         if self.config.model_name is None:
             return None
         
-        if "llava" in self.config.model_name or "vision" in self.config.model_name:
+        if "pixtral" in self.config.model_name or  "llava" in self.config.model_name or "vision" in self.config.model_name:
             self.binding_type = BindingType.TEXT_IMAGE
+            
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {self.binding_config.server_key}',
+        }        
+        self.client = ollama.Client(model_name, headers=headers)
+            
         return self
 
     def install(self):
