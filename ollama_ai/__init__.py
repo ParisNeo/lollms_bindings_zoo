@@ -148,8 +148,8 @@ class Ollama(LLMBinding):
             
         headers = {
             'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.binding_config.server_key}',
-        }        
+            #'Authorization': f'Bearer {self.binding_config.server_key}',
+        }
         self.client = ollama.Client(self.binding_config.address, headers=headers)
             
         return self
