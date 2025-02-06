@@ -128,7 +128,7 @@ class Ollama(LLMBinding):
         else:
             self.binding_config.address = self.binding_config.address.strip()
             self.binding_config.save() 
-        self.build_model(self.binding_config.address)
+        self.build_model()
                    
     def build_model(self, model_name=None):
         super().build_model(model_name)
@@ -150,7 +150,7 @@ class Ollama(LLMBinding):
             'Content-Type': 'application/json',
             'Authorization': f'Bearer {self.binding_config.server_key}',
         }        
-        self.client = ollama.Client(model_name, headers=headers)
+        self.client = ollama.Client(self.binding_config.address, headers=headers)
             
         return self
 
