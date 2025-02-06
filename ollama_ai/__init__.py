@@ -113,6 +113,13 @@ class Ollama(LLMBinding):
         self.config.max_n_predict=self.binding_config.max_n_predict
         host = self.binding_config.address.replace("http://","").split(":")[0]
         port = self.binding_config.address.replace("http://","").split(":")[1]
+        
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {self.binding_config.server_key}',
+        }        
+        self.client = ollama.Client(self.binding_config.address,headers=headers)
+        
         if  host== self.config.host and port == self.config.port:
             self.binding_config.address = "http://"+host+":"+port+"0"
             self.binding_config.save()
@@ -127,6 +134,11 @@ class Ollama(LLMBinding):
         else:
             self.binding_config.address = self.binding_config.address.strip()
             self.binding_config.save() 
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {self.binding_config.server_key}',
+        }        
+        self.client = ollama.Client(self.binding_config.address,headers=headers)
                    
     def build_model(self, model_name=None):
         super().build_model(model_name)
@@ -223,11 +235,7 @@ class Ollama(LLMBinding):
         Returns:
             List[float]: The text embedding as a list of float values.
         """
-        url = f"{self.binding_config.address}/api/embeddings"
-        payload = {"model": model, "prompt": text}
-        response = requests.post(url, json=payload, verify= self.binding_config.verify_ssl_certificate)
-        response.raise_for_status()  # Raise an exception for non-2xx status codes
-        return response.json()
+        return self.client.embed(model, text)
 
 
     def generate(self, 
@@ -246,11 +254,6 @@ class Ollama(LLMBinding):
         """
         text = ""
         try:
-            headers = {
-                'Content-Type': 'application/json',
-                'Authorization': f'Bearer {self.binding_config.server_key}',
-            }
-
             default_params = {
                 'temperature': 0.7,
                 'top_k': 50,
@@ -260,7 +263,7 @@ class Ollama(LLMBinding):
                 "num_predict": n_predict
             }
             gpt_params = {**default_params, **gpt_params}
-            for chunk in ollama.chat(model=self.config.model_name, messages=[
+            for chunk in self.client.chat(model=self.config.model_name, messages=[
                 {'role': 'user', 'content': prompt}
             ], stream=True, options = gpt_params):
                 text +=chunk['message']['content']
@@ -303,7 +306,7 @@ class Ollama(LLMBinding):
                 "num_predict": n_predict
             }
             gpt_params = {**default_params, **gpt_params}
-            for chunk in ollama.chat(model=self.config.model_name, messages=[
+            for chunk in self.client.chat(model=self.config.model_name, messages=[
                 {'role': 'images', 'content': images},
                 {'role': 'user', 'content': prompt}
             ], stream=True, options = gpt_params):
