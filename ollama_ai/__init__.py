@@ -291,7 +291,7 @@ class Ollama(LLMBinding):
         try:
             headers = {
                 'Content-Type': 'application/json',
-                'Authorization': f'Bearer {self.binding_config.server_key}',
+                #'Authorization': f'Bearer {self.binding_config.server_key}',
             }
 
             default_params = {
