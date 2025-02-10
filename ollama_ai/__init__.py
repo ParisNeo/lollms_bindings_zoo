@@ -348,7 +348,7 @@ class Ollama(LLMBinding):
             entry={
                 "category": "generic",
                 "datasets": "unknown",
-                "icon": '/bindings/Ollama/logo.png',
+                "icon": '/bindings/ollama_ai/logo.png',
                 "last_commit_time": "2023-09-17 17:21:17+00:00",
                 "license": "unknown",
                 "model_creator": model["owned_by"],
