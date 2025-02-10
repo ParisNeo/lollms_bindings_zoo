@@ -356,7 +356,7 @@ class OpenAIGPT(LLMBinding):
                 
 
             if self.binding_config.generation_mode=="chat":
-                if "o1" in self.model_name:
+                if "o1" in self.model_name or "o3" in self.model_name:
                     chat_completion = self.openai.chat.completions.create(
                                 model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                                 messages=messages,
