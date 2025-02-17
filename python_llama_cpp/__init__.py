@@ -537,7 +537,7 @@ class LLAMA_Python_CPP(LLMBinding):
             verbose (bool, optional): If true, the code will spit many informations about the generation process. Defaults to False.
         """
         default_params = {
-            'temperature': 0.7,
+            'temperature': 0.1,
             'top_k': 50,
             'top_p': 0.96,
             'repeat_penalty': 1.3

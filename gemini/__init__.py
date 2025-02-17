@@ -30,6 +30,8 @@ from datetime import datetime
 from PIL import Image
 import base64
 import io
+import pipmaster as pm
+
 
 if not PackageManager.check_package_installed("tiktoken"):
     PackageManager.install_package('tiktoken')
@@ -120,6 +122,8 @@ class Gemini(LLMBinding):
         super().build_model(model_name)
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
+        if not pm.is_installed("google-generativeai"):
+            pm.install("google-generativeai")
         import google.generativeai as genai
         genai.configure(api_key=self.binding_config.google_api_key)
         if self.config.model_name!="gemini-pro-vision":
