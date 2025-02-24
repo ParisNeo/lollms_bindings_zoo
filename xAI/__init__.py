@@ -261,7 +261,7 @@ class Grok(LLMBinding):
             
             if response.status_code == 200:
                 data = response.json()
-                return [model["id"] for model in data.get("models", [])]
+                return [model["id"] for model in data["data"]]
             else:
                 self.error(f"Failed to get models list: {response.text}")
                 return []
@@ -282,15 +282,15 @@ class Grok(LLMBinding):
             if response.status_code == 200:
                 data = response.json()
                 
-                for model in data.get("models", []):
+                for model in data["data"]:
                     md = {
                         "category": "generic",
                         "datasets": "unknown",
-                        "icon": '/bindings/grok/logo.png',
+                        "icon": '/bindings/xAI/logo.png',
                         "last_commit_time": datetime.now().timestamp(),
                         "license": "commercial",
                         "model_creator": "xAI",
-                        "model_creator_link": "https://grok.x.ai/",
+                        "model_creator_link": "https://x.ai/",
                         "name": model["id"],
                         "quantizer": None,
                         "rank": 1.0,
