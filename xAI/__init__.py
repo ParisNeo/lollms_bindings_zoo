@@ -56,7 +56,7 @@ class Grok(LLMBinding):
         binding_config = TypedConfig(
             ConfigTemplate([
                 {"name":"api_key","type":"str","value":"", "help":"Your xAI API key"},
-                {"name":"base_url","type":"str","value":"https://api.grok.x.ai/v1", "help":"API base URL"},
+                {"name":"base_url","type":"str","value":"https://api.x.ai/v1", "help":"API base URL"},
                 {"name":"ctx_size","type":"int","value":8192, "min":512, "help":"The current context size"},
                 {"name":"max_tokens","type":"int","value":4096, "min":1, "help":"Maximum number of tokens to generate"},
                 {"name":"temperature","type":"float","value":0.7, "min":0.0, "max":2.0, "help":"Temperature for sampling"},
