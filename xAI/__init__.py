@@ -193,8 +193,11 @@ class Grok(LLMBinding):
                     img.save(buffered, format="PNG")
                     img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
                     processed_images.append({
-                        "type": "image",
-                        "data": img_str
+                        "type": "image_url",
+                        "image_url": {
+                            "url":"data:image/png;base64,"+img_str,
+                            "detail": "high"
+                        }
                     })
 
             # Prepare messages with both text and images
@@ -217,6 +220,8 @@ class Grok(LLMBinding):
                 "top_p": self.binding_config.top_p,
                 "stream": True
             }
+            
+            print(payload)
 
             # Make streaming request
             response = requests.post(
