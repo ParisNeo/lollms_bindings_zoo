@@ -3,12 +3,12 @@
 # File          : binding.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
-# engine author : Open AI
+# engine author : Novita AI
 # license       : Apache 2.0
 # Description   : 
 # This is an interface class for lollms bindings.
 
-# This binding is a wrapper to open ai's api
+# This binding is a wrapper to Novita AI's api
 
 ######
 from pathlib import Path
@@ -42,12 +42,12 @@ __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
 __license__ = "Apache 2.0"
 
-binding_name = "OpenAIGPT"
+binding_name = "NovitaAI"
 binding_folder_name = ""
 
 
   
-class OpenAIGPT(LLMBinding):
+class NovitaAI(LLMBinding):
     def __init__(self, 
                 config: LOLLMSConfig, 
                 lollms_paths: LollmsPaths = None, 
@@ -61,40 +61,7 @@ class OpenAIGPT(LLMBinding):
             lollms_paths (LollmsPaths, optional): The paths object for LOLLMS. Defaults to LollmsPaths().
             installation_option (InstallOption, optional): The installation option for LOLLMS. Defaults to InstallOption.INSTALL_IF_NECESSARY.
         """
-        self.input_costs_by_model={
-            "o1-preview":0.015,
-            "o1-mini":0.00003,
-            "gpt-4o-mini":0.00015,
-            "gpt-4o":0.005,
-            "gpt-4o-2024-05-13":0.005,
-            "gpt-4-turbo":0.010,
-            "gpt-4-turbo-preview":0.010,
-            "gpt-4-1106-preview":0.01,
-            "gpt-4-vision-preview":0.03,
-            "gpt-4":0.03,
-            "gpt-4-32k":0.06,
-            "gpt-3.5-turbo-1106":0.0005,
-            "gpt-3.5-turbo":0.0010,
-            "gpt-3.5-turbo-16k":0.003,
-            "gpt-3.5-turbo-instruct":0.0015
-        }       
-        self.output_costs_by_model={
-            "o1-preview":0.060,
-            "o1-mini":0.00012,
-            "gpt-4o-mini":0.0006,
-            "gpt-4o":0.015,
-            "gpt-4o-2024-05-13":0.015,
-            "gpt-4-turbo":0.03,
-            "gpt-4-turbo-preview":0.03,
-            "gpt-4-1106-preview":0.03,
-            "gpt-4-vision-preview":0.03,
-            "gpt-4":0.06,
-            "gpt-4-32k":0.12,
-            "gpt-3.5-turbo-1106":0.0015,
-            "gpt-3.5-turbo":0.002,
-            "gpt-3.5-turbo-16k":0.004,
-            "gpt-3.5-turbo-instruct":0.002
-        }
+
         if lollms_paths is None:
             lollms_paths = LollmsPaths()
         # Initialization code goes here
@@ -107,7 +74,7 @@ class OpenAIGPT(LLMBinding):
                 {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
                 {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
                 {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
-                {"name":"openai_key","type":"str","value":"","help":"A valid open AI key to generate text using open ai api"},
+                {"name":"openai_key","type":"str","value":"","help":"A valid Novita AI key to generate text using Novita AI api"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
@@ -132,53 +99,54 @@ class OpenAIGPT(LLMBinding):
         
     def settings_updated(self):
         # The local key overrides the environment variable key
-        if openai.api_key =="":
+        if self.binding_config.config["openai_key"] =="":
             # If there is no key, try find one in the environment
-            api_key = os.getenv('OPENAI_API_KEY')
+            api_key = os.getenv('NOVITA_AI_API_KEY')
             if not api_key:
                 self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            openai.api_key = api_key
         else:
             # If there is a key in the configuration, then use it
-            openai.api_key = self.binding_config.config["openai_key"]
+            api_key = self.binding_config.config["openai_key"]
+
+        self.novita_ai = openai.OpenAI(base_url="https://api.novita.ai/v3/openai",api_key=api_key)
 
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
-        openai = openai
+        # The local key overrides the environment variable key
+        if self.binding_config.config["openai_key"] =="":
+            # If there is no key, try find one in the environment
+            api_key = os.getenv('NOVITA_AI_API_KEY')
+            if not api_key:
+                self.error("No API key is set!\nPlease set up your API key in the binding configuration")
+        else:
+            # If there is a key in the configuration, then use it
+            api_key = self.binding_config.config["openai_key"]
+
+        self.novita_ai = openai.OpenAI(base_url="https://api.novita.ai/v3/openai",api_key=api_key)
 
         if self.config.model_name is not None:
             if "vision" in self.config.model_name or "4o" in self.config.model_name:
                 self.binding_type = BindingType.TEXT_IMAGE
 
-        # The local key overrides the environment variable key
-        if openai.api_key =="":
-            # If there is no key, try find one in the environment
-            api_key = os.getenv('OPENAI_API_KEY')
-            if not api_key:
-                self.error("No API key is set!\nPlease set up your API key in the binding configuration")
-            openai.api_key = api_key
-        else:
-            # If there is a key in the configuration, then use it
-            openai.api_key = self.binding_config.config["openai_key"]
         # Do your initialization stuff
         return self
 
     def install(self):
         super().install()
         # install requirements
-        self.ShowBlockingMessage("Installing open ai api ...")
+        self.ShowBlockingMessage("Installing Novita AI api ...")
         try:
             self.HideBlockingMessage()
             ASCIIColors.success("Installed successfully")
             ASCIIColors.error("----------------------")
             ASCIIColors.error("Attention please")
             ASCIIColors.error("----------------------")
-            ASCIIColors.error("The chatgpt/gpt4 binding uses the openai API which is a paid service. Please create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration of the binding.")
+            ASCIIColors.error("The chatgpt/gpt4 binding uses the novita_ai API which is a paid service. Please create an account on the openAi website (https://platform.novita_ai.com/) then generate a key and provide it in the configuration of the binding.")
         except:
-            self.warning("The chatgpt/gpt4 binding uses the openai API which is a paid service.\nPlease create an account on the openAi website (https://platform.openai.com/) then generate a key and provide it in the configuration of the binding.",20)
+            self.warning("The chatgpt/gpt4 binding uses the novita_ai API which is a paid service.\nPlease create an account on the openAi website (https://platform.novita_ai.com/) then generate a key and provide it in the configuration of the binding.",20)
             self.HideBlockingMessage()
 
     def tokenize(self, prompt:str):
@@ -278,7 +246,7 @@ class OpenAIGPT(LLMBinding):
                             ]
                         }
                     ]
-            chat_completion = openai.chat.completions.create(
+            chat_completion = self.novita_ai.chat.completions.create(
                             model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                             messages=messages,
                             max_tokens=n_predict,  # Adjust the desired length of the generated response
@@ -331,7 +299,7 @@ class OpenAIGPT(LLMBinding):
         """
         if self.binding_config.config.turn_on_cost_estimation:
             self.binding_config.config["total_input_tokens"] +=  len(self.tokenize(prompt))          
-            self.binding_config.config["total_input_cost"] =  (self.binding_config.config["total_input_tokens"]/1000) * (self.input_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.input_costs_by_model else 0)
+            self.binding_config.config["total_input_cost"] =  (self.binding_config.config["total_input_tokens"]/1000000) * (self.input_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.input_costs_by_model else 0)
         try:
             default_params = {
                 'temperature': 0.7,
@@ -360,7 +328,7 @@ class OpenAIGPT(LLMBinding):
 
             if self.binding_config.generation_mode=="chat":
                 if "o1" in self.model_name or "o3" in self.model_name:
-                    chat_completion = openai.chat.completions.create(
+                    chat_completion = self.novita_ai.chat.completions.create(
                                 model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                                 messages=messages,
                                 n=1,  # Specify the number of responses you want
@@ -368,7 +336,7 @@ class OpenAIGPT(LLMBinding):
                     output = chat_completion.choices[0].message.content
                     callback(output, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK)
                 else:
-                    chat_completion = openai.chat.completions.create(
+                    chat_completion = self.novita_ai.chat.completions.create(
                                     model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                                     messages=messages,
                                     max_tokens=n_predict-7 if n_predict>512 else n_predict,  # Adjust the desired length of the generated response
@@ -390,7 +358,7 @@ class OpenAIGPT(LLMBinding):
                             output += word
                             count += 1
             else:
-                completion = openai.completions.create(
+                completion = self.novita_ai.completions.create(
                                 model=self.config["model_name"],  # Choose the engine according to your OpenAI plan
                                 prompt=prompt,
                                 max_tokens=n_predict-7 if n_predict>512 else n_predict,  # Adjust the desired length of the generated response
@@ -421,7 +389,7 @@ class OpenAIGPT(LLMBinding):
             trace_exception(ex)
         if self.binding_config.config.turn_on_cost_estimation:
             self.binding_config.config["total_output_tokens"] +=  len(self.tokenize(output))          
-            self.binding_config.config["total_output_cost"] =  (self.binding_config.config["total_output_tokens"]/1000) * self.output_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.output_costs_by_model else 0    
+            self.binding_config.config["total_output_cost"] =  (self.binding_config.config["total_output_tokens"]/1000000) * self.output_costs_by_model[self.config["model_name"]] if self.config["model_name"] in self.output_costs_by_model else 0    
             self.binding_config.config["total_cost"] = self.binding_config.config["total_input_cost"] + self.binding_config.config["total_output_cost"]
             self.info(f'Total consumption since last reset: {self.binding_config.config["total_output_cost"]}$')
             self.binding_config.save()
@@ -430,21 +398,82 @@ class OpenAIGPT(LLMBinding):
     def list_models(self):
         """Lists the models for this binding
         """
-        full_data = []
-        for models_dir_name in self.models_dir_names:
-            self.models_db = ModelsDB(self.lollms_paths.models_zoo_path/f"{models_dir_name}.db")
-            full_data+=self.models_db.query()
+        import requests
 
-        return [f["name"] for f in full_data]
+        # API endpoint
+        url = "https://api.novita.ai/v3/openai/models"
+
+        # Fetch data from the API
+        response = requests.get(url)
+
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the JSON data
+            data = response.json()
+
+            # Extract model names
+            model_names = [model['display_name'] for model in data['data']]
+
+            # Print the list of model names
+            return model_names
+        else:
+            print(f"Failed to fetch data. Status code: {response.status_code}")
+            return []
                 
                 
     def get_available_models(self, app:LoLLMsCom=None):
-        full_data = []
-        for models_dir_name in self.models_dir_names:
-            self.models_db = ModelsDB(self.lollms_paths.models_zoo_path/f"{models_dir_name}.db")
-            full_data+=self.models_db.query()
+        import requests
 
-        return full_data
+        # API endpoint
+        url = "https://api.novita.ai/v3/openai/models"
+
+        # Fetch data from the API
+        response = requests.get(url)
+
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the JSON data
+            data = response.json()
+
+            # Initialize an empty list to store the formatted model dictionaries
+            model_list = []
+
+            # Iterate through each model in the API response
+            for model in data['data']:
+                # Create a dictionary for each model in the desired format
+                model_dict = {
+                    "category": "generic",
+                    "datasets": "unknown",
+                    "input_token_price_per_m": model.get("input_token_price_per_m", 0),
+                    "output_token_price_per_m": model.get("output_token_price_per_m", 0),
+                    "icon": "/bindings/open_ai/logo.png",  # Default icon
+                    "last_commit_time": model.get("created", 0),  # Use 'created' as last_commit_time
+                    "license": "commercial",  # Default license
+                    "model_creator": model.get("owned_by", "unknown"),  # Use 'owned_by' as model_creator
+                    "model_creator_link": "https://novita.ai",  # Default link
+                    "name": model.get("display_name", "unknown"),  # Use 'display_name' as name
+                    "quantizer": None,  # Default quantizer
+                    "rank": 1.0,  # Default rank
+                    "type": "api",  # Default type
+                    "variants": [
+                        {
+                            "name": model.get("display_name", "unknown"),  # Use 'display_name' as variant name
+                            "size": 999999999999  # Default size
+                        }
+                    ]
+                }
+                # Append the model dictionary to the list
+                model_list.append(model_dict)
+            self.model_list = model_list
+            self.input_costs_by_model = {model["name"]: model["input_token_price_per_m"] for model in model_list}
+            self.output_costs_by_model = {model["name"]: model["output_token_price_per_m"] for model in model_list}
+
+            # Print the list of model dictionaries
+            return model_list
+        else:
+            print(f"Failed to fetch data. Status code: {response.status_code}")
+            self.model_list = []
+            return []
     
 
 if __name__=="__main__":
@@ -457,9 +486,9 @@ if __name__=="__main__":
     config = LOLLMSConfig.autoload(lollms_paths)
     lollms_app = LollmsApplication("",config, lollms_paths, False, False,False, False)
 
-    oai = OpenAIGPT(config, lollms_paths,lollmsCom=lollms_app)
+    oai = NovitaAI(config, lollms_paths,lollmsCom=lollms_app)
     oai.install()
-    oai.binding_config.openai_key = input("Open AI Key:")
+    oai.binding_config.openai_key = input("Novita AI Key:")
     oai.binding_config.save()
     config.binding_name= "open_ai"
     config.model_name="gpt-3.5-turbo"
