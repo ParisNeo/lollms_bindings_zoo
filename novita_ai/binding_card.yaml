@@ -1,7 +1,13 @@
-name: Open AI
-author: Open AI
+name: Novita AI
+author: Novita AI
 version: 1.0
-link: https://openai.com/
-description: This binding uses the open ai api to make you use gpt4 and others
+link: https://novita.ai/
+description: This binding uses the novita ai api to make you use multiple models
 accepted_models: 
-  - openai
+  - deepseek
+  - llama
+  - open chat
+  - open hermes
+  - dolphin mixtral
+  - mistral
+  - qwen
