@@ -446,7 +446,7 @@ class NovitaAI(LLMBinding):
                     "datasets": "unknown",
                     "input_token_price_per_m": model.get("input_token_price_per_m", 0),
                     "output_token_price_per_m": model.get("output_token_price_per_m", 0),
-                    "icon": "/bindings/open_ai/logo.png",  # Default icon
+                    "icon": "/bindings/novita_ai/logo.png",  # Default icon
                     "last_commit_time": model.get("created", 0),  # Use 'created' as last_commit_time
                     "license": "commercial",  # Default license
                     "model_creator": model.get("owned_by", "unknown"),  # Use 'owned_by' as model_creator
