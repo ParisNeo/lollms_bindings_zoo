@@ -74,7 +74,7 @@ class NovitaAI(LLMBinding):
                 {"name":"total_input_cost","type":"float", "value":0,"help":"The total cost caused by input tokens in $"},
                 {"name":"total_output_cost","type":"float", "value":0,"help":"The total cost caused by output tokens in $"},
                 {"name":"total_cost","type":"float", "value":0,"help":"The total cost in $"},
-                {"name":"openai_key","type":"str","value":"","help":"A valid Novita AI key to generate text using Novita AI api"},
+                {"name":"novita_ai_key","type":"str","value":"","help":"A valid Novita AI key to generate text using Novita AI api"},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"seed","type":"int","value":-1,"help":"Random numbers generation seed allows you to fix the generation making it dterministic. This is useful for repeatability. To make the generation random, please set seed to -1."},
@@ -82,7 +82,7 @@ class NovitaAI(LLMBinding):
 
             ]),
             BaseConfig(config={
-                "openai_key": "",     # use avx2
+                "novita_ai_key": "",     # use avx2
             })
         )
         super().__init__(
@@ -99,14 +99,14 @@ class NovitaAI(LLMBinding):
         
     def settings_updated(self):
         # The local key overrides the environment variable key
-        if self.binding_config.config["openai_key"] =="":
+        if self.binding_config.config["novita_ai_key"] =="":
             # If there is no key, try find one in the environment
             api_key = os.getenv('NOVITA_AI_API_KEY')
             if not api_key:
                 self.error("No API key is set!\nPlease set up your API key in the binding configuration")
         else:
             # If there is a key in the configuration, then use it
-            api_key = self.binding_config.config["openai_key"]
+            api_key = self.binding_config.config["novita_ai_key"]
 
         self.novita_ai = openai.OpenAI(base_url="https://api.novita.ai/v3/openai",api_key=api_key)
 
@@ -116,14 +116,14 @@ class NovitaAI(LLMBinding):
     def build_model(self, model_name=None):
         super().build_model(model_name)
         # The local key overrides the environment variable key
-        if self.binding_config.config["openai_key"] =="":
+        if self.binding_config.config["novita_ai_key"] =="":
             # If there is no key, try find one in the environment
             api_key = os.getenv('NOVITA_AI_API_KEY')
             if not api_key:
                 self.error("No API key is set!\nPlease set up your API key in the binding configuration")
         else:
             # If there is a key in the configuration, then use it
-            api_key = self.binding_config.config["openai_key"]
+            api_key = self.binding_config.config["novita_ai_key"]
 
         self.novita_ai = openai.OpenAI(base_url="https://api.novita.ai/v3/openai",api_key=api_key)
 
@@ -412,7 +412,7 @@ class NovitaAI(LLMBinding):
             data = response.json()
 
             # Extract model names
-            model_names = [model['display_name'] for model in data['data']]
+            model_names = [model['title'] for model in data['data']]
 
             # Print the list of model names
             return model_names
@@ -457,7 +457,7 @@ class NovitaAI(LLMBinding):
                     "type": "api",  # Default type
                     "variants": [
                         {
-                            "name": model.get("display_name", "unknown"),  # Use 'display_name' as variant name
+                            "name": model.get("title", "unknown"),  # Use 'display_name' as variant name
                             "size": 999999999999  # Default size
                         }
                     ]
@@ -488,7 +488,7 @@ if __name__=="__main__":
 
     oai = NovitaAI(config, lollms_paths,lollmsCom=lollms_app)
     oai.install()
-    oai.binding_config.openai_key = input("Novita AI Key:")
+    oai.binding_config.novita_ai_key = input("Novita AI Key:")
     oai.binding_config.save()
     config.binding_name= "open_ai"
     config.model_name="gpt-3.5-turbo"
