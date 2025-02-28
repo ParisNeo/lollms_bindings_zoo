@@ -349,6 +349,8 @@ class NovitaAI(LLMBinding):
                             break
                         try:
                             word = resp.choices[0].delta.content
+                            if word==None:
+                                word = ""
                         except Exception as ex:
                             word = ""
                         if callback is not None:
