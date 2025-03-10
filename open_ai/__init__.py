@@ -1,6 +1,6 @@
 ######
 # Project       : lollms
-# File          : binding.py
+# File          : __init__.py
 # Author        : ParisNeo with the help of the community
 # Underlying 
 # engine author : Open AI
@@ -147,7 +147,6 @@ class OpenAIGPT(LLMBinding):
 
     def build_model(self, model_name=None):
         super().build_model(model_name)
-        openai = openai
 
         if self.config.model_name is not None:
             if "vision" in self.config.model_name or "4o" in self.config.model_name:
