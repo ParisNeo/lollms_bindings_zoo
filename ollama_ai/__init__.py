@@ -32,6 +32,10 @@ if not pm.is_installed("ollama"):
     pm.install("ollama")
 import ollama
 
+if not pm.is_installed("tiktoken"):
+    pm.install("tiktoken")
+import tiktoken
+
 __author__ = "parisneo"
 __github__ = "https://github.com/ParisNeo/lollms_bindings_zoo"
 __copyright__ = "Copyright 2023, "
@@ -205,10 +209,8 @@ class Ollama(LLMBinding):
         Returns:
             A list of tokens
         """
-        if isinstance(text, str):
-            return text.split(" ")
-        else:
-            return text
+        
+        return tiktoken.model.encoding_for_model("gpt-4-turbo-preview").encode(text)
 
     def detokenize(self, tokens: List[str]) -> str:
         """Detokenizes a list of tokens
@@ -219,7 +221,7 @@ class Ollama(LLMBinding):
         Returns:
             A string
         """
-        return " ".join(tokens)
+        return tiktoken.model.encoding_for_model("gpt-4-turbo-preview").decode(tokens)
 
 
 
