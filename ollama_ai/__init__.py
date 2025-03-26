@@ -259,6 +259,7 @@ class Ollama(LLMBinding):
                 'top_p': 0.96,
                 'repeat_penalty': 1.3,
                 'repeat_last_n': 1.3,
+                "num_ctx":self.binding_config.ctx_size,
                 "num_predict": n_predict
             }
             gpt_params = {**default_params, **gpt_params}
