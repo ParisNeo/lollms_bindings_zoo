@@ -17,9 +17,7 @@ from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_OPERATION_TYPE
 from lollms.utilities import (
     AdvancedGarbageCollector,
-    PackageManager,
     run_cmd,
-    install_cuda_version
 )
 import subprocess
 from datetime import datetime
@@ -592,16 +590,6 @@ class HuggingFace(LLMBinding):
                  # Install CUDA toolkit version based on torch cuda version
                  major, minor = torch.version.cuda.split(".")[:2]
                  cuda_version = f"{major}.{minor}"
-                 installation_path = install_cuda_version(cuda_version) # Assuming install_cuda_version exists and returns path or raises error
-                 if installation_path:
-                    ASCIIColors.success(f"CUDA Toolkit {cuda_version} verified/installed at {installation_path}")
-                 else: # Function might return None on failure or existing install
-                     ASCIIColors.info(f"CUDA Toolkit {cuda_version} assumed to be present or installation failed.")
-
-                 # Optional check for specific version (e.g., 12.x)
-                 # if not major == "12":
-                 #     if show_yes_no_dialog("PyTorch CUDA Version", f"Detected CUDA {cuda_version}. Recommend CUDA 12.x for best compatibility. Reinstall PyTorch with CUDA 12.1?"):
-                 #         reinstall_pytorch_with_cuda() # Ensure this function targets 12.1
 
             elif torch.backends.mps.is_available():
                  ASCIIColors.info("PyTorch with MPS (Apple Silicon) found.")
@@ -1278,7 +1266,7 @@ class HuggingFace(LLMBinding):
 if __name__ == "__main__":
     from lollms.paths import LollmsPaths
     from lollms.main_config import LOLLMSConfig
-    from lollms.app import LollmsApplication
+    # from lollms.app import LollmsApplication # Not strictly needed for basic binding test
     import sys
     import argparse
 
@@ -1292,41 +1280,57 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # --- Setup LoLLMs ---
+    # Use find_paths to locate the configuration directory correctly
     lollms_paths = LollmsPaths.find_paths(force_local=True, custom_default_cfg_path=args.config)
+    # Ensure a configuration object exists, even if minimal
     config = LOLLMSConfig.autoload(lollms_paths)
-    # Ensure the binding is selected in the config for testing
+    # Override binding and model from args for testing
     config.binding_name = binding_name
     config.model_name = args.model # Use the model specified in args
     # config.save_config() # Avoid saving changes during testing unless intended
 
     # --- Initialize Binding ---
-    hf_binding = HuggingFace(config, lollms_paths)
+    # Pass a placeholder lollmsCom if not running full LollmsApplication
+    class MockLollmsCom:
+        def notify_model_install(self, *args, **kwargs): print(f"Mock Notify Install: {args}, {kwargs}")
+        def ShowBlockingMessage(self, msg): print(f"Mock Blocking Msg: {msg}")
+        def HideBlockingMessage(self): print("Mock Hide Blocking Msg")
+        # Add other methods if the binding calls them during init/build
+        def info(self, msg): print(f"INFO: {msg}")
+        def warning(self, msg): print(f"WARN: {msg}")
+        def error(self, msg): print(f"ERR: {msg}")
+        def success(self, msg): print(f"SUCCESS: {msg}")
+
+    hf_binding = HuggingFace(config, lollms_paths, lollmsCom=MockLollmsCom())
 
     # --- Build Model ---
     print(f"\nBuilding model: {args.model}")
-    model = hf_binding.build_model()
+    # Use the build_model method of the instance
+    model_built_successfully = hf_binding.build_model() # build_model returns self on success, None on failure
 
-    if model:
+    if model_built_successfully:
         print("\n--- Starting Generation Test ---")
         print(f"Prompt: {args.prompt}")
         print("Response:")
 
         full_response = ""
         def test_callback(chunk, type, metadata=None):
-            nonlocal full_response
+            # nonlocal full_response # <--- REMOVE THIS LINE
+            global full_response # Use global if you absolutely must, but modifying outer scope variable is fine here
             print(chunk, end="", flush=True)
             full_response += chunk
             return True # Continue generation
 
         try:
+            # Call generate on the binding instance
             hf_binding.generate(
                 args.prompt,
                 n_predict=args.max_tokens,
                 callback=test_callback,
-                temperature=args.temp,
+                gpt_params={'temperature': args.temp}, # Pass params in gpt_params dict
                 # Add other params if needed
             )
-            print("\n--- Generation Complete ---")
+            print("\n\n--- Generation Complete ---")
             # print(f"\nFull Response:\n{full_response}") # Already printed by callback
 
         except Exception as e:
