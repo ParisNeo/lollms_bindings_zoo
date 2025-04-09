@@ -131,7 +131,9 @@ class Ollama(LLMBinding):
             self.binding_config.save()
         else:
             self.binding_config.address = self.binding_config.address.strip()
-            self.binding_config.save() 
+            self.binding_config.save()
+
+        
         self.build_model()
                    
     def build_model(self, model_name=None):
@@ -170,9 +172,10 @@ class Ollama(LLMBinding):
     def install_model(self, model_type:str, model_path:str, variant_name:str, client_id:int=None):
         url = f'{self.binding_config.address}/api/pull'
         headers = {
-                    'accept': 'application/json',
-                    'Authorization': f'Bearer {self.binding_config.server_key}'
-                }
+            'Content-Type': 'application/json',
+        }
+        if self.binding_config.server_key:
+            headers['Authorization'] = f'Bearer {self.binding_config.server_key}'
         
         payload = json.dumps({
             'name':variant_name,
@@ -295,8 +298,9 @@ class Ollama(LLMBinding):
         try:
             headers = {
                 'Content-Type': 'application/json',
-                #'Authorization': f'Bearer {self.binding_config.server_key}',
             }
+            if self.binding_config.server_key:
+                headers['Authorization'] = f'Bearer {self.binding_config.server_key}'
 
             default_params = {
                 'temperature': 0.1,
