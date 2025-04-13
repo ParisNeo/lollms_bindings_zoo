@@ -28,7 +28,7 @@ import json
 import os
 import gc
 import pipmaster as pm
-
+import copy 
 # Suppress warnings from huggingface_hub
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 
@@ -312,7 +312,7 @@ class HuggingFace(LLMBinding):
         super().build_model(model_name) # Handles selection priority (user > binding default)
 
         # Use the model name selected by the user via main config, or fallback to binding default
-        effective_model_name = self.config.model_name or self.binding_config.hf_repo_id
+        effective_model_name = self.lollms_paths.personal_models_path / self.config.model_name or self.binding_config.hf_repo_id
         if not effective_model_name:
             self.Error("No model name specified in main configuration or binding default.")
             return None
@@ -445,7 +445,7 @@ class HuggingFace(LLMBinding):
                 except Exception as e: # Catch potential loading errors specific to Llava
                      self.error(f"Failed loading vision model ({e.__class__.__name__}): {e}")
                      raise
-            elif "gptq" in model_identifier.lower() or getattr(hf_config, "quantization_config", {}).get("quant_method") == "gptq":
+            elif "gptq" in str(model_identifier).lower() or getattr(hf_config, "quantization_config", {}).get("quant_method") == "gptq":
                 # GPTQ requires specific handling (often device_map and quantization_config interaction)
                  try:
                     # GPTQ models usually don't use BitsAndBytes config directly
@@ -459,7 +459,7 @@ class HuggingFace(LLMBinding):
                      self.error(f"Failed loading GPTQ model ({e.__class__.__name__}): {e}")
                      self.warning("Hints: Ensure 'auto-gptq' might be needed (install manually if required). Check device_map setting.")
                      raise
-            elif "awq" in model_identifier.lower() or getattr(hf_config, "quantization_config", {}).get("quant_method") == "awq":
+            elif "awq" in str(model_identifier).lower() or getattr(hf_config, "quantization_config", {}).get("quant_method") == "awq":
                 # AWQ specific handling
                 try:
                      # AWQ might need specific config or library, handled by AutoModel
@@ -915,41 +915,65 @@ class HuggingFace(LLMBinding):
 
         try:
             # Detokenize the new tokens
-            # Need to handle potential leading space if it's not the first token
-            new_text = self.tokenizer.decode(token_ids, skip_special_tokens=True)
+            # --- Potential Fix ---
+            # Check if token_ids is a list and if its first element is also a list (common batch pattern)
+            if isinstance(token_ids, list) and token_ids and isinstance(token_ids[0], list):
+                ids_to_decode = token_ids[0]
+            # Check if it's a tensor/numpy array with an extra batch dimension (e.g., shape [1, N])
+            elif hasattr(token_ids, 'ndim') and token_ids.ndim > 1: # Check if it has ndim (like tensor/numpy)
+                # Squeeze or select the first item. Using [0] is often robust.
+                ids_to_decode = token_ids[0]
+            else:
+                # Assume it's already the correct format (flat list or 1D tensor)
+                ids_to_decode = token_ids
 
-            # Simple buffer approach to avoid partial words (optional)
-            self.streaming_buffer += new_text
-            if self.first_token_generated:
-                # If not the first token, check for space to split words
-                if " " in self.streaming_buffer or "\n" in self.streaming_buffer:
-                     parts = self.streaming_buffer.rsplit(" ", 1)
-                     if len(parts) > 1: # Found a space
-                         chunk_to_send = parts[0] + " "
-                         self.streaming_buffer = parts[1] # Keep the rest
-                     elif "\n" in self.streaming_buffer:
-                          parts = self.streaming_buffer.split("\n",1)
-                          chunk_to_send = parts[0]+"\n"
-                          self.streaming_buffer = parts[1]
-                     else: # No space or newline yet, wait for more tokens
-                          chunk_to_send = ""
-                else: # No space/newline, keep buffering
-                    chunk_to_send = ""
-            else: # First token(s)
-                 chunk_to_send = self.streaming_buffer
-                 self.streaming_buffer = "" # Clear buffer after sending first part
-                 self.first_token_generated = True
+            # Make sure ids_to_decode is not empty before decoding
+            if ids_to_decode is not None and len(ids_to_decode) > 0:
+                try:
+                    # Decode the flattened list/tensor
+                    new_text = self.tokenizer.decode(ids_to_decode, skip_special_tokens=True)
+
+                    # Simple buffer approach to avoid partial words (optional)
+                    self.streaming_buffer += new_text
+                    if self.first_token_generated:
+                        # If not the first token, check for space to split words
+                        if " " in self.streaming_buffer or "\n" in self.streaming_buffer:
+                            parts = self.streaming_buffer.rsplit(" ", 1)
+                            if len(parts) > 1: # Found a space
+                                chunk_to_send = parts[0] + " "
+                                self.streaming_buffer = parts[1] # Keep the rest
+                            elif "\n" in self.streaming_buffer:
+                                parts = self.streaming_buffer.split("\n",1)
+                                chunk_to_send = parts[0]+"\n"
+                                self.streaming_buffer = parts[1]
+                            else: # No space or newline yet, wait for more tokens
+                                chunk_to_send = ""
+                        else: # No space/newline, keep buffering
+                            chunk_to_send = ""
+                    else: # First token(s)
+                        chunk_to_send = self.streaming_buffer
+                        self.streaming_buffer = "" # Clear buffer after sending first part
+                        self.first_token_generated = True
 
 
-            if chunk_to_send:
-                 # ASCIIColors.yellow(f"Sending chunk: '{chunk_to_send}'") # Debug
-                 if not self.callback(chunk_to_send, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
-                     ASCIIColors.warning("Generation cancelled by callback.")
-                     # How to stop the generator? Raise an exception? Set a flag?
-                     # Returning False from streamer usually stops it.
-                     return False # Signal generator to stop
+                    if chunk_to_send:
+                        # ASCIIColors.yellow(f"Sending chunk: '{chunk_to_send}'") # Debug
+                        if not self.callback(chunk_to_send, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
+                            ASCIIColors.warning("Generation cancelled by callback.")
+                            # How to stop the generator? Raise an exception? Set a flag?
+                            # Returning False from streamer usually stops it.
+                            return False # Signal generator to stop
 
-            return True # Continue generation
+                    return True # Continue generation
+                except Exception as e:
+                    print(f"[ERROR] Error during decoding after adjustment: {e}")
+                    print(f"Debug: ids_to_decode type: {type(ids_to_decode)}")
+                    print(f"Debug: ids_to_decode value: {ids_to_decode}")
+            else:
+                # Handle the case where ids_to_decode is empty or None
+                new_text = ""
+                print("[WARN] No valid token IDs to decode.")
+
 
         except Exception as e:
             ASCIIColors.error(f"Error in streaming callback: {e}")
@@ -996,7 +1020,7 @@ class HuggingFace(LLMBinding):
         self.first_token_generated = False # Reset flag
 
         # --- Prepare Generation Parameters ---
-        current_generation_config = self.generation_config.copy() # Work on a copy
+        current_generation_config = copy.deepcopy(self.generation_config)  # Work on a copy
 
         # Override with user-provided params
         current_generation_config.max_new_tokens = n_predict if n_predict is not None else self.binding_config.max_n_predict
@@ -1169,7 +1193,7 @@ class HuggingFace(LLMBinding):
         # Filter out pad/eos tokens if necessary (though decode usually handles them)
         # value = [tok for tok in value if tok not in [self.tokenizer.pad_token_id, self.tokenizer.eos_token_id]]
 
-        if value:
+        if value and (type(value)==int or (type(value)==list and type(value[0])==int)):
              if not self._streaming_callback(value): # Call our internal handler
                  # If callback returned False, we need to signal generate to stop.
                  # Raising an exception is one way, though maybe not the cleanest.
