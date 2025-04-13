@@ -1183,17 +1183,16 @@ class HuggingFace(LLMBinding):
         pass
 
 
-    @staticmethod
-    def list_models(config: LOLLMSConfig) -> List[str]:
+    def list_models(self) -> List[str]:
         """Lists models available for the binding."""
         # This static method should ideally list models from the configured directories
         # It is called by the LoLLMs UI to populate the model selection list
         binding_path = Path(__file__).parent
-        lollms_paths = LollmsPaths(config.lollms_path) # Get paths based on main config
-        models_dir = lollms_paths.personal_models_path / binding_folder_name
+        lollms_paths:LollmsPaths = self.lollmsCom.lollms_paths # Get paths based on main config
+        models_dir = lollms_paths.personal_models_path
         model_list = []
 
-        for model_type_dir in HuggingFace.models_dir_names:
+        for model_type_dir in ["transformers"]:
             type_path = models_dir / model_type_dir
             if type_path.exists():
                 for model_folder in type_path.iterdir():
@@ -1292,7 +1291,7 @@ if __name__ == "__main__":
     # --- Initialize Binding ---
     # Pass a placeholder lollmsCom if not running full LollmsApplication
     class MockLollmsCom:
-        def notify_model_install(self, *args, **kwargs): print(f"Mock Notify Install: {args}, {kwargs}")
+        async def notify_model_install(self, *args, **kwargs): print(f"Mock Notify Install: {args}, {kwargs}")
         def ShowBlockingMessage(self, msg): print(f"Mock Blocking Msg: {msg}")
         def HideBlockingMessage(self): print("Mock Hide Blocking Msg")
         # Add other methods if the binding calls them during init/build
