@@ -238,10 +238,10 @@ class LLAMA_Python_CPP(LLMBinding):
             try:
                 platform_name = platform.system()
                 if platform_name=="Windows":
-                    subprocess.run([sys.executable, "-m", "pip", "install", "torch", "torchvision", "torchaudio", "--index-url", "https://download.pytorch.org/whl/cu121", "--force-reinstall", "--upgrade"], check=True)
-                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/oobabooga/llama-cpp-python-cuBLAS-wheels/releases/download/textgen-webui/llama_cpp_python_cuda-0.3.8+cu121-cp311-cp311-win_amd64.whl", "--force-reinstall", "--upgrade"], check=True)
+                    subprocess.run([sys.executable, "-m", "pip", "install", "torch", "torchvision", "torchaudio", "--index-url", "https://download.pytorch.org/whl/cu124", "--force-reinstall", "--upgrade"], check=True)
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/oobabooga/llama-cpp-python-cuBLAS-wheels/releases/download/textgen-webui/llama_cpp_python_cuda-0.3.8+cu124-cp311-cp311-win_amd64.whl", "--force-reinstall", "--upgrade"], check=True)
                 elif platform_name=="Linux":        
-                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/oobabooga/llama-cpp-python-cuBLAS-wheels/releases/download/textgen-webui/llama_cpp_python_cuda-0.3.8+cu121-cp311-cp311-linux_x86_64.whl", "--force-reinstall", "--upgrade"], check=True)
+                    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/oobabooga/llama-cpp-python-cuBLAS-wheels/releases/download/textgen-webui/llama_cpp_python_cuda-0.3.8+cu124-cp311-cp311-linux_x86_64.whl", "--force-reinstall", "--upgrade"], check=True)
                 elif platform_name=="Darwin":        
                     subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.5-metal/llama_cpp_python-0.3.5-cp311-cp311-macosx_11_0_arm64.whl", "--force-reinstall", "--upgrade"], check=True)
             except:
