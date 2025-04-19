@@ -702,7 +702,7 @@ class OpenAIGPT(LLMBinding):
                              prompt: str,
                              images: List[str],
                              n_predict: Optional[int] = None, # Changed default to None
-                             callback: Optional[Callable[[str, int, dict], bool]] = None,
+                             callback: Optional[Callable[[str, int], bool]] = None,
                              verbose: bool = False,
                              **gpt_params) -> str:
         """
@@ -727,7 +727,7 @@ class OpenAIGPT(LLMBinding):
 
         if not self.client:
             self.error("OpenAI client not initialized.")
-            if callback: callback("Error: OpenAI client not initialized.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+            if callback: callback("Error: OpenAI client not initialized.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
             return ""
 
         # Use effective max output tokens from config if n_predict is not provided
@@ -743,18 +743,18 @@ class OpenAIGPT(LLMBinding):
 
         if not (self.binding_type == BindingType.TEXT_IMAGE):
              self.error(f"Model '{self.config.model_name}' does not support image input according to its configuration.")
-             if callback: callback(f"Error: Model '{self.config.model_name}' does not support image input.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+             if callback: callback(f"Error: Model '{self.config.model_name}' does not support image input.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
              return ""
 
         if not prompt and not images:
              self.error("Cannot generate response with empty prompt and no images.")
-             if callback: callback("Error: Empty prompt and no images provided.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+             if callback: callback("Error: Empty prompt and no images provided.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
              return ""
 
         model_name = self.config.model_name or ""
         if not model_name:
              self.error("Cannot generate response, no model selected.")
-             if callback: callback("Error: No model selected.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+             if callback: callback("Error: No model selected.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
              return ""
 
 
@@ -805,7 +805,7 @@ class OpenAIGPT(LLMBinding):
             if not valid_image_path or not is_file_path(valid_image_path) or not valid_image_path.exists():
                  self.warning(f"Image path not found or invalid: {image_path_str}. Skipping.")
                  invalid_image_paths.append(image_path_str)
-                 if callback: callback(f"Warning: Image not found {image_path_str}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_WARNING, {})
+                 if callback: callback(f"Warning: Image not found {image_path_str}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_WARNING)
                  continue
 
             try:
@@ -824,18 +824,18 @@ class OpenAIGPT(LLMBinding):
                 else:
                      self.warning(f"Could not encode image: {valid_image_path}")
                      invalid_image_paths.append(image_path_str)
-                     if callback: callback(f"Warning: Failed to encode image {valid_image_path}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_WARNING, {})
+                     if callback: callback(f"Warning: Failed to encode image {valid_image_path}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_WARNING)
 
             except Exception as img_ex:
                  self.error(f"Error processing image {valid_image_path}: {img_ex}")
                  invalid_image_paths.append(image_path_str)
                  trace_exception(img_ex)
-                 if callback: callback(f"Error processing image {valid_image_path}: {img_ex}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+                 if callback: callback(f"Error processing image {valid_image_path}: {img_ex}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
 
 
         if not content or (not prompt and processed_image_count == 0):
             self.error("Failed to prepare any content (text or valid images) for the API request.")
-            if callback: callback("Error: No valid text prompt or images provided.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+            if callback: callback("Error: No valid text prompt or images provided.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
             return ""
 
         if invalid_image_paths:
@@ -878,7 +878,7 @@ class OpenAIGPT(LLMBinding):
                         #      chunk_tokens = len(self.tokenize(chunk_text))
                         # total_output_tokens += chunk_tokens
 
-                        if not callback(chunk_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK, {}):
+                        if not callback(chunk_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                             self.info("Generation stopped by callback.")
                             stream_finished = True # Mark as finished due to callback
                             # How to stop the stream? Breaking the loop is usually sufficient.
@@ -908,28 +908,28 @@ class OpenAIGPT(LLMBinding):
         except openai.AuthenticationError as e:
             self.error("Authentication Error: Invalid OpenAI API key.")
             trace_exception(e)
-            if callback: callback("Authentication Error: Invalid OpenAI API key.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+            if callback: callback("Authentication Error: Invalid OpenAI API key.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
             return ""
         except openai.RateLimitError as e:
              self.error("OpenAI API rate limit exceeded.")
              trace_exception(e)
-             if callback: callback("OpenAI API rate limit exceeded.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+             if callback: callback("OpenAI API rate limit exceeded.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
              return ""
         except openai.BadRequestError as e:
              # Often related to image issues (format, size, safety) or unsupported params
              self.error(f'OpenAI API Bad Request Error: {e}. Check image validity, prompt, or parameters.')
              trace_exception(e)
-             if callback: callback(f"OpenAI API Bad Request: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+             if callback: callback(f"OpenAI API Bad Request: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
              return ""
         except openai.APIError as api_ex:
              self.error(f'OpenAI API Error: {api_ex}')
              trace_exception(api_ex)
-             if callback: callback(f"OpenAI API Error: {api_ex}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+             if callback: callback(f"OpenAI API Error: {api_ex}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
              return ""
         except Exception as ex:
             self.error(f'Error during generation with images: {ex}')
             trace_exception(ex)
-            if callback: callback(f"Error: {ex}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+            if callback: callback(f"Error: {ex}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
             return ""
         finally:
              generation_time = perf_counter() - start_time
@@ -956,7 +956,7 @@ class OpenAIGPT(LLMBinding):
     def generate(self,
                  prompt: str,
                  n_predict: Optional[int] = None, # Changed default to None
-                 callback: Optional[Callable[[str, int, dict], bool]] = None,
+                 callback: Optional[Callable[[str, int], bool]] = None,
                  verbose: bool = False,
                  **gpt_params) -> str:
         """
@@ -982,13 +982,13 @@ class OpenAIGPT(LLMBinding):
 
         if not self.client:
             self.error("OpenAI client not initialized.")
-            if callback: callback("Error: OpenAI client not initialized.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+            if callback: callback("Error: OpenAI client not initialized.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
             return ""
 
         model_name = self.config.model_name
         if not model_name:
              self.error("No model selected.")
-             if callback: callback("Error: No model selected.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+             if callback: callback("Error: No model selected.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
              return ""
 
         # --- Parameter Preparation ---
@@ -1081,7 +1081,7 @@ class OpenAIGPT(LLMBinding):
             if use_responses_api:
                 self.info(f"Tools enabled (WebSearch:{enable_web_search}, FileSearch:{enable_file_search}). Using Responses API. Streaming disabled.")
                 if callback:
-                    callback("INFO: Tool usage detected. Streaming is disabled. Full response will be provided at the end.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_INFO, {})
+                    callback("INFO: Tool usage detected. Streaming is disabled. Full response will be provided at the end.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_INFO)
 
                 # --- Prepare Tools List ---
                 tools: List[Dict[str, Any]] = []
@@ -1123,7 +1123,7 @@ class OpenAIGPT(LLMBinding):
                     vector_store_id = self.binding_config.config.get("file_search_vector_store_id", "")
                     if not vector_store_id:
                         self.error("File Search enabled, but Vector Store ID is missing in configuration. Cannot use file search tool.")
-                        if callback: callback("Error: File Search enabled, but Vector Store ID is missing.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+                        if callback: callback("Error: File Search enabled, but Vector Store ID is missing.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
                         # Don't add the tool if ID is missing
                     else:
                         # Responses API uses 'file_search' tool type directly with vector_store_ids
@@ -1288,7 +1288,7 @@ class OpenAIGPT(LLMBinding):
                         finish_reason = chunk.choices[0].finish_reason
                         if chunk_text:
                             output += chunk_text
-                            if callback and not callback(chunk_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK, {}):
+                            if callback and not callback(chunk_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                                 self.info("Generation stopped by callback."); stream_finished=True; break
                         if finish_reason:
                              if verbose: ASCIIColors.verbose(f"Chat generation finished. Reason: {finish_reason}")
@@ -1315,7 +1315,7 @@ class OpenAIGPT(LLMBinding):
                         finish_reason = chunk.choices[0].finish_reason
                         if chunk_text:
                             output += chunk_text
-                            if callback and not callback(chunk_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK, {}):
+                            if callback and not callback(chunk_text, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                                  self.info("Generation stopped by callback."); stream_finished=True; break
                         if finish_reason:
                              if verbose: ASCIIColors.verbose(f"Completion generation finished. Reason: {finish_reason}")
@@ -1339,11 +1339,11 @@ class OpenAIGPT(LLMBinding):
 
 
         # --- Exception Handling ---
-        except openai.AuthenticationError as e: self.error(f"Authentication Error: {e}"); trace_exception(e); callback(f"Authentication Error: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {}) if callback else None; return ""
-        except openai.RateLimitError as e: self.error(f"Rate limit exceeded: {e}"); trace_exception(e); callback(f"Rate limit exceeded: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {}) if callback else None; return ""
-        except openai.BadRequestError as e: self.error(f"API Bad Request Error: {e}. Check model/params/tool compatibility/input format."); trace_exception(e); callback(f"API Bad Request: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {}) if callback else None; return ""
-        except openai.APIError as e: self.error(f'OpenAI API Error: {e}'); trace_exception(e); callback(f"API Error: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {}) if callback else None; return ""
-        except Exception as e: self.error(f'Error during generation: {e}'); trace_exception(e); callback(f"Error: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {}) if callback else None; return ""
+        except openai.AuthenticationError as e: self.error(f"Authentication Error: {e}"); trace_exception(e); callback(f"Authentication Error: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION) if callback else None; return ""
+        except openai.RateLimitError as e: self.error(f"Rate limit exceeded: {e}"); trace_exception(e); callback(f"Rate limit exceeded: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION) if callback else None; return ""
+        except openai.BadRequestError as e: self.error(f"API Bad Request Error: {e}. Check model/params/tool compatibility/input format."); trace_exception(e); callback(f"API Bad Request: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION) if callback else None; return ""
+        except openai.APIError as e: self.error(f'OpenAI API Error: {e}'); trace_exception(e); callback(f"API Error: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION) if callback else None; return ""
+        except Exception as e: self.error(f'Error during generation: {e}'); trace_exception(e); callback(f"Error: {e}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION) if callback else None; return ""
         finally:
             generation_time = perf_counter() - start_time
             ASCIIColors.info(f"Generation process finished in {generation_time:.2f} seconds.")

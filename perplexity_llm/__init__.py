@@ -389,7 +389,7 @@ class Perplexity(LLMBinding):
     def generate(self,
                  prompt: str,
                  n_predict: Optional[int] = None,
-                 callback: Optional[Callable[[str, int, dict], bool]] = None,
+                 callback: Optional[Callable[[str, int], bool]] = None,
                  verbose: bool = False,
                  **generation_params) -> str:
         """
@@ -409,13 +409,13 @@ class Perplexity(LLMBinding):
         """
         if not self.perplexity_key:
             self.error("Perplexity API key not set.")
-            if callback: callback("Error: Perplexity API key not configured.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+            if callback: callback("Error: Perplexity API key not configured.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
             return ""
 
         model_name = self.config.model_name
         if not model_name:
              self.error("No model selected.")
-             if callback: callback("Error: No model selected.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+             if callback: callback("Error: No model selected.", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
              return ""
 
         # --- Parameter Preparation ---
@@ -525,11 +525,11 @@ class Perplexity(LLMBinding):
                              if verbose: ASCIIColors.verbose(f"Stream chunk received: {chunk_data}")
 
                              # Extract text delta
-                             delta_content = chunk_data.get("choices", [{}])[0].get("delta", {}).get("content")
+                             delta_content = chunk_data.get("choices", [{}])[0].get("delta").get("content")
                              if delta_content:
                                  output += delta_content
                                  if callback:
-                                     if not callback(delta_content, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK, {}):
+                                     if not callback(delta_content, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                                          self.info("Generation stopped by callback.")
                                          stream_finished = True
                                          break # Stop processing stream
@@ -560,7 +560,7 @@ class Perplexity(LLMBinding):
 
                     elif event.event == "error":
                          self.error(f"Perplexity API Stream Error: {event.data}")
-                         if callback: callback(f"Stream Error: {event.data}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+                         if callback: callback(f"Stream Error: {event.data}", MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
                          stream_finished = True # Assume stream ends on error
                          break
                     elif event.event == "ping":
@@ -584,7 +584,7 @@ class Perplexity(LLMBinding):
                 if verbose: ASCIIColors.verbose(f"Non-streaming response received: {json.dumps(full_response_json, indent=2)}")
 
                 if full_response_json.get("choices"):
-                     message = full_response_json["choices"][0].get("message", {})
+                     message = full_response_json["choices"][0].get("message")
                      output = message.get("content", "")
                      metadata["finish_reason"] = full_response_json["choices"][0].get("finish_reason")
                 else:
@@ -617,21 +617,21 @@ class Perplexity(LLMBinding):
 
             self.error(error_message)
             trace_exception(e)
-            if callback: callback(error_message, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+            if callback: callback(error_message, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
             raise exc # Re-raise the formatted exception
 
         except requests.exceptions.RequestException as e:
             error_message = f"Network error connecting to Perplexity API: {e}"
             self.error(error_message)
             trace_exception(e)
-            if callback: callback(error_message, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+            if callback: callback(error_message, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
             raise HttpException(error_message) from e # Wrap in HttpException
 
         except Exception as e:
             error_message = f"Error during Perplexity generation: {e}"
             self.error(error_message)
             trace_exception(e)
-            if callback: callback(error_message, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION, {})
+            if callback: callback(error_message, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION)
             raise e # Re-raise other exceptions
         finally:
              generation_time = perf_counter() - start_time
