@@ -1,0 +1,11 @@
+# zoos/bindings_zoo/perplexity/binding_card.yaml
+name: Perplexity
+author: ParisNeo
+version: 1.0
+link: https://www.perplexity.ai/
+description: |
+  Binding for the Perplexity API. Leverages Perplexity's online models for chat completions with integrated web search capabilities.
+  Requires a Perplexity API key (https://docs.perplexity.ai/).
+accepted_models: # Optional: If you want to restrict which models can use this binding type
+  - perplexity # This is a tag users might assign in model settings
+binding_type: api # api, local_llm, etc.
