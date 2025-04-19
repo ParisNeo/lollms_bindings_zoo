@@ -17,7 +17,6 @@ from lollms.paths import LollmsPaths
 from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors, trace_exception
 from lollms.types import MSG_OPERATION_TYPE
-from lollms.utilities import PackageManager, find_first_available_file_path, is_file_path, RequestErrorData, HttpException
 
 from lollms.com import LoLLMsCom
 import subprocess
@@ -608,9 +607,6 @@ class Perplexity(LLMBinding):
             error_message = f"Perplexity API HTTP Error: {status_code}"
             try:
                 error_details = e.response.json()
-                error_message += f" - {error_details}"
-                err_data = RequestErrorData(status_code=status_code, error_details=error_details, url=api_url)
-                exc = HttpException(error_message, request_error_data=err_data)
             except json.JSONDecodeError:
                 error_message += f" - {e.response.text}" # Non-JSON error response
                 exc = HttpException(error_message)

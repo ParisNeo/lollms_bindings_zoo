@@ -1,7 +1,7 @@
-name: Anthropic
-author: Anthropic
+name: Anthropic Claude API
+author: Anthropic, PBC
 version: 1.0
-link: https://anthropic.com/
-description: This binding uses the anthropic ai api to make you use Claude and other anthropic models
-accepted_models: 
-  - anthropic models
+link: https://www.anthropic.com/
+description: Binding for Anthropic's Claude models (Claude 3 family, Sonnet 3.5, etc.) via their official API. Provides text and vision capabilities.
+accepted_models:
+  - anthropic # Tag for models served by this binding
