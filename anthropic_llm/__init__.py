@@ -595,7 +595,7 @@ class Anthropic(LLMBinding):
         input_tokens = 0; prompt_text_only = prompt
         if self.binding_config.config.turn_on_cost_estimation:
             try:
-                input_tokens = self.client.count_tokens(prompt_text_only) if prompt_text_only else 0
+                input_tokens = self.count_tokens(prompt_text_only) if prompt_text_only else 0
                 self.binding_config.config["total_input_tokens"] += input_tokens
                 input_cost_rate = INPUT_COSTS_BY_MODEL.get(model_name, INPUT_COSTS_BY_MODEL.get("default", 0))
                 input_cost = input_tokens * input_cost_rate
