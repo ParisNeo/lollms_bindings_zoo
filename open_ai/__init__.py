@@ -761,28 +761,21 @@ class OpenAIGPT(LLMBinding):
         # --- Prepare API parameters ---
         default_params = {
             'temperature': self.config.temperature,
-            'top_p': self.config.top_p,
             # Add other lollms config defaults if needed (e.g., penalties)
         }
         final_params = {**default_params, **gpt_params}
         final_temperature = float(final_params.get("temperature", 1.0)) # Default to 1.0 if not provided
-        final_top_p = float(final_params.get("top_p", 1.0)) # Default to 1.0 if not provided
 
         seed = self.binding_config.config.get("seed", -1)
         api_params: Dict[str, Any] = { # Explicitly define type
             "model": model_name,
-            "max_tokens": effective_max_n_predict,
+            "max_completion_tokens": effective_max_n_predict,
             "stream": True, # Always stream for vision? Or make optional? Keep streaming for now.
         }
-        # Only add temp/top_p if they are not the default values OpenAI uses (usually 1.0)
+        # Only add temp if they are not the default values OpenAI uses (usually 1.0)
         # to avoid sending unnecessary parameters. Check OpenAI defaults if unsure.
         if final_temperature != 1.0: api_params["temperature"] = final_temperature
-        if final_top_p != 1.0: api_params["top_p"] = final_top_p
         if seed is not None and seed != -1: api_params["seed"] = seed
-
-        # Add other supported params like frequency_penalty, presence_penalty if they exist in final_params
-        if 'frequency_penalty' in final_params: api_params['frequency_penalty'] = float(final_params['frequency_penalty'])
-        if 'presence_penalty' in final_params: api_params['presence_penalty'] = float(final_params['presence_penalty'])
 
 
         # --- Prepare message content (text + images) ---
@@ -973,7 +966,7 @@ class OpenAIGPT(LLMBinding):
             callback: An optional callback function for streaming results (only works when tools are disabled).
                       Signature: callback(token_or_full_response: str, message_type: int, metadata: dict) -> bool
             verbose: If True, prints more detailed information.
-            **gpt_params: Additional parameters for the OpenAI API call (e.g., temperature, top_p, stop).
+            **gpt_params: Additional parameters for the OpenAI API call (e.g., temperature).
 
         Returns:
             The generated text response, potentially including formatted citations if tools were used.
@@ -1002,54 +995,33 @@ class OpenAIGPT(LLMBinding):
                   self.warning(f"Requested n_predict ({n_predict}) exceeds the effective model limit ({self.config.max_n_predict}). Capping at {self.config.max_n_predict}.")
                   effective_max_n_predict = self.config.max_n_predict
              # else: n_predict <= 0 or invalid, use config default
-        if verbose: ASCIIColors.verbose(f"Effective max_tokens for this generation: {effective_max_n_predict}")
+        if verbose: ASCIIColors.verbose(f"Effective max_completion_tokens for this generation: {effective_max_n_predict}")
 
 
         default_params = {
             'temperature': self.config.temperature,
-            'top_p': self.config.top_p,
-            'frequency_penalty': self.config.frequency_penalty,
-            'presence_penalty': self.config.presence_penalty,
-            'stop': self.config.stop_sequences # Assuming lollms config has these
         }
         final_params = {**default_params, **gpt_params}
 
         # Clean and validate parameters
         final_temperature = float(final_params.get("temperature", 1.0))
-        final_top_p = float(final_params.get("top_p", 1.0))
-        final_freq_penalty = float(final_params.get("frequency_penalty", 0.0))
-        final_pres_penalty = float(final_params.get("presence_penalty", 0.0))
         seed = self.binding_config.config.get("seed", -1)
-        stop_sequences = final_params.get('stop') # Can be None, str, or list
 
-        # Validate stop sequences
-        if isinstance(stop_sequences, str):
-            stop_sequences = [stop_sequences] # API expects list or None
-        elif stop_sequences is not None and not isinstance(stop_sequences, list):
-            self.warning(f"Invalid stop sequence format: {stop_sequences}. Ignoring.")
-            stop_sequences = None
-        elif isinstance(stop_sequences, list):
-             # Filter out non-strings or empty strings
-             stop_sequences = [s for s in stop_sequences if isinstance(s, str) and s]
-             if not stop_sequences: # If list becomes empty
-                 stop_sequences = None
 
         # Temperature Override Logic for specific families (Optional, adjust as needed)
-        # Note: Tools usage might ignore temperature/top_p.
+        # Note: Tools usage might ignore temperature.
         temp_override_applied = False
         if model_name:
              if ('o4' in model_name or 'o3' in model_name) and final_temperature != 1.0:
                  self.warning(f"Model family '{model_name}' might work best with temp=1.0. Current: {final_temperature}.")
-                 # Example override: final_temperature = 1.0; temp_override_applied = True
+                 final_temperature = 1.0; 
+                 temp_override_applied = True
+                 final_freq_penalty = None
              elif 'search' in model_name: # Hypothetical search model family
                  if final_temperature != 1.0:
                      self.warning(f"Search models often ignore temperature. Setting to None for API call.")
                      final_temperature = None # Explicitly None might be better than 1.0
                      temp_override_applied = True
-                 if final_top_p != 1.0:
-                      self.warning(f"Search models often ignore top_p. Setting to None for API call.")
-                      final_top_p = None
-                      temp_override_applied = True
 
         # --- Cost Estimation (Input - Text Tokens Only) ---
         total_input_tokens = 0
@@ -1157,15 +1129,12 @@ class OpenAIGPT(LLMBinding):
                     "model": model_name,
                     "input": prompt,
                     "tools": tools,
-                    "max_tokens": effective_max_n_predict, # Max tokens for the *model's response part*
+                    "max_completion_tokens": effective_max_n_predict, # Max tokens for the *model's response part*
                 }
                 if tool_choice: response_params["tool_choice"] = tool_choice
                 # Add other params if they are not None/Default
                 if final_temperature is not None: response_params["temperature"] = final_temperature
-                if final_top_p is not None: response_params["top_p"] = final_top_p
                 if seed is not None and seed != -1: response_params["seed"] = seed
-                # Note: Penalties and stop sequences might not be supported by Responses API, check docs
-                # if stop_sequences: response_params["stop"] = stop_sequences # Likely unsupported
 
                 # --- Make the API Call (Non-Streaming) ---
                 if verbose: ASCIIColors.verbose(f"Calling Responses API. Params: {response_params}")
@@ -1263,16 +1232,12 @@ class OpenAIGPT(LLMBinding):
                 # --- Prepare Streaming API Call Parameters ---
                 stream_params: Dict[str, Any] = {
                     "model": model_name,
-                    "max_tokens": effective_max_n_predict,
+                    "max_completion_tokens": effective_max_n_predict,
                     "stream": True
                 }
                 # Add optional parameters only if they differ from defaults or are not None
                 if final_temperature != 1.0: stream_params["temperature"] = final_temperature
-                if final_top_p != 1.0: stream_params["top_p"] = final_top_p
-                if final_freq_penalty != 0.0: stream_params["frequency_penalty"] = final_freq_penalty
-                if final_pres_penalty != 0.0: stream_params["presence_penalty"] = final_pres_penalty
                 if seed is not None and seed != -1: stream_params["seed"] = seed
-                if stop_sequences: stream_params["stop"] = stop_sequences
 
                 # --- Execute Streaming Call ---
                 stream_finished = False
@@ -1335,7 +1300,7 @@ class OpenAIGPT(LLMBinding):
                 # If streaming finished, send a final 'status' update via callback if desired
                 if stream_finished and callback:
                     final_status_message = f"Generation finished: {metadata.get('finish_reason', 'Unknown')}"
-                    callback(final_status_message, MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_STEP_END, metadata)
+                    ASCIIColors.info(final_status_message)
 
 
         # --- Exception Handling ---
@@ -1565,10 +1530,6 @@ if __name__ == "__main__":
                      print(chunk)
                      if 'citations' in metadata: print(f"Citations: {metadata['citations']}")
                      print("--- End Full Response ---")
-                 elif msg_type == MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_STEP_END:
-                      print(f"\n--- [{type_str}] Generation Step End ---")
-                      print(f"Metadata: {metadata}")
-                      print("--- End Step End ---")
                  elif msg_type == MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_EXCEPTION:
                      print(f"\n## [{type_str}] EXCEPTION: {chunk} ##")
                      return False # Stop on error
