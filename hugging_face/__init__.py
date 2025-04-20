@@ -1059,9 +1059,10 @@ class HuggingFaceLocal(LLMBinding):
                 # Also check for models directly under HF_LOCAL_MODELS_DIR (e.g., 'my_custom_model')
                 elif author_item.is_dir(): # Re-check top level items if they weren't author folders
                      is_model_dir = ( (author_item / "config.json").exists() or
-                                      list(author_item.glob("*.safetensors")) or
-                                      list(author_item.glob("*.bin")) or
-                                      list(author_item.glob("*.pth"))
+                                      list(author_item.glob("*.safetensors")) 
+                                      #or
+                                      #list(author_item.glob("*.bin")) or
+                                      #list(author_item.glob("*.pth"))
                                     )
                      if is_model_dir:
                          model_folders.append(author_item.name.replace("\\", "/"))
