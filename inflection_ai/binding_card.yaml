@@ -1,0 +1,10 @@
+name: Inflection AI
+author: Inflection AI / ParisNeo
+version: 1.0
+link: https://inflection.ai/
+description: |
+  Binding for the Inflection AI API. Uses proprietary models like Pi and Productivity.
+  Requires an API key (token) provided by Inflection AI. Adhere to their terms of service.
+accepted_models:
+  - inflection # Tag for models using this binding
+binding_type: api

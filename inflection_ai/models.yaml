@@ -1,0 +1,29 @@
+- category: chat
+  datasets: unknown
+  icon: '/bindings/inflection_ai/logo.png' # Assuming a logo file exists
+  last_commit_time: null # Placeholder
+  license: Proprietary API
+  model_creator: Inflection AI
+  model_creator_link: https://inflection.ai/
+  name: inflection_3_pi
+  quantizer: null
+  rank: 3.0
+  type: api
+  variants:
+    - name: inflection_3_pi
+      size: 8000 # Context size proxy
+
+- category: productivity_chat
+  datasets: unknown
+  icon: '/bindings/inflection_ai/logo.png' # Assuming a logo file exists
+  last_commit_time: null # Placeholder
+  license: Proprietary API
+  model_creator: Inflection AI
+  model_creator_link: https://inflection.ai/
+  name: inflection_3_productivity
+  quantizer: null
+  rank: 3.2
+  type: api
+  variants:
+    - name: inflection_3_productivity
+      size: 8000 # Context size proxy
