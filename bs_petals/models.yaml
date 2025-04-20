@@ -6,7 +6,7 @@
   model_creator: bigscience
   model_creator_link: https://huggingface.co/bigscience
   name: petals-team/StableBeluga2
-  quantizer: None
+  provider: None
   rank: 10000000000.0
   type: gptq
   model_type: api

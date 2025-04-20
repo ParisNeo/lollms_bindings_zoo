@@ -454,7 +454,7 @@ class NovitaAI(LLMBinding):
                     "model_creator": model.get("owned_by", "unknown"),  # Use 'owned_by' as model_creator
                     "model_creator_link": "https://novita.ai",  # Default link
                     "name": model.get("display_name", "unknown"),  # Use 'display_name' as name
-                    "quantizer": None,  # Default quantizer
+                    "provider": None,  # Default provider
                     "rank": 1.0,  # Default rank
                     "type": "api",  # Default type
                     "variants": [

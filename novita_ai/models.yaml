@@ -6,7 +6,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -21,7 +21,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-4-turbo-preview
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -36,7 +36,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-4-vision-preview
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -51,7 +51,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-4-0613
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -65,7 +65,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-4
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -80,7 +80,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo-0613
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -95,7 +95,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo-1106
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -109,7 +109,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo-0301
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -123,7 +123,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo-16k-0613
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -137,7 +137,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo-instruct
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -151,7 +151,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo-instruct-0914
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -165,7 +165,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-4-1106-preview
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -179,7 +179,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-4-0314
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -193,7 +193,7 @@
   model_creator: openai
   model_creator_link: https://openai.com
   name: gpt-3.5-turbo-16k
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:

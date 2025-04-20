@@ -406,7 +406,7 @@ class LiteLLM(LLMBinding):
                 "license": "unknown",
                 "model_creator": "unknown",
                 "name": model["model_name"],
-                "quantizer": None,
+                "provider": None,
                 "rank": "1.0",
                 "type": "api",
                 "variants": [

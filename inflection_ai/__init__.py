@@ -486,7 +486,7 @@ class InflectionAI(LLMBinding):
             "icon": default_icon,
             "model_creator": "Inflection AI",
             "model_creator_link": "https://inflection.ai/",
-            "quantizer": None,
+            "provider": None,
             "type": "api",
             "binding_name": binding_name
         }

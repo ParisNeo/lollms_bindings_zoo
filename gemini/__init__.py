@@ -1020,7 +1020,7 @@ class Gemini(LLMBinding):
                     "model_creator": "Google",
                     "model_creator_link": "https://ai.google.dev/",
                     "name": model_id, # The actual ID used in configuration
-                    "quantizer": None, # Not applicable to APIs
+                    "provider": None, # Not applicable to APIs
                     "rank": rank,
                     "type": "api", # Indicates it's an API-based model
                     "variants": [{"name": model_id, "size": size_proxy}], # API models usually have one variant per ID

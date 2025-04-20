@@ -6,7 +6,7 @@
   model_creator: litellm
   model_creator_link: https://litellm.ai/ 
   name: litellm_service
-  quantizer: None
+  provider: None
   rank: 1.0
   type: api
   variants:

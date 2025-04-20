@@ -12,7 +12,7 @@
   model_creator_link: /models/sao10k/l3.1-70b-hanami-x1
   name: sao10k/l3.1-70b-hanami-x1
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -34,7 +34,7 @@
   model_creator_link: /models/deepseek/deepseek-chat
   name: deepseek/deepseek-chat
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -56,7 +56,7 @@
   model_creator_link: /models/qwen/qvq-72b-preview
   name: qwen/qvq-72b-preview
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -78,7 +78,7 @@
   model_creator_link: /models/google/gemini-2.0-flash-thinking-exp:free
   name: google/gemini-2.0-flash-thinking-exp:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -100,7 +100,7 @@
   model_creator_link: /models/sao10k/l3.3-euryale-70b
   name: sao10k/l3.3-euryale-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -122,7 +122,7 @@
   model_creator_link: /models/inflatebot/mn-mag-mell-r1
   name: inflatebot/mn-mag-mell-r1
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -144,7 +144,7 @@
   model_creator_link: /models/openai/o1
   name: openai/o1
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -166,7 +166,7 @@
   model_creator_link: /models/eva-unit-01/eva-llama-3.33-70b
   name: eva-unit-01/eva-llama-3.33-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -188,7 +188,7 @@
   model_creator_link: /models/x-ai/grok-2-vision-1212
   name: x-ai/grok-2-vision-1212
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -210,7 +210,7 @@
   model_creator_link: /models/x-ai/grok-2-1212
   name: x-ai/grok-2-1212
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -232,7 +232,7 @@
   model_creator_link: /models/cohere/command-r7b-12-2024
   name: cohere/command-r7b-12-2024
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -254,7 +254,7 @@
   model_creator_link: /models/google/gemini-2.0-flash-exp:free
   name: google/gemini-2.0-flash-exp:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -276,7 +276,7 @@
   model_creator_link: /models/google/gemini-exp-1206:free
   name: google/gemini-exp-1206:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -298,7 +298,7 @@
   model_creator_link: /models/meta-llama/llama-3.3-70b-instruct
   name: meta-llama/llama-3.3-70b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -320,7 +320,7 @@
   model_creator_link: /models/amazon/nova-lite-v1
   name: amazon/nova-lite-v1
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -342,7 +342,7 @@
   model_creator_link: /models/amazon/nova-micro-v1
   name: amazon/nova-micro-v1
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -364,7 +364,7 @@
   model_creator_link: /models/amazon/nova-pro-v1
   name: amazon/nova-pro-v1
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -386,7 +386,7 @@
   model_creator_link: /models/qwen/qwq-32b-preview
   name: qwen/qwq-32b-preview
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -408,7 +408,7 @@
   model_creator_link: /models/google/gemini-exp-1121:free
   name: google/gemini-exp-1121:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -430,7 +430,7 @@
   model_creator_link: /models/google/learnlm-1.5-pro-experimental:free
   name: google/learnlm-1.5-pro-experimental:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -452,7 +452,7 @@
   model_creator_link: /models/eva-unit-01/eva-qwen-2.5-72b
   name: eva-unit-01/eva-qwen-2.5-72b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -474,7 +474,7 @@
   model_creator_link: /models/openai/gpt-4o-2024-11-20
   name: openai/gpt-4o-2024-11-20
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -496,7 +496,7 @@
   model_creator_link: /models/mistralai/mistral-large-2411
   name: mistralai/mistral-large-2411
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -518,7 +518,7 @@
   model_creator_link: /models/mistralai/mistral-large-2407
   name: mistralai/mistral-large-2407
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -540,7 +540,7 @@
   model_creator_link: /models/mistralai/pixtral-large-2411
   name: mistralai/pixtral-large-2411
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -562,7 +562,7 @@
   model_creator_link: /models/x-ai/grok-vision-beta
   name: x-ai/grok-vision-beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -584,7 +584,7 @@
   model_creator_link: /models/google/gemini-exp-1114:free
   name: google/gemini-exp-1114:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -606,7 +606,7 @@
   model_creator_link: /models/infermatic/mn-inferor-12b
   name: infermatic/mn-inferor-12b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -628,7 +628,7 @@
   model_creator_link: /models/qwen/qwen-2.5-coder-32b-instruct
   name: qwen/qwen-2.5-coder-32b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -650,7 +650,7 @@
   model_creator_link: /models/raifle/sorcererlm-8x22b
   name: raifle/sorcererlm-8x22b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -672,7 +672,7 @@
   model_creator_link: /models/eva-unit-01/eva-qwen-2.5-32b
   name: eva-unit-01/eva-qwen-2.5-32b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -694,7 +694,7 @@
   model_creator_link: /models/thedrummer/unslopnemo-12b
   name: thedrummer/unslopnemo-12b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -716,7 +716,7 @@
   model_creator_link: /models/anthropic/claude-3.5-haiku-20241022:beta
   name: anthropic/claude-3.5-haiku-20241022:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -738,7 +738,7 @@
   model_creator_link: /models/anthropic/claude-3.5-haiku-20241022
   name: anthropic/claude-3.5-haiku-20241022
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -760,7 +760,7 @@
   model_creator_link: /models/anthropic/claude-3.5-haiku:beta
   name: anthropic/claude-3.5-haiku:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -782,7 +782,7 @@
   model_creator_link: /models/anthropic/claude-3.5-haiku
   name: anthropic/claude-3.5-haiku
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -804,7 +804,7 @@
   model_creator_link: /models/neversleep/llama-3.1-lumimaid-70b
   name: neversleep/llama-3.1-lumimaid-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -826,7 +826,7 @@
   model_creator_link: /models/anthracite-org/magnum-v4-72b
   name: anthracite-org/magnum-v4-72b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -848,7 +848,7 @@
   model_creator_link: /models/anthropic/claude-3.5-sonnet:beta
   name: anthropic/claude-3.5-sonnet:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -870,7 +870,7 @@
   model_creator_link: /models/anthropic/claude-3.5-sonnet
   name: anthropic/claude-3.5-sonnet
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -892,7 +892,7 @@
   model_creator_link: /models/x-ai/grok-beta
   name: x-ai/grok-beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -914,7 +914,7 @@
   model_creator_link: /models/mistralai/ministral-8b
   name: mistralai/ministral-8b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -936,7 +936,7 @@
   model_creator_link: /models/mistralai/ministral-3b
   name: mistralai/ministral-3b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -958,7 +958,7 @@
   model_creator_link: /models/qwen/qwen-2.5-7b-instruct
   name: qwen/qwen-2.5-7b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -980,7 +980,7 @@
   model_creator_link: /models/nvidia/llama-3.1-nemotron-70b-instruct
   name: nvidia/llama-3.1-nemotron-70b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1002,7 +1002,7 @@
   model_creator_link: /models/inflection/inflection-3-pi
   name: inflection/inflection-3-pi
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1024,7 +1024,7 @@
   model_creator_link: /models/inflection/inflection-3-productivity
   name: inflection/inflection-3-productivity
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1046,7 +1046,7 @@
   model_creator_link: /models/google/gemini-flash-1.5-8b
   name: google/gemini-flash-1.5-8b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1068,7 +1068,7 @@
   model_creator_link: /models/anthracite-org/magnum-v2-72b
   name: anthracite-org/magnum-v2-72b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1090,7 +1090,7 @@
   model_creator_link: /models/liquid/lfm-40b
   name: liquid/lfm-40b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1112,7 +1112,7 @@
   model_creator_link: /models/thedrummer/rocinante-12b
   name: thedrummer/rocinante-12b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1134,7 +1134,7 @@
   model_creator_link: /models/meta-llama/llama-3.2-3b-instruct:free
   name: meta-llama/llama-3.2-3b-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1156,7 +1156,7 @@
   model_creator_link: /models/meta-llama/llama-3.2-3b-instruct
   name: meta-llama/llama-3.2-3b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1178,7 +1178,7 @@
   model_creator_link: /models/meta-llama/llama-3.2-1b-instruct:free
   name: meta-llama/llama-3.2-1b-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1200,7 +1200,7 @@
   model_creator_link: /models/meta-llama/llama-3.2-1b-instruct
   name: meta-llama/llama-3.2-1b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1222,7 +1222,7 @@
   model_creator_link: /models/meta-llama/llama-3.2-90b-vision-instruct:free
   name: meta-llama/llama-3.2-90b-vision-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1244,7 +1244,7 @@
   model_creator_link: /models/meta-llama/llama-3.2-90b-vision-instruct
   name: meta-llama/llama-3.2-90b-vision-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1266,7 +1266,7 @@
   model_creator_link: /models/meta-llama/llama-3.2-11b-vision-instruct:free
   name: meta-llama/llama-3.2-11b-vision-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1288,7 +1288,7 @@
   model_creator_link: /models/meta-llama/llama-3.2-11b-vision-instruct
   name: meta-llama/llama-3.2-11b-vision-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1310,7 +1310,7 @@
   model_creator_link: /models/qwen/qwen-2.5-72b-instruct
   name: qwen/qwen-2.5-72b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1332,7 +1332,7 @@
   model_creator_link: /models/qwen/qwen-2-vl-72b-instruct
   name: qwen/qwen-2-vl-72b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1354,7 +1354,7 @@
   model_creator_link: /models/neversleep/llama-3.1-lumimaid-8b
   name: neversleep/llama-3.1-lumimaid-8b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1376,7 +1376,7 @@
   model_creator_link: /models/openai/o1-mini-2024-09-12
   name: openai/o1-mini-2024-09-12
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1398,7 +1398,7 @@
   model_creator_link: /models/openai/o1-preview
   name: openai/o1-preview
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1420,7 +1420,7 @@
   model_creator_link: /models/openai/o1-preview-2024-09-12
   name: openai/o1-preview-2024-09-12
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1442,7 +1442,7 @@
   model_creator_link: /models/openai/o1-mini
   name: openai/o1-mini
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1464,7 +1464,7 @@
   model_creator_link: /models/mistralai/pixtral-12b
   name: mistralai/pixtral-12b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1486,7 +1486,7 @@
   model_creator_link: /models/cohere/command-r-08-2024
   name: cohere/command-r-08-2024
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1508,7 +1508,7 @@
   model_creator_link: /models/cohere/command-r-plus-08-2024
   name: cohere/command-r-plus-08-2024
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1530,7 +1530,7 @@
   model_creator_link: /models/qwen/qwen-2-vl-7b-instruct
   name: qwen/qwen-2-vl-7b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1552,7 +1552,7 @@
   model_creator_link: /models/google/gemini-flash-1.5-exp
   name: google/gemini-flash-1.5-exp
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1574,7 +1574,7 @@
   model_creator_link: /models/sao10k/l3.1-euryale-70b
   name: sao10k/l3.1-euryale-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1596,7 +1596,7 @@
   model_creator_link: /models/google/gemini-flash-1.5-8b-exp
   name: google/gemini-flash-1.5-8b-exp
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1618,7 +1618,7 @@
   model_creator_link: /models/ai21/jamba-1-5-large
   name: ai21/jamba-1-5-large
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1640,7 +1640,7 @@
   model_creator_link: /models/ai21/jamba-1-5-mini
   name: ai21/jamba-1-5-mini
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1662,7 +1662,7 @@
   model_creator_link: /models/microsoft/phi-3.5-mini-128k-instruct
   name: microsoft/phi-3.5-mini-128k-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1684,7 +1684,7 @@
   model_creator_link: /models/nousresearch/hermes-3-llama-3.1-70b
   name: nousresearch/hermes-3-llama-3.1-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1706,7 +1706,7 @@
   model_creator_link: /models/nousresearch/hermes-3-llama-3.1-405b
   name: nousresearch/hermes-3-llama-3.1-405b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1728,7 +1728,7 @@
   model_creator_link: /models/perplexity/llama-3.1-sonar-huge-128k-online
   name: perplexity/llama-3.1-sonar-huge-128k-online
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1750,7 +1750,7 @@
   model_creator_link: /models/openai/chatgpt-4o-latest
   name: openai/chatgpt-4o-latest
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1772,7 +1772,7 @@
   model_creator_link: /models/sao10k/l3-lunaris-8b
   name: sao10k/l3-lunaris-8b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1794,7 +1794,7 @@
   model_creator_link: /models/aetherwiing/mn-starcannon-12b
   name: aetherwiing/mn-starcannon-12b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1816,7 +1816,7 @@
   model_creator_link: /models/openai/gpt-4o-2024-08-06
   name: openai/gpt-4o-2024-08-06
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1838,7 +1838,7 @@
   model_creator_link: /models/meta-llama/llama-3.1-405b
   name: meta-llama/llama-3.1-405b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1860,7 +1860,7 @@
   model_creator_link: /models/nothingiisreal/mn-celeste-12b
   name: nothingiisreal/mn-celeste-12b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1882,7 +1882,7 @@
   model_creator_link: /models/perplexity/llama-3.1-sonar-small-128k-chat
   name: perplexity/llama-3.1-sonar-small-128k-chat
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1904,7 +1904,7 @@
   model_creator_link: /models/google/gemini-pro-1.5-exp
   name: google/gemini-pro-1.5-exp
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1926,7 +1926,7 @@
   model_creator_link: /models/perplexity/llama-3.1-sonar-large-128k-chat
   name: perplexity/llama-3.1-sonar-large-128k-chat
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1948,7 +1948,7 @@
   model_creator_link: /models/perplexity/llama-3.1-sonar-large-128k-online
   name: perplexity/llama-3.1-sonar-large-128k-online
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1970,7 +1970,7 @@
   model_creator_link: /models/perplexity/llama-3.1-sonar-small-128k-online
   name: perplexity/llama-3.1-sonar-small-128k-online
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -1992,7 +1992,7 @@
   model_creator_link: /models/meta-llama/llama-3.1-405b-instruct:free
   name: meta-llama/llama-3.1-405b-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2014,7 +2014,7 @@
   model_creator_link: /models/meta-llama/llama-3.1-405b-instruct
   name: meta-llama/llama-3.1-405b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2036,7 +2036,7 @@
   model_creator_link: /models/meta-llama/llama-3.1-405b-instruct:nitro
   name: meta-llama/llama-3.1-405b-instruct:nitro
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2058,7 +2058,7 @@
   model_creator_link: /models/meta-llama/llama-3.1-8b-instruct:free
   name: meta-llama/llama-3.1-8b-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2080,7 +2080,7 @@
   model_creator_link: /models/meta-llama/llama-3.1-8b-instruct
   name: meta-llama/llama-3.1-8b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2102,7 +2102,7 @@
   model_creator_link: /models/meta-llama/llama-3.1-70b-instruct:free
   name: meta-llama/llama-3.1-70b-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2124,7 +2124,7 @@
   model_creator_link: /models/meta-llama/llama-3.1-70b-instruct
   name: meta-llama/llama-3.1-70b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2146,7 +2146,7 @@
   model_creator_link: /models/meta-llama/llama-3.1-70b-instruct:nitro
   name: meta-llama/llama-3.1-70b-instruct:nitro
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2168,7 +2168,7 @@
   model_creator_link: /models/mistralai/mistral-nemo
   name: mistralai/mistral-nemo
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2190,7 +2190,7 @@
   model_creator_link: /models/mistralai/codestral-mamba
   name: mistralai/codestral-mamba
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2212,7 +2212,7 @@
   model_creator_link: /models/openai/gpt-4o-mini
   name: openai/gpt-4o-mini
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2234,7 +2234,7 @@
   model_creator_link: /models/openai/gpt-4o-mini-2024-07-18
   name: openai/gpt-4o-mini-2024-07-18
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2256,7 +2256,7 @@
   model_creator_link: /models/qwen/qwen-2-7b-instruct:free
   name: qwen/qwen-2-7b-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2278,7 +2278,7 @@
   model_creator_link: /models/qwen/qwen-2-7b-instruct
   name: qwen/qwen-2-7b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2300,7 +2300,7 @@
   model_creator_link: /models/google/gemma-2-27b-it
   name: google/gemma-2-27b-it
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2322,7 +2322,7 @@
   model_creator_link: /models/alpindale/magnum-72b
   name: alpindale/magnum-72b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2344,7 +2344,7 @@
   model_creator_link: /models/google/gemma-2-9b-it:free
   name: google/gemma-2-9b-it:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2366,7 +2366,7 @@
   model_creator_link: /models/google/gemma-2-9b-it
   name: google/gemma-2-9b-it
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2388,7 +2388,7 @@
   model_creator_link: /models/01-ai/yi-large
   name: 01-ai/yi-large
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2410,7 +2410,7 @@
   model_creator_link: /models/ai21/jamba-instruct
   name: ai21/jamba-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2432,7 +2432,7 @@
   model_creator_link: /models/anthropic/claude-3.5-sonnet-20240620:beta
   name: anthropic/claude-3.5-sonnet-20240620:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2454,7 +2454,7 @@
   model_creator_link: /models/anthropic/claude-3.5-sonnet-20240620
   name: anthropic/claude-3.5-sonnet-20240620
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2476,7 +2476,7 @@
   model_creator_link: /models/sao10k/l3-euryale-70b
   name: sao10k/l3-euryale-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2498,7 +2498,7 @@
   model_creator_link: /models/cognitivecomputations/dolphin-mixtral-8x22b
   name: cognitivecomputations/dolphin-mixtral-8x22b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2520,7 +2520,7 @@
   model_creator_link: /models/qwen/qwen-2-72b-instruct
   name: qwen/qwen-2-72b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2542,7 +2542,7 @@
   model_creator_link: /models/mistralai/mistral-7b-instruct:free
   name: mistralai/mistral-7b-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2564,7 +2564,7 @@
   model_creator_link: /models/mistralai/mistral-7b-instruct
   name: mistralai/mistral-7b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2586,7 +2586,7 @@
   model_creator_link: /models/mistralai/mistral-7b-instruct:nitro
   name: mistralai/mistral-7b-instruct:nitro
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2608,7 +2608,7 @@
   model_creator_link: /models/mistralai/mistral-7b-instruct-v0.3
   name: mistralai/mistral-7b-instruct-v0.3
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2630,7 +2630,7 @@
   model_creator_link: /models/nousresearch/hermes-2-pro-llama-3-8b
   name: nousresearch/hermes-2-pro-llama-3-8b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2652,7 +2652,7 @@
   model_creator_link: /models/microsoft/phi-3-mini-128k-instruct:free
   name: microsoft/phi-3-mini-128k-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2674,7 +2674,7 @@
   model_creator_link: /models/microsoft/phi-3-mini-128k-instruct
   name: microsoft/phi-3-mini-128k-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2696,7 +2696,7 @@
   model_creator_link: /models/microsoft/phi-3-medium-128k-instruct:free
   name: microsoft/phi-3-medium-128k-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2718,7 +2718,7 @@
   model_creator_link: /models/microsoft/phi-3-medium-128k-instruct
   name: microsoft/phi-3-medium-128k-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2740,7 +2740,7 @@
   model_creator_link: /models/neversleep/llama-3-lumimaid-70b
   name: neversleep/llama-3-lumimaid-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2762,7 +2762,7 @@
   model_creator_link: /models/google/gemini-flash-1.5
   name: google/gemini-flash-1.5
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2784,7 +2784,7 @@
   model_creator_link: /models/perplexity/llama-3-sonar-large-32k-chat
   name: perplexity/llama-3-sonar-large-32k-chat
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2806,7 +2806,7 @@
   model_creator_link: /models/perplexity/llama-3-sonar-large-32k-online
   name: perplexity/llama-3-sonar-large-32k-online
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2828,7 +2828,7 @@
   model_creator_link: /models/deepseek/deepseek-chat-v2.5
   name: deepseek/deepseek-chat-v2.5
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2850,7 +2850,7 @@
   model_creator_link: /models/perplexity/llama-3-sonar-small-32k-chat
   name: perplexity/llama-3-sonar-small-32k-chat
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2872,7 +2872,7 @@
   model_creator_link: /models/openai/gpt-4o-2024-05-13
   name: openai/gpt-4o-2024-05-13
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2894,7 +2894,7 @@
   model_creator_link: /models/meta-llama/llama-guard-2-8b
   name: meta-llama/llama-guard-2-8b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2916,7 +2916,7 @@
   model_creator_link: /models/openai/gpt-4o
   name: openai/gpt-4o
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2938,7 +2938,7 @@
   model_creator_link: /models/openai/gpt-4o:extended
   name: openai/gpt-4o:extended
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2960,7 +2960,7 @@
   model_creator_link: /models/neversleep/llama-3-lumimaid-8b:extended
   name: neversleep/llama-3-lumimaid-8b:extended
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -2982,7 +2982,7 @@
   model_creator_link: /models/neversleep/llama-3-lumimaid-8b
   name: neversleep/llama-3-lumimaid-8b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3004,7 +3004,7 @@
   model_creator_link: /models/meta-llama/llama-3-8b-instruct:free
   name: meta-llama/llama-3-8b-instruct:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3026,7 +3026,7 @@
   model_creator_link: /models/meta-llama/llama-3-8b-instruct
   name: meta-llama/llama-3-8b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3048,7 +3048,7 @@
   model_creator_link: /models/meta-llama/llama-3-8b-instruct:extended
   name: meta-llama/llama-3-8b-instruct:extended
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3070,7 +3070,7 @@
   model_creator_link: /models/meta-llama/llama-3-8b-instruct:nitro
   name: meta-llama/llama-3-8b-instruct:nitro
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3092,7 +3092,7 @@
   model_creator_link: /models/meta-llama/llama-3-70b-instruct
   name: meta-llama/llama-3-70b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3114,7 +3114,7 @@
   model_creator_link: /models/meta-llama/llama-3-70b-instruct:nitro
   name: meta-llama/llama-3-70b-instruct:nitro
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3136,7 +3136,7 @@
   model_creator_link: /models/mistralai/mixtral-8x22b-instruct
   name: mistralai/mixtral-8x22b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3158,7 +3158,7 @@
   model_creator_link: /models/microsoft/wizardlm-2-8x22b
   name: microsoft/wizardlm-2-8x22b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3180,7 +3180,7 @@
   model_creator_link: /models/microsoft/wizardlm-2-7b
   name: microsoft/wizardlm-2-7b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3202,7 +3202,7 @@
   model_creator_link: /models/google/gemini-pro-1.5
   name: google/gemini-pro-1.5
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3224,7 +3224,7 @@
   model_creator_link: /models/openai/gpt-4-turbo
   name: openai/gpt-4-turbo
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3246,7 +3246,7 @@
   model_creator_link: /models/cohere/command-r-plus
   name: cohere/command-r-plus
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3268,7 +3268,7 @@
   model_creator_link: /models/cohere/command-r-plus-04-2024
   name: cohere/command-r-plus-04-2024
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3290,7 +3290,7 @@
   model_creator_link: /models/databricks/dbrx-instruct
   name: databricks/dbrx-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3312,7 +3312,7 @@
   model_creator_link: /models/sophosympatheia/midnight-rose-70b
   name: sophosympatheia/midnight-rose-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3334,7 +3334,7 @@
   model_creator_link: /models/cohere/command
   name: cohere/command
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3356,7 +3356,7 @@
   model_creator_link: /models/cohere/command-r
   name: cohere/command-r
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3378,7 +3378,7 @@
   model_creator_link: /models/anthropic/claude-3-haiku:beta
   name: anthropic/claude-3-haiku:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3400,7 +3400,7 @@
   model_creator_link: /models/anthropic/claude-3-haiku
   name: anthropic/claude-3-haiku
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3422,7 +3422,7 @@
   model_creator_link: /models/anthropic/claude-3-opus:beta
   name: anthropic/claude-3-opus:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3444,7 +3444,7 @@
   model_creator_link: /models/anthropic/claude-3-opus
   name: anthropic/claude-3-opus
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3466,7 +3466,7 @@
   model_creator_link: /models/anthropic/claude-3-sonnet:beta
   name: anthropic/claude-3-sonnet:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3488,7 +3488,7 @@
   model_creator_link: /models/anthropic/claude-3-sonnet
   name: anthropic/claude-3-sonnet
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3510,7 +3510,7 @@
   model_creator_link: /models/cohere/command-r-03-2024
   name: cohere/command-r-03-2024
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3532,7 +3532,7 @@
   model_creator_link: /models/mistralai/mistral-large
   name: mistralai/mistral-large
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3554,7 +3554,7 @@
   model_creator_link: /models/openai/gpt-3.5-turbo-0613
   name: openai/gpt-3.5-turbo-0613
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3576,7 +3576,7 @@
   model_creator_link: /models/openai/gpt-4-turbo-preview
   name: openai/gpt-4-turbo-preview
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3598,7 +3598,7 @@
   model_creator_link: /models/nousresearch/nous-hermes-2-mixtral-8x7b-dpo
   name: nousresearch/nous-hermes-2-mixtral-8x7b-dpo
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3620,7 +3620,7 @@
   model_creator_link: /models/mistralai/mistral-small
   name: mistralai/mistral-small
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3642,7 +3642,7 @@
   model_creator_link: /models/mistralai/mistral-tiny
   name: mistralai/mistral-tiny
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3664,7 +3664,7 @@
   model_creator_link: /models/mistralai/mistral-medium
   name: mistralai/mistral-medium
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3686,7 +3686,7 @@
   model_creator_link: /models/cognitivecomputations/dolphin-mixtral-8x7b
   name: cognitivecomputations/dolphin-mixtral-8x7b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3708,7 +3708,7 @@
   model_creator_link: /models/google/gemini-pro-vision
   name: google/gemini-pro-vision
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3730,7 +3730,7 @@
   model_creator_link: /models/google/gemini-pro
   name: google/gemini-pro
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3752,7 +3752,7 @@
   model_creator_link: /models/mistralai/mixtral-8x7b
   name: mistralai/mixtral-8x7b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3774,7 +3774,7 @@
   model_creator_link: /models/mistralai/mixtral-8x7b-instruct
   name: mistralai/mixtral-8x7b-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3796,7 +3796,7 @@
   model_creator_link: /models/mistralai/mixtral-8x7b-instruct:nitro
   name: mistralai/mixtral-8x7b-instruct:nitro
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3818,7 +3818,7 @@
   model_creator_link: /models/openchat/openchat-7b:free
   name: openchat/openchat-7b:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3840,7 +3840,7 @@
   model_creator_link: /models/openchat/openchat-7b
   name: openchat/openchat-7b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3862,7 +3862,7 @@
   model_creator_link: /models/neversleep/noromaid-20b
   name: neversleep/noromaid-20b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3884,7 +3884,7 @@
   model_creator_link: /models/anthropic/claude-2:beta
   name: anthropic/claude-2:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3906,7 +3906,7 @@
   model_creator_link: /models/anthropic/claude-2
   name: anthropic/claude-2
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3928,7 +3928,7 @@
   model_creator_link: /models/anthropic/claude-2.1:beta
   name: anthropic/claude-2.1:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3950,7 +3950,7 @@
   model_creator_link: /models/anthropic/claude-2.1
   name: anthropic/claude-2.1
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3972,7 +3972,7 @@
   model_creator_link: /models/teknium/openhermes-2.5-mistral-7b
   name: teknium/openhermes-2.5-mistral-7b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -3994,7 +3994,7 @@
   model_creator_link: /models/lizpreciatior/lzlv-70b-fp16-hf
   name: lizpreciatior/lzlv-70b-fp16-hf
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4016,7 +4016,7 @@
   model_creator_link: /models/undi95/toppy-m-7b:free
   name: undi95/toppy-m-7b:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4038,7 +4038,7 @@
   model_creator_link: /models/undi95/toppy-m-7b:nitro
   name: undi95/toppy-m-7b:nitro
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4060,7 +4060,7 @@
   model_creator_link: /models/undi95/toppy-m-7b
   name: undi95/toppy-m-7b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4082,7 +4082,7 @@
   model_creator_link: /models/alpindale/goliath-120b
   name: alpindale/goliath-120b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4104,7 +4104,7 @@
   model_creator_link: /models/openrouter/auto
   name: openrouter/auto
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4126,7 +4126,7 @@
   model_creator_link: /models/openai/gpt-3.5-turbo-1106
   name: openai/gpt-3.5-turbo-1106
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4148,7 +4148,7 @@
   model_creator_link: /models/openai/gpt-4-1106-preview
   name: openai/gpt-4-1106-preview
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4170,7 +4170,7 @@
   model_creator_link: /models/google/palm-2-chat-bison-32k
   name: google/palm-2-chat-bison-32k
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4192,7 +4192,7 @@
   model_creator_link: /models/google/palm-2-codechat-bison-32k
   name: google/palm-2-codechat-bison-32k
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4214,7 +4214,7 @@
   model_creator_link: /models/jondurbin/airoboros-l2-70b
   name: jondurbin/airoboros-l2-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4236,7 +4236,7 @@
   model_creator_link: /models/xwin-lm/xwin-lm-70b
   name: xwin-lm/xwin-lm-70b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4258,7 +4258,7 @@
   model_creator_link: /models/openai/gpt-3.5-turbo-instruct
   name: openai/gpt-3.5-turbo-instruct
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4280,7 +4280,7 @@
   model_creator_link: /models/mistralai/mistral-7b-instruct-v0.1
   name: mistralai/mistral-7b-instruct-v0.1
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4302,7 +4302,7 @@
   model_creator_link: /models/pygmalionai/mythalion-13b
   name: pygmalionai/mythalion-13b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4324,7 +4324,7 @@
   model_creator_link: /models/openai/gpt-3.5-turbo-16k
   name: openai/gpt-3.5-turbo-16k
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4346,7 +4346,7 @@
   model_creator_link: /models/openai/gpt-4-32k
   name: openai/gpt-4-32k
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4368,7 +4368,7 @@
   model_creator_link: /models/openai/gpt-4-32k-0314
   name: openai/gpt-4-32k-0314
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4390,7 +4390,7 @@
   model_creator_link: /models/nousresearch/nous-hermes-llama2-13b
   name: nousresearch/nous-hermes-llama2-13b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4412,7 +4412,7 @@
   model_creator_link: /models/mancer/weaver
   name: mancer/weaver
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4434,7 +4434,7 @@
   model_creator_link: /models/huggingfaceh4/zephyr-7b-beta:free
   name: huggingfaceh4/zephyr-7b-beta:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4456,7 +4456,7 @@
   model_creator_link: /models/anthropic/claude-2.0:beta
   name: anthropic/claude-2.0:beta
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4478,7 +4478,7 @@
   model_creator_link: /models/anthropic/claude-2.0
   name: anthropic/claude-2.0
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4500,7 +4500,7 @@
   model_creator_link: /models/undi95/remm-slerp-l2-13b
   name: undi95/remm-slerp-l2-13b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4522,7 +4522,7 @@
   model_creator_link: /models/undi95/remm-slerp-l2-13b:extended
   name: undi95/remm-slerp-l2-13b:extended
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4544,7 +4544,7 @@
   model_creator_link: /models/google/palm-2-chat-bison
   name: google/palm-2-chat-bison
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4566,7 +4566,7 @@
   model_creator_link: /models/google/palm-2-codechat-bison
   name: google/palm-2-codechat-bison
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4588,7 +4588,7 @@
   model_creator_link: /models/gryphe/mythomax-l2-13b:free
   name: gryphe/mythomax-l2-13b:free
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4610,7 +4610,7 @@
   model_creator_link: /models/gryphe/mythomax-l2-13b
   name: gryphe/mythomax-l2-13b
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4632,7 +4632,7 @@
   model_creator_link: /models/gryphe/mythomax-l2-13b:nitro
   name: gryphe/mythomax-l2-13b:nitro
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4654,7 +4654,7 @@
   model_creator_link: /models/gryphe/mythomax-l2-13b:extended
   name: gryphe/mythomax-l2-13b:extended
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4676,7 +4676,7 @@
   model_creator_link: /models/meta-llama/llama-2-13b-chat
   name: meta-llama/llama-2-13b-chat
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4698,7 +4698,7 @@
   model_creator_link: /models/openai/gpt-3.5-turbo
   name: openai/gpt-3.5-turbo
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4720,7 +4720,7 @@
   model_creator_link: /models/openai/gpt-3.5-turbo-0125
   name: openai/gpt-3.5-turbo-0125
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4742,7 +4742,7 @@
   model_creator_link: /models/openai/gpt-4
   name: openai/gpt-4
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:
@@ -4764,7 +4764,7 @@
   model_creator_link: /models/openai/gpt-4-0314
   name: openai/gpt-4-0314
   per_request_limits: null
-  quantizer: null
+  provider: null
   rank: 0.0
   type: api
   variants:

@@ -6,7 +6,7 @@
   model_creator: haoranxu
   model_creator_link: https://huggingface.co/parisneo
   name: Default lollms remotes
-  quantizer: None
+  provider: None
   rank: 10000000000.0
   type: gptq
   variants:

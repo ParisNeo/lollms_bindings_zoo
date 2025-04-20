@@ -300,7 +300,7 @@ class Vllm(LLMBinding):
                 "model_creator": model["owned_by"],
                 "model_creator_link": "https://lollms.com/",
                 "name": model["model_name"],
-                "quantizer": None,
+                "provider": None,
                 "rank": "1.0",
                 "type": "api",
                 "variants":[

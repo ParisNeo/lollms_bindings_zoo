@@ -1406,7 +1406,7 @@ class OpenAIGPT(LLMBinding):
             "icon": default_icon,
             "model_creator": "OpenAI",
             "model_creator_link": "https://openai.com/",
-            "quantizer": None,
+            "provider": None,
             "type": "api",
         }
 

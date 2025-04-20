@@ -6,7 +6,7 @@
   model_creator: mistralai
   model_creator_link: https://mistral.ai
   name: mistral-tiny
-  quantizer: None
+  provider: None
   rank: 1.0
   type: api
   variants:
@@ -20,7 +20,7 @@
   model_creator: mistralai
   model_creator_link: https://mistral.ai
   name: mistral-small
-  quantizer: None
+  provider: None
   rank: 1.0
   type: api
   variants:
@@ -34,7 +34,7 @@
   model_creator: mistralai
   model_creator_link: https://mistral.ai
   name: mistral-medium
-  quantizer: None
+  provider: None
   rank: 1.0
   type: api
   variants:
@@ -48,7 +48,7 @@
   model_creator: mistralai
   model_creator_link: https://mistral.ai
   name: mistral-large-latest
-  quantizer: None
+  provider: None
   rank: 1.0
   type: api
   variants:

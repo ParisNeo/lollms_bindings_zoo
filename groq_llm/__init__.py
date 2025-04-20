@@ -410,7 +410,7 @@ class GroqLLM(LLMBinding):
                     "model_creator": "meta" if "llama" in f["id"] else "mistralai" if "mistral" in f["id"] or "mixtral" in f["id"] else "google" if "gemma" in f["id"] else "unknown",
                     "model_creator": "meta.com" if "llama" in f["id"] else "mistal.ai" if "mistral" in f["id"] or "mixtral" in f["id"] else "google.com" if "gemma" in f["id"] else "unknown",
                     "name": f["id"],
-                    "quantizer": None,
+                    "provider": None,
                     "rank": 1.0,
                     "type": "api",
                     "variants": [

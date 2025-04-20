@@ -695,7 +695,7 @@ class Anthropic(LLMBinding):
         ui_path_prefix = f"/bindings/{binding_folder}/" # Use the potentially corrected folder name
         default_icon = ui_path_prefix + "logo.png"
 
-        base_metadata = { "author": "Anthropic, PBC", "license": "Commercial API", "creation_date": None, "category": "API Model", "datasets": "Proprietary Anthropic Datasets", "commercial_use": True, "icon": default_icon, "model_creator": "Anthropic", "model_creator_link": "https://www.anthropic.com/", "quantizer": None, "type": "api" }
+        base_metadata = { "author": "Anthropic, PBC", "license": "Commercial API", "creation_date": None, "category": "API Model", "datasets": "Proprietary Anthropic Datasets", "commercial_use": True, "icon": default_icon, "model_creator": "Anthropic", "model_creator_link": "https://www.anthropic.com/", "provider": None, "type": "api" }
 
         for model_data in self.fetched_api_models:
             model_id = model_data.get("id")

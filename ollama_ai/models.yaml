@@ -6,7 +6,7 @@
   model_creator: ollama
   model_creator_link: https://lollms.com/
   name: elf_service
-  quantizer: None
+  provider: None
   rank: 1.0
   type: api
   variants:

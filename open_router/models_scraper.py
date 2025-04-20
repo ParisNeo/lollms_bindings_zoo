@@ -30,7 +30,7 @@ class OpenRouterModelFetcher:
                 "model_creator": "",
                 "model_creator_link": f"/models/{model['id']}",
                 "name": model['id'],
-                "quantizer": None,
+                "provider": None,
                 "rank": 0.0,
                 "type": "api",
                 "context_length": model['context_length'],

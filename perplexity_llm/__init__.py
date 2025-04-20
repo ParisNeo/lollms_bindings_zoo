@@ -766,7 +766,7 @@ class Perplexity(LLMBinding):
             "icon": default_icon,
             "model_creator": "Perplexity AI",
             "model_creator_link": "https://perplexity.ai/",
-            "quantizer": None,
+            "provider": None,
             "type": "api",
             "binding_name": binding_name # Added for clarity
         }

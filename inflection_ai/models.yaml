@@ -6,7 +6,7 @@
   model_creator: Inflection AI
   model_creator_link: https://inflection.ai/
   name: inflection_3_pi
-  quantizer: null
+  provider: null
   rank: 3.0
   type: api
   variants:
@@ -21,7 +21,7 @@
   model_creator: Inflection AI
   model_creator_link: https://inflection.ai/
   name: inflection_3_productivity
-  quantizer: null
+  provider: null
   rank: 3.2
   type: api
   variants:

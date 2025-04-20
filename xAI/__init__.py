@@ -297,7 +297,7 @@ class Grok(LLMBinding):
                         "model_creator": "xAI",
                         "model_creator_link": "https://x.ai/",
                         "name": model["id"],
-                        "quantizer": None,
+                        "provider": None,
                         "rank": 1.0,
                         "type": "api",
                         "variants":[

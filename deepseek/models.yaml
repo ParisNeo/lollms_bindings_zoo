@@ -6,7 +6,7 @@
   model_creator: deepseek
   model_creator_link: https://deepseek.com
   name: deepseek-chat
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -21,7 +21,7 @@
   model_creator: deepseek
   model_creator_link: https://deepseek.com
   name: deepseek-coder
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:

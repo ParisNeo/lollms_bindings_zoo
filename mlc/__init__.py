@@ -298,7 +298,7 @@ class MLC(LLMBinding):
                 "model_creator": model["model_creator"],
                 "model_creator_link": "",
                 "name": model["name"],
-                "quantizer": None,
+                "provider": None,
                 "rank": 1.0,
                 "type": "api",
                 "variants":[

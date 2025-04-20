@@ -6,7 +6,7 @@
   model_creator: meta
   model_creator_link: https://meta.com
   name: llama-3.1-405b-reasoning
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -24,7 +24,7 @@
   model_creator: meta
   model_creator_link: https://meta.com
   name: llama-3.1-70b-versatile
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -42,7 +42,7 @@
   model_creator: meta
   model_creator_link: https://meta.com
   name: llama-3.1-8b-instant
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -60,7 +60,7 @@
   model_creator: mistralai
   model_creator_link: https://mistral.ai
   name: mixtral-8x7b-32768
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -78,7 +78,7 @@
   model_creator: meta
   model_creator_link: https://meta.com
   name: llama3-8b-8192
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -96,7 +96,7 @@
   model_creator: meta
   model_creator_link: https://meta.com
   name: llama3-70b-8192
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -114,7 +114,7 @@
   model_creator: meta
   model_creator_link: https://meta.com
   name: llama3-groq-8b-8192-tool-use-preview
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -132,7 +132,7 @@
   model_creator: meta
   model_creator_link: https://meta.com
   name: llama3-groq-70b-8192-tool-use-preview
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -151,7 +151,7 @@
   model_creator: meta
   model_creator_link: https://meta.com
   name: llama2-70b-4096
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -169,7 +169,7 @@
   model_creator: meta
   model_creator_link: https://meta.com
   name: llama2-70b-4096
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -187,7 +187,7 @@
   model_creator: meta
   model_creator_link: https://google.com
   name: gemma-7b-it
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -206,7 +206,7 @@
   model_creator: meta
   model_creator_link: https://google.com
   name: gemma-7b-it
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
@@ -224,7 +224,7 @@
   model_creator: meta
   model_creator_link: https://google.com
   name: gemma2-9b-it
-  quantizer: null
+  provider: null
   rank: 1.0
   type: api
   variants:
