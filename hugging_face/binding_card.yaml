@@ -1,9 +1,10 @@
-name: Hugging Face
-author: Hugging face Inc
+name: Hugging Face Local
+author: ParisNeo + Community
 version: 1.0
-link: https://https://huggingface.co/
-description: 'Python bindings for the hugging face llms. It supports transformers causal models, gptq quantized models and awq quantized models'
-accepted_models: 
-  - transformers
-  - gptq
-  - awq
+link: https://github.com/huggingface/transformers
+description: |
+  Loads and runs Hugging Face transformer models locally using the `transformers` library.
+  Requires models to be downloaded manually into the `models/hugging_face` folder.
+  Supports GPU acceleration (CUDA, MPS) and quantization (4-bit, 8-bit) via `accelerate` and `bitsandbytes`.
+accepted_models:
+  - hugging_face # Tag for models intended to be loaded by this binding
