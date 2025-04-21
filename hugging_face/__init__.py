@@ -1522,7 +1522,7 @@ class HuggingFaceLocal(LLMBinding):
             # Fetch potentially relevant models: text-gen, text2text, image-to-text etc.
             hub_models_list = []
             # Prioritize pipelines most relevant to this binding
-            relevant_pipelines = ["text-generation", "image-text-to-text"]
+            relevant_tasks = ["text-generation", "image-text-to-text"]
             # Add general 'transformers' tag search as fallback? Maybe too broad.
 
             seen_ids = set(local_model_names) # Keep track of seen models (including local)
@@ -1531,11 +1531,11 @@ class HuggingFaceLocal(LLMBinding):
                 self.info(f"Fetching models for provider: {provider if provider else 'All Providers'} (sort: {hub_sort_key}, limit per type: {limit_per_provider})")
                 provider_models = set() # Track models found for this provider to avoid duplicates across pipelines
                 # Search by pipeline first
-                for pipeline in relevant_pipelines:
+                for task in relevant_tasks:
                     try:
                         model_iterator = api.list_models(
                             author=provider if provider else None,
-                            pipeline_tag=pipeline,
+                            task=task,
                             sort=hub_sort_key,
                             direction=-1, # Most popular/recent first
                             limit=limit_per_provider,
@@ -1548,10 +1548,10 @@ class HuggingFaceLocal(LLMBinding):
                                  seen_ids.add(model.modelId)
                                  provider_models.add(model.modelId)
                                  count += 1
-                        if count > 0: self.info(f" Found {count} models for pipeline '{pipeline}'")
+                        if count > 0: self.info(f" Found {count} models for pipeline '{task}'")
 
                     except Exception as pipe_ex:
-                        ASCIIColors.warning(f"Could not fetch models for provider '{provider}' pipeline '{pipeline}': {pipe_ex}")
+                        ASCIIColors.warning(f"Could not fetch models for provider '{provider}' pipeline '{task}': {pipe_ex}")
 
                  # Optional: Add a broader search for the provider if few results found?
                  # if not provider_models and provider:
