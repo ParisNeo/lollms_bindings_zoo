@@ -1516,16 +1516,7 @@ class HuggingFaceLocal(LLMBinding):
             api = HfApi()
             limit_per_provider = self.binding_config.config.get("hub_fetch_limit", 5000) // max(1, len(favorite_providers_list)) # Distribute limit
             limit_per_provider = max(10, limit_per_provider) # Ensure a minimum fetch
-            sort_by = self.binding_config.config.get("model_sorting", "trending_score") # Use configured sorting, default 'trending'
-            # Map sorting UI options to Hub API options
-            sort_mapping = {
-                "trending_score": "trending", # Assuming this is what 'trending_score' meant
-                "created_at": "created_at",
-                "last_modified": "lastModified",
-                "downloads": "downloads",
-                "likes": "likes"
-            }
-            hub_sort_key = sort_mapping.get(sort_by.strip(), "trending_score") # Fallback to trending
+            hub_sort_key = self.binding_config.config.get("model_sorting", "trending_score") # Use configured sorting, default 'trending'
 
 
             # Fetch potentially relevant models: text-gen, text2text, image-to-text etc.
