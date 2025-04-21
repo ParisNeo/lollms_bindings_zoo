@@ -1618,7 +1618,7 @@ class HuggingFaceLocal(LLMBinding):
                     description = ", ".join(description_parts)
 
 
-                    author_hub = model.author or "Unknown"
+                    author_hub = model.author or None
                     model_name_only_hub = model_id.split('/')[-1] # Get last part as name
 
                     entry = {
