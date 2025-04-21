@@ -646,33 +646,14 @@ class HuggingFaceLocal(LLMBinding):
         self.ShowBlockingMessage("Installing Hugging Face Transformers requirements...")
         try:
             import pipmaster as pm
+            pm.install_multiple(["torch","torchvision","torchaudio"], "https://download.pytorch.org/whl/cu121", force_reinstall=True)
+
             # Core requirements
-            requirements = ["torch", "transformers", "accelerate", "sentencepiece", "huggingface_hub", "Pillow", "requests"]
+            pm.install_multiple(["transformers", "accelerate", "sentencepiece", "huggingface_hub", "Pillow", "requests"])
             # Optional but highly recommended for features
-            optional_requirements = ["bitsandbytes"]
-
-            all_reqs = requirements + optional_requirements
-            installed_count = 0
-            for req in all_reqs:
-                is_optional = req in optional_requirements
-                try:
-                    if not pm.is_installed(req):
-                         self.info(f"Installing {'optional ' if is_optional else ''}requirement: {req}...")
-                         pm.install(req)
-                         installed_count += 1
-                    else:
-                         self.info(f"{req} already installed.")
-                except Exception as install_ex:
-                    status_msg = f"Failed to install {'optional ' if is_optional else ''}{req}: {install_ex}"
-                    if is_optional: self.warning(status_msg)
-                    else: self.error(status_msg); trace_exception(install_ex)
-
-
+            pm.install_multiple(["bitsandbytes"])
             self.HideBlockingMessage()
-            if installed_count > 0:
-                ASCIIColors.success("Hugging Face requirements installation process finished.")
-            else:
-                 ASCIIColors.info("All Hugging Face requirements seem to be installed.")
+            ASCIIColors.success("Hugging Face requirements installation process finished.")
 
             ASCIIColors.info("----------------------\nAttention:\n----------------------")
             ASCIIColors.info("This binding requires manual download of Hugging Face models.")
