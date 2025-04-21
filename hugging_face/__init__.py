@@ -633,8 +633,8 @@ class HuggingFaceLocal(LLMBinding):
         try:
             # --- Prepare Generation Arguments ---
             final_gen_kwargs = self._prepare_common_generation_kwargs(effective_n_predict, gpt_params)
-            if verbose: ASCIIColors.verbose(f"Text Gen raw params: {gpt_params}")
-            if verbose: ASCIIColors.verbose(f"Text Gen effective params: {final_gen_kwargs}")
+            if self.config.debug: ASCIIColors.debug(f"Text Gen raw params: {gpt_params}")
+            if self.config.debug: ASCIIColors.debug(f"Text Gen effective params: {final_gen_kwargs}")
 
             # --- Prepare Inputs (Apply Template if enabled) ---
             apply_template = self.binding_config.config.get("apply_chat_template", True)
@@ -674,12 +674,12 @@ class HuggingFaceLocal(LLMBinding):
                     self.error(f"Failed to apply chat template: {template_ex}. Falling back to raw prompt.")
                     trace_exception(template_ex)
                     # Fallback: Tokenize the raw prompt string
-                    inputs = tokenizer_or_processor(prompt, return_tensors="pt").to(self.device)
+                    inputs = tokenizer_or_processor.encode(prompt, return_tensors="pt").to(self.device)
             else:
                 if apply_template:
                     self.warning("Chat template application requested but no template found. Using raw prompt.")
                 # Tokenize the raw prompt string if template not applied/available
-                inputs = tokenizer_or_processor(prompt, return_tensors="pt").to(self.device)
+                inputs = tokenizer_or_processor.encode(prompt, return_tensors="pt").to(self.device)
 
             # --- Validate Input Length ---
             input_token_count = inputs.input_ids.shape[1] if hasattr(inputs, 'input_ids') else inputs.shape[1]
@@ -850,7 +850,7 @@ class HuggingFaceLocal(LLMBinding):
         if self.binding_type != BindingType.TEXT_IMAGE or not self.processor:
             self.warning("generate_with_images called, but the current model is not a vision model or processor is missing.")
             # Fallback to text-only generation using the prompt
-            return self.generate(prompt, effective_n_predict, callback, verbose, **gpt_params)
+            return self.generate(prompt, effective_n_predict, callback, **gpt_params)
 
         # Check for essential components
         if not self.model:
@@ -859,7 +859,7 @@ class HuggingFaceLocal(LLMBinding):
 
         if not images:
             self.warning("No images provided to generate_with_images. Falling back to text-only generation.")
-            return self.generate(prompt, effective_n_predict, callback, verbose, **gpt_params)
+            return self.generate(prompt, effective_n_predict, callback, **gpt_params)
 
         # Stop any ongoing generation
         if self.generation_thread and self.generation_thread.is_alive():
@@ -1358,7 +1358,7 @@ Now explain quantum entanglement simply.
             try:
                 start = perf_counter()
                 # Use the LoLLMs formatted prompt
-                full_response = hf_binding.generate(prompt_text_lollms, n_predict=150, callback=test_callback, verbose=True)
+                full_response = hf_binding.generate(prompt_text_lollms, n_predict=150, callback=test_callback)
                 print(f"\n--- Text Gen Done ({perf_counter() - start:.2f}s) ---")
                 # print(f"Full response received:\n{full_response}") # Already printed by callback
             except Exception as e: print(f"\nText Gen Failed: {e}"); trace_exception(e)
@@ -1385,8 +1385,7 @@ Describe the animals visible in the provided image. What are they doing?
                         prompt_vision_lollms,
                         [image_url],
                         n_predict=100,
-                        callback=test_callback,
-                        verbose=True
+                        callback=test_callback
                     )
                     print(f"\n--- Vision Gen Done ({perf_counter() - start:.2f}s) ---")
                 except Exception as e: print(f"\nVision Gen Failed: {e}"); trace_exception(e)
