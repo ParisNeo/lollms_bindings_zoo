@@ -646,7 +646,7 @@ class HuggingFaceLocal(LLMBinding):
         self.ShowBlockingMessage("Installing Hugging Face Transformers requirements...")
         try:
             import pipmaster as pm
-            pm.install_multiple(["torch","torchvision","torchaudio"], "https://download.pytorch.org/whl/cu121", force_reinstall=True)
+            pm.install_multiple(["torch","torchvision","torchaudio"], "https://download.pytorch.org/whl/cu124", force_reinstall=True)
 
             # Core requirements
             pm.install_multiple(["transformers", "accelerate", "sentencepiece", "huggingface_hub", "Pillow", "requests"])
@@ -1503,10 +1503,7 @@ class HuggingFaceLocal(LLMBinding):
 
         try:
             self.info("Fetching models from Hugging Face Hub...")
-            if self.binding_config.transformers_offline:
-                 self.warning("Skipping Hub model fetch: Transformers is in offline mode.")
-                 raise ConnectionError("Offline mode enabled")
-
+            
             api = HfApi()
             limit_per_provider = self.binding_config.config.get("hub_fetch_limit", 5000) // max(1, len(favorite_providers_list)) # Distribute limit
             limit_per_provider = max(10, limit_per_provider) # Ensure a minimum fetch
@@ -1525,7 +1522,7 @@ class HuggingFaceLocal(LLMBinding):
             # Fetch potentially relevant models: text-gen, text2text, image-to-text etc.
             hub_models_list = []
             # Prioritize pipelines most relevant to this binding
-            relevant_pipelines = ["text-generation", "text2text-generation", "image-to-text", "visual-question-answering", "image-text-to-text", "document-question-answering"]
+            relevant_pipelines = ["text-generation", "image-text-to-text"]
             # Add general 'transformers' tag search as fallback? Maybe too broad.
 
             seen_ids = set(local_model_names) # Keep track of seen models (including local)
