@@ -1544,7 +1544,7 @@ class HuggingFaceLocal(LLMBinding):
                     try:
                         model_iterator = api.list_models(
                             author=provider if provider else None,
-                            #task=task,
+                            task=task,
                             sort=hub_sort_key,
                             direction=-1, # Most popular/recent first
                             limit=limit_per_provider,
