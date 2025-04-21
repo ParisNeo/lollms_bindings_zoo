@@ -89,12 +89,21 @@ try:
     import torch
     import transformers
     # Import specific classes needed
-    from transformers import (
-        AutoConfig, AutoModelForCausalLM, AutoTokenizer, AutoProcessor,
-        BitsAndBytesConfig, TextIteratorStreamer, StoppingCriteria, StoppingCriteriaList,
-        LlavaForConditionalGeneration, PaliGemmaForConditionalGeneration, # Add known VLM classes
-        Gemma3ForConditionalGeneration # Import Gemma 3 explicitly
-    )
+    try:
+        from transformers import (
+            AutoConfig, AutoModelForCausalLM, AutoTokenizer, AutoProcessor,
+            BitsAndBytesConfig, TextIteratorStreamer, StoppingCriteria, StoppingCriteriaList,
+            LlavaForConditionalGeneration, PaliGemmaForConditionalGeneration, # Add known VLM classes
+            Gemma3ForConditionalGeneration # Import Gemma 3 explicitly
+        )
+    except:
+        pm.install("transformers", upgrade=True)
+        from transformers import (
+            AutoConfig, AutoModelForCausalLM, AutoTokenizer, AutoProcessor,
+            BitsAndBytesConfig, TextIteratorStreamer, StoppingCriteria, StoppingCriteriaList,
+            LlavaForConditionalGeneration, PaliGemmaForConditionalGeneration, # Add known VLM classes
+            Gemma3ForConditionalGeneration # Import Gemma 3 explicitly
+        )
     from huggingface_hub import HfApi # Added imports
     # accelerate is implicitly used by device_map='auto'
     if torch.cuda.is_available():
@@ -649,7 +658,7 @@ class HuggingFaceLocal(LLMBinding):
             pm.install_multiple(["torch","torchvision","torchaudio"], "https://download.pytorch.org/whl/cu124", force_reinstall=True)
 
             # Core requirements
-            pm.install_multiple(["transformers", "accelerate", "sentencepiece", "huggingface_hub", "Pillow", "requests"])
+            pm.install_multiple(["transformers", "accelerate", "sentencepiece", "huggingface_hub", "Pillow", "requests"], force_reinstall=True)
             # Optional but highly recommended for features
             pm.install_multiple(["bitsandbytes"])
             self.HideBlockingMessage()
@@ -1530,12 +1539,12 @@ class HuggingFaceLocal(LLMBinding):
             for provider in favorite_providers_list:
                 self.info(f"Fetching models for provider: {provider if provider else 'All Providers'} (sort: {hub_sort_key}, limit per type: {limit_per_provider})")
                 provider_models = set() # Track models found for this provider to avoid duplicates across pipelines
-                # Search by pipeline first
+                # Search by tasks first
                 for task in relevant_tasks:
                     try:
                         model_iterator = api.list_models(
                             author=provider if provider else None,
-                            task=task,
+                            #task=task,
                             sort=hub_sort_key,
                             direction=-1, # Most popular/recent first
                             limit=limit_per_provider,
@@ -1548,10 +1557,10 @@ class HuggingFaceLocal(LLMBinding):
                                  seen_ids.add(model.modelId)
                                  provider_models.add(model.modelId)
                                  count += 1
-                        if count > 0: self.info(f" Found {count} models for pipeline '{task}'")
+                        if count > 0: self.info(f" Found {count} models for task '{task}'")
 
                     except Exception as pipe_ex:
-                        ASCIIColors.warning(f"Could not fetch models for provider '{provider}' pipeline '{task}': {pipe_ex}")
+                        ASCIIColors.warning(f"Could not fetch models for provider '{provider}' task '{task}': {pipe_ex}")
 
                  # Optional: Add a broader search for the provider if few results found?
                  # if not provider_models and provider:
