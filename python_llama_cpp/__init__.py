@@ -18,16 +18,13 @@ from lollms.binding import LLMBinding, LOLLMSConfig, BindingType
 from lollms.helpers import ASCIIColors
 from lollms.com import NotificationType
 from lollms.types import MSG_OPERATION_TYPE
-from lollms.utilities import PackageManager, discussion_path_to_url
+from lollms.utilities import discussion_path_to_url
 from lollms.utilities import AdvancedGarbageCollector, show_yes_no_dialog
 from ascii_colors import ASCIIColors, trace_exception
 import subprocess
-import yaml
 import os
 import sys
-import shutil
 import platform
-from functools import partial
 import gc
 
 __author__ = "parisneo"
