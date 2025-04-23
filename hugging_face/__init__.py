@@ -13,12 +13,8 @@
 # and applies chat templates.
 ######
 
-import io
 import json
 import os
-import sys
-import yaml
-import re # Added for parsing
 from datetime import datetime
 from pathlib import Path
 from threading import Thread
@@ -32,56 +28,40 @@ from lollms.helpers import ASCIIColors, trace_exception
 from lollms.paths import LollmsPaths
 from lollms.types import MSG_OPERATION_TYPE
 from lollms.utilities import (
-    PackageManager, AdvancedGarbageCollector, get_torch_device,
+    AdvancedGarbageCollector, get_torch_device,
     find_first_available_file_path, is_file_path, download_file # Added download_file
 )
 from PIL import Image
 from time import perf_counter, sleep
 
 # Set environment variable for Transformers offline mode based on config later
+import pipmaster as pm
+# Added huggingface_hub, Pillow, requests
+pm.ensure_packages({
+    "torch":">=2.6.0",
+    "torchvision":"",
+    "torchaudio":"",
+},index_url="https://download.pytorch.org/whl/cu124")
 
-# Try to install necessary packages using pipmaster
-if not PackageManager.check_package_installed("pipmaster"):
-    PackageManager.install_package("pipmaster") # Attempt to install pipmaster if missing
-
-try:
-    import pipmaster as pm
-    # Added huggingface_hub, Pillow, requests
-    required_packages = ["torch", "transformers", "accelerate", "bitsandbytes", "sentencepiece", "huggingface_hub", "Pillow", "requests"]
-    for entry in required_packages:
-        if not pm.is_installed(entry):
-            pm.install(entry)
-
-    # Verify installation after attempt
-    if not pm.is_installed("torch"): raise ImportError("PyTorch not found.")
-    if not pm.is_installed("transformers"): raise ImportError("Transformers not found.")
-    if not pm.is_installed("accelerate"): raise ImportError("Accelerate not found.")
-    if not pm.is_installed("bitsandbytes"): raise ImportError("Bitsandbytes not found.") # Optional, but good to check
-    if not pm.is_installed("huggingface_hub"): raise ImportError("huggingface_hub not found.")
-    if not pm.is_installed("Pillow"): raise ImportError("Pillow (PIL) not found.") # Corrected check
-    if not pm.is_installed("requests"): raise ImportError("requests not found.")
+pm.ensure_packages({
+    "transformers":"", 
+    "accelerate":"",
+    "bitsandbytes":"",
+    "sentencepiece":"",
+    "huggingface_hub":"",
+    "Pillow":"",
+    "requests":""
+})
+# Verify installation after attempt
+if not pm.is_installed("torch",">=2.7.0"): raise ImportError("PyTorch not found.")
+if not pm.is_installed("transformers"): raise ImportError("Transformers not found.")
+if not pm.is_installed("accelerate"): raise ImportError("Accelerate not found.")
+if not pm.is_installed("bitsandbytes"): raise ImportError("Bitsandbytes not found.") # Optional, but good to check
+if not pm.is_installed("huggingface_hub"): raise ImportError("huggingface_hub not found.")
+if not pm.is_installed("Pillow"): raise ImportError("Pillow (PIL) not found.") # Corrected check
+if not pm.is_installed("requests"): raise ImportError("requests not found.")
 
 
-except ImportError as e:
-    # Fallback or error message if pipmaster fails or isn't available
-    print("Warning: pipmaster check failed or packages missing.")
-    print("Please ensure torch, transformers, accelerate, bitsandbytes, sentencepiece, huggingface_hub, Pillow, and requests are installed.")
-    print("Attempting to proceed, but errors may occur if packages are missing.")
-    # Check again with standard import checks
-    try: import torch
-    except ImportError: print("Error: PyTorch is missing.")
-    try: import transformers
-    except ImportError: print("Error: Transformers is missing.")
-    try: import accelerate
-    except ImportError: print("Error: Accelerate is missing.")
-    try: import bitsandbytes # Check is optional based on usage needs
-    except ImportError: print("Warning: Bitsandbytes is missing (needed for 4/8-bit quantization).")
-    try: import huggingface_hub
-    except ImportError: print("Error: huggingface_hub is missing.")
-    try: from PIL import Image
-    except ImportError: print("Error: Pillow is missing.")
-    try: import requests
-    except ImportError: print("Error: requests is missing.")
 
 
 # Now import the libraries - this assumes installation was successful or handled manually
