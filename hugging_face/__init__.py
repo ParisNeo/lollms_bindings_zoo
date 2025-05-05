@@ -53,13 +53,19 @@ pm.ensure_packages({
     "requests":""
 })
 # Verify installation after attempt
-if not pm.is_installed("torch",">=2.7.0"): raise ImportError("PyTorch not found.")
-if not pm.is_installed("transformers"): raise ImportError("Transformers not found.")
-if not pm.is_installed("accelerate"): raise ImportError("Accelerate not found.")
-if not pm.is_installed("bitsandbytes"): raise ImportError("Bitsandbytes not found.") # Optional, but good to check
-if not pm.is_installed("huggingface_hub"): raise ImportError("huggingface_hub not found.")
-if not pm.is_installed("Pillow"): raise ImportError("Pillow (PIL) not found.") # Corrected check
-if not pm.is_installed("requests"): raise ImportError("requests not found.")
+pm.ensure_packages({"torch":">=2.7.0",
+                    "torchvision":"",
+                    "torchaudio":""},
+                    "https://download.pytorch.org/whl/cu124"
+                )
+pm.ensure_packages({"transformers":"",
+                    "accelerate":"",
+                    "bitsandbytes":"",
+                    "huggingface_hub":"",
+                    "Pillow":"",
+                    "requests":""
+                    }
+                )
 
 
 

@@ -338,6 +338,8 @@ class Gemini(LLMBinding):
         if not self.model:
             self.error("Model not initialized. Cannot count tokens.")
             return -1
+        if prompt=="":
+            return 0
         try:
             token_count_response = self.model.count_tokens(prompt)
             return token_count_response.total_tokens
