@@ -33,10 +33,10 @@ import json
 # Try to install necessary packages using pipmaster
 try:
     import pipmaster as pm
-    if not pm.is_installed("openai"):
-        pm.install("openai")
-    if not pm.is_installed("tiktoken"):
-        pm.install("tiktoken")
+    pm.ensure_packages({
+                        "openai":">=1.77.0",
+                        "tiktoken":""
+                    })
 except ImportError:
     print("Warning: pipmaster not found. Please install required packages manually: pip install openai tiktoken")
     # Attempt direct import, assuming they might already be installed
