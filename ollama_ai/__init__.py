@@ -149,8 +149,8 @@ class Ollama(LLMBinding):
         if self.config.model_name is None:
             return None
         
-        if "pixtral" in self.config.model_name or  "llava" in self.config.model_name or "vision" in self.config.model_name:
-            self.binding_type = BindingType.TEXT_IMAGE
+        #if "pixtral" in self.config.model_name or  "llava" in self.config.model_name or "vision" in self.config.model_name:
+        self.binding_type = BindingType.TEXT_IMAGE
             
         headers = {
             'Content-Type': 'application/json',
@@ -319,8 +319,18 @@ class Ollama(LLMBinding):
                     if not callback(chunk['message']['content'], MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
                         break
         except Exception as ex:
-            trace_exception(ex)
-            self.error("Couldn't generate text")
+            try:
+                self.generate(   prompt,                  
+                                 n_predict,
+                                 callback,
+                                 verbose,
+                                 **gpt_params)
+                self.binding_type = BindingType.TEXT
+                self.warning("The model refuses image inputs")
+            except Exception as ex:
+                trace_exception(ex)
+                self.error("Couldn't generate text")
+                
         return text    
     
 
