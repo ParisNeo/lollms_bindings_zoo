@@ -25,7 +25,7 @@ import sys
 import json
 import requests
 from datetime import datetime
-from typing import List, Union
+from typing import List, Union, Optional, Dict
 from lollms.utilities import PackageManager, encode_image, trace_exception, show_yes_no_dialog
 import pipmaster as pm
 if not pm.is_installed("ollama"):
@@ -46,6 +46,120 @@ binding_folder_name = ""
 elf_completion_formats={
     "instruct":"/api",
 }
+
+import requests
+import json
+import re # Import regular expressions module
+
+def get_model_parameters(model_name: str, ollama_base_url: str = "http://localhost:11434") -> Optional[Dict[str, int]]:
+    """
+    Fetches model information from an Ollama server and extracts its
+    context size and default max prediction tokens.
+
+    Prioritizes 'model_info' for context_length, then 'parameters' string for 'num_ctx'.
+    'num_predict' is sought in 'parameters'; if not found, defaults to -1.
+
+    Args:
+        model_name: The name of the model (e.g., "llama3", "mistral:7b", "qwen3:4b").
+        ollama_base_url: The base URL of the Ollama API server
+                         (e.g., "http://192.168.1.100:11434").
+                         Defaults to "http://localhost:11434".
+
+    Returns:
+        A dictionary containing {'context_size': int, 'predict_size': int} if
+        context_size can be determined. 'predict_size' will be an integer
+        (often -1 if not explicitly set, indicating no hard limit beyond context).
+        Returns None if context_size cannot be found or a critical error occurs.
+    """
+    api_url = f"{ollama_base_url.rstrip('/')}/api/show"
+    payload = {"name": model_name}
+
+    print(f"Querying {api_url} for model '{model_name}'...")
+
+    try:
+        response = requests.post(api_url, json=payload, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+
+        # --- Initialize variables ---
+        context_size = None
+        predict_size = None # Will default later if not found
+
+        # --- 1. Try to get context_size from model_info ---
+        model_info = data.get("model_info")
+        if model_info and isinstance(model_info, dict):
+            # Look for a key like 'llama.context_length', 'mistral.context_length', etc.
+            for key, value in model_info.items():
+                if key.endswith(".context_length"):
+                    try:
+                        context_size = int(value)
+                        print(f"Found context_size ({context_size}) in model_info key '{key}'.")
+                        break # Found it
+                    except (ValueError, TypeError):
+                        print(f"Warning: Could not convert model_info context_length value '{value}' to int for key '{key}'.")
+                        # Continue, maybe it's in parameters_str
+
+        # --- 2. If not in model_info, try to get context_size from parameters string (num_ctx) ---
+        parameters_str = data.get("parameters", "") # Default to empty string if not present
+        if context_size is None and parameters_str:
+            ctx_match = re.search(r"^\s*num_ctx\s+(\d+)\s*$", parameters_str, re.MULTILINE)
+            if ctx_match:
+                try:
+                    context_size = int(ctx_match.group(1))
+                    print(f"Found context_size ({context_size}) in 'parameters' string (num_ctx).")
+                except ValueError:
+                    print(f"Warning: Could not convert extracted num_ctx '{ctx_match.group(1)}' to integer for model '{model_name}'.")
+            else:
+                print(f"Info: 'num_ctx' not found in 'parameters' string for model '{model_name}'.")
+        elif context_size is None:
+             print(f"Info: 'parameters' key not found or empty, and context_length not in model_info for '{model_name}'.")
+
+
+        # --- If context_size is still None, we cannot proceed reliably ---
+        if context_size is None:
+            print(f"Error: Could not determine context_size for model '{model_name}' from either model_info or parameters.")
+            return None
+
+        # --- 3. Try to get num_predict from parameters string ---
+        if parameters_str:
+            predict_match = re.search(r"^\s*num_predict\s+(-?\d+)\s*$", parameters_str, re.MULTILINE)
+            if predict_match:
+                try:
+                    predict_size = int(predict_match.group(1))
+                    print(f"Found predict_size ({predict_size}) in 'parameters' string (num_predict).")
+                except ValueError:
+                    print(f"Warning: Could not convert extracted num_predict '{predict_match.group(1)}' to integer for model '{model_name}'.")
+            else:
+                print(f"Info: 'num_predict' not explicitly found in 'parameters' string for model '{model_name}'.")
+
+        # --- 4. Default predict_size if not found ---
+        # Ollama's default for num_predict if not set is often -1 (unlimited up to context) or sometimes 128.
+        # -1 is a safer general assumption for "not explicitly limited by predict_size".
+        if predict_size is None:
+            predict_size = -1
+            print(f"Defaulting predict_size to {predict_size} as it was not explicitly found.")
+
+        return {"context_size": context_size, "predict_size": predict_size}
+
+    except requests.exceptions.Timeout:
+        print(f"Error: Request timed out connecting to Ollama server at {ollama_base_url}")
+        return None
+    except requests.exceptions.RequestException as e:
+        if hasattr(e, 'response') and e.response is not None:
+            print(f"Error querying Ollama server at {ollama_base_url}. Status Code: {e.response.status_code}. Response: {e.response.text}")
+        else:
+            print(f"Error connecting to Ollama server at {ollama_base_url}: {e}")
+        return None
+    except json.JSONDecodeError:
+        print(f"Error: Could not decode JSON response from Ollama server.")
+        return None
+    except KeyError as e: # Should be less frequent with .get()
+        print(f"Error: Unexpected response structure from Ollama API. Missing key: {e}")
+        return None
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return None
+    
 
 def get_binding_cfg(lollms_paths:LollmsPaths, binding_name):
     cfg_file_path = lollms_paths.personal_configuration_path/"bindings"/f"{binding_name}"/"config.yaml"
@@ -96,13 +210,12 @@ class Ollama(LLMBinding):
                 {"name":"verify_ssl_certificate","type":"bool","value":True,"help":"Deactivate if you don't want the client to verify the SSL certificate"},
                 {"name":"max_image_width","type":"int","value":1024, "help":"The maximum width of the image in pixels. If the mimage is bigger it gets shrunk before sent to ollama model"},
                 {"name":"completion_format","type":"str","value":"instruct","options":["instruct"], "help":"The format supported by the server"},
+                {"name":"use_auto_ctx_size","type":"bool","value":True, "help":"If true, then the context size will be automatically fetched."},
                 {"name":"ctx_size","type":"int","value":4090, "min":512, "help":"The current context size (it depends on the model you are using). Make sure the context size if correct or you may encounter bad outputs."},
                 {"name":"max_n_predict","type":"int","value":4090, "min":512, "help":"The maximum amount of tokens to generate"},
                 {"name":"server_key","type":"str","value":"", "help":"The API key to connect to the server."},
                 {"name":"timeout","type":"int","value":-1, "help":"the timeout value in ms (-1 for no timeout)."},
-            ]),
-            BaseConfig(config={
-            })
+            ])
         )
         super().__init__(
                             Path(__file__).parent, 
@@ -124,6 +237,14 @@ class Ollama(LLMBinding):
             self.InfoMessage(f"I detected that you are using lollms remotes server with the same address and port number of the current server which will cause an infinite loop.\nTo prevent this I have changed the port number and now the server address is {self.binding_config.address}")
 
     def settings_updated(self):
+        if self.binding_config.use_auto_ctx_size:
+            try:
+                model_params = get_model_parameters(self.model_name, self.binding_config.address)
+                
+                self.binding_config.config.ctx_size=model_params['context_size'] if model_params['context_size']!=-1 else self.binding_config.config.ctx_size
+                self.binding_config.config.max_n_predict=model_params['predict_size'] if model_params['predict_size']!=-1 else self.binding_config.config.ctx_size
+            except Exception as ex:
+                trace_exception(ex)
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
         if self.binding_config.address.strip().endswith("/") :
