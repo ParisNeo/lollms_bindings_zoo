@@ -58,7 +58,7 @@ class CustomBinding(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.bin'],
+                            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.bin'],
                             app=app
                         )
         
@@ -170,7 +170,7 @@ This is a photo
     #    """Lists the models for this binding
     #    """
     #    models_dir = Path('./models')/config["binding"]  # replace with the actual path to the models folder
-    #    return [f.name for f in models_dir.glob(LLMBinding.supported_file_extensions)]
+    #    return [f.name for f in models_dir.glob(LLMBinding.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS)]
     #
         
         

@@ -113,7 +113,7 @@ class ExLLamav2(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.safetensors','.pth','.bin'],
+                            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.safetensors','.pth','.bin'],
                             models_dir_names=["exl2","gptq"],
                             lollmsCom=lollmsCom
                         )

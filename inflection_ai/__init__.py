@@ -149,7 +149,7 @@ class InflectionAI(LLMBinding):
                             config,
                             binding_config,
                             installation_option,
-                            supported_file_extensions=[], # Inflection API doesn't support file uploads
+                            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[], # Inflection API doesn't support file uploads
                             lollmsCom=lollmsCom
                         )
         # --- Configuration Sync ---
@@ -215,7 +215,7 @@ class InflectionAI(LLMBinding):
 
         # Determine Binding Type (Always Text)
         self.binding_type = BindingType.TEXT_ONLY
-        self.supported_file_extensions=[]
+        self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[]
 
         ASCIIColors.success(f"Inflection AI binding built successfully. Model: {current_model_name}. API URL: {self.binding_config.config.get('override_api_url', DEFAULT_CONFIG['override_api_url'])}")
         return self

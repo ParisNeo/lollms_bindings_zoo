@@ -218,7 +218,7 @@ class HuggingFaceLocal(LLMBinding):
             config,
             binding_config,
             installation_option,
-            supported_file_extensions=[], # Updated in build_model
+            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[], # Updated in build_model
             lollmsCom=lollmsCom
         )
         # Default binding type, might change in build_model
@@ -370,11 +370,11 @@ class HuggingFaceLocal(LLMBinding):
 
             if is_vision_model:
                  self.binding_type = BindingType.TEXT_IMAGE
-                 self.supported_file_extensions = ['.png', '.jpg', '.jpeg', '.webp', '.bmp']
+                 self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp', '.bmp']
                  ASCIIColors.info(f"Loading as Vision Model using {ModelClass.__name__} and {ProcessorTokenizerClass.__name__}")
             else:
                  self.binding_type = BindingType.TEXT_ONLY
-                 self.supported_file_extensions = []
+                 self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS = []
                  ASCIIColors.info(f"Loading as Text Model using {ModelClass.__name__} and {ProcessorTokenizerClass.__name__}")
 
 
@@ -631,7 +631,7 @@ class HuggingFaceLocal(LLMBinding):
 
         # Reset binding type and supported extensions
         self.binding_type = BindingType.TEXT_ONLY
-        self.supported_file_extensions = []
+        self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS = []
         self.info("Previous model unloaded and resources potentially freed.")
 
 

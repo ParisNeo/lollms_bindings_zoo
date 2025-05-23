@@ -152,7 +152,7 @@ class OpenRouter(LLMBinding):
                             config,
                             binding_config,
                             installation_option,
-                            supported_file_extensions=['.png', '.jpg', '.jpeg', '.webp', '.gif'], # For vision models
+                            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.png', '.jpg', '.jpeg', '.webp', '.gif'], # For vision models
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size = self.binding_config.config["ctx_size"] # Initial sync
@@ -348,18 +348,18 @@ class OpenRouter(LLMBinding):
 
         # Determine Binding Type based on selected model (if not auto-routing) or assume TEXT_IMAGE if auto includes vision
         self.binding_type = BindingType.TEXT_ONLY # Default
-        self.supported_file_extensions=[]
+        self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[]
         if self.binding_config.config.get("enable_auto_routing"):
              # Assume potential for vision if auto-routing is on
              self.binding_type = BindingType.TEXT_IMAGE
-             self.supported_file_extensions=['.png', '.jpg', '.jpeg', '.webp', '.gif']
+             self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.png', '.jpg', '.jpeg', '.webp', '.gif']
              ASCIIColors.info("Auto-routing enabled, assuming potential for Vision capabilities.")
         elif self.current_model_metadata:
              architecture = self.current_model_metadata.get("architecture")
              modalities = architecture.get("input_modalities", [])
              if "image" in modalities:
                   self.binding_type = BindingType.TEXT_IMAGE
-                  self.supported_file_extensions=['.png', '.jpg', '.jpeg', '.webp', '.gif']
+                  self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.png', '.jpg', '.jpeg', '.webp', '.gif']
                   ASCIIColors.info(f"Model {current_model_name} supports vision.")
              else:
                   ASCIIColors.info(f"Model {current_model_name} is text-only.")

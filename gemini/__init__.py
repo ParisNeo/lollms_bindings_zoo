@@ -34,8 +34,8 @@ if not pm.is_installed("pillow"):
 from PIL import Image
 
 # Ensure the required library is installed
-if not pm.is_installed("google-generativeai"):
-    pm.install("google-generativeai")
+if not pm.is_installed("google-genai"):
+    pm.install("google-genai")
 
 try:
     import google.generativeai as genai
@@ -146,7 +146,7 @@ class Gemini(LLMBinding):
             config,
             binding_config,
             installation_option,
-            supported_file_extensions=['.png', '.jpg', '.jpeg', '.webp'], # Common vision formats
+            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.png', '.jpg', '.jpeg', '.webp'], # Common vision formats
             lollmsCom=lollmsCom,
         )
 

@@ -188,7 +188,7 @@ class Perplexity(LLMBinding):
                             config,
                             binding_config,
                             installation_option,
-                            supported_file_extensions=[], # Perplexity Chat API doesn't support file uploads directly
+                            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[], # Perplexity Chat API doesn't support file uploads directly
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size = self.binding_config.config["ctx_size"]
@@ -296,7 +296,7 @@ class Perplexity(LLMBinding):
 
         # Determine Binding Type (Always Text for Chat API)
         self.binding_type = BindingType.TEXT_ONLY
-        self.supported_file_extensions=[] # No direct file uploads
+        self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[] # No direct file uploads
 
         ASCIIColors.success(f"Perplexity binding built successfully. Model: {current_model_name}. API URL: {self.binding_config.config.get('override_api_url', 'https://api.perplexity.ai')}")
         return self

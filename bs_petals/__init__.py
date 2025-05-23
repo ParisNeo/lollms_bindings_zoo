@@ -73,7 +73,7 @@ class Petals(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.safetensors','.pth','.bin'],
+                            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.safetensors','.pth','.bin'],
                             lollmsCom=lollmsCom
                         )
         self.callback = None

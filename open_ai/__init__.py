@@ -277,7 +277,7 @@ class OpenAIGPT(LLMBinding):
                             config,
                             binding_config,
                             installation_option,
-                            supported_file_extensions=['.png', '.jpg', '.jpeg', '.webp', '.gif'], # Supported by vision models
+                            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.png', '.jpg', '.jpeg', '.webp', '.gif'], # Supported by vision models
                             lollmsCom=lollmsCom
                         )
         # Defer setting self.config context/prediction limits until build_model
@@ -527,11 +527,11 @@ class OpenAIGPT(LLMBinding):
         # --- Determine Binding Type and Log API Info ---
         if "vision" in current_model_name or "4o" in current_model_name: # gpt-4o is multimodal
             self.binding_type = BindingType.TEXT_IMAGE
-            self.supported_file_extensions=['.png', '.jpg', '.jpeg', '.webp', '.gif'] # Enable image extensions
+            self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.png', '.jpg', '.jpeg', '.webp', '.gif'] # Enable image extensions
             ASCIIColors.info(f"Model {current_model_name} supports vision. Binding type: TEXT_IMAGE.")
         else:
             self.binding_type = BindingType.TEXT_ONLY
-            self.supported_file_extensions=[] # Disable file extensions for non-vision models
+            self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[] # Disable file extensions for non-vision models
             # Log expected API usage based on name (actual choice happens in generate)
             legacy_indicators = ["instruct", "davinci", "curie", "babbage", "ada"]
             is_legacy = any(ind in current_model_name for ind in legacy_indicators) and "turbo" not in current_model_name and "gpt-3.5" not in current_model_name

@@ -101,7 +101,7 @@ class Vllm(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=[''],
+                            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[''],
                             lollmsCom=lollmsCom
                         )
         self.config.ctx_size=self.binding_config.config.ctx_size

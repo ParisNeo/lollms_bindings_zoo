@@ -202,7 +202,7 @@ class Anthropic(LLMBinding):
             config,
             binding_config,
             installation_option,
-            supported_file_extensions=['.png', '.jpg', '.jpeg', '.webp', '.gif'],
+            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.png', '.jpg', '.jpeg', '.webp', '.gif'],
             lollmsCom=lollmsCom
         )
         self.client: Optional[anthropic.Anthropic] = None
@@ -479,11 +479,11 @@ class Anthropic(LLMBinding):
 
         if is_vision_capable:
             self.binding_type = BindingType.TEXT_IMAGE
-            self.supported_file_extensions=['.png', '.jpg', '.jpeg', '.webp', '.gif']
+            self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.png', '.jpg', '.jpeg', '.webp', '.gif']
             ASCIIColors.info(f"Model {current_model_name} determined as vision capable. Binding type: TEXT_IMAGE.")
         else:
             self.binding_type = BindingType.TEXT_ONLY
-            self.supported_file_extensions=[]
+            self.SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[]
             ASCIIColors.info(f"Model {current_model_name} determined as text-only. Binding type: TEXT_ONLY.")
 
         ASCIIColors.success(f"Anthropic binding built successfully. Model: {current_model_name}.")

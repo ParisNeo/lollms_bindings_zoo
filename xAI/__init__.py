@@ -71,7 +71,7 @@ class Grok(LLMBinding):
             config, 
             binding_config, 
             installation_option,
-            supported_file_extensions=[''],
+            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=[''],
             lollmsCom=lollmsCom
         )
         

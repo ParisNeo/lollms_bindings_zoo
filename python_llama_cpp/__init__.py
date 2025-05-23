@@ -110,7 +110,7 @@ class LLAMA_Python_CPP(LLMBinding):
                             config, 
                             binding_config, 
                             installation_option,
-                            supported_file_extensions=['.gguf', '.bin'],
+                            SAFE_STORE_SUPPORTED_FILE_EXTENSIONS=['.gguf', '.bin'],
                             models_dir_names=["gguf", "ggml"],
                             lollmsCom=lollmsCom
                         )
