@@ -833,8 +833,8 @@ class OpenAIGPT(LLMBinding):
 
         if invalid_image_paths:
              self.warning(f"Skipped {len(invalid_image_paths)} invalid or unloadable images.")
-
-        api_params["messages"] = [{"role": "user", "content": content}]
+        messages = self.lollmsCom.parse_to_openai(prompt)
+        api_params["messages"] = messages
 
         # --- Cost Estimation (Input - Text Tokens Only) ---
         prompt_tokens = 0
@@ -1243,7 +1243,7 @@ class OpenAIGPT(LLMBinding):
                 stream_finished = False
                 if use_chat_completion:
                     # Chat Completions API
-                    messages = [{"role": "user", "content": prompt}]
+                    messages = self.lollmsCom.parse_to_openai(prompt)
                     stream_params["messages"] = messages
                     if verbose: ASCIIColors.verbose(f"Calling Chat Completions API. Params: {stream_params}")
                     completion_stream = self.client.chat.completions.create(**stream_params)

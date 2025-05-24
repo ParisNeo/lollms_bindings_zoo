@@ -387,10 +387,10 @@ class Ollama(LLMBinding):
                 "num_ctx":self.binding_config.ctx_size,
                 "num_predict": n_predict
             }
+            messages = self.lollmsCom.parse_to_openai(prompt)
+            ASCIIColors.debug(f"{messages}")
             gpt_params = {**default_params, **gpt_params}
-            for chunk in self.client.chat(model=self.config.model_name, messages=[
-                {'role': 'user', 'content': prompt}
-            ], stream=True, options = gpt_params):
+            for chunk in self.client.chat(model=self.config.model_name, messages=messages, stream=True, options = gpt_params):
                 text +=chunk['message']['content']
                 if callback:
                     if not callback(chunk['message']['content'], MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
@@ -431,10 +431,9 @@ class Ollama(LLMBinding):
                 'repeat_last_n': 1.3,
                 "num_predict": n_predict
             }
+            messages = self.lollmsCom.parse_to_openai(prompt)
             gpt_params = {**default_params, **gpt_params}
-            for chunk in self.client.chat(model=self.config.model_name, messages=[
-                {'role': 'user', 'content': prompt, 'images':images}
-            ], stream=True, options = gpt_params):
+            for chunk in self.client.chat(model=self.config.model_name, messages=messages, stream=True, options = gpt_params):
                 text +=chunk['message']['content']
                 if callback:
                     if not callback(chunk['message']['content'], MSG_OPERATION_TYPE.MSG_OPERATION_TYPE_ADD_CHUNK):
