@@ -1,0 +1,10 @@
+name: LLamaCPP
+author: ggerganov
+version: 1.0
+link: https://github.com/ggml-org/llama.cpp
+description: This binding allows the use of llamacpp to use local gguf and ggml files
+accepted_models: 
+  - llama
+  - mistral
+  - qwen
+  - falcon
