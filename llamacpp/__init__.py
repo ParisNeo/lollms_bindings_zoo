@@ -523,7 +523,7 @@ class LlamaCpp_Server(LLMBinding):
                         self.WarningMessage("Images for /completion, but prompt may lack <image N> placeholders.")
             return final_payload
 
-    def generate(self, prompt:str, n_predict:int=128, callback:Optional[Callable[[str,int,dict],bool]]=None,
+    def generate(self, prompt:str, n_predict:int=None, callback:Optional[Callable[[str,int,dict],bool]]=None,
                  verbose:bool=False, **gpt_params) -> str:
         use_chat_format = gpt_params.pop("use_chat_completions_format", True)
         images = gpt_params.pop("images", None)
