@@ -1012,7 +1012,7 @@ class OpenAIGPT(LLMBinding):
         # Note: Tools usage might ignore temperature.
         temp_override_applied = False
         if model_name:
-             if ('o4' in model_name or 'o3' in model_name) and final_temperature != 1.0:
+             if ('o4' in model_name or 'o3' in model_name or "gpt-5" in model_name) and final_temperature != 1.0:
                  self.warning(f"Model family '{model_name}' might work best with temp=1.0. Current: {final_temperature}.")
                  final_temperature = 1.0; 
                  temp_override_applied = True
