@@ -1420,12 +1420,12 @@ class OpenAIGPT(LLMBinding):
 
             # Determine Rank and Size Proxy
             rank = 1.0 # Base rank
-            if "o3" in model_name or "o4" in model_name or "o1-pro" in model_name: rank = 4.0 # Top reasoning
+            if "o3" in model_name or "o4" in model_name or "o1-pro" in model_name or "gpt-5" in model_name: rank = 4.0 # Top reasoning
             elif "gpt-4.1" in model_name: rank = 3.5 # New powerful GPT
             elif "gpt-4o" == model_name: rank = 3.3 # Flagship omni
             elif "gpt-4" in model_name: rank = 3.0 # General GPT-4
             elif "gpt-4o-mini" == model_name: rank = 2.5 # Good balance
-            elif "o1-mini" in model_name or "o3-mini" in model_name or "o4-mini" in model_name: rank = 2.3 # Small reasoning
+            elif "o1-mini" in model_name or "o3-mini" in model_name or "o4-mini" in model_name  or "gpt-5-mini" in model_name: rank = 2.3 # Small reasoning
             elif "gpt-3.5" in model_name: rank = 2.0 # Older but capable
             else: rank = 1.0 # Legacy/unknown
 

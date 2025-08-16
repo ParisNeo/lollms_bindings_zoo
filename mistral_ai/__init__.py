@@ -121,9 +121,8 @@ class MistralAI(LLMBinding):
     def settings_updated(self):
         if not PackageManager.check_package_installed("mistralai"):
             PackageManager.install_package("mistralai")
-        from mistralai.client import MistralClient
-        from mistralai.models.chat_completion import ChatMessage
-        self.client = MistralClient(api_key=self.binding_config.config["mistralai_key"])
+        from mistralai import Mistral
+        self.client = Mistral(api_key=self.binding_config.config["mistralai_key"])
         self.config.ctx_size=self.binding_config.config.ctx_size
         self.config.max_n_predict=self.binding_config.max_n_predict
     
@@ -134,10 +133,8 @@ class MistralAI(LLMBinding):
         self.config.max_n_predict=self.binding_config.max_n_predict
         if not PackageManager.check_package_installed("mistralai"):
             PackageManager.install_package("mistralai")
-        from mistralai.client import MistralClient
-        from mistralai.models.chat_completion import ChatMessage
-        self.client = MistralClient(api_key=self.binding_config.config["mistralai_key"])
-        self.ChatMessage = ChatMessage
+        from mistralai import Mistral
+        self.client = Mistral(api_key=self.binding_config.config["mistralai_key"])
         
 
         # Do your initialization stuff
