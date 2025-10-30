@@ -34,7 +34,7 @@ def install_llama_cpp_binaries_pkg():
     ASCIIColors.info("Attempting to install llama-cpp-binaries...")
     system = platform.system()
     
-    version_tag = "v0.12.0" 
+    version_tag = "v0.56.0" 
     cuda_suffix = "+cu124" 
 
     if system == "Windows":
